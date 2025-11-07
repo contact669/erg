@@ -1,3 +1,58 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-image",
+      "description": "A bright and modern living room with stylish furniture, showcasing a high-end interior renovation.",
+      "imageUrl": "https://images.unsplash.com/photo-1724582586529-62622e50c0b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtb2Rlcm4lMjBsaXZpbmclMjByb29tfGVufDB8fHx8MTc2MjQ1MDc2NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern living room"
+    },
+    {
+      "id": "project-kitchen-1",
+      "description": "A sleek, modern kitchen with dark cabinets and marble countertops.",
+      "imageUrl": "https://images.unsplash.com/photo-1628745277862-bc0b2d68c50c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjBraXRjaGVufGVufDB8fHx8MTc2MjQzNzE1Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern kitchen"
+    },
+    {
+      "id": "project-bathroom-1",
+      "description": "An elegant bathroom featuring a freestanding tub and walk-in shower.",
+      "imageUrl": "https://images.unsplash.com/photo-1758548157466-7c454382035a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbGVnYW50JTIwYmF0aHJvb218ZW58MHx8fHwxNzYyNDk4MDQxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "elegant bathroom"
+    },
+    {
+      "id": "project-apartment-1",
+      "description": "A spacious and open-plan apartment living area.",
+      "imageUrl": "https://images.unsplash.com/photo-1750281736265-c5377ccecf74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzcGFjaW91cyUyMGFwYXJ0bWVudHxlbnwwfHx8fDE3NjI1MTMwOTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "spacious apartment"
+    },
+    {
+      "id": "project-office-1",
+      "description": "A contemporary office space with glass partitions and minimalist furniture.",
+      "imageUrl": "https://images.unsplash.com/photo-1631194019419-89ef6ec875db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y29udGVtcG9yYXJ5JTIwb2ZmaWNlfGVufDB8fHx8MTc2MjUyOTc5MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "contemporary office"
+    },
+    {
+      "id": "testimonial-avatar-1",
+      "description": "Avatar for a client testimonial.",
+      "imageUrl": "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjI0NzE2NDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person portrait"
+    },
+    {
+      "id": "testimonial-avatar-2",
+      "description": "Avatar for a client testimonial.",
+      "imageUrl": "https://images.unsplash.com/photo-1598625873873-52f9aefd7d9d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx3b21hbiUyMHNtaWxpbmd8ZW58MHx8fHwxNzYyNDk0NDg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman smiling"
+    },
+    {
+      "id": "testimonial-avatar-3",
+      "description": "Avatar for a client testimonial.",
+      "imageUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtYW4lMjBwcm9mZXNzaW9uYWx8ZW58MHx8fHwxNzYyNDcxNzIyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man professional"
+    },
+    {
+      "id": "cta-banner-image",
+      "description": "An architectural blueprint or design sketch, representing planning and precision.",
+      "imageUrl": "https://images.unsplash.com/photo-1742415106102-77bbfe14b872?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhcmNoaXRlY3R1cmFsJTIwYmx1ZXByaW50fGVufDB8fHx8MTc2MjUyOTc5MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "architectural blueprint"
+    }
+  ]
 }
