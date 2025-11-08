@@ -5,7 +5,11 @@ import {
   CookingPot,
   Building,
   Hammer,
-  Paintbrush
+  Paintbrush,
+  Sparkles,
+  ClipboardCheck,
+  Users,
+  Award
 } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
@@ -29,19 +33,45 @@ export const services: Service[] = [
     longDescription: "Que vous veniez d'acquérir un bien ou que vous souhaitiez rafraîchir votre lieu de vie, nous transformons votre appartement pour qu'il corresponde parfaitement à vos attentes. De la restructuration des volumes à la sélection des finitions, nous gérons chaque aspect pour créer un intérieur qui vous ressemble, en optimisant l'espace, la lumière et la fonctionnalité.",
     benefits: [
       {
-        title: "Optimisation de l'espace",
-        description: "Nous repensons les agencements pour maximiser chaque mètre carré et améliorer la fluidité de la circulation."
+        title: "Rénovation Complète d'Appartement",
+        description: "Démolition, redistribution des espaces, refonte des réseaux (plomberie, électricité), isolation (phonique et thermique), jusqu'aux finitions."
       },
       {
-        title: "Valorisation de votre patrimoine",
-        description: "Une rénovation de qualité augmente significativement la valeur de votre bien immobilier sur le marché parisien."
+        title: "Rénovation par Pièce",
+        description: "Spécialistes des pièces techniques : conception de cuisines sur-mesure, création de salles de bain, optimisation de l'espace et de la lumière."
       },
       {
-        title: "Confort et modernité",
-        description: "Nous intégrons les dernières innovations en matière d'isolation, de domotique et d'équipements pour un confort de vie optimal."
+        title: "Rénovation Énergétique",
+        description: "Améliorez votre confort et la valeur de votre bien : isolation des murs, remplacement de fenêtres, installation de systèmes de chauffage performants."
+      },
+      {
+        title: "Agencement et Menuiserie sur Mesure",
+        description: "Création de dressings, bibliothèques, et solutions de rangement intégrées qui s'adaptent parfaitement à l'architecture de votre appartement."
       }
     ],
-    relatedProjectSlugs: ['appartement-haussmannien-paris-16']
+    process: [
+        { step: 1, title: 'Consultation et Devis', description: 'Visite sur site (Paris, 92, 93, 94, 78), écoute de vos besoins, analyse technique et remise d\'un devis détaillé et transparent.' },
+        { step: 2, title: 'Conception et Planification', description: 'Validation des plans (si nécessaire avec architecte), choix des matériaux, établissement d\'un planning précis.' },
+        { step: 3, title: 'Réalisation des Travaux', description: 'Pilotage de nos équipes qualifiées (tous corps d\'état), réunions de chantier régulières, et un interlocuteur unique dédié à votre projet.' },
+        { step: 4, title: 'Livraison et Garanties', description: 'Réception des travaux sans réserve, remise des documents (dont la garantie décennale) et service après-vente réactif.' }
+    ],
+    whyUs: [
+        { title: "Une Expertise Reconnue à Paris et en Île-de-France", description: "Notre connaissance des spécificités de l'immobilier francilien (immeubles anciens, contraintes de copropriété, normes) est votre meilleure garantie. Nous intervenons quotidiennement dans le 75, 92, 93, 94 et 78.", icon: Award },
+        { title: "La Garantie d'un Interlocuteur Unique", description: "Fini le stress de la coordination. Votre chef de projet dédié est votre seul point de contact. Il pilote les artisans, gère le planning et assure le contrôle qualité permanent.", icon: Users },
+        { title: 'Des Finitions "Haut de Gamme"', description: "Le 'très très haut niveau' se voit dans les détails. Nous travaillons avec des matériaux nobles et nos artisans sont sélectionnés pour leur excellence (peintures soignées, pose de parquet, marbrerie...).", icon: Sparkles },
+        { title: 'Transparence et Garanties', description: "Tous nos travaux sont couverts par une assurance décennale et une assurance responsabilité civile. Nos devis sont clairs et nos délais, tenus.", icon: ClipboardCheck }
+    ],
+    zones: {
+        description: "Basée au cœur de la région, ERG Rénovation déploie ses équipes pour tous projets de rénovation d'appartement à Paris (75), de l'Haussmannien aux lofts. Notre expertise s'étend également à la petite couronne.",
+        list: "Hauts-de-Seine (92) (Neuilly-sur-Seine, Boulogne-Billancourt...), Seine-Saint-Denis (93) (Montreuil, Saint-Ouen...), Val-de-Marne (94) (Vincennes, Saint-Mandé...) et dans les Yvelines (78) (Versailles, Saint-Germain-en-Laye...)."
+    },
+    faq: [
+        { question: "Quel est le prix moyen d'une rénovation d'appartement au m² à Paris ?", answer: "Le coût d'une rénovation haut de gamme à Paris varie généralement entre 1 500 € et 2 500 € par mètre carré, selon la complexité, les matériaux choisis et l'état initial du bien. Chez ERG Rénovation, nous nous engageons à fournir un devis détaillé et transparent, sans frais cachés, pour que vous maîtrisiez parfaitement votre budget." },
+        { question: "Combien de temps dure une rénovation complète ?", answer: "Pour un appartement de 50m², une rénovation complète dure en moyenne entre 2 et 4 mois. Pour 100m², il faut compter entre 4 et 6 mois. Ces délais dépendent de l'ampleur des travaux. Nous établissons un planning précis et nous nous y tenons." },
+        { question: "Gérez-vous les autorisations de travaux (copropriété, mairie) ?", answer: "Oui, absolument. Nous vous accompagnons dans toutes les démarches administratives. Que ce soit la déclaration de travaux en mairie ou la présentation du projet en assemblée générale de copropriété, nous préparons les dossiers pour vous garantir une tranquillité totale." },
+        { question: "Possédez-vous la garantie décennale ?", answer: "Oui, c'est une obligation légale et notre plus grand gage de sérieux. Tous nos travaux sont couverts par notre garantie décennale, qui assure la réparation des dommages pouvant survenir dans les 10 ans suivant la réception du chantier. Votre investissement est ainsi protégé." }
+    ],
+    relatedProjectSlugs: ['appartement-haussmannien-paris-16', 'studio-optimise-marais']
   },
   {
     title: 'Rénovation de maison',

@@ -19,7 +19,26 @@ export interface Service {
     description: string;
   }[];
   relatedProjectSlugs: string[];
+  process?: {
+    step: number;
+    title: string;
+    description: string;
+  }[];
+  whyUs?: {
+    title: string;
+    description: string;
+    icon: LucideIcon;
+  }[];
+  zones?: {
+    description: string;
+    list: string;
+  };
+  faq?: {
+    question: string;
+    answer: string;
+  }[];
 }
+
 
 export interface Project {
   title: string;
