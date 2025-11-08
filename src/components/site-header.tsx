@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -99,8 +100,8 @@ export default function SiteHeader() {
 
                 return (
                   <NavigationMenuItem key={item.href}>
-                    <Link href={href} passHref>
-                       <NavigationMenuLink className={cn(
+                     <NavigationMenuLink asChild>
+                        <Link href={href} className={cn(
                           navigationMenuTriggerStyle(),
                           'group relative bg-transparent text-sm font-medium transition-colors',
                            'focus:bg-transparent focus:text-primary data-[active]:bg-transparent data-[state=open]:bg-transparent',
@@ -108,9 +109,9 @@ export default function SiteHeader() {
                             ? 'text-primary'
                             : 'text-muted-foreground hover:text-primary'
                         )}>
-                        <span>{item.title}</span>
-                       </NavigationMenuLink>
-                    </Link>
+                           {item.title}
+                        </Link>
+                     </NavigationMenuLink>
                   </NavigationMenuItem>
                 );
               })}
