@@ -2,6 +2,7 @@
 
 
 
+
 import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage } from './types';
 import {
   Home,
@@ -789,6 +790,59 @@ export const localLandingPages: LocalLandingPage[] = [
     testimonial: {
       quote: "La rénovation de notre duplex à Saint-Cloud a été un modèle de discrétion. Le résultat est à la hauteur du standing de notre résidence.",
       author: "Un client, Saint-Cloud",
+    },
+  },
+  {
+    slug: 'garches',
+    type: 'city',
+    title: "Rénovation d'Appartement à Garches : Le Luxe du Calme et de l'Espace",
+    metaTitle: "Rénovation Appartement Garches (92) | Calme & Standing | ERG Rénovation",
+    metaDescription: "Expert en rénovation d'appartements familiaux et de standing à Garches. Confort acoustique, design élégant et gestion de projet clé en main (92380).",
+    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    introduction: "Garches est reconnue pour sa tranquillité et ses résidences de qualité, offrant un cadre de vie idéal aux familles. La rénovation dans cette ville doit amplifier le sentiment de bien-être, en intégrant des solutions d'isolation de pointe et des agencements qui fluidifient la vie quotidienne. ERG Rénovation est votre expert pour transformer votre appartement de Garches en un havre de paix fonctionnel et élégant, avec une attention particulière aux détails qui garantissent la pérennité de votre confort.",
+    cta: {
+      primary: 'Organiser un diagnostic de confort à Garches',
+      secondary: 'Découvrir nos solutions d\'isolation phonique',
+    },
+    reassurancePoints: [
+      'Expertise en isolation phonique (Murs, plafonds, sols).',
+      'Solutions d\'agencement adaptées à la vie de famille.',
+      'Respect des résidences et des copropriétés de haut standing.',
+    ],
+    mainContent: (
+      <>
+        <h2 className="font-headline text-3xl font-bold">Nos Compétences : Créer des Espaces de Vie Optimaux à Garches</h2>
+        <p>Dans le 92380, la qualité de vie passe par des finitions irréprochables et des solutions techniques invisibles qui assurent un confort absolu.</p>
+        <div className="mt-8 space-y-6">
+            <div className="flex items-start gap-4">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                <div>
+                    <h3 className="font-headline font-semibold text-lg">Isolation Acoustique et Thermique de Premier Ordre</h3>
+                    <p className="text-muted-foreground">Nous traitons les appartements pour garantir le silence (isolation des sols et des plafonds contre les bruits d'impact) et une parfaite régulation thermique, essentielle dans les résidences anciennes.</p>
+                </div>
+            </div>
+            <div className="flex items-start gap-4">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                <div>
+                    <h3 className="font-headline font-semibold text-lg">Aménagement de Pièces à Vivre Flexibles</h3>
+                    <p className="text-muted-foreground">Conception de salons-salles à manger modulables, de bureaux à domicile discrets, et de zones de rangement intégrées pour maintenir l'ordre et l'esthétique.</p>
+                </div>
+            </div>
+             <div className="flex items-start gap-4">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                <div>
+                    <h3 className="font-headline font-semibold text-lg">Rénovation des Espaces Eau/Détente</h3>
+                    <p className="text-muted-foreground">Création de salles de bains familiales ou de suites parentales avec douches à l'italienne et matériaux résistants à l'usure, conjuguant luxe et fonctionnalité.</p>
+                </div>
+            </div>
+        </div>
+        <h2 className="font-headline text-3xl font-bold mt-12">L'Exigence ERG Rénovation pour Votre Sérénité à Garches</h2>
+        <p className="mt-4">Notre méthodologie est adaptée aux exigences des propriétaires de Garches. Nos équipes sont formées au respect des protocoles stricts de chantier :</p>
+      </>
+    ),
+    testimonial: {
+      quote: "ERG Rénovation a transformé notre appartement familial à Garches. L'isolation est parfaite et le résultat est d'une élégance intemporelle.",
+      author: "Un client, Garches (92380)",
     },
   },
 ];
