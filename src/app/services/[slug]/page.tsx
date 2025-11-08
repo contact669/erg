@@ -36,11 +36,17 @@ export async function generateMetadata(
     }
   }
 
-  // Si c'est la page de rénovation d'appartement, on utilise les métadonnées SEO spécifiques
   if (service.slug === 'renovation-appartement') {
     return {
       title: "Rénovation Appartement Paris & IDF (92, 93, 94, 78) | ERG Rénovation",
       description: "Confiez votre projet de rénovation d'appartement à Paris et IDF à ERG Rénovation. Expertise haut de gamme, gestion de A à Z, devis sur-mesure.",
+    }
+  }
+
+  if (service.slug === 'renovation-maison') {
+    return {
+        title: "Rénovation Maison Paris & IDF (78, 92, 93, 94) | ERG Rénovation",
+        description: "Votre maison est un projet de vie. ERG Rénovation gère sa rénovation, extension ou aménagement en Île-de-France. Expertise haut de gamme de A à Z.",
     }
   }
 
@@ -67,10 +73,37 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
 
   const relatedProjects = allProjects.filter(p => service.relatedProjectSlugs.includes(p.slug));
   const serviceImage = PlaceHolderImages.find(p => p.id === service.heroImageId);
-  const isPillarPage = service.slug === 'renovation-appartement';
+  const isPillarPage = service.slug === 'renovation-appartement' || service.slug === 'renovation-maison';
   
   const kitchenImage = PlaceHolderImages.find(p => p.id === 'service-pillar-kitchen');
   const finishImage = PlaceHolderImages.find(p => p.id === 'service-pillar-finish');
+  
+  const pageTitles = {
+    'renovation-appartement': {
+      h1: "Rénovation d'Appartement à Paris et Île-de-France : L'Excellence par ERG Rénovation",
+      intro: "Transformer un appartement parisien ou francilien en un lieu de vie exceptionnel exige une expertise de la structure, une gestion de projet rigoureuse et une passion pour les finitions parfaites. Nous gérons chaque détail de votre projet à Paris, dans les Hauts-de-Seine (92), la Seine-Saint-Denis (93), le Val-de-Marne (94) et les Yvelines (78).",
+      cta: "Obtenir mon devis personnalisé",
+      benefitsTitle: "Nos Prestations de Rénovation sur Mesure",
+      benefitsIntro: "Que vous envisagiez une refonte complète de votre bien, la modernisation d'un appartement ancien ou la rénovation énergétique, ERG Rénovation orchestre tous les corps de métier pour un résultat impeccable.",
+      processTitle: "L'Approche ERG Rénovation : Votre Projet en 4 Étapes Clés",
+      processIntro: "La réussite d'une rénovation \"haut de gamme\" repose sur une méthodologie éprouvée. Nous avons simplifié le processus pour vous garantir une tranquillité d'esprit totale.",
+      whyUsTitle: "Pourquoi Confier Votre Appartement Parisien à ERG Rénovation ?",
+      faqTitle: "Questions Fréquentes sur la Rénovation d'Appartement",
+    },
+    'renovation-maison': {
+      h1: "Rénovation de Maison à Paris et Île-de-France : Donnons Vie à Votre Projet",
+      intro: "Votre maison est un projet de vie. Nous vous accompagnons pour la rénover, l'agrandir et la transformer en l'espace dont vous avez toujours rêvé. Qu'il s'agisse de moderniser une bâtisse ancienne dans les Yvelines, d'agrandir un pavillon dans les Hauts-de-Seine ou de réhabiliter une maison de ville à Paris, ERG Rénovation est votre maître d'œuvre unique pour un projet géré avec excellence.",
+      cta: "Discutons de votre projet de vie",
+      benefitsTitle: "Notre Savoir-Faire au Service de Votre Maison",
+      benefitsIntro: "La rénovation d'une maison implique des compétences multiples, de la structure à la décoration. ERG Rénovation maîtrise l'ensemble des corps d'état pour répondre à toutes les ambitions.",
+      processTitle: "L'Accompagnement ERG Rénovation : Votre Sérénité, Notre Priorité",
+      processIntro: "Un projet de vie ne doit pas devenir une source de stress. Notre méthodologie est conçue pour vous garantir une transparence totale et un respect absolu de vos attentes.",
+      whyUsTitle: "Pourquoi ERG Rénovation pour Votre Maison en Île-de-France ?",
+      faqTitle: "Vos Questions sur la Rénovation de Maison",
+    }
+  }
+
+  const content = isPillarPage ? pageTitles[service.slug as keyof typeof pageTitles] : null;
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -90,24 +123,24 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
           )}
           <div className="container relative z-10">
             <h1 className="font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl max-w-4xl">
-              {isPillarPage ? "Rénovation d'Appartement à Paris et Île-de-France : L'Excellence par ERG Rénovation" : service.title}
+              {content ? content.h1 : service.title}
             </h1>
             <p className="mt-6 max-w-3xl text-lg text-primary-foreground/80 md:leading-relaxed">
-              {isPillarPage ? "Transformer un appartement parisien ou francilien en un lieu de vie exceptionnel exige une expertise de la structure, une gestion de projet rigoureuse et une passion pour les finitions parfaites. Nous gérons chaque détail de votre projet à Paris, dans les Hauts-de-Seine (92), la Seine-Saint-Denis (93), le Val-de-Marne (94) et les Yvelines (78)." : service.longDescription}
+              {content ? content.intro : service.longDescription}
             </p>
              <div className="mt-8">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                  <Link href="/devis">Obtenir mon devis personnalisé</Link>
+                  <Link href="/devis">{content ? content.cta : "Obtenir un devis"}</Link>
                 </Button>
             </div>
              <div className="mt-6 flex flex-col sm:flex-row gap-x-6 gap-y-2 text-sm text-primary-foreground/80">
                 <div className="flex items-center gap-2">
                     <ShieldCheck className="h-4 w-4 text-accent" />
-                    <span>Gestion de projet A à Z</span>
+                    <span>{service.slug === 'renovation-maison' ? 'Gestion de Projet Intégrale' : 'Gestion de projet A à Z'}</span>
                 </div>
                  <div className="flex items-center gap-2">
                     <Award className="h-4 w-4 text-accent" />
-                    <span>Garantie décennale</span>
+                    <span>{service.slug === 'renovation-maison' ? 'Expertise Structurelle' : 'Garantie décennale'}</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4 text-accent" />
@@ -128,11 +161,11 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 {/* --- Prestations Section --- */}
                 <section>
                     <h2 className="font-headline text-3xl font-bold">
-                        {isPillarPage ? "Nos Prestations de Rénovation sur Mesure" : "Une expertise complète pour votre projet"}
+                        {content ? content.benefitsTitle : "Une expertise complète pour votre projet"}
                     </h2>
                     <div className="prose max-w-none text-muted-foreground mt-4">
                         <p>
-                            {isPillarPage ? "Que vous envisagiez une refonte complète de votre bien, la modernisation d'un appartement ancien ou la rénovation énergétique, ERG Rénovation orchestre tous les corps de métier pour un résultat impeccable." : service.longDescription }
+                            {content ? content.benefitsIntro : service.longDescription }
                         </p>
                     </div>
                     
@@ -174,14 +207,14 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 </section>
                 
                 {/* --- Process Section --- */}
-                {service.process && (
+                {service.process && content && (
                     <section>
                          <h2 className="font-headline text-3xl font-bold">
-                            L'Approche ERG Rénovation : Votre Projet en 4 Étapes Clés
+                            {content.processTitle}
                         </h2>
                         <div className="prose max-w-none text-muted-foreground mt-4">
                            <p>
-                           La réussite d'une rénovation "haut de gamme" repose sur une méthodologie éprouvée. Nous avons simplifié le processus pour vous garantir une tranquillité d'esprit totale.
+                           {content.processIntro}
                            </p>
                         </div>
                         <div className="mt-8 space-y-8">
@@ -204,10 +237,10 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 )}
                 
                  {/* --- Pourquoi Nous Choisir Section --- */}
-                {service.whyUs && (
+                {service.whyUs && content && (
                     <section>
                         <h2 className="font-headline text-3xl font-bold">
-                           Pourquoi Confier Votre Appartement Parisien à ERG Rénovation ?
+                           {content.whyUsTitle}
                         </h2>
                         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                             <div className="space-y-6">
@@ -259,10 +292,10 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 )}
 
                 {/* --- FAQ Section --- */}
-                {service.faq && service.faq.length > 0 && (
+                {service.faq && service.faq.length > 0 && content && (
                     <section>
                         <h2 className="font-headline text-3xl font-bold">
-                            Questions Fréquentes sur la Rénovation d'Appartement
+                            {content.faqTitle}
                         </h2>
                         <Accordion type="single" collapsible className="w-full mt-6">
                             {service.faq.map((item, index) => (

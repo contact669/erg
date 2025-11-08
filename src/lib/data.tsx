@@ -9,7 +9,11 @@ import {
   Sparkles,
   ClipboardCheck,
   Users,
-  Award
+  Award,
+  BookOpen,
+  FileOutput,
+  Layers,
+  Milestone
 } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
@@ -79,20 +83,46 @@ export const services: Service[] = [
     description: 'Rénovation intérieure et extérieure pour votre maison.',
     icon: Home,
     heroImageId: 'service-house',
-    longDescription: "Votre maison est un projet de vie. Nous vous accompagnons pour la rénover, l'agrandir ou la moderniser. Du gros œuvre aux finitions, nous coordonnons tous les corps de métier pour garantir un résultat harmonieux et durable, en respectant le caractère de votre demeure tout en y apportant le confort et le style contemporain.",
+    longDescription: "Votre maison est un projet de vie. Nous vous accompagnons pour la rénover, l'agrandir et la transformer en l'espace dont vous avez toujours rêvé. Qu'il s'agisse de moderniser une bâtisse ancienne dans les Yvelines, d'agrandir un pavillon dans les Hauts-de-Seine ou de réhabiliter une maison de ville à Paris, ERG Rénovation est votre maître d'œuvre unique pour un projet géré avec excellence.",
     benefits: [
       {
-        title: "Efficacité énergétique",
-        description: "Améliorez l'isolation de votre maison pour réduire vos factures d'énergie et gagner en confort thermique."
+        title: "Rénovation Complète et Réhabilitation",
+        description: "Repenser intégralement votre intérieur. Redistribution des volumes, mise aux normes (électricité, plomberie), isolation, et finitions. Nous transformons les contraintes de l'ancien en atouts de caractère."
       },
       {
-        title: "Extension et surélévation",
-        description: "Gagnez des mètres carrés précieux en créant de nouveaux espaces de vie adaptés à l'évolution de votre famille."
+        title: "Extension, Agrandissement et Surélévation",
+        description: "Besoin de plus d'espace ? Nous concevons et réalisons votre extension (ossature bois, traditionnelle) ou votre surélévation, en gérant les démarches administratives (permis de construire) et les défis structurels."
       },
       {
-        title: "Cohérence architecturale",
-        description: "Nous veillons à ce que chaque modification s'intègre parfaitement à l'existant pour un rendu esthétique et cohérent."
+        title: "Rénovation Énergétique et Façade",
+        description: "Valorisez votre patrimoine et améliorez votre confort. Isolation thermique par l'extérieur (ITE) ou l'intérieur (ITI), ravalement de façade, remplacement des menuiseries et optimisation de votre système de chauffage."
+      },
+      {
+        title: "Aménagement de Combles et Sous-sols",
+        description: "Créez de nouvelles pièces de vie (suite parentale, salle de jeux, bureau) en exploitant les espaces perdus de votre maison."
       }
+    ],
+    process: [
+        { step: 1, title: 'L\'Écoute & la Faisabilité', description: 'Rencontre à votre domicile (Paris, 78, 92, 93, 94), analyse de vos besoins, étude de la faisabilité technique et réglementaire (PLU).' },
+        { step: 2, title: 'Conception & Chiffrage', description: 'Proposition de plans (avec nos architectes partenaires si besoin), sélection rigoureuse des matériaux et remise d\'un devis détaillé, poste par poste.' },
+        { step: 3, title: 'Pilotage & Réalisation', description: 'Un conducteur de travaux unique dédié à votre projet. Il pilote nos équipes, garantit la qualité d\'exécution et organise les réunions de chantier.' },
+        { step: 4, title: 'Livraison Sereine', description: 'Réception des travaux, levée des réserves, et remise de votre dossier de garanties (décennale). Votre projet de vie est devenu réalité.' }
+    ],
+    whyUs: [
+        { title: "La Maîtrise des Projets Complexes", description: "Une extension, une ouverture de mur porteur ou une réhabilitation complète ne s'improvisent pas. Nous disposons des assurances (décennale) et des compétences techniques (bureau d'études structure) pour sécuriser ces interventions majeures.", icon: Layers },
+        { title: "Votre Interlocuteur Unique, du Plan à la Finition", description: "Nous internalisons ou pilotons l'ensemble des métiers : maçons, couvreurs, menuisiers... Vous n'avez qu'un seul responsable : ERG Rénovation.", icon: Users },
+        { title: 'La Passion du "Sur Mesure"', description: "Votre maison est unique. Nous ne proposons pas de solutions standards, mais un projet entièrement sur mesure, des plans d'agencement aux menuiseries intégrées.", icon: Sparkles },
+        { title: 'Transparence et Garanties', description: "Tous nos travaux sont couverts par une assurance décennale et une assurance responsabilité civile. Nos devis sont clairs et nos délais, tenus.", icon: ClipboardCheck }
+    ],
+    zones: {
+        description: "ERG Rénovation est le spécialiste des projets résidentiels haut de gamme en Île-de-France. Nos équipes interviennent pour la rénovation de maisons dans les Yvelines (78) (Versailles, Saint-Germain-en-Laye...) et les Hauts-de-Seine (92) (Meudon, Saint-Cloud, Sceaux...), où se concentrent de nombreux pavillons et demeures de caractère.",
+        list: "Nous gérons également les projets de maisons de ville à Paris (75), ainsi que les rénovations dans le Val-de-Marne (94) (Nogent-sur-Marne, Saint-Maur-des-Fossés) et en Seine-Saint-Denis (93) (Le Raincy, Montreuil)."
+    },
+    faq: [
+        { question: "Faut-il un permis de construire pour une extension de maison ?", answer: "Pour une extension jusqu'à 40m² en zone urbaine couverte par un PLU, une déclaration préalable de travaux suffit généralement. Au-delà, un permis de construire est nécessaire. ERG Rénovation s'occupe de la constitution et du dépôt de votre dossier en mairie." },
+        { question: "Quelles aides financières pour une rénovation énergétique ?", answer: "Vous pouvez bénéficier de plusieurs aides comme MaPrimeRénov', l'Éco-prêt à taux zéro (Eco-PTZ) ou la TVA à taux réduit. Si nous sommes certifiés RGE (Reconnu Garant de l'Environnement), nous vous aidons à monter les dossiers pour maximiser vos subventions." },
+        { question: "Combien de temps durent les travaux de rénovation d'une maison ?", answer: "Cela dépend de l'ampleur. Une rénovation intérieure complète (100-120m²) dure environ 3 à 4 mois. Pour une rénovation lourde avec extension ou surélévation, il faut compter entre 6 et 9 mois. Nous vous fournissons un planning détaillé dès le départ." },
+        { question: "Gérez-vous les relations avec les Architectes des Bâtiments de France (ABF) ?", answer: "Oui. Si votre maison est située en secteur sauvegardé ou à proximité d'un monument historique, l'avis de l'ABF est requis. Notre expérience de ces dossiers complexes fluidifie les échanges et assure la conformité de votre projet." }
     ],
     relatedProjectSlugs: ['maison-ville-moderne-boulogne']
   },
