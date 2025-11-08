@@ -11,7 +11,7 @@ import {
 
 export const navItems: NavItem[] = [
   { title: 'Services', href: '#services' },
-  { title: 'Réalisations', href: '#realisations' },
+  { title: 'Réalisations', href: '/realisations' },
   { title: 'À Propos', href: '/a-propos' },
   { title: 'Blog', href: '/blog' },
   { title: 'Contact', href: '/contact' },
@@ -87,6 +87,39 @@ export const featuredProjects: Project[] = [
   },
 ];
 
+export const allProjects: Project[] = [
+  ...featuredProjects,
+  {
+    title: 'Studio optimisé',
+    slug: 'studio-optimise-marais',
+    category: 'Studio',
+    image: 'project-studio-1',
+    description: 'Optimisation de l\'espace pour ce studio de 25m² au coeur du Marais.',
+  },
+  {
+    title: 'Maison de ville moderne',
+    slug: 'maison-ville-moderne-boulogne',
+    category: 'Maison',
+    image: 'project-house-1',
+    description: 'Rénovation et extension d\'une maison de ville à Boulogne-Billancourt.',
+  },
+  {
+    title: 'Bureaux d\'avocats',
+    slug: 'bureaux-avocats-paris-8',
+    category: 'Bureaux',
+    image: 'project-office-2',
+    description: 'Aménagement d\'un plateau de bureaux pour un cabinet d\'avocats prestigieux.',
+  },
+  {
+    title: 'Salle d\'eau sous combles',
+    slug: 'salle-eau-combles-versailles',
+    category: 'Salle de bain',
+    image: 'project-bathroom-2',
+    description: 'Création d\'une salle d\'eau fonctionnelle et élégante sous les toits.',
+  },
+];
+
+
 export const testimonials: Testimonial[] = [
   {
     name: 'Famille Durand',
@@ -133,3 +166,5 @@ export const processSteps: ProcessStep[] = [
         description: 'Nous vous livrons un chantier impeccable et vous bénéficiez de toutes nos garanties décennales.'
     }
 ]
+
+    

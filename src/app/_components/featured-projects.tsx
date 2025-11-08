@@ -5,7 +5,6 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -68,7 +67,7 @@ export default function FeaturedProjects() {
         </div>
 
         <div className="mt-12 text-center">
-          <Button size="lg" asChild variant="outline">
+          <Button size="lg" asChild>
             <Link href="/realisations">Toutes nos réalisations</Link>
           </Button>
         </div>
@@ -76,3 +75,5 @@ export default function FeaturedProjects() {
     </section>
   );
 }
+
+    
