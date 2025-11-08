@@ -1,4 +1,5 @@
 import type { LucideIcon } from 'lucide-react';
+import type { ReactNode } from 'react';
 
 export interface NavItem {
   title: string;
@@ -42,4 +43,15 @@ export interface ProcessStep {
   step: number;
   title: string;
   description:string;
+}
+
+export interface BlogPost {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  author: string;
+  featuredImageId: string;
+  tags: string[];
+  content: ReactNode;
 }

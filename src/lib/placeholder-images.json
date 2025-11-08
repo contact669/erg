@@ -185,6 +185,18 @@
       "description": "Portrait of a friendly male architect in his late 30s.",
       "imageUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtYWxlJTIwcHJvZmVzc2lvbmFsJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYyNjE0NTk1fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "male architect"
+    },
+    {
+      "id": "blog-post-1",
+      "description": "A stylish Parisian apartment interior with classic moldings and modern furniture.",
+      "imageUrl": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxQYXJpc2lhbiUyMGFwYXJ0bWVudHxlbnwwfHx8fDE3NjI2MjU4NTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Parisian apartment"
+    },
+    {
+      "id": "blog-post-2",
+      "description": "A friendly and professional craftsman smiling at the camera in a workshop.",
+      "imageUrl": "https://images.unsplash.com/photo-1579519258213-9d2a0129a37c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhcnRpc2FuJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYyNjI1ODUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "artisan portrait"
     }
   ]
 }

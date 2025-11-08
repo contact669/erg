@@ -7,7 +7,6 @@ import {
   Hammer,
   Paintbrush
 } from 'lucide-react';
-import React from 'react';
 
 export const navItems: NavItem[] = [
   { title: 'Services', href: '/services' },
