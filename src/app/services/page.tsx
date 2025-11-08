@@ -5,7 +5,7 @@ import SiteFooter from '@/components/site-footer';
 import CtaBanner from '@/app/_components/cta-banner';
 import { services } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/animated-section';
