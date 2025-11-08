@@ -122,4 +122,9 @@
   .prose ul > li::before {
     @apply bg-accent;
   }
+  .prose p {
+    @apply leading-relaxed;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+  }
 }

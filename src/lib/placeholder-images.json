@@ -209,6 +209,18 @@
       "description": "Un parquet en point de Hongrie qui apporte chaleur et élégance.",
       "imageUrl": "https://images.unsplash.com/photo-1628744448555-e7a0b33c5e4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoZXJyaW5nYm9uZSUyMHdvb2QlMjBmbG9vcnxlbnwwfHx8fDE3NjI2MjgwMDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "herringbone floor"
+    },
+    {
+      "id": "service-pillar-kitchen",
+      "description": "A close-up of a modern kitchen island with an integrated sink and sleek faucet.",
+      "imageUrl": "https://images.unsplash.com/photo-1617806118233-528e0249ea64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwZGV0YWlsfGVufDB8fHx8MTc2Mjg3MTQyMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "kitchen detail"
+    },
+    {
+      "id": "service-pillar-finish",
+      "description": "A detailed shot of a perfectly painted wall corner, showcasing high-quality finish.",
+      "imageUrl": "https://images.unsplash.com/photo-1596706922419-58a520a46580?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwYWludGVkJTIwd2FsbCUyMGNsb3NlJTIwdXB8ZW58MHx8fHwxNzYyODcxNDIyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "painted wall"
     }
   ]
 }
