@@ -308,19 +308,19 @@ export const blogPosts: BlogPost[] = [
         <h2>5. Isolez, isolez, isolez !</h2>
         <p>L'<strong>isolation phonique et thermique</strong> est un investissement essentiel pour le confort. Contre les bruits de la rue et des voisins, des solutions efficaces existent (doublage des murs, fenêtres à double vitrage performant). Une bonne isolation thermique vous fera également faire des économies d'énergie substantielles.</p>
         
-        <h3>6. Pensez aux rangements intégrés</h3>
+        <h2>6. Pensez aux rangements intégrés</h2>
         <p>Les <strong>rangements sur-mesure</strong> sont la clé d'un intérieur parisien réussi. Ils s'adaptent aux recoins, optimisent les volumes et se fondent dans le décor pour une sensation d'espace et d'ordre. Découvrez nos solutions d'<a href="/services/renovation-appartement">aménagement intérieur</a>.</p>
         
-        <h3>7. Choisissez des matériaux durables et adaptés</h3>
+        <h2>7. Choisissez des matériaux durables et adaptés</h2>
         <p>Un parquet massif sera plus résistant et pourra être rénové plusieurs fois. Dans la salle de bain, privilégiez des matériaux résistants à l'humidité. Nos artisans sauront vous conseiller les meilleurs choix en fonction de votre budget et de votre style de vie.</p>
         
-        <h3>8. Ne négligez pas l'entrée</h3>
+        <h2>8. Ne négligez pas l'entrée</h2>
         <p>L'entrée donne la première impression. Elle doit être à la fois fonctionnelle et accueillante. Pensez à un petit meuble, un miroir et un éclairage soigné pour créer une transition élégante vers le reste de l'appartement.</p>
         
-        <h3>9. Un chef de projet unique pour votre tranquillité</h3>
+        <h2>9. Un chef de projet unique pour votre tranquillité</h2>
         <p>Coordonner les différents corps de métier (plombier, électricien, peintre...) peut vite devenir un casse-tête. Faire appel à une entreprise de rénovation tous corps d'état comme ERG Rénovation vous garantit un interlocuteur unique et une gestion de projet fluide.</p>
         
-        <h3>10. Définissez un budget réaliste et prévoyez une marge</h3>
+        <h2>10. Définissez un budget réaliste et prévoyez une marge</h2>
         <p>Un projet de rénovation réserve souvent des surprises. Nous vous aidons à établir un devis détaillé, mais il est toujours prudent de prévoir une <strong>marge de 10 à 15%</strong> pour les imprévus. Cette précaution vous permettra de mener votre projet à terme en toute sérénité.</p>
         
         <p>Prêt à vous lancer ? <a href="/devis"><strong>Contactez-nous pour une étude personnalisée de votre projet.</strong></a></p>
@@ -374,3 +374,5 @@ export const blogPosts: BlogPost[] = [
     )
   }
 ];
+
+    
