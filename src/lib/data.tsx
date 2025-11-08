@@ -1,6 +1,7 @@
 
 
 
+
 import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage } from './types';
 import {
   Home,
@@ -737,6 +738,59 @@ export const localLandingPages: LocalLandingPage[] = [
       author: "Mme R., Boulevard Jean Jaurès, Boulogne-Billancourt",
     },
   },
+  {
+    slug: 'saint-cloud',
+    type: 'city',
+    title: "Rénovation d'Appartement à Saint-Cloud : Élégance et Vue sur Grand Paysage",
+    metaTitle: "Rénovation Appartement Saint-Cloud (92) | Luxe & Vue | ERG Rénovation",
+    metaDescription: "Expert en rénovation d'appartements de prestige à Saint-Cloud. Optimisation des vues, matériaux nobles et gestion de chantier discrète. Devis 92210.",
+    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    introduction: "Saint-Cloud offre un cadre de vie exceptionnel, souvent caractérisé par la proximité du Parc et une architecture résidentielle de qualité. La rénovation y est synonyme d'ouverture sur l'extérieur et d'utilisation de matériaux qui captent la lumière naturelle. ERG Rénovation excelle à transformer votre appartement de Saint-Cloud en un lieu de vie baigné de lumière, avec une gestion de projet qui respecte la quiétude de ce quartier privilégié.",
+    cta: {
+      primary: 'Planifier une visite conseil à Saint-Cloud',
+      secondary: 'Voir nos réalisations avec vue et lumière',
+    },
+    reassurancePoints: [
+      'Spécialiste de la maximisation des vues et de la luminosité.',
+      'Gestion de projet avec haute discrétion.',
+      'Expertise en grandes surfaces et volumes.',
+    ],
+    mainContent: (
+      <>
+        <h2 className="font-headline text-3xl font-bold">Notre Savoir-Faire : Intégration Esthétique et Confort à Saint-Cloud</h2>
+        <p>Nos services sont orientés vers la valorisation de l'espace, la durabilité et l'harmonisation de votre intérieur avec le standing de Saint-Cloud.</p>
+        <div className="mt-8 space-y-6">
+            <div className="flex items-start gap-4">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                <div>
+                    <h3 className="font-headline font-semibold text-lg">Menuiseries et Baies Vitrées Hautes Performances</h3>
+                    <p className="text-muted-foreground">Installation et rénovation de menuiseries de qualité (double vitrage, isolation thermique et phonique) pour maximiser les vues tout en garantissant le confort énergétique.</p>
+                </div>
+            </div>
+            <div className="flex items-start gap-4">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                <div>
+                    <h3 className="font-headline font-semibold text-lg">Design d'Intérieur Axé sur la Lumière</h3>
+                    <p className="text-muted-foreground">Utilisation de finitions et de couleurs claires, de miroirs et d'éclairages indirects (domotisés si besoin) pour augmenter la perception de l'espace et la clarté.</p>
+                </div>
+            </div>
+             <div className="flex items-start gap-4">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                <div>
+                    <h3 className="font-headline font-semibold text-lg">Rénovation de Sols Nobles</h3>
+                    <p className="text-muted-foreground">Maîtrise de la pose de parquets massifs (point de Hongrie, dalles), de pierre naturelle ou de carrelages grand format, avec pose de systèmes de chauffage au sol.</p>
+                </div>
+            </div>
+        </div>
+        <h2 className="font-headline text-3xl font-bold mt-12">L'Exigence ERG Rénovation : Un Partenaire de Confiance à Saint-Cloud</h2>
+        <p className="mt-4">Nos équipes sont habituées aux contraintes des résidences haut de gamme clodoaldiennes, assurant une intervention sans perturbation :</p>
+      </>
+    ),
+    testimonial: {
+      quote: "La rénovation de notre duplex à Saint-Cloud a été un modèle de discrétion. Le résultat est à la hauteur du standing de notre résidence.",
+      author: "Un client, Saint-Cloud",
+    },
+  },
 ];
 
 
@@ -986,5 +1040,3 @@ export const blogPosts: BlogPost[] = [
     )
   }
 ];
-
-  
