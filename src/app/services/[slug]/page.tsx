@@ -20,6 +20,7 @@ import { ArrowRight, CheckCircle, Award, ShieldCheck, Clock, Coins, Sparkles, Mi
 import AnimatedSection from '@/components/animated-section';
 import type { Metadata, ResolvingMetadata } from 'next';
 import { cn } from '@/lib/utils';
+import Breadcrumbs from '@/components/breadcrumbs';
 
 
 type Props = {
@@ -186,6 +187,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
+      <Breadcrumbs />
       <main className="flex-grow">
         {/* --- Hero Section --- */}
         <section className="relative bg-primary text-primary-foreground py-16 md:py-24">
@@ -379,7 +381,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                             <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4">
                                 {service.zones.list.map((zone) => (
                                 <Button asChild variant="outline" key={zone.slug}>
-                                    <Link href={`/${service.slug}/${zone.slug}`}>{zone.name}</Link>
+                                    <Link href={`/renovation-appartement/${zone.slug}`}>{zone.name}</Link>
                                 </Button>
                                 ))}
                             </div>

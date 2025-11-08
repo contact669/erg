@@ -3,11 +3,13 @@ import SiteHeader from '@/components/site-header';
 import SiteFooter from '@/components/site-footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Breadcrumbs from '@/components/breadcrumbs';
 
 export default function DevisPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
+      <Breadcrumbs />
       <main className="flex-grow">
         <div className="container py-16 md:py-24">
             <div className="flex items-center justify-center">

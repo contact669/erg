@@ -14,6 +14,7 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import CtaBanner from '../_components/cta-banner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { motion, AnimatePresence } from 'framer-motion';
+import Breadcrumbs from '@/components/breadcrumbs';
 
 const PROJECTS_PER_PAGE = 6;
 
@@ -41,6 +42,7 @@ export default function RealisationsPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
+      <Breadcrumbs />
       <main className="flex-grow">
         <section className="bg-secondary py-16 md:py-24">
           <div className="container">

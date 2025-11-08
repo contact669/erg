@@ -13,6 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ArrowRight, Calendar, User, Award } from 'lucide-react';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
+import Breadcrumbs from '@/components/breadcrumbs';
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -34,6 +35,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
+      <Breadcrumbs />
       <main className="flex-grow">
         {/* Post Header */}
         <section className="relative h-[50vh] min-h-[350px] w-full">

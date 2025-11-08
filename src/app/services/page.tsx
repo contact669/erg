@@ -9,11 +9,13 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import AnimatedSection from '@/components/animated-section';
+import Breadcrumbs from '@/components/breadcrumbs';
 
 export default function ServicesPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
+      <Breadcrumbs />
       <main className="flex-grow">
         <section className="bg-secondary py-16 md:py-24">
           <div className="container">

@@ -12,6 +12,7 @@ import AnimatedSection from '@/components/animated-section';
 import type { Metadata, ResolvingMetadata } from 'next';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import Breadcrumbs from '@/components/breadcrumbs';
 
 
 type Props = {
@@ -58,6 +59,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
+      <Breadcrumbs />
       <main className="flex-grow">
         {/* --- Hero Section --- */}
         <section className="relative bg-primary text-primary-foreground py-16 md:py-24">

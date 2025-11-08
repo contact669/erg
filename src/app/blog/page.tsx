@@ -12,6 +12,7 @@ import { ArrowRight, Calendar, User } from 'lucide-react';
 import AnimatedSection from '@/components/animated-section';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
+import Breadcrumbs from '@/components/breadcrumbs';
 
 export default function BlogPage() {
   const featuredPost = blogPosts[0];
@@ -21,6 +22,7 @@ export default function BlogPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
+      <Breadcrumbs />
       <main className="flex-grow">
         <section className="bg-secondary py-16 md:py-24">
           <div className="container">

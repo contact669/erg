@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import AnimatedSection from '@/components/animated-section';
 import { Handshake, Diamond, Heart, ShieldCheck } from 'lucide-react';
+import Breadcrumbs from '@/components/breadcrumbs';
 
 const values = [
   {
@@ -40,6 +41,7 @@ export default function AboutPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
+      <Breadcrumbs />
       <main className="flex-grow">
         {/* Hero Section */}
         <section className="relative h-[60vh] min-h-[400px] w-full">
