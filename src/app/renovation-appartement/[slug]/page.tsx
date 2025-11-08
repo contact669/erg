@@ -202,4 +202,3 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
     </div>
   );
 }
-```
