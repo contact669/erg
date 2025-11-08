@@ -16,6 +16,7 @@ import {
   Milestone,
   ShieldCheck,
   Thermometer,
+  CheckCircle,
 } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
@@ -278,7 +279,7 @@ export const services: Service[] = [
     description: 'La touche finale qui sublime vos murs et vos espaces.',
     icon: Paintbrush,
     heroImageId: 'service-painting',
-    longDescription: "Le succès d'une rénovation se juge à la perfection de ses finitions. Une peinture ou un revêtement mural impeccablement posé est la touche finale qui confère à votre intérieur son caractère \"très haut de gamme\". Chez ERG Rénovation, nos peintres décorateurs sont des compagnons, garants d'une préparation minutieuse des supports et d'un résultat sans défaut à Paris, dans les Hauts-de-Seine, les Yvelines, et toute l'Île-de-France.",
+    longDescription: "Le succès d'une rénovation se juge à la perfection de ses finitions. Une peinture ou un revêtement mural impeccablement posé est la touche finale qui confère à votre intérieur son caractère \"très très haut de gamme\". Chez ERG Rénovation, nos peintres décorateurs sont des compagnons, garants d'une préparation minutieuse des supports et d'un résultat sans défaut à Paris, dans les Hauts-de-Seine, les Yvelines, et toute l'Île-de-France.",
     benefits: [
       {
         title: "Préparation Minutieuse des Supports (Le Fondement)",
@@ -617,6 +618,7 @@ export const blogPosts: BlogPost[] = [
   }
 ];
     
+
 
 
 
