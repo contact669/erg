@@ -1,4 +1,5 @@
 
+
 import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage } from './types';
 import {
   Home,
@@ -335,14 +336,14 @@ export const localLandingPages: LocalLandingPage[] = [
   {
     slug: 'neuilly-sur-seine',
     type: 'city',
-    title: 'Rénovation d\'Appartement à Neuilly-sur-Seine (92200)',
+    title: "Rénovation d'Appartement à Neuilly-sur-Seine (92200)",
     metaTitle: 'Rénovation Appartement Neuilly-sur-Seine (92) | ERG Rénovation',
     metaDescription: 'Expert en rénovation d\'appartements haut de gamme à Neuilly-sur-Seine. ERG Rénovation gère votre projet de A à Z : plans, travaux, finitions de luxe.',
     parentService: services.find(s => s.slug === 'renovation-appartement')!,
     introduction: 'La rénovation d\'un appartement à Neuilly-sur-Seine exige une compréhension fine de son patrimoine architectural unique et un niveau de finition irréprochable. ERG Rénovation est votre partenaire de confiance, spécialisé dans la transformation d\'appartements de standing, des hôtels particuliers aux résidences modernes.',
     cta: {
       primary: 'Demander un devis pour mon projet à Neuilly',
-      secondary: 'Voir nos réalisations dans le 92',
+      secondary: 'Voir nos réalisations à Neuilly-sur-Seine',
     },
     reassurancePoints: [
       'Expertise des appartements de luxe',
@@ -386,7 +387,7 @@ export const localLandingPages: LocalLandingPage[] = [
     introduction: 'Les Hauts-de-Seine (92) regroupent certaines des adresses les plus prisées d\'Île-de-France, de Neuilly-sur-Seine à Boulogne-Billancourt, en passant par Saint-Cloud. La rénovation d\'un appartement dans ce département exige une expertise particulière : connaissance des immeubles des années 30 et Haussmanniens, gestion des contraintes de la copropriété, et exigence sur les finitions. ERG Rénovation est votre partenaire unique pour un projet d\'excellence dans le 92.',
     cta: {
       primary: 'Demander une étude personnalisée dans le 92',
-      secondary: 'Voir toutes nos réalisations',
+      secondary: 'Voir nos réalisations à Neuilly-sur-Seine',
     },
     reassurancePoints: [
       'Maîtrise des règlements de copropriété du 92',
@@ -402,7 +403,7 @@ export const localLandingPages: LocalLandingPage[] = [
                 <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
                 <div>
                     <h3 className="font-headline font-semibold text-lg">Abattage de Murs Porteurs et Ouverture d'Espace</h3>
-                    <p className="text-muted-foreground">La transformation la plus courante dans le 92. Nous gérons l'étude structurelle, la pose d'IPN/HEA et l'obtention des autorisations de copropriété.</p>
+                    <p className="text-muted-foreground">Nous gérons l'étude structurelle, la pose d'IPN/HEA et l'obtention des autorisations de copropriété.</p>
                 </div>
             </div>
             <div className="flex items-start gap-4">
@@ -448,7 +449,7 @@ export const localLandingPages: LocalLandingPage[] = [
     introduction: "Paris est le théâtre d'une architecture d'exception. La rénovation d'un appartement parisien – qu'il s'agisse de restaurer le charme d'un Haussmannien, de moderniser un duplex, ou d'optimiser un petit espace de luxe – exige une expertise pointue. ERG Rénovation est spécialisé dans l'art délicat de marier le prestige du passé avec les exigences du confort moderne. Nous maîtrisons les contraintes techniques, structurelles et logistiques de chaque arrondissement de la capitale.",
     cta: {
       primary: 'Démarrer mon projet de rénovation à Paris',
-      secondary: 'Découvrez nos réalisations dans le 16e',
+      secondary: 'Découvrez notre expertise dans le 16e arrondissement',
     },
     reassurancePoints: [
       "Maîtrise de la Restauration des Parquets et Moulures.",
