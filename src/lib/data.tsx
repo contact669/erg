@@ -1,3 +1,4 @@
+
 import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost } from './types';
 import {
   Home,
@@ -13,7 +14,8 @@ import {
   BookOpen,
   FileOutput,
   Layers,
-  Milestone
+  Milestone,
+  ShieldCheck
 } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
@@ -132,20 +134,45 @@ export const services: Service[] = [
     description: 'Création de salles de bain modernes et fonctionnelles.',
     icon: Bath,
     heroImageId: 'service-bathroom',
-    longDescription: "Transformez votre salle de bain en un véritable havre de paix. Douche à l'italienne, baignoire îlot, double vasque, nous concevons un espace sur mesure qui allie esthétique, fonctionnalité et bien-être. Nous portons une attention particulière à l'étanchéité, la ventilation et le choix de matériaux résistants et faciles d'entretien.",
+    longDescription: "Plus qu'une simple pièce d'eau, votre salle de bain est un sanctuaire. La transformer en un espace de détente digne d'un spa, tout en optimisant chaque mètre carré, est un art qui exige une précision technique absolue. ERG Rénovation est le spécialiste de la conception et de la rénovation de salles de bain haut de gamme à Paris et en Île-de-France (75, 92, 93, 94, 78), garantissant des finitions parfaites et une étanchéité irréprochable.",
     benefits: [
       {
-        title: "Espace bien-être",
-        description: "Créez une atmosphère relaxante avec des matériaux nobles, un éclairage soigné et des équipements de qualité."
+        title: "Rénovation Complète (Plomberie, Électricité, Revêtements)",
+        description: "Dépose complète, refonte des réseaux de plomberie et d'électricité (norme NF C 15-100), gestion de la ventilation (VMC) et pose de tous revêtements."
       },
       {
-        title: "Optimisation de petits espaces",
-        description: "Nous avons des solutions astucieuses pour rendre les petites salles de bain à la fois belles et ultra-fonctionnelles."
+        title: "Conception et Installation de Douche à l'Italienne",
+        description: "Notre cœur de métier. Étanchéité parfaite (système S.E.L.), pose de receveur extra-plat ou maçonné, parois de verre sur mesure et robinetterie de luxe (encastrée ou non)."
       },
       {
-        title: "Accessibilité et sécurité",
-        description: "Nous pouvons adapter votre salle de bain pour les personnes à mobilité réduite (PMR) en respectant les normes en vigueur."
+        title: "Pose de Matériaux Nobles (Marbre, Carrelage Grand Format, Mosaïque)",
+        description: "La finition \"haut de gamme\" réside dans la pose. Nos artisans maîtrisent la pose de marbre, de faïence, de mosaïque et de carrelage grand format avec une précision millimétrique."
+      },
+      {
+        title: "Agencement et Mobilier sur Mesure",
+        description: "Optimisation de l'espace avec des meubles-vasques sur mesure, création de niches murales éclairées, et intégration de rangements invisibles pour une esthétique épurée."
       }
+    ],
+    process: [
+        { step: 1, title: 'Rendez-vous Conseil & Conception', description: "Visite sur site (Paris et IDF), écoute de vos envies (style \"spa\", \"design\", \"classique\"), prise de cotes et proposition de plans 3D pour visualiser votre futur espace." },
+        { step: 2, title: 'Choix des Matériaux & Devis', description: "Nous vous guidons dans le choix des robinetteries, sanitaires, carrelages et éclairages. Remise d'un devis transparent et détaillé." },
+        { step: 3, title: 'Réalisation Pilotée', description: "Un interlocuteur unique gère le planning, coordonne les plombiers, électriciens et carreleurs, et protège vos espaces de vie pendant les travaux." },
+        { step: 4, title: 'Réception et Garantie', description: "Nettoyage final, réception de chantier sans réserve, et activation de votre garantie décennale sur l'ensemble des travaux." }
+    ],
+    whyUs: [
+        { title: "Étanchéité Infalible", description: "Nous appliquons des systèmes d'étanchéité liquide (S.E.L.) sous carrelage et des bandes de renfort dans tous les angles, dépassant les normes DTU pour une sécurité maximale.", icon: ShieldCheck },
+        { title: "Plomberie et Électricité aux Normes", description: "Tous nos réseaux sont neufs, testés sous pression (plomberie) et conformes aux volumes de sécurité électrique (NF C 15-100).", icon: Users },
+        { title: "Gestion de la Pente (Douche Italienne)", description: "Nous garantissons une pente parfaite pour l'évacuation, un détail technique crucial que seuls les experts maîtrisent.", icon: Milestone }
+    ],
+    zones: {
+      description: "Notre expertise en rénovation de salle de bain s'exerce dans les appartements haussmanniens de Paris (75), où l'optimisation est reine, comme dans les maisons des Hauts-de-Seine (92) et des Yvelines (78) (création de suites parentales).",
+      list: "Nous intervenons également sur des projets exigeants en Seine-Saint-Denis (93) et dans le Val-de-Marne (94)."
+    },
+    faq: [
+        { question: "Quel est le prix d'une rénovation complète de salle de bain haut de gamme ?", answer: "Le prix dépend des matériaux (marbre vs. carrelage) et de la robinetterie, mais une prestation ERG Rénovation se situe généralement à partir de 2 000 €/m². Nous fournissons un devis détaillé pour une transparence totale." },
+        { question: "Combien de temps faut-il pour refaire une salle de bain ?", answer: "Entre 2 et 4 semaines en moyenne pour une rénovation complète. Nous nous engageons fermement à respecter le planning que nous établissons avec vous." },
+        { question: "Comment garantissez-vous l'étanchéité d'une douche à l'italienne ?", answer: "C'est notre priorité absolue. Nous utilisons des systèmes d'étanchéité liquide (S.E.L) sous carrelage, effectuons des tests de mise en eau et l'ensemble est couvert par notre garantie décennale." },
+        { question: "Faut-il une autorisation pour refaire sa salle de bain à Paris ?", answer: "Généralement non, une déclaration de travaux n'est pas nécessaire sauf si vous modifiez un mur porteur ou la colonne d'évacuation de l'immeuble. Si c'est le cas, nous nous occupons de toutes les démarches." }
     ],
     relatedProjectSlugs: ['suite-parentale-spa-neuilly', 'salle-eau-combles-versailles']
   },
@@ -468,3 +495,4 @@ export const blogPosts: BlogPost[] = [
   }
 ];
     
+

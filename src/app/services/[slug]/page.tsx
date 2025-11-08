@@ -16,7 +16,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowRight, CheckCircle, Award, ShieldCheck, Clock, Coins, Sparkles } from 'lucide-react';
+import { ArrowRight, CheckCircle, Award, ShieldCheck, Clock, Coins, Sparkles, Milestone } from 'lucide-react';
 import AnimatedSection from '@/components/animated-section';
 import type { Metadata, ResolvingMetadata } from 'next';
 
@@ -50,6 +50,13 @@ export async function generateMetadata(
     }
   }
 
+    if (service.slug === 'renovation-salle-de-bain') {
+    return {
+      title: "Rénovation Salle de Bain Paris & IDF (92, 93, 94, 78) | ERG Rénovation",
+      description: "Transformez votre salle de bain en un espace bien-être. ERG Rénovation, expert en rénovation haut de gamme à Paris et IDF. Devis pour votre douche à l'italienne.",
+    }
+  }
+
   // Sinon, on génère des métadonnées standards
   return {
     title: `${service.title} | ERG Rénovation`,
@@ -73,12 +80,12 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
 
   const relatedProjects = allProjects.filter(p => service.relatedProjectSlugs.includes(p.slug));
   const serviceImage = PlaceHolderImages.find(p => p.id === service.heroImageId);
-  const isPillarPage = service.slug === 'renovation-appartement' || service.slug === 'renovation-maison';
+  const isPillarPage = ['renovation-appartement', 'renovation-maison', 'renovation-salle-de-bain'].includes(service.slug);
   
   const kitchenImage = PlaceHolderImages.find(p => p.id === 'service-pillar-kitchen');
   const finishImage = PlaceHolderImages.find(p => p.id === 'service-pillar-finish');
   
-  const pageTitles = {
+  const pageTitles:any = {
     'renovation-appartement': {
       h1: "Rénovation d'Appartement à Paris et Île-de-France : L'Excellence par ERG Rénovation",
       intro: "Transformer un appartement parisien ou francilien en un lieu de vie exceptionnel exige une expertise de la structure, une gestion de projet rigoureuse et une passion pour les finitions parfaites. Nous gérons chaque détail de votre projet à Paris, dans les Hauts-de-Seine (92), la Seine-Saint-Denis (93), le Val-de-Marne (94) et les Yvelines (78).",
@@ -100,6 +107,18 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       processIntro: "Un projet de vie ne doit pas devenir une source de stress. Notre méthodologie est conçue pour vous garantir une transparence totale et un respect absolu de vos attentes.",
       whyUsTitle: "Pourquoi ERG Rénovation pour Votre Maison en Île-de-France ?",
       faqTitle: "Vos Questions sur la Rénovation de Maison",
+    },
+    'renovation-salle-de-bain': {
+      h1: "Rénovation de Salle de Bain à Paris & IDF : Créez Votre Espace Bien-Être sur Mesure",
+      intro: "Plus qu'une simple pièce d'eau, votre salle de bain est un sanctuaire. La transformer en un espace de détente digne d'un spa, tout en optimisant chaque mètre carré, est un art qui exige une précision technique absolue. ERG Rénovation est le spécialiste de la conception et de la rénovation de salles de bain haut de gamme à Paris et en Île-de-France (75, 92, 93, 94, 78), garantissant des finitions parfaites et une étanchéité irréprochable.",
+      cta: "Obtenir mon devis pour une salle de bain d'exception",
+      benefitsTitle: "Nos Prestations pour une Salle de Bain Haut de Gamme",
+      benefitsIntro: "De la refonte complète d'une salle de bain ancienne à la création d'une suite parentale, nos équipes maîtrisent tous les aspects de votre projet.",
+      processTitle: "Votre Projet de A à Z : Conception, Pilotage, Finitions",
+      processIntro: "Un projet de vie ne doit pas devenir une source de stress. Notre méthodologie est conçue pour vous garantir une transparence totale et un respect absolu de vos attentes.",
+      whyUsTitle: "L'Expertise Technique : Le Luxe de la Tranquillité",
+      whyUsIntro: "Une belle salle de bain est avant tout une salle de bain qui dure. Dans les appartements parisiens, où un dégât des eaux est critique, notre priorité absolue est la technique.",
+      faqTitle: "Questions Fréquentes sur la Rénovation de Salle de Bain",
     }
   }
 
@@ -242,17 +261,27 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                         <h2 className="font-headline text-3xl font-bold">
                            {content.whyUsTitle}
                         </h2>
+                          {content.whyUsIntro && (
+                            <div className="prose max-w-none text-muted-foreground mt-4">
+                                <p>{content.whyUsIntro}</p>
+                            </div>
+                          )}
                         <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                             <div className="space-y-6">
                                 {service.whyUs.map((item) => (
-                                    <Card key={item.title} className="bg-secondary/50 border-0 shadow-none">
+                                    <Card key={item.title} className={cn(
+                                        service.slug === 'renovation-salle-de-bain' ? 'bg-transparent shadow-none border-0' : 'bg-secondary/50 border-0 shadow-none'
+                                    )}>
                                         <CardHeader className="flex flex-row items-center gap-4 p-4">
-                                            <div className="flex h-10 w-10 items-center justify-center rounded-md bg-background text-primary shrink-0">
+                                            <div className={cn(
+                                                "flex h-10 w-10 items-center justify-center rounded-md shrink-0",
+                                                service.slug === 'renovation-salle-de-bain' ? 'bg-primary/10 text-primary' : 'bg-background text-primary'
+                                                )}>
                                                 <item.icon className="h-5 w-5" />
                                             </div>
                                             <h3 className="font-headline font-semibold text-base">{item.title}</h3>
                                         </CardHeader>
-                                        <CardContent className='p-4 pt-0'>
+                                        <CardContent className='p-4 pt-0 pl-14'>
                                             <p className="text-muted-foreground text-sm md:leading-relaxed">{item.description}</p>
                                         </CardContent>
                                     </Card>
@@ -465,3 +494,5 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
     </Card>
   );
 }
+
+const cn = (...classes: string[]) => classes.filter(Boolean).join(' ');
