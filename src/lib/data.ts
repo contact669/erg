@@ -286,30 +286,30 @@ export const blogPosts: BlogPost[] = [
     title: '10 Astuces pour Réussir la Rénovation de votre Appartement Parisien',
     description: 'Découvrez nos conseils d’experts pour naviguer les défis uniques de la rénovation à Paris, de l’optimisation de l’espace à la gestion de la copropriété.',
     date: '2025-11-08',
-    author: 'Aïssa AIT',
+    author: 'A. AIT',
     featuredImageId: 'blog-post-1',
     tags: ['Rénovation', 'Appartement', 'Conseils'],
     content: (
       <div>
-        <p>Rénover un appartement à Paris présente des défis uniques : espaces contraints, réglementations de copropriété strictes, et le charme de l'ancien à préserver. Chez ERG Rénovation, nous avons l'habitude de jongler avec ces contraintes pour créer des intérieurs modernes et fonctionnels. Voici nos 10 astuces clés pour garantir le succès de votre projet.</p>
+        <p>Rénover un appartement à Paris présente des défis uniques : <strong>espaces contraints</strong>, <strong>réglementations de copropriété strictes</strong>, et le charme de l'ancien à préserver. Chez ERG Rénovation, nous avons l'habitude de jongler avec ces contraintes pour créer des intérieurs modernes et fonctionnels. Voici nos 10 astuces clés pour garantir le succès de votre projet.</p>
         
         <h2>1. Optimisez chaque mètre carré</h2>
-        <p>Dans les appartements parisiens, chaque centimètre compte. Pensez "verticalité" avec des rangements toute hauteur, et "multifonctionnalité" avec du mobilier modulable. Une verrière d'atelier peut délimiter un espace sans bloquer la lumière, une solution idéale pour créer un coin bureau ou une chambre d'appoint.</p>
+        <p>Dans les appartements parisiens, chaque centimètre compte. Pensez "verticalité" avec des <strong>rangements toute hauteur</strong>, et "multifonctionnalité" avec du mobilier modulable. Une verrière d'atelier peut délimiter un espace sans bloquer la lumière, une solution idéale pour créer un coin bureau ou une chambre d'appoint.</p>
         
         <h2>2. La lumière, votre meilleure alliée</h2>
-        <p>Favorisez la lumière naturelle en décloisonnant lorsque c'est possible. Utilisez des couleurs claires sur les murs et des miroirs stratégiquement placés pour agrandir visuellement l'espace et réfléchir la lumière. Un bon plan d'éclairage artificiel, avec plusieurs sources (directes et indirectes), est également crucial.</p>
+        <p>Favorisez la lumière naturelle en décloisonnant lorsque c'est possible. Utilisez des <strong>couleurs claires</strong> sur les murs et des <strong>miroirs stratégiquement placés</strong> pour agrandir visuellement l'espace et réfléchir la lumière. Un bon plan d'éclairage artificiel, avec plusieurs sources (directes et indirectes), est également crucial.</p>
         
         <h2>3. Respectez l'âme du lieu</h2>
-        <p>Parquet en point de Hongrie, moulures, cheminées en marbre... L'ancien a un charme fou. Plutôt que de tout cacher, restaurez et mettez en valeur ces éléments. Ils peuvent être magnifiquement contrastés avec des éléments de design contemporain pour un style "parisien chic" très recherché.</p>
+        <p><strong>Parquet en point de Hongrie</strong>, <strong>moulures</strong>, <strong>cheminées en marbre</strong>... L'ancien a un charme fou. Plutôt que de tout cacher, restaurez et mettez en valeur ces éléments. Ils peuvent être magnifiquement contrastés avec des éléments de design contemporain pour un style "parisien chic" très recherché.</p>
 
         <h2>4. Anticipez les démarches de copropriété</h2>
-        <p>Ne sous-estimez pas les délais administratifs. Toute modification des murs porteurs, des fenêtres ou des parties communes nécessite l'accord de la copropriété. Présentez un dossier solide, préparé par des professionnels, pour mettre toutes les chances de votre côté.</p>
+        <p>Ne sous-estimez pas les délais administratifs. Toute modification des murs porteurs, des fenêtres ou des parties communes nécessite l'accord de la copropriété. Présentez un <strong>dossier solide</strong>, préparé par des professionnels, pour mettre toutes les chances de votre côté.</p>
         
         <h2>5. Isolez, isolez, isolez !</h2>
-        <p>L'isolation phonique et thermique est un investissement essentiel pour le confort. Contre les bruits de la rue et des voisins, des solutions efficaces existent (doublage des murs, fenêtres à double vitrage performant). Une bonne isolation thermique vous fera également faire des économies d'énergie substantielles.</p>
+        <p>L'<strong>isolation phonique et thermique</strong> est un investissement essentiel pour le confort. Contre les bruits de la rue et des voisins, des solutions efficaces existent (doublage des murs, fenêtres à double vitrage performant). Une bonne isolation thermique vous fera également faire des économies d'énergie substantielles.</p>
         
         <h3>6. Pensez aux rangements intégrés</h3>
-        <p>Les rangements sur-mesure sont la clé d'un intérieur parisien réussi. Ils s'adaptent aux recoins, optimisent les volumes et se fondent dans le décor pour une sensation d'espace et d'ordre.</p>
+        <p>Les <strong>rangements sur-mesure</strong> sont la clé d'un intérieur parisien réussi. Ils s'adaptent aux recoins, optimisent les volumes et se fondent dans le décor pour une sensation d'espace et d'ordre. Découvrez nos solutions d'<a href="/services/renovation-appartement">aménagement intérieur</a>.</p>
         
         <h3>7. Choisissez des matériaux durables et adaptés</h3>
         <p>Un parquet massif sera plus résistant et pourra être rénové plusieurs fois. Dans la salle de bain, privilégiez des matériaux résistants à l'humidité. Nos artisans sauront vous conseiller les meilleurs choix en fonction de votre budget et de votre style de vie.</p>
@@ -321,9 +321,9 @@ export const blogPosts: BlogPost[] = [
         <p>Coordonner les différents corps de métier (plombier, électricien, peintre...) peut vite devenir un casse-tête. Faire appel à une entreprise de rénovation tous corps d'état comme ERG Rénovation vous garantit un interlocuteur unique et une gestion de projet fluide.</p>
         
         <h3>10. Définissez un budget réaliste et prévoyez une marge</h3>
-        <p>Un projet de rénovation réserve souvent des surprises. Nous vous aidons à établir un devis détaillé, mais il est toujours prudent de prévoir une marge de 10 à 15% pour les imprévus. Cette précaution vous permettra de mener votre projet à terme en toute sérénité.</p>
+        <p>Un projet de rénovation réserve souvent des surprises. Nous vous aidons à établir un devis détaillé, mais il est toujours prudent de prévoir une <strong>marge de 10 à 15%</strong> pour les imprévus. Cette précaution vous permettra de mener votre projet à terme en toute sérénité.</p>
         
-        <p>Prêt à vous lancer ? <a href="/devis">Contactez-nous pour une étude personnalisée de votre projet.</a></p>
+        <p>Prêt à vous lancer ? <a href="/devis"><strong>Contactez-nous pour une étude personnalisée de votre projet.</strong></a></p>
       </div>
     )
   },
@@ -332,21 +332,21 @@ export const blogPosts: BlogPost[] = [
     title: 'Comment Choisir le Bon Artisan pour vos Travaux ?',
     description: 'La réussite de vos travaux dépend grandement du choix de vos artisans. Voici les critères essentiels à vérifier avant de vous engager.',
     date: '2025-10-15',
-    author: 'Aïssa AIT',
+    author: 'A. AIT',
     featuredImageId: 'blog-post-2',
     tags: ['Conseils', 'Artisans', 'Qualité'],
     content: (
         <div>
-            <p>Engager des travaux de rénovation est un investissement important. Le choix de l'artisan ou de l'entreprise qui les réalisera est sans doute la décision la plus cruciale pour la réussite de votre projet. Un mauvais choix peut entraîner des malfaçons, des retards et des surcoûts importants. Alors, comment s'assurer de faire le bon choix ?</p>
+            <p>Engager des travaux de rénovation est un investissement important. Le choix de l'artisan ou de l'entreprise qui les réalisera est sans doute la décision la plus cruciale pour la réussite de votre projet. Un mauvais choix peut entraîner des <strong>malfaçons, des retards et des surcoûts importants</strong>. Alors, comment s'assurer de faire le bon choix ?</p>
 
             <h2>1. Vérifiez les qualifications et les assurances</h2>
             <p>C'est le point de départ non négociable. Un professionnel sérieux doit pouvoir vous présenter :</p>
             <ul>
-                <li><strong>Son immatriculation au Répertoire des Métiers ou au Registre du Commerce.</strong></li>
+                <li><strong>Son immatriculation au Répertoire des Métiers</strong> ou au Registre du Commerce.</li>
                 <li><strong>Son assurance de responsabilité civile professionnelle (RC Pro) :</strong> elle couvre les dommages que l'artisan pourrait causer chez vous durant les travaux.</li>
                 <li><strong>Son assurance décennale :</strong> obligatoire pour le gros œuvre et les travaux pouvant affecter la solidité du bâtiment, elle vous couvre pendant 10 ans contre les malfaçons.</li>
             </ul>
-            <p>N'hésitez pas à demander les attestations et à vérifier leur validité auprès des assureurs.</p>
+            <p><strong>N'hésitez pas à demander les attestations</strong> et à vérifier leur validité auprès des assureurs.</p>
 
             <h2>2. Analysez la clarté et le détail du devis</h2>
             <p>Un devis ne doit pas être une simple ligne avec un total. Un devis professionnel est un document détaillé qui doit mentionner :</p>
@@ -357,19 +357,19 @@ export const blogPosts: BlogPost[] = [
                 <li>Les conditions de paiement.</li>
                 <li>Le taux de TVA applicable.</li>
             </ul>
-            <p>Méfiez-vous des devis trop flous ou anormalement bas. Comparez au moins 3 devis pour avoir une idée juste du marché.</p>
+            <p>Méfiez-vous des devis trop flous ou <strong>anormalement bas</strong>. Comparez au moins 3 devis pour avoir une idée juste du marché.</p>
 
             <h2>3. Demandez à voir des réalisations précédentes</h2>
-            <p>Les photos, c'est bien. Visiter un chantier récemment terminé (avec l'accord du propriétaire), c'est mieux ! Cela vous permet de juger concrètement de la qualité des finitions et du soin apporté par l'artisan. C'est également l'occasion de discuter avec d'anciens clients de leur expérience.</p>
+            <p>Les photos, c'est bien. Visiter un chantier récemment terminé (avec l'accord du propriétaire), c'est mieux ! Cela vous permet de juger concrètement de la <strong>qualité des finitions</strong> et du soin apporté par l'artisan. C'est également l'occasion de discuter avec d'anciens clients de leur expérience. Vous pouvez consulter nos <a href="/realisations">projets ici</a>.</p>
 
             <h2>4. Fiez-vous au bouche-à-oreille et aux avis</h2>
             <p>La réputation d'un artisan est un excellent indicateur. Sollicitez votre entourage. Consultez également les avis en ligne sur des plateformes spécialisées, en gardant un esprit critique. Plusieurs avis positifs et détaillés sont souvent un bon signe.</p>
 
             <h2>5. Évaluez le contact et la communication</h2>
-            <p>Dès les premiers échanges, vous devez vous sentir en confiance. L'artisan est-il à votre écoute ? Est-il force de proposition ? Prend-il le temps de répondre clairement à vos questions ? Une bonne communication est essentielle pour une collaboration sereine tout au long du chantier.</p>
+            <p>Dès les premiers échanges, vous devez vous sentir en confiance. L'artisan est-il <strong>à votre écoute</strong> ? Est-il <strong>force de proposition</strong> ? Prend-il le temps de répondre clairement à vos questions ? Une bonne communication est essentielle pour une collaboration sereine tout au long du chantier.</p>
 
-            <p>Chez ERG Rénovation, nous cochons toutes ces cases. Nous avons bâti notre réputation sur la transparence, la qualité de nos réalisations et la satisfaction de nos clients. Nous vous accompagnons avec un interlocuteur unique qui pilote l'ensemble des artisans qualifiés nécessaires à votre projet.</p>
-            <p>Pour un projet mené en toute confiance, <a href="/contact">discutons ensemble de vos envies.</a></p>
+            <p>Chez ERG Rénovation, nous cochons toutes ces cases. Nous avons bâti notre réputation sur la transparence, la qualité de nos réalisations et la satisfaction de nos clients. Nous vous accompagnons avec un <strong>interlocuteur unique</strong> qui pilote l'ensemble des artisans qualifiés nécessaires à votre projet.</p>
+            <p>Pour un projet mené en toute confiance, <a href="/contact"><strong>discutons ensemble de vos envies.</strong></a></p>
         </div>
     )
   }
