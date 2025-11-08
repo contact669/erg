@@ -161,6 +161,30 @@
       "description": "A painter carefully applying a new coat of paint to a wall.",
       "imageUrl": "https://images.unsplash.com/photo-1596706922419-58a520a46580?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwYWludGVyJTIwd2FsbHxlbnwwfHx8fDE3NjI2MDcwMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "painter wall"
+    },
+    {
+      "id": "about-hero",
+      "description": "A team of construction workers collaborating on a blueprint at a building site.",
+      "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjB0ZWFtfGVufDB8fHx8MTc2MjYxNDU5NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "construction team"
+    },
+    {
+      "id": "about-story",
+      "description": "Two craftsmen discussing plans over a wooden workbench in a workshop.",
+      "imageUrl": "https://images.unsplash.com/photo-1657574240751-684a2f7d23d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjcmFmdHNtZW4lMjB3b3JraW5nfGVufDB8fHx8MTc2MjYxNDU5NXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "craftsmen working"
+    },
+    {
+      "id": "founder-1",
+      "description": "Portrait of a confident male construction manager in his 40s.",
+      "imageUrl": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYWxlJTIwcHJvZmVzc2lvbmFsJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYyNjE0NTk1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male professional"
+    },
+    {
+      "id": "founder-2",
+      "description": "Portrait of a friendly male architect in his late 30s.",
+      "imageUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtYWxlJTIwcHJvZmVzc2lvbmFsJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYyNjE0NTk1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male architect"
     }
   ]
 }

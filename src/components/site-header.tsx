@@ -40,9 +40,14 @@ export default function SiteHeader() {
 
         <nav className="hidden items-center gap-6 md:flex">
           {navItems.map((item) => {
-            // Adjust href for smooth scroll on homepage
-            const href = pathname === '/' && item.href.startsWith('#') ? item.href : (item.href.startsWith('#') ? `/${item.href}` : item.href);
-            const isActive = pathname === href || (item.href !== '/' && pathname.startsWith(item.href));
+            const isHomePage = pathname === '/';
+            const isAnchorLink = item.href.startsWith('#');
+            
+            // Smooth scroll for anchors on the homepage, direct nav otherwise
+            const href = isHomePage && isAnchorLink ? item.href : (isAnchorLink ? `/${item.href}` : item.href);
+            
+            // Determine active state
+            const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
 
             return (
               <Link
@@ -100,7 +105,9 @@ function MobileNav() {
           </div>
           <nav className="mt-6 flex flex-col gap-6">
             {navItems.map((item) => {
-               const href = pathname === '/' && item.href.startsWith('#') ? item.href : (item.href.startsWith('#') ? `/${item.href}` : item.href);
+               const isHomePage = pathname === '/';
+               const isAnchorLink = item.href.startsWith('#');
+               const href = isHomePage && isAnchorLink ? item.href : (isAnchorLink ? `/${item.href}` : item.href);
                const isActive = pathname === href || (item.href !== '/' && pathname.startsWith(item.href));
 
               return (
