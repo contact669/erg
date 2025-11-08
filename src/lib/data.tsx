@@ -274,10 +274,10 @@ export const services: Service[] = [
         list: "Notre expertise s'applique également aux projets complexes de réunion de lots ou d'aménagement des \"chambres de bonne\" au dernier étage des immeubles à Paris (75)."
     },
     faq: [
-        { question: "Mes combles sont-ils aménageables ?", answer: "Les prérequis sont une hauteur sous faîtage de plus de 1m80 et une pente de toit supérieure à 30%. La charpente peut souvent être modifiée. Nous évaluons cela lors de notre visite de faisabilité." },
-        { question: "Faut-il un permis de construire ou une déclaration de travaux ?", answer: "Oui. Une Déclaration Préalable (DP) pour une pose de Velux ou une création de surface inférieure à 20m². Un Permis de Construire (PC) au-delà, ou si vous modifiez la structure porteuse ou la façade. Nous gérons intégralement ces dossiers." },
-        { question: "Comment éviter d'avoir trop chaud en été sous les toits ?", answer: "C'est notre priorité. Nous utilisons une isolation très performante, des pare-soleil extérieurs sur les fenêtres de toit et nous assurons une ventilation efficace (VMC)." },
-        { question: "Quel est le prix au m² pour un aménagement de combles ?", answer: "C'est un coût de 'création de m²'. Il varie selon la complexité (structure, accès...) mais se situe généralement entre 1 500 € et 3 000 €/m² pour une prestation complète. Notre devis est détaillé et transparent." }
+      { question: "Mes combles sont-ils aménageables ?", answer: "Les prérequis sont une hauteur sous faîtage de plus de 1m80 et une pente de toit supérieure à 30%. La charpente peut souvent être modifiée. Nous évaluons cela lors de notre visite de faisabilité." },
+      { question: "Faut-il un permis de construire ou une déclaration de travaux ?", answer: "Oui. Une Déclaration Préalable (DP) pour une pose de Velux ou une création de surface inférieure à 20m². Un Permis de Construire (PC) au-delà, ou si vous modifiez la structure porteuse ou la façade. Nous gérons intégralement ces dossiers." },
+      { question: "Comment éviter d'avoir trop chaud en été sous les toits ?", answer: "C'est notre priorité. Nous utilisons une isolation très performante, des pare-soleil extérieurs sur les fenêtres de toit et nous assurons une ventilation efficace (VMC)." },
+      { question: "Quel est le prix au m² pour un aménagement de combles ?", answer: "C'est un coût de 'création de m²'. Il varie selon la complexité (structure, accès...) mais se situe généralement entre 1 500 € et 3 000 €/m² pour une prestation complète. Notre devis est détaillé et transparent." }
     ],
     relatedProjectSlugs: ['salle-eau-combles-versailles']
   },
@@ -619,6 +619,67 @@ export const localLandingPages: LocalLandingPage[] = [
       { name: 'Le Raincy', slug: 'le-raincy' },
       { name: 'Les Lilas', slug: 'les-lilas' },
       { name: 'Saint-Denis', slug: 'saint-denis' },
+    ]
+  },
+  {
+    slug: 'yvelines-78',
+    type: 'department',
+    title: "Rénovation d'Appartement de Prestige dans les Yvelines (78)",
+    metaTitle: "Rénovation Appartement Prestige Yvelines (78) | Versailles, Saint-Germain | ERG",
+    metaDescription: "Expert en rénovation d'appartements et de grands volumes dans le 78. Restauration, confort moderne et finitions de prestige. Devis Yvelines.",
+    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    introduction: "Le département des Yvelines abrite un patrimoine immobilier d'une richesse exceptionnelle, des grands appartements de standing à Versailles aux résidences élégantes de Saint-Germain-en-Laye. La rénovation dans le 78 est un projet d'envergure qui exige de moderniser l'espace et le confort, tout en préservant l'âme des lieux. ERG Rénovation est votre partenaire de confiance pour orchestrer la réhabilitation complète de votre appartement dans les Yvelines, avec des finitions et une rigueur technique au plus haut niveau.",
+    cta: {
+      primary: 'Demander une étude pour mon bien dans le 78',
+      secondary: 'Voir nos rénovations à Versailles',
+    },
+    reassurancePoints: [
+      'Expertise en grands volumes et surfaces.',
+      'Connaissance des Bâtiments de France (ABF) si besoin.',
+      'Garantie de l\'isolation et du confort thermique.',
+    ],
+    mainContent: (
+      <>
+        <h2 className="font-headline text-3xl font-bold">Notre Savoir-Faire : Quand le Luxe Rencontre la Fonctionnalité</h2>
+        <p>Nos services sont conçus pour répondre aux besoins spécifiques des propriétaires d'appartements de prestige dans le 78 : confort, discrétion, et haute qualité des matériaux.</p>
+        <div className="mt-8 space-y-6">
+            <div className="flex items-start gap-4">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                <div>
+                    <h3 className="font-headline font-semibold text-lg">Modernisation des Réseaux Techniques Anciens</h3>
+                    <p className="text-muted-foreground">Dans les immeubles historiques du 78, nous refaisons intégralement les réseaux de plomberie et d'électricité pour un confort et une sécurité optimaux, souvent en préservant les gaines d'origine.</p>
+                </div>
+            </div>
+            <div className="flex items-start gap-4">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                <div>
+                    <h3 className="font-headline font-semibold text-lg">Création de Suites Parentales et Salles de Bains de Luxe</h3>
+                    <p className="text-muted-foreground">Aménagement complet de l'espace nuit, avec dressing sur mesure, salle de bain attenante haut de gamme (douche, baignoire îlot) et isolation phonique.</p>
+                </div>
+            </div>
+             <div className="flex items-start gap-4">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                <div>
+                    <h3 className="font-headline font-semibold text-lg">Amélioration de la Performance Énergétique (RGE si applicable)</h3>
+                    <p className="text-muted-foreground">Isolation par l'intérieur, remplacement de menuiseries (fenêtres), et optimisation du chauffage (plancher chauffant) pour une réduction significative des charges.</p>
+                </div>
+            </div>
+        </div>
+        <h2 className="font-headline text-3xl font-bold mt-12">Les Villes des Yvelines où Nous Intervenons Prioritairement</h2>
+        <p className="mt-4">Nous mettons notre expertise au service des projets les plus exigeants dans les communes suivantes :</p>
+      </>
+    ),
+    testimonial: {
+      quote: "La rénovation de notre grand appartement à Saint-Germain-en-Laye a été parfaitement gérée, de la structure aux finitions en marbre.",
+      author: "Famille de G., Saint-Germain-en-Laye (78)",
+    },
+    relatedLocations: [
+      { name: 'Versailles', slug: 'versailles' },
+      { name: 'Saint-Germain-en-Laye', slug: 'saint-germain-en-laye' },
+      { name: 'Le Vésinet', slug: 'le-vesinet' },
+      { name: 'Chatou', slug: 'chatou' },
+      { name: 'Maisons-Laffitte', slug: 'maisons-laffitte' },
+      { name: 'Marly-le-Roi', slug: 'marly-le-roi' },
     ]
   },
 ];
