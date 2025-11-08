@@ -77,7 +77,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-16">
                 {/* Main Content */}
                 <div className="lg:col-span-2">
-                    <div className="prose prose-lg max-w-none text-foreground prose-headings:font-headline prose-headings:text-primary prose-a:text-accent prose-strong:text-foreground">
+                    <div className="prose max-w-none text-foreground prose-headings:font-headline prose-headings:text-primary prose-a:text-accent prose-strong:text-foreground">
                        {post.content}
                     </div>
                 </div>
