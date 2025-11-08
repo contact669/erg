@@ -296,7 +296,7 @@ export const blogPosts: BlogPost[] = [
       const parquetImage = PlaceHolderImages.find(p => p.id === 'blog-image-parquet');
 
       return (
-        <div>
+        <>
           <p>Rénover un appartement à Paris présente des défis uniques : <strong>espaces contraints</strong>, <strong>réglementations de copropriété strictes</strong>, et le charme de l'ancien à préserver. Chez ERG Rénovation, nous avons l'habitude de jongler avec ces contraintes pour créer des intérieurs modernes et fonctionnels. Voici nos 10 astuces clés pour garantir le succès de votre projet.</p>
           
           <h2>1. Optimisez chaque mètre carré</h2>
@@ -356,20 +356,20 @@ export const blogPosts: BlogPost[] = [
           <p>Un projet de rénovation réserve souvent des surprises. Nous vous aidons à établir un devis détaillé, mais il est toujours prudent de prévoir une <strong>marge de 10 à 15%</strong> pour les imprévus. Cette précaution vous permettra de mener votre projet à terme en toute sérénité.</p>
           
           <p>Prêt à vous lancer ? <a href="/devis"><strong>Contactez-nous pour une étude personnalisée de votre projet.</strong></a></p>
-        </div>
+        </>
       )
     })()
   },
   {
     slug: 'comment-choisir-bon-artisan-travaux',
-    title: 'Comment Choisir le Bon Artisan pour vos Travaux ?',
+    title: 'Comment Choisir le Bon Artisan pour vos Travaux ? Les 5 points clés',
     description: 'La réussite de vos travaux dépend grandement du choix de vos artisans. Voici les critères essentiels à vérifier avant de vous engager.',
     date: '2025-10-15',
     author: 'K. AIT',
     featuredImageId: 'blog-post-2',
     tags: ['Conseils', 'Artisans', 'Qualité'],
     content: (
-        <div>
+        <>
             <p>Engager des travaux de rénovation est un investissement important. Le choix de l'artisan ou de l'entreprise qui les réalisera est sans doute la décision la plus cruciale pour la réussite de votre projet. Un mauvais choix peut entraîner des <strong>malfaçons, des retards et des surcoûts importants</strong>. Alors, comment s'assurer de faire le bon choix ?</p>
 
             <h2>1. Vérifiez les qualifications et les assurances</h2>
@@ -403,7 +403,7 @@ export const blogPosts: BlogPost[] = [
 
             <p>Chez ERG Rénovation, nous cochons toutes ces cases. Nous avons bâti notre réputation sur la transparence, la qualité de nos réalisations et la satisfaction de nos clients. Nous vous accompagnons avec un <strong>interlocuteur unique</strong> qui pilote l'ensemble des artisans qualifiés nécessaires à votre projet.</p>
             <p>Pour un projet mené en toute confiance, <a href="/contact"><strong>discutons ensemble de vos envies.</strong></a></p>
-        </div>
+        </>
     )
   }
 ];
