@@ -16,6 +16,15 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from '@/components/ui/navigation-menu';
 
 export default function SiteHeader() {
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -44,79 +53,75 @@ export default function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
-          {navItems.map((item) => {
-            const isHomePage = pathname === '/';
-            const isAnchorLink = item.href.startsWith('#');
-            
-            const href = isHomePage && isAnchorLink ? item.href : (isAnchorLink ? `/${item.href}` : item.href);
-            
-            const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+        <nav className="hidden items-center gap-1 md:flex">
+          <NavigationMenu>
+            <NavigationMenuList>
+              {navItems.map((item) => {
+                const isHomePage = pathname === '/';
+                const isAnchorLink = item.href.startsWith('#');
 
-            if (item.title === 'Services') {
-              return (
-                <DropdownMenu key={item.href}>
-                  <DropdownMenuTrigger asChild>
-                    <div
-                      className={cn(
-                        'group relative cursor-pointer text-sm font-medium transition-colors',
-                        isActive ? 'text-primary' : 'text-muted-foreground hover:text-primary'
-                      )}
-                    >
-                      <span>{item.title}</span>
-                       <span
+                const href =
+                  isHomePage && isAnchorLink
+                    ? item.href
+                    : isAnchorLink
+                      ? `/${item.href}`
+                      : item.href;
+
+                const isActive =
+                  pathname === item.href ||
+                  (item.href !== '/' && pathname.startsWith(item.href));
+
+                if (item.title === 'Services') {
+                  return (
+                    <NavigationMenuItem key={item.href}>
+                      <NavigationMenuTrigger
                         className={cn(
-                          'absolute -bottom-1 left-0 h-0.5 w-full bg-accent transition-transform duration-300 ease-out',
-                          isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                          'group relative bg-transparent text-sm font-medium transition-colors',
+                          isActive
+                            ? 'text-primary'
+                            : 'text-muted-foreground hover:text-primary',
+                          'focus:bg-transparent focus:text-primary data-[active]:bg-transparent data-[state=open]:bg-transparent'
                         )}
-                        style={{transformOrigin: 'left'}}
-                      />
-                    </div>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-96 p-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      {services.map((service) => (
-                        <DropdownMenuItem key={service.slug} asChild>
-                          <Link
-                            href={`/services/${service.slug}`}
-                            className="flex items-center gap-3 rounded-md p-3 hover:bg-secondary"
-                          >
-                            <div className="rounded-md bg-primary/10 p-2 text-accent">
-                               <service.icon className="h-5 w-5" />
-                            </div>
-                            <div className='flex flex-col'>
-                                <span className="font-semibold">{service.title}</span>
-                                <span className="text-xs text-muted-foreground">{service.description}</span>
-                            </div>
-                          </Link>
-                        </DropdownMenuItem>
-                      ))}
-                    </div>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              );
-            }
+                      >
+                        <span>{item.title}</span>
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <div className="grid w-[600px] grid-cols-2 gap-4 p-4 md:w-[700px] lg:w-[800px]">
+                          {services.map((service) => (
+                            <ListItem
+                              key={service.slug}
+                              title={service.title}
+                              href={`/services/${service.slug}`}
+                              icon={service.icon}
+                            >
+                              {service.description}
+                            </ListItem>
+                          ))}
+                        </div>
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
+                  );
+                }
 
-            return (
-              <Link
-                key={item.href}
-                href={href}
-                className={cn(
-                  'group relative text-sm font-medium transition-colors',
-                  isActive ? 'text-primary' : 'text-muted-foreground hover:text-primary'
-                )}
-              >
-                <span>{item.title}</span>
-                <span
-                  className={cn(
-                    'absolute -bottom-1 left-0 h-0.5 w-full bg-accent transition-transform duration-300 ease-out',
-                    isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                  )}
-                  style={{transformOrigin: 'left'}}
-                />
-              </Link>
-            );
-          })}
+                return (
+                  <NavigationMenuItem key={item.href}>
+                    <Link href={href} legacyBehavior passHref>
+                       <NavigationMenuLink className={cn(
+                          navigationMenuTriggerStyle(),
+                          'group relative bg-transparent text-sm font-medium transition-colors',
+                           isActive
+                            ? 'text-primary'
+                            : 'text-muted-foreground hover:text-primary',
+                           'focus:bg-transparent focus:text-primary data-[active]:bg-transparent data-[state=open]:bg-transparent'
+                        )}>
+                        <span>{item.title}</span>
+                       </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
+                );
+              })}
+            </NavigationMenuList>
+          </NavigationMenu>
         </nav>
 
         <div className="flex items-center gap-4">
@@ -129,6 +134,40 @@ export default function SiteHeader() {
     </header>
   );
 }
+
+const ListItem = React.forwardRef<
+  React.ElementRef<'a'>,
+  React.ComponentPropsWithoutRef<'a'> & { title: string, icon: React.ElementType }
+>(({ className, title, children, icon: Icon, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            className
+          )}
+          {...props}
+        >
+          <div className="flex items-center gap-3">
+             <div className="rounded-md bg-primary/10 p-2 text-accent">
+               <Icon className="h-5 w-5" />
+            </div>
+            <div>
+              <div className="text-sm font-medium leading-none">{title}</div>
+              <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">
+                {children}
+              </p>
+            </div>
+          </div>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  );
+});
+ListItem.displayName = 'ListItem';
+
 
 function MobileNav() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -145,36 +184,48 @@ function MobileNav() {
       <SheetContent side="right" className="w-[300px]">
         <div className="flex h-full flex-col">
           <div className="flex items-center justify-between border-b pb-4">
-            <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
+            <Link
+              href="/"
+              className="flex items-center gap-2"
+              onClick={() => setIsOpen(false)}
+            >
               <ErgLogo className="h-8 w-8" />
               <span className="font-headline text-xl font-bold text-primary">
                 ERG
               </span>
             </Link>
             <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
-                    <X className="h-6 w-6" />
-                    <span className="sr-only">Fermer le menu</span>
-                </Button>
+              <Button variant="ghost" size="icon">
+                <X className="h-6 w-6" />
+                <span className="sr-only">Fermer le menu</span>
+              </Button>
             </SheetTrigger>
           </div>
           <nav className="mt-6 flex flex-col gap-6">
             {navItems.map((item) => {
-               const isHomePage = pathname === '/';
-               const isAnchorLink = item.href.startsWith('#');
-               const href = isHomePage && isAnchorLink ? item.href : (isAnchorLink ? `/${item.href}` : item.href);
-               const isActive = pathname === href || (item.href !== '/' && pathname.startsWith(item.href));
+              const isHomePage = pathname === '/';
+              const isAnchorLink = item.href.startsWith('#');
+              const href =
+                isHomePage && isAnchorLink
+                  ? item.href
+                  : isAnchorLink
+                    ? `/${item.href}`
+                    : item.href;
+              const isActive =
+                pathname === href ||
+                (item.href !== '/' && pathname.startsWith(item.href));
 
               return (
-              <MobileLink
-                key={item.href}
-                href={href}
-                onOpenChange={setIsOpen}
-                className={isActive ? 'text-primary' : 'text-foreground'}
-              >
-                {item.title}
-              </MobileLink>
-            )})}
+                <MobileLink
+                  key={item.href}
+                  href={href}
+                  onOpenChange={setIsOpen}
+                  className={isActive ? 'text-primary' : 'text-foreground'}
+                >
+                  {item.title}
+                </MobileLink>
+              );
+            })}
           </nav>
           <Button asChild className="mt-auto">
             <Link href="/devis">Demander un devis</Link>
@@ -192,7 +243,13 @@ interface MobileLinkProps extends React.PropsWithChildren {
   onOpenChange?: (open: boolean) => void;
 }
 
-function MobileLink({ children, href, disabled, className, onOpenChange }: MobileLinkProps) {
+function MobileLink({
+  children,
+  href,
+  disabled,
+  className,
+  onOpenChange,
+}: MobileLinkProps) {
   return (
     <Link
       href={href}
