@@ -346,7 +346,7 @@ export const localLandingPages: LocalLandingPage[] = [
     mainContent: (
       <>
         <h2 className="font-headline text-3xl font-bold">Un savoir-faire adapté au prestige de Neuilly-sur-Seine</h2>
-        <p className="mt-4 text-muted-foreground">Notre expérience à Neuilly-sur-Seine nous permet de maîtriser les spécificités locales : respect des architectures (Art Déco, modernes...), collaboration avec les syndics de copropriété exigeants et mise en œuvre de matériaux nobles. Nous ne rénovons pas seulement un appartement, nous valorisons votre patrimoine.</p>
+        <p>Notre expérience à Neuilly-sur-Seine nous permet de maîtriser les spécificités locales : respect des architectures (Art Déco, modernes...), collaboration avec les syndics de copropriété exigeants et mise en œuvre de matériaux nobles. Nous ne rénovons pas seulement un appartement, nous valorisons votre patrimoine.</p>
         <div className="mt-8 space-y-4">
           <div className="flex items-start gap-4">
             <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
@@ -373,30 +373,53 @@ export const localLandingPages: LocalLandingPage[] = [
   {
     slug: 'hauts-de-seine-92',
     type: 'department',
-    title: 'Rénovation d\'Appartement Hauts-de-Seine (92)',
-    metaTitle: 'Rénovation Appartement Hauts-de-Seine (92) | ERG Rénovation',
-    metaDescription: 'ERG Rénovation, votre expert en rénovation d\'appartements de standing dans les Hauts-de-Seine (92). Devis pour votre projet à Neuilly, Boulogne, Saint-Cloud...',
+    title: 'Rénovation d\'Appartement Haut de Gamme dans les Hauts-de-Seine (92)',
+    metaTitle: 'Rénovation Appartement Hauts-de-Seine (92) | Neuilly, Boulogne | ERG',
+    metaDescription: 'Expert en rénovation d\'appartements de standing dans le 92 (Neuilly-sur-Seine, Boulogne, Saint-Cloud). Maîtrise des projets complexes en copropriété. Devis.',
     parentService: services.find(s => s.slug === 'renovation-appartement')!,
-    introduction: 'Les Hauts-de-Seine (92) abritent un patrimoine immobilier d\'exception, des appartements de standing de Neuilly-sur-Seine aux maisons d\'architecte de Saint-Cloud. ERG Rénovation est votre spécialiste pour tous les projets de rénovation haut de gamme dans le 92, alliant expertise technique et finitions irréprochables.',
+    introduction: 'Les Hauts-de-Seine (92) regroupent certaines des adresses les plus prisées d\'Île-de-France, de Neuilly-sur-Seine à Boulogne-Billancourt, en passant par Saint-Cloud. La rénovation d\'un appartement dans ce département exige une expertise particulière : connaissance des immeubles des années 30 et Haussmanniens, gestion des contraintes de la copropriété, et exigence sur les finitions. ERG Rénovation est votre partenaire unique pour un projet d\'excellence dans le 92.',
     cta: {
-      primary: 'Demander un devis pour mon projet dans le 92',
+      primary: 'Demander une étude personnalisée dans le 92',
       secondary: 'Voir toutes nos réalisations',
     },
     reassurancePoints: [
-      'Expertise locale (92)',
-      'Interlocuteur unique',
-      'Qualité et finitions garanties',
+      'Maîtrise des règlements de copropriété du 92',
+      'Expertise en isolation phonique (Appartements voisins)',
+      'Garantie décennale pour vos travaux structurels',
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">Votre expert de la rénovation de standing dans les Hauts-de-Seine</h2>
-        <p className="mt-4 text-muted-foreground">Que votre projet concerne un appartement familial à Boulogne-Billancourt, une résidence de prestige à Neuilly ou une maison de ville à Sceaux, nos équipes dédiées au 92 vous accompagnent à chaque étape. Nous connaissons les spécificités urbanistiques locales et collaborons avec les meilleurs artisans et fournisseurs du département.</p>
-        <h3 className="font-headline text-2xl font-bold mt-8">Nos zones d'intervention privilégiées dans le 92 :</h3>
-        <p className="mt-2 text-muted-foreground">Nous couvrons l'ensemble du département, avec une forte présence dans les villes suivantes :</p>
+        <h2 className="font-headline text-3xl font-bold">Notre Expertise pour Votre Appartement dans le 92</h2>
+        <p>Que vous souhaitiez ouvrir l'espace, réhabiliter des volumes anciens ou créer une suite parentale, nous gérons l'intégralité des travaux (TCE).</p>
+        <div className="mt-8 space-y-6">
+            <div className="flex items-start gap-4">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                <div>
+                    <h3 className="font-headline font-semibold text-lg">Abattage de Murs Porteurs et Ouverture d'Espace</h3>
+                    <p className="text-muted-foreground">La transformation la plus courante dans le 92. Nous gérons l'étude structurelle, la pose d'IPN/HEA et l'obtention des autorisations de copropriété.</p>
+                </div>
+            </div>
+            <div className="flex items-start gap-4">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                <div>
+                    <h3 className="font-headline font-semibold text-lg">Optimisation des Espaces et Création de Rangements</h3>
+                    <p className="text-muted-foreground">Conception et intégration de dressings, bibliothèques et meubles sur mesure pour maximiser la valeur de chaque mètre carré.</p>
+                </div>
+            </div>
+             <div className="flex items-start gap-4">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                <div>
+                    <h3 className="font-headline font-semibold text-lg">Rénovation Complète des Salles d'Eau et Cuisines</h3>
+                    <p className="text-muted-foreground">Expertise technique dans les pièces humides, avec des finitions haut de gamme pour les cuisines et salles de bain (plomberie, étanchéité, carrelage grand format).</p>
+                </div>
+            </div>
+        </div>
+        <h2 className="font-headline text-3xl font-bold mt-12">Les Villes du 92 où Nous Intervenons Prioritairement</h2>
+        <p className="mt-4">Notre expérience s'étend sur l'ensemble des Hauts-de-Seine, avec une forte concentration de projets d'exception dans les secteurs suivants :</p>
       </>
     ),
     testimonial: {
-      quote: "Nous avons confié la rénovation de notre maison à Boulogne à ERG Rénovation. Leur professionnalisme et la qualité de leur travail sont remarquables. Un sans-faute du début à la fin.",
+      quote: "La rénovation de notre appartement à Boulogne a été gérée avec une grande rigueur, sans aucune plainte de la copropriété.",
       author: "Famille Dubois, Boulogne-Billancourt (92)",
     },
     relatedLocations: [
@@ -658,3 +681,4 @@ export const blogPosts: BlogPost[] = [
     )
   }
 ];
+
