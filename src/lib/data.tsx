@@ -1,3 +1,4 @@
+
 import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage } from './types';
 import {
   Home,
@@ -21,6 +22,7 @@ import {
 import React from 'react';
 import Image from 'next/image';
 import { PlaceHolderImages } from './placeholder-images';
+import Link from 'next/link';
 
 export const navItems: NavItem[] = [
   { title: 'Services', href: '/services' },
@@ -367,6 +369,45 @@ export const localLandingPages: LocalLandingPage[] = [
       quote: "ERG Rénovation a su comprendre nos exigences pour notre appartement à Neuilly. Le suivi de chantier a été d'une rigueur exemplaire et les finitions sont absolument parfaites. C'est un vrai partenaire de confiance.",
       author: "M. et Mme Lambert, Neuilly-sur-Seine",
     },
+  },
+  {
+    slug: 'hauts-de-seine-92',
+    type: 'department',
+    title: 'Rénovation d\'Appartement Hauts-de-Seine (92)',
+    metaTitle: 'Rénovation Appartement Hauts-de-Seine (92) | ERG Rénovation',
+    metaDescription: 'ERG Rénovation, votre expert en rénovation d\'appartements de standing dans les Hauts-de-Seine (92). Devis pour votre projet à Neuilly, Boulogne, Saint-Cloud...',
+    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    introduction: 'Les Hauts-de-Seine (92) abritent un patrimoine immobilier d\'exception, des appartements de standing de Neuilly-sur-Seine aux maisons d\'architecte de Saint-Cloud. ERG Rénovation est votre spécialiste pour tous les projets de rénovation haut de gamme dans le 92, alliant expertise technique et finitions irréprochables.',
+    cta: {
+      primary: 'Demander un devis pour mon projet dans le 92',
+      secondary: 'Voir toutes nos réalisations',
+    },
+    reassurancePoints: [
+      'Expertise locale (92)',
+      'Interlocuteur unique',
+      'Qualité et finitions garanties',
+    ],
+    mainContent: (
+      <>
+        <h2 className="font-headline text-3xl font-bold">Votre expert de la rénovation de standing dans les Hauts-de-Seine</h2>
+        <p className="mt-4 text-muted-foreground">Que votre projet concerne un appartement familial à Boulogne-Billancourt, une résidence de prestige à Neuilly ou une maison de ville à Sceaux, nos équipes dédiées au 92 vous accompagnent à chaque étape. Nous connaissons les spécificités urbanistiques locales et collaborons avec les meilleurs artisans et fournisseurs du département.</p>
+        <h3 className="font-headline text-2xl font-bold mt-8">Nos zones d'intervention privilégiées dans le 92 :</h3>
+        <p className="mt-2 text-muted-foreground">Nous couvrons l'ensemble du département, avec une forte présence dans les villes suivantes :</p>
+      </>
+    ),
+    testimonial: {
+      quote: "Nous avons confié la rénovation de notre maison à Boulogne à ERG Rénovation. Leur professionnalisme et la qualité de leur travail sont remarquables. Un sans-faute du début à la fin.",
+      author: "Famille Dubois, Boulogne-Billancourt (92)",
+    },
+    relatedLocations: [
+      { name: 'Neuilly-sur-Seine', slug: 'neuilly-sur-seine' },
+      { name: 'Boulogne-Billancourt', slug: 'boulogne-billancourt' },
+      { name: 'Saint-Cloud', slug: 'saint-cloud' },
+      { name: 'Garches', slug: 'garches' },
+      { name: 'Sèvres', slug: 'sevres' },
+      { name: 'Sceaux', slug: 'sceaux' },
+      { name: 'Rueil-Malmaison', slug: 'rueil-malmaison' },
+    ]
   }
 ];
 
@@ -617,10 +658,3 @@ export const blogPosts: BlogPost[] = [
     )
   }
 ];
-    
-
-
-
-
-
-

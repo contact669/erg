@@ -57,6 +57,10 @@ export interface LocalLandingPage {
     quote: string;
     author: string;
   };
+  relatedLocations?: {
+    name: string;
+    slug: string;
+  }[];
 }
 
 
@@ -94,3 +98,4 @@ export interface BlogPost {
   tags: string[];
   content: ReactNode;
 }
+```

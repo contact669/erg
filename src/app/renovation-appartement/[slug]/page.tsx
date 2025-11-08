@@ -7,7 +7,7 @@ import SiteHeader from '@/components/site-header';
 import SiteFooter from '@/components/site-footer';
 import CtaBanner from '@/app/_components/cta-banner';
 import { Button } from '@/components/ui/button';
-import { CheckCircle, Award } from 'lucide-react';
+import { CheckCircle, Award, ArrowRight } from 'lucide-react';
 import AnimatedSection from '@/components/animated-section';
 import type { Metadata, ResolvingMetadata } from 'next';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
@@ -52,6 +52,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
   const { parentService } = page;
   const heroImage = PlaceHolderImages.find(p => p.id === parentService.heroImageId);
   const testimonialAvatar = PlaceHolderImages.find(p => p.id === 'testimonial-avatar-1');
+  const departmentImage = PlaceHolderImages.find(p => p.id === 'project-apartment-hauts-de-seine');
 
 
   return (
@@ -101,7 +102,21 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
               {/* Left/Main Column */}
               <div className="lg:col-span-2 space-y-12">
                 <section>
-                    {page.mainContent}
+                    <div className="prose max-w-none text-foreground prose-headings:font-headline prose-p:text-muted-foreground prose-headings:text-primary prose-a:text-accent prose-strong:text-foreground">
+                        {page.mainContent}
+                    </div>
+
+                    {page.relatedLocations && (
+                        <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                            {page.relatedLocations.map(location => (
+                                <Button asChild variant="outline" key={location.slug}>
+                                    <Link href={`/${parentService.slug}/${location.slug}`}>
+                                        {location.name} <ArrowRight className="ml-2 h-4 w-4" />
+                                    </Link>
+                                </Button>
+                            ))}
+                        </div>
+                    )}
                 </section>
                 
                 {/* --- Testimonial Section --- */}
@@ -153,20 +168,21 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                   </CardContent>
                 </Card>
 
-                {parentService.relatedProjectSlugs.length > 0 && (
+                {parentService.relatedProjectSlugs.length > 0 && departmentImage && (
                      <Card>
                         <CardHeader>
                             <CardContent className='p-0 font-headline'>
-                                Nos réalisations dans le 92
+                                Nos réalisations dans le {page.type === 'department' ? page.title.split(' ')[2] : page.slug}
                             </CardContent>
                         </CardHeader>
                         <CardContent>
                             <div className="relative h-48 w-full rounded-md overflow-hidden">
                                 <Image
-                                    src={PlaceHolderImages.find(p => p.id === 'project-apartment-1')?.imageUrl || ''}
-                                    alt="Réalisation à Neuilly-sur-Seine"
+                                    src={departmentImage.imageUrl}
+                                    alt={`Réalisation à ${page.title}`}
                                     fill
                                     className="object-cover"
+                                    data-ai-hint={departmentImage.imageHint}
                                 />
                             </div>
                             <Button variant="outline" asChild className="mt-4 w-full">
@@ -186,3 +202,4 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
     </div>
   );
 }
+```

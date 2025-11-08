@@ -221,6 +221,13 @@
       "description": "A detailed shot of a perfectly painted wall corner, showcasing high-quality finish.",
       "imageUrl": "https://images.unsplash.com/photo-1596706922419-58a520a46580?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwYWludGVkJTIwd2FsbCUyMGNsb3NlJTIwdXB8ZW58MHx8fHwxNzYyODcxNDIyfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "painted wall"
+    },
+    {
+      "id": "project-apartment-hauts-de-seine",
+      "description": "A stylish living room in a renovated apartment in Hauts-de-Seine, with a view of La Défense.",
+      "imageUrl": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdHlsaXNoJTIwbGl2aW5nJTIwcm9vbSUyMHBhcmlzfGVufDB8fHx8MTc2Mjg5NzU3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "stylish living room"
     }
   ]
 }
+```
