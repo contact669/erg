@@ -50,7 +50,7 @@ export async function generateMetadata(
     }
   }
 
-    if (service.slug === 'renovation-salle-de-bain') {
+  if (service.slug === 'renovation-salle-de-bain') {
     return {
       title: "Rénovation Salle de Bain Paris & IDF (92, 93, 94, 78) | ERG Rénovation",
       description: "Transformez votre salle de bain en un espace bien-être. ERG Rénovation, expert en rénovation haut de gamme à Paris et IDF. Devis pour votre douche à l'italienne.",
@@ -61,6 +61,13 @@ export async function generateMetadata(
     return {
       title: "Rénovation Cuisine Paris & IDF (92, 93, 94, 78) | ERG Rénovation",
       description: "ERG Rénovation gère la rénovation complète de votre cuisine à Paris et IDF. Conception sur mesure, îlot central, finitions haut de gamme. Devis A à Z.",
+    }
+  }
+
+  if (service.slug === 'amenagement-combles') {
+    return {
+      title: "Aménagement de Combles Paris & IDF (78, 92, 94, 93) | ERG Rénovation",
+      description: "Gagnez des m² précieux. ERG Rénovation gère l'aménagement de vos combles à Paris et IDF. Isolation, structure, suite parentale. Gestion A à Z.",
     }
   }
 
@@ -87,7 +94,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
 
   const relatedProjects = allProjects.filter(p => service.relatedProjectSlugs.includes(p.slug));
   const serviceImage = PlaceHolderImages.find(p => p.id === service.heroImageId);
-  const isPillarPage = ['renovation-appartement', 'renovation-maison', 'renovation-salle-de-bain', 'renovation-cuisine'].includes(service.slug);
+  const isPillarPage = ['renovation-appartement', 'renovation-maison', 'renovation-salle-de-bain', 'renovation-cuisine', 'amenagement-combles'].includes(service.slug);
   
   const kitchenImage = PlaceHolderImages.find(p => p.id === 'service-pillar-kitchen');
   const finishImage = PlaceHolderImages.find(p => p.id === 'service-pillar-finish');
@@ -138,6 +145,18 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       whyUsTitle: "Le Choix des Matériaux : L'Alliance de l'Esthétique et de la Durabilité",
       whyUsIntro: "Une cuisine d'exception se définit par ses matériaux. Nous travaillons avec les meilleurs fournisseurs pour vous proposer :",
       faqTitle: "Vos Questions sur la Rénovation de Cuisine",
+    },
+    'amenagement-combles': {
+      h1: "Aménagement de Combles à Paris & IDF : Créez un Nouvel Espace de Vie",
+      intro: "Et si vous aviez un étage en plus ? L'aménagement de combles est la solution la plus intelligente pour augmenter votre surface habitable sans déménager. C'est cependant l'un des projets de rénovation les plus techniques. ERG Rénovation est votre expert en transformation de combles à Paris et en Île-de-France (75, 78, 92, 93, 94), maîtrisant l'isolation, la structure et la création d'espaces de vie exceptionnels sous les toits.",
+      cta: "Demander une étude de faisabilité (Gratuit)",
+      benefitsTitle: "Notre Expertise : Transformer l'Inexploité en Espace de Vie",
+      benefitsIntro: "Des combles perdus à la suite parentale de vos rêves, nos équipes gèrent l'intégralité du projet, de l'étude de faisabilité à la finition.",
+      processTitle: "Un Projet A à Z : de l'Étude à la Suite Parentale",
+      processIntro: "L'aménagement de combles touche à la structure même de votre habitation. Notre expertise technique, couverte par la garantie décennale, est votre meilleure protection.",
+      whyUsTitle: "La Maîtrise Technique : Votre Projet Sécurisé",
+      whyUsIntro: "L'aménagement de combles touche à la structure même de votre habitation. Notre expertise technique, couverte par la garantie décennale, est votre meilleure protection.",
+      faqTitle: "Vos Questions sur l'Aménagement de Combles",
     }
   }
 
@@ -174,11 +193,11 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
              <div className="mt-6 flex flex-col sm:flex-row gap-x-6 gap-y-2 text-sm text-primary-foreground/80">
                 <div className="flex items-center gap-2">
                     <ShieldCheck className="h-4 w-4 text-accent" />
-                    <span>{service.slug === 'renovation-maison' ? 'Gestion de Projet Intégrale' : (service.slug === 'renovation-cuisine' ? 'Interlocuteur Unique (Travaux + Pose)' : 'Gestion de projet A à Z')}</span>
+                    <span>{service.slug === 'renovation-maison' || service.slug === 'amenagement-combles' ? 'Expertise Structurelle' : (service.slug === 'renovation-cuisine' ? 'Interlocuteur Unique (Travaux + Pose)' : 'Gestion de projet A à Z')}</span>
                 </div>
                  <div className="flex items-center gap-2">
                     <Award className="h-4 w-4 text-accent" />
-                    <span>{service.slug === 'renovation-maison' ? 'Expertise Structurelle' : (service.slug === 'renovation-cuisine' ? 'Conception et Plans 3D' : 'Garantie décennale')}</span>
+                    <span>{service.slug === 'amenagement-combles' ? 'Isolation Haute Performance' : 'Garantie décennale'}</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4 text-accent" />
@@ -289,12 +308,12 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                             <div className="space-y-6">
                                 {service.whyUs.map((item) => (
                                     <Card key={item.title} className={cn(
-                                        ['renovation-salle-de-bain', 'renovation-cuisine'].includes(service.slug) ? 'bg-transparent shadow-none border-0' : 'bg-secondary/50 border-0 shadow-none'
+                                        ['renovation-salle-de-bain', 'renovation-cuisine', 'amenagement-combles'].includes(service.slug) ? 'bg-transparent shadow-none border-0' : 'bg-secondary/50 border-0 shadow-none'
                                     )}>
                                         <CardHeader className="flex flex-row items-center gap-4 p-4">
                                             <div className={cn(
                                                 "flex h-10 w-10 items-center justify-center rounded-md shrink-0",
-                                                ['renovation-salle-de-bain', 'renovation-cuisine'].includes(service.slug) ? 'bg-primary/10 text-primary' : 'bg-background text-primary'
+                                                ['renovation-salle-de-bain', 'renovation-cuisine', 'amenagement-combles'].includes(service.slug) ? 'bg-primary/10 text-primary' : 'bg-background text-primary'
                                                 )}>
                                                 <item.icon className="h-5 w-5" />
                                             </div>

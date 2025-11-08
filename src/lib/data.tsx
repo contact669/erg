@@ -16,7 +16,8 @@ import {
   FileOutput,
   Layers,
   Milestone,
-  ShieldCheck
+  ShieldCheck,
+  Thermometer
 } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
@@ -231,20 +232,45 @@ export const services: Service[] = [
     description: "Transformez un espace perdu en une pièce de vie lumineuse.",
     icon: Hammer,
     heroImageId: 'service-attic',
-    longDescription: "Ne laissez plus vos combles prendre la poussière ! Nous les transformons en chambres, suite parentale, bureau ou salle de jeu. De l'isolation à la création de fenêtres de toit, nous exploitons tout le potentiel de cet espace pour agrandir votre surface habitable et apporter une plus-value à votre bien.",
+    longDescription: "Et si vous aviez un étage en plus ? L'aménagement de combles est la solution la plus intelligente pour augmenter votre surface habitable sans déménager. C'est cependant l'un des projets de rénovation les plus techniques. ERG Rénovation est votre expert en transformation de combles à Paris et en Île-de-France (75, 78, 92, 93, 94), maîtrisant l'isolation, la structure et la création d'espaces de vie exceptionnels sous les toits.",
      benefits: [
       {
-        title: "Gain de surface habitable",
-        description: "C'est la solution la plus efficace pour agrandir votre maison sans modifier l'emprise au sol."
+        title: "Aménagement Complet de Combles",
+        description: "Création d'un espace de vie A à Z : plancher porteur, isolation, électricité, plomberie (pour salle d'eau), chauffage et finitions."
       },
       {
-        title: "Luminosité et vue",
-        description: "L'installation de fenêtres de toit (type Velux) inonde l'espace de lumière naturelle et offre des vues dégagées."
+        title: "Isolation Thermique et Phonique",
+        description: "La clé du confort sous les toits. Nous mettons en œuvre les meilleures solutions (laine de roche haute densité, isolants minces...) pour un confort parfait été comme hiver (mention RGE si applicable)."
       },
       {
-        title: "Isolation thermique performante",
-        description: "Une bonne isolation des combles est essentielle pour réduire jusqu'à 30% des déperditions de chaleur de votre maison."
+        title: "Création d'Ouvertures (Fenêtres de Toit, Lucarnes)",
+        description: "Faire entrer la lumière. Nous maîtrisons la pose de Velux, de verrières de toit ou la création de lucarnes (\"chiens-assis\") dans le respect des règles d'urbanisme."
+      },
+      {
+        title: "Travaux de Structure et d'Accès",
+        description: "Modification de charpente (type fermette), renforcement de plancher, et création de la trémie pour un escalier sur mesure (design ou gain de place)."
       }
+    ],
+    process: [
+      { step: 1, title: 'Visite & Faisabilité', description: "Analyse de vos combles (hauteur sous plafond, pente du toit, type de charpente) et de vos besoins (suite parentale, salle de jeux, bureau...)." },
+      { step: 2, title: 'Conception & Chiffrage', description: "Proposition de plans d'aménagement optimisés et d'un devis détaillé (incluant isolation, structure, finitions)." },
+      { step: 3, title: 'Autorisations d\'Urbanisme', description: "Prise en charge complète du dossier administratif (DP ou PC)." },
+      { step: 4, title: 'Réalisation des Travaux', description: "Pilotage des équipes (charpentiers, couvreurs, plaquistes, plombiers...) par un conducteur de travaux unique." }
+    ],
+    whyUs: [
+        { title: "Étude de Structure", description: "Avant tout projet, nous vérifions la capacité portante du plancher et l'état de la charpente. Nous travaillons avec des bureaux d'études structure si nécessaire.", icon: Layers },
+        { title: "Gestion Administrative (Permis)", description: "Nous prenons en charge le montage et le dépôt de votre dossier : Déclaration Préalable de Travaux ou Permis de Construire.", icon: FileOutput },
+        { title: 'Confort Thermique Garanti', description: "Notre priorité absolue est d'éviter l'effet \"fournaise\" en été. Nous soignons l'isolation et la ventilation (VMC) pour un espace habitable toute l'année.", icon: Thermometer }
+    ],
+    zones: {
+        description: "Nous intervenons sur l'aménagement de combles des maisons dans les Yvelines (78), les Hauts-de-Seine (92), le Val-de-Marne (94) et la Seine-Saint-Denis (93).",
+        list: "Notre expertise s'applique également aux projets complexes de réunion de lots ou d'aménagement des \"chambres de bonne\" au dernier étage des immeubles à Paris (75)."
+    },
+    faq: [
+        { question: "Mes combles sont-ils aménageables ?", answer: "Les prérequis sont une hauteur sous faîtage de plus de 1m80 et une pente de toit supérieure à 30%. La charpente peut souvent être modifiée. Nous évaluons cela lors de notre visite de faisabilité." },
+        { question: "Faut-il un permis de construire ou une déclaration de travaux ?", answer: "Oui. Une Déclaration Préalable (DP) pour une pose de Velux ou une création de surface inférieure à 20m². Un Permis de Construire (PC) au-delà, ou si vous modifiez la structure porteuse ou la façade. Nous gérons intégralement ces dossiers." },
+        { question: "Comment éviter d'avoir trop chaud en été sous les toits ?", answer: "C'est notre priorité. Nous utilisons une isolation très performante, des pare-soleil extérieurs sur les fenêtres de toit et nous assurons une ventilation efficace (VMC)." },
+        { question: "Quel est le prix au m² pour un aménagement de combles ?", answer: "C'est un coût de 'création de m²'. Il varie selon la complexité (structure, accès...) mais se situe généralement entre 1 500 € et 3 000 €/m² pour une prestation complète. Notre devis est détaillé et transparent." }
     ],
     relatedProjectSlugs: ['salle-eau-combles-versailles']
   },
@@ -483,8 +509,6 @@ export const blogPosts: BlogPost[] = [
     tags: ['Conseils', 'Artisans', 'Qualité'],
     content: (
         <>
-            <p>Engager des travaux de rénovation est un investissement important. Le choix de l'artisan ou de l'entreprise qui les réalisera est sans doute la décision la plus cruciale pour la réussite de votre projet. Un mauvais choix peut entraîner des <strong>malfaçons, des retards et des surcoûts importants</strong>. Alors, comment s'assurer de faire le bon choix ?</p>
-
             <h2>1. Vérifiez les qualifications et les assurances</h2>
             <p>C'est le point de départ non négociable. Un professionnel sérieux doit pouvoir vous présenter :</p>
             <ul>
@@ -513,7 +537,6 @@ export const blogPosts: BlogPost[] = [
 
             <h2>5. Évaluez le contact et la communication</h2>
             <p>Dès les premiers échanges, vous devez vous sentir en confiance. L'artisan est-il <strong>à votre écoute</strong> ? Est-il <strong>force de proposition</strong> ? Prend-il le temps de répondre clairement à vos questions ? Une bonne communication est essentielle pour une collaboration sereine tout au long du chantier.</p>
-
             <p>Chez ERG Rénovation, nous cochons toutes ces cases. Nous avons bâti notre réputation sur la transparence, la qualité de nos réalisations et la satisfaction de nos clients. Nous vous accompagnons avec un <strong>interlocuteur unique</strong> qui pilote l'ensemble des artisans qualifiés nécessaires à votre projet.</p>
             <p>Pour un projet mené en toute confiance, <a href="/contact"><strong>discutons ensemble de vos envies.</strong></a></p>
         </>
@@ -521,5 +544,6 @@ export const blogPosts: BlogPost[] = [
   }
 ];
     
+
 
 
