@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { ErgLogo } from '@/components/icons.tsx';
 import { navItems, services } from '@/lib/data.tsx';
 import { cn } from '@/lib/utils';
@@ -24,6 +24,7 @@ import {
 export default function SiteHeader() {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const pathname = usePathname();
+  const [activeMenu, setActiveMenu] = React.useState('');
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -70,6 +71,8 @@ export default function SiteHeader() {
                   return (
                     <NavigationMenuItem key={item.href}>
                       <NavigationMenuTrigger
+                        onMouseEnter={() => setActiveMenu(item.href)}
+                        onMouseLeave={() => setActiveMenu('')}
                         className={cn(
                           'group relative bg-transparent text-sm font-medium transition-colors',
                           'focus:bg-transparent focus:text-primary data-[active]:bg-transparent data-[state=open]:bg-transparent',
@@ -80,7 +83,10 @@ export default function SiteHeader() {
                       >
                         <span>{item.title}</span>
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent>
+                      <NavigationMenuContent
+                        onMouseEnter={() => setActiveMenu(item.href)}
+                        onMouseLeave={() => setActiveMenu('')}
+                      >
                         <div className="grid w-[600px] grid-cols-2 gap-4 p-4 md:w-[700px] lg:w-[800px]">
                           {services.map((service) => (
                             <ListItem
@@ -177,8 +183,9 @@ function MobileNav() {
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="w-[300px]">
-        <div className="flex h-full flex-col">
-          <div className="flex items-center justify-between border-b pb-4">
+        <SheetHeader className="border-b pb-4">
+            <SheetTitle className="sr-only">Menu principal</SheetTitle>
+            <div className="flex items-center justify-between">
             <Link
               href="/"
               className="flex items-center gap-2"
@@ -196,6 +203,8 @@ function MobileNav() {
               </Button>
             </SheetTrigger>
           </div>
+        </SheetHeader>
+        <div className="flex h-full flex-col">
           <nav className="mt-6 flex flex-col gap-6">
             {navItems.map((item) => {
               const isHomePage = pathname === '/';
