@@ -142,20 +142,20 @@ export default function AboutPage() {
                         <div className="flex flex-col items-center text-center">
                             <Avatar className="h-32 w-32 border-4 border-accent">
                                 {founder1Image && <AvatarImage src={founder1Image.imageUrl} alt="Portrait du premier frère AIT" data-ai-hint={founder1Image.imageHint} />}
-                                <AvatarFallback>A.A</AvatarFallback>
+                                <AvatarFallback>K.A</AvatarFallback>
                             </Avatar>
-                            <h3 className="mt-6 font-headline text-2xl font-bold">Aïssa AIT</h3>
+                            <h3 className="mt-6 font-headline text-2xl font-bold">K. AIT</h3>
                             <p className="mt-1 text-accent font-semibold">Co-fondateur & Maître d'œuvre</p>
-                            <p className="mt-3 text-muted-foreground">Avec 20 ans d'expérience sur le terrain, Aïssa est le garant de la qualité technique. Il supervise chaque chantier avec une rigueur et une expertise inégalées, s'assurant que chaque détail est conforme aux règles de l'art.</p>
+                            <p className="mt-3 text-muted-foreground">Avec 20 ans d'expérience sur le terrain, K. AIT est le garant de la qualité technique. Il supervise chaque chantier avec une rigueur et une expertise inégalées, s'assurant que chaque détail est conforme aux règles de l'art.</p>
                         </div>
                         <div className="flex flex-col items-center text-center">
                             <Avatar className="h-32 w-32 border-4 border-accent">
                                 {founder2Image && <AvatarImage src={founder2Image.imageUrl} alt="Portrait du second frère AIT" data-ai-hint={founder2Image.imageHint} />}
-                                <AvatarFallback>M.A</AvatarFallback>
+                                <AvatarFallback>A.A</AvatarFallback>
                             </Avatar>
-                            <h3 className="mt-6 font-headline text-2xl font-bold">Mourad AIT</h3>
+                            <h3 className="mt-6 font-headline text-2xl font-bold">A. AIT</h3>
                             <p className="mt-1 text-accent font-semibold">Co-fondateur & Chargé de projet</p>
-                            <p className="mt-3 text-muted-foreground">Mourad est votre interlocuteur privilégié. Il vous accompagne de la conception à la livraison, s'assurant que le projet correspond à vos attentes, respecte votre budget et se déroule en toute sérénité.</p>
+                            <p className="mt-3 text-muted-foreground">A. AIT est votre interlocuteur privilégié. Il vous accompagne de la conception à la livraison, s'assurant que le projet correspond à vos attentes, respecte votre budget et se déroule en toute sérénité.</p>
                         </div>
                     </div>
                 </div>

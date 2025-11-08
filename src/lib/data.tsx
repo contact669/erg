@@ -285,7 +285,7 @@ export const blogPosts: BlogPost[] = [
     title: '10 Astuces pour Réussir la Rénovation de votre Appartement Parisien',
     description: 'Découvrez nos conseils d’experts pour naviguer les défis uniques de la rénovation à Paris, de l’optimisation de l’espace à la gestion de la copropriété.',
     date: '2025-11-08',
-    author: 'Aïssa AIT',
+    author: 'A. AIT',
     featuredImageId: 'blog-post-1',
     tags: ['Rénovation', 'Appartement', 'Conseils'],
     content: (
@@ -331,7 +331,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Comment Choisir le Bon Artisan pour vos Travaux ?',
     description: 'La réussite de vos travaux dépend grandement du choix de vos artisans. Voici les critères essentiels à vérifier avant de vous engager.',
     date: '2025-10-15',
-    author: 'Aïssa AIT',
+    author: 'A. AIT',
     featuredImageId: 'blog-post-2',
     tags: ['Conseils', 'Artisans', 'Qualité'],
     content: (

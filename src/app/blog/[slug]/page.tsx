@@ -28,7 +28,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   }
 
   const featuredImage = PlaceHolderImages.find(p => p.id === post.featuredImageId);
-  const authorImage = PlaceHolderImages.find(p => p.id === 'founder-1');
+  const authorImage = PlaceHolderImages.find(p => p.id === (post.author === 'A. AIT' ? 'founder-2' : 'founder-1'));
   const otherPosts = blogPosts.filter(p => p.slug !== post.slug).slice(0, 2);
 
   return (
@@ -97,7 +97,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <p className="text-sm text-muted-foreground">Expert en rénovation et co-fondateur d'ERG Rénovation, Aïssa partage son expérience pour vous aider à réussir vos projets.</p>
+                            <p className="text-sm text-muted-foreground">Expert en rénovation et co-fondateur d'ERG Rénovation, {post.author} partage son expérience pour vous aider à réussir vos projets.</p>
                         </CardContent>
                     </Card>
 
