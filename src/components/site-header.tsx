@@ -103,7 +103,7 @@ export default function SiteHeader() {
 
                 return (
                   <NavigationMenuItem key={item.href}>
-                    <Link href={href} legacyBehavior passHref>
+                    <Link href={href} passHref>
                        <NavigationMenuLink className={cn(
                           navigationMenuTriggerStyle(),
                           'group relative bg-transparent text-sm font-medium transition-colors',
