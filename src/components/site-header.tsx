@@ -2,16 +2,18 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { ErgLogo } from '@/components/icons';
+import { ErgLogo } from '@/components/icons.tsx';
 import { navItems } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import type { NavItem } from '@/lib/types';
 
 export default function SiteHeader() {
   const [isScrolled, setIsScrolled] = React.useState(false);
+  const pathname = usePathname();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -37,19 +39,28 @@ export default function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-            >
-              {item.title}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            // Adjust href for smooth scroll on homepage
+            const href = pathname === '/' && item.href.startsWith('#') ? item.href : (item.href.startsWith('#') ? `/${item.href}` : item.href);
+            const isActive = pathname === href || (item.href !== '/' && pathname.startsWith(item.href));
+
+            return (
+              <Link
+                key={item.href}
+                href={href}
+                className={cn(
+                  'text-sm font-medium transition-colors hover:text-primary',
+                  isActive ? 'text-primary' : 'text-muted-foreground'
+                )}
+              >
+                {item.title}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-4">
-          <Button asChild className="hidden md:flex" variant="outline">
+          <Button asChild className="hidden md:flex">
             <Link href="/devis">Demander un devis</Link>
           </Button>
           <MobileNav />
@@ -61,6 +72,7 @@ export default function SiteHeader() {
 
 function MobileNav() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const pathname = usePathname();
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -87,15 +99,20 @@ function MobileNav() {
             </SheetTrigger>
           </div>
           <nav className="mt-6 flex flex-col gap-6">
-            {navItems.map((item) => (
+            {navItems.map((item) => {
+               const href = pathname === '/' && item.href.startsWith('#') ? item.href : (item.href.startsWith('#') ? `/${item.href}` : item.href);
+               const isActive = pathname === href || (item.href !== '/' && pathname.startsWith(item.href));
+
+              return (
               <MobileLink
                 key={item.href}
-                href={item.href}
+                href={href}
                 onOpenChange={setIsOpen}
+                className={isActive ? 'text-primary' : 'text-foreground'}
               >
                 {item.title}
               </MobileLink>
-            ))}
+            )})}
           </nav>
           <Button asChild className="mt-auto">
             <Link href="/devis">Demander un devis</Link>
@@ -109,16 +126,18 @@ function MobileNav() {
 interface MobileLinkProps extends React.PropsWithChildren {
   href: string;
   disabled?: boolean;
+  className?: string;
   onOpenChange?: (open: boolean) => void;
 }
 
-function MobileLink({ children, href, disabled, onOpenChange }: MobileLinkProps) {
+function MobileLink({ children, href, disabled, className, onOpenChange }: MobileLinkProps) {
   return (
     <Link
       href={href}
       className={cn(
-        'text-lg font-medium text-foreground transition-colors hover:text-primary',
-        disabled && 'pointer-events-none opacity-60'
+        'text-lg font-medium transition-colors hover:text-primary',
+        disabled && 'pointer-events-none opacity-60',
+        className
       )}
       onClick={() => onOpenChange?.(false)}
     >

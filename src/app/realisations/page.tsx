@@ -5,7 +5,7 @@ import SiteHeader from '@/components/site-header';
 import SiteFooter from '@/components/site-footer';
 import { allProjects, projectCategories } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
@@ -13,7 +13,6 @@ import Link from 'next/link';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import CtaBanner from '../_components/cta-banner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const PROJECTS_PER_PAGE = 6;
@@ -127,7 +126,7 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
   );
 
   return (
-    <Card className="group h-full overflow-hidden">
+    <Card className="group flex h-full flex-col overflow-hidden">
       <CardContent className="p-0">
         <Tabs defaultValue="after" className="relative w-full">
           <div className="relative h-64 w-full">
@@ -165,16 +164,16 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
           </TabsList>
         </Tabs>
       </CardContent>
-      <CardHeader>
+      <div className="flex flex-1 flex-col p-6">
         <Badge variant="secondary" className="w-fit">
           {project.category}
         </Badge>
         <CardTitle className="pt-2 font-headline text-xl">
           {project.title}
         </CardTitle>
-        <p className="text-sm text-muted-foreground">{project.description}</p>
-      </CardHeader>
-      <div className="p-6 pt-0">
+        <p className="mt-2 flex-grow text-sm text-muted-foreground">{project.description}</p>
+      </div>
+      <CardFooter className="p-6 pt-0">
         <Button
           variant="link"
           asChild
@@ -184,7 +183,7 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
             Voir les détails <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
-      </div>
+      </CardFooter>
     </Card>
   );
 }

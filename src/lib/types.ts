@@ -11,6 +11,13 @@ export interface Service {
   slug: string;
   description: string;
   icon: LucideIcon;
+  heroImageId: string;
+  longDescription: string;
+  benefits: {
+    title: string;
+    description: string;
+  }[];
+  relatedProjectSlugs: string[];
 }
 
 export interface Project {

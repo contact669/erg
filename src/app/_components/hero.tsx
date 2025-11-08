@@ -31,7 +31,7 @@ export default function Hero() {
         </p>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
           <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="#services">Découvrir nos services</Link>
+            <Link href="/services">Découvrir nos services</Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="border-primary-foreground text-primary-foreground bg-transparent hover:bg-primary-foreground hover:text-primary">
             <Link href="/devis">Obtenir un devis gratuit</Link>

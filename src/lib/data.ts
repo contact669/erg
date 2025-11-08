@@ -4,13 +4,14 @@ import {
   Bath,
   CookingPot,
   Building,
-  Sofa,
-  Building2,
   Square,
+  Building2,
+  Paintbrush,
+  Hammer
 } from 'lucide-react';
 
 export const navItems: NavItem[] = [
-  { title: 'Services', href: '#services' },
+  { title: 'Services', href: '/services' },
   { title: 'Réalisations', href: '/realisations' },
   { title: 'À Propos', href: '/a-propos' },
   { title: 'Blog', href: '/blog' },
@@ -23,36 +24,138 @@ export const services: Service[] = [
     slug: 'renovation-appartement',
     description: 'Transformation complète ou partielle de votre appartement.',
     icon: Building,
-  },
-  {
-    title: 'Rénovation de studio',
-    slug: 'renovation-studio',
-    description: 'Optimisation d’espace et modernisation de studios.',
-    icon: Square,
+    heroImageId: 'service-apartment',
+    longDescription: "Que vous veniez d'acquérir un bien ou que vous souhaitiez rafraîchir votre lieu de vie, nous transformons votre appartement pour qu'il corresponde parfaitement à vos attentes. De la restructuration des volumes à la sélection des finitions, nous gérons chaque aspect pour créer un intérieur qui vous ressemble, en optimisant l'espace, la lumière et la fonctionnalité.",
+    benefits: [
+      {
+        title: "Optimisation de l'espace",
+        description: "Nous repensons les agencements pour maximiser chaque mètre carré et améliorer la fluidité de la circulation."
+      },
+      {
+        title: "Valorisation de votre patrimoine",
+        description: "Une rénovation de qualité augmente significativement la valeur de votre bien immobilier sur le marché parisien."
+      },
+      {
+        title: "Confort et modernité",
+        description: "Nous intégrons les dernières innovations en matière d'isolation, de domotique et d'équipements pour un confort de vie optimal."
+      }
+    ],
+    relatedProjectSlugs: ['appartement-haussmannien-paris-16']
   },
   {
     title: 'Rénovation de maison',
     slug: 'renovation-maison',
     description: 'Rénovation intérieure et extérieure pour votre maison.',
     icon: Home,
+    heroImageId: 'service-house',
+    longDescription: "Votre maison est un projet de vie. Nous vous accompagnons pour la rénover, l'agrandir ou la moderniser. Du gros œuvre aux finitions, nous coordonnons tous les corps de métier pour garantir un résultat harmonieux et durable, en respectant le caractère de votre demeure tout en y apportant le confort et le style contemporain.",
+    benefits: [
+      {
+        title: "Efficacité énergétique",
+        description: "Améliorez l'isolation de votre maison pour réduire vos factures d'énergie et gagner en confort thermique."
+      },
+      {
+        title: "Extension et surélévation",
+        description: "Gagnez des mètres carrés précieux en créant de nouveaux espaces de vie adaptés à l'évolution de votre famille."
+      },
+      {
+        title: "Cohérence architecturale",
+        description: "Nous veillons à ce que chaque modification s'intègre parfaitement à l'existant pour un rendu esthétique et cohérent."
+      }
+    ],
+    relatedProjectSlugs: ['maison-ville-moderne-boulogne']
   },
   {
     title: 'Rénovation de salle de bain',
     slug: 'renovation-salle-de-bain',
     description: 'Création de salles de bain modernes et fonctionnelles.',
     icon: Bath,
+    heroImageId: 'service-bathroom',
+    longDescription: "Transformez votre salle de bain en un véritable havre de paix. Douche à l'italienne, baignoire îlot, double vasque, nous concevons un espace sur mesure qui allie esthétique, fonctionnalité et bien-être. Nous portons une attention particulière à l'étanchéité, la ventilation et le choix de matériaux résistants et faciles d'entretien.",
+    benefits: [
+      {
+        title: "Espace bien-être",
+        description: "Créez une atmosphère relaxante avec des matériaux nobles, un éclairage soigné et des équipements de qualité."
+      },
+      {
+        title: "Optimisation de petits espaces",
+        description: "Nous avons des solutions astucieuses pour rendre les petites salles de bain à la fois belles et ultra-fonctionnelles."
+      },
+      {
+        title: "Accessibilité et sécurité",
+        description: "Nous pouvons adapter votre salle de bain pour les personnes à mobilité réduite (PMR) en respectant les normes en vigueur."
+      }
+    ],
+    relatedProjectSlugs: ['suite-parentale-spa-neuilly', 'salle-eau-combles-versailles']
   },
   {
     title: 'Rénovation de cuisine',
     slug: 'renovation-cuisine',
     description: 'Conception et installation de cuisines sur mesure.',
     icon: CookingPot,
+    heroImageId: 'service-kitchen',
+    longDescription: "La cuisine est le cœur de la maison. Nous la concevons avec vous pour qu'elle soit conviviale, ergonomique et parfaitement équipée. De la conception des plans 3D à la pose des derniers éléments, nous assurons une installation millimétrée pour un résultat à la hauteur de vos ambitions culinaires.",
+    benefits: [
+      {
+        title: "Ergonomie et fonctionnalité",
+        description: "Nous optimisons le triangle d'activité (froid, lavage, cuisson) pour une utilisation intuitive et agréable au quotidien."
+      },
+      {
+        title: "Matériaux de qualité",
+        description: "Plans de travail, façades, crédences... nous vous proposons une large gamme de matériaux pour tous les styles et budgets."
+      },
+      {
+        title: "Convivialité",
+        description: "Cuisine ouverte avec îlot central, coin repas intégré... nous créons un espace qui invite au partage et à la convivialité."
+      }
+    ],
+    relatedProjectSlugs: ['cuisine-ouverte-design-vincennes']
   },
   {
-    title: 'Rénovation de bureaux',
-    slug: 'renovation-bureaux',
-    description: 'Aménagement et rénovation de vos espaces professionnels.',
-    icon: Building2,
+    title: 'Aménagement de combles',
+    slug: 'amenagement-combles',
+    description: "Transformez un espace perdu en une pièce de vie lumineuse.",
+    icon: Hammer,
+    heroImageId: 'service-attic',
+    longDescription: "Ne laissez plus vos combles prendre la poussière ! Nous les transformons en chambres, suite parentale, bureau ou salle de jeu. De l'isolation à la création de fenêtres de toit, nous exploitons tout le potentiel de cet espace pour agrandir votre surface habitable et apporter une plus-value à votre bien.",
+     benefits: [
+      {
+        title: "Gain de surface habitable",
+        description: "C'est la solution la plus efficace pour agrandir votre maison sans modifier l'emprise au sol."
+      },
+      {
+        title: "Luminosité et vue",
+        description: "L'installation de fenêtres de toit (type Velux) inonde l'espace de lumière naturelle et offre des vues dégagées."
+      },
+      {
+        title: "Isolation thermique performante",
+        description: "Une bonne isolation des combles est essentielle pour réduire jusqu'à 30% des déperditions de chaleur de votre maison."
+      }
+    ],
+    relatedProjectSlugs: ['salle-eau-combles-versailles']
+  },
+  {
+    title: 'Peinture et finitions',
+    slug: 'peinture-finitions',
+    description: 'La touche finale qui sublime vos murs et vos espaces.',
+    icon: Paintbrush,
+    heroImageId: 'service-painting',
+    longDescription: "La qualité d'une rénovation se voit dans les détails. Nos peintres experts maîtrisent toutes les techniques pour un rendu impeccable : préparation des supports, application de peintures écologiques, pose de papiers peints, enduits décoratifs... Nous vous conseillons sur les couleurs et les finitions pour créer l'ambiance qui vous correspond.",
+    benefits: [
+      {
+        title: "Finition parfaite",
+        description: "Une préparation minutieuse des murs est la clé d'un résultat lisse, durable et sans défaut."
+      },
+      {
+        title: "Conseil en décoration",
+        description: "Nous vous aidons à choisir les harmonies de couleurs qui mettront en valeur vos volumes et votre mobilier."
+      },
+      {
+        title: "Matériaux de qualité",
+        description: "Nous travaillons avec des peintures professionnelles reconnues pour leur pouvoir couvrant, leur résistance et leur faible taux de COV."
+      }
+    ],
+    relatedProjectSlugs: ['appartement-haussmannien-paris-16']
   },
 ];
 

@@ -75,7 +75,7 @@
     {
       "id": "cta-banner-image",
       "description": "An architectural blueprint or design sketch, representing planning and precision.",
-      "imageUrl": "https://images.unsplash.com/photo-1742415106102-77bbfe14b872?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhcmNoaXRlY3R1cmFsJTIwYmx1ZXByaW50fGVufDB8fHx8MTc2MjUyOTc5MHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1742415106102-77bbfe14b872?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhcmNoaXRlY3R1cmFsJTIwYmx1ZXByaW50fGVufDB8fHx8MTc2MjUyOTc5MHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "architectural blueprint"
     },
     {
@@ -125,6 +125,42 @@
       "description": "An unused, dark attic space before being converted into a bathroom.",
       "imageUrl": "https://images.unsplash.com/photo-1743207820696-6ea16d63177f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkYXJrJTIwYXR0aWN8ZW58MHx8fHwxNzYyNTk4MjMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "dark attic"
+    },
+    {
+      "id": "service-apartment",
+      "description": "A beautifully renovated, modern apartment living room with large windows.",
+      "imageUrl": "https://images.unsplash.com/photo-1618220179428-22790b461013?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtb2Rlcm4lMjBhcGFydG1lbnR8ZW58MHx8fHwxNzYyNjA3MDIxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern apartment"
+    },
+    {
+      "id": "service-house",
+      "description": "The facade of a renovated family house with a garden.",
+      "imageUrl": "https://images.unsplash.com/photo-1570129477492-45c003edd2be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZW5vdmF0ZWQlMjBob3VzZXxlbnwwfHx8fDE3NjI2MDcwMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "renovated house"
+    },
+    {
+      "id": "service-bathroom",
+      "description": "A luxurious, modern bathroom with a large walk-in shower.",
+      "imageUrl": "https://images.unsplash.com/photo-1620626354345-d8f942971b3c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxsdXh1cnklMjBiYXRocm9vbXxlbnwwfHx8fDE3NjI2MDcwMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "luxury bathroom"
+    },
+    {
+      "id": "service-kitchen",
+      "description": "A spacious and modern kitchen with an island, ready for cooking.",
+      "imageUrl": "https://images.unsplash.com/photo-1600585152220-90363fe7e115?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjBraXRjaGVuJTIwaXNsYW5kfGVufDB8fHx8MTc2MjYwNzAyMXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern kitchen"
+    },
+    {
+      "id": "service-attic",
+      "description": "A cozy and bright attic converted into a bedroom.",
+      "imageUrl": "https://images.unsplash.com/photo-1600210491845-4a439097f48a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhdHRpYyUyMGJlZHJvb218ZW58MHx8fHwxNzYyNjA3MDIxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "attic bedroom"
+    },
+    {
+      "id": "service-painting",
+      "description": "A painter carefully applying a new coat of paint to a wall.",
+      "imageUrl": "https://images.unsplash.com/photo-1596706922419-58a520a46580?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwYWludGVyJTIwd2FsbHxlbnwwfHx8fDE3NjI2MDcwMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "painter wall"
     }
   ]
 }
