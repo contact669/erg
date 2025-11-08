@@ -1,4 +1,5 @@
 
+
 import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost } from './types';
 import {
   Home,
@@ -36,7 +37,7 @@ export const services: Service[] = [
     description: 'Transformation complète ou partielle de votre appartement.',
     icon: Building,
     heroImageId: 'service-apartment',
-    longDescription: "Que vous veniez d'acquérir un bien ou que vous souhaitiez rafraîchir votre lieu de vie, nous transformons votre appartement pour qu'il corresponde parfaitement à vos attentes. De la restructuration des volumes à la sélection des finitions, nous gérons chaque aspect pour créer un intérieur qui vous ressemble, en optimisant l'espace, la lumière et la fonctionnalité.",
+    longDescription: "Transformer un appartement parisien ou francilien en un lieu de vie exceptionnel exige une expertise de la structure, une gestion de projet rigoureuse et une passion pour les finitions parfaites. Nous gérons chaque détail de votre projet à Paris, dans les Hauts-de-Seine (92), la Seine-Saint-Denis (93), le Val-de-Marne (94) et les Yvelines (78).",
     benefits: [
       {
         title: "Rénovation Complète d'Appartement",
@@ -182,20 +183,45 @@ export const services: Service[] = [
     description: 'Conception et installation de cuisines sur mesure.',
     icon: CookingPot,
     heroImageId: 'service-kitchen',
-    longDescription: "La cuisine est le cœur de la maison. Nous la concevons avec vous pour qu'elle soit conviviale, ergonomique et parfaitement équipée. De la conception des plans 3D à la pose des derniers éléments, nous assurons une installation millimétrée pour un résultat à la hauteur de vos ambitions culinaires.",
+    longDescription: "La cuisine n'est plus seulement un lieu de préparation, c'est le cœur battant de votre intérieur. Sa rénovation est un projet complexe qui touche à tous les corps de métier : plomberie, électricité, plâtrerie, et agencement de précision. ERG Rénovation orchestre votre projet de A à Z, de la conception de votre cuisine sur mesure à l'installation impeccable, à Paris et en Île-de-France (75, 92, 93, 94, 78).",
     benefits: [
       {
-        title: "Ergonomie et fonctionnalité",
-        description: "Nous optimisons le triangle d'activité (froid, lavage, cuisson) pour une utilisation intuitive et agréable au quotidien."
+        title: "Conception et Aménagement sur Mesure",
+        description: "Optimisation de l'ergonomie (triangle d'activité), conception de plans 3D, et création de mobilier sur mesure (îlot central, rangements intégrés, verrières)."
       },
       {
-        title: "Matériaux de qualité",
-        description: "Plans de travail, façades, crédences... nous vous proposons une large gamme de matériaux pour tous les styles et budgets."
+        title: "Travaux Tous Corps d'État (TCE)",
+        description: "La clé d'une cuisine réussie. Modification des réseaux (plomberie, électricité), gestion de l'extraction (hotte), pose de crédence et de revêtements de sol (parquet, carrelage)."
       },
       {
-        title: "Convivialité",
-        description: "Cuisine ouverte avec îlot central, coin repas intégré... nous créons un espace qui invite au partage et à la convivialité."
+        title: "Ouverture de Cuisine (Projet Structurel)",
+        description: "Spécialistes de la création de cuisines ouvertes. Nous gérons l'abattage de murs porteurs (avec étude de bureau d'ingénierie et pose d'IPN) en toute sécurité."
+      },
+      {
+        title: "Pose et Finitions Haut de Gamme",
+        description: "Installation millimétrique de vos meubles, pose de plans de travail nobles (marbre, granit, quartz, Dekton), raccordement de l'électroménager et intégration des éclairages (LED sous meubles, spots)."
       }
+    ],
+    process: [
+      { step: 1, title: 'Atelier de Conception', description: "Visite à domicile pour analyser vos besoins, votre style de vie et les contraintes techniques de votre logement (Paris, 92, 93, 94, 78)." },
+      { step: 2, title: 'Chiffrage et Plans', description: "Proposition de plans 3D et d'un devis détaillé poste par poste (travaux préparatoires, mobilier, électroménager, pose)." },
+      { step: 3, title: 'Phase Travaux', description: "Notre conducteur de travaux dédié pilote la démolition, la mise aux normes des réseaux et la préparation des supports (murs, sols)." },
+      { step: 4, title: 'Pose et Réception', description: "Installation de la cuisine par nos menuisiers-poseurs, finitions et réception de chantier. Votre cuisine est prête à l'emploi." }
+    ],
+    whyUs: [
+      { title: "Plans de Travail", description: "Quartz (Silestone, Caesarstone), matériaux ultra-compacts (Dekton), pierre naturelle (marbre, granit) ou bois massif.", icon: Milestone },
+      { title: "Façades", description: "Laques mates ou brillantes, finitions bois nobles (chêne, noyer), Fénix (mat anti-traces), ou façades techniques (Inox).", icon: Layers },
+      { title: "Crédences & Robinetterie", description: "Solutions design et fonctionnelles (Zellige, verre, inox, robinetterie avec douchette, eau filtrante...).", icon: Sparkles }
+    ],
+    zones: {
+        description: "Nous intervenons pour la rénovation de cuisines dans les appartements parisiens (Paris 75), où l'optimisation de l'espace est cruciale. Notre expertise est également reconnue dans les Hauts-de-Seine (92) et les Yvelines (78) pour des projets d'envergure (cuisines ouvertes sur réception dans des maisons).",
+        list: "Nous couvrons aussi le Val-de-Marne (94) et la Seine-Saint-Denis (93)."
+    },
+    faq: [
+      { question: "Quel budget pour une rénovation complète de cuisine haut de gamme ?", answer: "Le budget varie grandement selon la taille, les matériaux et l'électroménager. Une prestation complète fournie-posée par ERG Rénovation commence généralement autour de 15 000€ et peut dépasser 50 000€ pour des projets de luxe. Nous fournissons un devis transparent pour chaque projet." },
+      { question: "Combien de temps faut-il pour rénover une cuisine ?", answer: "En moyenne, il faut compter entre 3 et 5 semaines pour une rénovation complète, incluant les travaux préparatoires (plomberie, électricité) et la pose. Notre pilotage intégral garantit le respect de ce planning." },
+      { question: "Faut-il un permis pour abattre la cloison entre la cuisine et le salon ?", answer: "Si le mur n'est pas porteur, une simple déclaration préalable de travaux peut suffire. S'il est porteur, une étude structurelle par un ingénieur et un permis de construire sont obligatoires. Nous nous occupons de gérer ces démarches pour vous." },
+      { question: "Gérez-vous la commande et la livraison de l'électroménager ?", answer: "Oui, nous offrons un service clé en main. Nous pouvons intégrer une offre complète incluant l'électroménager négocié auprès de nos partenaires, ou assurer la pose parfaite de l'équipement que vous avez choisi vous-même." }
     ],
     relatedProjectSlugs: ['cuisine-ouverte-design-vincennes']
   },
@@ -495,4 +521,5 @@ export const blogPosts: BlogPost[] = [
   }
 ];
     
+
 

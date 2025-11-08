@@ -57,6 +57,13 @@ export async function generateMetadata(
     }
   }
 
+  if (service.slug === 'renovation-cuisine') {
+    return {
+      title: "Rénovation Cuisine Paris & IDF (92, 93, 94, 78) | ERG Rénovation",
+      description: "ERG Rénovation gère la rénovation complète de votre cuisine à Paris et IDF. Conception sur mesure, îlot central, finitions haut de gamme. Devis A à Z.",
+    }
+  }
+
   // Sinon, on génère des métadonnées standards
   return {
     title: `${service.title} | ERG Rénovation`,
@@ -80,7 +87,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
 
   const relatedProjects = allProjects.filter(p => service.relatedProjectSlugs.includes(p.slug));
   const serviceImage = PlaceHolderImages.find(p => p.id === service.heroImageId);
-  const isPillarPage = ['renovation-appartement', 'renovation-maison', 'renovation-salle-de-bain'].includes(service.slug);
+  const isPillarPage = ['renovation-appartement', 'renovation-maison', 'renovation-salle-de-bain', 'renovation-cuisine'].includes(service.slug);
   
   const kitchenImage = PlaceHolderImages.find(p => p.id === 'service-pillar-kitchen');
   const finishImage = PlaceHolderImages.find(p => p.id === 'service-pillar-finish');
@@ -119,6 +126,18 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       whyUsTitle: "L'Expertise Technique : Le Luxe de la Tranquillité",
       whyUsIntro: "Une belle salle de bain est avant tout une salle de bain qui dure. Dans les appartements parisiens, où un dégât des eaux est critique, notre priorité absolue est la technique.",
       faqTitle: "Questions Fréquentes sur la Rénovation de Salle de Bain",
+    },
+    'renovation-cuisine': {
+      h1: "Rénovation de Cuisine à Paris & IDF : L'Alliance du Design et de la Fonctionnalité",
+      intro: "La cuisine n'est plus seulement un lieu de préparation, c'est le cœur battant de votre intérieur. Sa rénovation est un projet complexe qui touche à tous les corps de métier : plomberie, électricité, plâtrerie, et agencement de précision. ERG Rénovation orchestre votre projet de A à Z, de la conception de votre cuisine sur mesure à l'installation impeccable, à Paris et en Île-de-France (75, 92, 93, 94, 78).",
+      cta: "Concevoir ma future cuisine",
+      benefitsTitle: "Une Expertise Complète pour Votre Projet de Cuisine",
+      benefitsIntro: "Nous ne sommes pas de simples poseurs. Nous sommes des rénovateurs. Nous gérons la totalité des travaux pour garantir que votre nouvelle cuisine s'intègre parfaitement à votre espace de vie.",
+      processTitle: "La Méthode ERG Rénovation : Votre Cuisine Livrée Clé en Main",
+      processIntro: "Évitez le casse-tête de la coordination entre le cuisiniste, le plombier et l'électricien. Notre pilotage intégral vous assure une exécution fluide et un respect des délais.",
+      whyUsTitle: "Le Choix des Matériaux : L'Alliance de l'Esthétique et de la Durabilité",
+      whyUsIntro: "Une cuisine d'exception se définit par ses matériaux. Nous travaillons avec les meilleurs fournisseurs pour vous proposer :",
+      faqTitle: "Vos Questions sur la Rénovation de Cuisine",
     }
   }
 
@@ -155,11 +174,11 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
              <div className="mt-6 flex flex-col sm:flex-row gap-x-6 gap-y-2 text-sm text-primary-foreground/80">
                 <div className="flex items-center gap-2">
                     <ShieldCheck className="h-4 w-4 text-accent" />
-                    <span>{service.slug === 'renovation-maison' ? 'Gestion de Projet Intégrale' : 'Gestion de projet A à Z'}</span>
+                    <span>{service.slug === 'renovation-maison' ? 'Gestion de Projet Intégrale' : (service.slug === 'renovation-cuisine' ? 'Interlocuteur Unique (Travaux + Pose)' : 'Gestion de projet A à Z')}</span>
                 </div>
                  <div className="flex items-center gap-2">
                     <Award className="h-4 w-4 text-accent" />
-                    <span>{service.slug === 'renovation-maison' ? 'Expertise Structurelle' : 'Garantie décennale'}</span>
+                    <span>{service.slug === 'renovation-maison' ? 'Expertise Structurelle' : (service.slug === 'renovation-cuisine' ? 'Conception et Plans 3D' : 'Garantie décennale')}</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4 text-accent" />
@@ -270,20 +289,22 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                             <div className="space-y-6">
                                 {service.whyUs.map((item) => (
                                     <Card key={item.title} className={cn(
-                                        service.slug === 'renovation-salle-de-bain' ? 'bg-transparent shadow-none border-0' : 'bg-secondary/50 border-0 shadow-none'
+                                        ['renovation-salle-de-bain', 'renovation-cuisine'].includes(service.slug) ? 'bg-transparent shadow-none border-0' : 'bg-secondary/50 border-0 shadow-none'
                                     )}>
                                         <CardHeader className="flex flex-row items-center gap-4 p-4">
                                             <div className={cn(
                                                 "flex h-10 w-10 items-center justify-center rounded-md shrink-0",
-                                                service.slug === 'renovation-salle-de-bain' ? 'bg-primary/10 text-primary' : 'bg-background text-primary'
+                                                ['renovation-salle-de-bain', 'renovation-cuisine'].includes(service.slug) ? 'bg-primary/10 text-primary' : 'bg-background text-primary'
                                                 )}>
                                                 <item.icon className="h-5 w-5" />
                                             </div>
                                             <h3 className="font-headline font-semibold text-base">{item.title}</h3>
                                         </CardHeader>
-                                        <CardContent className='p-4 pt-0 pl-14'>
-                                            <p className="text-muted-foreground text-sm md:leading-relaxed">{item.description}</p>
-                                        </CardContent>
+                                        {item.description && (
+                                            <CardContent className='p-4 pt-0 pl-14'>
+                                                <p className="text-muted-foreground text-sm md:leading-relaxed">{item.description}</p>
+                                            </CardContent>
+                                        )}
                                     </Card>
                                 ))}
                             </div>
