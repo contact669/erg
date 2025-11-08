@@ -31,7 +31,7 @@ export interface Service {
   }[];
   zones?: {
     description: string;
-    list: string;
+    list: string | { name: string, slug: string }[];
   };
   faq?: {
     question: string;
@@ -98,4 +98,3 @@ export interface BlogPost {
   tags: string[];
   content: ReactNode;
 }
-```

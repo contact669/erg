@@ -71,8 +71,14 @@ export const services: Service[] = [
         { title: 'Transparence et Garanties', description: "Tous nos travaux sont couverts par une assurance décennale et une assurance responsabilité civile. Nos devis sont clairs et nos délais, tenus.", icon: ClipboardCheck }
     ],
     zones: {
-        description: "Basée au cœur de la région, ERG Rénovation déploie ses équipes pour tous projets de rénovation d'appartement à Paris (75), de l'Haussmannien aux lofts. Notre expertise s'étend également à la petite couronne.",
-        list: "Hauts-de-Seine (92) (Neuilly-sur-Seine, Boulogne-Billancourt...), Seine-Saint-Denis (93) (Montreuil, Saint-Ouen...), Val-de-Marne (94) (Vincennes, Saint-Mandé...) et dans les Yvelines (78) (Versailles, Saint-Germain-en-Laye...)."
+        description: "Basée au cœur de la région, ERG Rénovation déploie ses équipes pour tous projets de rénovation d'appartement à Paris (75) et en Île-de-France. Cliquez sur votre département pour découvrir notre expertise locale :",
+        list: [
+            { name: 'Paris (75)', slug: 'paris-75' },
+            { name: 'Hauts-de-Seine (92)', slug: 'hauts-de-seine-92' },
+            { name: 'Yvelines (78)', slug: 'yvelines-78' },
+            { name: 'Val-de-Marne (94)', slug: 'val-de-marne-94' },
+            { name: 'Seine-Saint-Denis (93)', slug: 'seine-saint-denis-93' }
+        ]
     },
     faq: [
         { question: "Quel est le prix moyen d'une rénovation d'appartement au m² à Paris ?", answer: "Le coût d'une rénovation haut de gamme à Paris varie généralement entre 1 500 € et 2 500 € par mètre carré, selon la complexité, les matériaux choisis et l'état initial du bien. Chez ERG Rénovation, nous nous engageons à fournir un devis détaillé et transparent, sans frais cachés, pour que vous maîtrisiez parfaitement votre budget." },
@@ -681,4 +687,3 @@ export const blogPosts: BlogPost[] = [
     )
   }
 ];
-

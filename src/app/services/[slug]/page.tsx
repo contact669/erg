@@ -169,7 +169,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
     },
     'peinture-finitions': {
       h1: "Peinture et Finitions : La Signature de l'Excellence ERG Rénovation",
-      intro: "Le succès d'une rénovation se juge à la perfection de ses finitions. Une peinture ou un revêtement mural impeccablement posé est la touche finale qui confère à votre intérieur son caractère \"très haut de gamme\". Chez ERG Rénovation, nos peintres décorateurs sont des compagnons, garants d'une préparation minutieuse des supports et d'un résultat sans défaut à Paris, dans les Hauts-de-Seine, les Yvelines, et toute l'Île-de-France.",
+      intro: "Le succès d'une rénovation se juge à la perfection de ses finitions. Une peinture ou un revêtement mural impeccablement posé est la touche finale qui confère à votre intérieur son caractère \"très très haut de gamme\". Chez ERG Rénovation, nos peintres décorateurs sont des compagnons, garants d'une préparation minutieuse des supports et d'un résultat sans défaut à Paris, dans les Hauts-de-Seine, les Yvelines, et toute l'Île-de-France.",
       cta: "Demander un devis pour des finitions parfaites",
       benefitsTitle: "Notre Maîtrise des Finitions d'Intérieur",
       benefitsIntro: "Le secret d'un mur parfait est invisible. Il réside dans la préparation. Nous offrons une gamme complète de services de finitions, où chaque étape est exécutée avec la plus grande rigueur.",
@@ -374,10 +374,21 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                             <p>
                                 {service.zones.description}
                             </p>
-                             <p className="text-sm font-semibold text-primary">
+                        </div>
+                         {Array.isArray(service.zones.list) && service.slug === 'renovation-appartement' && (
+                            <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4">
+                                {service.zones.list.map((zone) => (
+                                <Button asChild variant="outline" key={zone.slug}>
+                                    <Link href={`/${service.slug}/${zone.slug}`}>{zone.name}</Link>
+                                </Button>
+                                ))}
+                            </div>
+                        )}
+                         {!Array.isArray(service.zones.list) && (
+                             <p className="text-sm font-semibold text-primary mt-4">
                                 {service.zones.list}
                             </p>
-                        </div>
+                         )}
                     </section>
                 )}
 
