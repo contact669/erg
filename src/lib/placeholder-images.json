@@ -13,10 +13,22 @@
       "imageHint": "modern kitchen"
     },
     {
+      "id": "project-kitchen-1-before",
+      "description": "An old, dated kitchen in need of renovation.",
+      "imageUrl": "https://images.unsplash.com/photo-1602334662004-38e08f4fa3ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvbGQlMjBraXRjaGVufGVufDB8fHx8MTc2MjU5ODIzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "old kitchen"
+    },
+    {
       "id": "project-bathroom-1",
       "description": "An elegant bathroom featuring a freestanding tub and walk-in shower.",
       "imageUrl": "https://images.unsplash.com/photo-1758548157466-7c454382035a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbGVnYW50J2JhdGhyb29tfGVufDB8fHx8MTc2MjQ5ODA0MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "elegant bathroom"
+    },
+    {
+      "id": "project-bathroom-1-before",
+      "description": "A cramped, outdated bathroom before its luxurious transformation.",
+      "imageUrl": "https://images.unsplash.com/photo-1553444835-65ddad82cd2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvbGQlMjBiYXRocm9vbXxlbnwwfHx8fDE3NjI1OTgyMzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "old bathroom"
     },
     {
       "id": "project-apartment-1",
@@ -25,10 +37,22 @@
       "imageHint": "spacious apartment"
     },
     {
+      "id": "project-apartment-1-before",
+      "description": "A cluttered apartment living room before renovation.",
+      "imageUrl": "https://images.unsplash.com/photo-1711009444213-a7019a02f24e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2x1dHRlcmVkJTIwcm9vbXxlbnwwfHx8fDE3NjI1OTgyMzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cluttered room"
+    },
+    {
       "id": "project-office-1",
       "description": "A contemporary office space with glass partitions and minimalist furniture.",
       "imageUrl": "https://images.unsplash.com/photo-1631194019419-89ef6ec875db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y29udGVtcG9yYXJ5JTIwb2ZmaWNlfGVufDB8fHx8MTc2MjUyOTc5MHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "contemporary office"
+    },
+    {
+      "id": "project-office-1-before",
+      "description": "A dated and poorly lit office space prior to its modern overhaul.",
+      "imageUrl": "https://images.unsplash.com/photo-1566699270403-3f7e3f340664?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvbGQlMjBvZmZpY2V8ZW58MHx8fHwxNzYyNTMyNDAyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "old office"
     },
     {
       "id": "testimonial-avatar-1",
@@ -51,7 +75,7 @@
     {
       "id": "cta-banner-image",
       "description": "An architectural blueprint or design sketch, representing planning and precision.",
-      "imageUrl": "https://images.unsplash.com/photo-1742415106102-77bbfe14b872?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhcmNoaXRlY3R1cmFsJTIwYmx1ZXByaW50fGVufDB8fHx8MTc2MjUyOTc5MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1742415106102-77bbfe14b872?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhcmNoaXRlY3R1cmFsJTIwYmx1ZXByaW50fGVufDB8fHx8MTc2MjUyOTc5MHww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "architectural blueprint"
     },
     {
@@ -61,10 +85,22 @@
       "imageHint": "small apartment"
     },
     {
+      "id": "project-studio-1-before",
+      "description": "An empty, plain studio room before any renovation.",
+      "imageUrl": "https://images.unsplash.com/photo-1704310546522-59f10c7ec294?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZW1wdHklMjByb29tfGVufDB8fHx8MTc2MjU5ODIzM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "empty room"
+    },
+    {
       "id": "project-house-1",
       "description": "The exterior of a modern two-story house with a garden.",
       "imageUrl": "https://images.unsplash.com/photo-1613490493576-7fde63acd811?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBob3VzZXxlbnwwfHx8fDE3NjI1MTIzMDZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "modern house"
+    },
+    {
+      "id": "project-house-1-before",
+      "description": "An older, single-story house exterior before a major renovation and extension.",
+      "imageUrl": "https://images.unsplash.com/photo-1612375067279-c4646225321b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxvbGQlMjBob3VzZXxlbnwwfHx8fDE3NjI1OTgyMzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "old house"
     },
     {
       "id": "project-office-2",
@@ -73,10 +109,22 @@
       "imageHint": "luxury office"
     },
     {
+      "id": "project-office-2-before",
+      "description": "A standard, uninspired office space with cubicles before being renovated.",
+      "imageUrl": "https://images.unsplash.com/photo-1758874384556-cc2b9dcbb6e0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxzdGFuZGFyZCUyMG9mZmljZXxlbnwwfHx8fDE3NjI1OTgyMzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "standard office"
+    },
+    {
       "id": "project-bathroom-2",
       "description": "A small, stylish attic bathroom with a skylight.",
       "imageUrl": "https://images.unsplash.com/photo-1742690023399-6989a6db502c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhdHRpYyUyMGJhdGhyb29tfGVufDB8fHx8MTc2MjU5ODA4MHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "attic bathroom"
+    },
+    {
+      "id": "project-bathroom-2-before",
+      "description": "An unused, dark attic space before being converted into a bathroom.",
+      "imageUrl": "https://images.unsplash.com/photo-1743207820696-6ea16d63177f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkYXJrJTIwYXR0aWN8ZW58MHx8fHwxNzYyNTk4MjMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dark attic"
     }
   ]
 }

@@ -17,7 +17,10 @@ export interface Project {
   title: string;
   slug: string;
   category: string;
-  image: string;
+  images: {
+    before: string;
+    after: string;
+  };
   description: string;
 }
 

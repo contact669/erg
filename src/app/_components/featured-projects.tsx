@@ -30,7 +30,7 @@ export default function FeaturedProjects() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {featuredProjects.map((project) => {
             const projectImage = PlaceHolderImages.find(
-              (img) => img.id === project.image
+              (img) => img.id === project.images.after
             );
             return (
               <Card key={project.slug} className="group overflow-hidden">
@@ -75,5 +75,3 @@ export default function FeaturedProjects() {
     </section>
   );
 }
-
-    

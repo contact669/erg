@@ -56,33 +56,44 @@ export const services: Service[] = [
   },
 ];
 
+export const projectCategories = [
+  "Appartement",
+  "Maison",
+  "Studio",
+  "Cuisine",
+  "Salle de bain",
+  "Bureaux",
+  "Loft"
+];
+
+
 export const featuredProjects: Project[] = [
   {
     title: 'Appartement Haussmannien',
     slug: 'appartement-haussmannien-paris-16',
     category: 'Appartement',
-    image: 'project-apartment-1',
+    images: { before: 'project-apartment-1-before', after: 'project-apartment-1' },
     description: 'Rénovation complète d’un appartement de 120m² dans le 16ème arrondissement.'
   },
   {
     title: 'Cuisine Ouverte Design',
     slug: 'cuisine-ouverte-design-vincennes',
     category: 'Cuisine',
-    image: 'project-kitchen-1',
+    images: { before: 'project-kitchen-1-before', after: 'project-kitchen-1' },
     description: 'Création d’une cuisine avec îlot central et matériaux nobles.'
   },
   {
     title: 'Suite parentale avec spa',
     slug: 'suite-parentale-spa-neuilly',
     category: 'Salle de bain',
-    image: 'project-bathroom-1',
+    images: { before: 'project-bathroom-1-before', after: 'project-bathroom-1' },
     description: 'Transformation d’une salle de bain en un espace de détente luxueux.'
   },
   {
     title: 'Loft industriel',
     slug: 'loft-industriel-montreuil',
     category: 'Loft',
-    image: 'project-office-1',
+    images: { before: 'project-office-1-before', after: 'project-office-1' },
     description: 'Aménagement d’un ancien atelier en un loft moderne et lumineux.'
   },
 ];
@@ -93,28 +104,28 @@ export const allProjects: Project[] = [
     title: 'Studio optimisé',
     slug: 'studio-optimise-marais',
     category: 'Studio',
-    image: 'project-studio-1',
+    images: { before: 'project-studio-1-before', after: 'project-studio-1' },
     description: 'Optimisation de l\'espace pour ce studio de 25m² au coeur du Marais.',
   },
   {
     title: 'Maison de ville moderne',
     slug: 'maison-ville-moderne-boulogne',
     category: 'Maison',
-    image: 'project-house-1',
+    images: { before: 'project-house-1-before', after: 'project-house-1' },
     description: 'Rénovation et extension d\'une maison de ville à Boulogne-Billancourt.',
   },
   {
     title: 'Bureaux d\'avocats',
     slug: 'bureaux-avocats-paris-8',
     category: 'Bureaux',
-    image: 'project-office-2',
+    images: { before: 'project-office-2-before', after: 'project-office-2' },
     description: 'Aménagement d\'un plateau de bureaux pour un cabinet d\'avocats prestigieux.',
   },
   {
     title: 'Salle d\'eau sous combles',
     slug: 'salle-eau-combles-versailles',
     category: 'Salle de bain',
-    image: 'project-bathroom-2',
+    images: { before: 'project-bathroom-2-before', after: 'project-bathroom-2' },
     description: 'Création d\'une salle d\'eau fonctionnelle et élégante sous les toits.',
   },
 ];
@@ -166,5 +177,3 @@ export const processSteps: ProcessStep[] = [
         description: 'Nous vous livrons un chantier impeccable et vous bénéficiez de toutes nos garanties décennales.'
     }
 ]
-
-    
