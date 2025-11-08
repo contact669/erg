@@ -280,20 +280,45 @@ export const services: Service[] = [
     description: 'La touche finale qui sublime vos murs et vos espaces.',
     icon: Paintbrush,
     heroImageId: 'service-painting',
-    longDescription: "La qualité d'une rénovation se voit dans les détails. Nos peintres experts maîtrisent toutes les techniques pour un rendu impeccable : préparation des supports, application de peintures écologiques, pose de papiers peints, enduits décoratifs... Nous vous conseillons sur les couleurs et les finitions pour créer l'ambiance qui vous correspond.",
+    longDescription: "Le succès d'une rénovation se juge à la perfection de ses finitions. Une peinture ou un revêtement mural impeccablement posé est la touche finale qui confère à votre intérieur son caractère \"très haut de gamme\". Chez ERG Rénovation, nos peintres décorateurs sont des compagnons, garants d'une préparation minutieuse des supports et d'un résultat sans défaut à Paris, dans les Hauts-de-Seine, les Yvelines, et toute l'Île-de-France.",
     benefits: [
       {
-        title: "Finition parfaite",
-        description: "Une préparation minutieuse des murs est la clé d'un résultat lisse, durable et sans défaut."
+        title: "Préparation Minutieuse des Supports (Le Fondement)",
+        description: "C'est notre engagement \"haut de gamme\". Lessivage, traitement des fissures, application d'enduit de lissage, ponçage fin, et application de sous-couches techniques uniformes. Un support parfait est non-négociable."
       },
       {
-        title: "Conseil en décoration",
-        description: "Nous vous aidons à choisir les harmonies de couleurs qui mettront en valeur vos volumes et votre mobilier."
+        title: "Peinture Décorative et Technique",
+        description: "Application de peintures de haute qualité (mat velouté pour les plafonds, satin pour les murs, laque tendue pour les boiseries). Maîtrise des techniques de rechampi et des finitions sans trace."
       },
       {
-        title: "Matériaux de qualité",
-        description: "Nous travaillons avec des peintures professionnelles reconnues pour leur pouvoir couvrant, leur résistance et leur faible taux de COV."
+        title: "Revêtements Muraux et Papiers Peints",
+        description: "Pose de tous types de revêtements : papiers peints haut de gamme (vinyle, intissé, panoramique), toiles à peindre, et enduits décoratifs (stucs, Tadelakt si pertinent)."
+      },
+      {
+        title: "Finitions des Boiseries et Moulures",
+        description: "Restauration, décapage et mise en peinture (laque) des portes, plinthes, moulures et cimaises. Rénovation des parquets (ponçage et vitrification)."
       }
+    ],
+    process: [
+        { step: 1, title: 'Diagnostic et Conseil Couleur', description: "Analyse de la lumière, de l'état des supports et propositions de palettes de couleurs (ou de textures) adaptées à l'ambiance désirée." },
+        { step: 2, title: 'Protection Totale du Chantier', description: "Démontage, bâchage soigné des sols et masquage précis de toutes les zones (interrupteurs, prises, menuiseries). Le chantier doit rester impeccable." },
+        { step: 3, title: 'Préparation du Support', description: "Application des enduits et ponçages fins nécessaires. C'est le secret d'une finition parfaite." },
+        { step: 4, title: 'Application Multicouche et Contrôle', description: "Respect des temps de séchage, application des couches successives, contrôle qualité et nettoyage minutieux pour une livraison parfaite." }
+    ],
+    whyUs: [
+        { title: "Le Savoir-Faire de Nos Compagnons Peintres", description: "Nos artisans sont sélectionnés pour leur expertise dans les finitions tendues (sans effet \"peau d'orange\") et leur minutie, essentiels pour le luxe.", icon: Award },
+        { title: "Des Matériaux qui Font la Différence", description: "Nous travaillons avec des peintures et revêtements reconnus pour leur qualité, leur tenue dans le temps et leur rendu esthétique (Ressource, Little Greene...).", icon: Sparkles },
+        { title: "Un Chantier Propre, une Prestation Sans Souci", description: "La propreté est partie intégrante de notre service haut de gamme. Protection, nettoyage quotidien et respect de votre domicile sont assurés.", icon: ClipboardCheck }
+    ],
+    zones: {
+        description: "Qu'il s'agisse de restaurer les moulures d'un Haussmannien à Paris (75) ou d'apporter des finitions contemporaines à une maison des Yvelines (78) ou des Hauts-de-Seine (92), nos équipes sont à votre disposition.",
+        list: "Nous intervenons sur tous projets exigeants dans les départements 93 et 94."
+    },
+    faq: [
+      { question: "Qu'est-ce qui justifie le prix d'une peinture haut de gamme ?", answer: "Environ 80% du coût réside dans la préparation minutieuse du support (enduits, ponçages multiples) et dans la main d'œuvre qualifiée, bien plus que dans le prix du pot de peinture lui-même. C'est ce qui garantit une finition parfaite et durable." },
+      { question: "Quelle finition choisir (Mat, Satin, Velours) ?", answer: "Le Mat Velouté, très tendance, offre un rendu poudré et chic, idéal pour les pièces à vivre. Le Satin est plus résistant et lessivable, parfait pour les cuisines, salles de bain et couloirs. Nous vous conseillons selon l'usage et la lumière de chaque pièce." },
+      { question: "Combien de temps faut-il prévoir pour une peinture complète ?", answer: "Pour un appartement de type T3 (environ 70m²), il faut compter entre 1 et 2 semaines. Ce délai inclut le temps de séchage incompressible entre les couches, qui est un gage de qualité." },
+      { question: "Proposez-vous des conseils en colorimétrie ?", answer: "Oui, nos chefs de projet vous accompagnent dans le choix des teintes et des harmonies pour qu'elles correspondent parfaitement à l'ambiance que vous souhaitez créer et à la luminosité de votre intérieur." }
     ],
     relatedProjectSlugs: ['appartement-haussmannien-paris-16']
   },
@@ -544,6 +569,7 @@ export const blogPosts: BlogPost[] = [
   }
 ];
     
+
 
 
 

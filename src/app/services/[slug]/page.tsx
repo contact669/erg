@@ -71,6 +71,13 @@ export async function generateMetadata(
     }
   }
 
+  if (service.slug === 'peinture-finitions') {
+    return {
+      title: "Peinture & Finitions Haut de Gamme Paris & IDF | ERG Rénovation",
+      description: "Finitions impeccables pour vos murs et plafonds à Paris et IDF. Préparation minutieuse, matériaux d'exception. Demandez votre diagnostic finition.",
+    }
+  }
+
   // Sinon, on génère des métadonnées standards
   return {
     title: `${service.title} | ERG Rénovation`,
@@ -94,7 +101,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
 
   const relatedProjects = allProjects.filter(p => service.relatedProjectSlugs.includes(p.slug));
   const serviceImage = PlaceHolderImages.find(p => p.id === service.heroImageId);
-  const isPillarPage = ['renovation-appartement', 'renovation-maison', 'renovation-salle-de-bain', 'renovation-cuisine', 'amenagement-combles'].includes(service.slug);
+  const isPillarPage = ['renovation-appartement', 'renovation-maison', 'renovation-salle-de-bain', 'renovation-cuisine', 'amenagement-combles', 'peinture-finitions'].includes(service.slug);
   
   const kitchenImage = PlaceHolderImages.find(p => p.id === 'service-pillar-kitchen');
   const finishImage = PlaceHolderImages.find(p => p.id === 'service-pillar-finish');
@@ -157,6 +164,18 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       whyUsTitle: "La Maîtrise Technique : Votre Projet Sécurisé",
       whyUsIntro: "L'aménagement de combles touche à la structure même de votre habitation. Notre expertise technique, couverte par la garantie décennale, est votre meilleure protection.",
       faqTitle: "Vos Questions sur l'Aménagement de Combles",
+    },
+    'peinture-finitions': {
+      h1: "Peinture et Finitions : La Signature de l'Excellence ERG Rénovation",
+      intro: "Le succès d'une rénovation se juge à la perfection de ses finitions. Une peinture ou un revêtement mural impeccablement posé est la touche finale qui confère à votre intérieur son caractère \"très haut de gamme\". Chez ERG Rénovation, nos peintres décorateurs sont des compagnons, garants d'une préparation minutieuse des supports et d'un résultat sans défaut à Paris, dans les Hauts-de-Seine, les Yvelines, et toute l'Île-de-France.",
+      cta: "Demander un devis pour des finitions parfaites",
+      benefitsTitle: "Notre Maîtrise des Finitions d'Intérieur",
+      benefitsIntro: "Le secret d'un mur parfait est invisible. Il réside dans la préparation. Nous offrons une gamme complète de services de finitions, où chaque étape est exécutée avec la plus grande rigueur.",
+      processTitle: "ERG Rénovation : Le Processus de l'Excellence",
+      processIntro: "Notre processus garantit que la qualité finale est conforme à nos standards d'excellence, et aux vôtres.",
+      whyUsTitle: "L'Engagement Qualité : Artisans, Matériaux et Sérénité",
+      whyUsIntro: "La propreté est partie intégrante de notre service haut de gamme. Protection, nettoyage quotidien et respect de votre domicile sont assurés.",
+      faqTitle: "Questions Fréquentes sur les Finitions Haut de Gamme",
     }
   }
 
@@ -193,15 +212,15 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
              <div className="mt-6 flex flex-col sm:flex-row gap-x-6 gap-y-2 text-sm text-primary-foreground/80">
                 <div className="flex items-center gap-2">
                     <ShieldCheck className="h-4 w-4 text-accent" />
-                    <span>{service.slug === 'renovation-maison' || service.slug === 'amenagement-combles' ? 'Expertise Structurelle' : (service.slug === 'renovation-cuisine' ? 'Interlocuteur Unique (Travaux + Pose)' : 'Gestion de projet A à Z')}</span>
+                    <span>{service.slug === 'renovation-maison' || service.slug === 'amenagement-combles' ? 'Expertise Structurelle' : (service.slug === 'renovation-cuisine' ? 'Interlocuteur Unique (Travaux + Pose)' : (service.slug === 'peinture-finitions' ? 'Préparation des supports garantie' : 'Gestion de projet A à Z'))}</span>
                 </div>
                  <div className="flex items-center gap-2">
                     <Award className="h-4 w-4 text-accent" />
-                    <span>{service.slug === 'amenagement-combles' ? 'Isolation Haute Performance' : 'Garantie décennale'}</span>
+                    <span>{service.slug === 'amenagement-combles' ? 'Isolation Haute Performance' : (service.slug === 'peinture-finitions' ? 'Conseil en colorimétrie' : 'Garantie décennale')}</span>
                 </div>
                 <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4 text-accent" />
-                    <span>Respect des délais et du budget</span>
+                    <span>{service.slug === 'peinture-finitions' ? 'Chantier maintenu propre' : 'Respect des délais et du budget'}</span>
                 </div>
             </div>
           </div>
@@ -308,12 +327,12 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                             <div className="space-y-6">
                                 {service.whyUs.map((item) => (
                                     <Card key={item.title} className={cn(
-                                        ['renovation-salle-de-bain', 'renovation-cuisine', 'amenagement-combles'].includes(service.slug) ? 'bg-transparent shadow-none border-0' : 'bg-secondary/50 border-0 shadow-none'
+                                        ['renovation-salle-de-bain', 'renovation-cuisine', 'amenagement-combles', 'peinture-finitions'].includes(service.slug) ? 'bg-transparent shadow-none border-0' : 'bg-secondary/50 border-0 shadow-none'
                                     )}>
                                         <CardHeader className="flex flex-row items-center gap-4 p-4">
                                             <div className={cn(
                                                 "flex h-10 w-10 items-center justify-center rounded-md shrink-0",
-                                                ['renovation-salle-de-bain', 'renovation-cuisine', 'amenagement-combles'].includes(service.slug) ? 'bg-primary/10 text-primary' : 'bg-background text-primary'
+                                                ['renovation-salle-de-bain', 'renovation-cuisine', 'amenagement-combles', 'peinture-finitions'].includes(service.slug) ? 'bg-primary/10 text-primary' : 'bg-background text-primary'
                                                 )}>
                                                 <item.icon className="h-5 w-5" />
                                             </div>
