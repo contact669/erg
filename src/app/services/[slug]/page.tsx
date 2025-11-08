@@ -6,7 +6,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import SiteHeader from '@/components/site-header';
 import SiteFooter from '@/components/site-footer';
 import CtaBanner from '@/app/_components/cta-banner';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -15,7 +15,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { ArrowRight, CheckCircle, Award, ShieldCheck, Clock, Coins } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ArrowRight, CheckCircle, Award, ShieldCheck, Clock, Coins, Sparkles } from 'lucide-react';
 import AnimatedSection from '@/components/animated-section';
 import type { Metadata, ResolvingMetadata } from 'next';
 
@@ -88,7 +89,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             <h1 className="font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl max-w-4xl">
               {isPillarPage ? "Rénovation d'Appartement à Paris et Île-de-France : L'Excellence par ERG Rénovation" : service.title}
             </h1>
-            <p className="mt-6 max-w-3xl text-lg text-primary-foreground/80">
+            <p className="mt-6 max-w-3xl text-lg text-primary-foreground/80 md:leading-relaxed">
               {isPillarPage ? "Transformer un appartement parisien ou francilien en un lieu de vie exceptionnel exige une expertise de la structure, une gestion de projet rigoureuse et une passion pour les finitions parfaites. Nous gérons chaque détail de votre projet à Paris, dans les Hauts-de-Seine (92), la Seine-Saint-Denis (93), le Val-de-Marne (94) et les Yvelines (78)." : service.longDescription}
             </p>
              <div className="mt-8">
@@ -126,7 +127,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                     <h2 className="font-headline text-3xl font-bold">
                         {isPillarPage ? "Nos Prestations de Rénovation sur Mesure" : "Une expertise complète pour votre projet"}
                     </h2>
-                    <p className="mt-4 text-lg text-muted-foreground">
+                    <p className="mt-4 text-lg text-muted-foreground md:leading-relaxed">
                         {isPillarPage ? "Que vous envisagiez une refonte complète de votre bien, la modernisation d'un appartement ancien ou la rénovation énergétique, ERG Rénovation orchestre tous les corps de métier pour un résultat impeccable." : service.longDescription }
                     </p>
                     <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -135,7 +136,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                             <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
                             <div>
                             <h3 className="font-headline font-semibold text-lg">{benefit.title}</h3>
-                            <p className="text-muted-foreground">{benefit.description}</p>
+                            <p className="text-muted-foreground md:leading-relaxed">{benefit.description}</p>
                             </div>
                         </div>
                         ))}
@@ -148,7 +149,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                          <h2 className="font-headline text-3xl font-bold">
                             L'Approche ERG Rénovation : Votre Projet en 4 Étapes Clés
                         </h2>
-                        <p className="mt-4 text-lg text-muted-foreground">
+                        <p className="mt-4 text-lg text-muted-foreground md:leading-relaxed">
                            La réussite d'une rénovation "haut de gamme" repose sur une méthodologie éprouvée. Nous avons simplifié le processus pour vous garantir une tranquillité d'esprit totale.
                         </p>
                         <div className="mt-8 space-y-8">
@@ -157,7 +158,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-accent font-bold font-headline text-xl shrink-0">{`0${step.step}`}</div>
                                     <div>
                                         <h3 className="font-headline font-semibold text-lg">{step.title}</h3>
-                                        <p className="text-muted-foreground">{step.description}</p>
+                                        <p className="text-muted-foreground md:leading-relaxed">{step.description}</p>
                                     </div>
                                 </div>
                             ))}
@@ -186,7 +187,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                                         <h3 className="font-headline font-semibold text-lg">{item.title}</h3>
                                     </CardHeader>
                                     <CardContent className='pt-0'>
-                                        <p className="text-muted-foreground">{item.description}</p>
+                                        <p className="text-muted-foreground md:leading-relaxed">{item.description}</p>
                                     </CardContent>
                                 </Card>
                             ))}
@@ -201,7 +202,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                         <h2 className="font-headline text-3xl font-bold">
                             Nos Zones d'Intervention Privilégiées en Île-de-France
                         </h2>
-                        <p className="mt-4 text-muted-foreground">
+                        <p className="mt-4 text-muted-foreground md:leading-relaxed">
                             {service.zones.description}
                         </p>
                          <p className="mt-4 text-sm font-semibold text-primary">
@@ -219,10 +220,10 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                         <Accordion type="single" collapsible className="w-full mt-6">
                             {service.faq.map((item, index) => (
                                 <AccordionItem value={`item-${index}`} key={index}>
-                                <AccordionTrigger className="text-left font-semibold hover:no-underline">
+                                <AccordionTrigger className="text-left font-semibold hover:no-underline text-base">
                                     {item.question}
                                 </AccordionTrigger>
-                                <AccordionContent className="text-base text-muted-foreground">
+                                <AccordionContent className="text-base text-muted-foreground md:leading-relaxed">
                                     {item.answer}
                                 </AccordionContent>
                                 </AccordionItem>
@@ -293,38 +294,9 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                   Nos réalisations en {service.title.toLowerCase()}
                 </h2>
                 <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                  {relatedProjects.map((project) => {
-                    const projectImage = PlaceHolderImages.find(img => img.id === project.images.after);
-                    return (
-                      <Card key={project.slug} className="group overflow-hidden">
-                        <CardContent className="p-0">
-                          <div className="relative h-56 w-full">
-                            {projectImage && (
-                              <Image
-                                src={projectImage.imageUrl}
-                                alt={project.description}
-                                fill
-                                className="object-cover transition-transform duration-300 group-hover:scale-105"
-                                data-ai-hint={projectImage.imageHint}
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                              />
-                            )}
-                          </div>
-                        </CardContent>
-                        <CardHeader>
-                          <Badge variant="secondary" className="w-fit">{project.category}</Badge>
-                          <CardTitle className="pt-2 font-headline text-xl">{project.title}</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                          <Button variant="link" asChild className="p-0 text-accent hover:text-accent">
-                            <Link href={`/realisations/${project.slug}`}>
-                              Voir le projet <ArrowRight className="ml-2 h-4 w-4" />
-                            </Link>
-                          </Button>
-                        </CardContent>
-                      </Card>
-                    );
-                  })}
+                  {relatedProjects.map((project) => (
+                    <ProjectCard key={project.slug} project={project} />
+                  ))}
                 </div>
                 <div className="mt-12 text-center">
                   <Button asChild size="lg">
@@ -340,5 +312,76 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       </main>
       <SiteFooter />
     </div>
+  );
+}
+
+function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
+  const beforeImage = PlaceHolderImages.find(
+    (img) => img.id === project.images.before
+  );
+  const afterImage = PlaceHolderImages.find(
+    (img) => img.id === project.images.after
+  );
+
+  return (
+    <Card className="group flex h-full flex-col overflow-hidden">
+      <CardContent className="p-0">
+        <Tabs defaultValue="after" className="relative w-full">
+          <div className="relative h-64 w-full">
+            <TabsContent value="after" className="m-0 h-full">
+              {afterImage && (
+                <Image
+                  src={afterImage.imageUrl}
+                  alt={project.description}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  data-ai-hint={afterImage.imageHint}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              )}
+            </TabsContent>
+            <TabsContent value="before" className="m-0 h-full">
+              {beforeImage && (
+                <Image
+                  src={beforeImage.imageUrl}
+                  alt={`Avant - ${project.description}`}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  data-ai-hint={beforeImage.imageHint}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              )}
+            </TabsContent>
+          </div>
+          <TabsList className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/30 backdrop-blur-sm">
+            <TabsTrigger value="before" className="text-white/80 data-[state=active]:text-white">Avant</TabsTrigger>
+            <TabsTrigger value="after" className="text-white/80 data-[state=active]:text-white">
+              <Sparkles className="mr-2 h-4 w-4 text-amber-300" />
+              Après
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
+      </CardContent>
+      <div className="flex flex-1 flex-col p-6">
+        <Badge variant="secondary" className="w-fit">
+          {project.category}
+        </Badge>
+        <CardTitle className="pt-2 font-headline text-xl">
+          {project.title}
+        </CardTitle>
+        <p className="mt-2 flex-grow text-sm text-muted-foreground">{project.description}</p>
+      </div>
+      <CardFooter className="p-6 pt-0">
+        <Button
+          variant="link"
+          asChild
+          className="p-0 text-accent hover:text-accent"
+        >
+          <Link href={`/realisations/${project.slug}`}>
+            Voir les détails <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }

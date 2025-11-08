@@ -88,6 +88,10 @@
     background: hsl(var(--muted-foreground));
   }
   
+  p, .prose p {
+    @apply leading-relaxed;
+  }
+
   .prose {
     @apply text-foreground;
   }
