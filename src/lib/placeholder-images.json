@@ -197,6 +197,18 @@
       "description": "A friendly and professional craftsman smiling at the camera in a workshop.",
       "imageUrl": "https://images.unsplash.com/photo-1579519258213-9d2a0129a37c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxhcnRpc2FuJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYyNjI1ODUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "artisan portrait"
+    },
+    {
+      "id": "blog-image-verriere",
+      "description": "Une verrière d'atelier pour séparer les espaces sans perdre en luminosité.",
+      "imageUrl": "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbnRlcmlvciUyMGdsYXNzJTIwcGFydGl0aW9ufGVufDB8fHx8MTc2MjYyODAwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "glass partition"
+    },
+    {
+      "id": "blog-image-parquet",
+      "description": "Un parquet en point de Hongrie qui apporte chaleur et élégance.",
+      "imageUrl": "https://images.unsplash.com/photo-1628744448555-e7a0b33c5e4e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxoZXJyaW5nYm9uZSUyMHdvb2QlMjBmbG9vcnxlbnwwfHx8fDE3NjI2MjgwMDB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "herringbone floor"
     }
   ]
 }
