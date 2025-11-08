@@ -7,7 +7,7 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { ErgLogo } from '@/components/icons.tsx';
-import { navItems } from '@/lib/data';
+import { navItems } from '@/lib/data.tsx';
 import { cn } from '@/lib/utils';
 import type { NavItem } from '@/lib/types';
 

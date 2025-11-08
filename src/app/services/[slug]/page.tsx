@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { services, allProjects } from '@/lib/data';
+import { services, allProjects } from '@/lib/data.tsx';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import SiteHeader from '@/components/site-header';
 import SiteFooter from '@/components/site-footer';

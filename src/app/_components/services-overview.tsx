@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { services } from '@/lib/data';
+import { services } from '@/lib/data.tsx';
 import {
   Card,
   CardDescription,

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ErgLogo } from './icons';
-import { services, navItems } from '@/lib/data';
+import { services, navItems } from '@/lib/data.tsx';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Mail, MapPin, Phone } from 'lucide-react';

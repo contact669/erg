@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { featuredProjects } from '@/lib/data';
+import { featuredProjects } from '@/lib/data.tsx';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import {
   Card,

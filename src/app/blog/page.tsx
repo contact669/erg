@@ -3,7 +3,7 @@ import Image from 'next/image';
 import SiteHeader from '@/components/site-header';
 import SiteFooter from '@/components/site-footer';
 import CtaBanner from '@/app/_components/cta-banner';
-import { blogPosts } from '@/lib/data';
+import { blogPosts } from '@/lib/data.tsx';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';

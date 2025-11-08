@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react';
 import SiteHeader from '@/components/site-header';
 import SiteFooter from '@/components/site-footer';
-import { allProjects, projectCategories } from '@/lib/data';
+import { allProjects, projectCategories } from '@/lib/data.tsx';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
