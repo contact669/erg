@@ -7,9 +7,15 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { ErgLogo } from '@/components/icons.tsx';
-import { navItems } from '@/lib/data.tsx';
+import { navItems, services } from '@/lib/data.tsx';
 import { cn } from '@/lib/utils';
 import type { NavItem } from '@/lib/types';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 export default function SiteHeader() {
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -46,6 +52,50 @@ export default function SiteHeader() {
             const href = isHomePage && isAnchorLink ? item.href : (isAnchorLink ? `/${item.href}` : item.href);
             
             const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+
+            if (item.title === 'Services') {
+              return (
+                <DropdownMenu key={item.href}>
+                  <DropdownMenuTrigger asChild>
+                    <div
+                      className={cn(
+                        'group relative cursor-pointer text-sm font-medium transition-colors',
+                        isActive ? 'text-primary' : 'text-muted-foreground hover:text-primary'
+                      )}
+                    >
+                      <span>{item.title}</span>
+                       <span
+                        className={cn(
+                          'absolute -bottom-1 left-0 h-0.5 w-full bg-accent transition-transform duration-300 ease-out',
+                          isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                        )}
+                        style={{transformOrigin: 'left'}}
+                      />
+                    </div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-96 p-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      {services.map((service) => (
+                        <DropdownMenuItem key={service.slug} asChild>
+                          <Link
+                            href={`/services/${service.slug}`}
+                            className="flex items-center gap-3 rounded-md p-3 hover:bg-secondary"
+                          >
+                            <div className="rounded-md bg-primary/10 p-2 text-accent">
+                               <service.icon className="h-5 w-5" />
+                            </div>
+                            <div className='flex flex-col'>
+                                <span className="font-semibold">{service.title}</span>
+                                <span className="text-xs text-muted-foreground">{service.description}</span>
+                            </div>
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </div>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              );
+            }
 
             return (
               <Link
