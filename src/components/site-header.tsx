@@ -11,12 +11,6 @@ import { navItems, services } from '@/lib/data.tsx';
 import { cn } from '@/lib/utils';
 import type { NavItem } from '@/lib/types';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
@@ -77,13 +71,17 @@ export default function SiteHeader() {
                       <NavigationMenuTrigger
                         className={cn(
                           'group relative bg-transparent text-sm font-medium transition-colors',
+                          'focus:bg-transparent focus:text-primary data-[active]:bg-transparent data-[state=open]:bg-transparent',
                           isActive
                             ? 'text-primary'
-                            : 'text-muted-foreground hover:text-primary',
-                          'focus:bg-transparent focus:text-primary data-[active]:bg-transparent data-[state=open]:bg-transparent'
+                            : 'text-muted-foreground hover:text-primary'
                         )}
                       >
                         <span>{item.title}</span>
+                         <span className={cn(
+                          'absolute bottom-2 left-0 h-0.5 w-full scale-x-0 bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100',
+                          isActive && 'scale-x-100'
+                         )} />
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
                         <div className="grid w-[600px] grid-cols-2 gap-4 p-4 md:w-[700px] lg:w-[800px]">
@@ -109,12 +107,16 @@ export default function SiteHeader() {
                        <NavigationMenuLink className={cn(
                           navigationMenuTriggerStyle(),
                           'group relative bg-transparent text-sm font-medium transition-colors',
+                           'focus:bg-transparent focus:text-primary data-[active]:bg-transparent data-[state=open]:bg-transparent',
                            isActive
                             ? 'text-primary'
-                            : 'text-muted-foreground hover:text-primary',
-                           'focus:bg-transparent focus:text-primary data-[active]:bg-transparent data-[state=open]:bg-transparent'
+                            : 'text-muted-foreground hover:text-primary'
                         )}>
                         <span>{item.title}</span>
+                         <span className={cn(
+                          'absolute bottom-2 left-0 h-0.5 w-full scale-x-0 bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100',
+                          isActive && 'scale-x-100'
+                         )} />
                        </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
@@ -140,7 +142,7 @@ const ListItem = React.forwardRef<
   React.ComponentPropsWithoutRef<'a'> & { title: string, icon: React.ElementType }
 >(({ className, title, children, icon: Icon, ...props }, ref) => {
   return (
-    <li>
+    <div>
       <NavigationMenuLink asChild>
         <a
           ref={ref}
@@ -163,7 +165,7 @@ const ListItem = React.forwardRef<
           </div>
         </a>
       </NavigationMenuLink>
-    </li>
+    </div>
   );
 });
 ListItem.displayName = 'ListItem';
