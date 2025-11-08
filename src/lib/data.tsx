@@ -1,5 +1,6 @@
 
 
+
 import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage } from './types';
 import {
   Home,
@@ -338,9 +339,9 @@ export const localLandingPages: LocalLandingPage[] = [
     type: 'city',
     title: "Rénovation d'Appartement à Neuilly-sur-Seine (92200)",
     metaTitle: 'Rénovation Appartement Neuilly-sur-Seine (92) | ERG Rénovation',
-    metaDescription: 'Expert en rénovation d\'appartements haut de gamme à Neuilly-sur-Seine. ERG Rénovation gère votre projet de A à Z : plans, travaux, finitions de luxe.',
+    metaDescription: "Expert en rénovation d'appartements haut de gamme à Neuilly-sur-Seine. ERG Rénovation gère votre projet de A à Z : plans, travaux, finitions de luxe.",
     parentService: services.find(s => s.slug === 'renovation-appartement')!,
-    introduction: 'La rénovation d\'un appartement à Neuilly-sur-Seine exige une compréhension fine de son patrimoine architectural unique et un niveau de finition irréprochable. ERG Rénovation est votre partenaire de confiance, spécialisé dans la transformation d\'appartements de standing, des hôtels particuliers aux résidences modernes.',
+    introduction: "La rénovation d'un appartement à Neuilly-sur-Seine exige une compréhension fine de son patrimoine architectural unique et un niveau de finition irréprochable. ERG Rénovation est votre partenaire de confiance, spécialisé dans la transformation d'appartements de standing, des hôtels particuliers aux résidences modernes.",
     cta: {
       primary: 'Demander un devis pour mon projet à Neuilly',
       secondary: 'Voir nos réalisations à Neuilly-sur-Seine',
@@ -380,11 +381,11 @@ export const localLandingPages: LocalLandingPage[] = [
   {
     slug: 'hauts-de-seine-92',
     type: 'department',
-    title: 'Rénovation d\'Appartement Haut de Gamme dans les Hauts-de-Seine (92)',
+    title: "Rénovation d'Appartement Haut de Gamme dans les Hauts-de-Seine (92)",
     metaTitle: 'Rénovation Appartement Hauts-de-Seine (92) | Neuilly, Boulogne | ERG',
-    metaDescription: 'Expert en rénovation d\'appartements de standing dans le 92 (Neuilly-sur-Seine, Boulogne, Saint-Cloud). Maîtrise des projets complexes en copropriété. Devis.',
+    metaDescription: "Expert en rénovation d'appartements de standing dans le 92 (Neuilly-sur-Seine, Boulogne, Saint-Cloud). Maîtrise des projets complexes en copropriété. Devis.",
     parentService: services.find(s => s.slug === 'renovation-appartement')!,
-    introduction: 'Les Hauts-de-Seine (92) regroupent certaines des adresses les plus prisées d\'Île-de-France, de Neuilly-sur-Seine à Boulogne-Billancourt, en passant par Saint-Cloud. La rénovation d\'un appartement dans ce département exige une expertise particulière : connaissance des immeubles des années 30 et Haussmanniens, gestion des contraintes de la copropriété, et exigence sur les finitions. ERG Rénovation est votre partenaire unique pour un projet d\'excellence dans le 92.',
+    introduction: "Les Hauts-de-Seine (92) regroupent certaines des adresses les plus prisées d'Île-de-France, de Neuilly-sur-Seine à Boulogne-Billancourt, en passant par Saint-Cloud. La rénovation d'un appartement dans ce département exige une expertise particulière : connaissance des immeubles des années 30 et Haussmanniens, gestion des contraintes de la copropriété, et exigence sur les finitions. ERG Rénovation est votre partenaire unique pour un projet d'excellence dans le 92.",
     cta: {
       primary: 'Demander une étude personnalisée dans le 92',
       secondary: 'Voir nos réalisations à Neuilly-sur-Seine',
@@ -565,7 +566,7 @@ export const localLandingPages: LocalLandingPage[] = [
   {
     slug: 'seine-saint-denis-93',
     type: 'department',
-    title: 'Rénovation d\'Appartement et de Lofts à Fort Potentiel dans le 93',
+    title: "Rénovation d'Appartement et de Lofts à Fort Potentiel dans le 93",
     metaTitle: 'Rénovation Appartement & Loft Seine-Saint-Denis (93) | Expertise Luxe | ERG',
     metaDescription: 'Spécialiste de la rénovation d\'appartements et lofts à fort potentiel dans le 93 (Saint-Ouen, Montreuil). Création d\'espaces modernes et finitions haut de gamme.',
     parentService: services.find(s => s.slug === 'renovation-appartement')!,
@@ -682,6 +683,59 @@ export const localLandingPages: LocalLandingPage[] = [
       { name: 'Maisons-Laffitte', slug: 'maisons-laffitte' },
       { name: 'Marly-le-Roi', slug: 'marly-le-roi' },
     ]
+  },
+  {
+    slug: 'boulogne-billancourt',
+    type: 'city',
+    title: "Rénovation d'Appartement à Boulogne-Billancourt : Du 1930 au Design Contemporain",
+    metaTitle: "Rénovation Appartement Boulogne-Billancourt (92) | 1930 & Luxe | ERG",
+    metaDescription: "Expert en rénovation d'appartements de standing à Boulogne-Billancourt. Maîtrise des projets 1930, finitions sur mesure. Devis 92100.",
+    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    introduction: "Boulogne-Billancourt se distingue par son riche patrimoine architectural, notamment ses immeubles emblématiques des années 1930 et ses résidences contemporaines près du Trapèze. La rénovation dans cette ville exige une double compétence : la préservation du cachet (parquets, moulures) et la modernisation des volumes (isolation, réseaux, lumière). ERG Rénovation est votre partenaire privilégié, connaissant parfaitement les spécificités structurelles des appartements boulonnais.",
+    cta: {
+      primary: 'Demander un diagnostic pour mon appartement à Boulogne',
+      secondary: 'Voir des exemples de rénovations 1930',
+    },
+    reassurancePoints: [
+      'Spécialiste de l\'architecture des années 30.',
+      'Rigueur dans la gestion de copropriété (Voisinage exigeant).',
+      'Maîtrise de l\'isolation phonique.',
+    ],
+    mainContent: (
+      <>
+        <h2 className="font-headline text-3xl font-bold">Notre Expertise pour les Spécificités de Boulogne-Billancourt</h2>
+        <p>Que vous soyez près de la Place Marcel Sembat ou dans les nouveaux quartiers du Pont de Sèvres, notre savoir-faire s'adapte à votre bien.</p>
+        <div className="mt-8 space-y-6">
+          <div className="flex items-start gap-4">
+              <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+              <div>
+                  <h3 className="font-headline font-semibold text-lg">Restauration et Valorisation de l'Ancien (Architecture 1930)</h3>
+                  <p className="text-muted-foreground">Travail sur les corniches, les bow-windows, les parquets et les ferronneries typiques. Nous assurons une restauration fidèle et élégante.</p>
+              </div>
+          </div>
+          <div className="flex items-start gap-4">
+              <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+              <div>
+                  <h3 className="font-headline font-semibold text-lg">Solutions d'Isolation Phonique et Thermique</h3>
+                  <p className="text-muted-foreground">Crucial dans les résidences anciennes. Nous intégrons des solutions d'isolation performantes pour les sols, murs et plafonds, optimisant le confort sans perte d'espace.</p>
+              </div>
+          </div>
+          <div className="flex items-start gap-4">
+              <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+              <div>
+                  <h3 className="font-headline font-semibold text-lg">Conception d'Espaces Réception et de Cuisines Ouvertes</h3>
+                  <p className="text-muted-foreground">Création d'espaces de vie fluides et lumineux, avec gestion des ouvertures structurelles (murs porteurs) et l'intégration de cuisines haut de gamme adaptées à la vie moderne.</p>
+              </div>
+          </div>
+        </div>
+        <h2 className="font-headline text-3xl font-bold mt-12">Nos Réalisations et Secteurs d'Intervention à Boulogne</h2>
+        <p className="mt-4">Nous sommes actifs dans tous les secteurs de Boulogne, avec une expertise reconnue dans : Centre-Ville / Rives de Seine, Quartiers Rives de Seine / Trapèze, et Point du Jour / Les Princes.</p>
+      </>
+    ),
+    testimonial: {
+      quote: "La rénovation de notre appartement à Boulogne a été gérée avec une grande rigueur, dans le respect des délais annoncés. Les finitions sont exceptionnelles, notamment la restauration de nos parquets d’origine.",
+      author: "Mme R., Boulevard Jean Jaurès, Boulogne-Billancourt",
+    },
   },
 ];
 
