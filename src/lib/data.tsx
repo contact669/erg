@@ -561,6 +561,66 @@ export const localLandingPages: LocalLandingPage[] = [
       { name: 'Maisons-Alfort', slug: 'maisons-alfort' },
     ]
   },
+  {
+    slug: 'seine-saint-denis-93',
+    type: 'department',
+    title: 'Rénovation d\'Appartement et de Lofts à Fort Potentiel dans le 93',
+    metaTitle: 'Rénovation Appartement & Loft Seine-Saint-Denis (93) | Expertise Luxe | ERG',
+    metaDescription: 'Spécialiste de la rénovation d\'appartements et lofts à fort potentiel dans le 93 (Saint-Ouen, Montreuil). Création d\'espaces modernes et finitions haut de gamme.',
+    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    introduction: 'La Seine-Saint-Denis est un territoire de transformation, offrant des opportunités uniques de créer des espaces de vie modernes, des lofts spacieux et des appartements au standing élevé. ERG Rénovation est votre expert pour capitaliser sur ce potentiel immobilier en gérant les projets les plus ambitieux. Nous excellons dans la rénovation complète et la réhabilitation, apportant la rigueur et les finitions du luxe parisien dans le 93.',
+    cta: {
+      primary: 'Valoriser mon bien immobilier dans le 93',
+      secondary: 'Voir nos projets de lofts à Saint-Ouen',
+    },
+    reassurancePoints: [
+      'Expertise en transformation d\'espaces (Lofts, ateliers).',
+      'Maîtrise des projets d\'ouverture structurelle.',
+      'Finitions haut de gamme pour une plus-value garantie.',
+    ],
+    mainContent: (
+      <>
+        <h2 className="font-headline text-3xl font-bold">Notre Savoir-Faire en Transformation et Réhabilitation (93)</h2>
+        <p>Le 93 demande de l'audace technique et une vision pour transformer l'existant. Nos services sont conçus pour relever ces défis.</p>
+        <div className="mt-8 space-y-6">
+            <div className="flex items-start gap-4">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                <div>
+                    <h3 className="font-headline font-semibold text-lg">Aménagement et Création de Lofts</h3>
+                    <p className="text-muted-foreground">Spécialiste de la transformation d'anciennes surfaces industrielles en lofts. Gestion des volumes, création de mezzanines, traitement des murs bruts et gestion des réseaux complexes.</p>
+                </div>
+            </div>
+            <div className="flex items-start gap-4">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                <div>
+                    <h3 className="font-headline font-semibold text-lg">Réunion de Lots et Optimisation de Grands Volumes</h3>
+                    <p className="text-muted-foreground">Fusionner plusieurs lots (ou d'anciennes chambres de service) pour créer un appartement familial ou de réception, avec gestion des murs porteurs et des planchers.</p>
+                </div>
+            </div>
+             <div className="flex items-start gap-4">
+                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                <div>
+                    <h3 className="font-headline font-semibold text-lg">Isolation et Confort de l'Habitat</h3>
+                    <p className="text-muted-foreground">Solutions d'isolation thermique et acoustique performantes, indispensables dans les immeubles anciens et les transformations de bâtiments.</p>
+                </div>
+            </div>
+        </div>
+        <h2 className="font-headline text-3xl font-bold mt-12">Les Villes de Seine-Saint-Denis où Nous Intervenons</h2>
+        <p className="mt-4">Nous ciblons les zones à forte valeur ajoutée et les projets d'exception dans le 93 :</p>
+      </>
+    ),
+    testimonial: {
+      quote: "La transformation de notre atelier en loft à Montreuil a été gérée de manière experte. Le résultat est conforme aux standards parisiens.",
+      author: "C. David, Montreuil (93)",
+    },
+    relatedLocations: [
+      { name: 'Saint-Ouen', slug: 'saint-ouen' },
+      { name: 'Montreuil', slug: 'montreuil' },
+      { name: 'Le Raincy', slug: 'le-raincy' },
+      { name: 'Les Lilas', slug: 'les-lilas' },
+      { name: 'Saint-Denis', slug: 'saint-denis' },
+    ]
+  },
 ];
 
 
@@ -810,3 +870,5 @@ export const blogPosts: BlogPost[] = [
     )
   }
 ];
+
+  
