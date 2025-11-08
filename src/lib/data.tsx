@@ -1,6 +1,4 @@
-
-
-import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost } from './types';
+import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage } from './types';
 import {
   Home,
   Bath,
@@ -17,7 +15,7 @@ import {
   Layers,
   Milestone,
   ShieldCheck,
-  Thermometer
+  Thermometer,
 } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
@@ -324,6 +322,54 @@ export const services: Service[] = [
   },
 ];
 
+export const localLandingPages: LocalLandingPage[] = [
+  {
+    slug: 'neuilly-sur-seine',
+    type: 'city',
+    title: 'Rénovation d\'Appartement à Neuilly-sur-Seine (92200)',
+    metaTitle: 'Rénovation Appartement Neuilly-sur-Seine (92) | ERG Rénovation',
+    metaDescription: 'Expert en rénovation d\'appartements haut de gamme à Neuilly-sur-Seine. ERG Rénovation gère votre projet de A à Z : plans, travaux, finitions de luxe.',
+    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    introduction: 'La rénovation d\'un appartement à Neuilly-sur-Seine exige une compréhension fine de son patrimoine architectural unique et un niveau de finition irréprochable. ERG Rénovation est votre partenaire de confiance, spécialisé dans la transformation d\'appartements de standing, des hôtels particuliers aux résidences modernes.',
+    cta: {
+      primary: 'Demander un devis pour mon projet à Neuilly',
+      secondary: 'Voir nos réalisations dans le 92',
+    },
+    reassurancePoints: [
+      'Expertise des appartements de luxe',
+      'Gestion des contraintes de copropriété',
+      'Finitions "haute couture"',
+    ],
+    mainContent: (
+      <>
+        <h2 className="font-headline text-3xl font-bold">Un savoir-faire adapté au prestige de Neuilly-sur-Seine</h2>
+        <p className="mt-4 text-muted-foreground">Notre expérience à Neuilly-sur-Seine nous permet de maîtriser les spécificités locales : respect des architectures (Art Déco, modernes...), collaboration avec les syndics de copropriété exigeants et mise en œuvre de matériaux nobles. Nous ne rénovons pas seulement un appartement, nous valorisons votre patrimoine.</p>
+        <div className="mt-8 space-y-4">
+          <div className="flex items-start gap-4">
+            <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+            <div>
+              <h3 className="font-headline font-semibold text-lg">Rénovation d'appartements haussmanniens et Art Déco</h3>
+              <p className="text-muted-foreground">Restauration des parquets, moulures et cheminées, tout en modernisant les réseaux et en optimisant les plans.</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4">
+            <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+            <div>
+              <h3 className="font-headline font-semibold text-lg">Conception de cuisines et salles de bains de luxe</h3>
+              <p className="text-muted-foreground">Intégration de marbre, de robinetterie haut de gamme et d'agencements sur mesure pour des pièces d'exception.</p>
+            </div>
+          </div>
+        </div>
+      </>
+    ),
+    testimonial: {
+      quote: "ERG Rénovation a su comprendre nos exigences pour notre appartement à Neuilly. Le suivi de chantier a été d'une rigueur exemplaire et les finitions sont absolument parfaites. C'est un vrai partenaire de confiance.",
+      author: "M. et Mme Lambert, Neuilly-sur-Seine",
+    },
+  }
+];
+
+
 export const projectCategories = [
   "Appartement",
   "Maison",
@@ -534,6 +580,8 @@ export const blogPosts: BlogPost[] = [
     tags: ['Conseils', 'Artisans', 'Qualité'],
     content: (
         <>
+            <p>La réussite de vos travaux dépend en grande partie du professionnel que vous choisissez. Un bon artisan peut transformer votre projet en succès, tandis qu'un mauvais choix peut mener à des retards, des surcoûts et du stress. Voici les 5 points clés à vérifier pour faire le bon choix.</p>
+            
             <h2>1. Vérifiez les qualifications et les assurances</h2>
             <p>C'est le point de départ non négociable. Un professionnel sérieux doit pouvoir vous présenter :</p>
             <ul>
@@ -569,6 +617,7 @@ export const blogPosts: BlogPost[] = [
   }
 ];
     
+
 
 
 

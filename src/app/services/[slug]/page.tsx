@@ -19,6 +19,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ArrowRight, CheckCircle, Award, ShieldCheck, Clock, Coins, Sparkles, Milestone } from 'lucide-react';
 import AnimatedSection from '@/components/animated-section';
 import type { Metadata, ResolvingMetadata } from 'next';
+import { cn } from '@/lib/utils';
+
 
 type Props = {
   params: { slug: string }
@@ -136,7 +138,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
       benefitsTitle: "Nos Prestations pour une Salle de Bain Haut de Gamme",
       benefitsIntro: "De la refonte complète d'une salle de bain ancienne à la création d'une suite parentale, nos équipes maîtrisent tous les aspects de votre projet.",
       processTitle: "Votre Projet de A à Z : Conception, Pilotage, Finitions",
-      processIntro: "Un projet de vie ne doit pas devenir une source de stress. Notre méthodologie est conçue pour vous garantir une transparence totale et un respect absolu de vos attentes.",
+      processIntro: "Une belle salle de bain est avant tout une salle de bain qui dure. Dans les appartements parisiens, où un dégât des eaux est critique, notre priorité absolue est la technique.",
       whyUsTitle: "L'Expertise Technique : Le Luxe de la Tranquillité",
       whyUsIntro: "Une belle salle de bain est avant tout une salle de bain qui dure. Dans les appartements parisiens, où un dégât des eaux est critique, notre priorité absolue est la technique.",
       faqTitle: "Questions Fréquentes sur la Rénovation de Salle de Bain",
@@ -239,7 +241,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                     <h2 className="font-headline text-3xl font-bold">
                         {content ? content.benefitsTitle : "Une expertise complète pour votre projet"}
                     </h2>
-                    <div className="prose max-w-none text-muted-foreground mt-4">
+                    <div className="prose max-w-none text-muted-foreground mt-4 prose-p:my-4">
                         <p>
                             {content ? content.benefitsIntro : service.longDescription }
                         </p>
@@ -257,7 +259,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                             </div>
                             ))}
                         </div>
-                        {kitchenImage && (
+                        {kitchenImage && ['renovation-appartement', 'renovation-maison', 'renovation-cuisine'].includes(service.slug) && (
                             <div className="relative h-64 md:h-auto rounded-lg overflow-hidden">
                                 <Image 
                                     src={kitchenImage.imageUrl}
@@ -288,7 +290,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                          <h2 className="font-headline text-3xl font-bold">
                             {content.processTitle}
                         </h2>
-                        <div className="prose max-w-none text-muted-foreground mt-4">
+                        <div className="prose max-w-none text-muted-foreground mt-4 prose-p:my-4">
                            <p>
                            {content.processIntro}
                            </p>
@@ -319,7 +321,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                            {content.whyUsTitle}
                         </h2>
                           {content.whyUsIntro && (
-                            <div className="prose max-w-none text-muted-foreground mt-4">
+                            <div className="prose max-w-none text-muted-foreground mt-4 prose-p:my-4">
                                 <p>{content.whyUsIntro}</p>
                             </div>
                           )}
@@ -346,7 +348,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                                     </Card>
                                 ))}
                             </div>
-                            {finishImage && (
+                            {finishImage && ['renovation-appartement', 'renovation-maison', 'peinture-finitions'].includes(service.slug) && (
                                 <div className="relative h-80 md:h-full w-full rounded-lg overflow-hidden">
                                      <Image 
                                         src={finishImage.imageUrl}
@@ -368,7 +370,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                         <h2 className="font-headline text-3xl font-bold">
                             Nos Zones d'Intervention Privilégiées en Île-de-France
                         </h2>
-                        <div className="prose max-w-none text-muted-foreground mt-4">
+                        <div className="prose max-w-none text-muted-foreground mt-4 prose-p:my-4">
                             <p>
                                 {service.zones.description}
                             </p>
@@ -391,7 +393,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                                 <AccordionTrigger className="text-left font-semibold hover:no-underline text-base">
                                     {item.question}
                                 </AccordionTrigger>
-                                <AccordionContent className="prose max-w-none text-muted-foreground">
+                                <AccordionContent className="prose max-w-none text-muted-foreground prose-p:my-4">
                                     <p>{item.answer}</p>
                                 </AccordionContent>
                                 </AccordionItem>
@@ -406,10 +408,10 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               <aside className="space-y-8 lg:sticky lg:top-28 h-fit">
                 <Card className="bg-secondary">
                   <CardHeader>
-                    <CardTitle className="flex items-center gap-3 font-headline">
+                    <CardContent className="flex items-center gap-3 font-headline p-0">
                       <Award className="h-6 w-6 text-accent" />
                       Notre Engagement Qualité
-                    </CardTitle>
+                    </CardContent>
                   </CardHeader>
                   <CardContent className="space-y-3 text-sm text-muted-foreground">
                     <p>✓ Devis rapide et transparent</p>
@@ -425,7 +427,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
 
                 <Card>
                   <CardHeader>
-                    <CardTitle className="font-headline">Nos autres services</CardTitle>
+                    <CardContent className="font-headline p-0">Nos autres services</CardContent>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
@@ -553,5 +555,3 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
     </Card>
   );
 }
-
-const cn = (...classes: string[]) => classes.filter(Boolean).join(' ');

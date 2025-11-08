@@ -26,7 +26,7 @@ export interface Service {
   }[];
   whyUs?: {
     title: string;
-    description: string;
+    description?: string;
     icon: LucideIcon;
   }[];
   zones?: {
@@ -37,6 +37,26 @@ export interface Service {
     question: string;
     answer: string;
   }[];
+}
+
+export interface LocalLandingPage {
+  slug: string;
+  type: 'department' | 'city' | 'district';
+  title: string;
+  metaTitle: string;
+  metaDescription: string;
+  parentService: Service;
+  introduction: string;
+  cta: {
+    primary: string;
+    secondary: string;
+  };
+  reassurancePoints: string[];
+  mainContent: ReactNode;
+  testimonial: {
+    quote: string;
+    author: string;
+  };
 }
 
 
