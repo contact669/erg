@@ -43,10 +43,8 @@ export default function SiteHeader() {
             const isHomePage = pathname === '/';
             const isAnchorLink = item.href.startsWith('#');
             
-            // Smooth scroll for anchors on the homepage, direct nav otherwise
             const href = isHomePage && isAnchorLink ? item.href : (isAnchorLink ? `/${item.href}` : item.href);
             
-            // Determine active state
             const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
 
             return (
@@ -54,11 +52,18 @@ export default function SiteHeader() {
                 key={item.href}
                 href={href}
                 className={cn(
-                  'text-sm font-medium transition-colors hover:text-primary',
-                  isActive ? 'text-primary' : 'text-muted-foreground'
+                  'group relative text-sm font-medium transition-colors',
+                  isActive ? 'text-primary' : 'text-muted-foreground hover:text-primary'
                 )}
               >
-                {item.title}
+                <span>{item.title}</span>
+                <span
+                  className={cn(
+                    'absolute -bottom-1 left-0 h-0.5 w-full bg-accent transition-transform duration-300 ease-out',
+                    isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                  )}
+                  style={{transformOrigin: 'left'}}
+                />
               </Link>
             );
           })}
