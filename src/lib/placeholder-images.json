@@ -227,7 +227,12 @@
       "description": "A stylish living room in a renovated apartment in Hauts-de-Seine, with a view of La Défense.",
       "imageUrl": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdHlsaXNoJTIwbGl2aW5nJTIwcm9vbSUyMHBhcmlzfGVufDB8fHx8MTc2Mjg5NzU3NHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "stylish living room"
+    },
+    {
+      "id": "project-apartment-paris-75",
+      "description": "A beautifully renovated Haussmannian living room with classic moldings, a marble fireplace, and herringbone parquet flooring.",
+      "imageUrl": "https://images.unsplash.com/photo-1604014237800-1c9102c219da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBwYXJpcyUyMGFwYXJ0bWVudHxlbnwwfHx8fDE3NjMwNzA4MjJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "luxury apartment"
     }
   ]
 }
-```

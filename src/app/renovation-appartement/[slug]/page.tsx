@@ -51,7 +51,8 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
   }
 
   const { parentService } = page;
-  const heroImage = PlaceHolderImages.find(p => p.id === parentService.heroImageId);
+  const heroImageId = page.slug === 'paris-75' ? 'project-apartment-paris-75' : parentService.heroImageId;
+  const heroImage = PlaceHolderImages.find(p => p.id === heroImageId);
   const testimonialAvatar = PlaceHolderImages.find(p => p.id === 'testimonial-avatar-1');
   const departmentImage = PlaceHolderImages.find(p => p.id === 'project-apartment-hauts-de-seine');
 
@@ -174,7 +175,10 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                      <Card>
                         <CardHeader>
                             <CardContent className='p-0 font-headline'>
-                                Nos réalisations dans le {page.type === 'department' ? page.title.split(' ')[2] : page.slug}
+                                {page.type === 'department' 
+                                ? `Nos réalisations dans le ${page.slug === 'paris-75' ? '75' : page.slug.split('-')[2]}`
+                                : `Nos réalisations à ${page.title.split('(')[0].trim()}`
+                                }
                             </CardContent>
                         </CardHeader>
                         <CardContent>
