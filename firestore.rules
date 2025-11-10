@@ -35,35 +35,35 @@ service cloud.firestore {
     // --- User Data Rules ---
 
     // -- Clients Subcollection --
-    match /users/{userId}/clients {
-      allow list, create: if isOwner(userId) || isAdmin();
-    }
     match /users/{userId}/clients/{clientId} {
       allow get, update, delete: if isOwner(userId) || isAdmin();
     }
-
-    // -- Projects Subcollection --
-    match /users/{userId}/projects {
+    match /users/{userId}/clients {
       allow list, create: if isOwner(userId) || isAdmin();
     }
+
+    // -- Projects Subcollection --
     match /users/{userId}/projects/{projectId} {
       allow get, update, delete: if isOwner(userId) || isAdmin();
     }
-
-    // -- Quotes Subcollection --
-    match /users/{userId}/quotes {
+    match /users/{userId}/projects {
       allow list, create: if isOwner(userId) || isAdmin();
     }
+
+    // -- Quotes Subcollection --
     match /users/{userId}/quotes/{quoteId} {
       allow get, update, delete: if isOwner(userId) || isAdmin();
     }
-
-    // -- Invoices Subcollection --
-    match /users/{userId}/invoices {
+    match /users/{userId}/quotes {
       allow list, create: if isOwner(userId) || isAdmin();
     }
+
+    // -- Invoices Subcollection --
     match /users/{userId}/invoices/{invoiceId} {
       allow get, update, delete: if isOwner(userId) || isAdmin();
+    }
+    match /users/{userId}/invoices {
+      allow list, create: if isOwner(userId) || isAdmin();
     }
 
     /**
