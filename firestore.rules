@@ -11,15 +11,11 @@ service cloud.firestore {
       return request.auth != null && exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
     }
     
-    // Règle pour le document utilisateur principal
-    match /users/{userId} {
-      allow read, write: if isOwner(userId);
-    }
-    
     // Règle générique pour toutes les sous-collections de l'utilisateur
     // Ceci s'applique à /clients, /projects, /quotes, /invoices, etc.
+    // `allow read, write` inclut get, list, create, update, delete.
     match /users/{userId}/{collection}/{docId} {
-      allow read, write, create, update, delete: if isOwner(userId) || isAdmin();
+      allow read, write: if isOwner(userId) || isAdmin();
     }
 
     // 🔑 Collection des rôles d'administrateur
