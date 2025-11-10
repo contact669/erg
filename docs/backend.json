@@ -6,28 +6,13 @@
       "type": "object",
       "description": "Represents a client or prospect.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the Client entity."
-        },
-        "name": {
-          "type": "string",
-          "description": "Name of the client."
-        },
-        "address": {
-          "type": "string",
-          "description": "Address of the client."
-        },
-        "commercialHistory": {
-          "type": "string",
-          "description": "Commercial history or notes for the client."
-        }
+        "id": { "type": "string", "description": "Unique identifier for the Client entity." },
+        "name": { "type": "string", "description": "Name of the client." },
+        "address": { "type": "string", "description": "Address of the client." },
+        "commercialHistory": { "type": "string", "description": "Commercial history or notes for the client." },
+        "userId": { "type": "string", "description": "The ID of the user who owns this client." }
       },
-      "required": [
-        "id",
-        "name",
-        "address"
-      ]
+      "required": ["id", "name", "address", "userId"]
     },
     "Project": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -35,37 +20,15 @@
       "type": "object",
       "description": "Represents a construction site or project.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the Project entity."
-        },
-        "clientId": {
-          "type": "string",
-          "description": "Reference to Client. (Relationship: Client 1:N Project)"
-        },
-        "name": {
-          "type": "string",
-          "description": "Name of the project."
-        },
-        "status": {
-          "type": "string",
-          "description": "Status of the project (e.g., planned, in progress, completed)."
-        },
-        "progress": {
-          "type": "number",
-          "description": "Percentage of project completion."
-        },
-        "estimatedBudget": {
-          "type": "number",
-          "description": "Estimated budget for the project."
-        }
+        "id": { "type": "string", "description": "Unique identifier for the Project entity." },
+        "clientId": { "type": "string", "description": "Reference to Client." },
+        "name": { "type": "string", "description": "Name of the project." },
+        "status": { "type": "string", "description": "Status of the project (e.g., planned, in progress, completed)." },
+        "progress": { "type": "number", "description": "Percentage of project completion." },
+        "estimatedBudget": { "type": "number", "description": "Estimated budget for the project." },
+        "userId": { "type": "string", "description": "The ID of the user who owns this project." }
       },
-      "required": [
-        "id",
-        "clientId",
-        "name",
-        "status"
-      ]
+      "required": ["id", "clientId", "name", "status", "userId"]
     },
     "Quote": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -73,54 +36,18 @@
       "type": "object",
       "description": "Represents a quote for a project.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the Quote entity."
-        },
-        "projectId": {
-          "type": "string",
-          "description": "Reference to Project. (Relationship: Project 1:N Quote)"
-        },
-        "detailLines": {
-          "type": "array",
-          "items": {
-            "$ref": "#/entities/QuoteLine"
-          },
-          "description": "Detailed lines of the quote."
-        },
-        "subtotal": {
-          "type": "number",
-          "description": "Subtotal amount of the quote (before tax)."
-        },
-        "tax": {
-          "type": "number",
-          "description": "Tax amount of the quote."
-        },
-        "total": {
-          "type": "number",
-          "description": "Total amount of the quote (including tax)."
-        },
-        "status": {
-          "type": "string",
-          "description": "Status of the quote (e.g., draft, sent, accepted)."
-        },
-        "validUntil": {
-          "type": "string",
-          "description": "Date until which the quote is valid.",
-          "format": "date-time"
-        },
-        "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "The timestamp when the quote was created."
-        }
+        "id": { "type": "string", "description": "Unique identifier for the Quote entity." },
+        "projectId": { "type": "string", "description": "Reference to Project." },
+        "detailLines": { "type": "array", "items": { "$ref": "#/entities/QuoteLine" }, "description": "Detailed lines of the quote." },
+        "subtotal": { "type": "number", "description": "Subtotal amount of the quote (before tax)." },
+        "tax": { "type": "number", "description": "Tax amount of the quote." },
+        "total": { "type": "number", "description": "Total amount of the quote (including tax)." },
+        "status": { "type": "string", "description": "Status of the quote (e.g., draft, sent, accepted)." },
+        "validUntil": { "type": "string", "description": "Date until which the quote is valid.", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "The timestamp when the quote was created." },
+        "userId": { "type": "string", "description": "The ID of the user who owns this quote." }
       },
-      "required": [
-        "id",
-        "projectId",
-        "status",
-        "createdAt"
-      ]
+      "required": ["id", "projectId", "status", "createdAt", "userId"]
     },
     "QuoteLine": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -128,22 +55,10 @@
       "type": "object",
       "description": "Represents a single line item within a quote.",
       "properties": {
-        "description": {
-          "type": "string",
-          "description": "Description of the work or item."
-        },
-        "quantity": {
-          "type": "number",
-          "description": "Quantity of the item or unit of work."
-        },
-        "unitPrice": {
-          "type": "number",
-          "description": "Price per unit."
-        },
-        "total": {
-          "type": "number",
-          "description": "Total price for this line (quantity * unitPrice)."
-        }
+        "description": { "type": "string", "description": "Description of the work or item." },
+        "quantity": { "type": "number", "description": "Quantity of the item or unit of work." },
+        "unitPrice": { "type": "number", "description": "Price per unit." },
+        "total": { "type": "number", "description": "Total price for this line (quantity * unitPrice)." }
       },
       "required": ["description", "quantity", "unitPrice", "total"]
     },
@@ -153,141 +68,55 @@
       "type": "object",
       "description": "Represents an invoice based on a quote.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the Invoice entity."
-        },
-        "quoteId": {
-          "type": "string",
-          "description": "Reference to Quote. (Relationship: Quote 1:1 Invoice)"
-        },
-        "total": {
-          "type": "number",
-          "description": "Total amount of the invoice."
-        },
-        "paymentAmount": {
-          "type": "number",
-          "description": "Amount paid on the invoice."
-        },
-        "amountRemaining": {
-          "type": "number",
-          "description": "Remaining amount due on the invoice."
-        }
+        "id": { "type": "string", "description": "Unique identifier for the Invoice entity." },
+        "quoteId": { "type": "string", "description": "Reference to Quote." },
+        "total": { "type": "number", "description": "Total amount of the invoice." },
+        "paymentAmount": { "type": "number", "description": "Amount paid on the invoice." },
+        "amountRemaining": { "type": "number", "description": "Remaining amount due on the invoice." },
+        "userId": { "type": "string", "description": "The ID of the user who owns this invoice." }
       },
-      "required": [
-        "id",
-        "quoteId",
-        "total",
-        "paymentAmount"
-      ]
+      "required": ["id", "quoteId", "total", "paymentAmount", "userId"]
     }
   },
-  "auth": {
-    "providers": [
-      "password"
-    ]
-  },
+  "auth": { "providers": ["password"] },
   "firestore": {
     "collections": [
       {
-        "path": "/users/{userId}/clients/{clientId}",
+        "path": "/clients/{clientId}",
         "definition": {
           "entityName": "Client",
-          "schema": {
-            "$ref": "#/backend/entities/Client"
-          },
-          "description": "Represents a client owned by a user. Includes the client's name, address, and commercial history.",
-          "params": [
-            {
-              "name": "userId",
-              "description": "The ID of the user who owns the client."
-            },
-            {
-              "name": "clientId",
-              "description": "The ID of the client document."
-            }
-          ]
+          "schema": { "$ref": "#/backend/entities/Client" },
+          "description": "Represents a client or prospect. Contains a userId for ownership.",
+          "params": [{ "name": "clientId", "description": "The ID of the client document." }]
         }
       },
       {
-        "path": "/users/{userId}/projects/{projectId}",
+        "path": "/projects/{projectId}",
         "definition": {
           "entityName": "Project",
-          "schema": {
-            "$ref": "#/backend/entities/Project"
-          },
-          "description": "Represents a project owned by a user. Includes denormalized 'clientId' for authorization independence.",
-          "params": [
-            {
-              "name": "userId",
-              "description": "The ID of the user who owns the project."
-            },
-            {
-              "name": "projectId",
-              "description": "The ID of the project document."
-            }
-          ]
+          "schema": { "$ref": "#/backend/entities/Project" },
+          "description": "Represents a project. Contains a userId for ownership.",
+          "params": [{ "name": "projectId", "description": "The ID of the project document." }]
         }
       },
       {
-        "path": "/users/{userId}/quotes/{quoteId}",
+        "path": "/quotes/{quoteId}",
         "definition": {
           "entityName": "Quote",
-          "schema": {
-            "$ref": "#/backend/entities/Quote"
-          },
-          "description": "Represents a quote associated with a project. Includes details of the quote, totals, and status.",
-          "params": [
-            {
-              "name": "userId",
-              "description": "The ID of the user who owns the project."
-            },
-            {
-              "name": "quoteId",
-              "description": "The ID of the quote document."
-            }
-          ]
+          "schema": { "$ref": "#/backend/entities/Quote" },
+          "description": "Represents a quote. Contains a userId for ownership.",
+          "params": [{ "name": "quoteId", "description": "The ID of the quote document." }]
         }
       },
       {
-        "path": "/users/{userId}/invoices/{invoiceId}",
+        "path": "/invoices/{invoiceId}",
         "definition": {
           "entityName": "Invoice",
-          "schema": {
-            "$ref": "#/backend/entities/Invoice"
-          },
-          "description": "Represents an invoice based on a quote, associated with a project.",
-          "params": [
-            {
-              "name": "userId",
-              "description": "The ID of the user who owns the project."
-            },
-            {
-              "name": "invoiceId",
-              "description": "The ID of the invoice document."
-            }
-          ]
-        }
-      },
-      {
-        "path": "/roles_admin/{uid}",
-        "definition": {
-          "entityName": "admin_role",
-          "schema": {
-            "$ref": "#/backend/entities/admin_role"
-          },
-          "description": "Indicates administrative privileges for a user. Existence of a document grants admin rights.",
-          "params": [
-            {
-              "name": "uid",
-              "description": "The Firebase UID of the user with admin privileges."
-            }
-          ]
+          "schema": { "$ref": "#/backend/entities/Invoice" },
+          "description": "Represents an invoice. Contains a userId for ownership.",
+          "params": [{ "name": "invoiceId", "description": "The ID of the invoice document." }]
         }
       }
-    ],
-    "reasoning": "This Firestore structure is designed to support ERG Rénovation's BTP management application, focusing on security, scalability, and ease of maintenance. The design prioritizes authorization independence, clarity of intent, and follows the DBAC (Database-Based Access Control) principle. Segregation of data based on ownership and access requirements is central to the approach.\n\n**Authorization Independence:**\nTo avoid hierarchical authorization dependencies (`get()` calls), key authorization data is denormalized. For example, the `clientId` is present within the `projects` collection, even though client information is stored in `/users/{userId}/clients/{clientId}`. This duplication allows security rules to be written without needing to fetch parent document data, ensuring atomic operations and easier debugging.\n\n**QAPs (Rules are not Filters):**\n*   **List Operations:** Secure `list` operations are achieved by segregating data based on ownership. All user-owned data resides under the `/users/{userId}` path, allowing rules to easily filter based on `request.auth.uid` without complex filtering logic.\n\n*   **Admin Roles:** The `/roles_admin/{uid}` collection enables straightforward role-based access control. Existence of a document at this path grants admin privileges.\n\n**Structure Justification:**\n*   **/users/{userId}/clients/{clientId}:** Each client is owned by a specific user. This path-based ownership simplifies security rules.\n*   **/users/{userId}/projects/{projectId}:** Each project is owned by a specific user, which is a good way to follow the `User 1:N Entity` relationship, so we maintain authorization independence by including the `clientId` for direct validation.\n*   **/users/{userId}/quotes/{quoteId}:** Quotes are now a top-level collection under a user, which simplifies queries for quotes across all projects and aligns with the workflow of managing quotes independently. Each quote contains denormalized project and client information for authorization and display purposes.\n*   **/users/{userId}/invoices/{invoiceId}**: Invoices are also a top-level collection, linked by ID to quotes. This structure simplifies invoice management and querying.\n*   **/roles_admin/{uid}:** This collection indicates administrative privileges. Existence of a document for a user ID grants admin rights.\n*   **/locations/{locationId}**: Contains data for locations. Accessible to all users.\n*   **/testimonials/{testimonialId}**: Contains client testimonials. Accessible to all users.\n*   **/blog_posts/{postId}**: Contains blog posts for the application.\n\nThis structure ensures that security rules can be written to validate ownership and roles effectively without relying on complex `get()` calls, adhering to the principles of authorization independence and separation of concerns. Each collection has a clear security posture, facilitating maintainability and debugging."
+    ]
   }
 }
-
-    

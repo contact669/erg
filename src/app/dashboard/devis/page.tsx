@@ -34,18 +34,19 @@ export default function DevisPage() {
     const firestore = useFirestore();
     const [activeTab, setActiveTab] = useState("Nouvelle Demande");
 
-    const quotesCollection = useMemoFirebase(() => {
-        if (!user || !firestore) return null;
-        return collection(firestore, 'users', user.uid, 'quotes');
-    }, [user, firestore]);
-
     const quotesQuery = useMemoFirebase(() => {
-        if (!quotesCollection) return null;
-        if (activeTab === "Tous") {
-            return query(quotesCollection, orderBy('createdAt', 'desc'));
+        if (!user || !firestore) return null;
+
+        const baseQuery = collection(firestore, 'quotes');
+        
+        const queries = [where('userId', '==', user.uid)];
+
+        if (activeTab !== "Tous") {
+            queries.push(where('status', '==', activeTab));
         }
-        return query(quotesCollection, where('status', '==', activeTab), orderBy('createdAt', 'desc'));
-    }, [quotesCollection, activeTab]);
+
+        return query(baseQuery, ...queries, orderBy('createdAt', 'desc'));
+    }, [user, firestore, activeTab]);
 
     const { data: quotes, isLoading } = useCollection<any>(quotesQuery);
 

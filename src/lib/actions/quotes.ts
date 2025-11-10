@@ -4,10 +4,7 @@ import * as admin from 'firebase-admin';
 
 // Initialize Firebase Admin SDK if not already initialized
 if (!admin.apps.length) {
-  admin.initializeApp({
-    // The SDK will automatically use the GOOGLE_APPLICATION_CREDENTIALS
-    // environment variable for authentication on the server.
-  });
+  admin.initializeApp();
 }
 
 const firestore = admin.firestore();
@@ -23,12 +20,6 @@ interface QuoteRequestData {
   estimatedBudget?: string;
 }
 
-/**
- * Finds the admin user's UID by their email address.
- * This is necessary because server-side actions don't have a user context by default.
- * @returns The UID of the admin user.
- * @throws If the admin user is not found.
- */
 async function getAdminUidByEmail(): Promise<string> {
     const adminEmail = 'contact@erg-renovation.fr';
     try {
@@ -44,10 +35,8 @@ async function getAdminUidByEmail(): Promise<string> {
 export async function createQuoteRequest(data: QuoteRequestData) {
   const adminUID = await getAdminUidByEmail();
 
-  // Use a Firestore transaction to ensure all writes succeed or fail together.
   await firestore.runTransaction(async (transaction) => {
-    // 1. Create or find the client under the admin's user space
-    const clientsRef = firestore.collection(`users/${adminUID}/clients`);
+    const clientsRef = firestore.collection('clients');
     const clientQuery = clientsRef.where('email', '==', data.clientEmail).limit(1);
     const clientSnapshot = await transaction.get(clientQuery);
     
@@ -61,6 +50,7 @@ export async function createQuoteRequest(data: QuoteRequestData) {
         email: data.clientEmail,
         phone: data.clientPhone || null,
         address: data.clientAddress,
+        userId: adminUID,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
       });
       clientId = clientDocRef.id;
@@ -69,8 +59,7 @@ export async function createQuoteRequest(data: QuoteRequestData) {
       clientId = clientSnapshot.docs[0].id;
     }
 
-    // 2. Create the project under the admin's user space
-    const projectsRef = firestore.collection(`users/${adminUID}/projects`);
+    const projectsRef = firestore.collection('projects');
     const projectDocRef = projectsRef.doc();
     transaction.set(projectDocRef, {
       clientId: clientId,
@@ -79,12 +68,12 @@ export async function createQuoteRequest(data: QuoteRequestData) {
       description: data.projectDescription,
       address: data.clientAddress,
       status: 'Devis Requis',
+      userId: adminUID,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
     const projectId = projectDocRef.id;
 
-    // 3. Create the quote request under the admin's user space
-    const quotesRef = firestore.collection(`users/${adminUID}/quotes`);
+    const quotesRef = firestore.collection('quotes');
     const quoteDocRef = quotesRef.doc();
     transaction.set(quoteDocRef, {
       projectId: projectId,
@@ -95,6 +84,7 @@ export async function createQuoteRequest(data: QuoteRequestData) {
       projectDescription: data.projectDescription,
       estimatedBudget: data.estimatedBudget || null,
       status: 'Nouvelle Demande',
+      userId: adminUID,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
   });
