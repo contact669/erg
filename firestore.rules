@@ -1,10 +1,6 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Règle temporaire et simplifiée : autorise la lecture et l'écriture
-    // à n'importe quel utilisateur authentifié, sur n'importe quel document.
-    // Ceci est une mesure pour débloquer le développement.
-    // Des règles plus strictes devront être réintroduites.
     match /{document=**} {
       allow read, write: if request.auth != null;
     }
