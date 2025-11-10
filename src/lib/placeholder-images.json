@@ -3,235 +3,235 @@
     {
       "id": "hero-image",
       "description": "A bright and modern living room with stylish furniture, showcasing a high-end interior renovation.",
-      "imageUrl": "/images/hero-image.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bW9kZXJuJTIwbGl2aW5nJTIwcm9vbXxlbnwwfHx8fDE3NjI2NzMwNTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "modern living room"
     },
     {
       "id": "project-kitchen-1",
       "description": "A sleek, modern kitchen with dark cabinets and marble countertops.",
-      "imageUrl": "/images/project-kitchen-1.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBraXRjaGVufGVufDB8fHx8MTc2MjY4NjQxMnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "modern kitchen"
     },
     {
       "id": "project-kitchen-1-before",
       "description": "An old, dated kitchen in need of renovation.",
-      "imageUrl": "/images/project-kitchen-1-before.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1717331822162-74e5eaf4d038?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxvbGQlMjBraXRjaGVufGVufDB8fHx8MTc2MjcxNDczNnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "old kitchen"
     },
     {
       "id": "project-bathroom-1",
       "description": "An elegant bathroom featuring a freestanding tub and walk-in shower.",
-      "imageUrl": "/images/project-bathroom-1.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1750036015902-c6f5ebca924e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxlbGVnYW50JTIwYmF0aHJvb218ZW58MHx8fHwxNzYyNzY0NjcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "elegant bathroom"
     },
     {
       "id": "project-bathroom-1-before",
       "description": "A cramped, outdated bathroom before its luxurious transformation.",
-      "imageUrl": "/images/project-bathroom-1-before.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1686838606057-d7f2a8748e95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvbGQlMjBiYXRocm9vbXxlbnwwfHx8fDE3NjI3NjQ2NzJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "old bathroom"
     },
     {
       "id": "project-apartment-1",
       "description": "A spacious and open-plan apartment living area.",
-      "imageUrl": "/images/project-apartment-1.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1712304134843-0851ce9cfcfd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzcGFjaW91cyUyMGFwYXJ0bWVudHxlbnwwfHx8fDE3NjI3NjQ2NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "spacious apartment"
     },
     {
       "id": "project-apartment-1-before",
       "description": "A cluttered apartment living room before renovation.",
-      "imageUrl": "/images/project-apartment-1-before.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1612311533219-3687fcf1ee78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2x1dHRlcmVkJTIwcm9vbXxlbnwwfHx8fDE3NjI3NjQ2NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "cluttered room"
     },
     {
       "id": "project-office-1",
       "description": "A contemporary office space with glass partitions and minimalist furniture.",
-      "imageUrl": "/images/project-office-1.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1641998148499-cb6b55a3c0d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb250ZW1wb3JhcnklMjBvZmZpY2V8ZW58MHx8fHwxNzYyNzY0NjcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "contemporary office"
     },
     {
       "id": "project-office-1-before",
       "description": "A dated and poorly lit office space prior to its modern overhaul.",
-      "imageUrl": "/images/project-office-1-before.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1674309296547-c790f77231f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxvbGQlMjBvZmZpY2V8ZW58MHx8fHwxNzYyNzY0NjcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "old office"
     },
     {
       "id": "testimonial-avatar-1",
       "description": "Avatar for a client testimonial.",
-      "imageUrl": "/images/testimonial-avatar-1.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1540569014015-19a7be504e3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjI3MTQ3MjJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "person portrait"
     },
     {
       "id": "testimonial-avatar-2",
       "description": "Avatar for a client testimonial.",
-      "imageUrl": "/images/testimonial-avatar-2.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1711645169736-53327e726205?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx3b21hbiUyMHNtaWxpbmd8ZW58MHx8fHwxNzYyNzM4NDYyfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "woman smiling"
     },
     {
       "id": "testimonial-avatar-3",
       "description": "Avatar for a client testimonial.",
-      "imageUrl": "/images/testimonial-avatar-3.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1537511446984-935f663eb1f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtYW4lMjBwcm9mZXNzaW9uYWx8ZW58MHx8fHwxNzYyNzEwMjA2fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "man professional"
     },
     {
       "id": "cta-banner-image",
       "description": "An architectural blueprint or design sketch, representing planning and precision.",
-      "imageUrl": "/images/cta-banner-image.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1742415106102-77bbfe14b872?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxhcmNoaXRlY3R1cmFsJTIwYmx1ZXByaW50fGVufDB8fHx8MTc2Mjc2NDY3MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "architectural blueprint"
     },
     {
       "id": "project-studio-1",
       "description": "A compact and well-lit studio apartment with clever storage solutions.",
-      "imageUrl": "/images/project-studio-1.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1502672023488-70e25813eb80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzbWFsbCUyMGFwYXJ0bWVudHxlbnwwfHx8fDE3NjI3MzM2MjN8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "small apartment"
     },
     {
       "id": "project-studio-1-before",
       "description": "An empty, plain studio room before any renovation.",
-      "imageUrl": "/images/project-studio-1-before.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1594286851359-8e5a51b36bba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxlbXB0eSUyMHJvb218ZW58MHx8fHwxNzYyNzM1NjcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "empty room"
     },
     {
       "id": "project-house-1",
       "description": "The exterior of a modern two-story house with a garden.",
-      "imageUrl": "/images/project-house-1.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1628744448840-55bdb2497bd4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtb2Rlcm4lMjBob3VzZXxlbnwwfHx8fDE3NjI3MzI4MjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "modern house"
     },
     {
       "id": "project-house-1-before",
       "description": "An older, single-story house exterior before a major renovation and extension.",
-      "imageUrl": "/images/project-house-1-before.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1532978870264-ef2ef1f49127?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxvbGQlMjBob3VzZXxlbnwwfHx8fDE3NjI3NDAzNTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "old house"
     },
     {
       "id": "project-office-2",
       "description": "A sophisticated office interior with leather chairs and wood paneling.",
-      "imageUrl": "/images/project-office-2.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1525896544042-354764aa27e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxsdXh1cnklMjBvZmZpY2V8ZW58MHx8fHwxNzYyNzY0NjcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "luxury office"
     },
     {
       "id": "project-office-2-before",
       "description": "A standard, uninspired office space with cubicles before being renovated.",
-      "imageUrl": "/images/project-office-2-before.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1557780227-4be1417d3c34?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzdGFuZGFyZCUyMG9mZmljZXxlbnwwfHx8fDE3NjI3NjQ2NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "standard office"
     },
     {
       "id": "project-bathroom-2",
       "description": "A small, stylish attic bathroom with a skylight.",
-      "imageUrl": "/images/project-bathroom-2.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1614349597059-fe6b86554980?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxhdHRpYyUyMGJhdGhyb29tfGVufDB8fHx8MTc2Mjc2NDY3MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "attic bathroom"
     },
     {
       "id": "project-bathroom-2-before",
       "description": "An unused, dark attic space before being converted into a bathroom.",
-      "imageUrl": "/images/project-bathroom-2-before.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1588066696414-113c404edfdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkYXJrJTIwYXR0aWN8ZW58MHx8fHwxNzYyNzY0NjcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "dark attic"
     },
     {
       "id": "service-apartment",
       "description": "A beautifully renovated, modern apartment living room with large windows.",
-      "imageUrl": "/images/service-apartment.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1621070659899-40b6b6f6731d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtb2Rlcm4lMjBhcGFydG1lbnR8ZW58MHx8fHwxNzYyNjU3OTY3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "modern apartment"
     },
     {
       "id": "service-house",
       "description": "The facade of a renovated family house with a garden.",
-      "imageUrl": "/images/service-house.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1706986553828-85fd40c31e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxyZW5vdmF0ZWQlMjBob3VzZXxlbnwwfHx8fDE3NjI3NjQ2NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "renovated house"
     },
     {
       "id": "service-bathroom",
       "description": "A luxurious, modern bathroom with a large walk-in shower.",
-      "imageUrl": "/images/service-bathroom.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1564540583246-934409427776?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bHV4dXJ5JTIwYmF0aHJvb218ZW58MHx8fHwxNzYyNzIwNzMyfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "luxury bathroom"
     },
     {
       "id": "service-kitchen",
       "description": "A spacious and modern kitchen with an island, ready for cooking.",
-      "imageUrl": "/images/service-kitchen.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBraXRjaGVufGVufDB8fHx8MTc2MjY4NjQxMnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "modern kitchen"
     },
     {
       "id": "service-attic",
       "description": "A cozy and bright attic converted into a bedroom.",
-      "imageUrl": "/images/service-attic.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1675621926040-b514257d5941?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8YXR0aWMlMjBiZWRyb29tfGVufDB8fHx8MTc2Mjc2NDY3MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "attic bedroom"
     },
     {
       "id": "service-painting",
       "description": "A painter carefully applying a new coat of paint to a wall.",
-      "imageUrl": "/images/service-painting.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1688372199140-cade7ae820fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwYWludGVyJTIwd2FsbHxlbnwwfHx8fDE3NjI3NjQ2NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "painter wall"
     },
     {
       "id": "about-hero",
       "description": "A team of construction workers collaborating on a blueprint at a building site.",
-      "imageUrl": "/images/about-hero.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1516216628859-9bccecab13ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb25zdHJ1Y3Rpb24lMjB0ZWFtfGVufDB8fHx8MTc2MjY3OTM4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "construction team"
     },
     {
       "id": "about-story",
       "description": "Two craftsmen discussing plans over a wooden workbench in a workshop.",
-      "imageUrl": "/images/about-story.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1707064892275-a3088e8240be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjcmFmdHNtZW4lMjB3b3JraW5nfGVufDB8fHx8MTc2Mjc2NDY3MXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "craftsmen working"
     },
     {
       "id": "founder-1",
       "description": "Portrait of a confident male construction manager in his 40s.",
-      "imageUrl": "/images/founder-1.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1542183669-c4c74d629b34?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtYWxlJTIwcHJvZmVzc2lvbmFsfGVufDB8fHx8MTc2MjY5MjY2Nnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "male professional"
     },
     {
       "id": "founder-2",
       "description": "Portrait of a friendly male architect in his late 30s.",
-      "imageUrl": "/images/founder-2.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1532466177299-457c33feb232?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtYWxlJTIwYXJjaGl0ZWN0fGVufDB8fHx8MTc2Mjc2NDY3Mnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "male architect"
     },
     {
       "id": "blog-post-1",
       "description": "A stylish Parisian apartment interior with classic moldings and modern furniture.",
-      "imageUrl": "/images/blog-post-1.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1565602089768-d76fddb36623?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxQYXJpc2lhbiUyMGFwYXJ0bWVudHxlbnwwfHx8fDE3NjI3NjQ2NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "Parisian apartment"
     },
     {
       "id": "blog-post-2",
       "description": "A friendly and professional craftsman smiling at the camera in a workshop.",
-      "imageUrl": "/images/blog-post-2.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1703420371268-85d78cfdc5cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhcnRpc2FuJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYyNzA4NzgwfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "artisan portrait"
     },
     {
       "id": "blog-image-verriere",
       "description": "Une verrière d'atelier pour séparer les espaces sans perdre en luminosité.",
-      "imageUrl": "/images/blog-image-verriere.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1635540636082-68876a5345f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxnbGFzcyUyMHBhcnRpdGlvbnxlbnwwfHx8fDE3NjI3NjQ2NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "glass partition"
     },
     {
       "id": "blog-image-parquet",
       "description": "Un parquet en point de Hongrie qui apporte chaleur et élégance.",
-      "imageUrl": "/images/blog-image-parquet.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1630180021706-47eed0b51e1b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxoZXJyaW5nYm9uZSUyMGZsb29yfGVufDB8fHx8MTc2Mjc2NDY3Mnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "herringbone floor"
     },
     {
       "id": "service-pillar-kitchen",
       "description": "A close-up of a modern kitchen island with an integrated sink and sleek faucet.",
-      "imageUrl": "/images/service-pillar-kitchen.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1612152754790-92638e4667bd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8a2l0Y2hlbiUyMGRldGFpbHxlbnwwfHx8fDE3NjI3NjQ2NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "kitchen detail"
     },
     {
       "id": "service-pillar-finish",
       "description": "A detailed shot of a perfectly painted wall corner, showcasing high-quality finish.",
-      "imageUrl": "/images/service-pillar-finish.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1568090819305-e7edcc3b264b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwYWludGVkJTIwd2FsbHxlbnwwfHx8fDE3NjI3NjQ2NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "painted wall"
     },
     {
       "id": "project-apartment-hauts-de-seine",
       "description": "A stylish living room in a renovated apartment in Hauts-de-Seine, with a view of La Défense.",
-      "imageUrl": "/images/project-apartment-hauts-de-seine.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1759223198981-661cadbbff36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c3R5bGlzaCUyMGxpdmluZyUyMHJvb218ZW58MHx8fHwxNzYyNzY0NjcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "stylish living room"
     },
     {
       "id": "project-apartment-paris-75",
       "description": "A beautifully renovated Haussmannian living room with classic moldings, a marble fireplace, and herringbone parquet flooring.",
-      "imageUrl": "/images/project-apartment-paris-75.jpg",
+      "imageUrl": "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjBhcGFydG1lbnR8ZW58MHx8fHwxNzYyNzExNjY3fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "luxury apartment"
     }
   ]
