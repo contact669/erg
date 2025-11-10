@@ -15,7 +15,17 @@ service cloud.firestore {
     }
 
     match /quotes/{quoteId} {
-      allow read, write: if isOwner(resource.data.userId);
+      // Allow read/write on individual documents for the owner.
+      allow get, update, delete: if resource.data.userId == request.auth.uid;
+      
+      // Allow creation of a quote if the user ID matches.
+      allow create: if request.resource.data.userId == request.auth.uid;
+    }
+    
+    // This rule is crucial: it allows a client to LIST quotes,
+    // but ONLY if the query includes a 'where("userId", "==", request.auth.uid)' clause.
+    match /quotes/{quoteId} {
+        allow list: if request.query.resource.data.userId == request.auth.uid;
     }
 
     match /invoices/{invoiceId} {
