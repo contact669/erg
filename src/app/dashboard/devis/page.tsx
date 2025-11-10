@@ -2,7 +2,7 @@
 
 import { useUser, useCollection, useMemoFirebase } from '@/firebase';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -11,7 +11,7 @@ import { PlusCircle, MoreHorizontal, FileText, Bot } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
-import { collection, query, orderBy, where } from 'firebase/firestore';
+import { collection, query, orderBy, where, Query } from 'firebase/firestore';
 import { useFirestore } from '@/firebase';
 
 function getStatusBadgeVariant(status: string) {
@@ -37,13 +37,18 @@ export default function DevisPage() {
   }, [user, isUserLoading, router]);
 
   const quotesQuery = useMemoFirebase(() => {
-    if (!user || !firestore) return null;
+    if (!firestore || !user?.uid) {
+      // Retourne null si firestore ou l'UID de l'utilisateur ne sont pas encore disponibles.
+      // useCollection gérera cet état et ne lancera pas de requête.
+      return null;
+    }
+    // La requête est construite uniquement lorsque toutes les dépendances sont prêtes.
     return query(
       collection(firestore, 'quotes'),
       where('userId', '==', user.uid),
       orderBy('createdAt', 'desc')
     );
-  }, [user, firestore]);
+  }, [firestore, user?.uid]);
 
   const { data: quotes, isLoading } = useCollection<any>(quotesQuery);
 
