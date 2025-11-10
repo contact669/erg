@@ -4,7 +4,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Star, Phone } from 'lucide-react';
+import { Menu, X, Star, Phone, LogIn, LayoutDashboard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { ErgLogo, GoogleIcon } from '@/components/icons.tsx';
@@ -20,6 +20,36 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
+import { useUser } from '@/firebase';
+
+function AuthButton() {
+    const { user, isUserLoading } = useUser();
+
+    if (isUserLoading) {
+        return <Button variant="ghost" size="icon" className="md:h-10 md:w-auto md:px-4"><div className="w-5 h-5 rounded-full border-2 border-border border-t-primary animate-spin" /></Button>
+    }
+
+    if(user) {
+        return (
+            <Button asChild variant="outline">
+                <Link href="/dashboard">
+                    <LayoutDashboard className="md:mr-2" />
+                    <span className="hidden md:inline">Tableau de bord</span>
+                </Link>
+            </Button>
+        );
+    }
+
+    return (
+        <Button asChild>
+            <Link href="/connexion">
+                <LogIn className="md:mr-2" />
+                 <span className="hidden md:inline">Espace Pro</span>
+            </Link>
+        </Button>
+    )
+}
+
 
 export default function SiteHeader() {
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -133,6 +163,7 @@ export default function SiteHeader() {
           <Button asChild className="hidden md:flex">
             <Link href="/devis">Demander un devis</Link>
           </Button>
+          <AuthButton />
           <MobileNav />
         </div>
       </div>
@@ -160,7 +191,7 @@ const ListItem = React.forwardRef<
                <Icon className="h-5 w-5" />
             </div>
             <div>
-              <div className="text-sm font-medium leading-none">{title}</div>
+              <div className="text-sm font-medium leading-none group-hover:text-accent-foreground">{title}</div>
               <p className="line-clamp-2 text-xs leading-snug text-muted-foreground group-hover:text-accent-foreground/80">
                 {children}
               </p>
