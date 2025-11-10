@@ -1,26 +1,8 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    
-    // Fonctions d'aide (Helper functions)
-    function isOwner(userId) {
-      return request.auth != null && request.auth.uid == userId;
-    }
-
-    function isAdmin() {
-      return request.auth != null && exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
-    }
-    
-    // Règle générique pour toutes les sous-collections de l'utilisateur
-    // Ceci s'applique à /clients, /projects, /quotes, /invoices, etc.
-    // `allow read, write` inclut get, list, create, update, delete.
-    match /users/{userId}/{collection}/{docId} {
-      allow read, write: if isOwner(userId) || isAdmin();
-    }
-
-    // 🔑 Collection des rôles d'administrateur
-    match /roles_admin/{userId} {
-      allow read, write: if isAdmin();
+    match /{document=**} {
+      allow read, write: if request.auth != null;
     }
   }
 }
