@@ -4,6 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 import StickyCallToAction from '@/components/sticky-call-to-action';
 import CookieConsent from '@/components/cookie-consent';
 import { FirebaseClientProvider } from '@/firebase';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 export const metadata: Metadata = {
   title: 'ERG Rénovation - Rénovation intérieure à Paris',
@@ -28,7 +29,9 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <FirebaseClientProvider>
-          {children}
+          <TooltipProvider>
+            {children}
+          </TooltipProvider>
           <Toaster />
           <StickyCallToAction />
           <CookieConsent />
