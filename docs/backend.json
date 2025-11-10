@@ -151,8 +151,7 @@
   },
   "auth": {
     "providers": [
-      "password",
-      "anonymous"
+      "password"
     ]
   },
   "firestore": {
@@ -261,54 +260,6 @@
             {
               "name": "uid",
               "description": "The Firebase UID of the user with admin privileges."
-            }
-          ]
-        }
-      },
-      {
-        "path": "/locations/{locationId}",
-        "definition": {
-          "entityName": "Location",
-          "schema": {
-            "$ref": "#/backend/entities/location"
-          },
-          "description": "Contains data for locations. Accessible to all users.",
-          "params": [
-            {
-              "name": "locationId",
-              "description": "The ID of the location."
-            }
-          ]
-        }
-      },
-      {
-        "path": "/testimonials/{testimonialId}",
-        "definition": {
-          "entityName": "Testimonial",
-          "schema": {
-            "$ref": "#/backend/entities/testimonial"
-          },
-          "description": "Contains client testimonials. Accessible to all users.",
-          "params": [
-            {
-              "name": "testimonialId",
-              "description": "The ID of the testimonial."
-            }
-          ]
-        }
-      },
-      {
-        "path": "/blog_posts/{postId}",
-        "definition": {
-          "entityName": "BlogPost",
-          "schema": {
-            "$ref": "#/backend/entities/blogPost"
-          },
-          "description": "Contains blog posts for the application.",
-          "params": [
-            {
-              "name": "postId",
-              "description": "The ID of the blog post."
             }
           ]
         }

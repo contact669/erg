@@ -5,20 +5,17 @@
  * This ruleset enforces a strict user-ownership model for clients, projects, quotes, and invoices.
  * Only the owning user can read, create, update, or delete their data. Administrative privileges
  * are granted based on the existence of a document in the `/roles_admin/{uid}` collection.
- * Certain top-level collections are publicly readable (locations, testimonials, blog posts).
+ * Public data is limited to specific top-level collections.
  *
  * Data Structure:
  * All user-specific data is nested under `/users/{userId}`. Projects, quotes, and invoices
- * are further nested to reflect their relationships.
- * Admin roles are stored in `/roles_admin/{uid}`.
- * Public data (locations, testimonials, blog posts) resides in top-level collections.
+ * are further nested to reflect their relationships. Admin roles are stored in `/roles_admin/{uid}`.
  *
  * Key Security Decisions:
  * - Users can only access their own clients, projects, quotes, and invoices.
  * - Administrative privileges are explicitly granted via the `/roles_admin/{uid}` collection.
- * - Public data (locations, testimonials, blog posts) is readable by all.
  * - List operations are secured based on ownership and role.
- * - Invoice totals are intended to be managed exclusively by Cloud Functions.
+ * - Invoice and quote totals are intended to be managed exclusively by Cloud Functions.
  *
  * Denormalization for Authorization:
  * The `clientId` field is denormalized into the `projects` collection to avoid requiring
@@ -31,8 +28,6 @@ service cloud.firestore {
 
     /**
      * @description Checks if the request is authenticated.
-     * @param {void}
-     * @return {bool} True if the user is signed in, false otherwise.
      */
     function isSignedIn() {
       return request.auth != null;
@@ -40,174 +35,47 @@ service cloud.firestore {
 
     /**
      * @description Checks if the request is made by the owner (userId).
-     * @param {string} userId The user ID to compare against the request's auth UID.
-     * @return {bool} True if the request is made by the owner, false otherwise.
      */
     function isOwner(userId) {
       return isSignedIn() && request.auth.uid == userId;
     }
-
-    /**
-     * @description Checks if the request is made by an existing owner (userId) and the document exists.
-     * @param {string} userId The user ID to compare against the request's auth UID.
-     * @return {bool} True if the request is made by an existing owner and the document exists, false otherwise.
-     */
-    function isExistingOwner(userId) {
-      return isOwner(userId) && resource != null;
-    }
-
+    
     /**
      * @description Checks if the user has admin privileges.
-     * @return {bool} True if the user is an admin, false otherwise.
      */
     function isAdmin() {
         return exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
     }
-
-    /**
-     * @description Rules for client documents.
-     * @path /users/{userId}/clients/{clientId}
-     * @allow (create) User A creates a new client with userId 'A'.
-     * @allow (get) User A reads client 'client1' if userId is 'A'.
-     * @allow (update) User A updates client 'client1' if userId is 'A' and the client exists.
-     * @allow (delete) User A deletes client 'client1' if userId is 'A' and the client exists.
-     * @deny (create) User B tries to create a client with userId 'A'.
-     * @deny (get) User B tries to read client 'client1' under userId 'A'.
-     * @deny (update) User B tries to update client 'client1' under userId 'A'.
-     * @deny (delete) User B tries to delete client 'client1' under userId 'A'.
-     * @principle Enforces document ownership for writes. Restricts access to a user's own data tree.
-     */
-    match /users/{userId}/clients/{clientId} {
-      allow get: if isOwner(userId) || isAdmin();
-      allow list: if isOwner(userId) || isAdmin();
-      allow create: if isOwner(userId) && request.resource.data.id == userId;
-      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
-      allow delete: if isExistingOwner(userId);
-    }
-
-    /**
-     * @description Rules for project documents.
-     * @path /users/{userId}/projects/{projectId}
-     * @allow (create) User A creates a new project with userId 'A'.
-     * @allow (get) User A reads project 'project1' if userId is 'A'.
-     * @allow (update) User A updates project 'project1' if userId is 'A' and the project exists.
-     * @allow (delete) User A deletes project 'project1' if userId is 'A' and the project exists.
-     * @deny (create) User B tries to create a project with userId 'A'.
-     * @deny (get) User B tries to read project 'project1' under userId 'A'.
-     * @deny (update) User B tries to update project 'project1' under userId 'A'.
-     * @deny (delete) User B tries to delete project 'project1' under userId 'A'.
-     * @principle Enforces document ownership for writes. Restricts access to a user's own data tree.
-     */
-    match /users/{userId}/projects/{projectId} {
-      allow get: if isOwner(userId) || isAdmin();
-      allow list: if isOwner(userId) || isAdmin();
-      allow create: if isOwner(userId) && request.resource.data.clientId != null;
-      allow update: if isExistingOwner(userId) && request.resource.data.clientId == resource.data.clientId;
-      allow delete: if isExistingOwner(userId);
-    }
-
-    /**
-     * @description Rules for quote documents.
-     * @path /users/{userId}/projects/{projectId}/quotes/{quoteId}
-     * @allow (create) User A creates a new quote with userId 'A'.
-     * @allow (get) User A reads quote 'quote1' if userId is 'A'.
-     * @allow (update) User A updates quote 'quote1' if userId is 'A' and the quote exists.
-     * @allow (delete) User A deletes quote 'quote1' if userId is 'A' and the quote exists.
-     * @deny (create) User B tries to create a quote with userId 'A'.
-     * @deny (get) User B tries to read quote 'quote1' under userId 'A'.
-     * @deny (update) User B tries to update quote 'quote1' under userId 'A'.
-     * @deny (delete) User B tries to delete quote 'quote1' under userId 'A'.
-     * @principle Enforces document ownership for writes. Restricts access to a user's own data tree.
-     */
-    match /users/{userId}/projects/{projectId}/quotes/{quoteId} {
-      allow get: if isOwner(userId) || isAdmin();
-      allow list: if isOwner(userId) || isAdmin();
-      allow create: if isOwner(userId) && request.resource.data.projectId == projectId;
-      allow update: if isExistingOwner(userId) && request.resource.data.projectId == resource.data.projectId;
-      allow delete: if isExistingOwner(userId);
-    }
-
-    /**
-     * @description Rules for invoice documents.
-     * @path /users/{userId}/projects/{projectId}/quotes/{quoteId}/invoices/{invoiceId}
-     * @allow (create) User A creates a new invoice with userId 'A'.
-     * @allow (get) User A reads invoice 'invoice1' if userId is 'A'.
-     * @allow (update) User A updates invoice 'invoice1' if userId is 'A' and the invoice exists.
-     * @allow (delete) User A deletes invoice 'invoice1' if userId is 'A' and the invoice exists.
-     * @deny (create) User B tries to create a invoice with userId 'A'.
-     * @deny (get) User B tries to read invoice 'invoice1' under userId 'A'.
-     * @deny (update) User B tries to update invoice 'invoice1' under userId 'A'.
-     * @deny (delete) User B tries to delete invoice 'invoice1' under userId 'A'.
-     * @principle Enforces document ownership for writes. Restricts access to a user's own data tree.
-     */
-    match /users/{userId}/projects/{projectId}/quotes/{quoteId}/invoices/{invoiceId} {
-      allow get: if isOwner(userId) || isAdmin();
-      allow list: if isOwner(userId) || isAdmin();
-      allow create: if isOwner(userId) && request.resource.data.quoteId == quoteId;
-      allow update: if isExistingOwner(userId) && request.resource.data.quoteId == resource.data.quoteId;
-      allow delete: if isExistingOwner(userId);
+    
+    match /users/{userId}/{document=**} {
+      allow read, write: if isOwner(userId) || isAdmin();
     }
 
     /**
      * @description Rules for admin roles.
      * @path /roles_admin/{uid}
-     * @allow (create) Only an existing admin can create a new admin role.
-     * @allow (get) Any authenticated user can check for admin status.
-     * @allow (update) No one can update an admin role document (deletion and re-creation are used instead).
-     * @allow (delete) Only an existing admin can delete an admin role.
-     * @principle Enforces role-based access control.
      */
     match /roles_admin/{uid} {
       allow get: if isSignedIn();
-      allow list: if false;
-      allow create: if isAdmin();
-      allow update: if false;
-      allow delete: if isAdmin();
+      allow list, create, delete: if isAdmin();
+      allow update: if false; // Roles are assigned/revoked by creating/deleting documents
     }
 
-    /**
-     * @description Rules for locations. Publicly readable.
-     * @path /locations/{locationId}
-     * @allow (get, list) Any user can read the location data.
-     * @allow (create, update, delete) Only admins can modify location data.
-     * @principle Provides public read access with admin-only writes.
-     */
+    // Publicly readable collections
     match /locations/{locationId} {
       allow get: if true;
       allow list: if true;
-      allow create: if isAdmin();
-      allow update: if isAdmin() && resource != null;
-      allow delete: if isAdmin() && resource != null;
+      allow write: if isAdmin();
     }
-
-    /**
-     * @description Rules for testimonials. Publicly readable.
-     * @path /testimonials/{testimonialId}
-     * @allow (get, list) Any user can read the testimonial data.
-     * @allow (create, update, delete) Only admins can modify testimonial data.
-     * @principle Provides public read access with admin-only writes.
-     */
     match /testimonials/{testimonialId} {
       allow get: if true;
       allow list: if true;
-      allow create: if isAdmin();
-      allow update: if isAdmin() && resource != null;
-      allow delete: if isAdmin() && resource != null;
+      allow write: if isAdmin();
     }
-
-    /**
-     * @description Rules for blog posts. Publicly readable.
-     * @path /blog_posts/{postId}
-     * @allow (get, list) Any user can read the blog post data.
-     * @allow (create, update, delete) Only admins can modify blog post data.
-     * @principle Provides public read access with admin-only writes.
-     */
     match /blog_posts/{postId} {
       allow get: if true;
-      allow list: if true;
-      allow create: if isAdmin();
-      allow update: if isAdmin() && resource != null;
-      allow delete: if isAdmin() && resource != null;
+      allow list: true;
+      allow write: if isAdmin();
     }
   }
 }
