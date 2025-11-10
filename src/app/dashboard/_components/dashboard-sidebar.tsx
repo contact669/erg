@@ -186,7 +186,9 @@ export default function DashboardSidebar() {
                         <DropdownMenuItem asChild>
                             <Link href="/dashboard/profil">Profil</Link>
                         </DropdownMenuItem>
-                        <DropdownMenuItem>Paramètres</DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                           <Link href="/dashboard/parametres">Paramètres</Link>
+                        </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={handleSignOut}>Déconnexion</DropdownMenuItem>
                         </DropdownMenuContent>
