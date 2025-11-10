@@ -21,19 +21,6 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 
-function GoogleReviewBadge() {
-    return (
-        <a href="https://www.google.com/maps/search/?api=1&query=ERG-Entreprise+de+Rénovation+Appartement+%26+Salle+de+Bains+%C3%A0+Paris+et+%C3%8Ele-de-France" target="_blank" rel="noopener noreferrer" className="hidden items-center gap-2 rounded-lg border bg-secondary px-3 py-1.5 text-sm hover:bg-secondary/80 md:flex">
-            <GoogleIcon className="h-5 w-5" />
-            <div className="flex items-center">
-                <span className="font-semibold text-foreground">4.6</span>
-                <Star className="ml-1 h-4 w-4 fill-amber-400 text-amber-400" />
-            </div>
-            <span className="text-muted-foreground">/ 5 sur 36 avis</span>
-        </a>
-    )
-}
-
 export default function SiteHeader() {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const pathname = usePathname();
@@ -139,7 +126,6 @@ export default function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <GoogleReviewBadge />
           <Button asChild className="hidden md:flex">
             <Link href="/devis">Demander un devis</Link>
           </Button>

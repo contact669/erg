@@ -20,12 +20,9 @@ export default function GoogleReviews() {
     <section className="bg-secondary py-16 md:py-24">
       <div className="container">
         <div className="mx-auto mb-12 max-w-2xl text-center">
-          <div className='flex justify-center items-center gap-2 mb-4'>
-            <GoogleIcon className="h-8 w-8" />
-            <h2 className="font-headline text-3xl font-bold md:text-4xl">
-              Ce que nos clients disent de nous
-            </h2>
-          </div>
+          <h2 className="font-headline text-3xl font-bold md:text-4xl">
+            Ce que nos clients disent de nous
+          </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             La satisfaction de nos clients est notre plus grande fierté.
             Découvrez nos derniers avis certifiés sur Google.
