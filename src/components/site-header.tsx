@@ -150,18 +150,18 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            'group block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
             className
           )}
           {...props}
         >
           <div className="flex items-center gap-3">
-             <div className="rounded-md bg-primary/10 p-2 text-accent">
+             <div className="rounded-md bg-primary/10 p-2 text-accent group-hover:bg-accent-foreground/20 group-hover:text-accent-foreground">
                <Icon className="h-5 w-5" />
             </div>
             <div>
               <div className="text-sm font-medium leading-none">{title}</div>
-              <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">
+              <p className="line-clamp-2 text-xs leading-snug text-muted-foreground group-hover:text-accent-foreground/80">
                 {children}
               </p>
             </div>
@@ -188,8 +188,8 @@ function MobileNav() {
       </SheetTrigger>
       <SheetContent side="right" className="w-[300px]">
         <SheetHeader className="border-b pb-4">
-            <SheetTitle className="sr-only">Menu principal</SheetTitle>
-            <div className="flex items-center justify-between">
+          <SheetTitle className="sr-only">Menu</SheetTitle>
+          <div className="flex items-center justify-between">
             <Link
               href="/"
               className="flex items-center gap-2"
