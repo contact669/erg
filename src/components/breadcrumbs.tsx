@@ -32,6 +32,14 @@ function slugToTitle(slug: string): string {
     return slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 }
 
+function truncateTitle(title: string): string {
+    const words = title.split(' ');
+    if (words.length > 2) {
+        return words.slice(0, 2).join(' ') + '...';
+    }
+    return title;
+}
+
 
 export default function Breadcrumbs() {
   const pathname = usePathname();
@@ -55,6 +63,12 @@ export default function Breadcrumbs() {
             {segments.map((segment, index) => {
                 const href = '/' + segments.slice(0, index + 1).join('/');
                 const isLast = index === segments.length - 1;
+                
+                let title = slugToTitle(segment);
+                const isBlogPostPage = segments[0] === 'blog' && segments.length > 1 && isLast;
+                if (isBlogPostPage) {
+                    title = truncateTitle(title);
+                }
 
                 return (
                 <Fragment key={href}>
@@ -70,7 +84,7 @@ export default function Breadcrumbs() {
                         isLast && 'text-foreground font-medium pointer-events-none'
                         )}
                     >
-                        {slugToTitle(segment)}
+                        {title}
                     </Link>
                     </li>
                 </Fragment>
