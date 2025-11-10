@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PlusCircle, MoreHorizontal, FileText, Bot } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import { format } from 'date-fns';
@@ -30,28 +29,21 @@ export default function DevisPage() {
   const { user, isUserLoading } = useUser();
   const router = useRouter();
   const firestore = useFirestore();
-  const [activeTab, setActiveTab] = useState("Nouvelle Demande");
 
-  // ✅ Vérifie que seul l'admin peut accéder à la page
   useEffect(() => {
-    if (!isUserLoading && (!user || user.uid !== "pHcnP0Mc32frrhPRzTT2nFwCxno1")) {
+    if (!isUserLoading && !user) {
       router.push('/connexion');
     }
   }, [user, isUserLoading, router]);
 
-  // 🔍 Requête Firestore pour lire tous les devis
   const quotesQuery = useMemoFirebase(() => {
     if (!user || !firestore) return null;
-
-    const baseQuery = collection(firestore, 'quotes');
-    const filters = [];
-
-    if (activeTab !== "Tous") {
-      filters.push(where('status', '==', activeTab));
-    }
-
-    return query(baseQuery, ...filters, orderBy('createdAt', 'desc'));
-  }, [user, firestore, activeTab]);
+    return query(
+      collection(firestore, 'quotes'),
+      where('userId', '==', user.uid),
+      orderBy('createdAt', 'desc')
+    );
+  }, [user, firestore]);
 
   const { data: quotes, isLoading } = useCollection<any>(quotesQuery);
 
@@ -80,103 +72,94 @@ export default function DevisPage() {
         </div>
       </div>
 
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList>
-          <TabsTrigger value="Nouvelle Demande">Nouvelles Demandes</TabsTrigger>
-          <TabsTrigger value="En cours">En cours</TabsTrigger>
-          <TabsTrigger value="Envoyé">Envoyés</TabsTrigger>
-          <TabsTrigger value="Accepté">Acceptés</TabsTrigger>
-          <TabsTrigger value="Refusé">Refusés</TabsTrigger>
-        </TabsList>
-        <Card className="mt-4">
-          <CardHeader>
-            <CardTitle>Liste des devis - {activeTab}</CardTitle>
-            <CardDescription>
-              Retrouvez ici tous vos devis en cours, acceptés ou refusés.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
+      <Card>
+        <CardHeader>
+          <CardTitle>Liste des devis</CardTitle>
+          <CardDescription>
+            Retrouvez ici tous vos devis.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Client</TableHead>
+                <TableHead>Projet</TableHead>
+                <TableHead className="hidden sm:table-cell">Date</TableHead>
+                <TableHead className="hidden md:table-cell text-right">Montant</TableHead>
+                <TableHead className="hidden sm:table-cell">Statut</TableHead>
+                <TableHead><span className="sr-only">Actions</span></TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {isLoading && (
                 <TableRow>
-                  <TableHead>Client</TableHead>
-                  <TableHead>Projet</TableHead>
-                  <TableHead className="hidden sm:table-cell">Date</TableHead>
-                  <TableHead className="hidden md:table-cell text-right">Montant</TableHead>
-                  <TableHead className="hidden sm:table-cell">Statut</TableHead>
-                  <TableHead><span className="sr-only">Actions</span></TableHead>
+                  <TableCell colSpan={6} className="h-24 text-center">
+                    Chargement...
+                  </TableCell>
                 </TableRow>
-              </TableHeader>
-              <TableBody>
-                {isLoading && (
-                  <TableRow>
-                    <TableCell colSpan={6} className="h-24 text-center">
-                      Chargement...
-                    </TableCell>
-                  </TableRow>
-                )}
-                {!isLoading && quotes && quotes.length === 0 && (
-                  <TableRow>
-                    <TableCell colSpan={6} className="h-24 text-center">
-                      Aucun devis trouvé pour ce statut.
-                    </TableCell>
-                  </TableRow>
-                )}
-                {!isLoading && quotes && quotes.map((item) => (
-                  <TableRow key={item.id}>
-                    <TableCell>
-                      <div className="font-medium">{item.clientName}</div>
-                      <div className="text-sm text-muted-foreground">{item.clientEmail}</div>
-                    </TableCell>
-                    <TableCell>
-                      <div className="font-medium">{item.projectName}</div>
-                      <div className="text-sm text-muted-foreground line-clamp-2">
-                        {item.projectDescription}
-                      </div>
-                    </TableCell>
-                    <TableCell className="hidden sm:table-cell">
-                      {item.createdAt ? format(item.createdAt.toDate(), "d MMMM yyyy", { locale: fr }) : '-'}
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell text-right">
-                      {item.total
-                        ? new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(item.total)
-                        : 'À définir'}
-                    </TableCell>
-                    <TableCell className="hidden sm:table-cell">
-                      <Badge variant={getStatusBadgeVariant(item.status)}>{item.status}</Badge>
-                    </TableCell>
-                    <TableCell>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button aria-haspopup="true" size="icon" variant="ghost">
-                            <MoreHorizontal className="h-4 w-4" />
-                            <span className="sr-only">Ouvrir le menu</span>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                          <DropdownMenuItem>
-                            <FileText className="mr-2 h-4 w-4" />
-                            Voir le devis
-                          </DropdownMenuItem>
-                          <DropdownMenuItem>
-                            <Bot className="mr-2 h-4 w-4" />
-                            Générer avec l'IA
-                          </DropdownMenuItem>
-                          <DropdownMenuSeparator />
-                          <DropdownMenuItem className="text-destructive focus:text-destructive focus:bg-destructive/10">
-                            Archiver
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
-      </Tabs>
+              )}
+              {!isLoading && quotes && quotes.length === 0 && (
+                <TableRow>
+                  <TableCell colSpan={6} className="h-24 text-center">
+                    Aucun devis trouvé.
+                  </TableCell>
+                </TableRow>
+              )}
+              {!isLoading && quotes && quotes.map((item) => (
+                <TableRow key={item.id}>
+                  <TableCell>
+                    <div className="font-medium">{item.clientName}</div>
+                    <div className="text-sm text-muted-foreground">{item.clientEmail}</div>
+                  </TableCell>
+                  <TableCell>
+                    <div className="font-medium">{item.projectName}</div>
+                    <div className="text-sm text-muted-foreground line-clamp-2">
+                      {item.projectDescription}
+                    </div>
+                  </TableCell>
+                  <TableCell className="hidden sm:table-cell">
+                    {item.createdAt ? format(item.createdAt.toDate(), "d MMMM yyyy", { locale: fr }) : '-'}
+                  </TableCell>
+                  <TableCell className="hidden md:table-cell text-right">
+                    {item.total
+                      ? new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(item.total)
+                      : 'À définir'}
+                  </TableCell>
+                  <TableCell className="hidden sm:table-cell">
+                    <Badge variant={getStatusBadgeVariant(item.status)}>{item.status}</Badge>
+                  </TableCell>
+                  <TableCell>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button aria-haspopup="true" size="icon" variant="ghost">
+                          <MoreHorizontal className="h-4 w-4" />
+                          <span className="sr-only">Ouvrir le menu</span>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                        <DropdownMenuItem>
+                          <FileText className="mr-2 h-4 w-4" />
+                          Voir le devis
+                        </DropdownMenuItem>
+                        <DropdownMenuItem>
+                          <Bot className="mr-2 h-4 w-4" />
+                          Générer avec l'IA
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem className="text-destructive focus:text-destructive focus:bg-destructive/10">
+                          Archiver
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
     </div>
   );
 }
