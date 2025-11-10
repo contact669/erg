@@ -9,9 +9,9 @@ import { Mail, MapPin, Phone } from 'lucide-react';
 function StyledLogo() {
   return (
     <span className="font-headline text-2xl font-bold tracking-wider text-primary">
-      <span>E</span>
+      <span className="tracking-widest">E</span>
       <span className="underline decoration-accent decoration-2 underline-offset-4">R</span>
-      <span>G</span>
+      <span className="tracking-widest">G</span>
     </span>
   );
 }
@@ -98,12 +98,13 @@ export default function SiteFooter() {
             <p className="text-sm text-muted-foreground text-center md:text-left">
                 Copyright &copy; {new Date().getFullYear()} ERG Rénovation. Tous droits réservés.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-4 items-center">
                 {legalLinks.map(link => (
                     <Link href={link.href} key={link.href} className="text-xs text-muted-foreground hover:text-primary">
                         {link.title}
                     </Link>
                 ))}
+                 <Link href="/connexion" className="text-xs text-muted-foreground hover:text-primary">Admin</Link>
             </div>
         </div>
 

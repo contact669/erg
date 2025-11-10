@@ -54,9 +54,9 @@ function AuthButton() {
 function StyledLogo() {
   return (
     <span className="font-headline text-2xl font-bold tracking-wider text-primary">
-      <span>E</span>
+      <span className="tracking-widest">E</span>
       <span className="underline decoration-accent decoration-2 underline-offset-4">R</span>
-      <span>G</span>
+      <span className="tracking-widest">G</span>
     </span>
   );
 }
@@ -172,7 +172,9 @@ export default function SiteHeader() {
           <Button asChild className="hidden md:flex">
             <Link href="/devis">Demander un devis</Link>
           </Button>
-          <AuthButton />
+          <div className="hidden md:block">
+            <AuthButton />
+          </div>
           <ModeToggle />
           <MobileNav />
         </div>
