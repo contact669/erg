@@ -1,47 +1,17 @@
-/**
- * @fileoverview Firestore Security Rules for ERG Rénovation.
- *
- * Core Philosophy:
- * This ruleset ensures that users can only access their own data.
- * - Public collections are readable by anyone.
- * - The 'quotes' collection is restricted so that a user can only query for their own quotes.
- * - Other user-specific data can be added under the /users/{userId} path following the same principle.
- */
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-
-    /**
-     * @description Allows public read access to general content collections.
-     * Writes are disallowed for security.
-     */
-    match /{collection}/{docId} where collection in ['services', 'locations', 'combos', 'projects', 'testimonials', 'blogPosts', 'media'] {
-      allow get, list: if true;
-      allow create, update, delete: if false;
+    
+    function isOwner(userId) {
+      return request.auth.uid == userId;
     }
 
-    /**
-     * @description Rules for the 'quotes' collection.
-     */
     match /quotes/{quoteId} {
-      /**
-       * Allows a user to create a quote if the quote's userId matches their own UID.
-       */
-      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+      allow read, write: if isOwner(request.resource.data.userId);
+    }
 
-      /**
-       * Allows a user to read, update, or delete a quote if they are the owner.
-       */
-      allow get, update, delete: if request.auth != null && resource.data.userId == request.auth.uid;
-      
-      /**
-       * Allows a user to list quotes ONLY IF they are querying for their own quotes.
-       * This is a critical rule for security and to prevent reading all quotes.
-       */
-      allow list: if request.auth != null && request.query.where.size() == 1 &&
-                     request.query.where[0].fieldPath == 'userId' &&
-                     request.query.where[0].op == '==' &&
-                     request.query.where[0].value == request.auth.uid;
+    match /quotes/{quoteId} {
+      allow read, write: if isOwner(resource.data.userId);
     }
   }
 }
