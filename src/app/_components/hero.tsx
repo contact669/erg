@@ -46,7 +46,7 @@ export default function Hero() {
         />
       )}
       <div className="absolute inset-0 bg-primary/60" />
-      <div className="container relative z-10 flex h-full flex-col items-center justify-center text-center text-primary-foreground">
+      <div className="container relative z-10 flex h-full flex-col items-center justify-center pt-8 text-center text-primary-foreground">
         <GoogleReviewBadge />
         <h1 className="font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
           L&apos;art de la rénovation,
