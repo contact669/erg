@@ -51,6 +51,16 @@ function AuthButton() {
     )
 }
 
+function StyledLogo() {
+  return (
+    <span className="font-headline text-xl font-bold text-primary">
+      <span>E</span>
+      <span className="underline decoration-accent decoration-2 underline-offset-2">R</span>
+      <span>G</span>
+    </span>
+  );
+}
+
 
 export default function SiteHeader() {
   const [isScrolled, setIsScrolled] = React.useState(false);
@@ -75,9 +85,7 @@ export default function SiteHeader() {
       <div className="container flex h-20 items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
           <ErgLogo className="h-8 w-8" />
-          <span className="font-headline text-xl font-bold text-primary">
-            ERG
-          </span>
+          <StyledLogo />
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
@@ -229,9 +237,7 @@ function MobileNav() {
               onClick={() => setIsOpen(false)}
             >
               <ErgLogo className="h-8 w-8" />
-              <span className="font-headline text-xl font-bold text-primary">
-                ERG
-              </span>
+               <StyledLogo />
             </Link>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">

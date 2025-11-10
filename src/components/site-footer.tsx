@@ -6,6 +6,16 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Mail, MapPin, Phone } from 'lucide-react';
 
+function StyledLogo() {
+  return (
+    <span className="font-headline text-xl font-bold text-primary">
+      <span>E</span>
+      <span className="underline decoration-accent decoration-2 underline-offset-2">R</span>
+      <span>G</span>
+    </span>
+  );
+}
+
 export default function SiteFooter() {
   const legalLinks = [
     { title: 'Mentions Légales', href: '/mentions-legales' },
@@ -20,9 +30,7 @@ export default function SiteFooter() {
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
               <ErgLogo className="h-8 w-8 text-primary" />
-              <span className="font-headline text-xl font-bold text-primary">
-                ERG
-              </span>
+              <StyledLogo />
             </Link>
             <p className="text-sm">
               L&apos;excellence en rénovation intérieure à Paris et en Île-de-France.
