@@ -33,14 +33,10 @@ service cloud.firestore {
     }
 
     // --- User Data Rules ---
-    // This rule applies to any document within any subcollection under a user's directory.
-    match /users/{userId}/{subcollection}/{docId} {
-      allow get, update, delete: if isOwner(userId) || isAdmin();
-    }
-    
-    // This rule applies to any subcollection itself for list and create operations.
-    match /users/{userId}/{subcollection} {
-       allow list, create: if isOwner(userId) || isAdmin();
+    // This rule allows the owner of a user directory to perform any action
+    // within their own directory. This applies to all subcollections.
+    match /users/{userId}/{document=**} {
+      allow read, write: if isOwner(userId) || isAdmin();
     }
 
     /**
