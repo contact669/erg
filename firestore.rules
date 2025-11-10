@@ -2,16 +2,14 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
-    function isOwner(userId) {
-      return request.auth.uid == userId;
+    match /quotes/{quoteId} {
+      // Allow individual read/write access if the document's userId matches the user's uid.
+      allow read, write: if request.auth != null && resource.data.userId == request.auth.uid;
     }
 
     match /quotes/{quoteId} {
-      allow read, write: if isOwner(resource.data.userId);
-    }
-
-    match /quotes/{quoteId} {
-      allow list: if isOwner(request.query.where.userId);
+        // Allow a user to list quotes, but ONLY if they are querying for their own quotes.
+        allow list: if request.auth != null && request.query.where.userId == request.auth.uid;
     }
   }
 }
