@@ -20,6 +20,10 @@ import {
   Wrench,
   Scaling,
   Lightbulb,
+  Droplet,
+  Signal,
+  Calendar,
+  Wallet,
 } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
@@ -894,14 +898,63 @@ export const allProjects: Project[] = [
     slug: 'renovation-studio-paris-11',
     category: 'Studio',
     images: { before: 'project-studio-2-before', after: 'project-studio-2' },
-    description: 'Rénovation complète d\'un studio dans le 11e, incluant une intervention d\'urgence pour une fuite. Un projet mené avec réactivité et professionnalisme.'
+    description: 'Rénovation complète d\'un studio dans le 11e, incluant une intervention d\'urgence pour une fuite. Un projet mené avec réactivité et professionnalisme.',
+    testimonial: {
+      quote: "Intervention en urgence en plein mois d'Aout pour une grosse fuite puis rénovation complète de mon studio dans le 11ème, je ne peux que recommander cette entreprise familiale pour son professionnalisme et sa réactivité. Merci à vous !",
+      author: "Alex Leleka, Paris 11e"
+    },
+    details: {
+      challenge: <>
+          <p>Le projet a commencé par une urgence : une fuite d'eau importante en plein mois d'août nécessitant une intervention immédiate. Au-delà de la réparation, le client souhaitait profiter de l'occasion pour réaliser une rénovation complète du studio afin de le moderniser et d'optimiser l'espace.</p>
+      </>,
+      solution: <>
+          <p>Notre équipe est intervenue en urgence pour maîtriser la fuite et sécuriser l'appartement. Par la suite, nous avons planifié et exécuté une rénovation complète qui incluait :</p>
+          <ul>
+              <li><strong>Réparation de la plomberie :</strong> Remplacement des éléments défectueux à l'origine de la fuite.</li>
+              <li><strong>Modernisation de l'espace :</strong> Refonte de la salle d'eau, optimisation de la kitchenette et rénovation de la pièce principale.</li>
+              <li><strong>Finitions complètes :</strong> Reprise des peintures, des sols et de l'électricité pour un résultat impeccable.</li>
+          </ul>
+          <p>La réactivité et le professionnalisme de nos équipes ont permis de transformer une situation de crise en une opportunité de valorisation du bien.</p>
+      </>,
+      keyPoints: [
+        { title: "Intervention d'urgence", icon: Signal },
+        { title: "Rénovation complète du studio", icon: Sparkles },
+        { title: "Plomberie et électricité", icon: Wrench },
+        { title: "Gestion de projet réactive", icon: Users }
+      ]
+    }
   },
   {
     title: 'Rénovation appartement 65m²',
     slug: 'renovation-appartement-65m2-paris',
     category: 'Appartement',
     images: { before: 'project-apartment-2-before', after: 'project-apartment-2' },
-    description: 'Refonte totale d\'un appartement de 65m², incluant cuisine, salle de bain, électricité et peinture. Un résultat de grande qualité salué par le client.'
+    description: 'Refonte totale d\'un appartement de 65m², incluant cuisine, salle de bain, électricité et peinture. Un résultat de grande qualité salué par le client.',
+    testimonial: {
+      quote: "Notre appartement de 65 mètres carrés a été entièrement rénové par l'équipe ERG Rénovation (cuisine, salle de bain, électricité, peinture). Le résultat est de grande qualité. Ils sont de bons conseils et le suivi de chantier est rigoureux. Nous recommandons !",
+      author: "Adrien Puichaud, Paris"
+    },
+    details: {
+      challenge: <>
+          <p>Le défi était de mener une rénovation complète d'un appartement de 65m² en assurant une coordination parfaite entre tous les corps de métier (plomberie, électricité, peinture) pour livrer un projet clé en main de haute qualité dans le respect des délais.</p>
+      </>,
+      solution: <>
+          <p>En tant qu'entreprise générale, nous avons piloté l'intégralité du projet avec un interlocuteur unique pour le client. Notre intervention a couvert :</p>
+          <ul>
+              <li><strong>Cuisine :</strong> Conception et pose d'une nouvelle cuisine fonctionnelle et moderne.</li>
+              <li><strong>Salle de bain :</strong> Rénovation complète incluant plomberie, étanchéité et pose de nouveaux sanitaires et carrelages.</li>
+              <li><strong>Électricité :</strong> Mise aux normes complète du tableau et du réseau électrique.</li>
+              <li><strong>Finitions :</strong> Préparation des murs et application de peintures de qualité pour un rendu impeccable.</li>
+          </ul>
+          <p>Un suivi de chantier rigoureux et une communication constante ont permis de garantir un résultat final à la hauteur des attentes du client.</p>
+      </>,
+      keyPoints: [
+        { title: "Rénovation Tous Corps d'État", icon: Layers },
+        { title: "Cuisine et Salle de Bain", icon: CookingPot },
+        { title: "Mise aux normes électrique", icon: Wrench },
+        { title: "Suivi de chantier rigoureux", icon: ClipboardCheck }
+      ]
+    }
   },
   {
     title: 'Optimisation d\'une salle de bain 3m²',
@@ -939,7 +992,31 @@ export const allProjects: Project[] = [
     slug: 'renovation-2-pieces-paris',
     category: 'Appartement',
     images: { before: 'project-apartment-3-before', after: 'project-apartment-3' },
-    description: 'Rénovation complète d\'un appartement de 2 pièces à Paris, menée avec des conseils avisés et un suivi de chantier rigoureux.'
+    description: 'Rénovation complète d\'un appartement de 2 pièces à Paris, menée avec des conseils avisés et un suivi de chantier rigoureux.',
+    testimonial: {
+      quote: "J'ai fait appel à ERG dans le cadre de la rénovation d'un deux pièces. Ils ont su être à l'écoute et de très bons conseils. Le suivi de chantier est rigoureux, ce qui est très appréciable. Le travail est de qualité. Je les recommande.",
+      author: "Ivano Isaia, Paris"
+    },
+    details: {
+      challenge: <>
+          <p>Rénover un appartement de deux pièces à Paris demande de trouver le juste équilibre entre la modernisation des équipements, l'optimisation des espaces de vie et de rangement, tout en respectant un budget et des délais précis. Le client recherchait un partenaire de confiance capable de le conseiller et de piloter le projet de A à Z.</p>
+      </>,
+      solution: <>
+          <p>Nous avons accompagné le client à chaque étape, en étant force de proposition sur les agencements et le choix des matériaux. Notre intervention a compris :</p>
+          <ul>
+              <li><strong>Conseil en amont :</strong> Suggestions pour optimiser les plans et les fonctionnalités de l'appartement.</li>
+              <li><strong>Gestion Tous Corps d'État :</strong> Coordination de l'ensemble des travaux (plomberie, électricité, peinture, sols) pour une exécution fluide.</li>
+              <li><strong>Suivi de chantier :</strong> Des points réguliers ont été organisés pour tenir le client informé de l'avancement et valider les étapes clés.</li>
+          </ul>
+          <p>Cette approche a permis de livrer un appartement entièrement rénové, conforme aux attentes du client, avec des finitions de qualité et une gestion de projet sans stress.</p>
+      </>,
+      keyPoints: [
+        { title: "Rénovation complète", icon: Building },
+        { title: "Force de proposition", icon: Lightbulb },
+        { title: "Suivi de chantier rigoureux", icon: ClipboardCheck },
+        { title: "Qualité des finitions", icon: Sparkles }
+      ]
+    }
   },
   {
     title: 'Studio optimisé pour investisseur',
@@ -947,6 +1024,31 @@ export const allProjects: Project[] = [
     category: 'Studio',
     images: { before: 'project-studio-1-before', after: 'project-studio-1' },
     description: 'Rénovation complète d\'un studio destiné à la location. Un travail de qualité, respect des délais et des conseils pertinents pour un investissement réussi.',
+    testimonial: {
+      quote: "Studio entièrement rénové. Beau travail réalisé par l'entreprise ERG. M. AIT donne de bons conseils. Les délais sont respectés. Travaux de qualité. Je recommande sans hésiter la société ERG.",
+      author: "t planchard"
+    },
+    details: {
+      challenge: <>
+          <p>L'objectif était de réaliser la rénovation complète d'un studio destiné à un investissement locatif. Le projet exigeait de maximiser l'attrait et la fonctionnalité du bien pour de futurs locataires, tout en maîtrisant le budget et en respectant des délais stricts pour limiter la vacance locative.</p>
+      </>,
+      solution: <>
+          <p>Nous avons accompagné l'investisseur avec une approche axée sur la rentabilité et la durabilité :</p>
+          <ul>
+              <li><strong>Conseils stratégiques :</strong> Propositions d'aménagements et de matériaux optimisant le rapport qualité/prix et facilitant l'entretien.</li>
+              <li><strong>Rénovation intégrale :</strong> Remise à neuf de l'électricité, de la plomberie, de la salle d'eau et de la kitchenette pour garantir la sécurité et le confort.</li>
+              <li><strong>Finitions soignées :</strong> Application de peintures neutres et pose de sols résistants pour créer un espace lumineux et accueillant, facile à s'approprier.</li>
+              <li><strong>Respect du planning :</strong> La coordination efficace de nos équipes a permis de livrer le chantier dans les délais impartis.</li>
+          </ul>
+          <p>Le résultat est un studio clé en main, prêt à être loué, représentant un investissement sûr et valorisé.</p>
+      </>,
+      keyPoints: [
+        { title: "Projet d'investissement locatif", icon: Wallet },
+        { title: "Rénovation intégrale", icon: Sparkles },
+        { title: "Respect des délais", icon: Calendar },
+        { title: "Conseils en aménagement", icon: Lightbulb }
+      ]
+    }
   },
   {
     title: 'Maison de ville moderne',
@@ -954,6 +1056,30 @@ export const allProjects: Project[] = [
     category: 'Maison',
     images: { before: 'project-house-1-before', after: 'project-house-1' },
     description: 'Transformation de deux salles de bains dans une maison, un projet salué pour son excellence et sa qualité d\'exécution du début à la fin.',
+    testimonial: {
+      quote: "Les frères Ait (ERG Renovation) ont transformé deux salles de bains et douche dans notre maison. Leur travail a été excellent du début à la fin. Ils sont très professionnels, fiables et leur travail est de très haute qualité.",
+      author: "amanda blassel"
+    },
+    details: {
+      challenge: <>
+          <p>Le projet consistait à rénover simultanément deux salles de bain dans une maison habitée. Le défi était de réaliser une transformation complète et haut de gamme pour ces deux pièces techniques, tout en minimisant les désagréments pour les occupants et en assurant une cohérence esthétique entre les deux espaces.</p>
+      </>,
+      solution: <>
+          <p>Notre équipe a mis en place une planification rigoureuse pour orchestrer les travaux. L'intervention a inclus :</p>
+          <ul>
+              <li><strong>Conception personnalisée :</strong> Chaque salle de bain a été pensée en fonction de son usage, avec des matériaux et des agencements spécifiques.</li>
+              <li><strong>Rénovation complète :</strong> Dépose des anciens éléments, refonte totale de la plomberie et de l'électricité, et application de systèmes d'étanchéité de pointe.</li>
+              <li><strong>Finitions haut de gamme :</strong> Pose de carrelage de précision, installation de sanitaires et robinetteries modernes, et création de douches à l'italienne.</li>
+          </ul>
+          <p>La fiabilité de nos équipes et la qualité constante de l'exécution, du premier jour à la livraison, ont permis de livrer deux salles de bain d'exception, transformant durablement le confort de la maison.</p>
+      </>,
+      keyPoints: [
+        { title: "Deux salles de bain", icon: Bath },
+        { title: "Finitions haute qualité", icon: Award },
+        { title: "Gestion de chantier fiable", icon: Users },
+        { title: "Plomberie et étanchéité", icon: Droplet }
+      ]
+    }
   },
   {
     title: 'Bureaux d\'avocats',
@@ -975,6 +1101,30 @@ export const allProjects: Project[] = [
     category: 'Appartement',
     images: { before: 'project-apartment-1-before', after: 'project-apartment-1' },
     description: 'Rénovation de deux appartements (3 et 2 pièces) avec un résultat remarquable salué par le client.',
+    testimonial: {
+      quote: "La société ERG a fait un remarquable travail de rénovation dans deux appartements de trois et deux pièces à Paris. Nous avons beaucoup apprécié leur professionnalisme et leur écoute tout au long du chantier.",
+      author: "Arnaud Migoux, Paris"
+    },
+    details: {
+      challenge: <>
+          <p>Le projet consistait à gérer la rénovation simultanée de deux appartements distincts (un 3 pièces et un 2 pièces) pour un même client. Le défi logistique et organisationnel était de mener les deux chantiers en parallèle tout en garantissant un niveau de qualité et de finition identique pour les deux biens.</p>
+      </>,
+      solution: <>
+          <p>Nous avons déployé deux équipes supervisées par un chef de projet unique pour assurer une communication fluide et une progression homogène. Pour chaque appartement, nous avons réalisé :</p>
+          <ul>
+              <li><strong>Une rénovation complète :</strong> Electricité, plomberie, sols, murs et plafonds.</li>
+              <li><strong>Une écoute attentive :</strong> Des points réguliers ont été faits avec le client pour s'assurer que ses attentes étaient satisfaites sur les deux lots.</li>
+              <li><strong>Des finitions soignées :</strong> La qualité d'exécution, signature d'ERG Rénovation, a été appliquée avec la même rigueur sur les deux projets.</li>
+          </ul>
+          <p>Grâce à notre professionnalisme et à une organisation sans faille, les deux appartements ont été livrés avec un résultat remarquable, à la grande satisfaction du client.</p>
+      </>,
+      keyPoints: [
+        { title: "Gestion de deux chantiers", icon: Layers },
+        { title: "Rénovation complète", icon: Sparkles },
+        { title: "Professionnalisme et écoute", icon: Users },
+        { title: "Qualité des finitions", icon: Award }
+      ]
+    }
   },
   {
     title: 'Cuisine ouverte design',
@@ -982,6 +1132,30 @@ export const allProjects: Project[] = [
     category: 'Cuisine',
     images: { before: 'project-kitchen-1-before', after: 'project-kitchen-1' },
     description: "Rénovation complète d'un appartement incluant la cuisine et la salle de bain. Un travail sérieux et de qualité.",
+    testimonial: {
+      quote: "Rénovations complètes de mon appartement (cuisine, salle de bain, électricité, suppression de cloisons...). Le résultat est superbe et de qualité. Professionnels, réactifs, et de très bon conseil.",
+      author: "Chloé de NOMBEL"
+    },
+    details: {
+      challenge: <>
+          <p>La demande était une rénovation complète d'un appartement, avec un focus particulier sur la création d'une cuisine moderne et d'une salle de bain fonctionnelle. Le projet impliquait la suppression de cloisons pour créer des espaces plus ouverts et lumineux, nécessitant une expertise en plomberie, électricité et finitions.</p>
+      </>,
+      solution: <>
+          <p>En tant qu'interlocuteur unique, nous avons orchestré l'ensemble des corps de métier. Notre intervention s'est articulée autour de :</p>
+          <ul>
+              <li><strong>Décloisonnement :</strong> Suppression de cloisons pour agrandir l'espace de vie et créer une cuisine ouverte.</li>
+              <li><strong>Rénovation des pièces techniques :</strong> Refonte complète de la cuisine et de la salle de bain, avec mise aux normes des réseaux d'eau et d'électricité.</li>
+              <li><strong>Conseils et accompagnement :</strong> Nous avons conseillé la cliente sur les choix d'agencement et de matériaux pour un résultat esthétique et durable.</li>
+          </ul>
+          <p>Le résultat est un appartement transformé, avec des espaces de vie conviviaux et des pièces techniques entièrement modernisées, le tout livré avec un haut niveau de qualité.</p>
+      </>,
+      keyPoints: [
+        { title: "Cuisine et Salle de Bain", icon: CookingPot },
+        { title: "Suppression de cloisons", icon: Scaling },
+        { title: "Rénovation Tous Corps d'État", icon: Layers },
+        { title: "Conseils en aménagement", icon: Lightbulb }
+      ]
+    }
   },
   {
     title: 'Suite parentale & Spa',
