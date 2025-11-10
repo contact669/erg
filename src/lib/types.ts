@@ -73,6 +73,18 @@ export interface Project {
     after: string;
   };
   description: string;
+  testimonial?: {
+    quote: string;
+    author: string;
+  };
+  details?: {
+    challenge: ReactNode;
+    solution: ReactNode;
+    keyPoints: {
+        title: string;
+        icon: LucideIcon;
+    }[];
+  }
 }
 
 export interface Testimonial {

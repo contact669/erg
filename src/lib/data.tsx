@@ -17,6 +17,9 @@ import {
   ShieldCheck,
   Thermometer,
   CheckCircle,
+  Wrench,
+  Scaling,
+  Lightbulb,
 } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
@@ -258,7 +261,7 @@ export const services: Service[] = [
       }
     ],
     process: [
-      { step: 1, title: 'Visite & Faisabilité', description: "Analyse de vos combles (hauteur sous plafond, pente du toit, type de charpente) et de vos besoins (suite parentale, salle de jeux, bureau...)." },
+      { step: 1, title: 'Visite & Faisabilité', description: "Analyse de vos combles (hauteur sous faîtage, pente du toit, type de charpente) et de vos besoins (suite parentale, salle de jeux, bureau...)." },
       { step: 2, title: 'Conception & Chiffrage', description: "Proposition de plans d'aménagement optimisés et d'un devis détaillé (incluant isolation, structure, finitions)." },
       { step: 3, title: 'Autorisations d\'Urbanisme', description: "Prise en charge complète du dossier administratif (DP ou PC)." },
       { step: 4, title: 'Réalisation des Travaux', description: "Pilotage des équipes (charpentiers, couvreurs, plaquistes, plombiers...) par un conducteur de travaux unique." }
@@ -874,7 +877,7 @@ export const featuredProjects: Project[] = [
     slug: 'optimisation-salle-de-bain-3m2',
     category: 'Salle de bain',
     images: { before: 'project-small-bathroom-before', after: 'project-small-bathroom-after' },
-    description: 'Réfection totale d\'une petite salle de bain de 3m², avec déplacement de la douche et de la machine à laver pour un agencement sur mesure.'
+    description: 'Transformation complète d\'une petite salle de bain parisienne. Le déplacement d\'une cloison a permis d\'optimiser l\'espace pour un résultat spacieux et moderne.'
   },
   {
     title: 'Rénovation 2 pièces parisien',
@@ -905,7 +908,31 @@ export const allProjects: Project[] = [
     slug: 'optimisation-salle-de-bain-3m2',
     category: 'Salle de bain',
     images: { before: 'project-small-bathroom-before', after: 'project-small-bathroom-after' },
-    description: 'Réfection totale d\'une petite salle de bain de 3m², avec déplacement de la douche et de la machine à laver pour un agencement sur mesure.'
+    description: 'Transformation complète d\'une petite salle de bain parisienne. Le déplacement d\'une cloison a permis d\'optimiser l\'espace pour un résultat spacieux et moderne.',
+    testimonial: {
+      quote: "L'entreprise a été réactive, totalement à notre écoute et aussi force de proposition avec d’excellents conseils. Ces derniers nous ont permis d’optimiser notre espace et de bénéficier d’une salle de bain spacieuse et agréable.",
+      author: "Nina G., Paris"
+    },
+    details: {
+      challenge: <>
+          <p>Le principal défi était de transformer une salle de bain parisienne exiguë d'à peine 3m². L'agencement initial était peu fonctionnel, avec un espace mal exploité qui donnait une sensation d'étroitesse. La cliente souhaitait non seulement moderniser l'esthétique mais surtout gagner en confort et en praticité au quotidien, ce qui passait par un réagencement complet, incluant le déplacement de la douche et de la machine à laver.</p>
+      </>,
+      solution: <>
+          <p>Notre approche a été de repenser entièrement les volumes. En déplaçant une cloison non-porteuse, nous avons redéfini la géométrie de la pièce pour y intégrer une douche plus confortable et un emplacement optimisé pour la machine à laver. Cette modification structurelle a été le point de départ d'une rénovation totale :</p>
+          <ul>
+              <li><strong>Plomberie & Électricité :</strong> L'ensemble des réseaux a été repensé et mis aux normes pour s'adapter au nouvel agencement.</li>
+              <li><strong>Revêtements :</strong> Le choix d'un carrelage clair et de grand format, tant au sol que sur les murs, a permis d'agrandir visuellement l'espace.</li>
+              <li><strong>Agencement sur mesure :</strong> Des étagères et des niches ont été créées pour offrir du rangement sans encombrer la pièce.</li>
+          </ul>
+          <p>Le résultat est une salle de bain qui, malgré sa petite surface, paraît plus spacieuse, lumineuse et est infiniment plus fonctionnelle.</p>
+      </>,
+      keyPoints: [
+        { title: "Réagencement des volumes", icon: Scaling },
+        { title: "Plomberie et électricité neuves", icon: Wrench },
+        { title: "Optimisation de l'espace", icon: Lightbulb },
+        { title: "Finitions soignées", icon: Sparkles }
+      ]
+    }
   },
   {
     title: 'Rénovation 2 pièces parisien',
