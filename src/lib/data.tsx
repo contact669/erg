@@ -970,11 +970,25 @@ export const allProjects: Project[] = [
     description: 'Création d\'une salle d\'eau fonctionnelle et élégante sous les toits, optimisant un espace complexe avec des solutions sur mesure.',
   },
    {
-    title: 'Optimisation d\'une Salle de Bain Parisienne',
-    slug: 'salle-de-bain-optimisee-paris',
+    title: 'Appartement haussmannien',
+    slug: 'appartement-haussmannien-paris-16',
+    category: 'Appartement',
+    images: { before: 'project-apartment-1-before', after: 'project-apartment-1' },
+    description: 'Rénovation de deux appartements (3 et 2 pièces) avec un résultat remarquable salué par le client.',
+  },
+  {
+    title: 'Cuisine ouverte design',
+    slug: 'cuisine-ouverte-design-vincennes',
+    category: 'Cuisine',
+    images: { before: 'project-kitchen-1-before', after: 'project-kitchen-1' },
+    description: "Rénovation complète d'un appartement incluant la cuisine et la salle de bain. Un travail sérieux et de qualité.",
+  },
+  {
+    title: 'Suite parentale & Spa',
+    slug: 'suite-parentale-spa-neuilly',
     category: 'Salle de bain',
-    images: { before: 'project-small-bathroom-before', after: 'project-small-bathroom-after' },
-    description: 'Transformation complète d\'une petite salle de bain parisienne. Le déplacement d\'une cloison a permis d\'optimiser l\'espace pour un résultat spacieux et moderne.',
+    images: { before: 'project-bathroom-1-before', after: 'project-bathroom-1' },
+    description: "Transformation de deux salles de bains. Un travail d'une très haute qualité, professionnel et fiable.",
   },
 ];
 
