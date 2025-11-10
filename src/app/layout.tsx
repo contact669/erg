@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import StickyCallToAction from '@/components/sticky-call-to-action';
+import CookieConsent from '@/components/cookie-consent';
 
 export const metadata: Metadata = {
   title: 'ERG Rénovation - Rénovation intérieure à Paris',
@@ -28,6 +29,7 @@ export default function RootLayout({
         {children}
         <Toaster />
         <StickyCallToAction />
+        <CookieConsent />
       </body>
     </html>
   );
