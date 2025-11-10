@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { ErgLogo } from './icons';
 import { services, navItems } from '@/lib/data.tsx';
@@ -20,7 +21,7 @@ export default function SiteFooter() {
             <Link href="/" className="flex items-center gap-2">
               <ErgLogo className="h-8 w-8 text-primary" />
               <span className="font-headline text-xl font-bold text-primary">
-                ERG Rénovation
+                ERG
               </span>
             </Link>
             <p className="text-sm">

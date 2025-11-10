@@ -76,7 +76,7 @@ export default function SiteHeader() {
         <Link href="/" className="flex items-center gap-2">
           <ErgLogo className="h-8 w-8" />
           <span className="font-headline text-xl font-bold text-primary">
-            ERG Rénovation
+            ERG
           </span>
         </Link>
 
