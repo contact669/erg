@@ -2,7 +2,6 @@
 
 import { getFirestore, collection, addDoc, serverTimestamp, doc, where, query, getDocs } from 'firebase/firestore';
 import { initializeFirebase } from '@/firebase';
-import { getAuth } from 'firebase/auth';
 
 const { firestore } = initializeFirebase();
 
@@ -17,29 +16,14 @@ interface QuoteRequestData {
   estimatedBudget?: string;
 }
 
-// NOTE: This server action uses the Firebase Admin SDK to look up a user by email.
-// This is a temporary solution for the demo. In a production app, this logic
-// should be handled by a secure backend service (e.g., a Cloud Function)
-// to avoid exposing admin credentials or capabilities to the server-side Next.js environment.
-async function getAdminUidByEmail(email: string): Promise<string | null> {
-    // This is a placeholder for a secure backend call.
-    // As we are in a 'use server' file, we don't have direct access to a browser's auth state.
-    // The UID 'pHcnP0Mc32frrhPRzTT2nFwCxno1' corresponds to 'contact@erg-renovation.fr'
-    // from the error logs. This is a temporary but effective fix for the demo.
-    if (email === 'contact@erg-renovation.fr') {
-        return 'pHcnP0Mc32frrhPRzTT2nFwCxno1';
-    }
-    return null;
-}
-
-
 export async function createQuoteRequest(data: QuoteRequestData) {
-  const adminEmail = 'contact@erg-renovation.fr';
-  const adminUID = await getAdminUidByEmail(adminEmail);
+  // The UID for 'contact@erg-renovation.fr' is hardcoded here for stability.
+  // In a production scenario with multiple admins, this might be handled differently,
+  // e.g., by assigning to a general 'unassigned' pool or based on round-robin logic.
+  const adminUID = 'pHcnP0Mc32frrhPRzTT2nFwCxno1';
 
   if (!adminUID) {
-    console.error(`Admin user with email ${adminEmail} not found.`);
-    throw new Error("Could not find the admin user account to assign the quote to.");
+    throw new Error("Admin user account UID is not configured.");
   }
 
   // 1. Create or find the client under the admin's user space
@@ -91,3 +75,5 @@ export async function createQuoteRequest(data: QuoteRequestData) {
 
   return { success: true };
 }
+
+    

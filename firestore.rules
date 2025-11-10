@@ -3,45 +3,28 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
-    // Fonction pour vérifier si l'utilisateur est le propriétaire du document.
+    // Helper functions
     function isOwner(userId) {
       return request.auth != null && request.auth.uid == userId;
     }
 
-    // Règle pour les collections de l'utilisateur
-    match /users/{userId} {
+    function isAdmin() {
+      return request.auth != null && exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
+    }
     
-      // Clients
-      match /clients/{clientId} {
-        allow read, write: if isOwner(userId);
-      }
-      match /clients {
-        allow list, create: if isOwner(userId);
-      }
+    // User-specific collections
+    match /users/{userId} {
 
-      // Projects
-      match /projects/{projectId} {
-        allow read, write: if isOwner(userId);
+      // Generic rule for all subcollections (clients, projects, etc.)
+      match /{collection}/{docId} {
+        allow read, write: if isOwner(userId) || isAdmin();
       }
-       match /projects {
-        allow list, create: if isOwner(userId);
-      }
+    }
 
-      // Quotes
-      match /quotes/{quoteId} {
-        allow read, write: if isOwner(userId);
-      }
-      match /quotes {
-        allow list, create: if isOwner(userId);
-      }
-
-      // Invoices
-      match /invoices/{invoiceId} {
-        allow read, write: if isOwner(userId);
-      }
-       match /invoices {
-        allow list, create: if isOwner(userId);
-      }
+    // Admin roles collection
+    match /roles_admin/{userId} {
+      allow read, write: if isOwner(userId); // Only the user can see their own admin role
     }
   }
 }
+    
