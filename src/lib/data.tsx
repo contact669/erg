@@ -915,6 +915,13 @@ export const allProjects: Project[] = [
     images: { before: 'project-bathroom-2-before', after: 'project-bathroom-2' },
     description: 'Création d\'une salle d\'eau fonctionnelle et élégante sous les toits.',
   },
+   {
+    title: 'Optimisation d\'une Salle de Bain Parisienne',
+    slug: 'salle-de-bain-optimisee-paris',
+    category: 'Salle de bain',
+    images: { before: 'project-small-bathroom-before', after: 'project-small-bathroom-after' },
+    description: 'Transformation complète d\'une petite salle de bain parisienne. Le déplacement d\'une cloison a permis d\'optimiser l\'espace pour un résultat spacieux et moderne.',
+  },
 ];
 
 
