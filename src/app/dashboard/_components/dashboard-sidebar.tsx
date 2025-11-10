@@ -153,7 +153,9 @@ export default function DashboardSidebar() {
                     </SheetContent>
                 </Sheet>
 
-                <div className="relative flex-1 md:grow-0">
+                <div className="flex-1" />
+
+                <div className="relative flex-shrink-1 md:grow-0">
                     <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                     <Input
                         type="search"
@@ -161,7 +163,7 @@ export default function DashboardSidebar() {
                         className="w-full rounded-lg bg-secondary pl-8 md:w-[200px] lg:w-[336px]"
                     />
                 </div>
-                <div className="ml-auto flex items-center gap-2">
+                <div className="flex items-center gap-2">
                     <ModeToggle />
                     <Button variant="ghost" size="icon" className="rounded-full">
                         <Bell className="h-5 w-5" />
