@@ -1,8 +1,127 @@
+/**
+ * @fileoverview Firestore Security Rules for ERG Rénovation.
+ *
+ * Core Philosophy:
+ * This ruleset focuses on securing access to data based on the nature of each collection.
+ * - Collections like 'services', 'locations', 'combos', 'projects', 'testimonials', 'blogPosts', and 'media' are considered public and readable by all.
+ * - The 'leads' collection is restricted to authenticated users only, enhancing data privacy.
+ *
+ * Data Structure:
+ * The Firestore database contains several top-level collections: 'services', 'locations', 'combos', 'projects', 'testimonials', 'blogPosts', 'leads', and 'media'. Each collection contains documents representing entities such as services, locations, and leads.
+ *
+ * Key Security Decisions:
+ * - Public Read Access: Collections like services and blog posts are publicly readable to support website functionality.
+ * - Restricted Lead Access: The 'leads' collection is secured to ensure that only authenticated users can access lead information.
+ * - No User-Specific Data: This ruleset does not include user-specific data or subcollections.
+ */
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if request.auth != null && request.auth.uid == "pHcnP0Mc32frrhPRzTT2nFwCxno1";
+
+    /**
+     * @description Allows anyone to read services. Writes are disallowed.
+     * @path /services/{serviceId}
+     * @allow get, list: Example: Any user can read and list services.
+     * @deny create, update, delete: Example: No one can create, update, or delete services.
+     * @principle Allows public read access to services.
+     */
+    match /services/{serviceId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
     }
+
+    /**
+     * @description Allows anyone to read locations. Writes are disallowed.
+     * @path /locations/{locationId}
+     * @allow get, list: Example: Any user can read and list locations.
+     * @deny create, update, delete: Example: No one can create, update, or delete locations.
+     * @principle Allows public read access to locations.
+     */
+    match /locations/{locationId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description Allows anyone to read combos. Writes are disallowed.
+     * @path /combos/{comboId}
+     * @allow get, list: Example: Any user can read and list combos.
+     * @deny create, update, delete: Example: No one can create, update, or delete combos.
+     * @principle Allows public read access to combos.
+     */
+    match /combos/{comboId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description Allows anyone to read projects. Writes are disallowed.
+     * @path /projects/{projectId}
+     * @allow get, list: Example: Any user can read and list projects.
+     * @deny create, update, delete: Example: No one can create, update, or delete projects.
+     * @principle Allows public read access to projects.
+     */
+    match /projects/{projectId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description Allows anyone to read testimonials. Writes are disallowed.
+     * @path /testimonials/{testimonialId}
+     * @allow get, list: Example: Any user can read and list testimonials.
+     * @deny create, update, delete: Example: No one can create, update, or delete testimonials.
+     * @principle Allows public read access to testimonials.
+     */
+    match /testimonials/{testimonialId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description Allows anyone to read blog posts. Writes are disallowed.
+     * @path /blogPosts/{blogPostId}
+     * @allow get, list: Example: Any user can read and list blog posts.
+     * @deny create, update, delete: Example: No one can create, update, or delete blog posts.
+     * @principle Allows public read access to blog posts.
+     */
+    match /blogPosts/{blogPostId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+
+    /**
+     * @description Only allows authenticated users to read and write leads.
+     * @path /leads/{leadId}
+     * @allow get, list: Example: An authenticated user can read leads.
+     * @allow create, update, delete: Example: An authenticated user can create leads.
+     * @deny get, list: Example: A non-authenticated user cannot read leads.
+     * @deny create, update, delete: Example: A non-authenticated user cannot create leads.
+     * @principle Requires authentication for any access to leads.
+     */
+    match /leads/{leadId} {
+      allow get, list, create, update, delete: if isSignedIn();
+    }
+
+    /**
+     * @description Allows anyone to read media. Writes are disallowed.
+     * @path /media/{mediaId}
+     * @allow get, list: Example: Any user can read and list media.
+     * @deny create, update, delete: Example: No one can create, update, or delete media.
+     * @principle Allows public read access to media.
+     */
+    match /media/{mediaId} {
+      allow get, list: if true;
+      allow create, update, delete: if false;
+    }
+  }
+
+  /**
+   * @description Checks if the user is signed in.
+   * @return {bool} True if the user is signed in, false otherwise.
+   * @principle Ensures that only signed-in users can access certain resources.
+   */
+  function isSignedIn() {
+    return request.auth != null;
   }
 }
