@@ -56,6 +56,14 @@ export default function ConnexionPage() {
   });
 
   const handleAuthAction = async (action: 'signIn' | 'signUp', values: FormValues) => {
+    if (!auth) {
+      toast({
+        variant: 'destructive',
+        title: 'Erreur de configuration',
+        description: 'Le service d\'authentification n\'est pas disponible.',
+      });
+      return;
+    }
     setIsSubmitting(true);
     try {
       if (action === 'signIn') {
@@ -81,6 +89,7 @@ export default function ConnexionPage() {
         switch (error.code) {
           case 'auth/user-not-found':
           case 'auth/wrong-password':
+          case 'auth/invalid-credential':
             title = 'Identifiants incorrects';
             description = 'L\'email ou le mot de passe est incorrect.';
             break;
