@@ -48,15 +48,6 @@ service cloud.firestore {
     }
 
     /**
-     * @description Checks if the request is made by an existing owner (userId) and the document exists.
-     * @param {string} userId The user ID to compare against the request's auth UID.
-     * @return {bool} True if the request is made by an existing owner and the document exists, false otherwise.
-     */
-    function isExistingOwner(userId) {
-      return isOwner(userId) && resource != null;
-    }
-
-    /**
      * @description Checks if the user has admin privileges.
      * @return {bool} True if the user is an admin, false otherwise.
      */
@@ -65,69 +56,28 @@ service cloud.firestore {
     }
 
     /**
-     * @description Rules for client documents.
-     * @path /users/{userId}/clients/{clientId}
-     * @allow (create) User A creates a new client with userId 'A'.
-     * @allow (get) User A reads client 'client1' if userId is 'A'.
-     * @allow (update) User A updates client 'client1' if userId is 'A' and the client exists.
-     * @allow (delete) User A deletes client 'client1' if userId is 'A' and the client exists.
-     * @deny (create) User B tries to create a client with userId 'A'.
-     * @deny (get) User B tries to read client 'client1' under userId 'A'.
-     * @deny (update) User B tries to update client 'client1' under userId 'A'.
-     * @deny (delete) User B tries to delete client 'client1' under userId 'A'.
-     * @principle Enforces document ownership for writes. Restricts access to a user's own data tree.
+     * @description Rules for a user's data tree.
+     * Secures all sub-collections under a user's private space.
      */
+    match /users/{userId}/{collection}/{docId} {
+      allow get, update, delete: if isOwner(userId) || isAdmin();
+      allow create: if isOwner(userId);
+    }
+    
     match /users/{userId}/clients/{clientId} {
-      allow get: if isOwner(userId) || isAdmin();
       allow list: if isOwner(userId) || isAdmin();
-      allow create: if isOwner(userId) && request.resource.data.id == userId;
-      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
-      allow delete: if isExistingOwner(userId);
     }
-
-    /**
-     * @description Rules for project documents.
-     * @path /users/{userId}/projects/{projectId}
-     * @allow (create) User A creates a new project with userId 'A'.
-     * @allow (get) User A reads project 'project1' if userId is 'A'.
-     * @allow (update) User A updates project 'project1' if userId is 'A' and the project exists.
-     * @allow (delete) User A deletes project 'project1' if userId is 'A' and the project exists.
-     * @deny (create) User B tries to create a project with userId 'A'.
-     * @deny (get) User B tries to read project 'project1' under userId 'A'.
-     * @deny (update) User B tries to update project 'project1' under userId 'A'.
-     * @deny (delete) User B tries to delete project 'project1' under userId 'A'.
-     * @principle Enforces document ownership for writes. Restricts access to a user's own data tree.
-     */
+    
     match /users/{userId}/projects/{projectId} {
-      allow get: if isOwner(userId) || isAdmin();
       allow list: if isOwner(userId) || isAdmin();
-      allow create: if isOwner(userId) && request.resource.data.clientId != null;
-      allow update: if isExistingOwner(userId) && request.resource.data.clientId == resource.data.clientId;
-      allow delete: if isExistingOwner(userId);
     }
-
-    /**
-     * @description Rules for quote documents.
-     * @path /users/{userId}/quotes/{quoteId}
-     */
+    
     match /users/{userId}/quotes/{quoteId} {
-        allow get: if isOwner(userId) || isAdmin();
-        allow list: if isOwner(userId) || isAdmin();
-        allow create: if isOwner(userId);
-        allow update: if isExistingOwner(userId);
-        allow delete: if isExistingOwner(userId);
+      allow list: if isOwner(userId) || isAdmin();
     }
 
-    /**
-     * @description Rules for invoice documents.
-     * @path /users/{userId}/invoices/{invoiceId}
-     */
     match /users/{userId}/invoices/{invoiceId} {
-        allow get: if isOwner(userId) || isAdmin();
-        allow list: if isOwner(userId) || isAdmin();
-        allow create: if isOwner(userId);
-        allow update: if isExistingOwner(userId);
-        allow delete: if isExistingOwner(userId);
+      allow list: if isOwner(userId) || isAdmin();
     }
 
 
@@ -158,9 +108,7 @@ service cloud.firestore {
     match /locations/{locationId} {
       allow get: if true;
       allow list: if true;
-      allow create: if isAdmin();
-      allow update: if isAdmin() && resource != null;
-      allow delete: if isAdmin() && resource != null;
+      allow write: if isAdmin();
     }
 
     /**
@@ -173,9 +121,7 @@ service cloud.firestore {
     match /testimonials/{testimonialId} {
       allow get: if true;
       allow list: if true;
-      allow create: if isAdmin();
-      allow update: if isAdmin() && resource != null;
-      allow delete: if isAdmin() && resource != null;
+      allow write: if isAdmin();
     }
 
     /**
@@ -188,9 +134,7 @@ service cloud.firestore {
     match /blog_posts/{postId} {
       allow get: if true;
       allow list: if true;
-      allow create: if isAdmin();
-      allow update: if isAdmin() && resource != null;
-      allow delete: if isAdmin() && resource != null;
+      allow write: if isAdmin();
     }
   }
 }
