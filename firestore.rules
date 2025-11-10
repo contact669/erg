@@ -1,23 +1,8 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-  
-    // --- Fonctions d'aide ---
-    function isOwner(userId) {
-      return request.auth != null && request.auth.uid == userId;
-    }
-
-    function isAdmin() {
-      // Pour l'instant, pas de rôle admin défini.
-      // On pourra ajouter : return exists(/databases/$(database)/documents/admins/$(request.auth.uid));
-      return false;
-    }
-    
-    // --- Règles pour les collections des utilisateurs ---
-    // Cette règle s'applique à tous les documents dans toutes les sous-collections de /users/{userId}
-    // (ex: /users/{userId}/quotes/{quoteId}, /users/{userId}/clients/{clientId}, etc.)
-    match /users/{userId}/{document=**} {
-      allow read, write: if isOwner(userId) || isAdmin();
+    match /{document=**} {
+      allow read, write: if request.auth != null;
     }
   }
 }
