@@ -86,8 +86,8 @@ export default function SiteFooter() {
         </div>
 
         <div className="mt-12 border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground">
-                &copy; {new Date().getFullYear()} ERG Rénovation. Tous droits réservés.
+            <p className="text-sm text-muted-foreground text-center md:text-left">
+                Copyright &copy; {new Date().getFullYear()} ERG Rénovation. Tous droits réservés.
             </p>
             <div className="flex gap-4">
                 {legalLinks.map(link => (
