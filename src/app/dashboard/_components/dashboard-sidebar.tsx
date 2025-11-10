@@ -183,7 +183,9 @@ export default function DashboardSidebar() {
                         <DropdownMenuContent align="end">
                         <DropdownMenuLabel>{user?.displayName || user?.email}</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>Profil</DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                            <Link href="/dashboard/profil">Profil</Link>
+                        </DropdownMenuItem>
                         <DropdownMenuItem>Paramètres</DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={handleSignOut}>Déconnexion</DropdownMenuItem>
