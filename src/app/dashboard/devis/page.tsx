@@ -34,14 +34,18 @@ export default function DevisPage() {
     const firestore = useFirestore();
     const [activeTab, setActiveTab] = useState("Nouvelle Demande");
 
-    const quotesQuery = useMemoFirebase(() => {
+    const quotesCollection = useMemoFirebase(() => {
         if (!user || !firestore) return null;
-        const coll = collection(firestore, 'users', user.uid, 'quotes');
+        return collection(firestore, 'users', user.uid, 'quotes');
+    }, [user, firestore]);
+
+    const quotesQuery = useMemoFirebase(() => {
+        if (!quotesCollection) return null;
         if (activeTab === "Tous") {
-            return query(coll, orderBy('createdAt', 'desc'));
+            return query(quotesCollection, orderBy('createdAt', 'desc'));
         }
-        return query(coll, where('status', '==', activeTab), orderBy('createdAt', 'desc'));
-    }, [user, firestore, activeTab]);
+        return query(quotesCollection, where('status', '==', activeTab), orderBy('createdAt', 'desc'));
+    }, [quotesCollection, activeTab]);
 
     const { data: quotes, isLoading } = useCollection<any>(quotesQuery);
 
@@ -51,7 +55,7 @@ export default function DevisPage() {
         }
     }, [user, isUserLoading, router]);
 
-    if (isUserLoading || !user || isLoading) {
+    if (isUserLoading || !user) {
         return (
             <div className="flex h-screen items-center justify-center">
                 <div className="w-10 h-10 rounded-full border-4 border-border border-t-primary animate-spin" />
