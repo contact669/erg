@@ -4,9 +4,9 @@ import Hero from '@/app/_components/hero';
 import ServicesOverview from '@/app/_components/services-overview';
 import ProcessSteps from './_components/process-steps';
 import FeaturedProjects from './_components/featured-projects';
-import Testimonials from './_components/testimonials';
 import CtaBanner from './_components/cta-banner';
 import AnimatedSection from '@/components/animated-section';
+import GoogleReviews from './_components/google-reviews';
 
 export default function Home() {
   return (
@@ -24,7 +24,7 @@ export default function Home() {
           <FeaturedProjects />
         </AnimatedSection>
         <AnimatedSection>
-          <Testimonials />
+          <GoogleReviews />
         </AnimatedSection>
         <AnimatedSection>
           <CtaBanner />

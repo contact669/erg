@@ -1,8 +1,3 @@
-
-
-
-
-
 import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage } from './types';
 import {
   Home,
@@ -925,26 +920,71 @@ export const allProjects: Project[] = [
 
 export const testimonials: Testimonial[] = [
   {
-    name: 'Famille Durand',
-    location: 'Paris 20ème',
+    name: 'amanda blassel',
+    location: 'Paris',
     quote:
-      'ERG Rénovation a transformé notre appartement au-delà de nos espérances. Professionnalisme et finitions impeccables. Nous recommandons vivement !',
-    avatar: 'testimonial-avatar-1',
-  },
-  {
-    name: 'Sophie L.',
-    location: 'Boulogne-Billancourt',
-    quote:
-      'Un grand merci à toute l’équipe pour la rénovation de ma cuisine. Le résultat est magnifique et fonctionnel. Le suivi de chantier était parfait.',
+      'Les frères Ait (ERG Renovation) ont transformé deux salles de bains et douche dans notre maison. Leur travail a été excellent du début à la fin. Ils sont très professionnels, fiables et leur travail est de très haute qualité.',
     avatar: 'testimonial-avatar-2',
+    date: 'mars 2019',
+    rating: 5,
   },
   {
-    name: 'M. Martin',
-    location: 'Vincennes',
+    name: 'Chloé de NOMBEL',
+    location: 'Paris',
     quote:
-      'J’ai confié la rénovation de mon studio à ERG et je suis ravi. Les délais ont été respectés et l’espace a été optimisé de manière très intelligente.',
-    avatar: 'testimonial-avatar-3',
+      'Je recommande vivement ! Rénovations complètes de mon appartement (cuisine, salle de bain, électricité, suppression de cloisons...). Le résultat est superbe et de qualité. Professionnels, réactifs, et de très bon conseil.',
+    avatar: 'testimonial-avatar-2',
+    date: 'sept. 2018',
+    rating: 5,
   },
+  {
+    name: 'Frédéric Langlois',
+    location: 'Paris',
+    quote: 'Artisan ponctuel et sympathique, travail sérieux. Professionnel du début à la fin.',
+    avatar: 'testimonial-avatar-3',
+    date: 'juil. 2018',
+    rating: 5,
+  },
+  {
+    name: 'Greta Margherita',
+    location: 'Paris',
+    quote: "Notre salle de Bain avait besoin d'une rénovation complète et Mr. Ait et son équipe ont été dès le premier appel réactifs, professionnels et de très bon conseil... Le résultat est impeccable, propre, exactement comme nous le souhaitions.",
+    avatar: 'testimonial-avatar-2',
+    date: 'janv. 2018',
+    rating: 5,
+  },
+  {
+    name: 'Institut Océane',
+    location: 'Paris',
+    quote: "Merci à toute l'équipe d'ERG pour votre excellent travail. Vous avez réalisé une belle transformation de notre vieille salle de bains. Nous sommes très contents du résultat. Nous recommandons cette entreprise.",
+    avatar: 'testimonial-avatar-2',
+    date: 'nov. 2016',
+    rating: 5,
+  },
+   {
+    name: 'Coco BiggY',
+    location: 'Paris',
+    quote: "Ma salle de bains avait besoin d être refaite entièrement. Le gérant s est déplacé chez nous: il a été à notre écoute, nous a bien conseillé... Une équipe dynamique, rapide et très pro. Je recommande vivement cette entreprise.",
+    avatar: 'testimonial-avatar-3',
+    date: 'sept. 2016',
+    rating: 5,
+  },
+  {
+    name: 'Romain Desprez',
+    location: 'Paris',
+    quote: "Un travail de qualité, des artisans sérieux et qualifiés, en plus d'un contact des plus agréable. A recommander. Merci a vous.",
+    avatar: 'testimonial-avatar-1',
+    date: 'juil. 2016',
+    rating: 5,
+  },
+  {
+    name: 'nathalie leroy',
+    location: 'Paris',
+    quote: "Une équipe sympathique, sérieuse et professionnelle ! Mon appart a été rénové en entier par cette équipe, très contente du résultat, je recommande vivement !",
+    avatar: 'testimonial-avatar-2',
+    date: 'juil. 2016',
+    rating: 5,
+  }
 ];
 
 export const processSteps: ProcessStep[] = [

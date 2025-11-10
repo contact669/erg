@@ -80,6 +80,8 @@ export interface Testimonial {
   location: string;
   quote: string;
   avatar: string;
+  date?: string;
+  rating?: number;
 }
 
 export interface ProcessStep {
