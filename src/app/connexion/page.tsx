@@ -88,18 +88,25 @@ export default function ConnexionPage() {
       if (error instanceof FirebaseError) {
         switch (error.code) {
           case 'auth/user-not-found':
+            title = 'Compte non trouvé';
+            description = 'Aucun compte n\'est associé à cette adresse email. Veuillez créer un compte.';
+            break;
           case 'auth/wrong-password':
           case 'auth/invalid-credential':
             title = 'Identifiants incorrects';
-            description = 'L\'email ou le mot de passe est incorrect.';
+            description = 'L\'email ou le mot de passe est incorrect. Veuillez réessayer.';
             break;
           case 'auth/email-already-in-use':
             title = 'Email déjà utilisé';
-            description = 'Cette adresse email est déjà associée à un compte.';
+            description = 'Cette adresse email est déjà associée à un compte. Essayez de vous connecter.';
             break;
           case 'auth/invalid-email':
             title = 'Email invalide';
             description = 'Veuillez vérifier votre adresse email.';
+            break;
+          case 'auth/weak-password':
+            title: 'Mot de passe trop faible';
+            description: 'Le mot de passe doit contenir au moins 6 caractères.';
             break;
           default:
             title = 'Erreur d\'authentification';
