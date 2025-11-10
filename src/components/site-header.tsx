@@ -53,9 +53,9 @@ function AuthButton() {
 
 function StyledLogo() {
   return (
-    <span className="font-headline text-xl font-bold text-primary">
+    <span className="font-headline text-2xl font-bold tracking-wider text-primary">
       <span>E</span>
-      <span className="underline decoration-accent decoration-2 underline-offset-2">R</span>
+      <span className="underline decoration-accent decoration-2 underline-offset-4">R</span>
       <span>G</span>
     </span>
   );
