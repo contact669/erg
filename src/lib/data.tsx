@@ -856,37 +856,36 @@ export const projectCategories = [
 
 export const featuredProjects: Project[] = [
   {
-    title: 'Appartement Haussmannien',
-    slug: 'appartement-haussmannien-paris-16',
+    title: 'Rénovation totale de studio',
+    slug: 'renovation-studio-paris-11',
+    category: 'Studio',
+    images: { before: 'project-studio-2-before', after: 'project-studio-2' },
+    description: 'Rénovation complète d\'un studio dans le 11e, incluant une intervention d\'urgence pour une fuite. Un projet mené avec réactivité et professionnalisme.'
+  },
+  {
+    title: 'Rénovation appartement 65m²',
+    slug: 'renovation-appartement-65m2-paris',
     category: 'Appartement',
-    images: { before: 'project-apartment-1-before', after: 'project-apartment-1' },
-    description: 'Rénovation complète d’un appartement de 120m² dans le 16ème arrondissement, alliant préservation du cachet et modernité.'
+    images: { before: 'project-apartment-2-before', after: 'project-apartment-2' },
+    description: 'Refonte totale d\'un appartement de 65m², incluant cuisine, salle de bain, électricité et peinture. Un résultat de grande qualité salué par le client.'
   },
   {
-    title: 'Cuisine Ouverte Design',
-    slug: 'cuisine-ouverte-design-vincennes',
-    category: 'Cuisine',
-    images: { before: 'project-kitchen-1-before', after: 'project-kitchen-1' },
-    description: 'Création d’une cuisine avec îlot central, matériaux nobles et ouverture sur le séjour pour plus de convivialité.'
-  },
-  {
-    title: 'Suite parentale avec spa',
-    slug: 'suite-parentale-spa-neuilly',
+    title: 'Optimisation d\'une salle de bain 3m²',
+    slug: 'optimisation-salle-de-bain-3m2',
     category: 'Salle de bain',
-    images: { before: 'project-bathroom-1-before', after: 'project-bathroom-1' },
-    description: 'Transformation d’une salle de bain en un espace de détente luxueux, avec douche et baignoire îlot.'
+    images: { before: 'project-small-bathroom-before', after: 'project-small-bathroom-after' },
+    description: 'Réfection totale d\'une petite salle de bain de 3m², avec déplacement de la douche et de la machine à laver pour un agencement sur mesure.'
   },
   {
-    title: 'Loft industriel à Montreuil',
-    slug: 'loft-industriel-montreuil',
-    category: 'Loft',
-    images: { before: 'project-office-1-before', after: 'project-office-1' },
-    description: 'Aménagement complet d’un ancien atelier en un loft moderne et lumineux, optimisant les volumes et la lumière naturelle.'
+    title: 'Rénovation 2 pièces parisien',
+    slug: 'renovation-2-pieces-paris',
+    category: 'Appartement',
+    images: { before: 'project-apartment-3-before', after: 'project-apartment-3' },
+    description: 'Rénovation complète d\'un appartement de 2 pièces à Paris, menée avec des conseils avisés et un suivi de chantier rigoureux.'
   },
 ];
 
 export const allProjects: Project[] = [
-  ...featuredProjects,
   {
     title: 'Rénovation totale de studio',
     slug: 'renovation-studio-paris-11',
