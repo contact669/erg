@@ -4,7 +4,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Star } from 'lucide-react';
+import { Menu, X, Star, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { ErgLogo, GoogleIcon } from '@/components/icons.tsx';
@@ -126,6 +126,10 @@ export default function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-4">
+          <a href="tel:0699961375" className="hidden md:flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary">
+            <Phone className="h-4 w-4" />
+            <span>06 99 96 13 75</span>
+          </a>
           <Button asChild className="hidden md:flex">
             <Link href="/devis">Demander un devis</Link>
           </Button>
