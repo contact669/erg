@@ -58,29 +58,12 @@ service cloud.firestore {
     /**
      * @description Rules for a user's data tree.
      * Secures all sub-collections under a user's private space.
+     * This rule allows the owner of the data or an admin to perform any action.
      */
     match /users/{userId}/{collection}/{docId} {
-      allow get, update, delete: if isOwner(userId) || isAdmin();
-      allow create: if isOwner(userId);
+      allow read, write: if isOwner(userId) || isAdmin();
     }
     
-    match /users/{userId}/clients/{clientId} {
-      allow list: if isOwner(userId) || isAdmin();
-    }
-    
-    match /users/{userId}/projects/{projectId} {
-      allow list: if isOwner(userId) || isAdmin();
-    }
-    
-    match /users/{userId}/quotes/{quoteId} {
-      allow list: if isOwner(userId) || isAdmin();
-    }
-
-    match /users/{userId}/invoices/{invoiceId} {
-      allow list: if isOwner(userId) || isAdmin();
-    }
-
-
     /**
      * @description Rules for admin roles.
      * @path /roles_admin/{uid}
