@@ -6,24 +6,6 @@
  * Only the owning user can read, create, update, or delete their data. Administrative privileges
  * are granted based on the existence of a document in the `/roles_admin/{uid}` collection.
  * Certain top-level collections are publicly readable (locations, testimonials, blog posts).
- *
- * Data Structure:
- * All user-specific data is nested under `/users/{userId}`. Projects, quotes, and invoices
- * are further nested to reflect their relationships.
- * Admin roles are stored in `/roles_admin/{uid}`.
- * Public data (locations, testimonials, blog posts) resides in top-level collections.
- *
- * Key Security Decisions:
- * - Users can only access their own clients, projects, quotes, and invoices.
- * - Administrative privileges are explicitly granted via the `/roles_admin/{uid}` collection.
- * - Public data (locations, testimonials, blog posts) is readable by all.
- * - List operations are secured based on ownership and role.
- * - Invoice totals are intended to be managed exclusively by Cloud Functions.
- *
- * Denormalization for Authorization:
- * The `clientId` field is denormalized into the `projects` collection to avoid requiring
- * `get()` calls to the `clients` collection for authorization checks. This improves
- * performance and simplifies the security rules.
  */
 rules_version = '2';
 service cloud.firestore {
@@ -31,91 +13,72 @@ service cloud.firestore {
 
     /**
      * @description Checks if the request is authenticated.
-     * @param {void}
-     * @return {bool} True if the user is signed in, false otherwise.
      */
     function isSignedIn() {
       return request.auth != null;
     }
 
     /**
-     * @description Checks if the request is made by the owner (userId).
-     * @param {string} userId The user ID to compare against the request's auth UID.
-     * @return {bool} True if the request is made by the owner, false otherwise.
+     * @description Checks if the user is the owner of the data.
      */
     function isOwner(userId) {
-      return isSignedIn() && request.auth.uid == userId;
+      return request.auth.uid == userId;
     }
 
     /**
      * @description Checks if the user has admin privileges.
-     * @return {bool} True if the user is an admin, false otherwise.
      */
     function isAdmin() {
-        return exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
+      return exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
     }
-    
+
     /**
-     * @description Rules for a user's data collections.
-     * Secures all sub-collections under a user's private space.
+     * @description Rules for user's subcollections (e.g., clients, projects).
+     * This rule applies to collection-level operations like 'list' and 'create'.
+     */
+    match /users/{userId}/{collection} {
+      allow list, create: if isOwner(userId) || isAdmin();
+    }
+
+    /**
+     * @description Rules for individual documents within a user's subcollections.
+     * This rule applies to document-level operations like 'get', 'update', 'delete'.
      */
     match /users/{userId}/{collection}/{docId} {
-      allow read, write: if isOwner(userId) || isAdmin();
+      allow get, update, delete: if isOwner(userId) || isAdmin();
     }
-    
+
     /**
      * @description Rules for admin roles.
-     * @path /roles_admin/{uid}
-     * @allow (create) Only an existing admin can create a new admin role.
-     * @allow (get) Any authenticated user can check for admin status.
-     * @allow (update) No one can update an admin role document (deletion and re-creation are used instead).
-     * @allow (delete) Only an existing admin can delete an admin role.
-     * @principle Enforces role-based access control.
      */
     match /roles_admin/{uid} {
       allow get: if isSignedIn();
-      allow list: if false;
-      allow create: if isAdmin();
-      allow update: if false;
-      allow delete: if isAdmin();
+      allow list: if false; // Admins should not be publicly listable
+      allow create, delete: if isAdmin();
+      allow update: if false; // Roles are atomic, either they exist or they don't
     }
 
     /**
      * @description Rules for locations. Publicly readable.
-     * @path /locations/{locationId}
-     * @allow (get, list) Any user can read the location data.
-     * @allow (create, update, delete) Only admins can modify location data.
-     * @principle Provides public read access with admin-only writes.
      */
     match /locations/{locationId} {
-      allow get: if true;
-      allow list: if true;
+      allow get, list: if true;
       allow write: if isAdmin();
     }
 
     /**
      * @description Rules for testimonials. Publicly readable.
-     * @path /testimonials/{testimonialId}
-     * @allow (get, list) Any user can read the testimonial data.
-     * @allow (create, update, delete) Only admins can modify testimonial data.
-     * @principle Provides public read access with admin-only writes.
      */
     match /testimonials/{testimonialId} {
-      allow get: if true;
-      allow list: if true;
+      allow get, list: if true;
       allow write: if isAdmin();
     }
 
     /**
      * @description Rules for blog posts. Publicly readable.
-     * @path /blog_posts/{postId}
-     * @allow (get, list) Any user can read the blog post data.
-     * @allow (create, update, delete) Only admins can modify blog post data.
-     * @principle Provides public read access with admin-only writes.
      */
     match /blog_posts/{postId} {
-      allow get: if true;
-      allow list: if true;
+      allow get, list: if true;
       allow write: if isAdmin();
     }
   }
