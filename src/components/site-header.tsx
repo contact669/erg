@@ -21,6 +21,7 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import { useUser } from '@/firebase';
+import { ModeToggle } from './mode-toggle';
 
 function AuthButton() {
     const { user, isUserLoading } = useUser();
@@ -155,7 +156,7 @@ export default function SiteHeader() {
           </NavigationMenu>
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <a href="tel:0699961375" className="hidden md:flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary">
             <Phone className="h-4 w-4" />
             <span>06 99 96 13 75</span>
@@ -164,6 +165,7 @@ export default function SiteHeader() {
             <Link href="/devis">Demander un devis</Link>
           </Button>
           <AuthButton />
+          <ModeToggle />
           <MobileNav />
         </div>
       </div>
