@@ -26,7 +26,7 @@ export default function DevisPage() {
                         </p>
                         <div className='flex justify-center gap-4'>
                             <Button asChild>
-                                <a href="tel:+33123456789">Appeler maintenant</a>
+                                <a href="tel:+33699961375">Appeler maintenant</a>
                             </Button>
                             <Button asChild variant="outline">
                                 <Link href="/">Retour à l'accueil</Link>

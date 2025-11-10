@@ -37,7 +37,7 @@ export default function StickyCallToAction() {
           </Link>
         </Button>
         <Button asChild variant="outline" className="flex-1" size="lg">
-          <a href="tel:+33123456789">
+          <a href="tel:+33699961375">
             <Phone className="mr-2 h-4 w-4" /> Nous appeler
           </a>
         </Button>

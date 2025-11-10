@@ -29,11 +29,11 @@ export default function SiteFooter() {
             <div className="space-y-2 text-sm">
                  <p className="flex items-start gap-2">
                     <MapPin className="mt-1 h-4 w-4 flex-shrink-0 text-accent" />
-                    <span>Paris 20ème & Île-de-France</span>
+                    <span>1 Sent. de la Pointe, 75020 Paris</span>
                 </p>
                 <p className="flex items-center gap-2">
                     <Phone className="h-4 w-4 text-accent" />
-                    <a href="tel:+33123456789" className="hover:text-primary">01 23 45 67 89</a>
+                    <a href="tel:+33699961375" className="hover:text-primary">06 99 96 13 75</a>
                 </p>
                 <p className="flex items-center gap-2">
                     <Mail className="h-4 w-4 text-accent" />

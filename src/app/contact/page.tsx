@@ -110,10 +110,10 @@ export default function ContactPage() {
                           Appelez-nous pour une réponse immédiate.
                         </p>
                         <a
-                          href="tel:+33123456789"
+                          href="tel:+33699961375"
                           className="font-medium text-accent hover:underline"
                         >
-                          01 23 45 67 89
+                          06 99 96 13 75
                         </a>
                       </div>
                     </div>
@@ -139,12 +139,12 @@ export default function ContactPage() {
                         <MapPin className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="font-semibold">Zone d&apos;intervention</h3>
+                        <h3 className="font-semibold">Adresse</h3>
                         <p className="text-muted-foreground">
-                          Basés à Paris 20, nous intervenons sur toute l&apos;Île-de-France.
+                          1 Sente de la Pointe, 75020 Paris
                         </p>
                         <p className="font-medium">
-                          Paris 20ème & Île-de-France
+                          Intervention sur toute l&apos;Île-de-France
                         </p>
                       </div>
                     </div>
@@ -155,7 +155,7 @@ export default function ContactPage() {
                         <CardContent className="p-2">
                            <div className="aspect-w-16 aspect-h-9 overflow-hidden rounded-md">
                              <iframe
-                               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41999.34356722394!2d2.38139595!3d48.8634356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66dbe2486eb9f%3A0x8671b56f0851e582!2s20th%20Arrondissement%2C%20Paris%2C%20France!5e0!3m2!1sen!2sus!4v1689269553581!5m2!1sen!2sus"
+                               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.790322238495!2d2.404283876878344!3d48.86240409971911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66d86a42e7c4b%3A0x82b5774a3382d625!2s1%20Sente%20de%20la%20Pointe%2C%2075020%20Paris%2C%20France!5e0!3m2!1sen!2sus!4v1726056586053!5m2!1sen!2sus"
                                width="100%"
                                height="300"
                                style={{ border: 0 }}
