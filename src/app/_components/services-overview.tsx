@@ -43,7 +43,7 @@ export default function ServicesOverview() {
                 </CardDescription>
               </CardHeader>
               <div className="p-6 pt-0 text-center">
-                 <Button variant="ghost" asChild className="text-accent hover:text-accent">
+                 <Button variant="ghost" asChild className="text-accent hover:text-accent-foreground hover:bg-accent">
                     <Link href={`/services/${service.slug}`}>
                         En savoir plus <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
