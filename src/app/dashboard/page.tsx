@@ -8,7 +8,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Progress } from '@/components/ui/progress';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { PlusCircle, Users, HardHat, FileText, MoreHorizontal } from 'lucide-react';
+import { PlusCircle, Users, HardHat, FileText, MoreHorizontal, Receipt } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
 // Mock data - replace with Firestore data later
@@ -16,7 +16,7 @@ const stats = [
     { title: 'Clients Actifs', value: '12', icon: Users },
     { title: 'Chantiers en Cours', value: '5', icon: HardHat },
     { title: 'Devis en Attente', value: '8', icon: FileText },
-    { title: 'Factures Impayées', value: '3', total: '2,750€', icon: FileText },
+    { title: 'Factures Impayées', value: '3', total: '2,750€', icon: Receipt },
 ];
 
 const recentProjects = [

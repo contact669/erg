@@ -21,7 +21,8 @@ import {
     LogOut,
     Construction,
     Search,
-    Bell
+    Bell,
+    Receipt
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -43,7 +44,7 @@ const navItems = [
     { href: "/dashboard/clients", icon: Users, label: "Clients" },
     { href: "/dashboard/chantiers", icon: Construction, label: "Chantiers" },
     { href: "/dashboard/devis", icon: FileText, label: "Devis" },
-    { href: "/dashboard/factures", icon: FileText, label: "Factures" },
+    { href: "/dashboard/factures", icon: Receipt, label: "Factures" },
 ];
 
 function NavLink({ href, icon: Icon, label }: { href: string; icon: React.ElementType; label: string; }) {
@@ -77,6 +78,7 @@ export default function DashboardSidebar() {
     const router = useRouter();
 
     const handleSignOut = async () => {
+        if (!auth) return;
         await auth.signOut();
         router.push('/');
     };
@@ -153,9 +155,7 @@ export default function DashboardSidebar() {
                     </SheetContent>
                 </Sheet>
 
-                <div className="flex-1" />
-
-                <div className="relative flex-shrink-1 md:grow-0">
+                <div className="relative ml-auto flex-1 md:grow-0">
                     <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                     <Input
                         type="search"
