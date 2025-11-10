@@ -31,7 +31,7 @@ function AuthButton() {
 
     if(user) {
         return (
-            <Button asChild variant="outline">
+            <Button asChild>
                 <Link href="/dashboard">
                     <LayoutDashboard className="md:mr-2" />
                     <span className="hidden md:inline">Tableau de bord</span>
