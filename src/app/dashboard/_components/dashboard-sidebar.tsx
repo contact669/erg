@@ -19,10 +19,24 @@ import {
     FileText,
     Settings,
     LogOut,
-    Construction
+    Construction,
+    Search,
+    Bell
 } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { useAuth, useUser } from "@/firebase";
 import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
+import { ModeToggle } from "@/components/mode-toggle";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const navItems = [
     { href: "/dashboard", icon: LayoutDashboard, label: "Tableau de Bord" },
@@ -59,12 +73,15 @@ function NavLink({ href, icon: Icon, label }: { href: string; icon: React.Elemen
 
 export default function DashboardSidebar() {
     const auth = useAuth();
+    const { user } = useUser();
     const router = useRouter();
 
     const handleSignOut = async () => {
         await auth.signOut();
         router.push('/');
     };
+    
+    const userAvatar = PlaceHolderImages.find(p => p.id === 'founder-1');
 
     return (
         <>
@@ -135,6 +152,42 @@ export default function DashboardSidebar() {
                         </nav>
                     </SheetContent>
                 </Sheet>
+
+                <div className="relative flex-1 md:grow-0">
+                    <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                    <Input
+                        type="search"
+                        placeholder="Rechercher..."
+                        className="w-full rounded-lg bg-secondary pl-8 md:w-[200px] lg:w-[336px]"
+                    />
+                </div>
+                <div className="ml-auto flex items-center gap-2">
+                    <ModeToggle />
+                    <Button variant="ghost" size="icon" className="rounded-full">
+                        <Bell className="h-5 w-5" />
+                        <span className="sr-only">Notifications</span>
+                    </Button>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon" className="rounded-full">
+                           <Avatar className="h-8 w-8">
+                               {userAvatar && <AvatarImage src={user?.photoURL || userAvatar.imageUrl} alt={user?.displayName || 'Avatar utilisateur'} />}
+                               <AvatarFallback>
+                                   {user?.email?.charAt(0).toUpperCase() || 'U'}
+                               </AvatarFallback>
+                           </Avatar>
+                        </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>{user?.displayName || user?.email}</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem>Profil</DropdownMenuItem>
+                        <DropdownMenuItem>Paramètres</DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem onClick={handleSignOut}>Déconnexion</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
             </header>
         </>
     );
