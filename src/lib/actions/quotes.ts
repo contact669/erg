@@ -1,13 +1,20 @@
 'use server';
 
-import * as admin from 'firebase-admin';
+import { initializeApp, getApps, getApp } from 'firebase/app';
+import { getFirestore, collection, query, where, getDocs, doc, writeBatch, serverTimestamp } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { firebaseConfig } from '@/firebase/config';
+import { headers } from 'next/headers';
 
-// Initialize Firebase Admin SDK if not already initialized
-if (!admin.apps.length) {
-  admin.initializeApp();
+let app;
+if (!getApps().length) {
+    app = initializeApp(firebaseConfig);
+} else {
+    app = getApp();
 }
 
-const firestore = admin.firestore();
+const firestore = getFirestore(app);
+const auth = getAuth(app);
 
 interface QuoteRequestData {
   clientName: string;
@@ -20,38 +27,46 @@ interface QuoteRequestData {
   estimatedBudget?: string;
 }
 
+// This function needs to run on the server, but it needs an authenticated admin user.
+// In a real scenario, you'd likely have a secure way to identify the admin,
+// possibly through a custom claim set on the user's token.
+// For this context, we will assume a specific email identifies the admin.
 async function getAdminUidByEmail(): Promise<string> {
-    const adminEmail = 'contact@erg-renovation.fr';
-    try {
-        const adminUserRecord = await admin.auth().getUserByEmail(adminEmail);
-        return adminUserRecord.uid;
-    } catch (error) {
-        console.error(`Admin user with email ${adminEmail} not found. Please ensure this user exists in Firebase Authentication.`);
-        throw new Error(`Admin user not found: ${adminEmail}`);
-    }
+    // This is a placeholder. In a production environment, you should not rely on this method
+    // for authenticating a server-side action. This logic should be handled by checking
+    // authentication status of the incoming request on the server.
+    // For now, we will simulate getting the admin UID from a known email.
+    // The UID is hardcoded for this example. Replace with your actual admin UID.
+    return "pHcnP0Mc32frrhPRzTT2nFwCxno1";
 }
 
 
 export async function createQuoteRequest(data: QuoteRequestData) {
   const adminUID = await getAdminUidByEmail();
+  
+  if (!adminUID) {
+    throw new Error("Could not determine admin user.");
+  }
 
-  await firestore.runTransaction(async (transaction) => {
-    const clientsRef = firestore.collection('clients');
-    const clientQuery = clientsRef.where('email', '==', data.clientEmail).limit(1);
-    const clientSnapshot = await transaction.get(clientQuery);
-    
+  try {
+    const batch = writeBatch(firestore);
+
+    const clientsRef = collection(firestore, 'clients');
+    const clientQuery = query(clientsRef, where('email', '==', data.clientEmail));
+    const clientSnapshot = await getDocs(clientQuery);
+
     let clientId: string;
-    let clientDocRef: FirebaseFirestore.DocumentReference;
+    let clientDocRef;
 
     if (clientSnapshot.empty) {
-      clientDocRef = clientsRef.doc();
-      transaction.set(clientDocRef, {
+      clientDocRef = doc(collection(firestore, 'clients'));
+      batch.set(clientDocRef, {
         name: data.clientName,
         email: data.clientEmail,
         phone: data.clientPhone || null,
         address: data.clientAddress,
         userId: adminUID,
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        createdAt: serverTimestamp(),
       });
       clientId = clientDocRef.id;
     } else {
@@ -59,9 +74,9 @@ export async function createQuoteRequest(data: QuoteRequestData) {
       clientId = clientSnapshot.docs[0].id;
     }
 
-    const projectsRef = firestore.collection('projects');
-    const projectDocRef = projectsRef.doc();
-    transaction.set(projectDocRef, {
+    const projectsRef = collection(firestore, 'projects');
+    const projectDocRef = doc(projectsRef);
+    batch.set(projectDocRef, {
       clientId: clientId,
       clientName: data.clientName,
       name: data.projectName,
@@ -69,25 +84,33 @@ export async function createQuoteRequest(data: QuoteRequestData) {
       address: data.clientAddress,
       status: 'Devis Requis',
       userId: adminUID,
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      createdAt: serverTimestamp(),
     });
     const projectId = projectDocRef.id;
 
-    const quotesRef = firestore.collection('quotes');
-    const quoteDocRef = quotesRef.doc();
-    transaction.set(quoteDocRef, {
+    const quotesRef = collection(firestore, 'quotes');
+    const quoteDocRef = doc(quotesRef);
+    batch.set(quoteDocRef, {
       projectId: projectId,
       clientId: clientId,
       clientName: data.clientName,
       clientEmail: data.clientEmail,
       projectName: data.projectName,
       projectDescription: data.projectDescription,
+      service: data.service,
       estimatedBudget: data.estimatedBudget || null,
       status: 'Nouvelle Demande',
       userId: adminUID,
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      createdAt: serverTimestamp(),
     });
-  });
 
-  return { success: true };
+    await batch.commit();
+    return { success: true, quoteId: quoteDocRef.id };
+  } catch (error) {
+    console.error("Error creating quote request:", error);
+    if (error instanceof Error) {
+        return { success: false, error: error.message };
+    }
+    return { success: false, error: 'An unknown error occurred' };
+  }
 }
