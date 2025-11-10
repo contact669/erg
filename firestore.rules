@@ -54,11 +54,10 @@ service cloud.firestore {
     function isAdmin() {
         return exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
     }
-
+    
     /**
-     * @description Rules for a user's data tree.
+     * @description Rules for a user's data collections.
      * Secures all sub-collections under a user's private space.
-     * This rule allows the owner of the data or an admin to perform any action.
      */
     match /users/{userId}/{collection}/{docId} {
       allow read, write: if isOwner(userId) || isAdmin();
