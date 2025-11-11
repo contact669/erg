@@ -8,7 +8,7 @@ service cloud.firestore {
 
     // Allow admin to list the quoteRequests collection, but only for their own documents
     match /quoteRequests/{docId} {
-       allow list: if request.auth != null && request.auth.uid == request.query.filters.userId;
+       allow list: if request.auth != null && request.query.where.userId == request.auth.uid;
     }
 
     // Allow admin to read and write quotes where their UID matches the document's userId
@@ -18,7 +18,7 @@ service cloud.firestore {
     
     // Allow admin to list the quotes collection, but only for their own documents
     match /quotes/{docId} {
-        allow list: if request.auth != null && request.auth.uid == request.query.filters.userId;
+        allow list: if request.auth != null && request.query.where.userId == request.auth.uid;
     }
   }
 }
