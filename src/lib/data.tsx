@@ -92,7 +92,7 @@ export const services: Service[] = [
         { question: "Gérez-vous les autorisations de travaux (copropriété, mairie) ?", answer: "Oui, absolument. Nous vous accompagnons dans toutes les démarches administratives. Que ce soit la déclaration de travaux en mairie ou la présentation du projet en assemblée générale de copropriété, nous préparons les dossiers pour vous garantir une tranquillité totale." },
         { question: "Possédez-vous la garantie décennale ?", answer: "Oui, c'est une obligation légale et notre plus grand gage de sérieux. Tous nos travaux sont couverts par notre garantie décennale, qui assure la réparation des dommages pouvant survenir dans les 10 ans suivant la réception du chantier. Votre investissement est ainsi protégé." }
     ],
-    relatedProjectSlugs: ['appartement-haussmannien-paris-16', 'studio-optimise-marais']
+    relatedProjectSlugs: ['appartement-haussmannien-paris-16', 'studio-optimise-marais', 'renovation-appartement-cloisons-vincennes']
   },
   {
     title: 'Rénovation de maison',
@@ -1127,13 +1127,13 @@ export const allProjects: Project[] = [
     }
   },
   {
-    title: 'Cuisine ouverte design',
-    slug: 'cuisine-ouverte-design-vincennes',
-    category: 'Cuisine',
+    title: 'Cuisine ouverte sur séjour',
+    slug: 'renovation-appartement-cloisons-vincennes',
+    category: 'Appartement',
     images: { before: 'project-kitchen-1-before', after: 'project-kitchen-1' },
-    description: "Rénovation complète d'un appartement incluant la cuisine et la salle de bain. Un travail sérieux et de qualité.",
+    description: "Rénovation complète d'un appartement incluant la cuisine, la salle de bain et la suppression de cloisons pour un espace de vie ouvert.",
     testimonial: {
-      quote: "Rénovations complètes de mon appartement (cuisine, salle de bain, électricité, suppression de cloisons...). Le résultat est superbe et de qualité. Professionnels, réactifs, et de très bon conseil.",
+      quote: "Je recommande vivement ! Rénovations complètes de mon appartement (cuisine, salle de bain, électricité, suppression de cloisons...). Le résultat est superbe et de qualité. Professionnels, réactifs, et de très bon conseil.",
       author: "Chloé de NOMBEL"
     },
     details: {
@@ -1143,7 +1143,7 @@ export const allProjects: Project[] = [
       solution: <>
           <p>En tant qu'interlocuteur unique, nous avons orchestré l'ensemble des corps de métier. Notre intervention s'est articulée autour de :</p>
           <ul>
-              <li><strong>Décloisonnement :</strong> Suppression de cloisons pour agrandir l'espace de vie et créer une cuisine ouverte.</li>
+              <li><strong>Décloisonnement :</strong> Suppression de cloisons pour agrandir l'espace de vie et créer une cuisine ouverte sur le séjour.</li>
               <li><strong>Rénovation des pièces techniques :</strong> Refonte complète de la cuisine et de la salle de bain, avec mise aux normes des réseaux d'eau et d'électricité.</li>
               <li><strong>Conseils et accompagnement :</strong> Nous avons conseillé la cliente sur les choix d'agencement et de matériaux pour un résultat esthétique et durable.</li>
           </ul>
@@ -1156,14 +1156,7 @@ export const allProjects: Project[] = [
         { title: "Conseils en aménagement", icon: Lightbulb }
       ]
     }
-  },
-  {
-    title: 'Suite parentale & Spa',
-    slug: 'suite-parentale-spa-neuilly',
-    category: 'Salle de bain',
-    images: { before: 'project-bathroom-1-before', after: 'project-bathroom-1' },
-    description: "Transformation de deux salles de bains. Un travail d'une très haute qualité, professionnel et fiable.",
-  },
+  }
 ];
 
 
