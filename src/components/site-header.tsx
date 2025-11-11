@@ -172,9 +172,6 @@ export default function SiteHeader() {
           <Button asChild className="hidden md:flex">
             <Link href="/devis">Demander un devis</Link>
           </Button>
-          <div className="hidden md:block">
-            <AuthButton />
-          </div>
           <ModeToggle />
           <MobileNav />
         </div>
