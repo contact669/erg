@@ -2,11 +2,14 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Autoriser l'administrateur à tout lire/écrire.
-    // La règle est divisée pour autoriser explicitement les requêtes de liste (list)
-    // et la lecture/écriture de documents individuels (get, write).
+    // Règle spécifique pour autoriser l'administrateur à lister les demandes de devis
+    match /quoteRequests/{docId} {
+        allow read, write: if request.auth != null && request.auth.uid == "pHcnP0Mc32frrhPRzTT2nFwCxno1";
+    }
+
+    // Règle générale pour l'accès administrateur
     match /{path=**} {
-      allow read, write: if request.auth != null && request.auth.uid == "pHcnP0Mc32frrhPRzTT2nFwCxno1";
+      allow get, write: if request.auth != null && request.auth.uid == "pHcnP0Mc32frrhPRzTT2nFwCxno1";
     }
   }
 }
