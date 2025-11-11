@@ -1,3 +1,4 @@
+
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -47,15 +48,15 @@ export default function DevisPage() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
     toast({
-      title: 'Analyse de votre demande par l\'IA...',
-      description: 'Notre assistant intelligent prépare votre devis. Veuillez patienter.',
+      title: 'Envoi de votre demande...',
+      description: 'Veuillez patienter pendant que nous enregistrons votre projet.',
     });
     try {
       await createQuoteRequest(values);
       toast({
         title: 'Demande de devis envoyée !',
         description:
-          'Merci pour votre demande. Notre IA l\'a pré-analysée et nous reviendrons vers vous très rapidement.',
+          'Merci pour votre demande. Notre équipe va l\'étudier et reviendra vers vous très rapidement.',
       });
       form.reset();
     } catch (error) {
@@ -82,9 +83,9 @@ export default function DevisPage() {
                  <div className="mx-auto w-fit rounded-full bg-primary/10 p-3 text-primary">
                   <Bot className="h-8 w-8" />
                 </div>
-                <CardTitle className="font-headline text-3xl md:text-4xl">Demande de Devis Intelligente</CardTitle>
+                <CardTitle className="font-headline text-3xl md:text-4xl">Demande de Devis Simplifiée</CardTitle>
                 <CardDescription className="text-lg">
-                  Décrivez-nous simplement votre projet. Notre IA s'occupe de structurer la demande pour nos artisans.
+                  Décrivez-nous simplement votre projet. Notre équipe d'experts l'étudiera et reviendra vers vous au plus vite.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -126,7 +127,7 @@ export default function DevisPage() {
                     </fieldset>
                     
                     <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-                      {isSubmitting ? 'Analyse par l\'IA en cours...' : 'Envoyer et générer un pré-devis'}
+                      {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
                     </Button>
                   </form>
                 </Form>

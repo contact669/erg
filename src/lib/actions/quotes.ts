@@ -1,11 +1,10 @@
+
 'use server';
 
 import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getFirestore, collection, query, where, getDocs, doc, writeBatch, serverTimestamp } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { firebaseConfig } from '@/firebase/config';
-import { generateQuote, type GenerateQuoteOutput } from '@/ai/flows/generate-quote-flow';
-
 
 let app;
 if (!getApps().length) {
@@ -24,17 +23,11 @@ interface QuoteRequestData {
   projectDescription: string;
 }
 
-// This function needs to run on the server, but it needs an authenticated admin user.
-// In a real scenario, you'd likely have a secure way to identify the admin,
-// possibly through a custom claim set on the user's token.
-// For this context, we will assume a specific email identifies the admin.
-// The UID is hardcoded for this example. Replace with your actual admin UID.
+// This function is placeholder for getting the admin UID. 
+// In a real application, you would have a more secure way to identify the user
+// who should own these requests, likely the currently logged-in admin user
+// from the server context. For now, we hardcode it.
 async function getAdminUid(): Promise<string> {
-    // This is a placeholder. In a production environment, you should not rely on this method
-    // for authenticating a server-side action. This logic should be handled by checking
-    // authentication status of the incoming request on the server.
-    // For now, we will simulate getting the admin UID.
-    // The UID is hardcoded for this example.
     return "pHcnP0Mc32frrhPRzTT2nFwCxno1";
 }
 
@@ -47,66 +40,14 @@ export async function createQuoteRequest(data: QuoteRequestData) {
   }
 
   try {
-    // 1. Generate the quote using AI
-    const aiQuote = await generateQuote({
-        projectDescription: data.projectDescription,
-        serviceType: 'Inconnu - à définir depuis la description'
-    });
-
-    const batch = writeBatch(firestore);
-
-    const clientsRef = collection(firestore, 'clients');
-    const clientQuery = query(clientsRef, where('email', '==', data.clientEmail));
-    const clientSnapshot = await getDocs(clientQuery);
-
-    let clientId: string;
-    let clientDocRef;
-
-    if (clientSnapshot.empty) {
-      clientDocRef = doc(collection(firestore, 'clients'));
-      batch.set(clientDocRef, {
-        name: data.clientName,
-        email: data.clientEmail,
-        phone: data.clientPhone || null,
+    const requestRef = await addDoc(collection(firestore, "quoteRequests"), {
+        ...data,
+        status: 'Nouvelle Demande',
         userId: adminUID,
         createdAt: serverTimestamp(),
-      });
-      clientId = clientDocRef.id;
-    } else {
-      clientDocRef = clientSnapshot.docs[0].ref;
-      clientId = clientSnapshot.docs[0].id;
-    }
-
-    const projectsRef = collection(firestore, 'projects');
-    const projectDocRef = doc(projectsRef);
-    batch.set(projectDocRef, {
-      clientId: clientId,
-      clientName: data.clientName,
-      name: aiQuote.title,
-      description: data.projectDescription,
-      status: 'Devis Requis',
-      userId: adminUID,
-      createdAt: serverTimestamp(),
     });
-    const projectId = projectDocRef.id;
-
-    const quotesRef = collection(firestore, 'quotes');
-    const quoteDocRef = doc(quotesRef);
-    batch.set(quoteDocRef, {
-      ...aiQuote, // Spread the AI-generated quote
-      projectId: projectId,
-      clientId: clientId,
-      clientName: data.clientName,
-      clientEmail: data.clientEmail,
-      projectDescription: data.projectDescription,
-      service: 'À catégoriser',
-      status: 'Nouvelle Demande',
-      userId: adminUID,
-      createdAt: serverTimestamp(),
-    });
-
-    await batch.commit();
-    return { success: true, quoteId: quoteDocRef.id };
+    
+    return { success: true, requestId: requestRef.id };
   } catch (error) {
     console.error("Error creating quote request:", error);
     if (error instanceof Error) {

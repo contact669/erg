@@ -23,7 +23,8 @@ import {
     Construction,
     Search,
     Bell,
-    Receipt
+    Receipt,
+    MailQuestion
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -42,10 +43,11 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const navItems = [
     { href: "/dashboard", icon: LayoutDashboard, label: "Tableau de Bord" },
-    { href: "/dashboard/clients", icon: Users, label: "Clients" },
-    { href: "/dashboard/chantiers", icon: Construction, label: "Chantiers" },
+    { href: "/dashboard/demandes", icon: MailQuestion, label: "Demandes" },
     { href: "/dashboard/devis", icon: FileText, label: "Devis" },
     { href: "/dashboard/factures", icon: Receipt, label: "Factures" },
+    { href: "/dashboard/chantiers", icon: Construction, label: "Chantiers" },
+    { href: "/dashboard/clients", icon: Users, label: "Clients" },
 ];
 
 function NavLink({ href, icon: Icon, label }: { href: string; icon: React.ElementType; label: string; }) {
@@ -95,7 +97,7 @@ export default function DashboardSidebar() {
                             href="/"
                             className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
                         >
-                            <ErgLogo className="h-5 w-5 transition-all group-hover:scale-110" />
+                            <ErgLogo className="h-8 w-8 text-background" />
                             <span className="sr-only">ERG</span>
                         </Link>
                         {navItems.map((item) => (
@@ -132,7 +134,7 @@ export default function DashboardSidebar() {
                                 href="/"
                                 className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
                             >
-                                <ErgLogo className="h-5 w-5 transition-all group-hover:scale-110" />
+                                <ErgLogo className="h-8 w-8 text-background" />
                                 <span className="sr-only">ERG</span>
                             </Link>
                             {navItems.map((item) => (

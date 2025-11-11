@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useUser, useCollection, useMemoFirebase } from '@/firebase';
@@ -7,11 +8,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { PlusCircle, MoreHorizontal, FileText, Bot } from 'lucide-react';
+import { PlusCircle, MoreHorizontal, FileText } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuLabel, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
-import { collection, query, orderBy, where, Query } from 'firebase/firestore';
+import { collection, query, orderBy, where } from 'firebase/firestore';
 import { useFirestore } from '@/firebase';
 
 function getStatusBadgeVariant(status: string) {
@@ -19,7 +20,7 @@ function getStatusBadgeVariant(status: string) {
     case 'Accepté': return 'default';
     case 'Facturé': return 'secondary';
     case 'Envoyé': return 'outline';
-    case 'Nouvelle Demande': return 'destructive';
+    case 'Brouillon': return 'destructive';
     case 'Refusé': return 'destructive';
     default: return 'default';
   }
@@ -38,11 +39,8 @@ export default function DevisPage() {
 
   const quotesQuery = useMemoFirebase(() => {
     if (!firestore || !user?.uid) {
-      // Retourne null si firestore ou l'UID de l'utilisateur ne sont pas encore disponibles.
-      // useCollection gérera cet état et ne lancera pas de requête.
       return null;
     }
-    // La requête est construite uniquement lorsque toutes les dépendances sont prêtes.
     return query(
       collection(firestore, 'quotes'),
       where('userId', '==', user.uid),
@@ -81,7 +79,7 @@ export default function DevisPage() {
         <CardHeader>
           <CardTitle>Liste des devis</CardTitle>
           <CardDescription>
-            Retrouvez ici tous vos devis.
+            Retrouvez ici tous vos devis générés.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -107,7 +105,7 @@ export default function DevisPage() {
               {!isLoading && quotes && quotes.length === 0 && (
                 <TableRow>
                   <TableCell colSpan={6} className="h-24 text-center">
-                    Aucun devis trouvé.
+                    Aucun devis trouvé. Créez-en un depuis une demande.
                   </TableCell>
                 </TableRow>
               )}
@@ -118,7 +116,7 @@ export default function DevisPage() {
                     <div className="text-sm text-muted-foreground">{item.clientEmail}</div>
                   </TableCell>
                   <TableCell>
-                    <div className="font-medium">{item.projectName}</div>
+                    <div className="font-medium">{item.title}</div>
                     <div className="text-sm text-muted-foreground line-clamp-2">
                       {item.projectDescription}
                     </div>
@@ -148,10 +146,7 @@ export default function DevisPage() {
                           <FileText className="mr-2 h-4 w-4" />
                           Voir le devis
                         </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <Bot className="mr-2 h-4 w-4" />
-                          Générer avec l'IA
-                        </DropdownMenuItem>
+                        <DropdownMenuItem>Modifier</DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem className="text-destructive focus:text-destructive focus:bg-destructive/10">
                           Archiver
