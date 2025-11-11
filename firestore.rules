@@ -5,11 +5,11 @@ service cloud.firestore {
     match /quoteRequests/{docId} {
       // Allow an admin to read or write a single request document if they own it.
       allow get, update, delete, create: if request.auth != null && request.auth.uid == request.resource.data.userId;
-    }
-
-    match /quoteRequests/{docId} {
-        // Allow an admin to list requests if the query filters by their UID and the specific status.
-        allow list: if request.auth != null && request.query.where.userId == request.auth.uid && request.query.where.status == 'Nouvelle Demande';
+      
+      // Allow an admin to list requests if the query filters by their UID and the specific status.
+      allow list: if request.auth != null 
+                    && request.query.where.userId == request.auth.uid 
+                    && request.query.where.status == 'Nouvelle Demande';
     }
 
     // --- Quotes ---
