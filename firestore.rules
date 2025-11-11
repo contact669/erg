@@ -1,23 +1,25 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Allow admin to read and write quote requests where their UID matches the document's userId
+    // --- Quote Requests ---
     match /quoteRequests/{docId} {
-      allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;
+      // Allow an admin to read or write a single request document if they own it.
+      allow get, update, delete, create: if request.auth != null && request.auth.uid == request.resource.data.userId;
     }
 
-    // Allow admin to list the quoteRequests collection, but only for their own documents
     match /quoteRequests/{docId} {
-       allow list: if request.auth != null && request.query.where.userId == request.auth.uid;
+        // Allow an admin to list requests if the query filters by their UID and the specific status.
+        allow list: if request.auth != null && request.query.where.userId == request.auth.uid && request.query.where.status == 'Nouvelle Demande';
     }
 
-    // Allow admin to read and write quotes where their UID matches the document's userId
+    // --- Quotes ---
     match /quotes/{docId} {
+      // Allow an admin to read or write a single quote document if they own it.
       allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;
     }
     
-    // Allow admin to list the quotes collection, but only for their own documents
     match /quotes/{docId} {
+        // Allow an admin to list quotes if the query filters by their UID.
         allow list: if request.auth != null && request.query.where.userId == request.auth.uid;
     }
   }
