@@ -28,18 +28,19 @@ interface QuoteRequestData {
 // In a real scenario, you'd likely have a secure way to identify the admin,
 // possibly through a custom claim set on the user's token.
 // For this context, we will assume a specific email identifies the admin.
-async function getAdminUidByEmail(): Promise<string> {
+// The UID is hardcoded for this example. Replace with your actual admin UID.
+async function getAdminUid(): Promise<string> {
     // This is a placeholder. In a production environment, you should not rely on this method
     // for authenticating a server-side action. This logic should be handled by checking
     // authentication status of the incoming request on the server.
-    // For now, we will simulate getting the admin UID from a known email.
-    // The UID is hardcoded for this example. Replace with your actual admin UID.
+    // For now, we will simulate getting the admin UID.
+    // The UID is hardcoded for this example.
     return "pHcnP0Mc32frrhPRzTT2nFwCxno1";
 }
 
 
 export async function createQuoteRequest(data: QuoteRequestData) {
-  const adminUID = await getAdminUidByEmail();
+  const adminUID = await getAdminUid();
   
   if (!adminUID) {
     throw new Error("Could not determine admin user.");
