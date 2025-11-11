@@ -4,7 +4,8 @@ import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getFirestore, collection, query, where, getDocs, doc, writeBatch, serverTimestamp } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { firebaseConfig } from '@/firebase/config';
-import { headers } from 'next/headers';
+import { generateQuote, type GenerateQuoteOutput } from '@/ai/flows/generate-quote-flow';
+
 
 let app;
 if (!getApps().length) {
@@ -20,11 +21,7 @@ interface QuoteRequestData {
   clientName: string;
   clientEmail: string;
   clientPhone?: string;
-  clientAddress: string;
-  service: string;
-  projectName: string;
   projectDescription: string;
-  estimatedBudget?: string;
 }
 
 // This function needs to run on the server, but it needs an authenticated admin user.
@@ -49,6 +46,12 @@ export async function createQuoteRequest(data: QuoteRequestData) {
   }
 
   try {
+    // 1. Generate the quote using AI
+    const aiQuote = await generateQuote({
+        projectDescription: data.projectDescription,
+        serviceType: 'Inconnu - à définir depuis la description'
+    });
+
     const batch = writeBatch(firestore);
 
     const clientsRef = collection(firestore, 'clients');
@@ -64,7 +67,6 @@ export async function createQuoteRequest(data: QuoteRequestData) {
         name: data.clientName,
         email: data.clientEmail,
         phone: data.clientPhone || null,
-        address: data.clientAddress,
         userId: adminUID,
         createdAt: serverTimestamp(),
       });
@@ -79,9 +81,8 @@ export async function createQuoteRequest(data: QuoteRequestData) {
     batch.set(projectDocRef, {
       clientId: clientId,
       clientName: data.clientName,
-      name: data.projectName,
+      name: aiQuote.title,
       description: data.projectDescription,
-      address: data.clientAddress,
       status: 'Devis Requis',
       userId: adminUID,
       createdAt: serverTimestamp(),
@@ -91,14 +92,13 @@ export async function createQuoteRequest(data: QuoteRequestData) {
     const quotesRef = collection(firestore, 'quotes');
     const quoteDocRef = doc(quotesRef);
     batch.set(quoteDocRef, {
+      ...aiQuote, // Spread the AI-generated quote
       projectId: projectId,
       clientId: clientId,
       clientName: data.clientName,
       clientEmail: data.clientEmail,
-      projectName: data.projectName,
       projectDescription: data.projectDescription,
-      service: data.service,
-      estimatedBudget: data.estimatedBudget || null,
+      service: 'À catégoriser',
       status: 'Nouvelle Demande',
       userId: adminUID,
       createdAt: serverTimestamp(),
