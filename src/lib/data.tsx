@@ -1,3 +1,4 @@
+
 import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage } from './types';
 import {
   Home,
@@ -1127,7 +1128,7 @@ export const allProjects: Project[] = [
     }
   },
   {
-    title: 'Cuisine ouverte sur séjour',
+    title: 'Cuisine ouverte et suppression de cloisons',
     slug: 'renovation-appartement-cloisons-vincennes',
     category: 'Appartement',
     images: { before: 'project-kitchen-1-before', after: 'project-kitchen-1' },
@@ -1154,6 +1155,37 @@ export const allProjects: Project[] = [
         { title: "Suppression de cloisons", icon: Scaling },
         { title: "Rénovation Tous Corps d'État", icon: Layers },
         { title: "Conseils en aménagement", icon: Lightbulb }
+      ]
+    }
+  },
+    {
+    title: 'Rénovation intégrale d\'un appartement parisien',
+    slug: 'renovation-integrale-appartement-parisien',
+    category: 'Appartement',
+    images: { before: 'project-apartment-3-before', after: 'project-apartment-paris-75' },
+    description: 'Rénovation complète d\'un appartement parisien, un projet mené par une équipe professionnelle et sérieuse pour un résultat de grande qualité.',
+    testimonial: {
+      quote: "Une équipe sympathique, sérieuse et professionnelle ! Mon appart a été rénové en entier par cette équipe, très contente du résultat, je recommande vivement !",
+      author: "nathalie leroy"
+    },
+    details: {
+      challenge: <>
+          <p>Le projet consistait à rénover entièrement un appartement parisien. La cliente souhaitait une transformation complète, gérée par une équipe de confiance capable de livrer un résultat de haute qualité.</p>
+      </>,
+      solution: <>
+          <p>Notre équipe a pris en charge l'intégralité de la rénovation, en s'assurant de maintenir une communication constante avec la cliente. Nos actions ont inclus :</p>
+          <ul>
+              <li><strong>Gestion de projet complète :</strong> Coordination de tous les aspects du chantier, du gros œuvre aux finitions.</li>
+              <li><strong>Rénovation Tous Corps d'État :</strong> Intervention sur l'électricité, la plomberie, les sols, les murs et les plafonds.</li>
+              <li><strong>Équipe professionnelle :</strong> Mise à disposition d'une équipe sympathique et sérieuse, à l'écoute des besoins de la cliente.</li>
+          </ul>
+          <p>La satisfaction de la cliente et le résultat final témoignent de notre engagement à fournir un travail de qualité, mené par des professionnels fiables.</p>
+      </>,
+      keyPoints: [
+        { title: "Rénovation intégrale", icon: Sparkles },
+        { title: "Équipe professionnelle", icon: Users },
+        { title: "Qualité et sérieux", icon: Award },
+        { title: "Satisfaction client", icon: CheckCircle }
       ]
     }
   }
