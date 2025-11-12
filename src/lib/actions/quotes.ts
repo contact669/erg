@@ -24,6 +24,7 @@ interface QuoteRequestData {
 async function getAdminUid(): Promise<string> {
     // This should be replaced with a secure method to get the admin ID,
     // for example, from a configuration file or an environment variable.
+    // IMPORTANT: This UID must match the one used for the admin user in the app.
     return "pHcnP0Mc32frrhPRzTT2nFwCxno1";
 }
 
