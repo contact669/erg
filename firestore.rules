@@ -3,22 +3,26 @@ service cloud.firestore {
   match /databases/{database}/documents {
     
     // --- Quote Requests ---
+    // Allow anyone to create a quote request.
+    // Allow an admin to read, update, or delete their own requests.
     match /quoteRequests/{docId} {
-      // Allow anyone to create a quote request.
       allow create;
-      // Allow an admin to read, update, or delete their own requests.
       allow read, update, delete: if request.auth != null && request.auth.uid == resource.data.userId;
     }
-    // Allow an admin to list their OWN requests, which is what the dashboard query does.
+    
+    // Allow an admin to list THEIR OWN requests.
+    // The query from the client MUST include a `where('userId', '==', request.auth.uid)` clause.
     match /quoteRequests/{path=**} {
       allow list: if request.auth != null && request.query.where.userId == request.auth.uid;
     }
 
     // --- Quotes ---
+    // Allow an admin to read or write a single quote document if they own it.
     match /quotes/{docId} {
-       // Allow an admin to read or write a single quote document if they own it.
       allow read, write: if request.auth != null && request.auth.uid == (resource == null ? request.resource.data.userId : resource.data.userId);
     }
+
+    // Allow an admin to list THEIR OWN quotes.
     match /quotes/{path=**} {
       allow list: if request.auth != null && request.query.where.userId == request.auth.uid;
     }
