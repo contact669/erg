@@ -1,12 +1,16 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    
     // --- Quote Requests ---
     match /quoteRequests/{docId} {
       // Allow anyone to create a quote request.
       allow create;
-      // Allow an admin to read, update, or delete their own requests.
+      // Allow an admin to read, list, update, or delete their own requests.
       allow read, update, delete: if request.auth != null && request.auth.uid == resource.data.userId;
+    }
+     match /quoteRequests/{path=**} {
+      allow list: if request.auth != null;
     }
 
     // --- Quotes ---
