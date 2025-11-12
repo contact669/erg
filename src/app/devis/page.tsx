@@ -1,4 +1,3 @@
-
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -23,7 +22,6 @@ import Breadcrumbs from '@/components/breadcrumbs';
 import { useState } from 'react';
 import { createQuoteRequest } from '@/lib/actions/quotes';
 import { Bot, User } from 'lucide-react';
-import { useUser } from '@/firebase';
 
 const formSchema = z.object({
   clientName: z.string().min(2, "Le nom doit contenir au moins 2 caractères."),

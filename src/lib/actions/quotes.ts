@@ -1,8 +1,7 @@
-
 'use server';
 
-import { firestore } from '@/firebase/init';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { adminDb } from '@/firebase/admin';
+import { Timestamp } from 'firebase-admin/firestore';
 
 interface QuoteRequestData {
   clientName: string;
@@ -16,12 +15,10 @@ export async function createQuoteRequest(data: QuoteRequestData) {
     const quoteRequestData = {
       ...data,
       status: 'Nouvelle Demande',
-      createdAt: serverTimestamp(),
-      // Le userId n'est plus nécessaire pour la soumission publique.
-      // Il sera associé à l'admin qui traite la demande plus tard.
+      createdAt: Timestamp.now(),
     };
 
-    const docRef = await addDoc(collection(firestore, 'quoteRequests'), quoteRequestData);
+    const docRef = await adminDb.collection('quoteRequests').add(quoteRequestData);
     
     return { success: true, requestId: docRef.id };
   } catch (error) {
