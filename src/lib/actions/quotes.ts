@@ -1,21 +1,15 @@
 
 'use server';
 
-import { initializeApp, getApps, App } from 'firebase-admin/app';
+import { initializeApp, getApps } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 
-let app: App;
+// Initialise l'application admin Firebase.
+// Si elle est déjà initialisée, on récupère l'instance existante.
 if (!getApps().length) {
-  // Initialise l'application sans chercher de crédentials par défaut,
-  // ce qui est adapté pour un environnement de développement local ou émulé.
-  app = initializeApp({
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'demo-project',
-  });
-} else {
-  app = getApps()[0];
-}
-
-const firestore = getFirestore(app);
+  initializeApp();
+} 
+const firestore = getFirestore();
 
 interface QuoteRequestData {
   clientName: string;
@@ -25,8 +19,8 @@ interface QuoteRequestData {
 }
 
 export async function createQuoteRequest(data: QuoteRequestData) {
-  // Hardcoded admin UID. In a real app, this should be handled securely.
-  const adminUID = "pHcnP0Mc32frrhPRzTT2nFwCxno1";
+  // L'ID de l'admin à qui les demandes sont assignées.
+  const adminUID = "sCjC4gqf3aWd6tYqZ8xP9jB2vF3h";
 
   try {
     const requestRef = await firestore.collection("quoteRequests").add({
@@ -39,7 +33,6 @@ export async function createQuoteRequest(data: QuoteRequestData) {
     return { success: true, requestId: requestRef.id };
   } catch (error) {
     console.error("Error creating quote request:", error);
-    // Ensure the returned error is a plain, serializable object for the Server Action.
     if (error instanceof Error) {
         return { success: false, error: error.message };
     }
