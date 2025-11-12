@@ -35,8 +35,6 @@ const formSchema = z.object({
 export default function DevisPage() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { user } = useUser();
-
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -55,10 +53,7 @@ export default function DevisPage() {
       description: 'Veuillez patienter pendant que nous enregistrons votre projet.',
     });
     try {
-        if (!user) {
-            throw new Error('Vous devez être connecté pour envoyer une demande.');
-        }
-      await createQuoteRequest(values, user.uid);
+      await createQuoteRequest(values);
       toast({
         title: 'Demande de devis envoyée !',
         description:
@@ -132,8 +127,8 @@ export default function DevisPage() {
                       )} />
                     </fieldset>
                     
-                    <Button type="submit" size="lg" className="w-full" disabled={isSubmitting || !user}>
-                      {isSubmitting ? 'Envoi en cours...' : (user ? 'Envoyer ma demande' : 'Connectez-vous pour envoyer')}
+                    <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                      {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
                     </Button>
                   </form>
                 </Form>

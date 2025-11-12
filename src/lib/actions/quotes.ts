@@ -1,3 +1,4 @@
+
 'use server';
 
 import { firestore } from '@/firebase/init';
@@ -10,13 +11,14 @@ interface QuoteRequestData {
   projectDescription: string;
 }
 
-export async function createQuoteRequest(data: QuoteRequestData, userId: string) {
+export async function createQuoteRequest(data: QuoteRequestData) {
   try {
     const quoteRequestData = {
       ...data,
-      userId: userId, // Assign the request to the logged-in admin
       status: 'Nouvelle Demande',
       createdAt: serverTimestamp(),
+      // Le userId n'est plus nécessaire pour la soumission publique.
+      // Il sera associé à l'admin qui traite la demande plus tard.
     };
 
     const docRef = await addDoc(collection(firestore, 'quoteRequests'), quoteRequestData);
