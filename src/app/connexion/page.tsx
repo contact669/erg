@@ -127,7 +127,7 @@ export default function ConnexionPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
-      <main className="flex-grow flex items-center justify-center bg-secondary">
+      <main className="flex-grow flex items-center justify-center bg-secondary p-4 md:py-16">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
             <CardTitle className="font-headline text-3xl">Espace Professionnel</CardTitle>
