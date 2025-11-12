@@ -3,17 +3,24 @@ service cloud.firestore {
   match /databases/{database}/documents {
     
     // --- Quote Requests ---
-    // Allow anyone to create a quote request.
-    // Allow an admin to read, update, or delete their own requests.
     match /quoteRequests/{docId} {
-      allow create;
+      // Allow anyone to create a quote request if the data is valid.
+      allow create: if request.resource.data.keys().hasAll(['clientName', 'clientEmail', 'projectDescription', 'status', 'userId'])
+                      && request.resource.data.clientName is string
+                      && request.resource.data.clientEmail is string
+                      && request.resource.data.status == 'Nouvelle Demande';
+
+      // Allow an admin to read, update, or delete their own requests.
       allow read, update, delete: if request.auth != null && request.auth.uid == resource.data.userId;
     }
     
     // Allow an admin to list THEIR OWN requests that have the status 'Nouvelle Demande'.
     // The query from the client MUST include a `where('userId', '==', request.auth.uid)` AND a `where('status', '==', 'Nouvelle Demande')` clause.
     match /quoteRequests/{path=**} {
-      allow list: if request.auth != null && request.query.where.userId == request.auth.uid && request.query.where.status == 'Nouvelle Demande';
+      allow list: if request.auth != null 
+                  && request.query.where.size() == 2
+                  && request.query.where.userId == request.auth.uid 
+                  && request.query.where.status == 'Nouvelle Demande';
     }
 
     // --- Quotes ---
