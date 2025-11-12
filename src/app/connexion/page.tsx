@@ -60,7 +60,7 @@ export default function ConnexionPage() {
       toast({
         variant: 'destructive',
         title: 'Erreur de configuration',
-        description: 'Le service d\'authentification n\'est pas disponible.',
+        description: "Le service d'authentification n'est pas disponible.",
       });
       return;
     }
@@ -105,8 +105,8 @@ export default function ConnexionPage() {
             description = 'Veuillez vérifier votre adresse email.';
             break;
           case 'auth/weak-password':
-            title: 'Mot de passe trop faible';
-            description: 'Le mot de passe doit contenir au moins 6 caractères.';
+            title = 'Mot de passe trop faible';
+            description = 'Le mot de passe doit contenir au moins 6 caractères.';
             break;
           default:
             title = 'Erreur d\'authentification';
