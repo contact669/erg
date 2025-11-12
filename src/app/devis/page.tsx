@@ -23,6 +23,7 @@ import Breadcrumbs from '@/components/breadcrumbs';
 import { useState } from 'react';
 import { createQuoteRequest } from '@/lib/actions/quotes';
 import { Bot, User } from 'lucide-react';
+import { useUser } from '@/firebase';
 
 const formSchema = z.object({
   clientName: z.string().min(2, "Le nom doit contenir au moins 2 caractères."),
@@ -34,6 +35,8 @@ const formSchema = z.object({
 export default function DevisPage() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { user } = useUser();
+
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -52,7 +55,10 @@ export default function DevisPage() {
       description: 'Veuillez patienter pendant que nous enregistrons votre projet.',
     });
     try {
-      await createQuoteRequest(values);
+        if (!user) {
+            throw new Error('Vous devez être connecté pour envoyer une demande.');
+        }
+      await createQuoteRequest(values, user.uid);
       toast({
         title: 'Demande de devis envoyée !',
         description:
@@ -126,8 +132,8 @@ export default function DevisPage() {
                       )} />
                     </fieldset>
                     
-                    <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-                      {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
+                    <Button type="submit" size="lg" className="w-full" disabled={isSubmitting || !user}>
+                      {isSubmitting ? 'Envoi en cours...' : (user ? 'Envoyer ma demande' : 'Connectez-vous pour envoyer')}
                     </Button>
                   </form>
                 </Form>

@@ -1,6 +1,7 @@
 'use server';
 
-import { adminDb } from '@/firebase/admin';
+import { firestore } from '@/firebase/init';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 
 interface QuoteRequestData {
   clientName: string;
@@ -9,25 +10,21 @@ interface QuoteRequestData {
   projectDescription: string;
 }
 
-export async function createQuoteRequest(data: QuoteRequestData) {
+export async function createQuoteRequest(data: QuoteRequestData, userId: string) {
   try {
-    // This is the UID of the admin user who will receive the quote requests.
-    const adminUID = "sCjC4gqf3aWd6tYqZ8xP9jB2vF3h";
-
     const quoteRequestData = {
       ...data,
+      userId: userId, // Assign the request to the logged-in admin
       status: 'Nouvelle Demande',
-      userId: adminUID, // All requests are assigned to the admin
-      createdAt: new Date(), // Using server date
+      createdAt: serverTimestamp(),
     };
 
-    const docRef = await adminDb.collection('quoteRequests').add(quoteRequestData);
+    const docRef = await addDoc(collection(firestore, 'quoteRequests'), quoteRequestData);
     
     return { success: true, requestId: docRef.id };
   } catch (error) {
     console.error("Error creating quote request:", error);
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
-    // In a real app, you might want to log this to a more persistent logging service
     return { success: false, error: errorMessage };
   }
 }
