@@ -2,22 +2,14 @@
 'use server';
 
 import { initializeApp, getApps, getApp } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
-import { firebaseConfig } from '@/firebase/config';
+import { getFirestore, addDoc, collection } from 'firebase-admin/firestore';
 
 // Use admin SDK for server-side operations
-const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT_KEY
-  ? JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY)
-  : undefined;
+if (!getApps().length) {
+  initializeApp();
+}
 
-const app = !getApps().length
-  ? initializeApp({
-      credential: serviceAccount ? (require('firebase-admin/app')).cert(serviceAccount) : undefined,
-      projectId: firebaseConfig.projectId,
-    })
-  : getApp();
-
-const firestore = getFirestore(app);
+const firestore = getFirestore();
 
 interface QuoteRequestData {
   clientName: string;
@@ -26,7 +18,7 @@ interface QuoteRequestData {
   projectDescription: string;
 }
 
-// This function is placeholder for getting the admin UID. 
+// This function is placeholder for getting the admin UID.
 // In a real application, you would have a more secure way to identify the user
 // who should own these requests.
 async function getAdminUid(): Promise<string> {
@@ -38,7 +30,7 @@ async function getAdminUid(): Promise<string> {
 
 export async function createQuoteRequest(data: QuoteRequestData) {
   const adminUID = await getAdminUid();
-  
+
   if (!adminUID) {
     throw new Error("Could not determine admin user.");
   }
@@ -50,7 +42,7 @@ export async function createQuoteRequest(data: QuoteRequestData) {
         userId: adminUID,
         createdAt: new Date(), // Using new Date() for server-side timestamp
     });
-    
+
     return { success: true, requestId: requestRef.id };
   } catch (error) {
     console.error("Error creating quote request:", error);
