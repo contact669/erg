@@ -1,15 +1,21 @@
 
 'use server';
 
-import { initializeApp, getApps } from 'firebase-admin/app';
+import { initializeApp, getApps, App } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 
-// Use admin SDK for server-side operations
+let app: App;
 if (!getApps().length) {
-  initializeApp();
+  // Initialise l'application sans chercher de crédentials par défaut,
+  // ce qui est adapté pour un environnement de développement local ou émulé.
+  app = initializeApp({
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'demo-project',
+  });
+} else {
+  app = getApps()[0];
 }
 
-const firestore = getFirestore();
+const firestore = getFirestore(app);
 
 interface QuoteRequestData {
   clientName: string;
@@ -33,6 +39,7 @@ export async function createQuoteRequest(data: QuoteRequestData) {
     return { success: true, requestId: requestRef.id };
   } catch (error) {
     console.error("Error creating quote request:", error);
+    // Ensure the returned error is a plain, serializable object for the Server Action.
     if (error instanceof Error) {
         return { success: false, error: error.message };
     }
