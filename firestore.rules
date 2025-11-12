@@ -10,10 +10,10 @@ service cloud.firestore {
       allow read, update, delete: if request.auth != null && request.auth.uid == resource.data.userId;
     }
     
-    // Allow an admin to list THEIR OWN requests.
-    // The query from the client MUST include a `where('userId', '==', request.auth.uid)` clause.
+    // Allow an admin to list THEIR OWN requests that have the status 'Nouvelle Demande'.
+    // The query from the client MUST include a `where('userId', '==', request.auth.uid)` AND a `where('status', '==', 'Nouvelle Demande')` clause.
     match /quoteRequests/{path=**} {
-      allow list: if request.auth != null && request.query.where.userId == request.auth.uid;
+      allow list: if request.auth != null && request.query.where.userId == request.auth.uid && request.query.where.status == 'Nouvelle Demande';
     }
 
     // --- Quotes ---
