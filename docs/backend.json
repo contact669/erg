@@ -1,0 +1,669 @@
+{
+  "entities": {
+    "Service": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Service",
+      "type": "object",
+      "description": "Represents a service offered by ERG Rénovation.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the service."
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL-friendly slug for the service."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the service."
+        },
+        "metaTitle": {
+          "type": "string",
+          "description": "Meta title for SEO."
+        },
+        "metaDescription": {
+          "type": "string",
+          "description": "Meta description for SEO."
+        },
+        "intro": {
+          "type": "string",
+          "description": "Introductory text for the service."
+        },
+        "bodyRich": {
+          "type": "string",
+          "description": "Rich text body content for the service."
+        },
+        "benefits": {
+          "type": "array",
+          "description": "Array of benefits offered by the service.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "process": {
+          "type": "array",
+          "description": "Array of process steps for the service.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "faq": {
+          "type": "array",
+          "description": "Array of frequently asked questions for the service.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "schemaService": {
+          "type": "string",
+          "description": "JSON schema for the service."
+        },
+        "coverImage": {
+          "type": "string",
+          "description": "URL of the cover image for the service."
+        },
+        "gallery": {
+          "type": "array",
+          "description": "Array of image URLs for the service gallery.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "relatedServices": {
+          "type": "array",
+          "description": "Array of references to related services.",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "slug",
+        "title",
+        "metaTitle",
+        "metaDescription",
+        "intro",
+        "bodyRich",
+        "benefits",
+        "process",
+        "faq",
+        "schemaService",
+        "coverImage",
+        "gallery",
+        "relatedServices"
+      ]
+    },
+    "Location": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Location",
+      "type": "object",
+      "description": "Represents a location (city, arrondissement, department, or district).",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the location."
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of location (city, arrondissement, department, district)."
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL-friendly slug for the location."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the location."
+        },
+        "parent": {
+          "type": "string",
+          "description": "Reference to the parent location (e.g., arrondissement within a city). (Relationship: Location 1:N Location)"
+        },
+        "geo": {
+          "type": "string",
+          "description": "Geolocation coordinates (latitude, longitude)."
+        },
+        "zones": {
+          "type": "array",
+          "description": "Array of zone identifiers within the location.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "intro": {
+          "type": "string",
+          "description": "Introductory text for the location."
+        },
+        "bodyRich": {
+          "type": "string",
+          "description": "Rich text body content for the location."
+        },
+        "faqLocal": {
+          "type": "array",
+          "description": "Array of local frequently asked questions.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "schemaLocalBusiness": {
+          "type": "string",
+          "description": "JSON schema for local business details."
+        },
+        "popularQueries": {
+          "type": "array",
+          "description": "Array of popular search queries for the location.",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "slug",
+        "name",
+        "parent",
+        "geo",
+        "zones",
+        "intro",
+        "bodyRich",
+        "faqLocal",
+        "schemaLocalBusiness",
+        "popularQueries"
+      ]
+    },
+    "Combo": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Combo",
+      "type": "object",
+      "description": "Represents a combination of a service and a location.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the service-location combination."
+        },
+        "serviceRef": {
+          "type": "string",
+          "description": "Reference to the Service. (Relationship: Service 1:N Combo)"
+        },
+        "locationRef": {
+          "type": "string",
+          "description": "Reference to the Location. (Relationship: Location 1:N Combo)"
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL-friendly slug for the service-location combination."
+        },
+        "headline": {
+          "type": "string",
+          "description": "Headline for the service-location combination."
+        },
+        "bodyRich": {
+          "type": "string",
+          "description": "Rich text body content for the service-location combination."
+        },
+        "proofs": {
+          "type": "array",
+          "description": "Array of proofs or testimonials for the service-location combination.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "faq": {
+          "type": "array",
+          "description": "Array of frequently asked questions for the service-location combination.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "schemaService": {
+          "type": "string",
+          "description": "JSON schema for the service."
+        }
+      },
+      "required": [
+        "id",
+        "serviceRef",
+        "locationRef",
+        "slug",
+        "headline",
+        "bodyRich",
+        "proofs",
+        "faq",
+        "schemaService"
+      ]
+    },
+    "Project": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Project",
+      "type": "object",
+      "description": "Represents a completed project by ERG Rénovation.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the project."
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL-friendly slug for the project."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the project."
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of project (sdb, cuisine, etc.)."
+        },
+        "locationRef": {
+          "type": "string",
+          "description": "Reference to the Location. (Relationship: Location 1:N Project)"
+        },
+        "surface": {
+          "type": "number",
+          "description": "Surface area of the project."
+        },
+        "budgetRange": {
+          "type": "string",
+          "description": "Budget range for the project."
+        },
+        "duration": {
+          "type": "string",
+          "description": "Duration of the project."
+        },
+        "beforeAfter": {
+          "type": "array",
+          "description": "Array of URLs for before and after images.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "gallery": {
+          "type": "array",
+          "description": "Array of image URLs for the project gallery.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "materials": {
+          "type": "array",
+          "description": "Array of materials used in the project.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "clientQuote": {
+          "type": "string",
+          "description": "Quote from the client about the project."
+        },
+        "bodyRich": {
+          "type": "string",
+          "description": "Rich text body content for the project."
+        },
+        "schemaArticle": {
+          "type": "string",
+          "description": "JSON schema for the project article."
+        }
+      },
+      "required": [
+        "id",
+        "slug",
+        "title",
+        "type",
+        "locationRef",
+        "surface",
+        "budgetRange",
+        "duration",
+        "beforeAfter",
+        "gallery",
+        "materials",
+        "clientQuote",
+        "bodyRich",
+        "schemaArticle"
+      ]
+    },
+    "Testimonial": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Testimonial",
+      "type": "object",
+      "description": "Represents a testimonial from a client.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the testimonial."
+        },
+        "author": {
+          "type": "string",
+          "description": "Name of the testimonial author."
+        },
+        "role": {
+          "type": "string",
+          "description": "Role of the author."
+        },
+        "locationRef": {
+          "type": "string",
+          "description": "Reference to the Location. (Relationship: Location 1:N Testimonial)"
+        },
+        "rating": {
+          "type": "number",
+          "description": "Rating given by the client."
+        },
+        "quote": {
+          "type": "string",
+          "description": "Text of the testimonial."
+        },
+        "relatedProjectRef": {
+          "type": "string",
+          "description": "Reference to the related Project. (Relationship: Project 1:N Testimonial)"
+        }
+      },
+      "required": [
+        "id",
+        "author",
+        "role",
+        "locationRef",
+        "rating",
+        "quote"
+      ]
+    },
+    "BlogPost": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "BlogPost",
+      "type": "object",
+      "description": "Represents a blog post.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the blog post."
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL-friendly slug for the blog post."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the blog post."
+        },
+        "metaTitle": {
+          "type": "string",
+          "description": "Meta title for SEO."
+        },
+        "metaDescription": {
+          "type": "string",
+          "description": "Meta description for SEO."
+        },
+        "coverImage": {
+          "type": "string",
+          "description": "URL of the cover image for the blog post."
+        },
+        "bodyRich": {
+          "type": "string",
+          "description": "Rich text body content for the blog post."
+        },
+        "tags": {
+          "type": "array",
+          "description": "Array of tags associated with the blog post.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "faq": {
+          "type": "array",
+          "description": "Array of frequently asked questions in the blog post.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "schemaArticle": {
+          "type": "string",
+          "description": "JSON schema for the blog post article."
+        }
+      },
+      "required": [
+        "id",
+        "slug",
+        "title",
+        "metaTitle",
+        "metaDescription",
+        "coverImage",
+        "bodyRich",
+        "tags",
+        "faq",
+        "schemaArticle"
+      ]
+    },
+    "Lead": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Lead",
+      "type": "object",
+      "description": "Represents a lead submitted by a user.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the lead."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Date and time the lead was created.",
+          "format": "date-time"
+        },
+        "source": {
+          "type": "string",
+          "description": "Source of the lead (site, GBP, ads)."
+        },
+        "contact": {
+          "type": "string",
+          "description": "JSON string containing contact information (name, email, phone)."
+        },
+        "locationRef": {
+          "type": "string",
+          "description": "Reference to the Location. (Relationship: Location 1:N Lead)"
+        },
+        "serviceRef": {
+          "type": "string",
+          "description": "Reference to the Service. (Relationship: Service 1:N Lead)"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message from the user."
+        },
+        "attachments": {
+          "type": "array",
+          "description": "Array of URLs for attached files (plans, photos).",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the lead."
+        }
+      },
+      "required": [
+        "id",
+        "createdAt",
+        "source",
+        "contact",
+        "locationRef",
+        "serviceRef",
+        "message",
+        "status"
+      ]
+    },
+    "Media": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Media",
+      "type": "object",
+      "description": "Represents media metadata (images, PDFs).",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the media."
+        },
+        "domain": {
+          "type": "string",
+          "description": "Domain of the media."
+        },
+        "rights": {
+          "type": "string",
+          "description": "Rights associated with the media."
+        },
+        "altFR": {
+          "type": "string",
+          "description": "French alt text for images."
+        },
+        "focalPoint": {
+          "type": "string",
+          "description": "Focal point coordinates for images."
+        }
+      },
+      "required": [
+        "id",
+        "domain",
+        "rights",
+        "altFR"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/services/{serviceId}",
+        "definition": {
+          "entityName": "Service",
+          "schema": {
+            "$ref": "#/backend/entities/Service"
+          },
+          "description": "Stores information about the services offered by ERG Rénovation.",
+          "params": [
+            {
+              "name": "serviceId",
+              "description": "Unique identifier for the service."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/locations/{locationId}",
+        "definition": {
+          "entityName": "Location",
+          "schema": {
+            "$ref": "#/backend/entities/Location"
+          },
+          "description": "Stores information about locations (city, arrondissement, department) where ERG Rénovation operates.",
+          "params": [
+            {
+              "name": "locationId",
+              "description": "Unique identifier for the location."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/combos/{comboId}",
+        "definition": {
+          "entityName": "Combo",
+          "schema": {
+            "$ref": "#/backend/entities/Combo"
+          },
+          "description": "Stores information about combinations of services and locations.",
+          "params": [
+            {
+              "name": "comboId",
+              "description": "Unique identifier for the service-location combination."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/projects/{projectId}",
+        "definition": {
+          "entityName": "Project",
+          "schema": {
+            "$ref": "#/backend/entities/Project"
+          },
+          "description": "Stores information about completed projects by ERG Rénovation.",
+          "params": [
+            {
+              "name": "projectId",
+              "description": "Unique identifier for the project."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/testimonials/{testimonialId}",
+        "definition": {
+          "entityName": "Testimonial",
+          "schema": {
+            "$ref": "#/backend/entities/Testimonial"
+          },
+          "description": "Stores client testimonials.",
+          "params": [
+            {
+              "name": "testimonialId",
+              "description": "Unique identifier for the testimonial."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/blogPosts/{blogPostId}",
+        "definition": {
+          "entityName": "BlogPost",
+          "schema": {
+            "$ref": "#/backend/entities/BlogPost"
+          },
+          "description": "Stores blog posts.",
+          "params": [
+            {
+              "name": "blogPostId",
+              "description": "Unique identifier for the blog post."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/leads/{leadId}",
+        "definition": {
+          "entityName": "Lead",
+          "schema": {
+            "$ref": "#/backend/entities/Lead"
+          },
+          "description": "Stores user-submitted leads. Only accessible by admin.",
+          "params": [
+            {
+              "name": "leadId",
+              "description": "Unique identifier for the lead."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/media/{mediaId}",
+        "definition": {
+          "entityName": "Media",
+          "schema": {
+            "$ref": "#/backend/entities/Media"
+          },
+          "description": "Stores metadata for media files (images, PDFs).",
+          "params": [
+            {
+              "name": "mediaId",
+              "description": "Unique identifier for the media."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore data structure is designed to support ERG Rénovation's website and CMS, focusing on service offerings, project showcases, location-specific content, and lead management.  The structure prioritizes Authorization Independence via denormalization (where applicable), ensures clarity of intent, and adheres to a No Custom Claims (DBAC) approach. The data model supports the required QAPs (Rules are not Filters) through structural segregation and appropriate use of membership models where collaborative access is required.  Since all entities described are either globally accessible, or represent data created by admins, no membership maps are required. Leads are private, and as such, are placed in their own collection."
+  }
+}

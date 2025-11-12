@@ -1,37 +1,147 @@
+/**
+ * @fileoverview Firestore Security Rules for ERG Rénovation.
+ *
+ * Core Philosophy:
+ * This ruleset provides public read access to all content collections (services, locations, combos, projects, testimonials, blogPosts, media) and restricts write access to prevent unauthorized modification.
+ * Leads are kept private, accessible to no one.
+ *
+ * Data Structure:
+ * - /services/{serviceId}
+ * - /locations/{locationId}
+ * - /combos/{comboId}
+ * - /projects/{projectId}
+ * - /testimonials/{testimonialId}
+ * - /blogPosts/{blogPostId}
+ * - /leads/{leadId}
+ * - /media/{mediaId}
+ *
+ * Key Security Decisions:
+ * - All content collections are publicly readable.
+ * - Leads are private and not accessible.
+ * - No authentication or authorization is required for reading content.
+ * - Write access to all collections is denied.
+ */
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    
-    // --- Quote Requests ---
-    match /quoteRequests/{docId} {
-      // Allow anyone to create a quote request if the data is valid.
-      allow create: if request.resource.data.keys().hasAll(['clientName', 'clientEmail', 'projectDescription', 'status', 'userId'])
-                      && request.resource.data.clientName is string
-                      && request.resource.data.clientEmail is string
-                      && request.resource.data.status == 'Nouvelle Demande';
 
-      // Allow an admin to read, update, or delete their own requests.
-      allow read, update, delete: if request.auth != null && request.auth.uid == resource.data.userId;
-    }
-    
-    // Allow an admin to list THEIR OWN requests that have the status 'Nouvelle Demande'.
-    // The query from the client MUST include a `where('userId', '==', request.auth.uid)` AND a `where('status', '==', 'Nouvelle Demande')` clause.
-    match /quoteRequests/{path=**} {
-      allow list: if request.auth != null 
-                  && request.query.where.size() == 2
-                  && request.query.where.userId == request.auth.uid 
-                  && request.query.where.status == 'Nouvelle Demande';
+    /**
+     * @description Allows public read access to service documents and denies all write operations.
+     * @path /services/{serviceId}
+     * @allow get, list: if true;
+     * @deny create, update, delete: if false;
+     * @principle Allows public read access to service information, while preventing unauthorized modifications.
+     */
+    match /services/{serviceId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
     }
 
-    // --- Quotes ---
-    // Allow an admin to read or write a single quote document if they own it.
-    match /quotes/{docId} {
-      allow read, write: if request.auth != null && request.auth.uid == (resource == null ? request.resource.data.userId : resource.data.userId);
+    /**
+     * @description Allows public read access to location documents and denies all write operations.
+     * @path /locations/{locationId}
+     * @allow get, list: if true;
+     * @deny create, update, delete: if false;
+     * @principle Allows public read access to location information, while preventing unauthorized modifications.
+     */
+    match /locations/{locationId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
     }
 
-    // Allow an admin to list THEIR OWN quotes.
-    match /quotes/{path=**} {
-      allow list: if request.auth != null && request.query.where.userId == request.auth.uid;
+    /**
+     * @description Allows public read access to combo documents and denies all write operations.
+     * @path /combos/{comboId}
+     * @allow get, list: if true;
+     * @deny create, update, delete: if false;
+     * @principle Allows public read access to combo information, while preventing unauthorized modifications.
+     */
+    match /combos/{comboId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description Allows public read access to project documents and denies all write operations.
+     * @path /projects/{projectId}
+     * @allow get, list: if true;
+     * @deny create, update, delete: if false;
+     * @principle Allows public read access to project information, while preventing unauthorized modifications.
+     */
+    match /projects/{projectId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description Allows public read access to testimonial documents and denies all write operations.
+     * @path /testimonials/{testimonialId}
+     * @allow get, list: if true;
+     * @deny create, update, delete: if false;
+     * @principle Allows public read access to testimonial information, while preventing unauthorized modifications.
+     */
+    match /testimonials/{testimonialId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description Allows public read access to blog post documents and denies all write operations.
+     * @path /blogPosts/{blogPostId}
+     * @allow get, list: if true;
+     * @deny create, update, delete: if false;
+     * @principle Allows public read access to blog post information, while preventing unauthorized modifications.
+     */
+    match /blogPosts/{blogPostId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description Denies all access to lead documents, making them completely private.
+     * @path /leads/{leadId}
+     * @deny get, list, create, update, delete: if true;
+     * @principle Ensures leads remain private and inaccessible to any user.
+     */
+    match /leads/{leadId} {
+      allow get: if false;
+      allow list: if false;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    /**
+     * @description Allows public read access to media documents and denies all write operations.
+     * @path /media/{mediaId}
+     * @allow get, list: if true;
+     * @deny create, update, delete: if false;
+     * @principle Allows public read access to media information, while preventing unauthorized modifications.
+     */
+    match /media/{mediaId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
     }
   }
 }
