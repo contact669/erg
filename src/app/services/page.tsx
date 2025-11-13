@@ -34,18 +34,22 @@ export default function ServicesPage() {
           <section className="py-16 md:py-24">
             <div className="container">
               <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {services.map((service) => (
+                {services.map((service) => {
+                  const serviceImage = PlaceHolderImages.find(p => p.id === service.heroImageId);
+                  return (
                   <Link key={service.slug} href={`/services/${service.slug}`} className="group block">
                     <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
                       <div className="relative h-56 w-full">
-                        <Image
-                          src={PlaceHolderImages.find(p => p.id === service.heroImageId)?.imageUrl || ''}
-                          alt={service.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          data-ai-hint={PlaceHolderImages.find(p => p.id === service.heroImageId)?.imageHint}
-                        />
+                        {serviceImage && (
+                          <Image
+                            src={serviceImage.imageUrl}
+                            alt={service.title}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            data-ai-hint={serviceImage.imageHint}
+                          />
+                        )}
                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                          <div className="absolute bottom-4 left-4 flex items-center gap-3">
                             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/90 text-white">
@@ -64,7 +68,7 @@ export default function ServicesPage() {
                       </CardContent>
                     </Card>
                   </Link>
-                ))}
+                )})}
               </div>
             </div>
           </section>
