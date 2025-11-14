@@ -1,3 +1,4 @@
+
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -377,11 +378,11 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                                 {service.zones.description}
                             </p>
                         </div>
-                         {Array.isArray(service.zones.list) && service.slug === 'renovation-appartement' && (
+                         {Array.isArray(service.zones.list) && (
                             <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4">
                                 {service.zones.list.map((zone) => (
                                 <Button asChild variant="outline" key={zone.slug}>
-                                    <Link href={`/renovation-appartement/${zone.slug}`}>{zone.name}</Link>
+                                    <Link href={`/${service.slug}/${zone.slug}`}>{zone.name}</Link>
                                 </Button>
                                 ))}
                             </div>
