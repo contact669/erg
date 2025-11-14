@@ -133,9 +133,12 @@ export const services: Service[] = [
         { title: 'Transparence et Garanties', description: "Tous nos travaux sont couverts par une assurance décennale et une assurance responsabilité civile. Nos devis sont clairs et nos délais, tenus.", icon: ClipboardCheck }
     ],
     zones: {
-        description: "ERG Rénovation est le spécialiste des projets résidentiels haut de gamme en Île-de-France. Nos équipes interviennent pour la rénovation de maisons dans les Yvelines (78) (Versailles, Saint-Germain-en-Laye...) et les Hauts-de-Seine (92) (Meudon, Saint-Cloud, Sceaux...), où se concentrent de nombreux pavillons et demeures de caractère.",
+        description: "ERG Rénovation est le spécialiste des projets résidentiels haut de gamme en Île-de-France. Nos équipes interviennent pour la rénovation de maisons dans les Yvelines (78), les Hauts-de-Seine (92), le Val-de-Marne (94) et en Seine-Saint-Denis (93).",
         list: [
-            { name: 'Yvelines (78)', slug: 'versailles' }
+            { name: 'Yvelines (78)', slug: 'yvelines-78' },
+            { name: 'Hauts-de-Seine (92)', slug: 'hauts-de-seine-92' },
+            { name: 'Val-de-Marne (94)', slug: 'val-de-marne-94' },
+            { name: 'Seine-Saint-Denis (93)', slug: 'seine-saint-denis-93' }
         ]
     },
     faq: [
@@ -185,7 +188,8 @@ export const services: Service[] = [
     zones: {
       description: "Notre expertise en rénovation de salle de bain s'exerce dans les appartements haussmanniens de Paris (75), où l'optimisation est reine, comme dans les maisons des Hauts-de-Seine (92) et des Yvelines (78) (création de suites parentales).",
       list: [
-            { name: 'Paris 16e', slug: 'paris-16' }
+        { name: 'Paris (75)', slug: 'paris-75' },
+        { name: 'Hauts-de-Seine (92)', slug: 'hauts-de-seine-92' }
       ]
     },
     faq: [
@@ -1823,6 +1827,3 @@ export const blogPosts: BlogPost[] = [
     )
   }
 ];
-
-
-    
