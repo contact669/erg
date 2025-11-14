@@ -134,7 +134,9 @@ export const services: Service[] = [
     ],
     zones: {
         description: "ERG Rénovation est le spécialiste des projets résidentiels haut de gamme en Île-de-France. Nos équipes interviennent pour la rénovation de maisons dans les Yvelines (78) (Versailles, Saint-Germain-en-Laye...) et les Hauts-de-Seine (92) (Meudon, Saint-Cloud, Sceaux...), où se concentrent de nombreux pavillons et demeures de caractère.",
-        list: "Nous gérons également les projets de maisons de ville à Paris (75), ainsi que les rénovations dans le Val-de-Marne (94) (Nogent-sur-Marne, Saint-Maur-des-Fossés) et en Seine-Saint-Denis (93) (Le Raincy, Montreuil)."
+        list: [
+            { name: 'Yvelines (78)', slug: 'versailles' }
+        ]
     },
     faq: [
         { question: "Faut-il un permis de construire pour une extension de maison ?", answer: "Pour une extension jusqu'à 40m² en zone urbaine couverte par un PLU, une déclaration préalable de travaux suffit généralement. Au-delà, un permis de construire est nécessaire. ERG Rénovation s'occupe de la constitution et du dépôt de votre dossier en mairie." },
@@ -182,7 +184,9 @@ export const services: Service[] = [
     ],
     zones: {
       description: "Notre expertise en rénovation de salle de bain s'exerce dans les appartements haussmanniens de Paris (75), où l'optimisation est reine, comme dans les maisons des Hauts-de-Seine (92) et des Yvelines (78) (création de suites parentales).",
-      list: "Nous intervenons également sur des projets exigeants en Seine-Saint-Denis (93) et dans le Val-de-Marne (94)."
+      list: [
+            { name: 'Paris 16e', slug: 'paris-16' }
+      ]
     },
     faq: [
         { question: "Quel est le prix d'une rénovation complète de salle de bain haut de gamme ?", answer: "Le prix dépend des matériaux (marbre vs. carrelage) et de la robinetterie, mais une prestation ERG Rénovation se situe généralement à partir de 2 000 €/m². Nous fournissons un devis détaillé pour une transparence totale." },
@@ -338,7 +342,7 @@ export const services: Service[] = [
   },
 ];
 
-export const localLandingPages: LocalLandingPage[] = [
+const renovationAppartementPages: LocalLandingPage[] = [
   {
     slug: 'neuilly-sur-seine',
     type: 'city',
@@ -939,7 +943,7 @@ export const localLandingPages: LocalLandingPage[] = [
   {
     slug: 'nogent-sur-marne',
     type: 'city',
-    title: "Rénovation d'Appartement et Maison à Nogent-sur-Marne (94130)",
+    title: "Rénovation Appartement et Maison à Nogent-sur-Marne (94130)",
     metaTitle: "Rénovation Appartement & Maison Nogent-sur-Marne (94) | ERG",
     metaDescription: "ERG Rénovation, votre expert pour la rénovation d'appartements et maisons à Nogent-sur-Marne. Projets clé en main, de la conception aux finitions. Devis.",
     parentService: services.find(s => s.slug === 'renovation-appartement')!,
@@ -1158,6 +1162,109 @@ export const localLandingPages: LocalLandingPage[] = [
   },
 ];
 
+const renovationMaisonPages: LocalLandingPage[] = [
+    // You can add specific landing pages for "rénovation de maison" here
+    // Example for Versailles
+    {
+        slug: 'versailles',
+        type: 'city',
+        title: 'Rénovation de Maison à Versailles (78000) - ERG Rénovation',
+        metaTitle: 'Rénovation Maison Versailles (78) | Expert Patrimoine | ERG',
+        metaDescription: "Spécialiste de la rénovation de maisons de caractère à Versailles. ERG Rénovation allie respect du patrimoine et confort moderne. Devis pour votre projet.",
+        parentService: services.find(s => s.slug === 'renovation-maison')!,
+        introduction: "Rénover une maison à Versailles, c'est toucher à l'histoire. ERG Rénovation est votre partenaire pour valoriser ce patrimoine unique, qu'il s'agisse d'une maison de ville, d'une demeure bourgeoise ou d'un pavillon. Nous maîtrisons les contraintes des secteurs sauvegardés et travaillons en respectant l'âme de votre bien.",
+        cta: {
+            primary: 'Mon projet de rénovation à Versailles',
+            secondary: 'Voir nos réalisations dans les Yvelines',
+        },
+        reassurancePoints: [
+            'Expertise des bâtisses anciennes.',
+            'Respect du patrimoine architectural.',
+            'Gestion des projets d\'extension.',
+        ],
+        mainContent: (
+            <>
+                <h2 className="font-headline text-3xl font-bold">Un savoir-faire d'exception pour les maisons de Versailles</h2>
+                <p>Notre intervention allie techniques traditionnelles et innovations pour un confort moderne dans un écrin d'histoire.</p>
+                <div className="mt-8 space-y-4">
+                    <div className="flex items-start gap-4">
+                        <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                        <div>
+                            <h3 className="font-headline font-semibold text-lg">Restauration et rénovation énergétique</h3>
+                            <p className="text-muted-foreground">Nous améliorons la performance énergétique de votre maison (isolation, fenêtres) tout en préservant ses éléments de caractère.</p>
+                        </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                        <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                        <div>
+                            <h3 className="font-headline font-semibold text-lg">Agrandissement et aménagement de jardin</h3>
+                            <p className="text-muted-foreground">Création d'extensions en harmonie avec l'existant et aménagement de vos extérieurs pour un cadre de vie idyllique.</p>
+                        </div>
+                    </div>
+                </div>
+            </>
+        ),
+        testimonial: {
+            quote: "ERG Rénovation a mené la rénovation de notre maison à Versailles avec un grand respect pour son histoire. Le résultat est un mélange parfait entre le charme de l'ancien et le confort d'aujourd'hui.",
+            author: "Famille G., Versailles",
+        },
+    },
+];
+
+const renovationSalleDeBainPages: LocalLandingPage[] = [
+    // You can add specific landing pages for "rénovation de salle de bain" here
+    // Example for Paris 16e
+    {
+        slug: 'paris-16',
+        type: 'district',
+        title: 'Rénovation Salle de Bain de Luxe à Paris 16e - ERG Rénovation',
+        metaTitle: 'Rénovation Salle de Bain Paris 16 (75016) | Luxe & Marbre | ERG',
+        metaDescription: "Expert en création de salle de bain de luxe à Paris 16. Douche à l'italienne, marbre, robinetterie haut de gamme. Devis pour votre projet dans le 75016.",
+        parentService: services.find(s => s.slug === 'renovation-salle-de-bain')!,
+        introduction: "Dans le 16ème arrondissement de Paris, la salle de bain est une pièce de luxe et de bien-être. ERG Rénovation est le spécialiste de la conception et de la réalisation de salles de bain haut de gamme, alliant matériaux nobles, agencement sur mesure et une expertise technique irréprochable pour une étanchéité parfaite.",
+        cta: {
+            primary: 'Concevoir ma salle de bain dans le 16e',
+            secondary: 'Découvrir nos finitions en marbre',
+        },
+        reassurancePoints: [
+            "Expert en douche à l'italienne.",
+            'Maîtrise de la pose de marbre.',
+            'Étanchéité garantie 10 ans.',
+        ],
+        mainContent: (
+            <>
+                <h2 className="font-headline text-3xl font-bold">Des prestations haut de gamme pour votre salle de bain à Paris 16</h2>
+                <p>Nous transformons votre salle de bain en un espace d'exception, digne des plus grands hôtels.</p>
+                <div className="mt-8 space-y-4">
+                    <div className="flex items-start gap-4">
+                        <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                        <div>
+                            <h3 className="font-headline font-semibold text-lg">Utilisation de matériaux nobles</h3>
+                            <p className="text-muted-foreground">Marbre, pierre naturelle, robinetterie de luxe... Nous sélectionnons les meilleurs matériaux pour une salle de bain d'exception.</p>
+                        </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                        <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                        <div>
+                            <h3 className="font-headline font-semibold text-lg">Agencement et mobilier sur mesure</h3>
+                            <p className="text-muted-foreground">Nous concevons des meubles vasques, des rangements et des éclairages sur mesure pour un espace unique et fonctionnel.</p>
+                        </div>
+                    </div>
+                </div>
+            </>
+        ),
+        testimonial: {
+            quote: "Le travail réalisé par ERG Rénovation dans notre salle de bain est tout simplement parfait. Le souci du détail et la qualité des finitions sont impressionnants.",
+            author: "M. et Mme Dubois, Paris 16e",
+        },
+    },
+];
+
+export const localLandingPages: LocalLandingPage[] = [
+    ...renovationAppartementPages,
+    ...renovationMaisonPages,
+    ...renovationSalleDeBainPages,
+];
 
 export const projectCategories = [
   "Appartement",
@@ -1716,3 +1823,6 @@ export const blogPosts: BlogPost[] = [
     )
   }
 ];
+
+
+    
