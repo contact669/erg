@@ -848,6 +848,314 @@ export const localLandingPages: LocalLandingPage[] = [
       author: "Un client, Garches (92380)",
     },
   },
+  {
+    slug: 'vincennes',
+    type: 'city',
+    title: "Rénovation d'Appartement à Vincennes (94300)",
+    metaTitle: "Rénovation Appartement Vincennes (94) | Qualité & Devis | ERG",
+    metaDescription: "Expert en rénovation d'appartements à Vincennes (94300). Optimisation d'espace, finitions de qualité et gestion de projet de A à Z. Devis gratuit.",
+    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    introduction: "Rénover un appartement à Vincennes, c'est valoriser un bien au cœur d'une ville royale, alliant charme de l'ancien et dynamisme. ERG Rénovation est votre spécialiste pour les projets vincennois, de l'appartement familial proche du bois à l'optimisation de surfaces plus modestes en centre-ville. Nous maîtrisons les enjeux de la rénovation dans des immeubles de caractère.",
+    cta: {
+      primary: 'Mon devis de rénovation à Vincennes',
+      secondary: 'Voir nos réalisations à Vincennes',
+    },
+    reassurancePoints: [
+      'Expertise des appartements familiaux.',
+      'Respect du cachet de l\'ancien.',
+      'Gestion de projet clé en main.',
+    ],
+    mainContent: (
+      <>
+        <h2 className="font-headline text-3xl font-bold">Un savoir-faire dédié aux appartements de Vincennes</h2>
+        <p>Nos interventions à Vincennes se concentrent sur la création d'intérieurs à la fois esthétiques, fonctionnels et respectueux de l'architecture locale.</p>
+        <div className="mt-8 space-y-4">
+          <div className="flex items-start gap-4">
+            <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+            <div>
+              <h3 className="font-headline font-semibold text-lg">Optimisation des plans pour la vie de famille</h3>
+              <p className="text-muted-foreground">Création de cuisines ouvertes, réagencement des chambres et création de rangements sur mesure pour un quotidien plus fluide.</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4">
+            <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+            <div>
+              <h3 className="font-headline font-semibold text-lg">Rénovation de pièces d'eau</h3>
+              <p className="text-muted-foreground">Modernisation complète de salles de bain et cuisines, en garantissant une étanchéité parfaite et des finitions durables.</p>
+            </div>
+          </div>
+        </div>
+      </>
+    ),
+    testimonial: {
+      quote: "L'équipe d'ERG Rénovation a fait un travail remarquable dans notre appartement à Vincennes. Ils ont été de très bon conseil pour optimiser l'espace. Le résultat est superbe.",
+      author: "Sophie D., Vincennes",
+    },
+  },
+  {
+    slug: 'saint-mande',
+    type: 'city',
+    title: "Rénovation d'Appartement de Standing à Saint-Mandé (94160)",
+    metaTitle: "Rénovation Appartement Saint-Mandé (94) | Haut de Gamme | ERG",
+    metaDescription: "Spécialiste de la rénovation d'appartements de standing à Saint-Mandé. Finitions de luxe, respect des copropriétés et gestion de projet rigoureuse. Devis.",
+    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    introduction: "À Saint-Mandé, aux portes de Paris, la rénovation d'appartement rime avec élégance et finitions haut de gamme. ERG Rénovation vous accompagne pour transformer votre bien en un espace de vie qui reflète le prestige de la ville. Nous sommes experts dans la gestion de projets au sein des belles copropriétés de Saint-Mandé, en alliant savoir-faire artisanal et matériaux nobles.",
+    cta: {
+      primary: 'Mon projet haut de gamme à Saint-Mandé',
+      secondary: 'Découvrir nos finitions',
+    },
+    reassurancePoints: [
+      'Finitions de luxe (peinture, parquets).',
+      'Gestion discrète en copropriété.',
+      'Interlocuteur unique et dédié.',
+    ],
+    mainContent: (
+      <>
+        <h2 className="font-headline text-3xl font-bold">L'Excellence pour votre bien à Saint-Mandé</h2>
+        <p>La proximité avec le bois de Vincennes et le standing des immeubles de Saint-Mandé appellent à des rénovations qui privilégient la lumière et la qualité des matériaux.</p>
+        <div className="mt-8 space-y-4">
+          <div className="flex items-start gap-4">
+            <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+            <div>
+              <h3 className="font-headline font-semibold text-lg">Mise en valeur des volumes et de la lumière</h3>
+              <p className="text-muted-foreground">Travail sur les couleurs et les éclairages pour créer des atmosphères chaleureuses et agrandir visuellement les espaces.</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4">
+            <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+            <div>
+              <h3 className="font-headline font-semibold text-lg">Restauration de parquets et boiseries</h3>
+              <p className="text-muted-foreground">Nos artisans redonnent vie aux parquets anciens et subliment les boiseries pour conserver le cachet de votre appartement.</p>
+            </div>
+          </div>
+        </div>
+      </>
+    ),
+    testimonial: {
+      quote: "Le professionnalisme d'ERG Rénovation a été déterminant pour notre projet à Saint-Mandé. Le chantier a été parfaitement tenu et le résultat est à la hauteur de nos attentes.",
+      author: "Charles G., Saint-Mandé",
+    },
+  },
+  {
+    slug: 'nogent-sur-marne',
+    type: 'city',
+    title: "Rénovation d'Appartement et Maison à Nogent-sur-Marne (94130)",
+    metaTitle: "Rénovation Appartement & Maison Nogent-sur-Marne (94) | ERG",
+    metaDescription: "ERG Rénovation, votre expert pour la rénovation d'appartements et maisons à Nogent-sur-Marne. Projets clé en main, de la conception aux finitions. Devis.",
+    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    introduction: "Nogent-sur-Marne, avec son cadre de vie privilégié en bord de Marne, offre une grande diversité de biens, des appartements de standing aux maisons de caractère. ERG Rénovation met son expertise au service de vos projets nogentais, qu'il s'agisse de moderniser un appartement familial ou de rénover une maison pour l'adapter aux standards de confort actuels.",
+    cta: {
+      primary: 'Discuter de mon projet à Nogent',
+      secondary: 'Voir nos réalisations de maisons',
+    },
+    reassurancePoints: [
+      'Expertise appartements et maisons.',
+      'Solutions pour l\'efficacité énergétique.',
+      'Gestion de projet rigoureuse.',
+    ],
+    mainContent: (
+      <>
+        <h2 className="font-headline text-3xl font-bold">Une approche sur-mesure pour votre bien à Nogent</h2>
+        <p>Nous adaptons nos compétences à la typologie de votre bien, qu'il s'agisse d'un appartement en résidence ou d'une maison individuelle.</p>
+        <div className="mt-8 space-y-4">
+          <div className="flex items-start gap-4">
+            <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+            <div>
+              <h3 className="font-headline font-semibold text-lg">Rénovation énergétique</h3>
+              <p className="text-muted-foreground">Améliorez le confort et la valeur de votre bien grâce à nos solutions d'isolation et de systèmes de chauffage performants.</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4">
+            <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+            <div>
+              <h3 className="font-headline font-semibold text-lg">Aménagement d'espaces de vie</h3>
+              <p className="text-muted-foreground">Création de cuisines ouvertes, de suites parentales ou de bureaux à domicile pour correspondre à votre mode de vie.</p>
+            </div>
+          </div>
+        </div>
+      </>
+    ),
+    testimonial: {
+      quote: "L'équipe d'ERG a rénové notre maison à Nogent avec un grand professionnalisme. Ils ont été à l'écoute et ont su nous conseiller. Nous sommes ravis du résultat.",
+      author: "Famille L., Nogent-sur-Marne",
+    },
+  },
+  {
+    slug: 'le-perreux-sur-marne',
+    type: 'city',
+    title: "Rénovation d'Appartement au Perreux-sur-Marne (94170)",
+    metaTitle: "Rénovation Appartement Le Perreux-sur-Marne (94) | ERG Rénovation",
+    metaDescription: "Expert en rénovation d'appartements au Perreux-sur-Marne. Agencement, finitions de qualité et respect des délais pour votre projet dans le 94170. Devis.",
+    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    introduction: "Au Perreux-sur-Marne, la qualité de vie est une priorité. La rénovation de votre appartement doit refléter cet art de vivre, en créant des espaces confortables, lumineux et parfaitement finis. ERG Rénovation vous apporte son expertise pour tous vos projets au Perreux, de la rénovation complète à la modernisation de votre cuisine ou salle de bain, avec un interlocuteur unique pour votre tranquillité.",
+    cta: {
+      primary: 'Obtenir mon devis au Perreux',
+      secondary: 'Découvrir nos cuisines',
+    },
+    reassurancePoints: [
+      'Respect des délais et du budget.',
+      'Finitions impeccables.',
+      'Interlocuteur unique.',
+    ],
+    mainContent: (
+      <>
+        <h2 className="font-headline text-3xl font-bold">Votre projet de rénovation au Perreux-sur-Marne</h2>
+        <p>Nous mettons un point d'honneur à réaliser des projets qui améliorent durablement votre quotidien.</p>
+        <div className="mt-8 space-y-4">
+          <div className="flex items-start gap-4">
+            <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+            <div>
+              <h3 className="font-headline font-semibold text-lg">Agencement sur mesure</h3>
+              <p className="text-muted-foreground">Nous concevons des solutions de rangement et d'agencement intelligentes pour optimiser chaque mètre carré.</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4">
+            <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+            <div>
+              <h3 className="font-headline font-semibold text-lg">Qualité des matériaux</h3>
+              <p className="text-muted-foreground">Nous sélectionnons avec vous des matériaux durables et esthétiques pour un résultat qui traverse le temps.</p>
+            </div>
+          </div>
+        </div>
+      </>
+    ),
+    testimonial: {
+      quote: "Un grand merci à ERG Rénovation pour leur travail dans notre appartement du Perreux. Le chantier a été mené de main de maître, et le résultat est magnifique.",
+      author: "Paul et Virginie, Le Perreux-sur-Marne",
+    },
+  },
+  {
+    slug: 'saint-maur-des-fosses',
+    type: 'city',
+    title: "Rénovation Appartement & Maison à Saint-Maur-des-Fossés (94)",
+    metaTitle: "Rénovation Maison & Appartement Saint-Maur (94) | ERG Rénovation",
+    metaDescription: "Votre expert en rénovation de maisons et appartements à Saint-Maur-des-Fossés. Gestion de projets A à Z pour un résultat haut de gamme. Devis sur mesure.",
+    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    introduction: "Saint-Maur-des-Fossés, avec son cadre de vie exceptionnel et son parc immobilier de grande qualité, est un lieu où la rénovation prend tout son sens. ERG Rénovation est le spécialiste des projets d'envergure à Saint-Maur, qu'il s'agisse de la rénovation d'une maison de maître, de la modernisation d'un appartement de standing ou de l'agrandissement d'un pavillon. Nous apportons une expertise technique et un sens du détail irréprochables.",
+    cta: {
+      primary: 'Mon projet de rénovation à Saint-Maur',
+      secondary: 'Voir nos rénovations de maisons',
+    },
+    reassurancePoints: [
+      'Expertise des maisons et grands volumes.',
+      'Gestion des projets d\'extension.',
+      'Finitions haut de gamme garanties.',
+    ],
+    mainContent: (
+      <>
+        <h2 className="font-headline text-3xl font-bold">Notre expertise pour les biens de caractère à Saint-Maur</h2>
+        <p>Nous comprenons les enjeux de la rénovation à Saint-Maur : préserver le cachet tout en intégrant un confort moderne.</p>
+        <div className="mt-8 space-y-4">
+          <div className="flex items-start gap-4">
+            <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+            <div>
+              <h3 className="font-headline font-semibold text-lg">Rénovation complète de maisons</h3>
+              <p className="text-muted-foreground">Nous pilotons tous les corps d'état, de la structure à la décoration, pour une réhabilitation complète de votre maison.</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4">
+            <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+            <div>
+              <h3 className="font-headline font-semibold text-lg">Aménagement de suites parentales</h3>
+              <p className="text-muted-foreground">Création d'espaces nuit d'exception avec dressing et salle de bain privée, pour un confort absolu.</p>
+            </div>
+          </div>
+        </div>
+      </>
+    ),
+    testimonial: {
+      quote: "La rénovation de notre 4 pièces à Saint-Maur-des-Fossés s'est faite sans stress, avec une qualité de finitions exceptionnelle. L'équipe a été à notre écoute du début à la fin.",
+      author: "Famille Martin, Saint-Maur-des-Fossés (94)",
+    },
+  },
+  {
+    slug: 'creteil',
+    type: 'city',
+    title: "Rénovation d'Appartement à Créteil (94000)",
+    metaTitle: "Rénovation Appartement Créteil (94) | Moderne & Fonctionnel | ERG",
+    metaDescription: "ERG Rénovation modernise votre appartement à Créteil. Projets clé en main pour un intérieur fonctionnel et esthétique. Devis gratuit pour votre projet dans le 94000.",
+    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    introduction: "À Créteil, ville dynamique du Val-de-Marne, la rénovation d'appartement vise à créer des espaces de vie modernes, lumineux et parfaitement fonctionnels. ERG Rénovation est votre partenaire pour tous vos projets à Créteil, de la rénovation complète d'un appartement familial à la modernisation d'une cuisine ou d'une salle de bain. Nous vous garantissons un projet géré avec rigueur, de la conception à la livraison.",
+    cta: {
+      primary: 'Moderniser mon appartement à Créteil',
+      secondary: 'Voir nos réalisations d\'appartements',
+    },
+    reassurancePoints: [
+      'Optimisation des plans et de la lumière.',
+      'Rénovation complète clé en main.',
+      'Respect de votre budget et des délais.',
+    ],
+    mainContent: (
+      <>
+        <h2 className="font-headline text-3xl font-bold">Des solutions modernes pour votre appartement à Créteil</h2>
+        <p>Nous vous accompagnons pour transformer votre appartement en un lieu de vie qui vous ressemble, alliant esthétique contemporaine et confort.</p>
+        <div className="mt-8 space-y-4">
+          <div className="flex items-start gap-4">
+            <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+            <div>
+              <h3 className="font-headline font-semibold text-lg">Création d'espaces ouverts</h3>
+              <p className="text-muted-foreground">Nous optimisons les volumes en créant des cuisines ouvertes et des espaces de vie plus grands et plus lumineux.</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4">
+            <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+            <div>
+              <h3 className="font-headline font-semibold text-lg">Rénovation électrique et plomberie</h3>
+              <p className="text-muted-foreground">Mise aux normes complète de vos installations pour plus de sécurité et de confort au quotidien.</p>
+            </div>
+          </div>
+        </div>
+      </>
+    ),
+    testimonial: {
+      quote: "Un suivi de chantier très professionnel pour la rénovation de notre appartement à Créteil. L'équipe a été réactive et le résultat est à la hauteur de nos espérances.",
+      author: "M. Dubois, Créteil",
+    },
+  },
+  {
+    slug: 'maisons-alfort',
+    type: 'city',
+    title: "Rénovation Appartement et Maison à Maisons-Alfort (94700)",
+    metaTitle: "Rénovation Maison & Appartement Maisons-Alfort (94) | ERG",
+    metaDescription: "Votre entreprise de rénovation pour appartements et maisons à Maisons-Alfort. Projets tous corps d'état gérés de A à Z par une équipe d'experts. Devis.",
+    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    introduction: "À Maisons-Alfort, ville appréciée pour son cadre de vie et sa proximité de Paris, la rénovation permet de moderniser des appartements et des maisons de caractère. ERG Rénovation est votre spécialiste pour tous types de projets à Maisons-Alfort, de la rénovation d'un appartement familial à la réhabilitation d'une maison. Nous vous garantissons une gestion de projet experte et des finitions de grande qualité.",
+    cta: {
+      primary: 'Mon projet de rénovation à Maisons-Alfort',
+      secondary: 'Voir nos projets d\'aménagement',
+    },
+    reassurancePoints: [
+      'Expertise tous corps d\'état.',
+      'Projets de rénovation complets.',
+      'Qualité et respect des délais.',
+    ],
+    mainContent: (
+      <>
+        <h2 className="font-headline text-3xl font-bold">Un partenaire unique pour votre projet à Maisons-Alfort</h2>
+        <p>Confiez-nous votre projet de rénovation et bénéficiez d'un accompagnement complet et professionnel.</p>
+        <div className="mt-8 space-y-4">
+          <div className="flex items-start gap-4">
+            <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+            <div>
+              <h3 className="font-headline font-semibold text-lg">Rénovation énergétique</h3>
+              <p className="text-muted-foreground">Nous vous proposons des solutions d'isolation et de chauffage pour améliorer votre confort et réduire vos factures d'énergie.</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4">
+            <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+            <div>
+              <h3 className="font-headline font-semibold text-lg">Aménagement d'intérieur</h3>
+              <p className="text-muted-foreground">Nous optimisons vos espaces pour les rendre plus fonctionnels, plus lumineux et plus agréables à vivre.</p>
+            </div>
+          </div>
+        </div>
+      </>
+    ),
+    testimonial: {
+      quote: "L'équipe d'ERG a été très à l'écoute et a su nous guider dans nos choix pour la rénovation de notre maison à Maisons-Alfort. Nous les recommandons sans hésiter.",
+      author: "Famille Petit, Maisons-Alfort",
+    },
+  },
 ];
 
 
