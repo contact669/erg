@@ -1,3 +1,4 @@
+
 import SiteHeader from '@/components/site-header';
 import SiteFooter from '@/components/site-footer';
 import Breadcrumbs from '@/components/breadcrumbs';
@@ -6,11 +7,11 @@ export default function ConfidentialitePage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
-      <Breadcrumbs />
       <main className="flex-grow">
         <div className="container py-16 md:py-24">
           <div className="prose mx-auto max-w-3xl">
-            <h1>Politique de Confidentialité</h1>
+            <Breadcrumbs />
+            <h1 className="mt-4">Politique de Confidentialité</h1>
             <p>Dernière mise à jour : [Date]</p>
             
             <p>
@@ -70,3 +71,5 @@ export default function ConfidentialitePage() {
     </div>
   );
 }
+
+    

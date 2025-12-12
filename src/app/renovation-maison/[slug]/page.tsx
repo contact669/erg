@@ -24,7 +24,7 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const page = localLandingPages.find((p) => p.slug === params.slug);
+  const page = localLandingPages.find((p) => p.slug === params.slug && p.parentService.slug === 'renovation-maison');
 
   if (!page) {
     return {
@@ -39,23 +39,24 @@ export async function generateMetadata(
 }
 
 export async function generateStaticParams() {
-  return localLandingPages.map((page) => ({
-    slug: page.slug,
+  return localLandingPages
+    .filter(p => p.parentService.slug === 'renovation-maison')
+    .map((page) => ({
+      slug: page.slug,
   }));
 }
 
 export default function LocalLandingPage({ params }: { params: { slug: string } }) {
-  const page = localLandingPages.find((p) => p.slug === params.slug);
+  const page = localLandingPages.find((p) => p.slug === params.slug && p.parentService.slug === 'renovation-maison');
 
   if (!page) {
     notFound();
   }
 
   const { parentService } = page;
-  const heroImageId = page.slug === 'paris-75' ? 'project-apartment-paris-75' : parentService.heroImageId;
-  const heroImage = PlaceHolderImages.find(p => p.id === heroImageId);
+  const heroImage = PlaceHolderImages.find(p => p.id === parentService.heroImageId);
   const testimonialAvatar = PlaceHolderImages.find(p => p.id === 'testimonial-avatar-1');
-  const departmentImage = PlaceHolderImages.find(p => p.id === 'project-apartment-hauts-de-seine');
+  const departmentImage = PlaceHolderImages.find(p => p.id === 'project-house-1');
 
 
   return (

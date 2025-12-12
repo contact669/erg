@@ -1,3 +1,4 @@
+
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -187,7 +188,6 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
-      <Breadcrumbs />
       <main className="flex-grow">
         {/* --- Hero Section --- */}
         <section className="relative bg-primary text-primary-foreground py-16 md:py-24">
@@ -202,7 +202,8 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             />
           )}
           <div className="container relative z-10">
-            <h1 className="font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl max-w-4xl">
+            <Breadcrumbs />
+            <h1 className="font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl max-w-4xl mt-4">
               {content ? content.h1 : service.title}
             </h1>
             <p className="mt-6 max-w-3xl text-lg text-primary-foreground/80 md:leading-relaxed">
@@ -377,11 +378,11 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                                 {service.zones.description}
                             </p>
                         </div>
-                         {Array.isArray(service.zones.list) && service.slug === 'renovation-appartement' && (
+                         {Array.isArray(service.zones.list) && (
                             <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-4">
                                 {service.zones.list.map((zone) => (
                                 <Button asChild variant="outline" key={zone.slug}>
-                                    <Link href={`/renovation-appartement/${zone.slug}`}>{zone.name}</Link>
+                                    <Link href={`/${service.slug}/${zone.slug}`}>{zone.name}</Link>
                                 </Button>
                                 ))}
                             </div>
@@ -568,3 +569,5 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
     </Card>
   );
 }
+
+    

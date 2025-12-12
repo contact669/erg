@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -42,12 +43,12 @@ export default function RealisationsPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
-      <Breadcrumbs />
       <main className="flex-grow">
         <section className="bg-secondary py-16 md:py-24">
           <div className="container">
             <div className="mx-auto max-w-3xl text-center">
-              <h1 className="font-headline text-4xl font-bold md:text-5xl">
+              <Breadcrumbs />
+              <h1 className="font-headline text-4xl font-bold md:text-5xl mt-4">
                 Notre Savoir-Faire en Images
               </h1>
               <p className="mt-4 text-lg text-muted-foreground">
@@ -189,3 +190,5 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
     </Card>
   );
 }
+
+    

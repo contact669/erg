@@ -1,3 +1,4 @@
+
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -52,13 +53,13 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
-      <Breadcrumbs />
       <main className="flex-grow">
         {/* Project Header */}
         <section className="bg-secondary py-16 md:py-24">
           <div className="container">
             <div className="mx-auto max-w-3xl text-center">
-              <Badge variant="default" className="mb-4">{project.category}</Badge>
+              <Breadcrumbs />
+              <Badge variant="default" className="mb-4 mt-4">{project.category}</Badge>
               <h1 className="font-headline text-4xl font-bold md:text-5xl">
                 {project.title}
               </h1>
@@ -215,3 +216,5 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
     </div>
   );
 }
+
+    
