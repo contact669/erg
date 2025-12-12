@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -7,12 +8,19 @@ import { services, allProjects, blogPosts, localLandingPages } from '@/lib/data'
 import { cn } from '@/lib/utils';
 import { Fragment } from 'react';
 
-function slugToTitle(slug: string): string {
-    const dataSources = [services, allProjects, blogPosts, localLandingPages];
+function slugToTitle(slug: string, fullPath: string): string {
+    const segments = fullPath.split('/').filter(Boolean);
+    const parentServiceSlug = segments.length > 1 ? segments[0] : undefined;
+
+    const dataSources = [services, allProjects, blogPosts];
     for (const source of dataSources) {
         const item = source.find((i: any) => i.slug === slug);
         if (item) return item.title;
     }
+    
+    const localPage = localLandingPages.find(p => p.slug === slug && p.parentService.slug === parentServiceSlug);
+    if(localPage) return localPage.title;
+
 
     // Fallback for simple slugs
     const manualSlugs: { [key: string]: string } = {
@@ -22,7 +30,9 @@ function slugToTitle(slug: string): string {
         'devis': 'Devis',
         'realisations': 'Réalisations',
         'services': 'Services',
-        'renovation-appartement': 'Rénovation Appartement'
+        'renovation-appartement': 'Rénovation Appartement',
+        'renovation-maison': 'Rénovation Maison',
+        'renovation-salle-de-bain': 'Rénovation Salle de Bain',
     };
 
     if (manualSlugs[slug]) {
@@ -34,8 +44,8 @@ function slugToTitle(slug: string): string {
 
 function truncateTitle(title: string): string {
     const words = title.split(' ');
-    if (words.length > 2) {
-        return words.slice(0, 2).join(' ') + '...';
+    if (words.length > 5) {
+        return words.slice(0, 5).join(' ') + '...';
     }
     return title;
 }
@@ -45,12 +55,19 @@ export default function Breadcrumbs() {
   const pathname = usePathname();
   const segments = pathname.split('/').filter(Boolean);
 
-  if (segments.length === 0) {
+  // Do not show breadcrumbs on the homepage
+  if (pathname === '/') {
+    return null;
+  }
+  
+  // Do not show breadcrumbs on the main dashboard page
+  if (pathname === '/dashboard') {
     return null;
   }
 
+
   return (
-    <div className="bg-secondary">
+    <div>
         <div className="container py-3">
         <nav aria-label="breadcrumb">
             <ol className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -64,9 +81,9 @@ export default function Breadcrumbs() {
                 const href = '/' + segments.slice(0, index + 1).join('/');
                 const isLast = index === segments.length - 1;
                 
-                let title = slugToTitle(segment);
-                const isBlogPostPage = segments[0] === 'blog' && segments.length > 1 && isLast;
-                if (isBlogPostPage) {
+                let title = slugToTitle(segment, pathname);
+                
+                if (isLast) {
                     title = truncateTitle(title);
                 }
 
