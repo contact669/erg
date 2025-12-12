@@ -19,8 +19,8 @@ export default function ServicesPage() {
       <main className="flex-grow">
         <section className="bg-secondary py-16 md:py-24">
           <div className="container">
+            <Breadcrumbs />
             <div className="mx-auto max-w-3xl text-center">
-              <Breadcrumbs />
               <h1 className="font-headline text-4xl font-bold md:text-5xl mt-4">
                 Nos Prestations, Votre Vision
               </h1>

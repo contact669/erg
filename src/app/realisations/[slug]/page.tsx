@@ -57,8 +57,8 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
         {/* Project Header */}
         <section className="bg-secondary py-16 md:py-24">
           <div className="container">
+            <Breadcrumbs />
             <div className="mx-auto max-w-3xl text-center">
-              <Breadcrumbs />
               <Badge variant="default" className="mb-4 mt-4">{project.category}</Badge>
               <h1 className="font-headline text-4xl font-bold md:text-5xl">
                 {project.title}

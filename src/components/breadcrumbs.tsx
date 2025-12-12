@@ -33,6 +33,9 @@ function slugToTitle(slug: string, fullPath: string): string {
         'renovation-appartement': 'Rénovation Appartement',
         'renovation-maison': 'Rénovation Maison',
         'renovation-salle-de-bain': 'Rénovation Salle de Bain',
+        'confidentialite': 'Confidentialité',
+        'cookies': 'Cookies',
+        'mentions-legales': 'Mentions Légales',
     };
 
     if (manualSlugs[slug]) {
@@ -65,14 +68,29 @@ export default function Breadcrumbs() {
     return null;
   }
 
+  const darkTextPages = [
+    '/blog',
+    '/contact',
+    '/mentions-legales',
+    '/confidentialite',
+    '/cookies',
+  ];
+
+  const useDarkText = darkTextPages.some(page => pathname.startsWith(page));
 
   return (
-    <div>
+    <div className={cn(!useDarkText && 'absolute top-20 left-0 right-0 z-10')}>
         <div className="container py-3">
         <nav aria-label="breadcrumb">
-            <ol className="flex items-center gap-2 text-sm text-muted-foreground">
+            <ol className={cn(
+                "flex items-center gap-2 text-sm",
+                useDarkText ? "text-muted-foreground" : "text-primary-foreground/80"
+            )}>
             <li>
-                <Link href="/" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                <Link href="/" className={cn(
+                    "flex items-center gap-1.5 transition-colors",
+                    useDarkText ? "hover:text-primary" : "hover:text-white"
+                )}>
                     <Home className="h-4 w-4" />
                     <span>Accueil</span>
                 </Link>
@@ -97,8 +115,10 @@ export default function Breadcrumbs() {
                         href={href}
                         aria-current={isLast ? 'page' : undefined}
                         className={cn(
-                        'hover:text-primary transition-colors',
-                        isLast && 'text-foreground font-medium pointer-events-none'
+                        'transition-colors',
+                        isLast 
+                            ? (useDarkText ? "text-foreground" : "text-white") + " font-medium pointer-events-none"
+                            : (useDarkText ? "hover:text-primary" : "hover:text-white")
                         )}
                     >
                         {title}

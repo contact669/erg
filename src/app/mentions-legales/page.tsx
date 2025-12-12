@@ -8,9 +8,9 @@ export default function MentionsLegalesPage() {
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
       <main className="flex-grow">
+        <Breadcrumbs />
         <div className="container py-16 md:py-24">
           <div className="prose mx-auto max-w-3xl">
-            <Breadcrumbs />
             <h1 className="mt-4">Mentions Légales</h1>
             
             <h2>1. Éditeur du site</h2>

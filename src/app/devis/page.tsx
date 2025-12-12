@@ -75,13 +75,11 @@ export default function DevisPage() {
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
       <main className="flex-grow">
+        <Breadcrumbs />
         <div className="container py-16 md:py-24">
           <div className="mx-auto max-w-3xl">
             <Card>
               <CardHeader className="text-center">
-                <div className="w-full">
-                    <Breadcrumbs />
-                </div>
                  <div className="mx-auto w-fit rounded-full bg-primary/10 p-3 text-primary mt-4">
                   <Bot className="h-8 w-8" />
                 </div>

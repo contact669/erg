@@ -75,8 +75,8 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
               data-ai-hint={heroImage.imageHint}
             />
           )}
+          <Breadcrumbs />
           <div className="container relative z-10">
-            <Breadcrumbs />
             <h1 className="font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl max-w-4xl mt-4">
               {page.title}
             </h1>
@@ -211,4 +211,3 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
   );
 }
 
-    
