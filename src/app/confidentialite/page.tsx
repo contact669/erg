@@ -9,9 +9,9 @@ export default function ConfidentialitePage() {
       <SiteHeader />
       <main className="flex-grow">
         <div className="container py-16 md:py-24">
-          <Breadcrumbs />
           <div className="prose mx-auto max-w-3xl">
-            <h1 className="mt-4">Politique de Confidentialité</h1>
+            <Breadcrumbs />
+            <h1 className="mt-4 text-center mb-12">Politique de Confidentialité</h1>
             <p>Dernière mise à jour : [Date]</p>
             
             <p>
