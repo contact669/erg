@@ -11,7 +11,7 @@ export default function MentionsLegalesPage() {
         <div className="container py-16 md:py-24">
            <div className="prose mx-auto max-w-3xl">
             <Breadcrumbs />
-            <h1 className="mt-4 text-center">Mentions Légales</h1>
+            <h1 className="mt-4 text-center mb-12">Mentions Légales</h1>
             
             <h2>1. Éditeur du site</h2>
             <p>
@@ -64,3 +64,4 @@ export default function MentionsLegalesPage() {
 }
 
     
+
