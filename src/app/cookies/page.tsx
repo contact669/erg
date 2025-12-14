@@ -8,8 +8,8 @@ export default function CookiesPage() {
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
       <main className="flex-grow">
-        <Breadcrumbs />
         <div className="container py-16 md:py-24">
+          <Breadcrumbs />
           <div className="prose mx-auto max-w-3xl">
             <h1 className="mt-4">Politique de Gestion des Cookies</h1>
             <p>Dernière mise à jour : [Date]</p>
