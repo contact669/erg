@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -45,7 +46,7 @@ export default function Hero() {
           data-ai-hint={heroImage.imageHint}
         />
       )}
-      <div className="absolute inset-0 bg-primary/60" />
+      <div className="absolute inset-0 bg-primary/40" />
       <div className="container relative z-10 flex h-full flex-col items-center justify-center pt-24 text-center text-primary-foreground md:pt-12">
         <GoogleReviewBadge />
         <h1 className="font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
