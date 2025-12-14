@@ -56,9 +56,9 @@ export default function AboutPage() {
             />
           )}
           <div className="absolute inset-0 bg-primary/60" />
-          <Breadcrumbs />
-          <div className="container relative z-10 flex h-full flex-col items-center justify-center text-center text-primary-foreground">
-            <h1 className="font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl mt-4">
+          <div className="container relative z-10 flex h-full flex-col items-center justify-center pt-20 text-center text-primary-foreground">
+            <Breadcrumbs />
+            <h1 className="mt-4 font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
               Bâtir sur la confiance,
               <br />
               rénover avec passion

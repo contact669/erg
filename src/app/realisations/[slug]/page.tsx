@@ -56,9 +56,9 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
       <main className="flex-grow">
         {/* Project Header */}
         <section className="bg-secondary py-16 md:py-24">
-          <div className="container">
+          <div className="container text-center">
             <Breadcrumbs />
-            <div className="mx-auto max-w-3xl text-center">
+            <div className="mx-auto max-w-3xl">
               <Badge variant="default" className="mb-4 mt-4">{project.category}</Badge>
               <h1 className="font-headline text-4xl font-bold md:text-5xl">
                 {project.title}
