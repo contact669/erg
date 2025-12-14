@@ -216,5 +216,3 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
     </div>
   );
 }
-
-    

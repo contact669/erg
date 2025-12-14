@@ -70,10 +70,10 @@ export default function ContactPage() {
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
       <main className="flex-grow">
-        <Breadcrumbs />
         <section className="bg-secondary py-16 md:py-24">
-          <div className="container">
-            <div className="mx-auto max-w-3xl text-center">
+          <div className="container text-center">
+            <Breadcrumbs />
+            <div className="mx-auto max-w-3xl">
               <h1 className="font-headline text-4xl font-bold md:text-5xl mt-4">
                 Contactez-Nous
               </h1>
@@ -269,5 +269,3 @@ export default function ContactPage() {
     </div>
   );
 }
-
-    

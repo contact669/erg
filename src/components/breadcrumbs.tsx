@@ -19,7 +19,7 @@ function slugToTitle(slug: string, fullPath: string): string {
     }
     
     const localPage = localLandingPages.find(p => p.slug === slug && p.parentService.slug === parentServiceSlug);
-    if(localPage) return localPage.title;
+    if(localPage) return localPage.title.split('(')[0].trim();
 
 
     // Fallback for simple slugs
@@ -71,20 +71,27 @@ export default function Breadcrumbs() {
   const darkTextPages = [
     '/blog',
     '/contact',
+    '/devis',
     '/mentions-legales',
     '/confidentialite',
     '/cookies',
+    '/realisations',
+    '/a-propos',
+    '/services',
   ];
 
-  const useDarkText = darkTextPages.some(page => pathname.startsWith(page));
+  const useDarkText = darkTextPages.some(page => pathname.startsWith(page) && segments.length === 1) || pathname === '/blog';
+
 
   return (
-    <div className={cn(!useDarkText && 'absolute top-20 left-0 right-0 z-10')}>
-        <div className="container py-3">
+    <div className={cn(
+      "w-full",
+      !useDarkText && "text-primary-foreground/80"
+    )}>
         <nav aria-label="breadcrumb">
             <ol className={cn(
                 "flex items-center gap-2 text-sm",
-                useDarkText ? "text-muted-foreground" : "text-primary-foreground/80"
+                 useDarkText && "text-muted-foreground",
             )}>
             <li>
                 <Link href="/" className={cn(
@@ -129,7 +136,6 @@ export default function Breadcrumbs() {
             })}
             </ol>
         </nav>
-        </div>
     </div>
   );
 }
