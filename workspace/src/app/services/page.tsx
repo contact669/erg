@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import Image from 'next/image';
 import SiteHeader from '@/components/site-header';
@@ -15,12 +16,12 @@ export default function ServicesPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
-      <Breadcrumbs />
       <main className="flex-grow">
         <section className="bg-secondary py-16 md:py-24">
           <div className="container">
+            <Breadcrumbs />
             <div className="mx-auto max-w-3xl text-center">
-              <h1 className="font-headline text-4xl font-bold md:text-5xl">
+              <h1 className="font-headline text-4xl font-bold md:text-5xl mt-4">
                 Nos Prestations, Votre Vision
               </h1>
               <p className="mt-4 text-lg text-muted-foreground">
