@@ -80,18 +80,18 @@ export default function Breadcrumbs() {
     '/services',
   ];
 
-  const useDarkText = darkTextPages.some(page => pathname.startsWith(page) && segments.length === 1) || pathname === '/blog';
+  const useDarkText = darkTextPages.some(page => pathname.startsWith(page)) || pathname === '/blog' || pathname === '/realisations' || pathname === '/services';
 
 
   return (
     <div className={cn(
-      "w-full",
       !useDarkText && "text-primary-foreground/80"
     )}>
         <nav aria-label="breadcrumb">
             <ol className={cn(
                 "flex items-center gap-2 text-sm",
                  useDarkText && "text-muted-foreground",
+                 "justify-center text-center",
             )}>
             <li>
                 <Link href="/" className={cn(
