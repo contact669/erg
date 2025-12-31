@@ -22,7 +22,6 @@ import {
 } from "@/components/ui/navigation-menu"
 import { useUser } from "@/firebase"
 import { ModeToggle } from "./mode-toggle"
-import Breadcrumbs from "./breadcrumbs"
 
 function AuthButton() {
   const { user, isUserLoading } = useUser()
@@ -263,11 +262,9 @@ export default function SiteHeader() {
           </Button>
 
           <AuthButton />
-          <ModeToggle />
           <MobileNav />
         </div>
       </div>
-      <Breadcrumbs />
     </header>
   )
 }
@@ -354,17 +351,20 @@ function MobileNav() {
             })}
           </nav>
 
-          <div className="mt-6 grid gap-2">
-            <Button asChild>
-              <Link href="/devis">Demander un devis</Link>
-            </Button>
-            <a
-              href="tel:0699961375"
-              className="inline-flex items-center justify-center gap-2 rounded-md border px-3 py-2 text-sm font-medium hover:bg-accent"
-            >
-              <Phone className="h-4 w-4" />
-              <span>Appeler</span>
-            </a>
+          <div className="mt-auto flex flex-col gap-4 border-t pt-6">
+            <ModeToggle />
+             <div className="grid gap-2">
+                <Button asChild>
+                <Link href="/devis">Demander un devis</Link>
+                </Button>
+                <a
+                href="tel:0699961375"
+                className="inline-flex items-center justify-center gap-2 rounded-md border px-3 py-2 text-sm font-medium hover:bg-accent"
+                >
+                <Phone className="h-4 w-4" />
+                <span>Appeler</span>
+                </a>
+            </div>
           </div>
         </div>
       </SheetContent>

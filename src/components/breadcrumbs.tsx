@@ -68,65 +68,55 @@ export default function Breadcrumbs() {
     return null;
   }
 
-  const useDarkText = !pathname.startsWith('/services/');
-
-  const isCentered = ['/a-propos', '/blog', '/contact', '/devis', '/mentions-legales', '/confidentialite', '/cookies', '/realisations', '/services'].some(page => pathname.startsWith(page));
+  const isCentered = !pathname.startsWith('/services/') && !pathname.startsWith('/renovation-');
 
   return (
-    <div className={cn(
-      "container py-3",
-      !useDarkText && "text-primary-foreground/80",
-      useDarkText && "bg-secondary"
-    )}>
-        <nav aria-label="breadcrumb">
-            <ol className={cn(
-                "flex items-center gap-2 text-sm",
-                 useDarkText && "text-muted-foreground",
-                 isCentered && "justify-center",
-            )}>
-            <li>
-                <Link href="/" className={cn(
-                    "flex items-center gap-1.5 transition-colors",
-                    useDarkText ? "hover:text-primary" : "hover:text-white"
+    <div className="bg-secondary">
+        <div className="container">
+            <nav aria-label="breadcrumb">
+                <ol className={cn(
+                    "flex items-center gap-2 text-sm py-3 text-muted-foreground",
+                    isCentered && "justify-center"
                 )}>
-                    <Home className="h-4 w-4" />
-                    <span>Accueil</span>
-                </Link>
-            </li>
-            {segments.map((segment, index) => {
-                const href = '/' + segments.slice(0, index + 1).join('/');
-                const isLast = index === segments.length - 1;
-                
-                let title = slugToTitle(segment, pathname);
-                
-                if (isLast) {
-                    title = truncateTitle(title);
-                }
-
-                return (
-                <Fragment key={href}>
-                    <li>
-                        <ChevronRight className="h-4 w-4" />
-                    </li>
-                    <li>
-                    <Link
-                        href={href}
-                        aria-current={isLast ? 'page' : undefined}
-                        className={cn(
-                        'transition-colors',
-                        isLast 
-                            ? (useDarkText ? "text-foreground" : "text-white") + " font-medium pointer-events-none"
-                            : (useDarkText ? "hover:text-primary" : "hover:text-white")
-                        )}
-                    >
-                        {title}
+                <li>
+                    <Link href="/" className="flex items-center gap-1.5 hover:text-primary transition-colors">
+                        <Home className="h-4 w-4" />
+                        <span>Accueil</span>
                     </Link>
-                    </li>
-                </Fragment>
-                );
-            })}
-            </ol>
-        </nav>
+                </li>
+                {segments.map((segment, index) => {
+                    const href = '/' + segments.slice(0, index + 1).join('/');
+                    const isLast = index === segments.length - 1;
+                    
+                    let title = slugToTitle(segment, pathname);
+                    
+                    if (isLast) {
+                        title = truncateTitle(title);
+                    }
+
+                    return (
+                    <Fragment key={href}>
+                        <li>
+                            <ChevronRight className="h-4 w-4" />
+                        </li>
+                        <li>
+                        <Link
+                            href={href}
+                            aria-current={isLast ? 'page' : undefined}
+                            className={cn(
+                            'hover:text-primary transition-colors',
+                            isLast && 'text-foreground font-medium pointer-events-none'
+                            )}
+                        >
+                            {title}
+                        </Link>
+                        </li>
+                    </Fragment>
+                    );
+                })}
+                </ol>
+            </nav>
+        </div>
     </div>
   );
 }

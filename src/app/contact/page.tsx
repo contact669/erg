@@ -22,6 +22,7 @@ import SiteFooter from '@/components/site-footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import AnimatedSection from '@/components/animated-section';
+import Breadcrumbs from '@/components/breadcrumbs';
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -68,6 +69,7 @@ export default function ContactPage() {
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
       <main className="flex-grow">
+        <Breadcrumbs />
         <section className="bg-secondary py-16 md:py-24">
           <div className="container text-center">
             <div className="mx-auto max-w-3xl">

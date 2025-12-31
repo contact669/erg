@@ -54,10 +54,10 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
       <main className="flex-grow">
+        <Breadcrumbs />
         {/* Project Header */}
         <section className="bg-secondary py-16 md:py-24">
           <div className="container text-center">
-            <Breadcrumbs />
             <div className="mx-auto max-w-3xl">
               <Badge variant="default" className="mb-4 mt-4">{project.category}</Badge>
               <h1 className="font-headline text-4xl font-bold md:text-5xl">

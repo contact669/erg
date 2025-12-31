@@ -12,6 +12,7 @@ import { services } from "@/lib/data"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight, CheckCircle } from "lucide-react"
+import Breadcrumbs from "@/components/breadcrumbs"
 
 const SITE_NAME = "ERG Rénovation"
 const SITE_URL = "https://erg-renovation.fr"
@@ -47,6 +48,7 @@ export default function ServicesPage() {
       <SiteHeader />
 
       <main className="flex-grow">
+        <Breadcrumbs />
         {/* Hero services */}
         <section className="bg-secondary py-16 md:py-24">
           <div className="container text-center">

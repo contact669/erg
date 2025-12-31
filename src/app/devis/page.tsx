@@ -19,6 +19,7 @@ import { Textarea } from '@/components/ui/textarea';
 import SiteHeader from '@/components/site-header';
 import SiteFooter from '@/components/site-footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Breadcrumbs from '@/components/breadcrumbs';
 import { useState } from 'react';
 import { createQuoteRequest } from '@/lib/actions/quotes';
 import { Bot, User } from 'lucide-react';
@@ -74,6 +75,7 @@ export default function DevisPage() {
     <div className="flex min-h-screen flex-col">
       <SiteHeader />
       <main className="flex-grow">
+        <Breadcrumbs />
         <div className="container py-16 md:py-24">
           <div className="mx-auto max-w-3xl mt-8">
             <Card>
