@@ -19,7 +19,7 @@ function slugToTitle(slug: string, fullPath: string): string {
     }
     
     const localPage = localLandingPages.find(p => p.slug === slug && p.parentService.slug === parentServiceSlug);
-    if(localPage) return localPage.title.split('(')[0].trim();
+    if(localPage) return localPage.title;
 
 
     // Fallback for simple slugs
@@ -78,10 +78,14 @@ export default function Breadcrumbs() {
     '/realisations',
     '/a-propos',
     '/services',
+    '/renovation-appartement',
+    '/renovation-maison',
+    '/renovation-salle-de-bain'
   ];
 
-  const useDarkText = darkTextPages.some(page => pathname.startsWith(page)) || pathname === '/blog' || pathname === '/realisations' || pathname === '/services';
+  const useDarkText = darkTextPages.some(page => pathname.startsWith(page));
 
+  const isCentered = ['/a-propos', '/blog', '/contact', '/devis', '/mentions-legales', '/confidentialite', '/cookies', '/realisations', '/services'].includes(pathname);
 
   return (
     <div className={cn(
@@ -91,7 +95,7 @@ export default function Breadcrumbs() {
             <ol className={cn(
                 "flex items-center gap-2 text-sm",
                  useDarkText && "text-muted-foreground",
-                 "justify-center text-center",
+                 isCentered && "justify-center",
             )}>
             <li>
                 <Link href="/" className={cn(
