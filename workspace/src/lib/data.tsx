@@ -1,5 +1,5 @@
 
-import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage } from './types';
+import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage } from '@/lib/types';
 import {
   Home,
   Bath,
@@ -28,7 +28,7 @@ import {
 } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
-import { PlaceHolderImages } from './placeholder-images';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Link from 'next/link';
 
 export const navItems: NavItem[] = [
@@ -134,7 +134,12 @@ export const services: Service[] = [
     ],
     zones: {
         description: "ERG Rénovation est le spécialiste des projets résidentiels haut de gamme en Île-de-France. Nos équipes interviennent pour la rénovation de maisons dans les Yvelines (78) (Versailles, Saint-Germain-en-Laye...) et les Hauts-de-Seine (92) (Meudon, Saint-Cloud, Sceaux...), où se concentrent de nombreux pavillons et demeures de caractère.",
-        list: "Nous gérons également les projets de maisons de ville à Paris (75), ainsi que les rénovations dans le Val-de-Marne (94) (Nogent-sur-Marne, Saint-Maur-des-Fossés) et en Seine-Saint-Denis (93) (Le Raincy, Montreuil)."
+        list: [
+            { name: 'Yvelines (78)', slug: 'yvelines-78' },
+            { name: 'Hauts-de-Seine (92)', slug: 'hauts-de-seine-92' },
+            { name: 'Val-de-Marne (94)', slug: 'val-de-marne-94' },
+            { name: 'Seine-Saint-Denis (93)', slug: 'seine-saint-denis-93' }
+        ]
     },
     faq: [
         { question: "Faut-il un permis de construire pour une extension de maison ?", answer: "Pour une extension jusqu'à 40m² en zone urbaine couverte par un PLU, une déclaration préalable de travaux suffit généralement. Au-delà, un permis de construire est nécessaire. ERG Rénovation s'occupe de la constitution et du dépôt de votre dossier en mairie." },
@@ -182,7 +187,10 @@ export const services: Service[] = [
     ],
     zones: {
       description: "Notre expertise en rénovation de salle de bain s'exerce dans les appartements haussmanniens de Paris (75), où l'optimisation est reine, comme dans les maisons des Hauts-de-Seine (92) et des Yvelines (78) (création de suites parentales).",
-      list: "Nous intervenons également sur des projets exigeants en Seine-Saint-Denis (93) et dans le Val-de-Marne (94)."
+      list: [
+        { name: 'Paris (75)', slug: 'paris-75' },
+        { name: 'Hauts-de-Seine (92)', slug: 'hauts-de-seine-92' }
+      ]
     },
     faq: [
         { question: "Quel est le prix d'une rénovation complète de salle de bain haut de gamme ?", answer: "Le prix dépend des matériaux (marbre vs. carrelage) et de la robinetterie, mais une prestation ERG Rénovation se situe généralement à partir de 2 000 €/m². Nous fournissons un devis détaillé pour une transparence totale." },
