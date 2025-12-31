@@ -9,7 +9,10 @@ if (!admin.apps.length) {
       credential: admin.credential.applicationDefault(),
     });
   } catch (error) {
-    console.error('Firebase admin initialization error', error);
+    console.warn('Admin SDK initialization with default credentials failed. Falling back to project config.', error);
+    // Fallback for local development or environments without ADC
+    // This uses the project ID from the environment, which App Hosting provides.
+    admin.initializeApp();
   }
 }
 
