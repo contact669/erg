@@ -30,12 +30,15 @@ function slugToTitle(slug: string, fullPath: string): string {
         'devis': 'Devis',
         'realisations': 'Réalisations',
         'services': 'Services',
-        'renovation-appartement': 'Rénovation Appartement',
-        'renovation-maison': 'Rénovation Maison',
-        'renovation-salle-de-bain': 'Rénovation Salle de Bain',
         'confidentialite': 'Confidentialité',
         'cookies': 'Cookies',
         'mentions-legales': 'Mentions Légales',
+        'renovation-appartement': 'Rénovation Appartement',
+        'renovation-maison': 'Rénovation Maison',
+        'renovation-salle-de-bain': 'Rénovation Salle de Bain',
+        'renovation-cuisine': 'Rénovation Cuisine',
+        'amenagement-combles': 'Aménagement de Combles',
+        'peinture-finitions': 'Peinture & Finitions',
     };
 
     if (manualSlugs[slug]) {
