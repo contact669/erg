@@ -14,7 +14,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ArrowRight, Calendar, User, Award } from 'lucide-react';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
-import Breadcrumbs from '@/components/breadcrumbs';
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -51,7 +50,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           )}
           <div className="absolute inset-0 bg-primary/70" />
           <div className="container relative z-10 flex h-full flex-col items-center justify-center pt-20 text-center text-primary-foreground">
-            <Breadcrumbs />
             <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
               {post.tags.map(tag => (
                  <Badge key={tag} variant="secondary" className="border-none bg-white/20 text-white">

@@ -68,28 +68,15 @@ export default function Breadcrumbs() {
     return null;
   }
 
-  const darkTextPages = [
-    '/blog',
-    '/contact',
-    '/devis',
-    '/mentions-legales',
-    '/confidentialite',
-    '/cookies',
-    '/realisations',
-    '/a-propos',
-    '/services',
-    '/renovation-appartement',
-    '/renovation-maison',
-    '/renovation-salle-de-bain'
-  ];
+  const useDarkText = !pathname.startsWith('/services/');
 
-  const useDarkText = darkTextPages.some(page => pathname.startsWith(page));
-
-  const isCentered = ['/a-propos', '/blog', '/contact', '/devis', '/mentions-legales', '/confidentialite', '/cookies', '/realisations', '/services'].includes(pathname);
+  const isCentered = ['/a-propos', '/blog', '/contact', '/devis', '/mentions-legales', '/confidentialite', '/cookies', '/realisations', '/services'].some(page => pathname.startsWith(page));
 
   return (
     <div className={cn(
-      !useDarkText && "text-primary-foreground/80"
+      "container py-3",
+      !useDarkText && "text-primary-foreground/80",
+      useDarkText && "bg-secondary"
     )}>
         <nav aria-label="breadcrumb">
             <ol className={cn(

@@ -9,7 +9,6 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import AnimatedSection from '@/components/animated-section';
 import { Handshake, Diamond, Heart, ShieldCheck } from 'lucide-react';
-import Breadcrumbs from '@/components/breadcrumbs';
 
 const values = [
   {
@@ -57,7 +56,6 @@ export default function AboutPage() {
           )}
           <div className="absolute inset-0 bg-primary/60" />
           <div className="container relative z-10 flex h-full flex-col items-center justify-center pt-20 text-center text-primary-foreground">
-            <Breadcrumbs />
             <h1 className="mt-4 font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
               Bâtir sur la confiance,
               <br />

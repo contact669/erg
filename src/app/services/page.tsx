@@ -7,7 +7,6 @@ import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
 import CtaBanner from "@/app/_components/cta-banner"
 import AnimatedSection from "@/components/animated-section"
-import Breadcrumbs from "@/components/breadcrumbs"
 import { Button } from "@/components/ui/button"
 import { services } from "@/lib/data"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
@@ -51,8 +50,6 @@ export default function ServicesPage() {
         {/* Hero services */}
         <section className="bg-secondary py-16 md:py-24">
           <div className="container text-center">
-            <Breadcrumbs />
-
             <div className="mx-auto max-w-3xl">
               <h1 className="mt-4 font-headline text-4xl font-bold md:text-5xl">
                 Nos prestations de rénovation intérieure

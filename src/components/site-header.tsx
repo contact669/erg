@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -21,6 +22,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { useUser } from "@/firebase"
 import { ModeToggle } from "./mode-toggle"
+import Breadcrumbs from "./breadcrumbs"
 
 function AuthButton() {
   const { user, isUserLoading } = useUser()
@@ -265,6 +267,7 @@ export default function SiteHeader() {
           <MobileNav />
         </div>
       </div>
+      <Breadcrumbs />
     </header>
   )
 }
