@@ -571,5 +571,3 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
     </Card>
   );
 }
-
-    
