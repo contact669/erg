@@ -1,3 +1,4 @@
+
 import { notFound } from "next/navigation"
 import type { Metadata, ResolvingMetadata } from "next"
 import Script from "next/script"
@@ -46,7 +47,7 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const page = localLandingPages.find((p) => p.slug === params.slug)
+  const page = localLandingPages.find((p) => p.slug === params.slug && p.parentService.slug === 'renovation-appartement')
 
   if (!page) return { title: "Page non trouvée" }
 
@@ -88,7 +89,7 @@ export async function generateMetadata(
 }
 
 export async function generateStaticParams() {
-  return localLandingPages.map((page) => ({ slug: page.slug }))
+  return localLandingPages.filter(p => p.parentService.slug === 'renovation-appartement').map((page) => ({ slug: page.slug }))
 }
 
 function JsonLd({
@@ -177,7 +178,7 @@ function JsonLd({
 }
 
 export default function LocalLandingPage({ params }: { params: { slug: string } }) {
-  const page = localLandingPages.find((p) => p.slug === params.slug)
+  const page = localLandingPages.find((p) => p.slug === params.slug && p.parentService.slug === 'renovation-appartement')
   if (!page) notFound()
 
   const { parentService } = page
