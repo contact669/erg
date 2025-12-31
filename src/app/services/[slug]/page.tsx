@@ -202,9 +202,6 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             />
           )}
           <div className="container relative z-10">
-            <div className="text-white">
-              <Breadcrumbs />
-            </div>
             <h1 className="font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl max-w-4xl mt-4">
               {content ? content.h1 : service.title}
             </h1>

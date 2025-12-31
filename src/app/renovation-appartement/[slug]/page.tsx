@@ -208,17 +208,15 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <JsonLd
-        pageTitle={safeText(page.metaTitle ?? page.title)}
-        pageDescription={safeText(page.metaDescription ?? page.introduction)}
-        pageUrl={pageUrl}
-        breadcrumbs={breadcrumbs}
-        areaServed={areaServed}
-      />
-
       <SiteHeader />
-
       <main className="flex-grow">
+        <JsonLd
+            pageTitle={safeText(page.metaTitle ?? page.title)}
+            pageDescription={safeText(page.metaDescription ?? page.introduction)}
+            pageUrl={pageUrl}
+            breadcrumbs={breadcrumbs}
+            areaServed={areaServed}
+        />
         {/* HERO — sobre, premium, conversion */}
         <section className="relative overflow-hidden bg-primary py-16 text-primary-foreground md:py-24">
           {heroImage ? (
@@ -234,8 +232,6 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
           ) : null}
 
           <div className="container relative z-10">
-            <Breadcrumbs />
-
             <div className="mt-6 max-w-4xl">
               <h1 className="font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
                 {page.title}
