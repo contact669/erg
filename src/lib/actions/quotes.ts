@@ -1,3 +1,4 @@
+
 'use server';
 
 import { adminDb } from '@/firebase/admin';
@@ -28,7 +29,7 @@ export async function createQuoteRequest(data: QuoteRequestData) {
     
     // 2. Send an email notification
     await resend.emails.send({
-      from: 'Demande de Devis <onboarding@resend.dev>', // Must be a verified domain in Resend
+      from: 'Demande de Devis <noreply@erg-renovation.fr>', // Use a verified domain
       to: 'contact@erg-renovation.fr',
       subject: `Nouvelle demande de devis de ${data.clientName}`,
       react: QuoteRequestEmail({
@@ -43,6 +44,7 @@ export async function createQuoteRequest(data: QuoteRequestData) {
   } catch (error) {
     console.error("Error creating quote request:", error);
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
-    return { success: false, error: errorMessage };
+    // Re-throw the error to be caught by the client-side logic
+    throw new Error(errorMessage);
   }
 }
