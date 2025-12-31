@@ -46,8 +46,8 @@ export default function RealisationsPage() {
       <main className="flex-grow">
         <section className="bg-secondary py-16 md:py-24">
           <div className="container text-center">
+            <Breadcrumbs />
             <div className="mx-auto max-w-3xl">
-              <Breadcrumbs />
               <h1 className="mt-4 font-headline text-4xl font-bold md:text-5xl">
                 Notre Savoir-Faire en Images
               </h1>
