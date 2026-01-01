@@ -1,17 +1,17 @@
 "use client"
 
-import type { Metadata } from "next"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { useState } from "react"
 import Link from "next/link"
+import { collection, addDoc } from "firebase/firestore"
+import { useFirestore, useUser } from "@/firebase"
 
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
 import Breadcrumbs from "@/components/breadcrumbs"
 
-import { createQuoteRequest } from "@/lib/actions/quotes"
 import { useToast } from "@/hooks/use-toast"
 
 import { Button } from "@/components/ui/button"
@@ -23,11 +23,6 @@ import { Separator } from "@/components/ui/separator"
 
 import { Bot, User, ShieldCheck, Clock, ArrowRight } from "lucide-react"
 
-/**
- * ✅ Note: metadata ne peut pas être exporté dans un Client Component.
- * Si tu veux du SEO complet (title/description/canonical), convertis cette page en Server Component
- * et déporte le formulaire dans un composant <DevisForm /> en "use client".
- */
 
 const PHONE = "+33699961375"
 
@@ -57,6 +52,8 @@ function countChars(s: string) {
 export default function DevisPage() {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const firestore = useFirestore()
+  const { user } = useUser();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -73,7 +70,16 @@ export default function DevisPage() {
   const chars = countChars(description)
 
   async function onSubmit(values: FormValues) {
-    if (isSubmitting) return
+    if (isSubmitting || !firestore) {
+      if(!firestore) {
+        toast({
+          variant: "destructive",
+          title: "Erreur de connexion",
+          description: "La connexion à la base de données a échoué. Veuillez rafraîchir la page.",
+        })
+      }
+      return
+    }
 
     setIsSubmitting(true)
 
@@ -83,16 +89,17 @@ export default function DevisPage() {
     })
 
     try {
-      // ✅ Normalisation légère (évite les espaces et champs vides)
       const payload = {
-        ...values,
         clientName: values.clientName.trim(),
         clientEmail: values.clientEmail.trim().toLowerCase(),
         clientPhone: (values.clientPhone ?? "").trim() || undefined,
         projectDescription: values.projectDescription.trim(),
-      }
+        status: 'Nouvelle Demande',
+        createdAt: new Date(),
+        userId: user?.uid || 'anonymous_user',
+      };
 
-      await createQuoteRequest(payload)
+      await addDoc(collection(firestore, "quoteRequests"), payload);
 
       toast({
         title: "Demande envoyée ✅",
@@ -102,11 +109,11 @@ export default function DevisPage() {
 
       form.reset()
     } catch (error) {
-      console.error(error)
+      console.error("Error creating quote request:", error);
       toast({
         variant: "destructive",
         title: "Impossible d’envoyer la demande",
-        description: "Veuillez réessayer dans quelques minutes.",
+        description: "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer dans quelques minutes.",
       })
     } finally {
       setIsSubmitting(false)
