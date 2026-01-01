@@ -1,9 +1,10 @@
+
 /**
  * @fileoverview Firestore Security Rules for ERG Rénovation.
  *
  * Core Philosophy:
- * This ruleset provides public read access to all content collections (services, locations, combos, projects, testimonials, blogPosts, media) and restricts write access to prevent unauthorized modification.
- * Leads are kept private, accessible to no one.
+ * This ruleset provides public read access to most content collections,
+ * restricts write access on them, and secures user-specific data like quotes and requests.
  *
  * Data Structure:
  * - /services/{serviceId}
@@ -12,136 +13,102 @@
  * - /projects/{projectId}
  * - /testimonials/{testimonialId}
  * - /blogPosts/{blogPostId}
- * - /leads/{leadId}
+ * - /leads/{leadId} (replaced by quoteRequests)
  * - /media/{mediaId}
+ * - /quoteRequests/{requestId}
+ * - /quotes/{quoteId}
  *
  * Key Security Decisions:
- * - All content collections are publicly readable.
- * - Leads are private and not accessible.
- * - No authentication or authorization is required for reading content.
- * - Write access to all collections is denied.
+ * - Public content is readable by anyone.
+ * - `quoteRequests` can be created by anyone (public form), but only read/updated by authenticated users (admins).
+ * - `quotes` are private and can only be accessed by the authenticated user who owns them.
  */
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
     /**
-     * @description Allows public read access to service documents and denies all write operations.
-     * @path /services/{serviceId}
-     * @allow get, list: if true;
-     * @deny create, update, delete: if false;
-     * @principle Allows public read access to service information, while preventing unauthorized modifications.
+     * @description Public read access for services. Writes are disallowed.
      */
     match /services/{serviceId} {
-      allow get: if true;
-      allow list: if true;
-      allow create: if false;
-      allow update: if false;
-      allow delete: if false;
+      allow read: if true;
+      allow write: if false;
     }
 
     /**
-     * @description Allows public read access to location documents and denies all write operations.
-     * @path /locations/{locationId}
-     * @allow get, list: if true;
-     * @deny create, update, delete: if false;
-     * @principle Allows public read access to location information, while preventing unauthorized modifications.
+     * @description Public read access for locations. Writes are disallowed.
      */
     match /locations/{locationId} {
-      allow get: if true;
-      allow list: if true;
-      allow create: if false;
-      allow update: if false;
-      allow delete: if false;
+      allow read: if true;
+      allow write: if false;
     }
 
     /**
-     * @description Allows public read access to combo documents and denies all write operations.
-     * @path /combos/{comboId}
-     * @allow get, list: if true;
-     * @deny create, update, delete: if false;
-     * @principle Allows public read access to combo information, while preventing unauthorized modifications.
+     * @description Public read access for combos. Writes are disallowed.
      */
     match /combos/{comboId} {
-      allow get: if true;
-      allow list: if true;
-      allow create: if false;
-      allow update: if false;
-      allow delete: if false;
+      allow read: if true;
+      allow write: if false;
     }
 
     /**
-     * @description Allows public read access to project documents and denies all write operations.
-     * @path /projects/{projectId}
-     * @allow get, list: if true;
-     * @deny create, update, delete: if false;
-     * @principle Allows public read access to project information, while preventing unauthorized modifications.
+     * @description Public read access for projects. Writes are disallowed.
      */
     match /projects/{projectId} {
-      allow get: if true;
-      allow list: if true;
-      allow create: if false;
-      allow update: if false;
-      allow delete: if false;
+      allow read: if true;
+      allow write: if false;
     }
 
     /**
-     * @description Allows public read access to testimonial documents and denies all write operations.
-     * @path /testimonials/{testimonialId}
-     * @allow get, list: if true;
-     * @deny create, update, delete: if false;
-     * @principle Allows public read access to testimonial information, while preventing unauthorized modifications.
+     * @description Public read access for testimonials. Writes are disallowed.
      */
     match /testimonials/{testimonialId} {
-      allow get: if true;
-      allow list: if true;
-      allow create: if false;
-      allow update: if false;
-      allow delete: if false;
+      allow read: if true;
+      allow write: if false;
     }
 
     /**
-     * @description Allows public read access to blog post documents and denies all write operations.
-     * @path /blogPosts/{blogPostId}
-     * @allow get, list: if true;
-     * @deny create, update, delete: if false;
-     * @principle Allows public read access to blog post information, while preventing unauthorized modifications.
+     * @description Public read access for blog posts. Writes are disallowed.
      */
     match /blogPosts/{blogPostId} {
-      allow get: if true;
-      allow list: if true;
-      allow create: if false;
-      allow update: if false;
-      allow delete: if false;
+      allow read: if true;
+      allow write: if false;
     }
 
     /**
      * @description Denies all access to lead documents, making them completely private.
-     * @path /leads/{leadId}
-     * @deny get, list, create, update, delete: if true;
-     * @principle Ensures leads remain private and inaccessible to any user.
+     * This collection is deprecated in favor of quoteRequests.
      */
     match /leads/{leadId} {
-      allow get: if false;
-      allow list: if false;
-      allow create: if false;
-      allow update: if false;
+      allow read, write: if false;
+    }
+
+    /**
+     * @description Public read access for media. Writes are disallowed.
+     */
+    match /media/{mediaId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    /**
+     * @description Quote requests can be created by anyone, but only read/managed by admins.
+     * @path /quoteRequests/{requestId}
+     * @principle Allows public form submissions while securing admin access.
+     */
+    match /quoteRequests/{requestId} {
+      allow create: if true;
+      allow read, update: if request.auth != null;
       allow delete: if false;
     }
 
     /**
-     * @description Allows public read access to media documents and denies all write operations.
-     * @path /media/{mediaId}
-     * @allow get, list: if true;
-     * @deny create, update, delete: if false;
-     * @principle Allows public read access to media information, while preventing unauthorized modifications.
+     * @description Quotes are private to the admin user who created them.
+     * @path /quotes/{quoteId}
+     * @principle A user can only access their own documents.
      */
-    match /media/{mediaId} {
-      allow get: if true;
-      allow list: if true;
-      allow create: if false;
-      allow update: if false;
-      allow delete: if false;
+    match /quotes/{quoteId} {
+      allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;
     }
   }
 }

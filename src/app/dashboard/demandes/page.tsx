@@ -1,21 +1,44 @@
+"use client";
 
-'use client';
+import { useUser, useCollection, useMemoFirebase } from "@/firebase";
+import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 
-import { useUser, useCollection, useMemoFirebase } from '@/firebase';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
-import { MoreHorizontal, Bot, ArrowRight } from 'lucide-react';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuLabel } from '@/components/ui/dropdown-menu';
-import { format } from 'date-fns';
-import { fr } from 'date-fns/locale';
-import { collection, query, orderBy, where, runTransaction, doc } from 'firebase/firestore';
-import { useFirestore } from '@/firebase';
-import { useToast } from '@/hooks/use-toast';
-import { generateQuote, type GenerateQuoteOutput } from '@/ai/flows/generate-quote-flow';
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+
+import { Bot } from "lucide-react";
+import { format } from "date-fns";
+import { fr } from "date-fns/locale";
+
+import {
+  collection,
+  query,
+  orderBy,
+  where,
+  runTransaction,
+  doc,
+  serverTimestamp,
+} from "firebase/firestore";
+
+import { useFirestore } from "@/firebase";
+import { useToast } from "@/hooks/use-toast";
+import { generateQuote } from "@/ai/flows/generate-quote-flow";
+
+function toDateSafe(value: any): Date | null {
+  // Firestore Timestamp -> toDate()
+  if (value?.toDate && typeof value.toDate === "function") return value.toDate();
+  // JS Date
+  if (value instanceof Date) return value;
+  // ISO string (au cas où)
+  if (typeof value === "string") {
+    const d = new Date(value);
+    return isNaN(d.getTime()) ? null : d;
+  }
+  return null;
+}
 
 export default function DemandesPage() {
   const { user, isUserLoading } = useUser();
@@ -25,163 +48,193 @@ export default function DemandesPage() {
   const [isGenerating, setIsGenerating] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!isUserLoading && !user) {
-      router.push('/connexion');
-    }
+    // page admin => nécessite login
+    if (!isUserLoading && !user) router.push("/connexion");
   }, [user, isUserLoading, router]);
 
+  /**
+   * ✅ QUERY ADMIN : lit toutes les demandes "Nouvelle Demande"
+   * IMPORTANT : nécessite règles Firestore "read admin only" (isAdmin()).
+   */
   const requestsQuery = useMemoFirebase(() => {
     if (!firestore || !user?.uid) return null;
+
     return query(
-      collection(firestore, 'quoteRequests'),
-      where('userId', '==', user.uid),
-      where('status', '==', 'Nouvelle Demande'),
-      orderBy('createdAt', 'desc')
+      collection(firestore, "quoteRequests"),
+      where("status", "==", "Nouvelle Demande"),
+      orderBy("createdAt", "desc")
     );
   }, [firestore, user?.uid]);
 
-  const { data: requests, isLoading } = useCollection<any>(requestsQuery);
+  const { data: requests, isLoading, error } = useCollection<any>(requestsQuery);
+
+  useEffect(() => {
+    if (error) {
+      console.error("useCollection error:", error);
+      toast({
+        variant: "destructive",
+        title: "Lecture impossible",
+        description:
+          "Accès refusé (règles Firestore) ou index manquant. Vérifiez les règles admin et la console Firestore.",
+      });
+    }
+  }, [error, toast]);
 
   const handleGenerateQuote = async (request: any) => {
     if (!firestore || !user?.uid) return;
+
     setIsGenerating(request.id);
     toast({
-      title: "🤖 Génération du devis par l'IA...",
-      description: "Notre assistant intelligent analyse la demande et prépare un devis détaillé. Veuillez patienter.",
+      title: "🤖 Génération du devis...",
+      description: "L’IA prépare un devis détaillé. Patientez quelques secondes.",
     });
 
     try {
-      // 1. Generate the quote using AI
       const aiQuote = await generateQuote({
         projectDescription: request.projectDescription,
-        serviceType: 'Inconnu - à définir depuis la description'
+        serviceType: "Inconnu - à définir depuis la description",
       });
 
-      // 2. Run a transaction to create the quote and update the request status
       await runTransaction(firestore, async (transaction) => {
-        // Create the new quote document
-        const quoteDocRef = doc(collection(firestore, 'quotes'));
+        // Create quote
+        const quoteDocRef = doc(collection(firestore, "quotes"));
         transaction.set(quoteDocRef, {
           ...aiQuote,
           clientName: request.clientName,
           clientEmail: request.clientEmail,
+          clientPhone: request.clientPhone ?? null,
           projectDescription: request.projectDescription,
-          service: 'À catégoriser',
-          status: 'Brouillon', // New quotes start as drafts
-          userId: user.uid,
-          createdAt: new Date(), // Use current date for the quote
+          service: "À catégoriser",
+          status: "Brouillon",
+          createdAt: serverTimestamp(),
           requestId: request.id,
         });
 
-        // Update the original request status
-        const requestDocRef = doc(firestore, 'quoteRequests', request.id);
-        transaction.update(requestDocRef, { status: 'Traité' });
+        // Update request status
+        const requestDocRef = doc(firestore, "quoteRequests", request.id);
+        transaction.update(requestDocRef, {
+          status: "Traité",
+          processedAt: serverTimestamp(),
+        });
       });
 
       toast({
-        title: "✅ Devis généré avec succès !",
-        description: "Le devis a été ajouté à votre liste. Vous pouvez maintenant le consulter et le modifier.",
+        title: "✅ Devis généré",
+        description: "Le devis a été ajouté. Vous pouvez maintenant le consulter/modifier.",
       });
-      router.push('/dashboard/devis');
 
-    } catch (error) {
-      console.error("Error generating quote:", error);
+      router.push("/dashboard/devis");
+    } catch (e) {
+      console.error("Error generating quote:", e);
       toast({
-        variant: 'destructive',
-        title: "❌ Erreur de génération",
-        description: "L'IA n'a pas pu générer le devis. Veuillez réessayer.",
+        variant: "destructive",
+        title: "❌ Erreur",
+        description: "Impossible de générer le devis. Réessayez.",
       });
     } finally {
       setIsGenerating(null);
     }
   };
 
-
   if (isUserLoading || !user) {
     return (
-      <div className="flex h-screen items-center justify-center">
-        <div className="w-10 h-10 rounded-full border-4 border-border border-t-primary animate-spin" />
+      <div className="flex h-[60vh] items-center justify-center">
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-border border-t-primary" />
       </div>
     );
   }
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between space-y-2">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Demandes de Devis</h1>
-          <p className="text-muted-foreground">
-            Voici les nouvelles demandes de devis provenant de votre site.
-          </p>
-        </div>
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight">Demandes de devis</h1>
+        <p className="text-muted-foreground">Toutes les demandes reçues via le site (statut : Nouvelle Demande).</p>
       </div>
 
       <Card>
         <CardHeader>
           <CardTitle>Demandes en attente</CardTitle>
-          <CardDescription>
-            Générez un devis à partir d'une demande client.
-          </CardDescription>
+          <CardDescription>Générez un devis à partir d’une demande client.</CardDescription>
         </CardHeader>
+
         <CardContent>
           <Table>
             <TableHeader>
               <TableRow>
                 <TableHead>Client</TableHead>
                 <TableHead>Projet</TableHead>
-                <TableHead className="hidden sm:table-cell">Date de la demande</TableHead>
+                <TableHead className="hidden sm:table-cell">Date</TableHead>
                 <TableHead className="hidden sm:table-cell">Statut</TableHead>
-                <TableHead><span className="sr-only">Actions</span></TableHead>
+                <TableHead className="text-right">Action</TableHead>
               </TableRow>
             </TableHeader>
+
             <TableBody>
               {isLoading && (
                 <TableRow>
                   <TableCell colSpan={5} className="h-24 text-center">
-                    Chargement des nouvelles demandes...
+                    Chargement…
                   </TableCell>
                 </TableRow>
               )}
-              {!isLoading && requests && requests.length === 0 && (
+
+              {!isLoading && (!requests || requests.length === 0) && (
                 <TableRow>
                   <TableCell colSpan={5} className="h-24 text-center">
-                    Aucune nouvelle demande de devis.
+                    Aucune nouvelle demande.
                   </TableCell>
                 </TableRow>
               )}
-              {!isLoading && requests && requests.map((item) => (
-                <TableRow key={item.id}>
-                  <TableCell>
-                    <div className="font-medium">{item.clientName}</div>
-                    <div className="text-sm text-muted-foreground">{item.clientEmail}</div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="font-medium line-clamp-2">{item.projectDescription}</div>
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell">
-                    {item.createdAt ? format(item.createdAt.toDate(), "d MMMM yyyy 'à' HH:mm", { locale: fr }) : '-'}
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell">
-                    <Badge variant={"destructive"}>{item.status}</Badge>
-                  </TableCell>
-                  <TableCell>
-                     <Button 
-                      onClick={() => handleGenerateQuote(item)} 
-                      disabled={isGenerating === item.id}
-                      size="sm"
-                    >
-                       {isGenerating === item.id ? 'Génération...' : (
-                        <>
-                          <Bot className="mr-2 h-4 w-4" />
-                          Générer le devis
-                        </>
-                       )}
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
+
+              {!isLoading &&
+                requests?.map((item: any) => {
+                  const d = toDateSafe(item.createdAt);
+
+                  return (
+                    <TableRow key={item.id}>
+                      <TableCell>
+                        <div className="font-medium">{item.clientName}</div>
+                        <div className="text-sm text-muted-foreground">{item.clientEmail}</div>
+                      </TableCell>
+
+                      <TableCell>
+                        <div className="line-clamp-2 font-medium">{item.projectDescription}</div>
+                      </TableCell>
+
+                      <TableCell className="hidden sm:table-cell">
+                        {d ? format(d, "d MMMM yyyy 'à' HH:mm", { locale: fr }) : "-"}
+                      </TableCell>
+
+                      <TableCell className="hidden sm:table-cell">
+                        <Badge variant="destructive">{item.status}</Badge>
+                      </TableCell>
+
+                      <TableCell className="text-right">
+                        <Button
+                          size="sm"
+                          onClick={() => handleGenerateQuote(item)}
+                          disabled={isGenerating === item.id}
+                        >
+                          {isGenerating === item.id ? (
+                            "Génération…"
+                          ) : (
+                            <>
+                              <Bot className="mr-2 h-4 w-4" />
+                              Générer
+                            </>
+                          )}
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
             </TableBody>
           </Table>
+
+          {/* Petit hint si index manquant */}
+          <p className="mt-4 text-xs text-muted-foreground">
+            Si Firestore demande un index (where status + orderBy createdAt), créez-le via le lien fourni dans la console.
+          </p>
         </CardContent>
       </Card>
     </div>

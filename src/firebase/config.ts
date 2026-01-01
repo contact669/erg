@@ -1,8 +1,8 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyB9KgkHLRYmTUXNloa1LU9BA-PaOIBQSog",
-  authDomain: "renovatrack.firebaseapp.com",
-  projectId: "renovatrack",
-  storageBucket: "renovatrack.appspot.com",
-  messagingSenderId: "448589396895",
-  appId: "1:448589396895:web:4bb69ae1032866323c9baa"
+  apiKey: "AIzaSyCm_sNPIo4cCD257Q7Bw7HeZLRVxsyJnBA",
+  authDomain: "studio-9008282422-63e21.firebaseapp.com",
+  projectId: "studio-9008282422-63e21",
+  storageBucket: "studio-9008282422-63e21.firebasestorage.app",
+  messagingSenderId: "925054966067",
+  appId: "1:925054966067:web:6e4817df151dc3e4ddc646"
 };
