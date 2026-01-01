@@ -133,7 +133,7 @@ export const services: Service[] = [
         { title: 'Transparence et Garanties', description: "Tous nos travaux sont couverts par une assurance décennale et une assurance responsabilité civile. Nos devis sont clairs et nos délais, tenus.", icon: ClipboardCheck }
     ],
     zones: {
-        description: "ERG Rénovation est le spécialiste des projets résidentiels haut de gamme en Île-de-France. Nos équipes interviennent pour la rénovation de maisons dans les Yvelines (78), les Hauts-de-Seine (92), le Val-de-Marne (94) et en Seine-Saint-Denis (93).",
+        description: "ERG Rénovation est le spécialiste des projets résidentiels haut de gamme en Île-de-France. Nos équipes interviennent pour la rénovation de maisons dans les Yvelines (78) (Versailles, Saint-Germain-en-Laye...) et les Hauts-de-Seine (92) (Meudon, Saint-Cloud, Sceaux...), où se concentrent de nombreux pavillons et demeures de caractère.",
         list: [
             { name: 'Yvelines (78)', slug: 'yvelines-78' },
             { name: 'Hauts-de-Seine (92)', slug: 'hauts-de-seine-92' },

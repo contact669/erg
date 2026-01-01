@@ -4,7 +4,7 @@
 import { useState, useMemo } from 'react';
 import SiteHeader from '@/components/site-header';
 import SiteFooter from '@/components/site-footer';
-import { allProjects, projectCategories } from '@/lib/data.tsx';
+import { allProjects, projectCategories } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -12,7 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Sparkles } from 'lucide-react';
-import CtaBanner from '../_components/cta-banner';
+import CtaBanner from '@/app/_components/cta-banner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { motion, AnimatePresence } from 'framer-motion';
 import Breadcrumbs from '@/components/breadcrumbs';

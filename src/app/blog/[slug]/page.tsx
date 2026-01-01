@@ -2,7 +2,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { blogPosts, services } from '@/lib/data.tsx';
+import { blogPosts, services } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import SiteHeader from '@/components/site-header';
 import SiteFooter from '@/components/site-footer';

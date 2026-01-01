@@ -2,7 +2,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { services, allProjects } from '@/lib/data.tsx';
+import { services, allProjects } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import SiteHeader from '@/components/site-header';
 import SiteFooter from '@/components/site-footer';
@@ -202,6 +202,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             />
           )}
           <div className="container relative z-10">
+            <Breadcrumbs />
             <h1 className="font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl max-w-4xl mt-4">
               {content ? content.h1 : service.title}
             </h1>
