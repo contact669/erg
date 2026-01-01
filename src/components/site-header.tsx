@@ -261,6 +261,7 @@ export default function SiteHeader() {
             <Link href="/devis">Demander un devis</Link>
           </Button>
 
+          <ModeToggle />
           <AuthButton />
           <MobileNav />
         </div>
@@ -352,7 +353,6 @@ function MobileNav() {
           </nav>
 
           <div className="mt-auto flex flex-col gap-4 border-t pt-6">
-            <ModeToggle />
              <div className="grid gap-2">
                 <Button asChild>
                 <Link href="/devis">Demander un devis</Link>
