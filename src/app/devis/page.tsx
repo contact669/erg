@@ -1,142 +1,386 @@
+"use client"
 
-'use client';
+import type { Metadata } from "next"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import * as z from "zod"
+import { useState } from "react"
+import Link from "next/link"
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
-import { useToast } from '@/hooks/use-toast';
-import { Button } from '@/components/ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import SiteHeader from '@/components/site-header';
-import SiteFooter from '@/components/site-footer';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import Breadcrumbs from '@/components/breadcrumbs';
-import { useState } from 'react';
-import { createQuoteRequest } from '@/lib/actions/quotes';
-import { Bot, User } from 'lucide-react';
+import SiteHeader from "@/components/site-header"
+import SiteFooter from "@/components/site-footer"
+import Breadcrumbs from "@/components/breadcrumbs"
+
+import { createQuoteRequest } from "@/lib/actions/quotes"
+import { useToast } from "@/hooks/use-toast"
+
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Separator } from "@/components/ui/separator"
+
+import { Bot, User, ShieldCheck, Clock, ArrowRight } from "lucide-react"
+
+/**
+ * ✅ Note: metadata ne peut pas être exporté dans un Client Component.
+ * Si tu veux du SEO complet (title/description/canonical), convertis cette page en Server Component
+ * et déporte le formulaire dans un composant <DevisForm /> en "use client".
+ */
+
+const PHONE = "+33699961375"
 
 const formSchema = z.object({
   clientName: z.string().min(2, "Le nom doit contenir au moins 2 caractères."),
   clientEmail: z.string().email("Veuillez saisir une adresse email valide."),
-  clientPhone: z.string().optional(),
-  projectDescription: z.string().min(20, "Veuillez décrire votre projet avec suffisamment de détails (au moins 20 caractères)."),
-});
+  clientPhone: z
+    .string()
+    .optional()
+    .transform((v) => (v ?? "").trim())
+    .refine(
+      (v) => v === "" || /^[+0-9().\s-]{6,}$/.test(v),
+      "Veuillez saisir un numéro de téléphone valide."
+    ),
+  projectDescription: z
+    .string()
+    .min(40, "Décrivez votre projet avec plus de détails (au moins 40 caractères).")
+    .max(2000, "Merci de limiter la description à 2000 caractères."),
+})
+
+type FormValues = z.infer<typeof formSchema>
+
+function countChars(s: string) {
+  return (s ?? "").trim().length
+}
 
 export default function DevisPage() {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast()
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
+    mode: "onTouched",
     defaultValues: {
-      clientName: '',
-      clientEmail: '',
-      clientPhone: '',
-      projectDescription: '',
+      clientName: "",
+      clientEmail: "",
+      clientPhone: "",
+      projectDescription: "",
     },
-  });
+  })
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitting(true);
+  const description = form.watch("projectDescription")
+  const chars = countChars(description)
+
+  async function onSubmit(values: FormValues) {
+    if (isSubmitting) return
+
+    setIsSubmitting(true)
+
     toast({
-      title: 'Envoi de votre demande...',
-      description: 'Veuillez patienter pendant que nous enregistrons votre projet.',
-    });
+      title: "Envoi en cours…",
+      description: "Nous enregistrons votre demande de devis.",
+    })
+
     try {
-      await createQuoteRequest(values);
+      // ✅ Normalisation légère (évite les espaces et champs vides)
+      const payload = {
+        ...values,
+        clientName: values.clientName.trim(),
+        clientEmail: values.clientEmail.trim().toLowerCase(),
+        clientPhone: (values.clientPhone ?? "").trim() || undefined,
+        projectDescription: values.projectDescription.trim(),
+      }
+
+      await createQuoteRequest(payload)
+
       toast({
-        title: 'Demande de devis envoyée !',
+        title: "Demande envoyée ✅",
         description:
-          'Merci pour votre demande. Notre équipe va l\'étudier et reviendra vers vous très rapidement.',
-      });
-      form.reset();
+          "Merci. Nous étudions votre projet et revenons vers vous très rapidement (souvent sous 24h ouvrées).",
+      })
+
+      form.reset()
     } catch (error) {
-      console.error(error);
+      console.error(error)
       toast({
-        variant: 'destructive',
-        title: 'Une erreur est survenue',
-        description: 'Impossible d\'envoyer votre demande. Veuillez réessayer.',
-      });
+        variant: "destructive",
+        title: "Impossible d’envoyer la demande",
+        description: "Veuillez réessayer dans quelques minutes.",
+      })
     } finally {
-      setIsSubmitting(false);
+      setIsSubmitting(false)
     }
   }
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
+
       <main className="flex-grow">
         <Breadcrumbs />
-        <div className="container py-16 md:py-24">
-          <div className="mx-auto max-w-3xl mt-8">
-            <Card>
-              <CardHeader className="text-center">
-                 <div className="mx-auto w-fit rounded-full bg-primary/10 p-3 text-primary mt-4">
-                  <Bot className="h-8 w-8" />
+
+        {/* Hero (pro, épuré, conversion) */}
+        <section className="border-b bg-secondary py-12 md:py-16">
+          <div className="container">
+            <div className="mx-auto max-w-3xl text-center">
+              <div className="mx-auto mb-4 w-fit rounded-full bg-primary/10 p-3 text-primary">
+                <Bot className="h-7 w-7" />
+              </div>
+
+              <h1 className="font-headline text-4xl font-bold tracking-tight md:text-5xl">
+                Demande de devis rénovation
+              </h1>
+
+              <p className="mt-4 text-lg text-muted-foreground">
+                Décrivez votre projet en 2 minutes. Nous vous recontactons rapidement avec une estimation claire et les
+                prochaines étapes.
+              </p>
+
+              <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+                  <a href={`tel:${PHONE}`} aria-label="Appeler ERG Rénovation">
+                    Appeler maintenant <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href="/services">
+                    Voir nos services <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+
+              <div className="mt-6 grid gap-3 text-sm text-muted-foreground sm:grid-cols-3">
+                <div className="flex items-center justify-center gap-2">
+                  <Clock className="h-4 w-4 text-accent" />
+                  Réponse rapide
                 </div>
-                <CardTitle className="font-headline text-3xl md:text-4xl">Demande de Devis Simplifiée</CardTitle>
-                <CardDescription className="text-lg">
-                  Décrivez-nous simplement votre projet. Notre équipe d'experts l'étudiera et reviendra vers vous au plus vite.
+                <div className="flex items-center justify-center gap-2">
+                  <ShieldCheck className="h-4 w-4 text-accent" />
+                  Garantie décennale
+                </div>
+                <div className="flex items-center justify-center gap-2">
+                  <User className="h-4 w-4 text-accent" />
+                  Interlocuteur unique
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Form + Sidebar */}
+        <section className="container py-12 md:py-16">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-[1fr_360px]">
+            <Card className="overflow-hidden">
+              <CardHeader className="border-b bg-background">
+                <CardTitle className="font-headline text-2xl md:text-3xl">Votre demande</CardTitle>
+                <CardDescription>
+                  Plus vous êtes précis, plus notre estimation sera pertinente. (Vous pouvez ajouter des contraintes,
+                  photos/plan plus tard.)
                 </CardDescription>
               </CardHeader>
-              <CardContent>
+
+              <CardContent className="p-6 md:p-8">
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                    {/* Project Info */}
-                    <fieldset className="space-y-4 rounded-lg border p-4">
-                      <legend className="-ml-1 px-1 text-sm font-medium flex items-center gap-2"><User className="h-4 w-4" /> Vos informations</legend>
+                    {/* Vos infos */}
+                    <fieldset className="space-y-4 rounded-xl border p-5">
+                      <legend className="-ml-1 px-1 text-sm font-medium text-foreground">
+                        <span className="inline-flex items-center gap-2">
+                          <User className="h-4 w-4 text-accent" /> Vos informations
+                        </span>
+                      </legend>
+
                       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        <FormField control={form.control} name="clientName" render={({ field }) => (
-                          <FormItem><FormLabel>Nom complet</FormLabel><FormControl><Input placeholder="John Doe" {...field} /></FormControl><FormMessage /></FormItem>
-                        )} />
-                        <FormField control={form.control} name="clientEmail" render={({ field }) => (
-                          <FormItem><FormLabel>Email</FormLabel><FormControl><Input type="email" placeholder="votre@email.com" {...field} /></FormControl><FormMessage /></FormItem>
-                        )} />
+                        <FormField
+                          control={form.control}
+                          name="clientName"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Nom complet</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Ex : Amar Hachour" autoComplete="name" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+
+                        <FormField
+                          control={form.control}
+                          name="clientEmail"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Email</FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="email"
+                                  placeholder="ex : vous@email.com"
+                                  autoComplete="email"
+                                  inputMode="email"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
                       </div>
-                       <FormField control={form.control} name="clientPhone" render={({ field }) => (
-                        <FormItem><FormLabel>Téléphone (Optionnel)</FormLabel><FormControl><Input placeholder="06 12 34 56 78" {...field} /></FormControl><FormMessage /></FormItem>
-                      )} />
+
+                      <FormField
+                        control={form.control}
+                        name="clientPhone"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Téléphone (optionnel)</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Ex : 06 12 34 56 78"
+                                autoComplete="tel"
+                                inputMode="tel"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
                     </fieldset>
 
-                    {/* Project Description */}
-                    <fieldset className="space-y-4 rounded-lg border p-4">
-                      <legend className="-ml-1 px-1 text-sm font-medium flex items-center gap-2"><Bot className="h-4 w-4" /> Décrivez votre projet</legend>
+                    {/* Description projet */}
+                    <fieldset className="space-y-4 rounded-xl border p-5">
+                      <legend className="-ml-1 px-1 text-sm font-medium text-foreground">
+                        <span className="inline-flex items-center gap-2">
+                          <Bot className="h-4 w-4 text-accent" /> Votre projet
+                        </span>
+                      </legend>
 
-                      <FormField control={form.control} name="projectDescription" render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Votre projet en quelques mots</FormLabel>
-                          <FormControl>
-                            <Textarea
-                              placeholder="Exemple : Je souhaite rénover la salle de bain de mon appartement de 50m² à Paris. J'aimerais une douche à l'italienne, un meuble double vasque et du carrelage effet marbre. J'ai aussi besoin de refaire l'électricité et la plomberie..."
-                              className="min-h-[180px]"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )} />
+                      <FormField
+                        control={form.control}
+                        name="projectDescription"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Description</FormLabel>
+                            <FormControl>
+                              <Textarea
+                                placeholder={[
+                                  "Exemple : rénovation salle de bain 5m² à Paris 20e.",
+                                  "Souhait : douche à l’italienne, meuble vasque, carrelage, reprise plomberie/électricité.",
+                                  "Contraintes : immeuble ancien, horaires, date souhaitée, budget indicatif…",
+                                ].join("\n")}
+                                className="min-h-[200px] resize-y"
+                                {...field}
+                              />
+                            </FormControl>
+
+                            <div className="mt-2 flex items-center justify-between text-xs">
+                              <span className="text-muted-foreground">
+                                Indiquez : surface, ville, état actuel, éléments à remplacer, niveau de finition.
+                              </span>
+                              <span className={chars < 40 ? "text-destructive" : "text-muted-foreground"}>
+                                {chars}/2000
+                              </span>
+                            </div>
+
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
                     </fieldset>
-                    
-                    <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-                      {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
-                    </Button>
+
+                    <div className="space-y-3">
+                      <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                        {isSubmitting ? "Envoi en cours…" : "Envoyer ma demande"}
+                      </Button>
+
+                      <p className="text-center text-xs text-muted-foreground">
+                        En envoyant, vous acceptez notre{" "}
+                        <Link href="/confidentialite" className="underline underline-offset-4 hover:text-primary">
+                          politique de confidentialité
+                        </Link>
+                        .
+                      </p>
+                    </div>
                   </form>
                 </Form>
               </CardContent>
             </Card>
+
+            {/* Sidebar : rassurance + SEO utile */}
+            <aside className="space-y-6 lg:sticky lg:top-24 h-fit">
+              <Card className="bg-secondary/40">
+                <CardHeader>
+                  <CardTitle className="font-headline text-lg">Ce que vous obtenez</CardTitle>
+                  <CardDescription>Une demande simple, un cadrage clair.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4 text-sm text-muted-foreground">
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <ShieldCheck className="mt-0.5 h-4 w-4 text-accent" />
+                      Estimation cohérente selon votre besoin + conseils techniques
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Clock className="mt-0.5 h-4 w-4 text-accent" />
+                      Prise de contact rapide (souvent sous 24h ouvrées)
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <User className="mt-0.5 h-4 w-4 text-accent" />
+                      Un interlocuteur dédié pour organiser la suite
+                    </li>
+                  </ul>
+
+                  <Separator />
+
+                  <div>
+                    <p className="font-medium text-foreground">Pour gagner du temps</p>
+                    <p className="mt-1">
+                      Ajoutez (si possible) : ville/quartier, surface, photos, plans, date souhaitée et budget indicatif.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="font-headline text-lg">Zones d’intervention</CardTitle>
+                  <CardDescription>Paris & Île-de-France</CardDescription>
+                </CardHeader>
+                <CardContent className="text-sm text-muted-foreground">
+                  Paris (75), Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94), Yvelines (78) selon projet.
+                </CardContent>
+              </Card>
+
+              <div className="rounded-xl border p-5">
+                <p className="text-sm font-medium text-foreground">Besoin d’une réponse immédiate ?</p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Appelez-nous, on vous guide sur la faisabilité et les prochaines étapes.
+                </p>
+                <Button asChild className="mt-4 w-full">
+                  <a href={`tel:${PHONE}`}>Appeler {PHONE.replace("+33", "0")}</a>
+                </Button>
+              </div>
+            </aside>
           </div>
-        </div>
+        </section>
+
+        {/* Mini bloc SEO indexable (léger) */}
+        <section className="border-t bg-background">
+          <div className="container py-10">
+            <div className="mx-auto max-w-4xl text-center">
+              <h2 className="font-headline text-2xl font-bold md:text-3xl">
+                Devis rénovation à Paris : une estimation claire, un suivi maîtrisé
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                ERG Rénovation accompagne les projets de rénovation intérieure (appartement, salle de bain, cuisine) à
+                Paris et en Île-de-France. Votre demande est étudiée avec attention pour proposer un cadrage fiable :
+                contraintes techniques, niveau de finition, planification et coordination des corps de métier.
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
+
       <SiteFooter />
     </div>
-  );
+  )
 }

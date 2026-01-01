@@ -1,126 +1,168 @@
+"use client"
 
-'use client';
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Fragment, useMemo } from "react"
+import { ChevronRight, Home } from "lucide-react"
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { ChevronRight, Home } from 'lucide-react';
-import { services, allProjects, blogPosts, localLandingPages } from '@/lib/data';
-import { cn } from '@/lib/utils';
-import { Fragment } from 'react';
+import { services, allProjects, blogPosts, localLandingPages } from "@/lib/data"
+import { cn } from "@/lib/utils"
 
-function slugToTitle(slug: string, fullPath: string): string {
-    const segments = fullPath.split('/').filter(Boolean);
-    const parentServiceSlug = segments.length > 1 ? segments[0] : undefined;
+type Crumb = { href: string; label: string; isLast: boolean }
 
-    const dataSources = [services, allProjects, blogPosts];
-    for (const source of dataSources) {
-        const item = source.find((i: any) => i.slug === slug);
-        if (item) return item.title;
-    }
-    
-    const localPage = localLandingPages.find(p => p.slug === slug && (p.parentService.slug === parentServiceSlug || p.parentService.slug === segments[segments.length-2]));
-    if(localPage) return localPage.title;
+const HIDE_ON: string[] = ["/", "/dashboard"]
 
+const CENTERED_ROUTES: string[] = [
+  "/a-propos",
+  "/realisations",
+  "/blog",
+  "/contact",
+  "/devis",
+  "/services",
+  "/confidentialite",
+  "/cookies",
+  "/mentions-legales",
+  "/connexion",
+]
 
-    // Fallback for simple slugs
-    const manualSlugs: { [key: string]: string } = {
-        'a-propos': 'À Propos',
-        'blog': 'Blog',
-        'contact': 'Contact',
-        'devis': 'Devis',
-        'realisations': 'Réalisations',
-        'services': 'Services',
-        'confidentialite': 'Confidentialité',
-        'cookies': 'Cookies',
-        'mentions-legales': 'Mentions Légales',
-        'renovation-appartement': 'Rénovation Appartement',
-        'renovation-maison': 'Rénovation Maison',
-        'renovation-salle-de-bain': 'Rénovation Salle de Bain',
-        'renovation-cuisine': 'Rénovation Cuisine',
-        'amenagement-combles': 'Aménagement de Combles',
-        'peinture-finitions': 'Peinture & Finitions',
-        'connexion': 'Connexion'
-    };
-
-    if (manualSlugs[slug]) {
-        return manualSlugs[slug];
-    }
-
-    return slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+const MANUAL_LABELS: Record<string, string> = {
+  "a-propos": "À propos",
+  blog: "Blog",
+  contact: "Contact",
+  devis: "Devis",
+  realisations: "Réalisations",
+  services: "Services",
+  confidentialite: "Confidentialité",
+  cookies: "Cookies",
+  "mentions-legales": "Mentions légales",
+  connexion: "Connexion",
+  "renovation-appartement": "Rénovation appartement",
+  "renovation-maison": "Rénovation maison",
+  "renovation-salle-de-bain": "Rénovation salle de bain",
+  "renovation-cuisine": "Rénovation cuisine",
+  "amenagement-combles": "Aménagement de combles",
+  "peinture-finitions": "Peinture & finitions",
 }
 
-function truncateTitle(title: string): string {
-    const words = title.split(' ');
-    if (words.length > 5) {
-        return words.slice(0, 5).join(' ') + '...';
-    }
-    return title;
+/** Fallback propre : "renovation-salle-de-bain" -> "Rénovation salle de bain" */
+function humanizeSlug(slug: string) {
+  return slug
+    .replace(/-/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/^\p{L}/u, (m) => m.toUpperCase())
 }
 
+/** Coupe intelligemment le dernier crumb si trop long */
+function truncateSmart(input: string, max = 56) {
+  const t = input.trim()
+  if (t.length <= max) return t
+  return t.slice(0, max - 1).trimEnd() + "…"
+}
+
+function resolveLabel(slug: string, fullPath: string): string {
+  if (MANUAL_LABELS[slug]) return MANUAL_LABELS[slug]
+
+  // Recherche data “classique”
+  const sources: any[] = [services, allProjects, blogPosts]
+  for (const source of sources) {
+    const found = source?.find?.((i: any) => i?.slug === slug)
+    if (found?.title) return String(found.title)
+  }
+
+  // Recherche pages locales : /{parentServiceSlug}/{localSlug}
+  const segments = fullPath.split("/").filter(Boolean)
+  const parentServiceSlug = segments.length > 1 ? segments[0] : undefined
+  const possibleParent = segments.length > 1 ? segments[segments.length - 2] : undefined
+
+  const local = localLandingPages.find(
+    (p: any) =>
+      p?.slug === slug &&
+      (p?.parentService?.slug === parentServiceSlug || p?.parentService?.slug === possibleParent)
+  )
+  if (local?.title) return String(local.title)
+
+  return humanizeSlug(slug)
+}
+
+function shouldCenter(pathname: string) {
+  if (CENTERED_ROUTES.includes(pathname)) return true
+  if (pathname.startsWith("/blog/")) return true
+  if (pathname.startsWith("/realisations/")) return true
+  return false
+}
 
 export default function Breadcrumbs() {
-  const pathname = usePathname();
-  const segments = pathname.split('/').filter(Boolean);
+  const pathname = usePathname()
 
-  // Do not show breadcrumbs on the homepage
-  if (pathname === '/') {
-    return null;
-  }
-  
-  // Do not show breadcrumbs on the main dashboard page
-  if (pathname === '/dashboard') {
-    return null;
-  }
+  if (!pathname || HIDE_ON.includes(pathname)) return null
 
-  const isCentered = ['/a-propos', '/realisations', '/blog', '/contact', '/devis', '/services', '/confidentialite', '/cookies', '/mentions-legales', '/connexion'].includes(pathname) || pathname.startsWith('/blog/') || pathname.startsWith('/realisations/');
+  const centered = shouldCenter(pathname)
+
+  const crumbs = useMemo<Crumb[]>(() => {
+    const segments = pathname.split("/").filter(Boolean)
+
+    return segments.map((segment, index) => {
+      const href = "/" + segments.slice(0, index + 1).join("/")
+      const isLast = index === segments.length - 1
+      const label = resolveLabel(segment, pathname)
+      return {
+        href,
+        isLast,
+        label: isLast ? truncateSmart(label) : label,
+      }
+    })
+  }, [pathname])
 
   return (
-    <div className={cn(!isCentered && "bg-secondary")}>
-        <div className="container">
-            <nav aria-label="breadcrumb">
-                <ol className={cn(
-                    "flex items-center gap-2 text-sm py-3 text-muted-foreground",
-                    isCentered && "justify-center"
-                )}>
-                <li>
-                    <Link href="/" className="flex items-center gap-1.5 hover:text-primary transition-colors">
-                        <Home className="h-4 w-4" />
-                        <span>Accueil</span>
-                    </Link>
-                </li>
-                {segments.map((segment, index) => {
-                    const href = '/' + segments.slice(0, index + 1).join('/');
-                    const isLast = index === segments.length - 1;
-                    
-                    let title = slugToTitle(segment, pathname);
-                    
-                    if (isLast) {
-                        title = truncateTitle(title);
-                    }
+    <div className={cn(!centered && "bg-secondary/60")}>
+      <div className="container">
+        <nav aria-label="Fil d’Ariane" className="py-3">
+          <ol
+            className={cn(
+              "flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground",
+              centered && "justify-center"
+            )}
+          >
+            <li>
+              <Link
+                href="/"
+                className="inline-flex items-center gap-1.5 rounded-md px-1 py-0.5 transition-colors hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              >
+                <Home className="h-4 w-4" />
+                <span>Accueil</span>
+              </Link>
+            </li>
 
-                    return (
-                    <Fragment key={href}>
-                        <li>
-                            <ChevronRight className="h-4 w-4" />
-                        </li>
-                        <li>
-                        <Link
-                            href={href}
-                            aria-current={isLast ? 'page' : undefined}
-                            className={cn(
-                            'hover:text-primary transition-colors',
-                            isLast && 'text-foreground font-medium pointer-events-none'
-                            )}
-                        >
-                            {title}
-                        </Link>
-                        </li>
-                    </Fragment>
-                    );
-                })}
-                </ol>
-            </nav>
-        </div>
+            {crumbs.map((c) => (
+              <Fragment key={c.href}>
+                <li aria-hidden="true" className="select-none text-muted-foreground/70">
+                  <ChevronRight className="h-4 w-4" />
+                </li>
+
+                <li>
+                  {c.isLast ? (
+                    <span
+                      aria-current="page"
+                      className="inline-flex max-w-[70vw] items-center truncate font-medium text-foreground md:max-w-[520px]"
+                      title={c.label}
+                    >
+                      {c.label}
+                    </span>
+                  ) : (
+                    <Link
+                      href={c.href}
+                      className="inline-flex items-center rounded-md px-1 py-0.5 transition-colors hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      {c.label}
+                    </Link>
+                  )}
+                </li>
+              </Fragment>
+            ))}
+          </ol>
+        </nav>
+      </div>
     </div>
-  );
+  )
 }

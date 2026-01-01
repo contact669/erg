@@ -1,75 +1,196 @@
+import type { Metadata } from "next"
+import Link from "next/link"
 
-import SiteHeader from '@/components/site-header';
-import SiteFooter from '@/components/site-footer';
-import Breadcrumbs from '@/components/breadcrumbs';
+import SiteHeader from "@/components/site-header"
+import SiteFooter from "@/components/site-footer"
+import Breadcrumbs from "@/components/breadcrumbs"
+
+const SITE_NAME = "ERG Rénovation"
+const SITE_URL = "https://erg-renovation.fr"
+const PAGE_URL = `${SITE_URL}/confidentialite`
+
+export const metadata: Metadata = {
+  title: `Politique de confidentialité | ${SITE_NAME}`,
+  description:
+    "Politique de confidentialité d’ERG Rénovation : données collectées, finalités, base légale, durée de conservation, cookies, destinataires et droits RGPD.",
+  alternates: { canonical: PAGE_URL },
+  openGraph: {
+    title: `Politique de confidentialité | ${SITE_NAME}`,
+    description:
+      "Données collectées, finalités, base légale, durée de conservation, cookies, destinataires et droits RGPD.",
+    url: PAGE_URL,
+    siteName: SITE_NAME,
+    locale: "fr_FR",
+    type: "article",
+  },
+  robots: { index: true, follow: true },
+}
 
 export default function ConfidentialitePage() {
+  const lastUpdated = "1 janvier 2026" // ✅ mets la date du jour lors de tes mises à jour
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
+
       <main className="flex-grow">
         <div className="container py-16 md:py-24">
-          <div className="prose mx-auto max-w-3xl">
-            <Breadcrumbs />
-            <h1 className="mt-4 text-center mb-12">Politique de Confidentialité</h1>
-            <p>Dernière mise à jour : [Date]</p>
-            
+          <Breadcrumbs />
+
+          <header className="mx-auto mt-6 max-w-3xl text-center">
+            <h1 className="font-headline text-4xl font-bold tracking-tight md:text-5xl">
+              Politique de confidentialité
+            </h1>
+            <p className="mt-4 text-muted-foreground">
+              Dernière mise à jour : <span className="font-medium text-foreground">{lastUpdated}</span>
+            </p>
+          </header>
+
+          <div className="prose prose-zinc mx-auto mt-10 max-w-3xl text-foreground prose-headings:font-headline prose-headings:tracking-tight prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground">
             <p>
-              ERG Rénovation accorde une grande importance à la protection de vos données personnelles. Cette politique de confidentialité vise à vous informer de la manière dont nous collectons, utilisons et protégeons les informations que vous nous transmettez.
+              ERG Rénovation attache une grande importance à la protection de vos données personnelles. La présente
+              politique explique quelles données nous collectons, pourquoi nous les collectons et quels sont vos droits,
+              conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi “Informatique et Libertés”.
             </p>
 
-            <h2>1. Collecte de l'information</h2>
+            <h2>1. Responsable du traitement</h2>
             <p>
-              Nous collectons des informations lorsque vous utilisez notre formulaire de contact ou de demande de devis. Les informations collectées incluent votre nom, votre adresse e-mail, votre numéro de téléphone et le contenu de votre message.
+              Le responsable du traitement est <strong>ERG Rénovation</strong>.
             </p>
             <p>
-              En outre, nous recevons et enregistrons automatiquement des informations à partir de votre ordinateur et navigateur, y compris votre adresse IP, vos logiciels et votre matériel, et la page que vous demandez (via des cookies).
+              <strong>Adresse :</strong> 1 Sent. de la Pointe, 75020 Paris
+              <br />
+              <strong>Email :</strong>{" "}
+              <a href="mailto:contact@erg-renovation.fr">contact@erg-renovation.fr</a>
             </p>
 
-            <h2>2. Utilisation des informations</h2>
-            <p>Toutes les informations que nous recueillons auprès de vous peuvent être utilisées pour :</p>
+            <h2>2. Données collectées</h2>
+            <p>Nous collectons uniquement les données nécessaires au traitement de vos demandes, notamment :</p>
             <ul>
-              <li>Personnaliser votre expérience et répondre à vos besoins individuels</li>
-              <li>Vous contacter par e-mail ou par téléphone dans le cadre de votre demande</li>
-              <li>Améliorer notre site Web</li>
-              <li>Améliorer le service client et vos besoins de prise en charge</li>
+              <li>
+                <strong>Données d’identification</strong> : nom, prénom (si renseignés)
+              </li>
+              <li>
+                <strong>Données de contact</strong> : email, téléphone
+              </li>
+              <li>
+                <strong>Données liées à votre projet</strong> : nature des travaux, contraintes, informations utiles à l’établissement d’un devis
+              </li>
+              <li>
+                <strong>Données techniques</strong> : adresse IP, journaux (logs), informations de navigation (via cookies/traceurs selon votre choix)
+              </li>
             </ul>
 
-            <h2>3. Confidentialité</h2>
+            <h2>3. Finalités et bases légales</h2>
+            <p>Vos données peuvent être traitées pour les finalités suivantes :</p>
+            <ul>
+              <li>
+                <strong>Répondre à vos demandes</strong> (contact, devis, informations) —{" "}
+                <strong>base légale :</strong> exécution de mesures précontractuelles
+              </li>
+              <li>
+                <strong>Suivi de relation commerciale</strong> (échanges, relances liées à votre demande) —{" "}
+                <strong>base légale :</strong> intérêt légitime
+              </li>
+              <li>
+                <strong>Amélioration du site</strong> (mesures d’audience, performance) —{" "}
+                <strong>base légale :</strong> consentement (si traceurs non essentiels)
+              </li>
+              <li>
+                <strong>Sécurité du site</strong> (prévention fraude/abus, logs) —{" "}
+                <strong>base légale :</strong> intérêt légitime
+              </li>
+            </ul>
+
+            <h2>4. Caractère obligatoire ou facultatif</h2>
             <p>
-              Nous sommes les seuls propriétaires des informations recueillies sur ce site. Vos informations personnelles ne seront pas vendues, échangées, transférées, ou données à une autre société pour n'importe quelle raison, sans votre consentement, en dehors de ce qui est nécessaire pour répondre à une demande ou une transaction.
+              Les champs indispensables au traitement de votre demande (ex : email/téléphone, description du besoin) sont
+              indiqués sur le formulaire. À défaut, nous ne pourrons pas traiter votre demande dans de bonnes conditions.
             </p>
 
-            <h2>4. Protection des informations</h2>
+            <h2>5. Destinataires des données</h2>
             <p>
-              Nous mettons en œuvre une variété de mesures de sécurité pour préserver la sécurité de vos informations personnelles. Seuls les employés qui ont besoin d'effectuer un travail spécifique (par exemple, la facturation ou le service à la clientèle) ont accès aux informations personnelles identifiables.
+              Les données sont destinées aux équipes d’ERG Rénovation et, le cas échéant, à nos prestataires techniques
+              strictement nécessaires au fonctionnement du site (hébergement, maintenance, emailing/CRM).
+            </p>
+            <p>
+              Nous ne vendons pas vos données. Elles ne sont jamais cédées à des tiers à des fins commerciales.
             </p>
 
-            <h2>5. Cookies</h2>
+            <h2>6. Durées de conservation</h2>
+            <p>Nous conservons vos données pendant une durée proportionnée aux finalités :</p>
+            <ul>
+              <li>
+                <strong>Demandes de contact/devis</strong> : durée nécessaire au traitement puis archivage limité (généralement{" "}
+                <strong>jusqu’à 36 mois</strong>) à des fins de suivi
+              </li>
+              <li>
+                <strong>Relation client</strong> : durée contractuelle + obligations légales de conservation (facturation, comptabilité)
+              </li>
+              <li>
+                <strong>Cookies/traceurs</strong> : selon leur nature (voir Politique cookies)
+              </li>
+              <li>
+                <strong>Logs techniques</strong> : durée courte à des fins de sécurité (généralement quelques mois)
+              </li>
+            </ul>
+
+            <h2>7. Cookies et traceurs</h2>
             <p>
-              Nous utilisons des cookies pour améliorer l'accès à notre site et identifier les visiteurs réguliers. Pour en savoir plus sur notre utilisation des cookies, veuillez consulter notre <a href="/cookies">Politique de gestion des cookies</a>.
+              Nous utilisons des cookies et technologies similaires pour assurer le fonctionnement du site et, selon votre
+              choix, mesurer l’audience et améliorer l’expérience.
             </p>
-            
-            <h2>6. Vos droits</h2>
             <p>
-              Conformément à la loi "Informatique et Libertés" et au RGPD, vous disposez d'un droit d'accès, de rectification, de suppression, de portabilité et d'opposition aux données vous concernant. Vous pouvez exercer ce droit en nous contactant à :
-            </p>
-            <p>
-              <strong>ERG Rénovation</strong><br />
-              1 Sente de la Pointe, 75020 Paris<br />
-              contact@erg-renovation.fr
+              Pour en savoir plus et gérer vos préférences, consultez notre{" "}
+              <Link href="/cookies">politique de gestion des cookies</Link>.
             </p>
 
-            <h2>7. Consentement</h2>
+            <h2>8. Transferts hors Union Européenne</h2>
             <p>
-              En utilisant notre site, vous consentez à notre politique de confidentialité.
+              Selon les prestataires utilisés (ex : outils de mesure d’audience, emailing), certaines données peuvent être
+              traitées en dehors de l’Union Européenne. Dans ce cas, nous veillons à ce que des garanties appropriées soient
+              mises en place (clauses contractuelles types, mesures de sécurité).
+            </p>
+
+            <h2>9. Sécurité</h2>
+            <p>
+              Nous mettons en œuvre des mesures techniques et organisationnelles pour protéger vos données : accès limités,
+              protections applicatives, journalisation, et sécurisation de l’hébergement.
+            </p>
+
+            <h2>10. Vos droits (RGPD)</h2>
+            <p>
+              Vous disposez des droits suivants : accès, rectification, effacement, limitation, opposition, portabilité et
+              retrait du consentement (lorsqu’il constitue la base légale).
+            </p>
+            <p>
+              Pour exercer vos droits, contactez-nous :{" "}
+              <a href="mailto:contact@erg-renovation.fr">contact@erg-renovation.fr</a>. Nous pourrons vous demander un
+              justificatif d’identité en cas de doute raisonnable.
+            </p>
+            <p>
+              Vous pouvez également introduire une réclamation auprès de la{" "}
+              <strong>CNIL</strong> (autorité de contrôle française).
+            </p>
+
+            <h2>11. Mise à jour de la politique</h2>
+            <p>
+              Nous pouvons mettre à jour cette politique pour refléter les évolutions légales ou techniques. La date de
+              “dernière mise à jour” en haut de page indique la version en vigueur.
+            </p>
+
+            <hr />
+
+            <p className="text-sm">
+              <strong>Note :</strong> cette page fournit un cadre RGPD solide. Pour une conformité parfaite, adapte les
+              durées de conservation et la section “prestataires” à tes outils réels (hébergeur, analytics, emailing,
+              formulaire/devis, etc.).
             </p>
           </div>
         </div>
       </main>
+
       <SiteFooter />
     </div>
-  );
+  )
 }
-
-    

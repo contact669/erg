@@ -1,39 +1,55 @@
-'use client';
+"use client"
 
-import { useState, useEffect } from 'react';
-import { errorEmitter } from '@/firebase/error-emitter';
-import { FirestorePermissionError } from '@/firebase/errors';
+import { useEffect, useRef, useState } from "react"
+import { errorEmitter } from "@/firebase/error-emitter"
+import { FirestorePermissionError } from "@/firebase/errors"
 
 /**
- * An invisible component that listens for globally emitted 'permission-error' events.
- * It throws any received error to be caught by Next.js's global-error.tsx.
+ * Composant invisible : écoute les erreurs Firestore globales (permission-error)
+ * et les "remonte" au boundary Next.js (global-error.tsx) en les lançant.
+ *
+ * ✅ Anti-boucle: évite de relancer la même erreur en boucle (Fast Refresh / re-mount)
+ * ✅ Safe: cleanup garanti + pas de setState si unmount
+ * ✅ Extensible: facile d'ajouter d'autres events plus tard
  */
 export function FirebaseErrorListener() {
-  // Use the specific error type for the state for type safety.
-  const [error, setError] = useState<FirestorePermissionError | null>(null);
+  const [error, setError] = useState<FirestorePermissionError | null>(null)
+
+  // Empêche de relancer indéfiniment la même erreur
+  const lastErrorKeyRef = useRef<string | null>(null)
+  // Empêche setState après unmount
+  const mountedRef = useRef(false)
 
   useEffect(() => {
-    // The callback now expects a strongly-typed error, matching the event payload.
-    const handleError = (error: FirestorePermissionError) => {
-      // Set error in state to trigger a re-render.
-      setError(error);
-    };
+    mountedRef.current = true
 
-    // The typed emitter will enforce that the callback for 'permission-error'
-    // matches the expected payload type (FirestorePermissionError).
-    errorEmitter.on('permission-error', handleError);
+    const handlePermissionError = (err: FirestorePermissionError) => {
+      if (!mountedRef.current) return
 
-    // Unsubscribe on unmount to prevent memory leaks.
+      // On tente de construire une "signature" stable de l’erreur
+      const key =
+        (err as any)?.code ||
+        (err as any)?.name ||
+        (err as any)?.message ||
+        "permission-error"
+
+      // Si on reçoit la même erreur plusieurs fois, on ignore (évite boucle UI)
+      if (lastErrorKeyRef.current === key) return
+      lastErrorKeyRef.current = key
+
+      setError(err)
+    }
+
+    errorEmitter.on("permission-error", handlePermissionError)
+
     return () => {
-      errorEmitter.off('permission-error', handleError);
-    };
-  }, []);
+      mountedRef.current = false
+      errorEmitter.off("permission-error", handlePermissionError)
+    }
+  }, [])
 
-  // On re-render, if an error exists in state, throw it.
-  if (error) {
-    throw error;
-  }
+  // Important: lancer l’erreur pendant le render déclenche le Error Boundary.
+  if (error) throw error
 
-  // This component renders nothing.
-  return null;
+  return null
 }

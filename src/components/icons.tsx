@@ -1,38 +1,103 @@
-import type { SVGProps } from 'react';
+import type { SVGProps } from "react"
 
-export function ErgLogo(props: SVGProps<SVGSVGElement>) {
+/**
+ * Logo ERG — version plus “premium” :
+ * - utilise uniquement currentColor (hérite du thème)
+ * - 3 barres avec coins arrondis + espacements cohérents
+ * - opacités via `fillOpacity` (pas de className tailwind sur <path> → plus fiable)
+ */
+export function ErgLogo({
+  width = 24,
+  height = 24,
+  ...props
+}: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      width={width}
+      height={height}
       viewBox="0 0 24 24"
+      role="img"
+      aria-label="ERG Rénovation"
       fill="none"
       {...props}
     >
-      <path
-        d="M4 4H20V8H4V4Z"
-        fill="currentColor"
-        className="text-primary/70"
-      />
-      <path
-        d="M4 10H14V14H4V10Z"
-        fill="currentColor"
-        className="text-primary"
-      />
-      <path
-        d="M4 16H20V20H4V16Z"
-        fill="currentColor"
-        className="text-accent"
-      />
+      {/* Bar 1 */}
+      <rect x="4" y="4" width="16" height="4" rx="1.25" fill="currentColor" fillOpacity="0.55" />
+      {/* Bar 2 (signature) */}
+      <rect x="4" y="10" width="10.5" height="4" rx="1.25" fill="currentColor" fillOpacity="0.95" />
+      {/* Bar 3 (accent) */}
+      <rect x="4" y="16" width="16" height="4" rx="1.25" fill="currentColor" />
     </svg>
-  );
+  )
 }
 
-export function GoogleIcon(props: SVGProps<SVGSVGElement>) {
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" {...props}>
-            <path fill="#4285F4" d="M21.35 11.1h-9.1v3.4h5.8c-.2 1.1-.9 2-2 2.6-1.1.6-2.5.9-4.2.9-3.4 0-6.3-2.8-6.3-6.3s2.8-6.3 6.3-6.3c1.9 0 3.3.7 4.3 1.7l2.8-2.8C17.3 2.9 15 2 12.5 2c-5.5 0-10 4.5-10 10s4.5 10 10 10c5.5 0 10-4.5 10-10 0-.7 0-1.4-.2-2.1z" />
-        </svg>
-    )
+/**
+ * Google Icon — version “pro” :
+ * - préfère une version monochrome (hérite du thème) pour UI (boutons, header, etc.)
+ * - option `brand` pour la version couleurs Google si tu veux
+ */
+export function GoogleIcon({
+  width = 20,
+  height = 20,
+  className,
+  ...props
+}: SVGProps<SVGSVGElement> & { brand?: boolean }) {
+  // ⚠️ Monochrome (recommandé pour un design premium et cohérent)
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={width}
+      height={height}
+      viewBox="0 0 24 24"
+      role="img"
+      aria-label="Google"
+      className={className}
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M21.6 12.23c0-.71-.06-1.39-.18-2.05H12v3.88h5.37a4.6 4.6 0 0 1-2 3.02v2.51h3.24c1.9-1.75 2.99-4.34 2.99-7.36ZM12 22c2.7 0 4.97-.9 6.63-2.42l-3.24-2.51c-.9.6-2.06.96-3.39.96-2.6 0-4.8-1.76-5.59-4.12H3.06v2.58A10 10 0 0 0 12 22Zm-5.59-7.09A6 6 0 0 1 6.1 13c0-.66.11-1.3.31-1.91V8.51H3.06A10 10 0 0 0 2 13c0 1.62.39 3.15 1.06 4.49l3.35-2.58ZM12 6.97c1.47 0 2.79.51 3.83 1.5l2.87-2.87C16.96 3.88 14.69 3 12 3A10 10 0 0 0 3.06 8.51l3.35 2.58C7.2 8.73 9.4 6.97 12 6.97Z"
+      />
+    </svg>
+  )
+}
+
+/**
+ * Si tu veux ABSOLUMENT la version Google “brand” (couleurs officielles),
+ * utilise plutôt ce composant séparé pour éviter les mélanges de styles.
+ */
+export function GoogleBrandIcon({
+  width = 20,
+  height = 20,
+  ...props
+}: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={width}
+      height={height}
+      viewBox="0 0 24 24"
+      role="img"
+      aria-label="Google"
+      {...props}
+    >
+      <path
+        fill="#4285F4"
+        d="M21.6 12.23c0-.71-.06-1.39-.18-2.05H12v3.88h5.37a4.6 4.6 0 0 1-2 3.02v2.51h3.24c1.9-1.75 2.99-4.34 2.99-7.36Z"
+      />
+      <path
+        fill="#34A853"
+        d="M12 22c2.7 0 4.97-.9 6.63-2.42l-3.24-2.51c-.9.6-2.06.96-3.39.96-2.6 0-4.8-1.76-5.59-4.12H3.06v2.58A10 10 0 0 0 12 22Z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M6.41 14.91A6 6 0 0 1 6.1 13c0-.66.11-1.3.31-1.91V8.51H3.06A10 10 0 0 0 2 13c0 1.62.39 3.15 1.06 4.49l3.35-2.58Z"
+      />
+      <path
+        fill="#EA4335"
+        d="M12 6.97c1.47 0 2.79.51 3.83 1.5l2.87-2.87C16.96 3.88 14.69 3 12 3A10 10 0 0 0 3.06 8.51l3.35 2.58C7.2 8.73 9.4 6.97 12 6.97Z"
+      />
+    </svg>
+  )
 }

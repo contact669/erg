@@ -1,71 +1,133 @@
 import Link from "next/link"
+import Image from "next/image"
 import { ErgLogo } from "./icons"
 import { services, navItems } from "@/lib/data"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Mail, MapPin, Phone, ArrowRight } from "lucide-react"
+import { cn } from "@/lib/utils"
 
-function StyledLogo() {
+const SITE_NAME = "ERG Rénovation"
+const PHONE_RAW = "+33699961375"
+const PHONE_LABEL = "06 99 96 13 75"
+const EMAIL = "contact@erg-renovation.fr"
+const ADDRESS = "1 Sent. de la Pointe, 75020 Paris"
+
+function StyledLogo({ className }: { className?: string }) {
   return (
-    <span className="font-headline text-2xl font-bold tracking-wider text-primary">
+    <span
+      className={cn(
+        "font-headline text-xl font-semibold tracking-wide text-primary md:text-2xl",
+        className
+      )}
+    >
       <span className="tracking-widest">E</span>
-      <span className="underline decoration-accent decoration-2 underline-offset-4">R</span>
+      <span className="relative mx-0.5 inline-block">
+        <span className="tracking-widest">R</span>
+        <span className="pointer-events-none absolute -bottom-1 left-0 right-0 h-[2px] rounded-full bg-accent" />
+      </span>
       <span className="tracking-widest">G</span>
     </span>
   )
 }
 
 function resolveFooterHref(href: string) {
-  // si un item est "#section", depuis une autre page il faut "/#section"
   if (href.startsWith("#")) return `/${href}`
   return href
 }
 
+function FooterTitle({
+  children,
+  className,
+}: {
+  children: React.ReactNode
+  className?: string
+}) {
+  return (
+    <h4 className={cn("font-headline text-sm font-semibold tracking-wide text-primary", className)}>
+      {children}
+    </h4>
+  )
+}
+
+function FooterLink({
+  href,
+  children,
+  className,
+}: {
+  href: string
+  children: React.ReactNode
+  className?: string
+}) {
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "text-sm text-muted-foreground transition-colors hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm",
+        className
+      )}
+    >
+      {children}
+    </Link>
+  )
+}
+
 export default function SiteFooter() {
   const legalLinks = [
-    { title: "Mentions Légales", href: "/mentions-legales" },
+    { title: "Mentions légales", href: "/mentions-legales" },
     { title: "Politique de confidentialité", href: "/confidentialite" },
     { title: "Gestion des cookies", href: "/cookies" },
   ]
 
   return (
-    <footer className="bg-secondary text-secondary-foreground">
+    <footer className="border-t bg-secondary text-secondary-foreground">
       <div className="container py-12 lg:py-16">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {/* Bloc marque + contact */}
-          <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2" aria-label="Retour à l'accueil">
-              <ErgLogo className="h-8 w-8 text-primary" />
-              <StyledLogo />
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+          {/* Marque + contact */}
+          <div className="space-y-5">
+            <Link href="/" className="inline-flex items-center gap-3" aria-label={`Accueil ${SITE_NAME}`}>
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-background/60 ring-1 ring-border/60">
+                <ErgLogo className="h-6 w-6 text-primary" />
+              </span>
+              <div className="leading-tight">
+                <StyledLogo />
+                <p className="mt-0.5 text-xs text-muted-foreground">Rénovation intérieure • Paris & IDF</p>
+              </div>
             </Link>
 
-            <p className="text-sm">
-              L&apos;excellence en rénovation intérieure à Paris et en Île-de-France : appartements, cuisines, salles de bain,
-              finitions soignées.
+            <p className="max-w-sm text-sm text-muted-foreground">
+              Rénovation d’appartement, salle de bain, cuisine et finitions. Méthode claire, suivi structuré, exécution
+              propre et garanties.
             </p>
 
             <div className="space-y-2 text-sm">
-              <p className="flex items-start gap-2">
-                <MapPin className="mt-1 h-4 w-4 flex-shrink-0 text-accent" />
-                <span>1 Sent. de la Pointe, 75020 Paris</span>
+              <p className="flex items-start gap-2 text-muted-foreground">
+                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent" />
+                <span>{ADDRESS}</span>
               </p>
 
               <p className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-accent" />
-                <a href="tel:+33699961375" className="hover:text-primary">
-                  06 99 96 13 75
+                <a
+                  href={`tel:${PHONE_RAW}`}
+                  className="text-muted-foreground transition-colors hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+                >
+                  {PHONE_LABEL}
                 </a>
               </p>
 
               <p className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-accent" />
-                <a href="mailto:contact@erg-renovation.fr" className="hover:text-primary">
-                  contact@erg-renovation.fr
+                <a
+                  href={`mailto:${EMAIL}`}
+                  className="text-muted-foreground transition-colors hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+                >
+                  {EMAIL}
                 </a>
               </p>
             </div>
 
-            {/* ✅ CTA conversion */}
+            {/* CTA */}
             <div className="grid gap-2 pt-2 sm:max-w-xs">
               <Button asChild>
                 <Link href="/devis" className="inline-flex items-center justify-center gap-2">
@@ -73,83 +135,73 @@ export default function SiteFooter() {
                 </Link>
               </Button>
 
-              <a
-                href="tel:+33699961375"
-                className="inline-flex items-center justify-center gap-2 rounded-md border px-3 py-2 text-sm font-medium hover:bg-accent"
-              >
-                <Phone className="h-4 w-4" />
-                Appeler maintenant
-              </a>
+              <Button asChild variant="outline">
+                <a href={`tel:${PHONE_RAW}`} className="inline-flex items-center justify-center gap-2">
+                  <Phone className="h-4 w-4" />
+                  Appeler maintenant
+                </a>
+              </Button>
 
               <p className="text-xs text-muted-foreground">Intervention : Paris • 92 • 93 • 94</p>
             </div>
           </div>
 
           {/* Navigation */}
-          <div>
-            <h4 className="font-headline font-semibold text-primary">Navigation</h4>
-            <ul className="mt-4 space-y-2">
+          <div className="space-y-5">
+            <FooterTitle>Navigation</FooterTitle>
+            <ul className="space-y-2">
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <Link href={resolveFooterHref(item.href)} className="text-sm hover:text-primary">
-                    {item.title}
-                  </Link>
+                  <FooterLink href={resolveFooterHref(item.href)}>{item.title}</FooterLink>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Services */}
-          <div>
-            <h4 className="font-headline font-semibold text-primary">Nos Services</h4>
-            <ul className="mt-4 space-y-2">
+          {/* Services + requêtes fréquentes */}
+          <div className="space-y-5">
+            <FooterTitle>Nos services</FooterTitle>
+
+            <ul className="space-y-2">
               {services.slice(0, 5).map((service) => (
                 <li key={service.slug}>
-                  <Link href={`/services/${service.slug}`} className="text-sm hover:text-primary">
-                    {service.title}
-                  </Link>
+                  <FooterLink href={`/services/${service.slug}`}>{service.title}</FooterLink>
                 </li>
               ))}
-              <li>
-                <Link href="/services" className="text-sm font-semibold hover:text-primary">
-                  Voir tous les services &rarr;
-                </Link>
+              <li className="pt-1">
+                <FooterLink href="/services" className="font-medium text-foreground hover:text-primary">
+                  Voir tous les services →
+                </FooterLink>
               </li>
             </ul>
 
-            {/* Mini maillage interne SEO */}
-            <div className="mt-6 rounded-lg border bg-background/40 p-4">
-              <p className="text-sm font-medium">Recherches fréquentes</p>
-              <ul className="mt-3 space-y-2 text-sm">
+            {/* mini maillage interne (clean, non spammy) */}
+            <div className="rounded-2xl border bg-background/60 p-4 ring-1 ring-border/50">
+              <p className="text-xs font-semibold tracking-wide text-foreground">Recherches fréquentes</p>
+              <ul className="mt-3 space-y-2">
                 <li>
-                  <Link href="/services/renovation-appartement" className="hover:text-primary">
-                    Rénovation appartement à Paris
-                  </Link>
+                  <FooterLink href="/services/renovation-appartement">Rénovation appartement à Paris</FooterLink>
                 </li>
                 <li>
-                  <Link href="/services/renovation-salle-de-bain" className="hover:text-primary">
-                    Rénovation salle de bain clé en main
-                  </Link>
+                  <FooterLink href="/services/renovation-salle-de-bain">Salle de bain clé en main</FooterLink>
                 </li>
                 <li>
-                  <Link href="/services/renovation-cuisine" className="hover:text-primary">
-                    Rénovation cuisine
-                  </Link>
+                  <FooterLink href="/services/renovation-cuisine">Rénovation cuisine</FooterLink>
                 </li>
               </ul>
             </div>
           </div>
 
-          {/* Newsletter (server-safe : pas de onSubmit) */}
-          <div>
-            <h4 className="font-headline font-semibold text-primary">Newsletter</h4>
-            <p className="mt-4 text-sm">
-              Recevez nos conseils travaux et nos dernières réalisations (1 à 2 emails/mois).
+          {/* Newsletter */}
+          <div className="space-y-5">
+            <FooterTitle>Newsletter</FooterTitle>
+
+            <p className="text-sm text-muted-foreground">
+              Conseils travaux et dernières réalisations (1 à 2 emails/mois). Zéro spam.
             </p>
 
-            {/* ✅ IMPORTANT : pas de handler ici (Server Component). 
-                Tu peux brancher /api/newsletter plus tard. */}
-            <form className="mt-4 grid gap-2" action="/api/newsletter" method="post">
+            {/* Server-safe */}
+            <form className="grid gap-3" action="/api/newsletter" method="post">
               <label className="sr-only" htmlFor="newsletter-email">
                 Email
               </label>
@@ -164,21 +216,16 @@ export default function SiteFooter() {
                   autoComplete="email"
                   required
                 />
-                <Button type="submit" variant="default">
-                  S&apos;inscrire
-                </Button>
+                <Button type="submit">OK</Button>
               </div>
 
-              {/* RGPD light */}
               <label className="flex items-start gap-2 text-xs text-muted-foreground">
                 <input name="consent" type="checkbox" value="yes" required className="mt-1" />
-                <span>
-                  J&apos;accepte de recevoir des emails de la part d&apos;ERG Rénovation. Désinscription en 1 clic.
-                </span>
+                <span>Désinscription en 1 clic. Données traitées conformément à la politique de confidentialité.</span>
               </label>
             </form>
 
-            <p className="mt-2 text-xs text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               En soumettant, vous acceptez notre{" "}
               <Link href="/confidentialite" className="underline underline-offset-4 hover:text-primary">
                 politique de confidentialité
@@ -188,21 +235,21 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        {/* Bas de footer */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
-          <p className="text-center text-sm text-muted-foreground md:text-left">
-            Copyright &copy; {new Date().getFullYear()} ERG Rénovation. Tous droits réservés.
+        {/* Bas footer */}
+        <div className="mt-12 flex flex-col gap-4 border-t border-border/70 pt-8 md:flex-row md:items-center md:justify-between">
+          <p className="text-center text-xs text-muted-foreground md:text-left">
+            © {new Date().getFullYear()} {SITE_NAME}. Tous droits réservés.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            {legalLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="text-xs text-muted-foreground hover:text-primary">
-                {link.title}
-              </Link>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+            {legalLinks.map((l) => (
+              <FooterLink key={l.href} href={l.href} className="text-xs">
+                {l.title}
+              </FooterLink>
             ))}
-            <Link href="/connexion" className="text-xs text-muted-foreground hover:text-primary">
+            <FooterLink href="/connexion" className="text-xs">
               Admin
-            </Link>
+            </FooterLink>
           </div>
         </div>
       </div>

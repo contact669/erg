@@ -1,55 +1,109 @@
 import Link from "next/link"
 import { processSteps } from "@/lib/data"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 export default function ProcessSteps() {
   return (
     <section
       id="process"
-      className="bg-secondary py-16 md:py-24"
+      className="border-y bg-secondary/40 py-16 md:py-24"
       aria-labelledby="process-title"
     >
       <div className="container">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 id="process-title" className="font-headline text-3xl font-bold md:text-4xl">
-            Votre projet, simplifié en 4 étapes
+        <header className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-medium text-primary/90">
+            Méthode de travail
+          </p>
+
+          <h2
+            id="process-title"
+            className="mt-3 font-headline text-3xl font-bold tracking-tight md:text-4xl"
+          >
+            Votre projet, maîtrisé en 4 étapes
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            De la première idée à la livraison finale, nous assurons un suivi rigoureux et une communication transparente.
+
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+            Un cadre simple, une communication claire, et un pilotage rigoureux
+            pour des délais tenus et des finitions soignées.
           </p>
 
-          {/* ✅ Mini contenu SEO indexable */}
+          {/* Micro-contenu SEO (propre, naturel) */}
           <p className="mt-4 text-sm text-muted-foreground">
-            Rénovation d’appartement, salle de bain ou cuisine : notre méthode garantit un chantier maîtrisé, des délais
-            annoncés et une réception de fin de travaux propre.
+            Rénovation d’appartement, salle de bain ou cuisine à Paris et en
+            Île-de-France : nous planifions, coordonnons les corps de métier et
+            contrôlons la qualité jusqu’à la réception.
           </p>
-        </div>
+        </header>
 
-        <div className="relative mt-12">
-          {/* Ligne centrale (desktop) */}
-          <div className="pointer-events-none absolute left-1/2 top-10 hidden h-[calc(100%-2.5rem)] w-px -translate-x-1/2 bg-border md:block" />
+        <div className="relative mx-auto mt-12 max-w-6xl">
+          {/* Timeline horizontale (desktop) */}
+          <div className="pointer-events-none absolute left-0 right-0 top-[34px] hidden h-px bg-border lg:block" />
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {processSteps.map((step) => (
-              <div key={step.step} className="text-center">
-                <div className="relative flex justify-center">
-                  <div className="z-10 flex h-16 w-16 items-center justify-center rounded-full bg-background ring-8 ring-background">
-                    <span className="font-headline text-2xl font-bold text-accent" aria-hidden="true">
-                      {String(step.step).padStart(2, "0")}
-                    </span>
-                    <span className="sr-only">Étape {step.step}</span>
+          <ol className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {processSteps.map((step, idx) => (
+              <li key={step.step} className="h-full">
+                <article
+                  className={cn(
+                    "group relative h-full rounded-2xl border bg-background/70 p-6 shadow-sm",
+                    "transition-all duration-300 hover:-translate-y-0.5 hover:bg-background hover:shadow-md"
+                  )}
+                  aria-labelledby={`process-step-${step.step}-title`}
+                  aria-describedby={`process-step-${step.step}-desc`}
+                >
+                  {/* Point sur la ligne (desktop) */}
+                  <div className="hidden lg:block">
+                    <div className="absolute left-1/2 top-[26px] h-4 w-4 -translate-x-1/2 rounded-full border bg-background shadow-sm" />
+                    <div className="absolute left-1/2 top-[26px] h-4 w-4 -translate-x-1/2 rounded-full bg-primary/15" />
                   </div>
-                </div>
 
-                <h3 className="mt-6 font-headline text-xl font-semibold">{step.title}</h3>
-                <p className="mt-2 text-muted-foreground">{step.description}</p>
-              </div>
+                  {/* Badge étape */}
+                  <div className="flex items-center justify-between">
+                    <div className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-xs font-medium text-foreground">
+                      <span className="text-primary" aria-hidden="true">
+                        {String(step.step).padStart(2, "0")}
+                      </span>
+                      <span className="text-muted-foreground">
+                        Étape {step.step}
+                      </span>
+                    </div>
+
+                    {/* Mini repère visuel (raffiné) */}
+                    <span className="h-2 w-10 rounded-full bg-primary/15" aria-hidden="true" />
+                  </div>
+
+                  <h3
+                    id={`process-step-${step.step}-title`}
+                    className="mt-5 font-headline text-lg font-semibold tracking-tight"
+                  >
+                    {step.title}
+                  </h3>
+
+                  <p
+                    id={`process-step-${step.step}-desc`}
+                    className="mt-2 text-sm leading-relaxed text-muted-foreground"
+                  >
+                    {step.description}
+                  </p>
+
+                  {/* Micro “progress” */}
+                  <div className="mt-5">
+                    <div className="h-1.5 w-full rounded-full bg-muted">
+                      <div
+                        className="h-1.5 rounded-full bg-primary/60"
+                        style={{ width: `${((idx + 1) / 4) * 100}%` }}
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </div>
+                </article>
+              </li>
             ))}
-          </div>
+          </ol>
 
-          {/* ✅ CTA conversion */}
+          {/* CTA */}
           <div className="mt-12 flex flex-col items-center justify-center gap-3 text-center">
-            <Button asChild className="min-w-[220px]">
+            <Button asChild size="lg" className="min-w-[240px]">
               <Link href="/devis">Demander un devis gratuit</Link>
             </Button>
             <p className="text-xs text-muted-foreground">
