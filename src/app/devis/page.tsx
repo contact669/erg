@@ -96,7 +96,7 @@ export default function DevisPage() {
         projectDescription: values.projectDescription.trim(),
         status: 'Nouvelle Demande',
         createdAt: new Date(),
-        userId: user?.uid || 'anonymous_user',
+        userId: user?.uid || 'admin_user_placeholder',
       };
 
       await addDoc(collection(firestore, "quoteRequests"), payload);
@@ -108,6 +108,7 @@ export default function DevisPage() {
       })
 
       form.reset()
+      setIsSubmitting(false)
     } catch (error) {
       console.error("Error creating quote request:", error);
       toast({
@@ -115,7 +116,6 @@ export default function DevisPage() {
         title: "Impossible d’envoyer la demande",
         description: "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer dans quelques minutes.",
       })
-    } finally {
       setIsSubmitting(false)
     }
   }
