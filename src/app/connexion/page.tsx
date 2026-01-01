@@ -25,11 +25,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { cn } from "@/lib/utils"
 import { ShieldCheck, Lock, Mail, ArrowRight, Eye, EyeOff } from "lucide-react"
 
-const ADMIN_EMAILS = (process.env.NEXT_PUBLIC_ADMIN_EMAILS || "")
-  .split(",")
-  .map((s) => s.trim().toLowerCase())
-  .filter(Boolean)
-
 const formSchema = z.object({
   email: z.string().email({ message: "Veuillez saisir une adresse email valide." }),
   password: z.string().min(6, { message: "Le mot de passe doit contenir au moins 6 caractères." }),
@@ -45,7 +40,7 @@ function authErrorToMessage(error: unknown): { title: string; description: strin
     switch (error.code) {
       case "auth/user-not-found":
         title = "Compte non trouvé"
-        description = "Aucun compte admin n’est associé à cette adresse email."
+        description = "Aucun compte n’est associé à cette adresse email."
         break
       case "auth/wrong-password":
       case "auth/invalid-credential":
@@ -99,36 +94,12 @@ export default function ConnexionPage() {
     return true
   }
 
-  const isAdminEmailAllowed = (email: string) => {
-    if (ADMIN_EMAILS.length === 0) return true // si tu ne configures pas la whitelist, on laisse passer
-    return ADMIN_EMAILS.includes(email.trim().toLowerCase())
-  }
-
   const onSubmit = async (values: FormValues) => {
     if (!ensureAuth()) return
-
-    // ✅ Whitelist email admin (recommandé)
-    if (!isAdminEmailAllowed(values.email)) {
-      toast({
-        variant: "destructive",
-        title: "Accès refusé",
-        description: "Cette adresse email n’a pas accès à l’espace administrateur.",
-      })
-      return
-    }
 
     setIsSubmitting(true)
     try {
       await signInWithEmailAndPassword(auth!, values.email, values.password)
-
-      // ✅ Optionnel mais recommandé : vérifier un flag “admin” via custom claims (voir section 2)
-      // Si tu n’as pas encore de claims, laisse ça commenté.
-      // const token = await auth!.currentUser?.getIdTokenResult()
-      // if (!token?.claims?.admin) {
-      //   await signOut(auth!)
-      //   toast({ variant: "destructive", title: "Accès refusé", description: "Compte non autorisé (admin requis)." })
-      //   return
-      // }
 
       toast({ title: "Connexion réussie", description: "Bienvenue dans l’espace administrateur." })
       router.push("/dashboard")
@@ -154,22 +125,12 @@ export default function ConnexionPage() {
       return
     }
 
-    // (optionnel) on peut aussi restreindre le reset aux emails admin whitelistés
-    if (!isAdminEmailAllowed(email)) {
-      toast({
-        variant: "destructive",
-        title: "Accès refusé",
-        description: "Cette adresse email n’est pas autorisée pour l’espace administrateur.",
-      })
-      return
-    }
-
     setIsSubmitting(true)
     try {
       await sendPasswordResetEmail(auth!, email)
       toast({
         title: "Email envoyé",
-        description: "Si un compte admin existe pour cette adresse, un lien a été envoyé.",
+        description: "Si un compte existe pour cette adresse, un lien a été envoyé.",
       })
       setShowReset(false)
     } catch (error) {
@@ -217,7 +178,7 @@ export default function ConnexionPage() {
                 </CardTitle>
                 <CardDescription>
                   {showReset
-                    ? "Saisissez votre email admin. Nous vous enverrons un lien sécurisé."
+                    ? "Saisissez votre email. Nous vous enverrons un lien sécurisé."
                     : "Authentification via Firebase. Accès réservé."}
                 </CardDescription>
               </CardHeader>
@@ -355,12 +316,6 @@ export default function ConnexionPage() {
               </CardContent>
             </Card>
 
-            {/* Hint optionnel */}
-            {ADMIN_EMAILS.length > 0 && (
-              <p className="mt-3 text-center text-xs text-muted-foreground">
-                Accès limité aux emails admin autorisés.
-              </p>
-            )}
           </div>
         </section>
       </main>
