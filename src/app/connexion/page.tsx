@@ -31,6 +31,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { FirebaseError } from 'firebase/app';
+import Breadcrumbs from '@/components/breadcrumbs';
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Veuillez saisir une adresse email valide.' }),
@@ -130,7 +131,8 @@ export default function ConnexionPage() {
       <main className="flex-grow flex items-center justify-center bg-secondary p-4 md:py-16 my-12">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <CardTitle className="font-headline text-3xl">Espace Professionnel</CardTitle>
+             <Breadcrumbs />
+            <CardTitle className="font-headline text-3xl mt-4">Espace Professionnel</CardTitle>
             <CardDescription>
               Connectez-vous ou créez un compte pour gérer vos projets.
             </CardDescription>

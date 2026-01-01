@@ -18,7 +18,7 @@ function slugToTitle(slug: string, fullPath: string): string {
         if (item) return item.title;
     }
     
-    const localPage = localLandingPages.find(p => p.slug === slug && p.parentService.slug === parentServiceSlug);
+    const localPage = localLandingPages.find(p => p.slug === slug && (p.parentService.slug === parentServiceSlug || p.parentService.slug === segments[segments.length-2]));
     if(localPage) return localPage.title;
 
 
@@ -39,6 +39,7 @@ function slugToTitle(slug: string, fullPath: string): string {
         'renovation-cuisine': 'Rénovation Cuisine',
         'amenagement-combles': 'Aménagement de Combles',
         'peinture-finitions': 'Peinture & Finitions',
+        'connexion': 'Connexion'
     };
 
     if (manualSlugs[slug]) {
@@ -71,10 +72,10 @@ export default function Breadcrumbs() {
     return null;
   }
 
-  const isCentered = !pathname.startsWith('/services/') && !pathname.startsWith('/renovation-');
+  const isCentered = ['/a-propos', '/realisations', '/blog', '/contact', '/devis', '/services', '/confidentialite', '/cookies', '/mentions-legales', '/connexion'].includes(pathname) || pathname.startsWith('/blog/') || pathname.startsWith('/realisations/');
 
   return (
-    <div className="bg-secondary">
+    <div className={cn(!isCentered && "bg-secondary")}>
         <div className="container">
             <nav aria-label="breadcrumb">
                 <ol className={cn(
