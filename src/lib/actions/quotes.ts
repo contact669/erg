@@ -27,18 +27,24 @@ export async function createQuoteRequest(data: QuoteRequestData) {
     };
     const docRef = await adminDb.collection('quoteRequests').add(quoteRequestData);
     
-    // 2. Send an email notification
-    await resend.emails.send({
-      from: 'Demande de Devis <noreply@erg-renovation.fr>', // Use a verified domain
-      to: 'contact@erg-renovation.fr',
-      subject: `Nouvelle demande de devis de ${data.clientName}`,
-      react: QuoteRequestEmail({
-        clientName: data.clientName,
-        clientEmail: data.clientEmail,
-        clientPhone: data.clientPhone,
-        projectDescription: data.projectDescription
-      }),
-    });
+    // 2. Send an email notification (commented out for now to ensure DB save works first)
+    /*
+    if (process.env.RESEND_API_KEY) {
+      await resend.emails.send({
+        from: 'Demande de Devis <noreply@erg-renovation.fr>', // Use a verified domain
+        to: 'contact@erg-renovation.fr',
+        subject: `Nouvelle demande de devis de ${data.clientName}`,
+        react: QuoteRequestEmail({
+          clientName: data.clientName,
+          clientEmail: data.clientEmail,
+          clientPhone: data.clientPhone,
+          projectDescription: data.projectDescription
+        }),
+      });
+    } else {
+        console.warn("RESEND_API_KEY is not set. Email notification was skipped.");
+    }
+    */
 
     return { success: true, requestId: docRef.id };
   } catch (error) {
