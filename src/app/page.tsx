@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Script from "next/script"
+import Link from "next/link"
 
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
@@ -14,8 +15,8 @@ import GoogleReviews from "./_components/google-reviews"
 import CtaBanner from "./_components/cta-banner"
 
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { Phone, ArrowRight, CheckCircle2 } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Phone, ArrowRight, CheckCircle2, ShieldCheck, Clock, Sparkles, MapPin, ClipboardList } from "lucide-react"
 
 const SITE_NAME = "ERG Rénovation"
 const SITE_URL = "https://erg-renovation.fr"
@@ -23,20 +24,26 @@ const PAGE_URL = `${SITE_URL}/`
 const PHONE = "+33699961375"
 const CITY = "Paris"
 const REGION = "Île-de-France"
-const SERVICE_AREAS = [
-  "Paris",
-  "Hauts-de-Seine (92)",
-  "Seine-Saint-Denis (93)",
-  "Val-de-Marne (94)",
-]
+const SERVICE_AREAS = ["Paris", "Hauts-de-Seine (92)", "Seine-Saint-Denis (93)", "Val-de-Marne (94)"]
 
 export const metadata: Metadata = {
-  title: `Entreprise de rénovation à ${CITY} | Appartements & salles de bain | ${SITE_NAME}`,
-  description: `ERG Rénovation : rénovation d’appartement, salle de bain et cuisine à ${CITY} et en ${REGION}. Devis gratuit, interlocuteur unique, finitions soignées, garantie décennale.`,
+  title: `Entreprise de rénovation à ${CITY} | Appartement, salle de bain, cuisine | ${SITE_NAME}`,
+  description: `${SITE_NAME} : rénovation intérieure clé en main à ${CITY} et en ${REGION} (92, 93, 94). Devis détaillé gratuit, interlocuteur unique, finitions soignées, garantie décennale.`,
   alternates: { canonical: PAGE_URL },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     title: `Entreprise de rénovation à ${CITY} | ${SITE_NAME}`,
-    description: `Rénovation clé en main à ${CITY} : appartement, salle de bain, cuisine. Devis gratuit, suivi de chantier, garantie décennale.`,
+    description: `Rénovation intérieure à ${CITY} : appartement, salle de bain, cuisine. Devis gratuit, suivi de chantier, finitions soignées, garantie décennale.`,
     url: PAGE_URL,
     siteName: SITE_NAME,
     locale: "fr_FR",
@@ -45,7 +52,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `Entreprise de rénovation à ${CITY} | ${SITE_NAME}`,
-    description: `Rénovation clé en main à ${CITY} : appartement, salle de bain, cuisine. Devis gratuit, suivi de chantier, garantie décennale.`,
+    description: `Rénovation intérieure à ${CITY} : appartement, salle de bain, cuisine. Devis gratuit, suivi de chantier, finitions soignées, garantie décennale.`,
   },
 }
 
@@ -65,6 +72,7 @@ function JsonLd() {
         "@id": `${PAGE_URL}#webpage`,
         url: PAGE_URL,
         name: `Entreprise de rénovation à ${CITY} | ${SITE_NAME}`,
+        description: `${SITE_NAME} : rénovation intérieure à ${CITY} et en ${REGION}.`,
         isPartOf: { "@id": `${SITE_URL}/#website` },
         inLanguage: "fr-FR",
       },
@@ -118,7 +126,45 @@ export default function Home() {
       <SiteHeader />
 
       <main className="flex-grow">
+        {/* HERO (ton composant) */}
         <Hero />
+
+        {/* Bar “preuves” ultra épurée (au-dessus de Services) */}
+        <section aria-label="Preuves et promesses" className="border-b bg-background">
+          <div className="container py-8">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              <Card className="border-muted/60">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-base font-semibold">
+                    <ShieldCheck className="h-4 w-4 text-accent" />
+                    Garantie décennale
+                  </CardTitle>
+                  <CardDescription>Travaux durables, couverts et conformes.</CardDescription>
+                </CardHeader>
+              </Card>
+
+              <Card className="border-muted/60">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-base font-semibold">
+                    <ClipboardList className="h-4 w-4 text-accent" />
+                    Devis détaillé gratuit
+                  </CardTitle>
+                  <CardDescription>Poste par poste, options de finitions.</CardDescription>
+                </CardHeader>
+              </Card>
+
+              <Card className="border-muted/60">
+                <CardHeader className="pb-2">
+                  <CardTitle className="flex items-center gap-2 text-base font-semibold">
+                    <Clock className="h-4 w-4 text-accent" />
+                    Suivi structuré
+                  </CardTitle>
+                  <CardDescription>Planning clair, points réguliers.</CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
+          </div>
+        </section>
 
         <AnimatedSection>
           <ServicesOverview />
@@ -140,82 +186,176 @@ export default function Home() {
           <GoogleReviews />
         </AnimatedSection>
 
+        {/* CTA “premium” + double action */}
+        <AnimatedSection>
+          <section className="border-t bg-secondary/40">
+            <div className="container py-14">
+              <div className="mx-auto max-w-4xl rounded-2xl border bg-background p-8 md:p-10">
+                <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                  <div className="space-y-2">
+                    <p className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+                      <Sparkles className="h-4 w-4 text-accent" />
+                      Devis détaillé • Visite sur site • Finitions soignées
+                    </p>
+                    <h2 className="font-headline text-2xl font-bold md:text-3xl">
+                      Parlons de votre projet (Paris & Île-de-France)
+                    </h2>
+                    <p className="text-muted-foreground">
+                      Dites-nous vos objectifs, contraintes et délais : nous vous répondons avec une estimation claire et des
+                      options de finition.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
+                    <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+                      <Link href="/devis">
+                        Demander un devis <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                    <Button asChild size="lg" variant="outline">
+                      <a href={`tel:${PHONE}`} aria-label="Appeler ERG Rénovation">
+                        <Phone className="mr-2 h-4 w-4" />
+                        Appeler
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+
+                <p className="mt-4 text-xs text-muted-foreground">
+                  {SERVICE_AREAS.join(" • ")} • Intervention rapide • Coordination tous corps d’état
+                </p>
+              </div>
+            </div>
+          </section>
+        </AnimatedSection>
+
         <AnimatedSection>
           <CtaBanner />
         </AnimatedSection>
 
-        {/* ✅ CONTENU SEO INDEXABLE — version centrée, pro, épurée */}
-        <section className="border-t bg-background">
-          <div className="mx-auto max-w-6xl px-4 py-12">
-            <header className="mx-auto max-w-3xl text-center">
-              <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
-                Entreprise de rénovation à {CITY}, orientée qualité et maîtrise
-              </h2>
+        {/* ✅ SEO INDEXABLE (ultra clean, unique, conversion + E-E-A-T) */}
+        <section className="border-t bg-background" aria-labelledby="seo-home-title">
+          <div className="container py-16 md:py-20">
+            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
+              {/* Col texte */}
+              <div className="lg:col-span-7">
+                <h2 id="seo-home-title" className="font-headline text-2xl font-bold tracking-tight md:text-3xl">
+                  Entreprise de rénovation à {CITY} : un chantier maîtrisé, du premier rendez-vous aux finitions
+                </h2>
 
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                {SITE_NAME} accompagne vos projets de rénovation intérieure à {CITY} et en {REGION} : appartement, salle de
-                bain et cuisine. Notre engagement repose sur une méthode claire, un chiffrage précis et une exécution
-                rigoureuse, du premier rendez-vous jusqu’à la livraison du chantier.
-              </p>
+                <p className="mt-5 text-base leading-relaxed text-muted-foreground">
+                  Chez <strong className="text-foreground">{SITE_NAME}</strong>, nous rénovons des intérieurs à {CITY} et en{" "}
+                  {REGION} avec une exigence simple : <strong className="text-foreground">livrer propre</strong>,{" "}
+                  <strong className="text-foreground">dans les règles</strong>, et{" "}
+                  <strong className="text-foreground">sans zones floues</strong>.
+                  L’objectif n’est pas seulement “beau” : c’est <strong className="text-foreground">durable</strong>,{" "}
+                  <strong className="text-foreground">précis</strong>, et <strong className="text-foreground">bien suivi</strong>.
+                </p>
 
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                Vous bénéficiez d’un <span className="font-medium text-foreground">interlocuteur unique</span>, d’une{" "}
-                <span className="font-medium text-foreground">coordination tous corps d’état</span>, et d’un{" "}
-                <span className="font-medium text-foreground">suivi structuré</span> garantissant des délais maîtrisés et des
-                finitions soignées.
-              </p>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                  Pour une rénovation d’appartement, de salle de bain ou de cuisine, vous bénéficiez d’un{" "}
+                  <strong className="text-foreground">interlocuteur unique</strong>, d’une{" "}
+                  <strong className="text-foreground">coordination tous corps d’état</strong>, et d’un{" "}
+                  <strong className="text-foreground">devis détaillé</strong> (poste par poste) pour arbitrer sereinement les
+                  options de finitions et de matériaux.
+                </p>
 
-              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                  <a href={`tel:${PHONE}`} aria-label="Appeler ERG Rénovation">
-                    <Phone className="mr-2 h-4 w-4" />
-                    Appeler maintenant
-                  </a>
-                </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link href="/devis">
-                    Demander un devis <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+                    <Link href="/devis">
+                      Décrire mon projet <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button asChild size="lg" variant="outline">
+                    <a href={`tel:${PHONE}`} aria-label="Appeler ERG Rénovation">
+                      <Phone className="mr-2 h-4 w-4" />
+                      Appeler maintenant
+                    </a>
+                  </Button>
+                </div>
+
+                <div className="mt-6 flex flex-wrap gap-2 text-xs text-muted-foreground">
+                  <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1">
+                    <MapPin className="h-3.5 w-3.5 text-accent" />
+                    {SERVICE_AREAS.join(" • ")}
+                  </span>
+                  <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-accent" />
+                    Visite sur site & estimation claire
+                  </span>
+                  <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-accent" />
+                    Protection & propreté du chantier
+                  </span>
+                </div>
               </div>
 
-              <p className="mt-3 text-xs text-muted-foreground">
-                Paris & Île-de-France (92, 93, 94) • Visite sur site • Estimation claire • Devis détaillé
-              </p>
-            </header>
+              {/* Col “piliers” */}
+              <div className="lg:col-span-5">
+                <div className="grid gap-4">
+                  <Card className="border-muted/60">
+                    <CardContent className="p-6">
+                      <h3 className="flex items-center gap-2 font-semibold">
+                        <CheckCircle2 className="h-4 w-4 text-accent" />
+                        Devis clair & arbitrages facilités
+                      </h3>
+                      <p className="mt-2 text-sm text-muted-foreground">
+                        Un chiffrage lisible, des options de finitions, et une logique simple pour décider sans surprises.
+                      </p>
+                    </CardContent>
+                  </Card>
 
-            {/* 3 piliers — pro & épuré */}
-            <div className="mx-auto mt-10 grid max-w-5xl gap-6 md:grid-cols-3">
-              <div className="rounded-xl border p-5">
-                <h3 className="flex items-center gap-2 font-medium">
-                  <CheckCircle2 className="h-4 w-4 text-primary" />
-                  Devis clair et transparent
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Chiffrage détaillé, poste par poste, avec des options de matériaux et de finitions adaptées à votre
-                  projet.
-                </p>
-              </div>
+                  <Card className="border-muted/60">
+                    <CardContent className="p-6">
+                      <h3 className="flex items-center gap-2 font-semibold">
+                        <CheckCircle2 className="h-4 w-4 text-accent" />
+                        Coordination tous corps d’état
+                      </h3>
+                      <p className="mt-2 text-sm text-muted-foreground">
+                        Une organisation claire : planification, enchaînement des étapes, et contrôles réguliers.
+                      </p>
+                    </CardContent>
+                  </Card>
 
-              <div className="rounded-xl border p-5">
-                <h3 className="flex items-center gap-2 font-medium">
-                  <CheckCircle2 className="h-4 w-4 text-primary" />
-                  Planification et coordination
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Étapes planifiées en amont, corps de métier coordonnés, points réguliers et suivi structuré du chantier.
-                </p>
-              </div>
+                  <Card className="border-muted/60">
+                    <CardContent className="p-6">
+                      <h3 className="flex items-center gap-2 font-semibold">
+                        <CheckCircle2 className="h-4 w-4 text-accent" />
+                        Finitions & propreté : la différence
+                      </h3>
+                      <p className="mt-2 text-sm text-muted-foreground">
+                        Protection des lieux, finitions soignées, réception cadrée : un rendu premium, livré propre.
+                      </p>
+                    </CardContent>
+                  </Card>
 
-              <div className="rounded-xl border p-5">
-                <h3 className="flex items-center gap-2 font-medium">
-                  <CheckCircle2 className="h-4 w-4 text-primary" />
-                  Qualité d’exécution et propreté
-                </h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Protection des lieux, finitions soignées, contrôle qualité et réception du chantier dans des conditions
-                  propres et conformes.
-                </p>
+                  {/* Mini maillage interne (SEO + UX, discret) */}
+                  <div className="rounded-2xl border bg-secondary/30 p-6">
+                    <p className="text-sm font-semibold">Explorer nos services clés</p>
+                    <ul className="mt-3 grid gap-2 text-sm">
+                      <li>
+                        <Link className="inline-flex items-center text-muted-foreground hover:text-accent" href="/services/renovation-appartement">
+                          Rénovation d’appartement <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </li>
+                      <li>
+                        <Link className="inline-flex items-center text-muted-foreground hover:text-accent" href="/services/renovation-salle-de-bain">
+                          Rénovation salle de bain <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </li>
+                      <li>
+                        <Link className="inline-flex items-center text-muted-foreground hover:text-accent" href="/services/renovation-cuisine">
+                          Rénovation cuisine <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </li>
+                      <li>
+                        <Link className="inline-flex items-center text-muted-foreground hover:text-accent" href="/services">
+                          Voir toutes les prestations <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
