@@ -4,7 +4,7 @@ import Image from 'next/image';
 import SiteHeader from '@/components/site-header';
 import SiteFooter from '@/components/site-footer';
 import CtaBanner from '@/app/_components/cta-banner';
-import { blogPosts } from '@/lib/data.tsx';
+import { blogPosts } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -24,10 +24,10 @@ export default function BlogPage() {
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
       <main className="flex-grow">
+        <Breadcrumbs />
         <section className="bg-secondary py-16 md:py-24">
-          <div className="container">
-            <Breadcrumbs />
-            <div className="mx-auto max-w-3xl text-center">
+          <div className="container text-center">
+            <div className="mx-auto max-w-3xl">
               <h1 className="font-headline text-4xl font-bold md:text-5xl mt-4">
                 Le Blog ERG Rénovation
               </h1>

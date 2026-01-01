@@ -8,7 +8,6 @@ import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
 import CtaBanner from "@/app/_components/cta-banner"
 import AnimatedSection from "@/components/animated-section"
-import Breadcrumbs from "@/components/breadcrumbs"
 
 import { localLandingPages } from "@/lib/data"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
@@ -59,7 +58,6 @@ function safeText(input?: string) {
 function safeLocationLabel(pageTitle: string) {
   // Ex: "Rénovation d'appartement à Paris (75)" -> "Paris"
   const beforeParen = pageTitle.split("(")[0]?.trim()
-  // Essaye de garder la partie après "à" si présente
   const parts = beforeParen.split(" à ")
   return (parts[1] ?? beforeParen).trim()
 }
@@ -77,6 +75,11 @@ function joinHuman(list: string[]) {
   return `${list.slice(0, -1).join(", ")} et ${list[list.length - 1]}`
 }
 
+function toPath(url: string) {
+  // Convertit une URL absolue en path (utile pour Link)
+  return url.startsWith(SITE_URL) ? url.replace(SITE_URL, "") || "/" : url
+}
+
 // ---------- Metadata ----------
 export async function generateMetadata(
   { params }: Props,
@@ -89,6 +92,7 @@ export async function generateMetadata(
   if (!page) return { title: "Page non trouvée" }
 
   const url = `${SITE_URL}/${page.parentService.slug}/${page.slug}`
+
   const ogTitle = page.metaTitle ?? page.title
   const ogDesc = page.metaDescription ?? page.introduction
 
@@ -129,102 +133,81 @@ export async function generateStaticParams() {
     .map((page) => ({ slug: page.slug }))
 }
 
-// ---------- JSON-LD (enrichi + FAQ si dispo) ----------
+// ---------- JSON-LD (safe, sans champs non typés) ----------
 function JsonLd({
   pageTitle,
   pageDescription,
   pageUrl,
   breadcrumbs,
   areaServed,
-  faq,
 }: {
   pageTitle: string
   pageDescription: string
   pageUrl: string
   breadcrumbs: Array<{ name: string; item: string }>
   areaServed: string[]
-  faq?: Array<{ q: string; a: string }>
 }) {
-  const graph: any[] = [
-    // Site
-    {
-      "@type": "WebSite",
-      "@id": `${SITE_URL}/#website`,
-      url: SITE_URL,
-      name: SITE_NAME,
-      inLanguage: "fr-FR",
-    },
-    // Page
-    {
-      "@type": "WebPage",
-      "@id": `${pageUrl}#webpage`,
-      url: pageUrl,
-      name: pageTitle,
-      description: pageDescription,
-      isPartOf: { "@id": `${SITE_URL}/#website` },
-      inLanguage: "fr-FR",
-    },
-    // Breadcrumbs
-    {
-      "@type": "BreadcrumbList",
-      "@id": `${pageUrl}#breadcrumbs`,
-      itemListElement: breadcrumbs.map((b, idx) => ({
-        "@type": "ListItem",
-        position: idx + 1,
-        name: b.name,
-        item: b.item,
-      })),
-    },
-    // Business
-    {
-      "@type": "LocalBusiness",
-      "@id": `${SITE_URL}/#business`,
-      name: SITE_NAME,
-      url: SITE_URL,
-      telephone: PHONE,
-      priceRange: "€€",
-      areaServed,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "1 Sent. de la Pointe",
-        postalCode: "75020",
-        addressLocality: "Paris",
-        addressRegion: "Île-de-France",
-        addressCountry: "FR",
-      },
-      // sameAs: [], // si tu as Google Business Profile / réseaux sociaux
-    },
-    // Service
-    {
-      "@type": "Service",
-      "@id": `${pageUrl}#service`,
-      name: pageTitle,
-      description: pageDescription,
-      provider: { "@id": `${SITE_URL}/#business` },
-      areaServed,
-      serviceType: "Rénovation intérieure",
-      termsOfService: `${SITE_URL}/mentions-legales`,
-    },
-  ]
-
-  if (faq?.length) {
-    graph.push({
-      "@type": "FAQPage",
-      "@id": `${pageUrl}#faq`,
-      mainEntity: faq.slice(0, 12).map((item) => ({
-        "@type": "Question",
-        name: safeText(item.q),
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: safeText(item.a),
-        },
-      })),
-    })
-  }
-
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": graph,
+    "@graph": [
+      // Site
+      {
+        "@type": "WebSite",
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: SITE_NAME,
+        inLanguage: "fr-FR",
+      },
+      // Page
+      {
+        "@type": "WebPage",
+        "@id": `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: pageTitle,
+        description: pageDescription,
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        inLanguage: "fr-FR",
+      },
+      // Breadcrumbs
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${pageUrl}#breadcrumbs`,
+        itemListElement: breadcrumbs.map((b, idx) => ({
+          "@type": "ListItem",
+          position: idx + 1,
+          name: b.name,
+          item: b.item,
+        })),
+      },
+      // Business
+      {
+        "@type": "LocalBusiness",
+        "@id": `${SITE_URL}/#business`,
+        name: SITE_NAME,
+        url: SITE_URL,
+        telephone: PHONE,
+        priceRange: "€€",
+        areaServed,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "1 Sent. de la Pointe",
+          postalCode: "75020",
+          addressLocality: "Paris",
+          addressRegion: "Île-de-France",
+          addressCountry: "FR",
+        },
+      },
+      // Service
+      {
+        "@type": "Service",
+        "@id": `${pageUrl}#service`,
+        name: pageTitle,
+        description: pageDescription,
+        provider: { "@id": `${SITE_URL}/#business` },
+        areaServed,
+        serviceType: "Rénovation intérieure",
+      },
+    ],
   }
 
   return (
@@ -236,25 +219,24 @@ function JsonLd({
   )
 }
 
-// ---------- Contenus SEO “très haut niveau” (fallback) ----------
+// ---------- Contenu SEO premium fallback (si page.mainContent est vide) ----------
 function SeoContentFallback({
   page,
-  parentTitle,
   areaServed,
 }: {
   page: any
-  parentTitle: string
   areaServed: string[]
 }) {
   const locationLabel = safeLocationLabel(safeText(page.title))
-  const dept = page.type === "department" ? safeDeptFromSlug(page.slug) : safeDeptFromSlug(page.slug)
-  const isParis = page.slug === "paris-75" || locationLabel.toLowerCase().includes("paris")
+  const dept = safeDeptFromSlug(page.slug)
+  const isParis =
+    page.slug === "paris-75" || locationLabel.toLowerCase().includes("paris")
+
   const zone = joinHuman(areaServed)
 
-  // Micro-variations uniques par type
   const localSpecificity =
     page.type === "city"
-      ? `Notre organisation est pensée pour les contraintes de ${locationLabel} : accès, stationnement, copropriété, nuisances sonores, et coordination avec le syndic si nécessaire.`
+      ? `Notre organisation est pensée pour les contraintes de ${locationLabel} : accès, stationnement, copropriété, nuisances sonores et coordination avec le syndic si nécessaire.`
       : `Nous intervenons sur l’ensemble du département${dept ? ` (${dept})` : ""} avec une logique de chantier structurée : visite technique, estimation réaliste et planification maîtrisée.`
 
   const pains =
@@ -272,18 +254,50 @@ function SeoContentFallback({
           "Garder le contrôle avec un suivi simple et régulier de l’avancement",
         ]
 
-  const inclus = [
-    { icon: ClipboardList, t: "Étude & chiffrage précis", d: "Visite technique, métrés, options, postes détaillés et transparents." },
-    { icon: Layers, t: "Préparation & protections", d: "Protection sols/murs, sécurisation des zones, plan de circulation sur chantier." },
-    { icon: Hammer, t: "Travaux tous corps d’état", d: "Dépose, cloisons, sols, peinture, plomberie, électricité, cuisine & SDB." },
-    { icon: Sparkles, t: "Finitions & réception", d: "Contrôle qualité, levée de réserves, nettoyage de fin de chantier." },
+  const process = [
+    {
+      icon: Home,
+      title: "1) Visite & écoute du besoin",
+      text: "Objectifs, style, contraintes techniques, niveau de gamme, délais.",
+    },
+    {
+      icon: ClipboardList,
+      title: "2) Devis détaillé & planning",
+      text: "Postes clairs, variantes, calendrier réaliste et engagement sur le périmètre.",
+    },
+    {
+      icon: Wrench,
+      title: "3) Réalisation & suivi",
+      text: "Interlocuteur unique, points réguliers, validations à chaque étape clé.",
+    },
+    {
+      icon: BadgeCheck,
+      title: "4) Contrôle qualité & livraison",
+      text: "Réception, finitions, conseils d’entretien et documents de garantie.",
+    },
   ]
 
-  const process = [
-    { icon: Home, title: "1) Visite & écoute du besoin", text: "Objectifs, style, contraintes techniques, niveau de gamme, délais." },
-    { icon: ClipboardList, title: "2) Devis détaillé & planning", text: "Postes clairs, variantes, calendrier réaliste et engagement sur le périmètre." },
-    { icon: Wrench, title: "3) Réalisation & suivi", text: "Interlocuteur unique, points réguliers, validations à chaque étape clé." },
-    { icon: BadgeCheck, title: "4) Contrôle qualité & livraison", text: "Réception, finitions, conseils d’entretien et documents de garantie." },
+  const inclus = [
+    {
+      icon: ClipboardList,
+      t: "Étude & chiffrage précis",
+      d: "Visite technique, métrés, options, postes détaillés et transparents.",
+    },
+    {
+      icon: Layers,
+      t: "Préparation & protections",
+      d: "Protection sols/murs, sécurisation des zones, plan de circulation sur chantier.",
+    },
+    {
+      icon: Hammer,
+      t: "Travaux tous corps d’état",
+      d: "Dépose, cloisons, sols, peinture, plomberie, électricité, cuisine & SDB.",
+    },
+    {
+      icon: Sparkles,
+      t: "Finitions & réception",
+      d: "Contrôle qualité, levée de réserves, nettoyage de fin de chantier.",
+    },
   ]
 
   const faqs = [
@@ -317,14 +331,16 @@ function SeoContentFallback({
     <div className="prose max-w-none text-foreground prose-headings:font-headline prose-headings:text-primary prose-p:text-muted-foreground prose-strong:text-foreground prose-a:text-accent">
       <h2>{`Rénovation d’appartement à ${locationLabel} : méthode premium, résultat durable`}</h2>
       <p>
-        Vous cherchez une <strong>rénovation d’appartement</strong> sérieuse, propre et parfaitement finie ?
-        Chez <strong>{SITE_NAME}</strong>, nous privilégions une approche simple : un chiffrage précis, un suivi clair,
+        Vous cherchez une <strong>rénovation d’appartement</strong> sérieuse,
+        propre et parfaitement finie ? Chez <strong>{SITE_NAME}</strong>, nous
+        privilégions une approche simple : un chiffrage précis, un suivi clair,
         et une livraison conforme aux attentes (et aux contraintes du lieu).
       </p>
 
       <p>
-        {localSpecificity} Notre objectif : une rénovation <strong>maîtrisée</strong>, sans flou, avec un niveau de finition
-        visible dans le quotidien (alignements, joints, aplombs, peintures, détails).
+        {localSpecificity} Notre objectif : une rénovation{" "}
+        <strong>maîtrisée</strong>, sans flou, avec un niveau de finition visible
+        dans le quotidien (alignements, joints, aplombs, peintures, détails).
       </p>
 
       <h3>{`Les points qui font la différence à ${locationLabel}`}</h3>
@@ -336,14 +352,17 @@ function SeoContentFallback({
 
       <h3>Ce que nous prenons en charge</h3>
       <p>
-        Du rafraîchissement à la rénovation complète, nous intervenons sur les lots clés : <strong>dépose</strong>, préparation
-        des supports, <strong>sols</strong>, <strong>peinture</strong>, <strong>plomberie</strong>, <strong>électricité</strong>,
-        cuisine, salle de bain, rangements, finitions.
+        Du rafraîchissement à la rénovation complète, nous intervenons sur les
+        lots clés : <strong>dépose</strong>, préparation des supports,{" "}
+        <strong>sols</strong>, <strong>peinture</strong>,{" "}
+        <strong>plomberie</strong>, <strong>électricité</strong>, cuisine, salle
+        de bain, rangements, finitions.
       </p>
 
       <h3>Notre process en 4 étapes</h3>
       <p>
-        Un chantier serein, c’est d’abord un cadre clair : responsabilités, jalons, validations, et anticipation des risques.
+        Un chantier serein, c’est d’abord un cadre clair : responsabilités,
+        jalons, validations, et anticipation des risques.
       </p>
 
       <div className="not-prose mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -362,8 +381,10 @@ function SeoContentFallback({
 
       <h3 className="mt-10">Ce que contient un devis ERG (vraiment exploitable)</h3>
       <p>
-        Un devis utile doit permettre de comparer, arbitrer, et décider. Nous détaillons les postes (préparation,
-        fournitures, main d’œuvre, finitions) et proposons des options lorsque c’est pertinent, pour garder la main sur le budget.
+        Un devis utile doit permettre de comparer, arbitrer, et décider. Nous
+        détaillons les postes (préparation, fournitures, main d’œuvre, finitions)
+        et proposons des options lorsque c’est pertinent, pour garder la main sur
+        le budget.
       </p>
 
       <div className="not-prose mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -382,17 +403,29 @@ function SeoContentFallback({
 
       <h3 className="mt-10">{`Travaux fréquents : ${locationLabel}`}</h3>
       <p>
-        Selon la typologie (ancien, semi-récent, rénovation partielle), les demandes reviennent souvent :
-        <strong> remise à niveau des supports</strong>, modernisation des sols et peintures, optimisation cuisine/SDB,
-        rénovation des réseaux, amélioration du confort (isolation ciblée, éclairages, ventilation).
+        Selon la typologie (ancien, semi-récent, rénovation partielle), les
+        demandes reviennent souvent : <strong>remise à niveau des supports</strong>, modernisation des sols et peintures,
+        optimisation cuisine/SDB, rénovation des réseaux, amélioration du confort
+        (isolation ciblée, éclairages, ventilation).
       </p>
 
       <h3>Qualité, propreté, suivi : nos engagements</h3>
       <ul>
-        <li><strong>Interlocuteur unique</strong> et points d’avancement réguliers.</li>
-        <li><strong>Protections</strong> et organisation du chantier (zones, circulation, nuisances).</li>
-        <li><strong>Contrôle qualité</strong> en fin d’étape (supports, aplombs, finitions).</li>
-        <li><strong>Respect du périmètre</strong> : modifications = avenant clair avant exécution.</li>
+        <li>
+          <strong>Interlocuteur unique</strong> et points d’avancement réguliers.
+        </li>
+        <li>
+          <strong>Protections</strong> et organisation du chantier (zones,
+          circulation, nuisances).
+        </li>
+        <li>
+          <strong>Contrôle qualité</strong> en fin d’étape (supports, aplombs,
+          finitions).
+        </li>
+        <li>
+          <strong>Respect du périmètre</strong> : modifications = avenant clair
+          avant exécution.
+        </li>
       </ul>
 
       <h3>Questions fréquentes</h3>
@@ -409,13 +442,15 @@ function SeoContentFallback({
 
       <h3 className="mt-10">{`Demander un devis rénovation à ${locationLabel}`}</h3>
       <p>
-        Dites-nous l’objectif (rafraîchissement, rénovation complète, cuisine/SDB), la surface et vos contraintes (occupé/non,
-        accès, copropriété). Nous vous répondons rapidement avec une proposition claire, et un planning réaliste.
+        Dites-nous l’objectif (rafraîchissement, rénovation complète, cuisine/SDB),
+        la surface et vos contraintes (occupé/non, accès, copropriété). Nous vous
+        répondons rapidement avec une proposition claire et un planning réaliste.
       </p>
     </div>
   )
 }
 
+// ---------- Page ----------
 export default function LocalLandingPage({ params }: { params: { slug: string } }) {
   const page = localLandingPages.find(
     (p) => p.slug === params.slug && p.parentService.slug === "renovation-appartement"
@@ -446,13 +481,10 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
     { name: safeText(page.title), item: pageUrl },
   ]
 
-  // FAQ JSON-LD : si ta data contient déjà page.faq, on la prend.
-  // Sinon on laisse undefined (le fallback FAQ est rendu en HTML et peut être ajouté dans ta data plus tard).
-  const faqForJsonLd: Array<{ q: string; a: string }> | undefined = Array.isArray(page.faq)
-    ? page.faq
-        .filter((x: any) => x?.q && x?.a)
-        .map((x: any) => ({ q: safeText(x.q), a: safeText(x.a) }))
-    : undefined
+  const locationLabel = safeLocationLabel(safeText(page.title))
+  const h2Title = `Rénovation d’appartement à ${locationLabel} : un chantier cadré, des finitions premium`
+  const leadText =
+    "Devis détaillé, méthode claire, protections soignées et suivi régulier : tout est pensé pour une rénovation sans stress, avec un rendu durable."
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -465,7 +497,6 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
           pageUrl={pageUrl}
           breadcrumbs={breadcrumbs}
           areaServed={areaServed}
-          faq={faqForJsonLd}
         />
 
         {/* HERO — premium + conversion */}
@@ -483,7 +514,28 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
           ) : null}
 
           <div className="container relative z-10">
-            <Breadcrumbs items={breadcrumbs} />
+            {/* Breadcrumbs HTML (safe, SEO-friendly) */}
+            <nav aria-label="Fil d’ariane" className="mt-4 text-sm text-primary-foreground/80">
+              <ol className="flex flex-wrap items-center gap-2">
+                {breadcrumbs.map((b, idx) => {
+                  const isLast = idx === breadcrumbs.length - 1
+                  return (
+                    <li key={b.item} className="flex items-center gap-2">
+                      {isLast ? (
+                        <span aria-current="page" className="font-medium text-primary-foreground">
+                          {b.name}
+                        </span>
+                      ) : (
+                        <Link href={toPath(b.item)} className="hover:underline">
+                          {b.name}
+                        </Link>
+                      )}
+                      {!isLast ? <span className="opacity-60">/</span> : null}
+                    </li>
+                  )
+                })}
+              </ol>
+            </nav>
 
             <div className="mt-6 max-w-4xl">
               <p className="inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 text-sm text-primary-foreground/90">
@@ -551,32 +603,27 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
             <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-16">
               {/* MAIN */}
               <div className="space-y-12 lg:col-span-2">
-                {/* H2 SEO / contenu principal */}
                 <section aria-labelledby="main-content-title">
-                  <h2 id="main-content-title" className="font-headline text-2xl font-semibold text-primary md:text-3xl">
-                    {safeText(page.h2 ?? "Votre rénovation d’appartement, cadrée de A à Z")}
+                  <h2
+                    id="main-content-title"
+                    className="font-headline text-2xl font-semibold text-primary md:text-3xl"
+                  >
+                    {h2Title}
                   </h2>
 
-                  <p className="mt-4 text-muted-foreground">
-                    {safeText(
-                      page.lead ??
-                        "Une page locale doit convaincre vite : clarté du périmètre, preuves de sérieux, méthode, et réponses aux questions clés. Voici exactement ce que nous faisons — et comment."
-                    )}
-                  </p>
+                  <p className="mt-4 text-muted-foreground">{leadText}</p>
 
                   <div className="mt-10">
-                    {/* Si page.mainContent existe (déjà rédigé), on l’affiche.
-                        Sinon : fallback premium généré (unique par localisation) */}
                     {page.mainContent ? (
                       <div className="prose max-w-none text-foreground prose-headings:font-headline prose-headings:text-primary prose-p:text-muted-foreground prose-strong:text-foreground prose-a:text-accent">
                         {page.mainContent}
                       </div>
                     ) : (
-                      <SeoContentFallback page={page} parentTitle={parentService.title} areaServed={areaServed} />
+                      <SeoContentFallback page={page} areaServed={areaServed} />
                     )}
                   </div>
 
-                  {/* Maillage interne local — discret et puissant */}
+                  {/* Maillage interne local */}
                   {page.relatedLocations?.length ? (
                     <div className="mt-12">
                       <h3 className="font-headline text-xl font-semibold">Interventions proches</h3>
@@ -598,7 +645,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                   ) : null}
                 </section>
 
-                {/* Témoignage — premium */}
+                {/* Témoignage */}
                 {page.testimonial?.quote ? (
                   <section aria-labelledby="testimonial-title">
                     <h2 id="testimonial-title" className="sr-only">
@@ -625,7 +672,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                             </p>
                             <p className="font-semibold text-primary">{page.testimonial.author}</p>
                             <p className="text-sm text-muted-foreground">
-                              {safeText(page.testimonial.context ?? "Rénovation intérieure — respect des délais et finitions propres.")}
+                              Rénovation intérieure — respect des délais et finitions propres.
                             </p>
                           </div>
                         </div>
@@ -656,7 +703,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                 </section>
               </div>
 
-              {/* SIDEBAR — conversion + preuves */}
+              {/* SIDEBAR */}
               <aside className="h-fit space-y-8 lg:sticky lg:top-28">
                 <Card className="bg-secondary">
                   <CardHeader>
@@ -701,7 +748,6 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                   </CardContent>
                 </Card>
 
-                {/* Bloc “preuves” / rassurance technique */}
                 <Card className="border-0 bg-secondary/30">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3 font-headline">
@@ -723,7 +769,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                   </CardContent>
                 </Card>
 
-                {/* Réalisations locales — preuve visuelle */}
+                {/* Réalisations */}
                 {parentService.relatedProjectSlugs?.length > 0 && departmentImage ? (
                   <Card>
                     <CardHeader>

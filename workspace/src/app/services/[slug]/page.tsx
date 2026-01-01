@@ -2,7 +2,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { services, allProjects } from '@/lib/data.tsx';
+import { services, allProjects } from '@/lib/data';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import SiteHeader from '@/components/site-header';
 import SiteFooter from '@/components/site-footer';
@@ -188,7 +188,6 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
-      <Breadcrumbs />
       <main className="flex-grow">
         {/* --- Hero Section --- */}
         <section className="relative bg-primary text-primary-foreground py-16 md:py-24">
@@ -203,7 +202,8 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             />
           )}
           <div className="container relative z-10">
-            <h1 className="font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl max-w-4xl">
+            <Breadcrumbs />
+            <h1 className="font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl max-w-4xl mt-4">
               {content ? content.h1 : service.title}
             </h1>
             <p className="mt-6 max-w-3xl text-lg text-primary-foreground/80 md:leading-relaxed">
