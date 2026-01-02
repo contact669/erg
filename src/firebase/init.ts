@@ -5,11 +5,13 @@ import { initializeApp, getApps, getApp, type FirebaseApp } from 'firebase/app';
 import { getAuth, type Auth } from 'firebase/auth';
 import { getFirestore, type Firestore } from 'firebase/firestore';
 
+const DATABASE_ID = 'ergrenov';
+
 function getSdks(app: FirebaseApp) {
   return {
     firebaseApp: app,
     auth: getAuth(app),
-    firestore: getFirestore(app),
+    firestore: getFirestore(app, DATABASE_ID),
   };
 }
 
