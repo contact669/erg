@@ -21,9 +21,9 @@ service cloud.firestore {
     match /leads/{id} { allow read, write: if false; }
 
     /**
-     * ✅ quoteRequests
-     * - create: public (form)
-     * - list/get/update: admin only
+     * ✅ quoteRequests/{document}
+     * - create: public (formulaire)
+     * - get/update: admin uniquement
      */
     match /quoteRequests/{requestId} {
       allow create: if
@@ -32,15 +32,19 @@ service cloud.firestore {
         && request.resource.data.projectDescription is string;
 
       allow get, update: if isAdmin();
+      
+      // La lecture de liste et la suppression sont gérées séparément ou interdites.
       allow list, delete: if false;
     }
-    
-    // Allow admin to list quoteRequests
+
+    /**
+     * ✅ Règle pour la collection quoteRequests
+     * - list: admin uniquement
+     */
     match /quoteRequests {
-        allow list: if isAdmin();
+      allow list: if isAdmin();
     }
-
-
+    
     /**
      * ✅ quotes (devis)
      * - read/create/update: admin only
