@@ -5,8 +5,21 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 
 import { Bot } from "lucide-react";
@@ -27,12 +40,11 @@ import { useFirestore } from "@/firebase";
 import { useToast } from "@/hooks/use-toast";
 import { generateQuote } from "@/ai/flows/generate-quote-flow";
 
+const ADMIN_UID = "pHcnP0Mc32frrhPRzTT2nFwCxno1";
+
 function toDateSafe(value: any): Date | null {
-  // Firestore Timestamp -> toDate()
   if (value?.toDate && typeof value.toDate === "function") return value.toDate();
-  // JS Date
   if (value instanceof Date) return value;
-  // ISO string (au cas où)
   if (typeof value === "string") {
     const d = new Date(value);
     return isNaN(d.getTime()) ? null : d;
@@ -47,41 +59,52 @@ export default function DemandesPage() {
   const { toast } = useToast();
   const [isGenerating, setIsGenerating] = useState<string | null>(null);
 
+  // ✅ admin client-side (évite de lancer des queries interdites)
+  const isAdmin = useMemo(() => {
+    return !!user && user.uid === ADMIN_UID;
+  }, [user]);
+
   useEffect(() => {
-    // page admin => nécessite login
+    // Login requis
     if (!isUserLoading && !user) router.push("/connexion");
   }, [user, isUserLoading, router]);
 
+  useEffect(() => {
+    // ✅ si connecté mais pas admin => redirection (ou message)
+    if (!isUserLoading && user && !isAdmin) {
+      router.push("/dashboard"); // ou page "accès refusé"
+    }
+  }, [isUserLoading, user, isAdmin, router]);
+
   /**
-   * ✅ QUERY ADMIN : lit toutes les demandes "Nouvelle Demande"
-   * IMPORTANT : nécessite règles Firestore "read admin only" (isAdmin()).
+   * ✅ Query admin UNIQUEMENT
+   * Si pas admin => null => pas de list => pas d’erreur permissions
    */
   const requestsQuery = useMemoFirebase(() => {
-    if (!firestore || !user?.uid) return null;
+    if (!firestore || !user?.uid || !isAdmin) return null;
 
     return query(
       collection(firestore, "quoteRequests"),
       where("status", "==", "Nouvelle Demande"),
       orderBy("createdAt", "desc")
     );
-  }, [firestore, user?.uid]);
+  }, [firestore, user?.uid, isAdmin]);
 
   const { data: requests, isLoading, error } = useCollection<any>(requestsQuery);
 
   useEffect(() => {
-    if (error) {
-      console.error("useCollection error:", error);
-      toast({
-        variant: "destructive",
-        title: "Lecture impossible",
-        description:
-          "Accès refusé (règles Firestore) ou index manquant. Vérifiez les règles admin et la console Firestore.",
-      });
-    }
+    if (!error) return;
+    console.error("useCollection error:", error);
+    toast({
+      variant: "destructive",
+      title: "Lecture impossible",
+      description:
+        "Accès refusé (règles Firestore) ou règles non publiées / mauvais projet Firebase.",
+    });
   }, [error, toast]);
 
   const handleGenerateQuote = async (request: any) => {
-    if (!firestore || !user?.uid) return;
+    if (!firestore || !user?.uid || !isAdmin) return;
 
     setIsGenerating(request.id);
     toast({
@@ -96,8 +119,8 @@ export default function DemandesPage() {
       });
 
       await runTransaction(firestore, async (transaction) => {
-        // Create quote
         const quoteDocRef = doc(collection(firestore, "quotes"));
+
         transaction.set(quoteDocRef, {
           ...aiQuote,
           clientName: request.clientName,
@@ -106,15 +129,20 @@ export default function DemandesPage() {
           projectDescription: request.projectDescription,
           service: "À catégoriser",
           status: "Brouillon",
-          createdAt: serverTimestamp(),
+
+          // ✅ pour l’admin / règles
+          userId: user.uid,
           requestId: request.id,
+
+          createdAt: serverTimestamp(),
         });
 
-        // Update request status
         const requestDocRef = doc(firestore, "quoteRequests", request.id);
         transaction.update(requestDocRef, {
           status: "Traité",
           processedAt: serverTimestamp(),
+          processedBy: user.uid,
+          quoteId: quoteDocRef.id,
         });
       });
 
@@ -144,17 +172,34 @@ export default function DemandesPage() {
     );
   }
 
+  // ✅ si connecté mais pas admin (au cas où, avant redirection)
+  if (!isAdmin) {
+    return (
+      <div className="space-y-4">
+        <h1 className="text-2xl font-bold">Accès refusé</h1>
+        <p className="text-muted-foreground">
+          Cette page est réservée à l’administrateur.
+        </p>
+        <Button onClick={() => router.push("/dashboard")}>Retour</Button>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-8">
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Demandes de devis</h1>
-        <p className="text-muted-foreground">Toutes les demandes reçues via le site (statut : Nouvelle Demande).</p>
+        <p className="text-muted-foreground">
+          Toutes les demandes reçues via le site (statut : Nouvelle Demande).
+        </p>
       </div>
 
       <Card>
         <CardHeader>
           <CardTitle>Demandes en attente</CardTitle>
-          <CardDescription>Générez un devis à partir d’une demande client.</CardDescription>
+          <CardDescription>
+            Générez un devis à partir d’une demande client.
+          </CardDescription>
         </CardHeader>
 
         <CardContent>
@@ -194,15 +239,21 @@ export default function DemandesPage() {
                     <TableRow key={item.id}>
                       <TableCell>
                         <div className="font-medium">{item.clientName}</div>
-                        <div className="text-sm text-muted-foreground">{item.clientEmail}</div>
+                        <div className="text-sm text-muted-foreground">
+                          {item.clientEmail}
+                        </div>
                       </TableCell>
 
                       <TableCell>
-                        <div className="line-clamp-2 font-medium">{item.projectDescription}</div>
+                        <div className="line-clamp-2 font-medium">
+                          {item.projectDescription}
+                        </div>
                       </TableCell>
 
                       <TableCell className="hidden sm:table-cell">
-                        {d ? format(d, "d MMMM yyyy 'à' HH:mm", { locale: fr }) : "-"}
+                        {d
+                          ? format(d, "d MMMM yyyy 'à' HH:mm", { locale: fr })
+                          : "-"}
                       </TableCell>
 
                       <TableCell className="hidden sm:table-cell">
@@ -231,7 +282,6 @@ export default function DemandesPage() {
             </TableBody>
           </Table>
 
-          {/* Petit hint si index manquant */}
           <p className="mt-4 text-xs text-muted-foreground">
             Si Firestore demande un index (where status + orderBy createdAt), créez-le via le lien fourni dans la console.
           </p>

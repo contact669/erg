@@ -31,13 +31,19 @@ service cloud.firestore {
         && request.resource.data.clientEmail is string
         && request.resource.data.projectDescription is string;
 
-      allow list, get: if isAdmin();
-      allow update: if isAdmin();
-      allow delete: if false;
+      allow get, update: if isAdmin();
+      allow list, delete: if false;
     }
+    
+    // Allow admin to list quoteRequests
+    match /quoteRequests {
+        allow list: if isAdmin();
+    }
+
 
     /**
      * ✅ quotes (devis)
+     * - read/create/update: admin only
      */
     match /quotes/{quoteId} {
       allow read, create, update: if isAdmin();
