@@ -26,9 +26,14 @@ service cloud.firestore {
      */
     match /quoteRequests/{requestId} {
       allow create: if true;
-      allow get, list, update: if isAdmin();
+      allow get, update: if isAdmin();
       allow delete: if false;
     }
+    // ✅ Ajout de la règle de LIST pour la collection entière
+    match /quoteRequests {
+      allow list: if isAdmin();
+    }
+
 
     /**
      * ✅ quotes (devis)
