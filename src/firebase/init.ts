@@ -9,32 +9,24 @@ function getSdks(app: FirebaseApp) {
   return {
     firebaseApp: app,
     auth: getAuth(app),
+    // Correction: On spécifie la base de données 'ergrenov' ici.
     firestore: getFirestore(app, 'ergrenov'),
   };
 }
 
 function initializeFirebaseOnce() {
-  if (getApps().length) return getSdks(getApp());
-
-  let app: FirebaseApp;
-
-  // ✅ PROD App Hosting : tenter env-injected init (typing workaround)
-  if (process.env.NODE_ENV === 'production') {
-    try {
-      app = initializeApp(undefined as any); // ✅ typing fix
-      return getSdks(app);
-    } catch (e) {
-      console.warn('Auto init failed, fallback to firebaseConfig.', e);
-    }
+  // S'il y a déjà une app Firebase initialisée, on la réutilise.
+  if (getApps().length) {
+    const app = getApp();
+    return getSdks(app);
   }
 
-  // ✅ DEV / fallback : explicit config
-  app = initializeApp(firebaseConfig);
+  // Sinon, on l'initialise.
+  const app = initializeApp(firebaseConfig);
   return getSdks(app);
 }
 
-const svcs = initializeFirebaseOnce();
+// On exporte les instances uniques pour toute l'application.
+const { firebaseApp, auth, firestore } = initializeFirebaseOnce();
 
-export const firebaseApp: FirebaseApp = svcs.firebaseApp;
-export const auth: Auth = svcs.auth;
-export const firestore: Firestore = svcs.firestore;
+export { firebaseApp, auth, firestore };
