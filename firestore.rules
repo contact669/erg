@@ -2,7 +2,6 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/ergrenov/documents {
 
-    // ✅ ADMIN (le plus fiable = UID)
     function isAdmin() {
       return request.auth != null
         && request.auth.uid == "pHcnP0Mc32frrhPRzTT2nFwCxno1";
@@ -23,11 +22,11 @@ service cloud.firestore {
     /**
      * ✅ quoteRequests
      * - create: public (form)
-     * - list/get/update: admin only
+     * - read (get + list) / update: admin only
      */
     match /quoteRequests/{requestId} {
       allow create: if true;
-      allow list, get, update: if isAdmin();
+      allow get, list, update: if isAdmin();
       allow delete: if false;
     }
 

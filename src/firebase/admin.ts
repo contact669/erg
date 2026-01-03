@@ -1,22 +1,16 @@
-import * as admin from 'firebase-admin';
+import * as admin from "firebase-admin";
 
-// Check if the app is already initialized to prevent errors
 if (!admin.apps.length) {
-  try {
-    // Attempt to initialize using Application Default Credentials
-    // This is the standard way in Google Cloud environments like App Hosting
-    admin.initializeApp({
-      credential: admin.credential.applicationDefault(),
-    });
-  } catch (error) {
-    console.warn('Admin SDK initialization with default credentials failed. Falling back to project config.', error);
-    // Fallback for local development or environments without ADC
-    // This uses the project ID from the environment, which App Hosting provides.
-    admin.initializeApp();
-  }
+  admin.initializeApp({
+    credential: admin.credential.applicationDefault(),
+  });
 }
 
-// Explicitly get the firestore instance for the 'ergrenov' database
-export const adminDb = admin.firestore();
-adminDb.settings({ databaseId: 'ergrenov' });
+// ✅ Firestore Admin SDK
+const adminDb = admin.firestore();
+
+// ✅ Si tu utilises une DB nommée "ergrenov"
+adminDb.settings({ databaseId: "ergrenov" });
+
+export { adminDb };
 export const adminAuth = admin.auth();
