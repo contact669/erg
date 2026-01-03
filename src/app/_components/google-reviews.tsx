@@ -45,15 +45,16 @@ export default function GoogleReviews() {
     })
   )
 
-  // Mini stats (optionnel) à partir de tes datas locales
-  const stats = React.useMemo(() => {
+  const [stats, setStats] = React.useState<{ count: number; avg: number } | null>(null)
+
+  React.useEffect(() => {
     const ratings = testimonials.map((t) => clampRating(t.rating)).filter((n) => n > 0)
     const avg =
       ratings.length > 0 ? ratings.reduce((a, b) => a + b, 0) / ratings.length : 0
-    return {
+    setStats({
       count: testimonials.length,
       avg: avg ? Math.round(avg * 10) / 10 : 0,
-    }
+    })
   }, [])
 
   return (
@@ -66,7 +67,7 @@ export default function GoogleReviews() {
         {/* Header */}
         <header className="mx-auto mb-10 max-w-3xl text-center">
           <p className="text-xs font-medium tracking-wider text-muted-foreground">
-            AVIS CLIENTS • GOOGLE • RÉNOVATION À PARIS & ÎLE-DE-FRANCE
+            AVIS CLIENTS • GOOGLE • RÉNOVATION À PARIS & Île-de-France
           </p>
 
           <h2
@@ -83,7 +84,7 @@ export default function GoogleReviews() {
 
           {/* Micro-preuve */}
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
-            {stats.avg > 0 && (
+            {stats && stats.avg > 0 && (
               <span className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-sm">
                 <span className="font-medium">{stats.avg}/5</span>
                 <span className="text-muted-foreground">sur {stats.count} avis</span>
