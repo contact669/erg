@@ -9,7 +9,7 @@ function getSdks(app: FirebaseApp) {
   return {
     firebaseApp: app,
     auth: getAuth(app),
-    firestore: getFirestore(app),
+    firestore: getFirestore(app, 'ergrenov'),
   };
 }
 
