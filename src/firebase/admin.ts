@@ -7,7 +7,6 @@ if (!admin.apps.length) {
     // This is the standard way in Google Cloud environments like App Hosting
     admin.initializeApp({
       credential: admin.credential.applicationDefault(),
-      databaseURL: `https://${process.env.GCLOUD_PROJECT}.firebaseio.com`
     });
   } catch (error) {
     console.warn('Admin SDK initialization with default credentials failed. Falling back to project config.', error);
@@ -17,5 +16,7 @@ if (!admin.apps.length) {
   }
 }
 
+// Explicitly get the firestore instance for the 'ergrenov' database
 export const adminDb = admin.firestore();
+adminDb.settings({ databaseId: 'ergrenov' });
 export const adminAuth = admin.auth();
