@@ -29,9 +29,9 @@ service cloud.firestore {
       allow get, update: if isAdmin();
       allow delete: if false;
     }
-    // ✅ Ajout de la règle de LIST pour la collection entière
+    // ✅ Ajout de la règle de READ (get + list) pour la collection entière
     match /quoteRequests {
-      allow list: if isAdmin();
+      allow read: if isAdmin();
     }
 
 
