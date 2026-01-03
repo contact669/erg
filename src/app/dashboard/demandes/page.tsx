@@ -58,6 +58,11 @@ export default function DemandesPage() {
   const firestore = useFirestore();
   const { toast } = useToast();
   const [isGenerating, setIsGenerating] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // ✅ admin client-side (évite de lancer des queries interdites)
   const isAdmin = useMemo(() => {
@@ -251,7 +256,7 @@ export default function DemandesPage() {
                       </TableCell>
 
                       <TableCell className="hidden sm:table-cell">
-                        {d
+                        {d && isClient
                           ? format(d, "d MMMM yyyy 'à' HH:mm", { locale: fr })
                           : "-"}
                       </TableCell>
