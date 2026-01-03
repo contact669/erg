@@ -7,3 +7,19 @@ runConfig:
   # Increase this value if you'd like to automatically spin up
   # more instances in response to increased traffic.
   maxInstances: 1
+
+taskQueue:
+  rateLimits:
+    maxConcurrentDispatches: 1000
+  retryConfig:
+    maxAttempts: 3
+
+triggers:
+  on-quote-request-created:
+    platform: 'alpha'
+    eventTrigger:
+      eventType: 'google.cloud.firestore.document.v1.written'
+      resource: 'projects/studio-9008282422-63e21/databases/ergrenov/documents/quoteRequests/{requestId}'
+    task:
+      http:
+        path: /api/triggers/on-quote-request-created
