@@ -26,13 +26,10 @@ service cloud.firestore {
      */
     match /quoteRequests/{requestId} {
       allow create: if true;
-      allow read, update: if isAdmin();
-      allow delete: if false; // ou if isAdmin() si besoin
+      // TEMPORARY: allow any authenticated user to read for debugging
+      allow read, update: if request.auth != null;
+      allow delete: if false;
     }
-    match /quoteRequests {
-      allow read: if isAdmin();
-    }
-
 
     /**
      * ✅ quotes (devis)
