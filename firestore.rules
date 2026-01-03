@@ -27,8 +27,7 @@ service cloud.firestore {
     // Quote Requests: anyone can create, only admin can read/update
     match /quoteRequests/{requestId} {
       allow create: if true;
-      allow read, update: if isAdmin();
-      allow delete: if false;
+      allow read, write: if isAdmin();
     }
 
     match /{document=**} {
