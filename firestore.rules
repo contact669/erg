@@ -29,6 +29,13 @@ service cloud.firestore {
       allow create: if true;
       allow read, write: if isAdmin();
     }
+    
+    // Mail collection for Trigger Email extension (write-only for backend function)
+    match /mail/{mailId} {
+      allow read, write: if isAdmin(); // Allow admin to see/debug sent emails
+      allow create: if true; // Allows the backend to create email documents
+    }
+
 
     match /{document=**} {
       allow read, write: if false;

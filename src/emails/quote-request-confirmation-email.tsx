@@ -13,15 +13,10 @@ import {
 } from '@react-email/components';
 import * as React from 'react';
 
-interface QuoteRequestConfirmationEmailProps {
-  clientName: string;
-}
+// Ce composant est maintenant un modèle pour l'extension "Trigger Email".
+// Les doubles accolades {{ variableName }} sont utilisées par l'extension.
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-
-export default function QuoteRequestConfirmationEmail({
-  clientName,
-}: QuoteRequestConfirmationEmailProps) {
+export default function QuoteRequestConfirmationEmail() {
   const previewText = `Confirmation de votre demande de devis chez ERG Rénovation`;
 
   return (
@@ -31,7 +26,7 @@ export default function QuoteRequestConfirmationEmail({
       <Body style={main}>
         <Container style={container}>
           <Heading style={heading}>Votre demande a bien été reçue !</Heading>
-          <Text style={paragraph}>Bonjour {clientName},</Text>
+          <Text style={paragraph}>Bonjour {'{{clientName}}'},</Text>
           <Text style={paragraph}>
             Nous vous remercions pour votre demande de devis. Nous avons bien reçu les détails de votre projet et nous allons l'étudier avec la plus grande attention.
           </Text>
@@ -52,7 +47,7 @@ export default function QuoteRequestConfirmationEmail({
 
           <Section style={{ textAlign: 'center' }}>
             <Text style={paragraph}>En attendant, n'hésitez pas à découvrir nos réalisations :</Text>
-            <Button style={button} href={`${baseUrl}/realisations`}>
+            <Button style={button} href="https://erg-renovation.fr/realisations">
               Voir nos projets
             </Button>
           </Section>
@@ -62,7 +57,7 @@ export default function QuoteRequestConfirmationEmail({
             <br />
             L'équipe ERG Rénovation
             <br />
-            <Link href="tel:+33699961375" style={footerLink}>06 99 96 13 75</Link> | <Link href={`${baseUrl}`} style={footerLink}>erg-renovation.fr</Link>
+            <Link href="tel:+33699961375" style={footerLink}>06 99 96 13 75</Link> | <Link href="https://erg-renovation.fr" style={footerLink}>erg-renovation.fr</Link>
           </Text>
         </Container>
       </Body>

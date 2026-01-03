@@ -13,22 +13,11 @@ import {
 } from '@react-email/components';
 import * as React from 'react';
 
-interface QuoteRequestAdminEmailProps {
-  clientName: string;
-  clientEmail: string;
-  clientPhone?: string;
-  projectDescription: string;
-}
+// Ce composant est maintenant un modèle pour l'extension "Trigger Email".
+// Les doubles accolades {{ variableName }} sont utilisées par l'extension.
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-
-export default function QuoteRequestAdminEmail({
-  clientName,
-  clientEmail,
-  clientPhone,
-  projectDescription,
-}: QuoteRequestAdminEmailProps) {
-  const previewText = `Nouvelle demande de devis de ${clientName}`;
+export default function QuoteRequestAdminEmail() {
+  const previewText = `Nouvelle demande de devis de {{clientName}}`;
 
   return (
     <Html>
@@ -43,23 +32,23 @@ export default function QuoteRequestAdminEmail({
 
           <Section>
             <Text style={subheading}>Informations du client :</Text>
-            <Text style={details}><strong>Nom :</strong> {clientName}</Text>
-            <Text style={details}><strong>Email :</strong> <Link href={`mailto:${clientEmail}`} style={link}>{clientEmail}</Link></Text>
-            {clientPhone && <Text style={details}><strong>Téléphone :</strong> <Link href={`tel:${clientPhone}`} style={link}>{clientPhone}</Link></Text>}
+            <Text style={details}><strong>Nom :</strong> {'{{clientName}}'}</Text>
+            <Text style={details}><strong>Email :</strong> <Link href={'mailto:{{clientEmail}}'} style={link}>{'{{clientEmail}}'}</Link></Text>
+            <Text style={details}><strong>Téléphone :</strong> {'{{clientPhone}}'}</Text>
           </Section>
           
           <Hr style={hr} />
 
           <Section>
             <Text style={subheading}>Description du projet :</Text>
-            <Text style={projectDescriptionStyle}>{projectDescription}</Text>
+            <Text style={projectDescriptionStyle}>{'{{projectDescription}}'}</Text>
           </Section>
 
           <Hr style={hr} />
 
           <Section style={{ textAlign: 'center' }}>
-            <Button style={button} href={`${baseUrl}/dashboard/demandes`}>
-              Générer le devis
+            <Button style={button} href="https://erg-renovation.fr/dashboard/demandes">
+              Générer le devis dans le dashboard
             </Button>
           </Section>
 
