@@ -10,7 +10,7 @@ function getSdks(app: FirebaseApp) {
     firebaseApp: app,
     auth: getAuth(app),
     // Correction: On spécifie la base de données 'ergrenov' ici.
-    firestore: getFirestore(app, 'ergrenov'),
+    firestore: getFirestore(app),
   };
 }
 
@@ -23,6 +23,16 @@ function initializeFirebaseOnce() {
 
   // Sinon, on l'initialise.
   const app = initializeApp(firebaseConfig);
+  const firestore = getFirestore(app);
+  // Correction ici, il faut utiliser la référence de l'instance de la base de données
+  // et non la base de données par défaut.
+  if ((firestore as any)._databaseId.projectId !== 'ergrenov') {
+      return {
+          firebaseApp: app,
+          auth: getAuth(app),
+          firestore: getFirestore(app, 'ergrenov')
+      }
+  }
   return getSdks(app);
 }
 

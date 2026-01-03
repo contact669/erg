@@ -11,8 +11,8 @@ interface UserState {
 
 export function useUser(): UserState {
   const [userState, setUserState] = useState<UserState>({
-    user: null,
-    isUserLoading: true,
+    user: auth.currentUser,
+    isUserLoading: auth.currentUser === null,
   });
 
   useEffect(() => {
