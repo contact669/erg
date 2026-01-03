@@ -1,13 +1,12 @@
 rules_version = '2';
 service cloud.firestore {
-  match /databases/ergrenov/documents {
+  match /databases/{database}/documents {
 
     function isAdmin() {
       return request.auth != null
         && request.auth.uid == "pHcnP0Mc32frrhPRzTT2nFwCxno1";
     }
 
-    // ✅ Lecture publique du contenu (site)
     match /services/{id} { allow read: if true; allow write: if false; }
     match /locations/{id} { allow read: if true; allow write: if false; }
     match /combos/{id} { allow read: if true; allow write: if false; }
@@ -16,30 +15,20 @@ service cloud.firestore {
     match /blogPosts/{id} { allow read: if true; allow write: if false; }
     match /media/{id} { allow read: if true; allow write: if false; }
 
-    // ❌ ancienne collection privée
     match /leads/{id} { allow read, write: if false; }
 
-    /**
-     * ✅ quoteRequests
-     * - create: public (formulaire)
-     * - read, update, delete: admin seulement
-     */
     match /quoteRequests/{requestId} {
       allow create: if true;
-      // TEMPORARY: allow any authenticated user to read for debugging
+      // debug temporaire ok, mais je te conseille isAdmin() ensuite
       allow read, update: if request.auth != null;
       allow delete: if false;
     }
 
-    /**
-     * ✅ quotes (devis)
-     */
     match /quotes/{quoteId} {
       allow read, create, update: if isAdmin();
       allow delete: if false;
     }
 
-    // 🔒 tout le reste interdit
     match /{document=**} {
       allow read, write: if false;
     }

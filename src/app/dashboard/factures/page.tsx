@@ -1,6 +1,7 @@
 'use client';
 
-import { useUser } from '@/firebase';
+import { useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebase';
+import { collection, query, orderBy } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -11,15 +12,6 @@ import { PlusCircle, MoreHorizontal, ArrowUpDown } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuLabel } from '@/components/ui/dropdown-menu';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
-
-// Mock data - à remplacer par les données Firestore
-const factures = [
-    { id: 'FAC-2024-001', client: 'Nina G.', projet: 'Optimisation SDB 3m²', date: new Date('2024-07-25'), total: 6800.50, paye: 6800.50, restant: 0.00, status: 'Payée' },
-    { id: 'FAC-2024-002', client: 'Arnaud Migoux', projet: 'Rénovation Appartement Haussmannien', date: new Date('2024-08-01'), total: 25400.00, paye: 12700.00, restant: 12700.00, status: 'Partiellement Payée' },
-    { id: 'FAC-2024-003', client: 'Alex Leleka', projet: 'Rénovation Studio 11e', date: new Date('2024-08-10'), total: 9500.00, paye: 9500.00, restant: 0.00, status: 'Payée' },
-    { id: 'FAC-2024-004', client: 'Chloé de NOMBEL', projet: 'Cuisine ouverte', date: new Date('2024-08-20'), total: 12500.00, paye: 0.00, restant: 12500.00, status: 'Envoyée' },
-];
-
 
 function getStatusBadgeVariant(status: string) {
     switch (status) {
@@ -35,12 +27,18 @@ function getStatusBadgeVariant(status: string) {
 export default function FacturesPage() {
     const { user, isUserLoading } = useUser();
     const router = useRouter();
+    const firestore = useFirestore();
 
     useEffect(() => {
         if (!isUserLoading && !user) {
             router.push('/connexion');
         }
     }, [user, isUserLoading, router]);
+
+    const invoicesQuery = useMemoFirebase(() => 
+        firestore ? query(collection(firestore, 'factures'), orderBy('date', 'desc')) : null
+    , [firestore]);
+    const { data: factures, isLoading } = useCollection<any>(invoicesQuery);
 
     if (isUserLoading || !user) {
         return (
@@ -100,18 +98,23 @@ export default function FacturesPage() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {factures.map((item) => (
+                            {isLoading && (
+                                <TableRow>
+                                    <TableCell colSpan={7} className="h-24 text-center">Chargement...</TableCell>
+                                </TableRow>
+                            )}
+                            {factures && factures.map((item) => (
                                 <TableRow key={item.id}>
                                     <TableCell>
                                         <div className="font-medium">{item.id}</div>
-                                        <div className="text-sm text-muted-foreground sm:hidden">{item.client}</div>
+                                        <div className="text-sm text-muted-foreground sm:hidden">{item.clientName}</div>
                                     </TableCell>
                                     <TableCell>
-                                        <div className="font-medium">{item.client}</div>
-                                        <div className="text-sm text-muted-foreground">{item.projet}</div>
+                                        <div className="font-medium">{item.clientName}</div>
+                                        <div className="text-sm text-muted-foreground">{item.projectName}</div>
                                     </TableCell>
                                     <TableCell className="hidden sm:table-cell text-right">
-                                        {format(item.date, "d MMM yyyy", { locale: fr })}
+                                        {item.date?.toDate ? format(item.date.toDate(), "d MMM yyyy", { locale: fr }) : '-'}
                                     </TableCell>
                                     <TableCell className="hidden md:table-cell text-right">
                                         {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(item.total)}
@@ -145,6 +148,11 @@ export default function FacturesPage() {
                                     </TableCell>
                                 </TableRow>
                             ))}
+                            {!isLoading && !factures?.length && (
+                                <TableRow>
+                                    <TableCell colSpan={7} className="text-center h-24">Aucune facture trouvée.</TableCell>
+                                </TableRow>
+                            )}
                         </TableBody>
                     </Table>
                 </CardContent>

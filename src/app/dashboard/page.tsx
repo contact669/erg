@@ -1,32 +1,16 @@
 'use client';
 
-import { useUser } from '@/firebase';
+import { useUser, useCollection, useMemoFirebase, useFirestore } from '@/firebase';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
+import { collection, query, where, orderBy, limit } from 'firebase/firestore';
 import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { PlusCircle, Users, HardHat, FileText, MoreHorizontal, Receipt } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-
-// Mock data - replace with Firestore data later
-const stats = [
-    { title: 'Clients Actifs', value: '12', icon: Users },
-    { title: 'Chantiers en Cours', value: '5', icon: HardHat },
-    { title: 'Devis en Attente', value: '8', icon: FileText },
-    { title: 'Factures Impayées', value: '3', total: '2,750€', icon: Receipt },
-];
-
-const recentProjects = [
-    { id: 'PROJ-001', name: 'Rénovation Appartement Haussmannien', client: 'Arnaud Migoux', status: 'En cours', progress: 65 },
-    { id: 'PROJ-002', name: 'Optimisation SDB 3m²', client: 'Nina G.', status: 'Terminé', progress: 100 },
-    { id: 'PROJ-003', name: 'Rénovation Studio 11e', client: 'Alex Leleka', status: 'Facturé', progress: 100 },
-    { id: 'PROJ-004', name: 'Cuisine ouverte', client: 'Chloé de NOMBEL', status: 'En cours', progress: 40 },
-    { id: 'PROJ-005', name: 'Rénovation 2 pièces', client: 'Ivano Isaia', status: 'Planification', progress: 10 },
-];
-
 
 function getStatusBadgeVariant(status: string) {
     switch (status) {
@@ -41,12 +25,40 @@ function getStatusBadgeVariant(status: string) {
 export default function DashboardPage() {
     const { user, isUserLoading } = useUser();
     const router = useRouter();
+    const firestore = useFirestore();
 
     useEffect(() => {
         if (!isUserLoading && !user) {
             router.push('/connexion');
         }
     }, [user, isUserLoading, router]);
+
+    const clientsQuery = useMemoFirebase(() => 
+        firestore ? collection(firestore, 'clients') : null
+    , [firestore]);
+    const { data: clients } = useCollection(clientsQuery);
+
+    const projectsQuery = useMemoFirebase(() => 
+        firestore ? query(collection(firestore, 'projects'), orderBy('title', 'desc'), limit(5)) : null
+    , [firestore]);
+    const { data: recentProjects } = useCollection(projectsQuery);
+    
+    const quotesQuery = useMemoFirebase(() => 
+        firestore ? query(collection(firestore, 'quotes'), where('status', '==', 'Envoyé')) : null
+    , [firestore]);
+    const { data: pendingQuotes } = useCollection(quotesQuery);
+
+    const invoicesQuery = useMemoFirebase(() => 
+        firestore ? query(collection(firestore, 'factures'), where('status', '==', 'Envoyée')) : null
+    , [firestore]);
+    const { data: unpaidInvoices } = useCollection(invoicesQuery);
+
+    const stats = useMemo(() => [
+        { title: 'Clients Actifs', value: clients?.length ?? 0, icon: Users },
+        { title: 'Chantiers en Cours', value: recentProjects?.filter(p => p.status === 'En cours').length ?? 0, icon: HardHat },
+        { title: 'Devis en Attente', value: pendingQuotes?.length ?? 0, icon: FileText },
+        { title: 'Factures Impayées', value: unpaidInvoices?.length ?? 0, total: unpaidInvoices?.reduce((acc, inv) => acc + (inv.restant || 0), 0).toLocaleString('fr-FR', {style: 'currency', currency: 'EUR'}), icon: Receipt },
+    ], [clients, recentProjects, pendingQuotes, unpaidInvoices]);
 
     if (isUserLoading || !user) {
         return (
@@ -66,7 +78,7 @@ export default function DashboardPage() {
                     </p>
                 </div>
                 <div className="flex items-center space-x-2">
-                    <Button>
+                    <Button onClick={() => router.push('/dashboard/clients')}>
                         <PlusCircle className="mr-2 h-4 w-4" />
                         Nouveau Client
                     </Button>
@@ -109,10 +121,10 @@ export default function DashboardPage() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {recentProjects.map((project) => (
+                            {recentProjects && recentProjects.map((project: any) => (
                                 <TableRow key={project.id}>
                                     <TableCell>
-                                        <div className="font-medium">{project.name}</div>
+                                        <div className="font-medium">{project.title}</div>
                                         <div className="text-sm text-muted-foreground md:hidden">{project.client}</div>
                                     </TableCell>
                                     <TableCell className="hidden sm:table-cell">{project.client}</TableCell>
@@ -144,6 +156,11 @@ export default function DashboardPage() {
                                     </TableCell>
                                 </TableRow>
                             ))}
+                             {!recentProjects?.length && (
+                                <TableRow>
+                                    <TableCell colSpan={5} className="text-center h-24">Aucun chantier récent.</TableCell>
+                                </TableRow>
+                            )}
                         </TableBody>
                     </Table>
                 </CardContent>

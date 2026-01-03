@@ -1,6 +1,7 @@
 'use client';
 
-import { useUser } from '@/firebase';
+import { useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebase';
+import { collection, query, orderBy } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -10,17 +11,6 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { PlusCircle, MoreHorizontal, ArrowUpDown } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuLabel } from '@/components/ui/dropdown-menu';
-
-// Mock data - à remplacer par les données Firestore
-const chantiers = [
-    { id: 'PROJ-001', name: 'Rénovation Appartement Haussmannien', client: 'Arnaud Migoux', status: 'En cours', progress: 65 },
-    { id: 'PROJ-002', name: 'Optimisation SDB 3m²', client: 'Nina G.', status: 'Terminé', progress: 100 },
-    { id: 'PROJ-003', name: 'Rénovation Studio 11e', client: 'Alex Leleka', status: 'Facturé', progress: 100 },
-    { id: 'PROJ-004', name: 'Cuisine ouverte', client: 'Chloé de NOMBEL', status: 'En cours', progress: 40 },
-    { id: 'PROJ-005', name: 'Rénovation 2 pièces', client: 'Ivano Isaia', status: 'Planification', progress: 10 },
-    { id: 'PROJ-006', name: 'Aménagement Combles Maison', client: 'Amanda Blassel', status: 'Planification', progress: 5 },
-];
-
 
 function getStatusBadgeVariant(status: string) {
     switch (status) {
@@ -36,12 +26,19 @@ function getStatusBadgeVariant(status: string) {
 export default function ChantiersPage() {
     const { user, isUserLoading } = useUser();
     const router = useRouter();
+    const firestore = useFirestore();
 
     useEffect(() => {
         if (!isUserLoading && !user) {
             router.push('/connexion');
         }
     }, [user, isUserLoading, router]);
+
+    const projectsQuery = useMemoFirebase(() => 
+        firestore ? query(collection(firestore, 'projects'), orderBy('title', 'desc')) : null
+    , [firestore]);
+    const { data: chantiers, isLoading } = useCollection<any>(projectsQuery);
+
 
     if (isUserLoading || !user) {
         return (
@@ -99,13 +96,18 @@ export default function ChantiersPage() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {chantiers.map((chantier) => (
+                            {isLoading && (
+                                <TableRow>
+                                    <TableCell colSpan={5} className="h-24 text-center">Chargement...</TableCell>
+                                </TableRow>
+                            )}
+                            {chantiers && chantiers.map((chantier) => (
                                 <TableRow key={chantier.id}>
                                     <TableCell>
-                                        <div className="font-medium">{chantier.name}</div>
+                                        <div className="font-medium">{chantier.title}</div>
                                         <div className="text-sm text-muted-foreground sm:hidden">{chantier.client}</div>
                                     </TableCell>
-                                    <TableCell className="hidden sm:table-cell">{chantier.client}</TableCell>
+                                    <TableCell className="hidden sm:table-cell">{chantier.clientName}</TableCell>
                                     <TableCell className="hidden sm:table-cell">
                                         <Badge variant={getStatusBadgeVariant(chantier.status)}>
                                             {chantier.status}
@@ -138,6 +140,11 @@ export default function ChantiersPage() {
                                     </TableCell>
                                 </TableRow>
                             ))}
+                             {!isLoading && !chantiers?.length && (
+                                <TableRow>
+                                    <TableCell colSpan={5} className="text-center h-24">Aucun chantier trouvé.</TableCell>
+                                </TableRow>
+                            )}
                         </TableBody>
                     </Table>
                 </CardContent>

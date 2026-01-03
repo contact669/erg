@@ -1,6 +1,7 @@
 'use client';
 
-import { useUser } from '@/firebase';
+import { useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebase';
+import { collection, query, orderBy } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -11,16 +12,6 @@ import { PlusCircle, MoreHorizontal, ArrowUpDown } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuLabel } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-
-// Mock data - à remplacer par les données Firestore
-const clients = [
-  { id: 'CLI-001', name: 'Arnaud Migoux', email: 'arnaud.migoux@example.com', projects: 2, status: 'Actif', avatarId: 'testimonial-avatar-1' },
-  { id: 'CLI-002', name: 'Nina G.', email: 'nina.g@example.com', projects: 1, status: 'Actif', avatarId: 'testimonial-avatar-2' },
-  { id: 'CLI-003', name: 'Alex Leleka', email: 'alex.leleka@example.com', projects: 1, status: 'Actif', avatarId: 'testimonial-avatar-3' },
-  { id: 'CLI-004', name: 'Chloé de NOMBEL', email: 'chloe.dn@example.com', projects: 1, status: 'Prospect', avatarId: 'founder-2' },
-  { id: 'CLI-005', name: 'Ivano Isaia', email: 'ivano.isaia@example.com', projects: 1, status: 'Actif', avatarId: 'founder-1' },
-  { id: 'CLI-006', name: 'Amanda Blassel', email: 'amanda.b@example.com', projects: 1, status: 'Archivé', avatarId: 'testimonial-avatar-2' },
-];
 
 function getStatusBadgeVariant(status: string) {
     switch (status) {
@@ -35,12 +26,18 @@ function getStatusBadgeVariant(status: string) {
 export default function ClientsPage() {
     const { user, isUserLoading } = useUser();
     const router = useRouter();
+    const firestore = useFirestore();
 
     useEffect(() => {
         if (!isUserLoading && !user) {
             router.push('/connexion');
         }
     }, [user, isUserLoading, router]);
+
+    const clientsQuery = useMemoFirebase(() => 
+        firestore ? query(collection(firestore, 'clients'), orderBy('name', 'asc')) : null
+    , [firestore]);
+    const { data: clients, isLoading } = useCollection<any>(clientsQuery);
 
     if (isUserLoading || !user) {
         return (
@@ -101,14 +98,19 @@ export default function ClientsPage() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {clients.map((client) => {
+                             {isLoading && (
+                                <TableRow>
+                                    <TableCell colSpan={6} className="h-24 text-center">Chargement...</TableCell>
+                                </TableRow>
+                            )}
+                            {clients && clients.map((client) => {
                                 const avatarImage = PlaceHolderImages.find(p => p.id === client.avatarId);
                                 return (
                                 <TableRow key={client.id}>
                                      <TableCell className="hidden sm:table-cell">
                                         <Avatar className="h-9 w-9">
                                             {avatarImage && <AvatarImage src={avatarImage.imageUrl} alt={`Avatar de ${client.name}`} />}
-                                            <AvatarFallback>{client.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                                            <AvatarFallback>{client.name.split(' ').map((n:string) => n[0]).join('')}</AvatarFallback>
                                         </Avatar>
                                     </TableCell>
                                     <TableCell>
@@ -121,7 +123,7 @@ export default function ClientsPage() {
                                             {client.status}
                                         </Badge>
                                     </TableCell>
-                                    <TableCell className="hidden lg:table-cell">{client.projects}</TableCell>
+                                    <TableCell className="hidden lg:table-cell">{client.projectsCount || 0}</TableCell>
                                     <TableCell>
                                         <DropdownMenu>
                                             <DropdownMenuTrigger asChild>
@@ -142,6 +144,11 @@ export default function ClientsPage() {
                                     </TableCell>
                                 </TableRow>
                             )})}
+                            {!isLoading && !clients?.length && (
+                                <TableRow>
+                                    <TableCell colSpan={6} className="text-center h-24">Aucun client trouvé.</TableCell>
+                                </TableRow>
+                            )}
                         </TableBody>
                     </Table>
                 </CardContent>
