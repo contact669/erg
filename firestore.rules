@@ -21,15 +21,14 @@ service cloud.firestore {
 
     /**
      * ✅ quoteRequests
-     * - create: public (form)
-     * - read (get + list) / update: admin only
+     * - create: public (formulaire)
+     * - read, update, delete: admin seulement
      */
     match /quoteRequests/{requestId} {
       allow create: if true;
-      allow get, update: if isAdmin();
-      allow delete: if false;
+      allow read, update: if isAdmin();
+      allow delete: if false; // ou if isAdmin() si besoin
     }
-    // ✅ Ajout de la règle de READ (get + list) pour la collection entière
     match /quoteRequests {
       allow read: if isAdmin();
     }
