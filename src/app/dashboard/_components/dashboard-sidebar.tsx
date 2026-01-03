@@ -31,7 +31,6 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-  DropdownMenuTriggerItem,
 } from "@/components/ui/dropdown-menu"
 import { useAuth, useUser, useCollection, useFirestore, useMemoFirebase } from "@/firebase";
 import { cn } from "@/lib/utils";
@@ -41,7 +40,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { Badge } from "@/components/ui/badge";
 import { collection, query, where, orderBy } from 'firebase/firestore';
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
 
@@ -94,7 +93,11 @@ function toDateSafe(value: any): Date | null {
 function Notifications() {
     const { user } = useUser();
     const firestore = useFirestore();
-    const router = useRouter();
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     const isAdmin = useMemo(() => user?.uid === ADMIN_UID, [user]);
 
@@ -109,12 +112,14 @@ function Notifications() {
 
     const { data: newRequests } = useCollection(requestsQuery);
 
+    const hasNewRequests = isClient && newRequests && newRequests.length > 0;
+
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="relative rounded-full">
                     <Bell className="h-5 w-5" />
-                    {newRequests && newRequests.length > 0 && (
+                    {hasNewRequests && (
                         <Badge variant="destructive" className="absolute -top-1 -right-1 h-5 w-5 justify-center p-0 text-xs">
                             {newRequests.length}
                         </Badge>
@@ -125,7 +130,7 @@ function Notifications() {
             <DropdownMenuContent align="end" className="w-80">
                 <DropdownMenuLabel>Nouvelles Demandes</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                {newRequests && newRequests.length > 0 ? (
+                {hasNewRequests ? (
                     newRequests.map((req: any) => {
                         const createdAt = toDateSafe(req.createdAt);
                         return (
@@ -134,7 +139,7 @@ function Notifications() {
                                     <div className="flex flex-col">
                                         <span className="font-semibold">{req.clientName}</span>
                                         <span className="text-xs text-muted-foreground line-clamp-1">{req.projectDescription}</span>
-                                        {createdAt && (
+                                        {createdAt && isClient && (
                                             <span className="text-xs text-muted-foreground">
                                                 {formatDistanceToNow(createdAt, { addSuffix: true, locale: fr })}
                                             </span>
