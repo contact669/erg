@@ -16,9 +16,7 @@ import {
     PanelLeft,
     LayoutDashboard,
     Users,
-    HardHat,
     FileText,
-    Settings,
     LogOut,
     Construction,
     Search,
@@ -33,13 +31,21 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuTriggerItem,
 } from "@/components/ui/dropdown-menu"
-import { useAuth, useUser } from "@/firebase";
+import { useAuth, useUser, useCollection, useFirestore, useMemoFirebase } from "@/firebase";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import { Badge } from "@/components/ui/badge";
+import { collection, query, where, orderBy } from 'firebase/firestore';
+import { useMemo } from "react";
+import { formatDistanceToNow } from 'date-fns';
+import { fr } from 'date-fns/locale';
+
+const ADMIN_UID = "pHcnP0Mc32frrhPRzTT2nFwCxno1";
 
 const navItems = [
     { href: "/dashboard", icon: LayoutDashboard, label: "Tableau de Bord" },
@@ -72,6 +78,81 @@ function NavLink({ href, icon: Icon, label }: { href: string; icon: React.Elemen
             </TooltipTrigger>
             <TooltipContent side="right">{label}</TooltipContent>
         </Tooltip>
+    );
+}
+
+function toDateSafe(value: any): Date | null {
+    if (value?.toDate && typeof value.toDate === 'function') return value.toDate();
+    if (value instanceof Date) return value;
+    if (typeof value === 'string' || typeof value === 'number') {
+        const d = new Date(value);
+        return isNaN(d.getTime()) ? null : d;
+    }
+    return null;
+}
+
+function Notifications() {
+    const { user } = useUser();
+    const firestore = useFirestore();
+    const router = useRouter();
+
+    const isAdmin = useMemo(() => user?.uid === ADMIN_UID, [user]);
+
+    const requestsQuery = useMemoFirebase(() => {
+        if (!firestore || !isAdmin) return null;
+        return query(
+            collection(firestore, 'quoteRequests'),
+            where('status', '==', 'Nouvelle Demande'),
+            orderBy('createdAt', 'desc')
+        );
+    }, [firestore, isAdmin]);
+
+    const { data: newRequests } = useCollection(requestsQuery);
+
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="relative rounded-full">
+                    <Bell className="h-5 w-5" />
+                    {newRequests && newRequests.length > 0 && (
+                        <Badge variant="destructive" className="absolute -top-1 -right-1 h-5 w-5 justify-center p-0 text-xs">
+                            {newRequests.length}
+                        </Badge>
+                    )}
+                    <span className="sr-only">Notifications</span>
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-80">
+                <DropdownMenuLabel>Nouvelles Demandes</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                {newRequests && newRequests.length > 0 ? (
+                    newRequests.map((req: any) => {
+                        const createdAt = toDateSafe(req.createdAt);
+                        return (
+                            <DropdownMenuItem key={req.id} asChild className="cursor-pointer">
+                                <Link href="/dashboard/demandes">
+                                    <div className="flex flex-col">
+                                        <span className="font-semibold">{req.clientName}</span>
+                                        <span className="text-xs text-muted-foreground line-clamp-1">{req.projectDescription}</span>
+                                        {createdAt && (
+                                            <span className="text-xs text-muted-foreground">
+                                                {formatDistanceToNow(createdAt, { addSuffix: true, locale: fr })}
+                                            </span>
+                                        )}
+                                    </div>
+                                </Link>
+                            </DropdownMenuItem>
+                        )
+                    })
+                ) : (
+                    <DropdownMenuItem disabled>Aucune nouvelle demande</DropdownMenuItem>
+                )}
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                    <Link href="/dashboard/demandes" className="font-semibold text-accent justify-center">Voir toutes les demandes</Link>
+                </DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
     );
 }
 
@@ -168,10 +249,7 @@ export default function DashboardSidebar() {
                 </div>
                 <div className="flex items-center gap-2">
                     <ModeToggle />
-                    <Button variant="ghost" size="icon" className="rounded-full">
-                        <Bell className="h-5 w-5" />
-                        <span className="sr-only">Notifications</span>
-                    </Button>
+                    <Notifications />
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon" className="rounded-full">
