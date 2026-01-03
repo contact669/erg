@@ -16,13 +16,13 @@ service cloud.firestore {
     match /media/{id} { allow read: if true; allow write: if false; }
 
     // Private admin collections
-    match /clients/{id} { allow read, write: if isAdmin(); }
-    match /projects/{id} { allow read, write: if isAdmin(); }
-    match /quotes/{id} { allow read, write: if isAdmin(); }
-    match /factures/{id} { allow read, write: if isAdmin(); }
+    match /clients/{document=**} { allow read, write: if isAdmin(); }
+    match /projects/{document=**} { allow read, write: if isAdmin(); }
+    match /quotes/{document=**} { allow read, write: if isAdmin(); }
+    match /factures/{document=**} { allow read, write: if isAdmin(); }
     
     // Leads can't be read by client
-    match /leads/{id} { allow read, write: if false; }
+    match /leads/{id} { allow create: if true; allow read, write: if false; }
 
     // Quote Requests: anyone can create, only admin can read/update
     match /quoteRequests/{requestId} {
