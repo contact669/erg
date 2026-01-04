@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import Link from "next/link";
@@ -166,6 +167,11 @@ function UserProfileButton() {
     const auth = useAuth();
     const { user, isUserLoading } = useUser();
     const router = useRouter();
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     const handleSignOut = async () => {
         if (!auth) return;
@@ -175,7 +181,7 @@ function UserProfileButton() {
 
     const userAvatar = PlaceHolderImages.find(p => p.id === 'founder-1');
 
-    if (isUserLoading) {
+    if (isUserLoading || !isClient) {
         return <Skeleton className="h-8 w-8 rounded-full" />;
     }
 
@@ -191,18 +197,20 @@ function UserProfileButton() {
                     </Avatar>
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-                <DropdownMenuLabel>{user?.displayName || user?.email}</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                    <Link href="/dashboard/profil">Profil</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                    <Link href="/dashboard/parametres">Paramètres</Link>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleSignOut}>Déconnexion</DropdownMenuItem>
-            </DropdownMenuContent>
+            {isClient && (
+              <DropdownMenuContent align="end">
+                  <DropdownMenuLabel>{user?.displayName || user?.email}</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                      <Link href="/dashboard/profil">Profil</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                      <Link href="/dashboard/parametres">Paramètres</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleSignOut}>Déconnexion</DropdownMenuItem>
+              </DropdownMenuContent>
+            )}
         </DropdownMenu>
     )
 }
