@@ -43,6 +43,7 @@ import { collection, query, where, orderBy } from 'firebase/firestore';
 import { useMemo, useState, useEffect } from "react";
 import { formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
+import { Skeleton } from "@/components/ui/skeleton";
 
 const ADMIN_UID = "pHcnP0Mc32frrhPRzTT2nFwCxno1";
 
@@ -161,9 +162,9 @@ function Notifications() {
     );
 }
 
-export default function DashboardSidebar() {
+function UserProfileButton() {
     const auth = useAuth();
-    const { user } = useUser();
+    const { user, isUserLoading } = useUser();
     const router = useRouter();
 
     const handleSignOut = async () => {
@@ -171,26 +172,63 @@ export default function DashboardSidebar() {
         await auth.signOut();
         router.push('/');
     };
-    
+
     const userAvatar = PlaceHolderImages.find(p => p.id === 'founder-1');
+
+    if (isUserLoading) {
+        return <Skeleton className="h-8 w-8 rounded-full" />;
+    }
+
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="rounded-full">
+                    <Avatar className="h-8 w-8">
+                        {userAvatar && <AvatarImage src={user?.photoURL || userAvatar.imageUrl} alt={user?.displayName || 'Avatar utilisateur'} />}
+                        <AvatarFallback>
+                            {user?.email?.charAt(0).toUpperCase() || 'U'}
+                        </AvatarFallback>
+                    </Avatar>
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+                <DropdownMenuLabel>{user?.displayName || user?.email}</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                    <Link href="/dashboard/profil">Profil</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                    <Link href="/dashboard/parametres">Paramètres</Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={handleSignOut}>Déconnexion</DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
+    )
+}
+
+export default function DashboardSidebar() {
+    const auth = useAuth();
+    const router = useRouter();
+
+    const handleSignOut = async () => {
+        if (!auth) return;
+        await auth.signOut();
+        router.push('/');
+    };
 
     return (
         <>
             <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
                 <TooltipProvider>
                     <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Link
-                                    href="/"
-                                    className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
-                                >
-                                    <ErgLogo className="h-8 w-8 text-background" />
-                                    <span className="sr-only">ERG</span>
-                                </Link>
-                            </TooltipTrigger>
-                            <TooltipContent side="right">Accueil</TooltipContent>
-                        </Tooltip>
+                        <Link
+                            href="/"
+                            className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
+                        >
+                            <ErgLogo className="h-8 w-8 text-background" />
+                            <span className="sr-only">ERG</span>
+                        </Link>
                         {navItems.map((item) => (
                             <NavLink key={item.href} {...item} />
                         ))}
@@ -260,30 +298,7 @@ export default function DashboardSidebar() {
                 <div className="flex items-center gap-2">
                     <ModeToggle />
                     <Notifications />
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="icon" className="rounded-full">
-                           <Avatar className="h-8 w-8">
-                               {userAvatar && <AvatarImage src={user?.photoURL || userAvatar.imageUrl} alt={user?.displayName || 'Avatar utilisateur'} />}
-                               <AvatarFallback>
-                                   {user?.email?.charAt(0).toUpperCase() || 'U'}
-                               </AvatarFallback>
-                           </Avatar>
-                        </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>{user?.displayName || user?.email}</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem asChild>
-                            <Link href="/dashboard/profil">Profil</Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                           <Link href="/dashboard/parametres">Paramètres</Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={handleSignOut}>Déconnexion</DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
+                    <UserProfileButton />
                 </div>
             </header>
         </>
