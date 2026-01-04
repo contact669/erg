@@ -23,7 +23,6 @@ import { Separator } from "@/components/ui/separator"
 
 import { Bot, User, ShieldCheck, Clock, ArrowRight } from "lucide-react"
 
-
 const PHONE = "+33699961375"
 
 const formSchema = z.object({
@@ -88,44 +87,49 @@ export default function DevisPage() {
     })
 
     try {
-      // Étape 1 : Créer la demande de devis
-      const requestRef = await addDoc(collection(firestore, "quoteRequests"), {
+      const requestData = {
         clientName: values.clientName.trim(),
         clientEmail: values.clientEmail.trim().toLowerCase(),
         clientPhone: (values.clientPhone ?? "").trim() || null,
         projectDescription: values.projectDescription.trim(),
         status: 'Nouvelle Demande',
         createdAt: serverTimestamp(),
-      });
+      }
+      const requestRef = await addDoc(collection(firestore, "quoteRequests"), requestData);
       
-      // Étape 2: Préparer les e-mails pour l'extension "Trigger Email"
       const mailCollection = collection(firestore, "mail");
 
-      // E-mail de confirmation pour le client
-      await addDoc(mailCollection, {
+      await mailCollection.add({
+        to: 'contact@erg-renovation.fr',
+        message: {
+          subject: `Nouvelle demande de devis de ${values.clientName}`,
+          html: `
+            <h1>Nouvelle Demande de Devis</h1>
+            <p><strong>Nom :</strong> ${values.clientName}</p>
+            <p><strong>Email :</strong> ${values.clientEmail}</p>
+            <p><strong>Téléphone :</strong> ${values.clientPhone || "Non fourni"}</p>
+            <hr>
+            <h3>Description du projet :</h3>
+            <p>${values.projectDescription}</p>
+            <hr>
+            <p>ID de la demande: ${requestRef.id}</p>
+            <p><a href="https://erg-renovation.fr/dashboard/demandes">Générer le devis dans le dashboard</a></p>
+          `,
+        },
+      })
+    
+      await mailCollection.add({
         to: values.clientEmail,
-        template: {
-          name: "quote-request-confirmation",
-          data: {
-            clientName: values.clientName,
-          },
+        message: {
+          subject: 'Confirmation de votre demande de devis',
+          html: `
+            <h1>Votre demande a bien été reçue !</h1>
+            <p>Bonjour ${values.clientName},</p>
+            <p>Nous vous remercions pour votre demande de devis. Nous avons bien reçu les détails de votre projet et nous allons l'étudier avec la plus grande attention.</p>
+            <p>Notre équipe reviendra vers vous très rapidement, généralement sous 24 heures ouvrées, pour discuter des prochaines étapes.</p>
+          `,
         },
-      });
-
-      // E-mail de notification pour l'admin
-      await addDoc(mailCollection, {
-        to: "contact@erg-renovation.fr",
-        template: {
-          name: "quote-request-admin",
-          data: {
-            clientName: values.clientName,
-            clientEmail: values.clientEmail,
-            clientPhone: values.clientPhone || "Non fourni",
-            projectDescription: values.projectDescription,
-            requestId: requestRef.id,
-          },
-        },
-      });
+      })
 
       toast({
         title: "Demande envoyée ✅",
@@ -153,7 +157,6 @@ export default function DevisPage() {
       <main className="flex-grow">
         <Breadcrumbs />
 
-        {/* Hero (pro, épuré, conversion) */}
         <section className="border-b bg-secondary py-12 md:py-16">
           <div className="container">
             <div className="mx-auto max-w-3xl text-center">
@@ -201,7 +204,6 @@ export default function DevisPage() {
           </div>
         </section>
 
-        {/* Form + Sidebar */}
         <section className="container py-12 md:py-16">
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-[1fr_360px]">
             <Card className="overflow-hidden">
@@ -216,7 +218,6 @@ export default function DevisPage() {
               <CardContent className="p-6 md:p-8">
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                    {/* Vos infos */}
                     <fieldset className="space-y-4 rounded-xl border p-5">
                       <legend className="-ml-1 px-1 text-sm font-medium text-foreground">
                         <span className="inline-flex items-center gap-2">
@@ -280,7 +281,6 @@ export default function DevisPage() {
                       />
                     </fieldset>
 
-                    {/* Description projet */}
                     <fieldset className="space-y-4 rounded-xl border p-5">
                       <legend className="-ml-1 px-1 text-sm font-medium text-foreground">
                         <span className="inline-flex items-center gap-2">
@@ -339,8 +339,7 @@ export default function DevisPage() {
               </CardContent>
             </Card>
 
-            {/* Sidebar : rassurance + SEO utile */}
-            <aside className="space-y-6 lg:sticky lg:top-24 h-fit">
+            <aside className="h-fit space-y-6 lg:sticky lg:top-24">
               <Card className="bg-secondary/40">
                 <CardHeader>
                   <CardTitle className="font-headline text-lg">Ce que vous obtenez</CardTitle>
@@ -396,7 +395,6 @@ export default function DevisPage() {
           </div>
         </section>
 
-        {/* Mini bloc SEO indexable (léger) */}
         <section className="border-t bg-background">
           <div className="container py-10">
             <div className="mx-auto max-w-4xl text-center">
