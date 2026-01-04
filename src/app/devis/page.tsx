@@ -99,7 +99,7 @@ export default function DevisPage() {
       
       const mailCollection = collection(firestore, "mail");
 
-      await mailCollection.add({
+      await addDoc(mailCollection, {
         to: 'contact@erg-renovation.fr',
         message: {
           subject: `Nouvelle demande de devis de ${values.clientName}`,
@@ -118,7 +118,7 @@ export default function DevisPage() {
         },
       })
     
-      await mailCollection.add({
+      await addDoc(mailCollection, {
         to: values.clientEmail,
         message: {
           subject: 'Confirmation de votre demande de devis',
