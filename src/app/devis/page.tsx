@@ -98,7 +98,7 @@ export default function DevisPage() {
         createdAt: serverTimestamp(),
       });
       
-      // Étape 2: Préparer les e-mails pour l'extension
+      // Étape 2: Préparer les e-mails pour l'extension "Trigger Email"
       const mailCollection = collection(firestore, "mail");
 
       // E-mail de confirmation pour le client
@@ -106,9 +106,10 @@ export default function DevisPage() {
         to: values.clientEmail,
         template: {
           name: "quote-request-confirmation",
+          data: {
+            clientName: values.clientName,
+          },
         },
-        // Variables à la racine du document
-        clientName: values.clientName,
       });
 
       // E-mail de notification pour l'admin
@@ -116,13 +117,14 @@ export default function DevisPage() {
         to: "contact@erg-renovation.fr",
         template: {
           name: "quote-request-admin",
+          data: {
+            clientName: values.clientName,
+            clientEmail: values.clientEmail,
+            clientPhone: values.clientPhone || "Non fourni",
+            projectDescription: values.projectDescription,
+            requestId: requestRef.id,
+          },
         },
-        // Variables à la racine du document
-        clientName: values.clientName,
-        clientEmail: values.clientEmail,
-        clientPhone: values.clientPhone || "Non fourni",
-        projectDescription: values.projectDescription,
-        requestId: requestRef.id,
       });
 
       toast({
