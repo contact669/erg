@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { useState } from "react"
 import Link from "next/link"
-import { collection, addDoc } from "firebase/firestore"
-import { useFirestore, useUser } from "@/firebase"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { useFirestore } from "@/firebase"
 
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
@@ -53,7 +53,6 @@ export default function DevisPage() {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const firestore = useFirestore()
-  const { user } = useUser();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -89,34 +88,61 @@ export default function DevisPage() {
     })
 
     try {
-      const payload = {
+      // Étape 1 : Créer la demande de devis
+      const requestRef = await addDoc(collection(firestore, "quoteRequests"), {
         clientName: values.clientName.trim(),
         clientEmail: values.clientEmail.trim().toLowerCase(),
-        clientPhone: (values.clientPhone ?? "").trim() || undefined,
+        clientPhone: (values.clientPhone ?? "").trim() || null,
         projectDescription: values.projectDescription.trim(),
         status: 'Nouvelle Demande',
-        createdAt: new Date(),
-        userId: user?.uid || 'admin_user_placeholder',
-      };
+        createdAt: serverTimestamp(),
+      });
+      
+      // Étape 2: Préparer les e-mails pour l'extension
+      const mailCollection = collection(firestore, "mail");
 
-      await addDoc(collection(firestore, "quoteRequests"), payload);
+      // E-mail de confirmation pour le client
+      await addDoc(mailCollection, {
+        to: values.clientEmail,
+        template: {
+          name: "quote-request-confirmation",
+          data: {
+            clientName: values.clientName,
+          },
+        },
+      });
+
+      // E-mail de notification pour l'admin
+      await addDoc(mailCollection, {
+        to: "contact@erg-renovation.fr",
+        template: {
+          name: "quote-request-admin",
+          data: {
+            clientName: values.clientName,
+            clientEmail: values.clientEmail,
+            clientPhone: values.clientPhone || "Non fourni",
+            projectDescription: values.projectDescription,
+            requestId: requestRef.id,
+          },
+        },
+      });
 
       toast({
         title: "Demande envoyée ✅",
         description:
-          "Merci. Nous étudions votre projet et revenons vers vous très rapidement (souvent sous 24h ouvrées).",
+          "Merci. Nous avons bien reçu votre demande et nous vous avons envoyé un e-mail de confirmation.",
       })
 
       form.reset()
-      setIsSubmitting(false)
     } catch (error) {
       console.error("Error creating quote request:", error);
       toast({
         variant: "destructive",
         title: "Impossible d’envoyer la demande",
-        description: "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer dans quelques minutes.",
+        description: "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer ou nous contacter directement.",
       })
-      setIsSubmitting(false)
+    } finally {
+        setIsSubmitting(false)
     }
   }
 
@@ -391,3 +417,5 @@ export default function DevisPage() {
     </div>
   )
 }
+
+    

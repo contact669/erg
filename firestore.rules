@@ -14,6 +14,7 @@ service cloud.firestore {
     match /testimonials/{id} { allow read: if true; allow write: if false; }
     match /blogPosts/{id} { allow read: if true; allow write: if false; }
     match /media/{id} { allow read: if true; allow write: if false; }
+    match /templates/{id} { allow read: if isAdmin(); allow write: if isAdmin(); }
 
     // Private admin collections
     match /clients/{document=**} { allow read, write: if isAdmin(); }
@@ -30,10 +31,10 @@ service cloud.firestore {
       allow read, write: if isAdmin();
     }
     
-    // Mail collection for Trigger Email extension (write-only for backend function)
+    // Mail collection for Trigger Email extension
     match /mail/{mailId} {
+      allow create: if true;
       allow read, write: if isAdmin(); // Allow admin to see/debug sent emails
-      allow create: if true; // Allows the backend to create email documents
     }
 
 
@@ -42,3 +43,5 @@ service cloud.firestore {
     }
   }
 }
+
+    
