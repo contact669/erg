@@ -1,295 +1,219 @@
 "use client";
 
-import { useUser, useCollection, useMemoFirebase } from "@/firebase";
-import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
-
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-
-import { Bot } from "lucide-react";
-import { format } from "date-fns";
-import { fr } from "date-fns/locale";
-
-import {
-  collection,
-  query,
-  orderBy,
-  where,
-  runTransaction,
-  doc,
-  serverTimestamp,
-} from "firebase/firestore";
+import React, { useMemo, useState } from "react";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { getApp } from "firebase/app";
 
 import { useFirestore } from "@/firebase";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { generateQuote } from "@/ai/flows/generate-quote-flow";
 
-const ADMIN_UID = "pHcnP0Mc32frrhPRzTT2nFwCxno1";
+type QuoteRequestForm = {
+  clientName: string;
+  clientEmail: string;
+  clientPhone: string;
+  projectDescription: string;
+};
 
-function toDateSafe(value: any): Date | null {
-  if (value?.toDate && typeof value.toDate === "function") return value.toDate();
-  if (value instanceof Date) return value;
-  if (typeof value === "string") {
-    const d = new Date(value);
-    return isNaN(d.getTime()) ? null : d;
-  }
-  return null;
+function isEmail(v: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
 }
 
-export default function DemandesPage() {
-  const { user, isUserLoading } = useUser();
-  const router = useRouter();
+function cleanPhone(v: string) {
+  return v.replace(/[^\d+]/g, "").trim();
+}
+
+export default function QuoteRequestPage() {
   const firestore = useFirestore();
   const { toast } = useToast();
-  const [isGenerating, setIsGenerating] = useState<string | null>(null);
-  const [isClient, setIsClient] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState<QuoteRequestForm>({
+    clientName: "",
+    clientEmail: "",
+    clientPhone: "",
+    projectDescription: "",
+  });
 
-  // ✅ admin client-side (évite de lancer des queries interdites)
-  const isAdmin = useMemo(() => {
-    return !!user && user.uid === ADMIN_UID;
-  }, [user]);
+  const errors = useMemo(() => {
+    const e: Partial<Record<keyof QuoteRequestForm, string>> = {};
 
-  useEffect(() => {
-    // Login requis
-    if (!isUserLoading && !user) router.push("/connexion");
-  }, [user, isUserLoading, router]);
-
-  useEffect(() => {
-    // ✅ si connecté mais pas admin => redirection (ou message)
-    if (!isUserLoading && user && !isAdmin) {
-      router.push("/dashboard"); // ou page "accès refusé"
+    if (!form.clientName.trim()) e.clientName = "Veuillez renseigner votre nom.";
+    if (!form.clientEmail.trim()) e.clientEmail = "Veuillez renseigner votre email.";
+    else if (!isEmail(form.clientEmail)) e.clientEmail = "Email invalide.";
+    if (form.projectDescription.trim().length < 10) {
+      e.projectDescription = "Décrivez votre projet (au moins 10 caractères).";
     }
-  }, [isUserLoading, user, isAdmin, router]);
 
-  /**
-   * ✅ Query admin UNIQUEMENT
-   * Si pas admin => null => pas de list => pas d’erreur permissions
-   */
-  const requestsQuery = useMemoFirebase(() => {
-    if (!firestore || !user?.uid || !isAdmin) return null;
+    return e;
+  }, [form]);
 
-    return query(
-      collection(firestore, "quoteRequests"),
-      where("status", "==", "Nouvelle Demande"),
-      orderBy("createdAt", "desc")
-    );
-  }, [firestore, user?.uid, isAdmin]);
+  const canSubmit = useMemo(() => Object.keys(errors).length === 0, [errors]);
 
-  const { data: requests, isLoading, error } = useCollection<any>(requestsQuery);
+  const onChange = (key: keyof QuoteRequestForm) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    setForm((prev) => ({ ...prev, [key]: value }));
+  };
 
-  useEffect(() => {
-    if (!error) return;
-    console.error("useCollection error:", error);
-    toast({
-      variant: "destructive",
-      title: "Lecture impossible",
-      description:
-        "Accès refusé (règles Firestore) ou règles non publiées / mauvais projet Firebase.",
-    });
-  }, [error, toast]);
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  const handleGenerateQuote = async (request: any) => {
-    if (!firestore || !user?.uid || !isAdmin) return;
+    // ----- logs de diagnostic (ne cassent rien) -----
+    try {
+      const app = getApp();
+      console.log("[QuoteRequest] firebase projectId:", app.options.projectId);
+    } catch {
+      console.log("[QuoteRequest] getApp() unavailable");
+    }
+    console.log("[QuoteRequest] target collection:", "quoteRequests");
+    // -----------------------------------------------
 
-    setIsGenerating(request.id);
-    toast({
-      title: "🤖 Génération du devis...",
-      description: "L’IA prépare un devis détaillé. Patientez quelques secondes.",
-    });
+    if (!firestore) {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Firestore n’est pas initialisé (config Firebase).",
+      });
+      return;
+    }
+
+    if (!canSubmit) {
+      toast({
+        variant: "destructive",
+        title: "Formulaire incomplet",
+        description: "Merci de corriger les champs indiqués.",
+      });
+      return;
+    }
+
+    setLoading(true);
 
     try {
-      const aiQuote = await generateQuote({
-        projectDescription: request.projectDescription,
-        serviceType: "Inconnu - à définir depuis la description",
-      });
+      const payload = {
+        clientName: form.clientName.trim(),
+        clientEmail: form.clientEmail.trim().toLowerCase(),
+        clientPhone: cleanPhone(form.clientPhone) || null,
+        projectDescription: form.projectDescription.trim(),
+        status: "Nouvelle Demande",
+        createdAt: serverTimestamp(),
+        source: "site",
+      };
 
-      await runTransaction(firestore, async (transaction) => {
-        const quoteDocRef = doc(collection(firestore, "quotes"));
+      // ✅ CREATE garanti (compatible rules allow create: if true)
+      const ref = await addDoc(collection(firestore, "quoteRequests"), payload);
 
-        transaction.set(quoteDocRef, {
-          ...aiQuote,
-          clientName: request.clientName,
-          clientEmail: request.clientEmail,
-          clientPhone: request.clientPhone ?? null,
-          projectDescription: request.projectDescription,
-          service: "À catégoriser",
-          status: "Brouillon",
-
-          // ✅ pour l’admin / règles
-          userId: user.uid,
-          requestId: request.id,
-
-          createdAt: serverTimestamp(),
-        });
-
-        const requestDocRef = doc(firestore, "quoteRequests", request.id);
-        transaction.update(requestDocRef, {
-          status: "Traité",
-          processedAt: serverTimestamp(),
-          processedBy: user.uid,
-          quoteId: quoteDocRef.id,
-        });
-      });
+      console.log("[QuoteRequest] created doc id:", ref.id);
 
       toast({
-        title: "✅ Devis généré",
-        description: "Le devis a été ajouté. Vous pouvez maintenant le consulter/modifier.",
+        title: "✅ Demande envoyée",
+        description: "Merci ! Nous vous recontactons rapidement.",
       });
 
-      router.push("/dashboard/devis");
-    } catch (e) {
-      console.error("Error generating quote:", e);
+      setForm({
+        clientName: "",
+        clientEmail: "",
+        clientPhone: "",
+        projectDescription: "",
+      });
+    } catch (err: any) {
+      console.error("Error creating quote request:", err);
+      console.error("[QuoteRequest] error code:", err?.code);
+      console.error("[QuoteRequest] error message:", err?.message);
+
+      // message utile selon code
+      const code = err?.code ?? "";
+      const msg =
+        code === "permission-denied"
+          ? "Accès refusé : App Check (enforced), mauvais projet Firebase, ou chemin de collection différent."
+          : code === "unauthenticated"
+          ? "Vous n’êtes pas authentifié."
+          : "Impossible d’envoyer la demande. Réessayez.";
+
       toast({
         variant: "destructive",
         title: "❌ Erreur",
-        description: "Impossible de générer le devis. Réessayez.",
+        description: msg,
       });
     } finally {
-      setIsGenerating(null);
+      setLoading(false);
     }
   };
 
-  if (isUserLoading || !user) {
-    return (
-      <div className="flex h-[60vh] items-center justify-center">
-        <div className="h-10 w-10 animate-spin rounded-full border-4 border-border border-t-primary" />
-      </div>
-    );
-  }
-
-  // ✅ si connecté mais pas admin (au cas où, avant redirection)
-  if (!isAdmin) {
-    return (
-      <div className="space-y-4">
-        <h1 className="text-2xl font-bold">Accès refusé</h1>
-        <p className="text-muted-foreground">
-          Cette page est réservée à l’administrateur.
-        </p>
-        <Button onClick={() => router.push("/dashboard")}>Retour</Button>
-      </div>
-    );
-  }
-
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Demandes de devis</h1>
-        <p className="text-muted-foreground">
-          Toutes les demandes reçues via le site (statut : Nouvelle Demande).
-        </p>
-      </div>
-
+    <div className="mx-auto max-w-2xl px-4 py-10">
       <Card>
         <CardHeader>
-          <CardTitle>Demandes en attente</CardTitle>
+          <CardTitle>Demande de devis</CardTitle>
           <CardDescription>
-            Générez un devis à partir d’une demande client.
+            Décrivez votre projet. Nous vous répondons rapidement.
           </CardDescription>
         </CardHeader>
 
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Client</TableHead>
-                <TableHead>Projet</TableHead>
-                <TableHead className="hidden sm:table-cell">Date</TableHead>
-                <TableHead className="hidden sm:table-cell">Statut</TableHead>
-                <TableHead className="text-right">Action</TableHead>
-              </TableRow>
-            </TableHeader>
-
-            <TableBody>
-              {isLoading && (
-                <TableRow>
-                  <TableCell colSpan={5} className="h-24 text-center">
-                    Chargement…
-                  </TableCell>
-                </TableRow>
+          <form className="space-y-4" onSubmit={onSubmit}>
+            <div className="space-y-1">
+              <label className="text-sm font-medium">Nom</label>
+              <Input
+                value={form.clientName}
+                onChange={onChange("clientName")}
+                placeholder="Votre nom"
+                aria-invalid={!!errors.clientName}
+              />
+              {errors.clientName && (
+                <p className="text-sm text-destructive">{errors.clientName}</p>
               )}
+            </div>
 
-              {!isLoading && (!requests || requests.length === 0) && (
-                <TableRow>
-                  <TableCell colSpan={5} className="h-24 text-center">
-                    Aucune nouvelle demande.
-                  </TableCell>
-                </TableRow>
+            <div className="space-y-1">
+              <label className="text-sm font-medium">Email</label>
+              <Input
+                value={form.clientEmail}
+                onChange={onChange("clientEmail")}
+                placeholder="vous@exemple.com"
+                aria-invalid={!!errors.clientEmail}
+              />
+              {errors.clientEmail && (
+                <p className="text-sm text-destructive">{errors.clientEmail}</p>
               )}
+            </div>
 
-              {!isLoading &&
-                requests?.map((item: any) => {
-                  const d = toDateSafe(item.createdAt);
+            <div className="space-y-1">
+              <label className="text-sm font-medium">Téléphone (optionnel)</label>
+              <Input
+                value={form.clientPhone}
+                onChange={onChange("clientPhone")}
+                placeholder="06 12 34 56 78"
+              />
+            </div>
 
-                  return (
-                    <TableRow key={item.id}>
-                      <TableCell>
-                        <div className="font-medium">{item.clientName}</div>
-                        <div className="text-sm text-muted-foreground">
-                          {item.clientEmail}
-                        </div>
-                      </TableCell>
+            <div className="space-y-1">
+              <label className="text-sm font-medium">Description du projet</label>
+              <Textarea
+                value={form.projectDescription}
+                onChange={onChange("projectDescription")}
+                placeholder="Ex : rénovation salle de bain, 6m², remplacement baignoire, carrelage..."
+                className="min-h-[140px]"
+                aria-invalid={!!errors.projectDescription}
+              />
+              {errors.projectDescription && (
+                <p className="text-sm text-destructive">{errors.projectDescription}</p>
+              )}
+            </div>
 
-                      <TableCell>
-                        <div className="line-clamp-2 font-medium">
-                          {item.projectDescription}
-                        </div>
-                      </TableCell>
+            <Button type="submit" disabled={loading || !canSubmit} className="w-full">
+              {loading ? "Envoi..." : "Envoyer la demande"}
+            </Button>
 
-                      <TableCell className="hidden sm:table-cell">
-                        {d && isClient
-                          ? format(d, "d MMMM yyyy 'à' HH:mm", { locale: fr })
-                          : "-"}
-                      </TableCell>
-
-                      <TableCell className="hidden sm:table-cell">
-                        <Badge variant="destructive">{item.status}</Badge>
-                      </TableCell>
-
-                      <TableCell className="text-right">
-                        <Button
-                          size="sm"
-                          onClick={() => handleGenerateQuote(item)}
-                          disabled={isGenerating === item.id}
-                        >
-                          {isGenerating === item.id ? (
-                            "Génération…"
-                          ) : (
-                            <>
-                              <Bot className="mr-2 h-4 w-4" />
-                              Générer
-                            </>
-                          )}
-                        </Button>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-            </TableBody>
-          </Table>
-
-          <p className="mt-4 text-xs text-muted-foreground">
-            Si Firestore demande un index (where status + orderBy createdAt), créez-le via le lien fourni dans la console.
-          </p>
+            <p className="text-xs text-muted-foreground">
+              Si tu as encore “Missing permissions” avec ce code, la cause est quasi sûre :{" "}
+              <span className="font-medium">App Check enforced</span> ou{" "}
+              <span className="font-medium">mauvais projet Firebase</span>.
+              Les logs console afficheront le <span className="font-medium">projectId</span>.
+            </p>
+          </form>
         </CardContent>
       </Card>
     </div>
