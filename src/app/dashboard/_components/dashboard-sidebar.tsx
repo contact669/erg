@@ -59,7 +59,13 @@ const navItems = [
 
 function NavLink({ href, icon: Icon, label }: { href: string; icon: React.ElementType; label: string; }) {
     const pathname = usePathname();
-    const isActive = pathname === href;
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    const isActive = isClient && pathname === href;
 
     return (
         <Tooltip>
