@@ -3,7 +3,7 @@
 import { useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebase';
 import { collection, query, orderBy } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -23,11 +23,26 @@ function getStatusBadgeVariant(status: string) {
     }
 }
 
+function toDateSafe(value: any): Date | null {
+  if (value?.toDate && typeof value.toDate === 'function') return value.toDate();
+  if (value instanceof Date) return value;
+  if (typeof value === 'string' || typeof value === 'number') {
+      const d = new Date(value);
+      return isNaN(d.getTime()) ? null : d;
+  }
+  return null;
+}
+
 
 export default function FacturesPage() {
     const { user, isUserLoading } = useUser();
     const router = useRouter();
     const firestore = useFirestore();
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     useEffect(() => {
         if (!isUserLoading && !user) {
@@ -103,7 +118,9 @@ export default function FacturesPage() {
                                     <TableCell colSpan={7} className="h-24 text-center">Chargement...</TableCell>
                                 </TableRow>
                             )}
-                            {factures && factures.map((item) => (
+                            {isClient && factures && factures.map((item) => {
+                              const date = toDateSafe(item.date);
+                              return (
                                 <TableRow key={item.id}>
                                     <TableCell>
                                         <div className="font-medium">{item.id}</div>
@@ -114,7 +131,7 @@ export default function FacturesPage() {
                                         <div className="text-sm text-muted-foreground">{item.projectName}</div>
                                     </TableCell>
                                     <TableCell className="hidden sm:table-cell text-right">
-                                        {item.date?.toDate ? format(item.date.toDate(), "d MMM yyyy", { locale: fr }) : '-'}
+                                        {date ? format(date, "d MMM yyyy", { locale: fr }) : '-'}
                                     </TableCell>
                                     <TableCell className="hidden md:table-cell text-right">
                                         {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(item.total)}
@@ -147,8 +164,8 @@ export default function FacturesPage() {
                                         </DropdownMenu>
                                     </TableCell>
                                 </TableRow>
-                            ))}
-                            {!isLoading && !factures?.length && (
+                            )})}
+                            {isClient && !isLoading && !factures?.length && (
                                 <TableRow>
                                     <TableCell colSpan={7} className="text-center h-24">Aucune facture trouvée.</TableCell>
                                 </TableRow>

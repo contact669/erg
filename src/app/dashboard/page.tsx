@@ -2,7 +2,7 @@
 
 import { useUser, useCollection, useMemoFirebase, useFirestore } from '@/firebase';
 import { useRouter } from 'next/navigation';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { collection, query, where, orderBy, limit } from 'firebase/firestore';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
@@ -26,6 +26,11 @@ export default function DashboardPage() {
     const { user, isUserLoading } = useUser();
     const router = useRouter();
     const firestore = useFirestore();
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     useEffect(() => {
         if (!isUserLoading && !user) {
@@ -57,7 +62,7 @@ export default function DashboardPage() {
         { title: 'Clients Actifs', value: clients?.length ?? 0, icon: Users },
         { title: 'Chantiers en Cours', value: recentProjects?.filter(p => p.status === 'En cours').length ?? 0, icon: HardHat },
         { title: 'Devis en Attente', value: pendingQuotes?.length ?? 0, icon: FileText },
-        { title: 'Factures Impayées', value: unpaidInvoices?.length ?? 0, total: unpaidInvoices?.reduce((acc, inv) => acc + (inv.restant || 0), 0).toLocaleString('fr-FR', {style: 'currency', currency: 'EUR'}), icon: Receipt },
+        { title: 'Factures Impayées', value: unpaidInvoices?.length ?? 0, total: unpaidInvoices?.reduce((acc, inv) => acc + (inv.restant || 0), 0), icon: Receipt },
     ], [clients, recentProjects, pendingQuotes, unpaidInvoices]);
 
     if (isUserLoading || !user) {
@@ -93,8 +98,8 @@ export default function DashboardPage() {
                             <stat.icon className="h-4 w-4 text-muted-foreground" />
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold">{stat.value}</div>
-                            {stat.total && <p className="text-xs text-muted-foreground">pour un total de {stat.total}</p>}
+                            <div className="text-2xl font-bold">{isClient ? stat.value : '...'}</div>
+                            {isClient && stat.total != null && <p className="text-xs text-muted-foreground">pour un total de {stat.total.toLocaleString('fr-FR', {style: 'currency', currency: 'EUR'})}</p>}
                         </CardContent>
                     </Card>
                 ))}

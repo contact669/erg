@@ -3,7 +3,7 @@
 
 import { useUser, useCollection, useMemoFirebase } from '@/firebase';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -26,10 +26,25 @@ function getStatusBadgeVariant(status: string) {
   }
 }
 
+function toDateSafe(value: any): Date | null {
+  if (value?.toDate && typeof value.toDate === 'function') return value.toDate();
+  if (value instanceof Date) return value;
+  if (typeof value === 'string' || typeof value === 'number') {
+      const d = new Date(value);
+      return isNaN(d.getTime()) ? null : d;
+  }
+  return null;
+}
+
 export default function DevisPage() {
   const { user, isUserLoading } = useUser();
   const router = useRouter();
   const firestore = useFirestore();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     if (!isUserLoading && !user) {
@@ -102,14 +117,16 @@ export default function DevisPage() {
                   </TableCell>
                 </TableRow>
               )}
-              {!isLoading && quotes && quotes.length === 0 && (
+              {isClient && !isLoading && quotes && quotes.length === 0 && (
                 <TableRow>
                   <TableCell colSpan={6} className="h-24 text-center">
                     Aucun devis trouvé. Créez-en un depuis une demande.
                   </TableCell>
                 </TableRow>
               )}
-              {!isLoading && quotes && quotes.map((item) => (
+              {isClient && !isLoading && quotes && quotes.map((item) => {
+                const createdAt = toDateSafe(item.createdAt);
+                return(
                 <TableRow key={item.id}>
                   <TableCell>
                     <div className="font-medium">{item.clientName}</div>
@@ -122,7 +139,7 @@ export default function DevisPage() {
                     </div>
                   </TableCell>
                   <TableCell className="hidden sm:table-cell">
-                    {item.createdAt ? format(item.createdAt.toDate(), "d MMMM yyyy", { locale: fr }) : '-'}
+                    {createdAt ? format(createdAt, "d MMMM yyyy", { locale: fr }) : '-'}
                   </TableCell>
                   <TableCell className="hidden md:table-cell text-right">
                     {item.total
@@ -155,7 +172,7 @@ export default function DevisPage() {
                     </DropdownMenu>
                   </TableCell>
                 </TableRow>
-              ))}
+              )})}
             </TableBody>
           </Table>
         </CardContent>

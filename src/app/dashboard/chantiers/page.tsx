@@ -3,7 +3,7 @@
 import { useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebase';
 import { collection, query, orderBy } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -27,6 +27,11 @@ export default function ChantiersPage() {
     const { user, isUserLoading } = useUser();
     const router = useRouter();
     const firestore = useFirestore();
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     useEffect(() => {
         if (!isUserLoading && !user) {
@@ -101,7 +106,7 @@ export default function ChantiersPage() {
                                     <TableCell colSpan={5} className="h-24 text-center">Chargement...</TableCell>
                                 </TableRow>
                             )}
-                            {chantiers && chantiers.map((chantier) => (
+                            {isClient && chantiers && chantiers.map((chantier) => (
                                 <TableRow key={chantier.id}>
                                     <TableCell>
                                         <div className="font-medium">{chantier.title}</div>
@@ -140,7 +145,7 @@ export default function ChantiersPage() {
                                     </TableCell>
                                 </TableRow>
                             ))}
-                             {!isLoading && !chantiers?.length && (
+                             {isClient && !isLoading && !chantiers?.length && (
                                 <TableRow>
                                     <TableCell colSpan={5} className="text-center h-24">Aucun chantier trouvé.</TableCell>
                                 </TableRow>
