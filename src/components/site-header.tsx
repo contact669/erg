@@ -34,12 +34,12 @@ function DynamicLogo() {
 
   if (!mounted) {
     // Affichez un placeholder ou rien pour éviter le flash de contenu et les erreurs d'hydratation
-    return <div className="h-8 w-8 rounded-lg bg-muted" />
+    return <div className="w-[250px] h-[143px] rounded-lg bg-muted" />
   }
 
   const src = resolvedTheme === "dark" ? "/images/logo-sombre.png" : "/images/logo-clair.png"
 
-  return <Image src={src} alt="ERG Rénovation Logo" width={32} height={32} className="h-8 w-8" unoptimized />
+  return <Image src={src} alt="ERG Rénovation Logo" width={250} height={143} unoptimized />
 }
 
 function isActiveLink(pathname: string, href: string) {
@@ -129,7 +129,7 @@ export default function SiteHeader() {
       )}
       role="banner"
     >
-      <div className="container flex h-20 items-center justify-between gap-3">
+      <div className="container flex h-auto items-center justify-between gap-3 py-2">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2" aria-label="Aller à l’accueil">
           <DynamicLogo />
