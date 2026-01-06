@@ -1,38 +1,6 @@
 import type { SVGProps } from "react"
 
 /**
- * Logo ERG — version plus “premium” :
- * - utilise uniquement currentColor (hérite du thème)
- * - 3 barres avec coins arrondis + espacements cohérents
- * - opacités via `fillOpacity` (pas de className tailwind sur <path> → plus fiable)
- */
-export function ErgLogo({
-  width = 24,
-  height = 24,
-  ...props
-}: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={width}
-      height={height}
-      viewBox="0 0 24 24"
-      role="img"
-      aria-label="ERG Rénovation"
-      fill="none"
-      {...props}
-    >
-      {/* Bar 1 */}
-      <rect x="4" y="4" width="16" height="4" rx="1.25" fill="currentColor" fillOpacity="0.55" />
-      {/* Bar 2 (signature) */}
-      <rect x="4" y="10" width="10.5" height="4" rx="1.25" fill="currentColor" fillOpacity="0.95" />
-      {/* Bar 3 (accent) */}
-      <rect x="4" y="16" width="16" height="4" rx="1.25" fill="currentColor" />
-    </svg>
-  )
-}
-
-/**
  * Google Icon — version “pro” :
  * - préfère une version monochrome (hérite du thème) pour UI (boutons, header, etc.)
  * - option `brand` pour la version couleurs Google si tu veux

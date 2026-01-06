@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X, Phone, LogIn, LayoutDashboard, ArrowRight } from "lucide-react"
 
@@ -17,11 +18,29 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 
-import { ErgLogo } from "@/components/icons"
 import { navItems, services } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import { useUser } from "@/firebase"
 import { ModeToggle } from "./mode-toggle"
+import { useTheme } from "next-themes"
+
+function DynamicLogo() {
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    // Affichez un placeholder ou rien pour éviter le flash de contenu et les erreurs d'hydratation
+    return <div className="h-8 w-8 rounded-lg bg-muted" />
+  }
+
+  const src = resolvedTheme === "dark" ? "/images/logo-sombre.png" : "/images/logo-clair.png"
+
+  return <Image src={src} alt="ERG Rénovation Logo" width={32} height={32} className="h-8 w-8" unoptimized />
+}
 
 function StyledLogo() {
   return (
@@ -123,7 +142,7 @@ export default function SiteHeader() {
       <div className="container flex h-20 items-center justify-between gap-3">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2" aria-label="Aller à l’accueil">
-          <ErgLogo className="h-8 w-8 text-primary" />
+          <DynamicLogo />
           <StyledLogo />
         </Link>
 
@@ -305,7 +324,7 @@ function MobileNav({
               onClick={() => setOpen(false)}
               aria-label="Retour à l’accueil"
             >
-              <ErgLogo className="h-8 w-8 text-primary" />
+              <DynamicLogo />
               <StyledLogo />
             </Link>
 

@@ -2,7 +2,9 @@
 
 import React, { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
 
 import {
   Tooltip,
@@ -29,7 +31,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { ErgLogo } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
@@ -62,6 +63,23 @@ const navItems = [
   { href: "/dashboard/clients", icon: Users, label: "Clients" },
 ];
 
+function DynamicLogo() {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <div className="h-8 w-8 rounded-lg bg-muted" />;
+  }
+
+  const src = resolvedTheme === "dark" ? "/images/logo-sombre.png" : "/images/logo-clair.png";
+
+  return <Image src={src} alt="ERG Rénovation Logo" width={32} height={32} className="h-8 w-8 text-background" unoptimized />;
+}
+
 function NavLink({
   href,
   icon: Icon,
@@ -72,7 +90,12 @@ function NavLink({
   label: string;
 }) {
   const pathname = usePathname();
-  const isActive = pathname === href;
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true)
+  }, []);
+  
+  const isActive = isClient && pathname === href;
 
   return (
     <Tooltip>
@@ -198,41 +221,47 @@ function UserProfileButton() {
     await auth.signOut();
     router.push("/");
   };
-
+  
   const userAvatar = PlaceHolderImages.find((p) => p.id === "founder-1");
-
+  
   if (isUserLoading) {
     return <Skeleton className="h-8 w-8 rounded-full" />;
   }
-
+  
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="rounded-full">
           <Avatar className="h-8 w-8">
-            {userAvatar && (
-              <AvatarImage
-                src={user?.photoURL || userAvatar.imageUrl}
-                alt={user?.displayName || "Avatar utilisateur"}
-              />
-            )}
+             {user && user.photoURL ? (
+                <AvatarImage
+                    src={user.photoURL}
+                    alt={user.displayName || "Avatar utilisateur"}
+                />
+            ) : userAvatar ? (
+                <AvatarImage
+                    src={userAvatar.imageUrl}
+                    alt={user?.displayName || "Avatar par défaut"}
+                />
+            ) : null}
             <AvatarFallback>{user?.email?.charAt(0).toUpperCase() || "U"}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-
-      <DropdownMenuContent align="end">
-        <DropdownMenuLabel>{user?.displayName || user?.email}</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
-          <Link href="/dashboard/profil">Profil</Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <Link href="/dashboard/parametres">Paramètres</Link>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleSignOut}>Déconnexion</DropdownMenuItem>
-      </DropdownMenuContent>
+      {user && (
+         <DropdownMenuContent align="end">
+            <DropdownMenuLabel>{user.displayName || user.email}</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/profil">Profil</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/parametres">Paramètres</Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={handleSignOut}>Déconnexion</DropdownMenuItem>
+          </DropdownMenuContent>
+      )}
     </DropdownMenu>
   );
 }
@@ -256,7 +285,7 @@ export default function DashboardSidebar() {
               href="/"
               className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
             >
-              <ErgLogo className="h-8 w-8 text-background" />
+              <DynamicLogo />
               <span className="sr-only">ERG</span>
             </Link>
 
@@ -298,7 +327,7 @@ export default function DashboardSidebar() {
                 href="/"
                 className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
               >
-                <ErgLogo className="h-8 w-8 text-background" />
+                <DynamicLogo />
                 <span className="sr-only">ERG</span>
               </Link>
 
