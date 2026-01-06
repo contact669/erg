@@ -32,16 +32,16 @@ function DynamicLogo() {
       <Image
         src="/images/logo-clair.png"
         alt="ERG Rénovation Logo"
-        width={250}
-        height={143}
+        width={131}
+        height={75}
         className="dark:hidden"
         unoptimized
       />
       <Image
         src="/images/logo-sombre.png"
         alt="ERG Rénovation Logo"
-        width={250}
-        height={143}
+        width={131}
+        height={75}
         className="hidden dark:block"
         unoptimized
       />
