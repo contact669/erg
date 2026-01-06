@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -22,24 +23,30 @@ import { navItems, services } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import { useUser } from "@/firebase"
 import { ModeToggle } from "./mode-toggle"
-import { useTheme } from "next-themes"
 
 function DynamicLogo() {
-  const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = React.useState(false)
-
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    // Affichez un placeholder ou rien pour éviter le flash de contenu et les erreurs d'hydratation
-    return <div className="w-[250px] h-[143px] rounded-lg bg-muted" />
-  }
-
-  const src = resolvedTheme === "dark" ? "/images/logo-sombre.png" : "/images/logo-clair.png"
-
-  return <Image src={src} alt="ERG Rénovation Logo" width={250} height={143} unoptimized />
+  // Affiche les deux images et utilise les classes dark: pour basculer.
+  // Cela garantit un HTML identique côté serveur et client, évitant l'hydratation.
+  return (
+    <>
+      <Image
+        src="/images/logo-clair.png"
+        alt="ERG Rénovation Logo"
+        width={250}
+        height={143}
+        className="dark:hidden"
+        unoptimized
+      />
+      <Image
+        src="/images/logo-sombre.png"
+        alt="ERG Rénovation Logo"
+        width={250}
+        height={143}
+        className="hidden dark:block"
+        unoptimized
+      />
+    </>
+  )
 }
 
 function isActiveLink(pathname: string, href: string) {

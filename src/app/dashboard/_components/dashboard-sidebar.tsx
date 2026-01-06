@@ -1,10 +1,10 @@
+
 'use client';
 
 import React, { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { useTheme } from "next-themes";
 
 import {
   Tooltip,
@@ -64,20 +64,12 @@ const navItems = [
 ];
 
 function DynamicLogo() {
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return <div className="h-8 w-8 rounded-lg bg-muted" />;
-  }
-
-  const src = resolvedTheme === "dark" ? "/images/logo-sombre.png" : "/images/logo-clair.png";
-
-  return <Image src={src} alt="ERG Rénovation Logo" width={32} height={32} className="h-8 w-8 text-background" unoptimized />;
+  return (
+    <>
+      <Image src="/images/logo-clair.png" alt="ERG Rénovation Logo" width={32} height={32} className="h-8 w-8 dark:hidden" unoptimized />
+      <Image src="/images/logo-sombre.png" alt="ERG Rénovation Logo" width={32} height={32} className="h-8 w-8 hidden dark:block" unoptimized />
+    </>
+  )
 }
 
 function NavLink({

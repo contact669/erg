@@ -1,3 +1,4 @@
+
 import Link from "next/link"
 import Image from "next/image"
 import { services, navItems } from "@/lib/data"
@@ -13,8 +14,6 @@ const EMAIL = "contact@erg-renovation.fr"
 const ADDRESS = "1 Sent. de la Pointe, 75020 Paris"
 
 function DynamicLogo() {
-  // Un simple conteneur pour deux images, une pour le mode clair, une pour le mode sombre.
-  // Le CSS gérera l'affichage via les classes "dark:hidden" et "hidden dark:block".
   return (
     <>
       <Image src="/images/logo-clair.png" alt="ERG Rénovation Logo" width={24} height={24} className="h-6 w-6 dark:hidden" unoptimized />
