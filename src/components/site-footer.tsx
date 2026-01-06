@@ -23,24 +23,6 @@ function DynamicLogo() {
   )
 }
 
-function StyledLogo({ className }: { className?: string }) {
-  return (
-    <span
-      className={cn(
-        "font-headline text-xl font-semibold tracking-wide text-primary md:text-2xl",
-        className
-      )}
-    >
-      <span className="tracking-widest">E</span>
-      <span className="relative mx-0.5 inline-block">
-        <span className="tracking-widest">R</span>
-        <span className="pointer-events-none absolute -bottom-1 left-0 right-0 h-[2px] rounded-full bg-accent" />
-      </span>
-      <span className="tracking-widest">G</span>
-    </span>
-  )
-}
-
 function resolveFooterHref(href: string) {
   if (href.startsWith("#")) return `/${href}`
   return href
@@ -100,7 +82,7 @@ export default function SiteFooter() {
                 <DynamicLogo />
               </span>
               <div className="leading-tight">
-                <StyledLogo />
+                <p className="font-headline font-semibold text-primary">ERG Rénovation</p>
                 <p className="mt-0.5 text-xs text-muted-foreground">Rénovation intérieure • Paris & IDF</p>
               </div>
             </Link>

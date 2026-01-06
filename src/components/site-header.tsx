@@ -42,16 +42,6 @@ function DynamicLogo() {
   return <Image src={src} alt="ERG Rénovation Logo" width={32} height={32} className="h-8 w-8" unoptimized />
 }
 
-function StyledLogo() {
-  return (
-    <span className="font-headline text-2xl font-bold tracking-wider text-primary">
-      <span className="tracking-widest">E</span>
-      <span className="underline decoration-accent decoration-2 underline-offset-4">R</span>
-      <span className="tracking-widest">G</span>
-    </span>
-  )
-}
-
 function isActiveLink(pathname: string, href: string) {
   if (href === "/") return pathname === "/"
   // ancres : on compare uniquement la page
@@ -143,7 +133,6 @@ export default function SiteHeader() {
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2" aria-label="Aller à l’accueil">
           <DynamicLogo />
-          <StyledLogo />
         </Link>
 
         {/* Desktop Nav */}
@@ -325,7 +314,6 @@ function MobileNav({
               aria-label="Retour à l’accueil"
             >
               <DynamicLogo />
-              <StyledLogo />
             </Link>
 
             <SheetTrigger asChild>
