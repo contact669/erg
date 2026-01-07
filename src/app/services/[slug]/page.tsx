@@ -625,7 +625,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                       ))}
                     </div>
 
-                    {kitchenImage && ["renovation-appartement", "renovation-maison", "renovation-cuisine"].includes(service.slug) ? (
+                    {kitchenImage && (
                       <div className="relative h-64 overflow-hidden rounded-lg md:h-auto">
                         <Image
                           src={kitchenImage.imageUrl}
@@ -636,7 +636,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                           sizes="(max-width: 1024px) 100vw, 50vw"
                         />
                       </div>
-                    ) : null}
+                    )}
 
                     <div className="space-y-6 md:col-span-2 grid gap-8 md:grid-cols-2">
                       {service.benefits?.slice(2).map((benefit) => (
@@ -715,24 +715,11 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                         {service.whyUs.map((item) => (
                           <Card
                             key={item.title}
-                            className={cn(
-                              ["renovation-salle-de-bain", "renovation-cuisine", "amenagement-combles", "peinture-finitions"].includes(
-                                service.slug
-                              )
-                                ? "bg-transparent shadow-none border-0"
-                                : "bg-secondary/50 border-0 shadow-none"
-                            )}
+                            className="bg-transparent shadow-none border-0"
                           >
                             <CardHeader className="flex flex-row items-center gap-4 p-4">
                               <div
-                                className={cn(
-                                  "flex h-10 w-10 shrink-0 items-center justify-center rounded-md",
-                                  ["renovation-salle-de-bain", "renovation-cuisine", "amenagement-combles", "peinture-finitions"].includes(
-                                    service.slug
-                                  )
-                                    ? "bg-primary/10 text-primary"
-                                    : "bg-background text-primary"
-                                )}
+                                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary"
                               >
                                 <item.icon className="h-5 w-5" />
                               </div>
@@ -748,7 +735,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                         ))}
                       </div>
 
-                      {finishImage && ["renovation-appartement", "renovation-maison", "peinture-finitions"].includes(service.slug) ? (
+                      {finishImage && (
                         <div className="relative h-80 w-full overflow-hidden rounded-lg md:h-full">
                           <Image
                             src={finishImage.imageUrl}
@@ -759,7 +746,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                             sizes="(max-width: 1024px) 100vw, 50vw"
                           />
                         </div>
-                      ) : null}
+                      )}
                     </div>
                   </section>
                 ) : null}

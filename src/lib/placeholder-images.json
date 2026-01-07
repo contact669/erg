@@ -9,25 +9,25 @@
     {
       "id": "project-kitchen-1",
       "description": "Cuisine moderne et épurée avec des meubles sombres et un plan de travail en marbre, après rénovation.",
-      "imageUrl": "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBraXRjaGVufGVufDB8fHx8MTc2MjY4NjQxMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/realisations/renovation-cuisine-apres.webp",
       "imageHint": "modern kitchen"
     },
     {
       "id": "project-kitchen-1-before",
       "description": "Ancienne cuisine datée avec des meubles en bois, avant rénovation complète.",
-      "imageUrl": "https://images.unsplash.com/photo-1717331822162-74e5af4d038?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxvbGQlMjBraXRjaGVufGVufDB8fHx8MTc2MjcxNDczNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/realisations/renovation-cuisine-avant.webp",
       "imageHint": "old kitchen"
     },
     {
       "id": "project-bathroom-1",
       "description": "Salle de bain élégante avec baignoire îlot et douche à l'italienne, après une rénovation de luxe.",
-      "imageUrl": "https://images.unsplash.com/photo-1750036015902-c6f5ebca924e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxlbGVnYW50JTIwYmF0aHJvb218ZW58MHx8fHwxNzYyNzY0NjcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/realisations/renovation-salle-de-bain-3m2-apres.webp",
       "imageHint": "elegant bathroom"
     },
     {
       "id": "project-bathroom-1-before",
       "description": "Salle de bain étroite et démodée avant sa transformation en espace de luxe.",
-      "imageUrl": "https://images.unsplash.com/photo-1686838606057-d7f2a8748e95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxvbGQlMjBiYXRocm9vbXxlbnwwfHx8fDE3NjI3NjQ2NzJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/realisations/renovation-salle-de-bain-3m2-avant.webp",
       "imageHint": "old bathroom"
     },
     {
@@ -93,49 +93,49 @@
     {
       "id": "project-studio-2",
       "description": "Studio élégamment rénové avec une mezzanine, après travaux.",
-      "imageUrl": "/images/renovation-studio.jpg",
+      "imageUrl": "/images/realisations/renovation-studio-apres.webp",
       "imageHint": "studio apartment"
     },
     {
       "id": "project-studio-2-before",
       "description": "Studio dans son état d'origine, non rénové, avant les travaux.",
-      "imageUrl": "https://images.unsplash.com/photo-1596424561088-26d21f8a8462?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZW1wdHklMjByb29tfGVufDB8fHx8MTc2MjczNTY3MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/realisations/renovation-studio-avant.webp",
       "imageHint": "empty room"
     },
     {
       "id": "project-apartment-2",
       "description": "Salon lumineux d'un appartement de 65m² après une rénovation complète par ERG Rénovation.",
-      "imageUrl": "/images/renovation-appartement-65-m2.jpg",
+      "imageUrl": "/images/realisations/renovation-appartement-65m2-apres.webp",
       "imageHint": "modern luxury room"
     },
     {
       "id": "project-apartment-2-before",
       "description": "Salon d'un appartement de 65m² avant sa rénovation complète.",
-      "imageUrl": "https://images.unsplash.com/photo-1554995207-c18c203602cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxlbXB0eSUyMHJvb218ZW58MHx8fHwxNzYyNzM1NjcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/realisations/renovation-appartement-65m2-avant.webp",
       "imageHint": "empty room"
     },
     {
       "id": "project-apartment-3",
       "description": "Le séjour d'un appartement parisien de 2 pièces après rénovation.",
-      "imageUrl": "/images/renovation-2-pieces-paris.jpg",
+      "imageUrl": "/images/realisations/renovation-2-pieces-apres.webp",
       "imageHint": "cozy apartment"
     },
     {
       "id": "project-apartment-3-before",
       "description": "Un appartement de 2 pièces avant sa rénovation complète.",
-      "imageUrl": "https://images.unsplash.com/photo-1596424561088-26d21f8a8462?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZW1wdHklMjByb29tfGVufDB8fHx8MTc2MjczNTY3MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/realisations/renovation-2-pieces-avant.webp",
       "imageHint": "empty room"
     },
     {
       "id": "project-house-1",
-      "description": "Extérieur d'une maison moderne à deux étages avec jardin, après rénovation.",
-      "imageUrl": "https://images.unsplash.com/photo-1628744448840-55bdb2497bd4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtb2Rlcm4lMjBob3VzZXxlbnwwfHx8fDE3NjI3MzI4MjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Intérieur d'une maison moderne à deux étages avec jardin, après rénovation.",
+      "imageUrl": "/images/realisations/renovation-maison-apres.webp",
       "imageHint": "modern house"
     },
     {
       "id": "project-house-1-before",
-      "description": "Extérieur d'une vieille maison de plain-pied avant une rénovation majeure et une extension.",
-      "imageUrl": "https://images.unsplash.com/photo-1532978870264-ef2ef1f49127?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxvbGQlMjBob3VzZXxlbnwwfHx8fDE3NjI3NDAzNTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Intérieur d'une vieille maison de plain-pied avant une rénovation majeure et une extension.",
+      "imageUrl": "/images/realisations/renovation-maison-avant.webp",
       "imageHint": "old house"
     },
     {
@@ -153,13 +153,13 @@
     {
       "id": "project-bathroom-2",
       "description": "Petite salle de bain sous les combles, élégante, avec une fenêtre de toit, après aménagement.",
-      "imageUrl": "https://images.unsplash.com/photo-1614349597059-fe6b86554980?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxhdHRpYyUyMGJhdGhyb29tfGVufDB8fHx8MTc2Mjc2NDY3MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/realisations/salle-d-eau-apres.webp",
       "imageHint": "attic bathroom"
     },
     {
       "id": "project-bathroom-2-before",
       "description": "Combles sombres et non aménagés avant leur transformation en salle de bain.",
-      "imageUrl": "https://images.unsplash.com/photo-1588066696414-113c404edfdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkYXJrJTIwYXR0aWN8ZW58MHx8fHwxNzYyNzY0NjcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/realisations/salle-d-eau-avant.webp",
       "imageHint": "dark attic"
     },
     {
@@ -177,7 +177,7 @@
     {
       "id": "service-bathroom",
       "description": "Salle de bain de luxe moderne avec une grande douche à l'italienne.",
-      "imageUrl": "https://images.unsplash.com/photo-1564540583246-934409427776?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bHV4dXJ5JTIwYmF0aHJvb218ZW58MHx8fHwxNzYyNzIwNzMyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/realisations/renovation-salle-de-bain-3m2-apres.webp",
       "imageHint": "luxury bathroom"
     },
     {
@@ -249,13 +249,13 @@
     {
       "id": "service-pillar-kitchen",
       "description": "Gros plan sur un îlot de cuisine moderne avec évier intégré et robinetterie design.",
-      "imageUrl": "/images/services/renovation-cuisine.jpg",
+      "imageUrl": "/images/renovation-appartement-cuisine.webp",
       "imageHint": "kitchen detail"
     },
     {
       "id": "service-pillar-finish",
       "description": "Détail d'un angle de mur parfaitement peint, montrant une finition de haute qualité.",
-      "imageUrl": "https://images.unsplash.com/photo-1568090819305-e7edcc3b264b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwYWludGVkJTIwd2FsbHxlbnwwfHx8fDE3NjI3NjQ2NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/renovation-appartement-cuisine.webp",
       "imageHint": "painted wall"
     },
     {
@@ -273,13 +273,13 @@
     {
       "id": "project-small-bathroom-before",
       "description": "Petite salle de bain démodée avant les travaux de rénovation.",
-      "imageUrl": "https://images.unsplash.com/photo-1579549355155-96c21b58532f?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageUrl": "/images/realisations/renovation-salle-de-bain-3m2-avant.webp",
       "imageHint": "old bathroom"
     },
     {
       "id": "project-small-bathroom-after",
       "description": "Petite salle de bain moderne et lumineuse après rénovation complète.",
-      "imageUrl": "/images/renovation-salle-de-bain-3m2.jpg",
+      "imageUrl": "/images/realisations/renovation-salle-de-bain-3m2-apres.webp",
       "imageHint": "modern bathroom"
     }
   ]
