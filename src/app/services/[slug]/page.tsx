@@ -456,9 +456,9 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
   const content = isPillarPage ? pageTitles[service.slug] : null
 
   const serviceImage = PlaceHolderImages.find((p) => p.id === service.heroImageId)
-
-  const kitchenImage = PlaceHolderImages.find((p) => p.id === "service-pillar-kitchen")
-  const finishImage = PlaceHolderImages.find((p) => p.id === "service-pillar-finish")
+  
+  const benefitImage = PlaceHolderImages.find((p) => p.id === service.benefitImageId);
+  const whyUsImage = PlaceHolderImages.find((p) => p.id === service.whyUsImageId);
 
   const relatedProjects = allProjects.filter((p) => service.relatedProjectSlugs?.includes(p.slug))
 
@@ -625,14 +625,14 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                       ))}
                     </div>
 
-                    {kitchenImage && (
+                    {benefitImage && (
                       <div className="relative h-64 overflow-hidden rounded-lg md:h-auto">
                         <Image
-                          src={kitchenImage.imageUrl}
-                          alt={safeText(kitchenImage.description ?? "Rénovation cuisine - exemple")}
+                          src={benefitImage.imageUrl}
+                          alt={safeText(benefitImage.description)}
                           fill
                           className="object-cover"
-                          data-ai-hint={kitchenImage.imageHint}
+                          data-ai-hint={benefitImage.imageHint}
                           sizes="(max-width: 1024px) 100vw, 50vw"
                         />
                       </div>
@@ -735,14 +735,14 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                         ))}
                       </div>
 
-                      {finishImage && (
+                      {whyUsImage && (
                         <div className="relative h-80 w-full overflow-hidden rounded-lg md:h-full">
                           <Image
-                            src={finishImage.imageUrl}
-                            alt={safeText(finishImage.description ?? "Finitions haut de gamme - exemple")}
+                            src={whyUsImage.imageUrl}
+                            alt={safeText(whyUsImage.description)}
                             fill
                             className="object-cover"
-                            data-ai-hint={finishImage.imageHint}
+                            data-ai-hint={whyUsImage.imageHint}
                             sizes="(max-width: 1024px) 100vw, 50vw"
                           />
                         </div>

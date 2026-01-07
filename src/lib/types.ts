@@ -13,6 +13,8 @@ export interface Service {
   description: string;
   icon: LucideIcon;
   heroImageId: string;
+  benefitImageId?: string;
+  whyUsImageId?: string;
   longDescription: string;
   benefits: {
     title: string;

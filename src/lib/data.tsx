@@ -46,6 +46,8 @@ export const services: Service[] = [
     description: 'Transformation complète ou partielle de votre appartement.',
     icon: Building,
     heroImageId: 'service-apartment',
+    benefitImageId: 'service-pillar-kitchen',
+    whyUsImageId: 'service-pillar-finish',
     longDescription: "Transformer un appartement parisien ou francilien en un lieu de vie exceptionnel exige une expertise de la structure, une gestion de projet rigoureuse et une passion pour les finitions parfaites. Nous gérons chaque détail de votre projet à Paris, dans les Hauts-de-Seine (92), la Seine-Saint-Denis (93), le Val-de-Marne (94) et les Yvelines (78).",
     benefits: [
       {
@@ -101,6 +103,8 @@ export const services: Service[] = [
     description: 'Rénovation intérieure et extérieure pour votre maison.',
     icon: Home,
     heroImageId: 'service-house',
+    benefitImageId: 'project-house-1',
+    whyUsImageId: 'project-bathroom-1',
     longDescription: "Votre maison est un projet de vie. Nous vous accompagnons pour la rénover, l'agrandir et la transformer en l'espace dont vous avez toujours rêvé. Qu'il s'agisse de moderniser une bâtisse ancienne dans les Yvelines, d'agrandir un pavillon dans les Hauts-de-Seine ou de réhabiliter une maison de ville à Paris, ERG Rénovation est votre maître d'œuvre unique pour un projet géré avec excellence.",
     benefits: [
       {
@@ -155,6 +159,8 @@ export const services: Service[] = [
     description: 'Création de salles de bain modernes et fonctionnelles.',
     icon: Bath,
     heroImageId: 'service-bathroom',
+    benefitImageId: 'project-bathroom-1',
+    whyUsImageId: 'project-small-bathroom-after',
     longDescription: "Plus qu'une simple pièce d'eau, votre salle de bain est un sanctuaire. La transformer en un espace de détente digne d'un spa, tout en optimisant chaque mètre carré, est un art qui exige une précision technique absolue. ERG Rénovation est le spécialiste de la conception et de la rénovation de salles de bain haut de gamme à Paris et en Île-de-France (75, 92, 93, 94, 78), garantissant des finitions parfaites et une étanchéité irréprochable.",
     benefits: [
       {
@@ -206,6 +212,8 @@ export const services: Service[] = [
     description: 'Conception et installation de cuisines sur mesure.',
     icon: CookingPot,
     heroImageId: 'service-kitchen',
+    benefitImageId: 'project-kitchen-1',
+    whyUsImageId: 'service-pillar-kitchen',
     longDescription: "La cuisine n'est plus seulement un lieu de préparation, c'est le cœur battant de votre intérieur. Sa rénovation est un projet complexe qui touche à tous les corps de métier : plomberie, électricité, plâtrerie, et agencement de précision. ERG Rénovation orchestre votre projet de A à Z, de la conception de votre cuisine sur mesure à l'installation impeccable, à Paris et en Île-de-France (75, 92, 93, 94, 78).",
     benefits: [
       {
@@ -254,6 +262,8 @@ export const services: Service[] = [
     description: "Transformez un espace perdu en une pièce de vie lumineuse.",
     icon: Hammer,
     heroImageId: 'service-attic',
+    benefitImageId: 'service-attic',
+    whyUsImageId: 'project-bathroom-2',
     longDescription: "Et si vous aviez un étage en plus ? L'aménagement de combles est la solution la plus intelligente pour augmenter votre surface habitable sans déménager. C'est cependant l'un des projets de rénovation les plus techniques. ERG Rénovation est votre expert en transformation de combles à Paris et en Île-de-France (75, 78, 92, 93, 94), maîtrisant l'isolation, la structure et la création d'espaces de vie exceptionnels sous les toits.",
      benefits: [
       {
@@ -302,6 +312,8 @@ export const services: Service[] = [
     description: 'La touche finale qui sublime vos murs et vos espaces.',
     icon: Paintbrush,
     heroImageId: 'service-painting',
+    benefitImageId: 'service-painting',
+    whyUsImageId: 'service-pillar-finish',
     longDescription: "Le succès d'une rénovation se juge à la perfection de ses finitions. Une peinture ou un revêtement mural impeccablement posé est la touche finale qui confère à votre intérieur son caractère \"très très haut de gamme\". Chez ERG Rénovation, nos peintres décorateurs sont des compagnons, garants d'une préparation minutieuse des supports et d'un résultat sans défaut à Paris, dans les Hauts-de-Seine, les Yvelines, et toute l'Île-de-France.",
     benefits: [
       {
