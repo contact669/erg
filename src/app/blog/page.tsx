@@ -57,11 +57,13 @@ export default function BlogPage() {
                       />
                     </div>
                     <div className="flex flex-col p-6 lg:col-span-2 lg:p-8">
-                      <div className="flex flex-wrap gap-2">
-                        {featuredPost.tags.map(tag => (
-                          <Badge key={tag} variant="secondary">{tag}</Badge>
-                        ))}
-                      </div>
+                      {featuredPost.tags && featuredPost.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {featuredPost.tags.map(tag => (
+                            <Badge key={tag} variant="secondary">{tag}</Badge>
+                          ))}
+                        </div>
+                      )}
                       <h2 className="mt-4 font-headline text-2xl font-bold lg:text-3xl">
                         {featuredPost.title}
                       </h2>
@@ -101,13 +103,15 @@ export default function BlogPage() {
                                 )}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                 <div className="absolute bottom-4 left-4">
-                                     <div className="flex flex-wrap gap-2">
-                                        {post.tags.map(tag => (
-                                            <Badge key={tag} variant="secondary" className="bg-white/20 text-white border-none text-xs">
-                                                {tag}
-                                            </Badge>
-                                        ))}
-                                     </div>
+                                     {post.tags && post.tags.length > 0 && (
+                                       <div className="flex flex-wrap gap-2">
+                                          {post.tags.map(tag => (
+                                              <Badge key={tag} variant="secondary" className="bg-white/20 text-white border-none text-xs">
+                                                  {tag}
+                                              </Badge>
+                                          ))}
+                                       </div>
+                                     )}
                                 </div>
                             </div>
                             <CardContent className="p-6">

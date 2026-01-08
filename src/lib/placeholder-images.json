@@ -231,7 +231,7 @@
     {
       "id": "blog-post-2",
       "description": "Portrait d'un artisan professionnel et souriant dans son atelier.",
-      "imageUrl": "https://images.unsplash.com/photo-1703420371268-85d78cfdc5cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxhcnRpc2FuJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYyNzA4NzgwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/artisans-erg-renovation.webp",
       "imageHint": "artisan portrait"
     },
     {
