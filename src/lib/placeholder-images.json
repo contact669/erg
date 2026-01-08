@@ -225,7 +225,7 @@
     {
       "id": "blog-post-1",
       "description": "Intérieur d'un appartement parisien élégant avec moulures classiques et mobilier moderne.",
-      "imageUrl": "https://images.unsplash.com/photo-1565602089768-d76fddb36623?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxQYXJpc2lhbiUyMGFwYXJ0bWVudHxlbnwwfHx8fDE3NjI3NjQ2NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/interieur-appartement-parisien.webp",
       "imageHint": "Parisian apartment"
     },
     {
@@ -237,13 +237,13 @@
     {
       "id": "blog-image-verriere",
       "description": "Verrière d'atelier séparant un espace sans perte de luminosité dans un appartement rénové.",
-      "imageUrl": "https://images.unsplash.com/photo-1635540636082-68876a5345f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxnbGFzcyUyMHBhcnRpdGlvbnxlbnwwfHx8fDE3NjI3NjQ2NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/verriere-atelier-paris.webp",
       "imageHint": "glass partition"
     },
     {
       "id": "blog-image-parquet",
       "description": "Parquet en point de Hongrie apportant chaleur et élégance à un salon parisien.",
-      "imageUrl": "https://images.unsplash.com/photo-1630180021706-47eed0b51e1b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxoZXJyaW5nYm9uZSUyMGZsb29yfGVufDB8fHx8MTc2Mjc2NDY3Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/parquet-luxe-appartement.webp",
       "imageHint": "herringbone floor"
     },
     {

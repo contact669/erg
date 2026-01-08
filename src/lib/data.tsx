@@ -1,4 +1,5 @@
 
+
 import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage } from './types';
 import {
   Home,
@@ -378,7 +379,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">Un savoir-faire adapté au prestige de Neuilly-sur-Seine</h2>
+        <h2 id="savoir-faire-neuilly">Un savoir-faire adapté au prestige de Neuilly-sur-Seine</h2>
         <p>Notre expérience à Neuilly-sur-Seine nous permet de maîtriser les spécificités locales : respect des architectures (Art Déco, modernes...), collaboration avec les syndics de copropriété exigeants et mise en œuvre de matériaux nobles. Nous ne rénovons pas seulement un appartement, nous valorisons votre patrimoine.</p>
         <div className="mt-8 space-y-4">
           <div className="flex items-start gap-4">
@@ -422,7 +423,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">Notre Expertise pour Votre Appartement dans le 92</h2>
+        <h2 id="expertise-92">Notre Expertise pour Votre Appartement dans le 92</h2>
         <p>Que vous souhaitiez ouvrir l'espace, réhabiliter des volumes anciens ou créer une suite parentale, nous gérons l'intégralité des travaux (TCE).</p>
         <div className="mt-8 space-y-6">
             <div className="flex items-start gap-4">
@@ -447,7 +448,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
                 </div>
             </div>
         </div>
-        <h2 className="font-headline text-3xl font-bold mt-12">Les Villes du 92 où Nous Intervenons Prioritairement</h2>
+        <h2 id="villes-92">Les Villes du 92 où Nous Intervenons Prioritairement</h2>
         <p className="mt-4">Notre expérience s'étend sur l'ensemble des Hauts-de-Seine, avec une forte concentration de projets d'exception dans les secteurs suivants :</p>
       </>
     ),
@@ -484,7 +485,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">Notre Expertise Spécifique en Milieu Parisien</h2>
+        <h2 id="expertise-paris">Notre Expertise Spécifique en Milieu Parisien</h2>
         <p>Travailler à Paris demande une approche méthodologique pour transformer les contraintes en opportunités, notamment en matière de luminosité et d'espace.</p>
         <div className="mt-8 space-y-6">
             <div className="flex items-start gap-4">
@@ -509,7 +510,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
                 </div>
             </div>
         </div>
-        <h2 className="font-headline text-3xl font-bold mt-12">Nos Zones d'Intervention : Les Arrondissements Parisiens Ciblés</h2>
+        <h2 id="zones-paris">Nos Zones d'Intervention : Les Arrondissements Parisiens Ciblés</h2>
         <p className="mt-4">Notre savoir-faire s'exprime dans les adresses les plus prestigieuses. Nous avons une connaissance approfondie des immeubles et des règlements de copropriété des arrondissements suivants :</p>
       </>
     ),
@@ -545,7 +546,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">Notre Savoir-Faire : Optimisation et Esthétique dans le 94</h2>
+        <h2 id="savoir-faire-94">Notre Savoir-Faire : Optimisation et Esthétique dans le 94</h2>
         <p>Dans le Val-de-Marne, nos projets sont souvent axés sur la création de pièces à vivre harmonieuses et l'augmentation du confort.</p>
         <div className="mt-8 space-y-6">
             <div className="flex items-start gap-4">
@@ -570,7 +571,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
                 </div>
             </div>
         </div>
-        <h2 className="font-headline text-3xl font-bold mt-12">Les Villes du Val-de-Marne où Nous Intervenons</h2>
+        <h2 id="villes-94">Les Villes du Val-de-Marne où Nous Intervenons</h2>
         <p className="mt-4">Nous sommes le partenaire privilégié des propriétaires exigeants dans les communes du 94, particulièrement :</p>
       </>
     ),
@@ -607,7 +608,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">Notre Savoir-Faire en Transformation et Réhabilitation (93)</h2>
+        <h2 id="savoir-faire-93">Notre Savoir-Faire en Transformation et Réhabilitation (93)</h2>
         <p>Le 93 demande de l'audace technique et une vision pour transformer l'existant. Nos services sont conçus pour relever ces défis.</p>
         <div className="mt-8 space-y-6">
             <div className="flex items-start gap-4">
@@ -632,7 +633,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
                 </div>
             </div>
         </div>
-        <h2 className="font-headline text-3xl font-bold mt-12">Les Villes de Seine-Saint-Denis où Nous Intervenons</h2>
+        <h2 id="villes-93">Les Villes de Seine-Saint-Denis où Nous Intervenons</h2>
         <p className="mt-4">Nous ciblons les zones à forte valeur ajoutée et les projets d'exception dans le 93 :</p>
       </>
     ),
@@ -667,7 +668,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">Notre Savoir-Faire : Quand le Luxe Rencontre la Fonctionnalité</h2>
+        <h2 id="savoir-faire-78">Notre Savoir-Faire : Quand le Luxe Rencontre la Fonctionnalité</h2>
         <p>Nos services sont conçus pour répondre aux besoins spécifiques des propriétaires d'appartements de prestige dans le 78 : confort, discrétion, et haute qualité des matériaux.</p>
         <div className="mt-8 space-y-6">
             <div className="flex items-start gap-4">
@@ -692,7 +693,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
                 </div>
             </div>
         </div>
-        <h2 className="font-headline text-3xl font-bold mt-12">Les Villes des Yvelines où Nous Intervenons Prioritairement</h2>
+        <h2 id="villes-78">Les Villes des Yvelines où Nous Intervenons Prioritairement</h2>
         <p className="mt-4">Nous mettons notre expertise au service des projets les plus exigeants dans les communes suivantes :</p>
       </>
     ),
@@ -728,7 +729,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">Notre Expertise pour les Spécificités de Boulogne-Billancourt</h2>
+        <h2 id="savoir-faire-boulogne">Notre Expertise pour les Spécificités de Boulogne-Billancourt</h2>
         <p>Que vous soyez près de la Place Marcel Sembat ou dans les nouveaux quartiers du Pont de Sèvres, notre savoir-faire s'adapte à votre bien.</p>
         <div className="mt-8 space-y-6">
           <div className="flex items-start gap-4">
@@ -753,7 +754,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
               </div>
           </div>
         </div>
-        <h2 className="font-headline text-3xl font-bold mt-12">Nos Réalisations et Secteurs d'Intervention à Boulogne</h2>
+        <h2 id="secteurs-boulogne">Nos Réalisations et Secteurs d'Intervention à Boulogne</h2>
         <p className="mt-4">Nous sommes actifs dans tous les secteurs de Boulogne, avec une expertise reconnue dans : Centre-Ville / Rives de Seine, Quartiers Rives de Seine / Trapèze, et Point du Jour / Les Princes.</p>
       </>
     ),
@@ -781,7 +782,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">Notre Savoir-Faire : Intégration Esthétique et Confort à Saint-Cloud</h2>
+        <h2 id="savoir-faire-saint-cloud">Notre Savoir-Faire : Intégration Esthétique et Confort à Saint-Cloud</h2>
         <p>Nos services sont orientés vers la valorisation de l'espace, la durabilité et l'harmonisation de votre intérieur avec le standing de Saint-Cloud.</p>
         <div className="mt-8 space-y-6">
             <div className="flex items-start gap-4">
@@ -806,7 +807,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
                 </div>
             </div>
         </div>
-        <h2 className="font-headline text-3xl font-bold mt-12">L'Exigence ERG Rénovation : Un Partenaire de Confiance à Saint-Cloud</h2>
+        <h2 id="exigence-saint-cloud">L'Exigence ERG Rénovation : Un Partenaire de Confiance à Saint-Cloud</h2>
         <p className="mt-4">Nos équipes sont habituées aux contraintes des résidences haut de gamme clodoaldiennes, assurant une intervention sans perturbation :</p>
       </>
     ),
@@ -834,7 +835,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">Nos Compétences : Créer des Espaces de Vie Optimaux à Garches</h2>
+        <h2 id="competences-garches">Nos Compétences : Créer des Espaces de Vie Optimaux à Garches</h2>
         <p>Dans le 92380, la qualité de vie passe par des finitions irréprochables et des solutions techniques invisibles qui assurent un confort absolu.</p>
         <div className="mt-8 space-y-6">
             <div className="flex items-start gap-4">
@@ -859,7 +860,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
                 </div>
             </div>
         </div>
-        <h2 className="font-headline text-3xl font-bold mt-12">L'Exigence ERG Rénovation pour Votre Sérénité à Garches</h2>
+        <h2 id="exigence-garches">L'Exigence ERG Rénovation pour Votre Sérénité à Garches</h2>
         <p className="mt-4">Notre méthodologie est adaptée aux exigences des propriétaires de Garches. Nos équipes sont formées au respect des protocoles stricts de chantier :</p>
       </>
     ),
@@ -887,7 +888,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">Un savoir-faire dédié aux appartements de Vincennes</h2>
+        <h2 id="savoir-faire-vincennes">Un savoir-faire dédié aux appartements de Vincennes</h2>
         <p>Nos interventions à Vincennes se concentrent sur la création d'intérieurs à la fois esthétiques, fonctionnels et respectueux de l'architecture locale.</p>
         <div className="mt-8 space-y-4">
           <div className="flex items-start gap-4">
@@ -931,7 +932,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">L'Excellence pour votre bien à Saint-Mandé</h2>
+        <h2 id="excellence-saint-mande">L'Excellence pour votre bien à Saint-Mandé</h2>
         <p>La proximité avec le bois de Vincennes et le standing des immeubles de Saint-Mandé appellent à des rénovations qui privilégient la lumière et la qualité des matériaux.</p>
         <div className="mt-8 space-y-4">
           <div className="flex items-start gap-4">
@@ -975,7 +976,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">Une approche sur-mesure pour votre bien à Nogent</h2>
+        <h2 id="approche-nogent">Une approche sur-mesure pour votre bien à Nogent</h2>
         <p>Nous adaptons nos compétences à la typologie de votre bien, qu'il s'agisse d'un appartement en résidence ou d'une maison individuelle.</p>
         <div className="mt-8 space-y-4">
           <div className="flex items-start gap-4">
@@ -1019,7 +1020,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">Votre projet de rénovation au Perreux-sur-Marne</h2>
+        <h2 id="projet-le-perreux">Votre projet de rénovation au Perreux-sur-Marne</h2>
         <p>Nous mettons un point d'honneur à réaliser des projets qui améliorent durablement votre quotidien.</p>
         <div className="mt-8 space-y-4">
           <div className="flex items-start gap-4">
@@ -1063,7 +1064,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">Notre expertise pour les biens de caractère à Saint-Maur</h2>
+        <h2 id="expertise-saint-maur">Notre expertise pour les biens de caractère à Saint-Maur</h2>
         <p>Nous comprenons les enjeux de la rénovation à Saint-Maur : préserver le cachet tout en intégrant un confort moderne.</p>
         <div className="mt-8 space-y-4">
           <div className="flex items-start gap-4">
@@ -1107,7 +1108,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">Des solutions modernes pour votre appartement à Créteil</h2>
+        <h2 id="solutions-creteil">Des solutions modernes pour votre appartement à Créteil</h2>
         <p>Nous vous accompagnons pour transformer votre appartement en un lieu de vie qui vous ressemble, alliant esthétique contemporaine et confort.</p>
         <div className="mt-8 space-y-4">
           <div className="flex items-start gap-4">
@@ -1151,7 +1152,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     ],
     mainContent: (
       <>
-        <h2 className="font-headline text-3xl font-bold">Un partenaire unique pour votre projet à Maisons-Alfort</h2>
+        <h2 id="partenaire-maisons-alfort">Un partenaire unique pour votre projet à Maisons-Alfort</h2>
         <p>Confiez-nous votre projet de rénovation et bénéficiez d'un accompagnement complet et professionnel.</p>
         <div className="mt-8 space-y-4">
           <div className="flex items-start gap-4">
@@ -1200,7 +1201,7 @@ const renovationMaisonPages: LocalLandingPage[] = [
         ],
         mainContent: (
             <>
-                <h2 className="font-headline text-3xl font-bold">Un savoir-faire d'exception pour les maisons de Versailles</h2>
+                <h2 id="savoir-faire-versailles">Un savoir-faire d'exception pour les maisons de Versailles</h2>
                 <p>Notre intervention allie techniques traditionnelles et innovations pour un confort moderne dans un écrin d'histoire.</p>
                 <div className="mt-8 space-y-4">
                     <div className="flex items-start gap-4">
@@ -1249,7 +1250,7 @@ const renovationSalleDeBainPages: LocalLandingPage[] = [
         ],
         mainContent: (
             <>
-                <h2 className="font-headline text-3xl font-bold">Des prestations haut de gamme pour votre salle de bain à Paris 16</h2>
+                <h2 id="prestations-luxe-paris-16">Des prestations haut de gamme pour votre salle de bain à Paris 16</h2>
                 <p>Nous transformons votre salle de bain en un espace d'exception, digne des plus grands hôtels.</p>
                 <div className="mt-8 space-y-4">
                     <div className="flex items-start gap-4">
@@ -1724,6 +1725,18 @@ export const blogPosts: BlogPost[] = [
     author: 'A. AIT',
     featuredImageId: 'blog-post-1',
     tags: ['Rénovation', 'Appartement', 'Conseils'],
+    toc: [
+      { id: 'optimiser-metre-carre', title: 'Optimisez chaque mètre carré', level: 'h2' },
+      { id: 'lumiere-fil-conducteur', title: 'Faites de la lumière votre fil conducteur', level: 'h2' },
+      { id: 'sublimer-ancien', title: 'Respectez et sublimez l’âme de l’ancien', level: 'h2' },
+      { id: 'anticiper-copropriete', title: 'Anticipez les règles de copropriété', level: 'h2' },
+      { id: 'isolation-performante', title: 'Investissez dans une isolation performante', level: 'h2' },
+      { id: 'rangements-integres', title: 'Privilégiez les rangements intégrés', level: 'h2' },
+      { id: 'materiaux-durables', title: 'Choisissez des matériaux durables', level: 'h2' },
+      { id: 'soigner-entree', title: 'Soignez l’entrée', level: 'h2' },
+      { id: 'interlocuteur-unique', title: 'Confiez votre projet à un interlocuteur unique', level: 'h2' },
+      { id: 'budget-realiste', title: 'Définissez un budget réaliste', level: 'h2' },
+    ],
     content: (() => {
       const verriereImage = PlaceHolderImages.find(p => p.id === 'blog-image-verriere');
       const parquetImage = PlaceHolderImages.find(p => p.id === 'blog-image-parquet');
@@ -1736,7 +1749,7 @@ export const blogPosts: BlogPost[] = [
           <p>Rénover un appartement à Paris est un exercice d’équilibriste. Entre les surfaces souvent réduites, les contraintes de copropriété, les normes techniques exigeantes et le respect du cachet de l’ancien, chaque décision compte. Une rénovation réussie ne se limite pas à l’esthétique : elle doit améliorer le confort, valoriser le bien et anticiper les usages de demain.</p>
           <p>Chez ERG Rénovation, nous accompagnons depuis des années des propriétaires parisiens dans des projets exigeants — du simple rafraîchissement à la rénovation complète tous corps d’état. Forts de cette expérience, nous partageons ici 10 astuces concrètes et éprouvées pour transformer votre appartement parisien en un espace fonctionnel, lumineux et durable.</p>
           
-          <h2>1. Optimisez chaque mètre carré (penser volume avant surface)</h2>
+          <h2 id="optimiser-metre-carre">1. Optimisez chaque mètre carré (penser volume avant surface)</h2>
           <p>Dans un appartement parisien, chaque centimètre a de la valeur. L’optimisation ne consiste pas seulement à « gagner de la place », mais à mieux exploiter les volumes.</p>
           <ul>
             <li><strong>Verticalité :</strong> rangements toute hauteur, bibliothèques intégrées, placards sur mesure jusqu’au plafond.</li>
@@ -1751,7 +1764,7 @@ export const blogPosts: BlogPost[] = [
             </div>
           )}
 
-          <h2>2. Faites de la lumière votre fil conducteur</h2>
+          <h2 id="lumiere-fil-conducteur">2. Faites de la lumière votre fil conducteur</h2>
           <p>À Paris, la lumière est précieuse. La rénovation doit la capter, la diffuser et la mettre en scène.</p>
           <ul>
             <li>Décloisonner quand c’est possible (et autorisé) pour favoriser les perspectives.</li>
@@ -1761,7 +1774,7 @@ export const blogPosts: BlogPost[] = [
           </ul>
           <p>Un plan lumière bien pensé transforme radicalement la perception d’un espace, surtout dans les appartements orientés nord ou en étage bas.</p>
 
-          <h2>3. Respectez et sublimez l’âme de l’ancien</h2>
+          <h2 id="sublimer-ancien">3. Respectez et sublimez l’âme de l’ancien</h2>
           <p>Le charme de l’ancien est l’une des grandes richesses du parc immobilier parisien. Le secret ? Ne pas l’effacer, mais le révéler.</p>
           <ul>
               <li>Parquet en point de Hongrie ou à bâtons rompus</li>
@@ -1776,7 +1789,7 @@ export const blogPosts: BlogPost[] = [
             </div>
           )}
 
-          <h2>4. Anticipez les règles de copropriété (et gagnez du temps)</h2>
+          <h2 id="anticiper-copropriete">4. Anticipez les règles de copropriété (et gagnez du temps)</h2>
           <p>C’est l’un des pièges les plus fréquents. À Paris, la copropriété est un acteur clé du projet.</p>
           <p>Sont généralement soumis à autorisation :</p>
           <ul>
@@ -1786,7 +1799,7 @@ export const blogPosts: BlogPost[] = [
           </ul>
           <p>Un dossier solide (plans, notes techniques, assurances) préparé par des professionnels accélère l’accord et évite les refus. Anticiper ces démarches permet aussi de sécuriser le planning et le budget.</p>
 
-          <h2>5. Investissez dans une isolation performante (confort et économies)</h2>
+          <h2 id="isolation-performante">5. Investissez dans une isolation performante (confort et économies)</h2>
           <p>Bruit de la rue, voisins proches, déperditions thermiques… Une rénovation réussie à Paris passe par une isolation de qualité.</p>
           <ul>
             <li><strong>Isolation phonique :</strong> doublage de murs, sous-couches acoustiques, portes isophoniques.</li>
@@ -1801,7 +1814,7 @@ export const blogPosts: BlogPost[] = [
             </div>
           )}
 
-          <h2>6. Privilégiez les rangements intégrés sur mesure</h2>
+          <h2 id="rangements-integres">6. Privilégiez les rangements intégrés sur mesure</h2>
           <p>Les rangements standards atteignent vite leurs limites dans un appartement parisien aux murs irréguliers.</p>
           <p>Les solutions sur mesure permettent :</p>
           <ul>
@@ -1811,7 +1824,7 @@ export const blogPosts: BlogPost[] = [
           </ul>
           <p>Placards invisibles, dressings intégrés, bibliothèques murales : un intérieur ordonné paraît toujours plus grand.</p>
           
-          <h2>7. Choisissez des matériaux durables et adaptés à la vie urbaine</h2>
+          <h2 id="materiaux-durables">7. Choisissez des matériaux durables et adaptés à la vie urbaine</h2>
           <p>À Paris, un logement est intensément utilisé. Les matériaux doivent être beaux, résistants et réparables.</p>
           <ul>
             <li>Parquet massif (ponçable et durable)</li>
@@ -1827,7 +1840,7 @@ export const blogPosts: BlogPost[] = [
             </div>
           )}
 
-          <h2>8. Soignez l’entrée, véritable carte de visite</h2>
+          <h2 id="soigner-entree">8. Soignez l’entrée, véritable carte de visite</h2>
           <p>Souvent négligée, l’entrée conditionne la première impression.</p>
           <ul>
             <li>Rangements pour manteaux et chaussures</li>
@@ -1837,7 +1850,7 @@ export const blogPosts: BlogPost[] = [
           </ul>
           <p>Une entrée bien pensée crée une transition fluide vers les espaces de vie et améliore le quotidien.</p>
 
-          <h2>9. Confiez votre projet à un interlocuteur unique</h2>
+          <h2 id="interlocuteur-unique">9. Confiez votre projet à un interlocuteur unique</h2>
           <p>La coordination des corps de métier est l’un des aspects les plus complexes d’une rénovation : électricien, plombier, carreleur, peintre…</p>
           <p>Faire appel à une entreprise tous corps d’état vous assure :</p>
           <ul>
@@ -1854,7 +1867,7 @@ export const blogPosts: BlogPost[] = [
             </div>
           )}
 
-          <h2>10. Définissez un budget réaliste (et prévoyez une marge)</h2>
+          <h2 id="budget-realiste">10. Définissez un budget réaliste (et prévoyez une marge)</h2>
           <p>À Paris, les imprévus sont fréquents : murs anciens, réseaux vétustes, surprises structurelles.</p>
           <p>Nos recommandations :</p>
           <ul>
@@ -1865,7 +1878,6 @@ export const blogPosts: BlogPost[] = [
           <p>Cette approche vous permet de terminer votre projet sans stress et sans compromis de dernière minute.</p>
           
           <h3>Pourquoi rénover à Paris est aussi un excellent investissement</h3>
-          <p>Au-delà du confort, une rénovation bien menée :</p>
           <ul>
             <li>Augmente la valeur patrimoniale du bien</li>
             <li>Améliore le classement énergétique</li>
@@ -1876,7 +1888,7 @@ export const blogPosts: BlogPost[] = [
           
           <h3>En conclusion</h3>
           <p>Rénover un appartement parisien est un projet ambitieux qui demande expertise, anticipation et précision. En suivant ces 10 astuces, vous posez les bases d’un projet réussi, durable et valorisant.</p>
-          <p>👉 <strong>Vous avez un projet de rénovation à Paris ou en petite couronne ?</strong> <a href="/devis">Contactez ERG Rénovation pour une étude personnalisée, un accompagnement sur mesure et un devis clair, adapté à vos besoins et à votre budget.</a></p>
+          <p>👉 <strong>Vous avez un projet de rénovation à Paris ou en petite couronne ?</strong> <Link href="/devis">Contactez ERG Rénovation pour une étude personnalisée, un accompagnement sur mesure et un devis clair, adapté à vos besoins et à votre budget.</Link></p>
         </>
       )
     })()

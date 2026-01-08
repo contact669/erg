@@ -1,3 +1,4 @@
+
 import type { LucideIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 
@@ -104,6 +105,12 @@ export interface ProcessStep {
   description:string;
 }
 
+export interface TocSection {
+  id: string;
+  title: string;
+  level: 'h2' | 'h3';
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -113,4 +120,5 @@ export interface BlogPost {
   featuredImageId: string;
   tags: string[];
   content: ReactNode;
+  toc?: TocSection[];
 }

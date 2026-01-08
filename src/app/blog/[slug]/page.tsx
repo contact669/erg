@@ -1,4 +1,5 @@
 
+
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -15,6 +16,7 @@ import { ArrowRight, Calendar, User, Award } from 'lucide-react';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import Breadcrumbs from '@/components/breadcrumbs';
+import TableOfContents from '@/components/table-of-contents';
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -77,16 +79,16 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
         {/* Post Content */}
         <div className="container py-16 md:py-24">
-            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-16">
+            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-4 lg:gap-16">
                 {/* Main Content */}
-                <div className="lg:col-span-2">
+                <div className="lg:col-span-3">
                     <div className="prose max-w-none text-foreground prose-headings:font-headline prose-headings:text-primary prose-a:text-accent prose-strong:text-foreground">
                        {post.content}
                     </div>
                 </div>
 
                 {/* Sidebar */}
-                <aside className="space-y-8">
+                <aside className="space-y-8 lg:sticky lg:top-28 h-fit">
                      <Card className="bg-secondary text-center">
                         <CardHeader>
                             <div className="flex justify-center">
@@ -103,6 +105,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                             <p className="text-sm text-muted-foreground">Expert en rénovation et co-fondateur d'ERG Rénovation, {post.author} partage son expérience pour vous aider à réussir vos projets.</p>
                         </CardContent>
                     </Card>
+
+                    {post.toc && post.toc.length > 0 && (
+                      <TableOfContents sections={post.toc} />
+                    )}
 
                     <Card>
                         <CardHeader>
