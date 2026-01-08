@@ -200,26 +200,26 @@
     },
     {
       "id": "about-hero",
-      "description": "Équipe d'artisans collaborant sur un plan sur un site de construction.",
-      "imageUrl": "https://images.unsplash.com/photo-1516216628859-9bccecab13ca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb25zdHJ1Y3Rpb24lMjB0ZWFtfGVufDB8fHx8MTc2MjY3OTM4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Équipe de ERG Rénovation, artisans professionnels.",
+      "imageUrl": "/images/equipe-erg-renovation.webp",
       "imageHint": "construction team"
     },
     {
       "id": "about-story",
-      "description": "Deux artisans discutant de plans sur un établi en bois dans un atelier.",
-      "imageUrl": "https://images.unsplash.com/photo-1707064892275-a3088e8240be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjcmFmdHNtZW4lMjB3b3JraW5nfGVufDB8fHx8MTc2Mjc2NDY3MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Une des plus belles réalisations des artisans de ERG .",
+      "imageUrl": "/images/realisations-erg.webp",
       "imageHint": "craftsmen working"
     },
     {
       "id": "founder-1",
       "description": "Portrait d'un chef de chantier confiant, la quarantaine.",
-      "imageUrl": "https://images.unsplash.com/photo-1542183669-c4c74d629b34?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtYWxlJTIwcHJvZmVzc2lvbmFsfGVufDB8fHx8MTc2MjY5MjY2Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/images/fondateur-erg.webp",
       "imageHint": "male professional"
     },
     {
       "id": "founder-2",
-      "description": "Portrait d'un architecte souriant, fin de trentaine.",
-      "imageUrl": "https://images.unsplash.com/photo-1532466177299-457c33feb232?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtYWxlJTIwYXJjaGl0ZWN0fGVufDB8fHx8MTc2Mjc2NDY3Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Portrait d'un artisan souriant, fin de trentaine.",
+      "imageUrl": "/images/co-fondateur-erg.webp",
       "imageHint": "male architect"
     },
     {

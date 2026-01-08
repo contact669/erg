@@ -982,7 +982,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
             <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
             <div>
               <h3 className="font-headline font-semibold text-lg">Rénovation énergétique</h3>
-              <p className="text-muted-foreground">Améliorez le confort et la valeur de votre bien grâce à nos solutions d'isolation et de systèmes de chauffage performants.</p>
+              <p className="text-muted-foreground">Nous vous proposons des solutions d'isolation et de chauffage performants pour améliorer votre confort et réduire vos factures d'énergie.</p>
             </div>
           </div>
           <div className="flex items-start gap-4">
@@ -1718,7 +1718,7 @@ export const processSteps: ProcessStep[] = [
 export const blogPosts: BlogPost[] = [
   {
     slug: '10-astuces-renovation-appartement-parisien',
-    title: '10 Astuces pour Réussir la Rénovation de votre Appartement Parisien',
+    title: '10 astuces expertes pour réussir la rénovation de votre appartement parisien',
     description: 'Découvrez nos conseils d’experts pour naviguer les défis uniques de la rénovation à Paris, de l’optimisation de l’espace à la gestion de la copropriété.',
     date: '2025-11-08',
     author: 'A. AIT',
@@ -1727,68 +1727,156 @@ export const blogPosts: BlogPost[] = [
     content: (() => {
       const verriereImage = PlaceHolderImages.find(p => p.id === 'blog-image-verriere');
       const parquetImage = PlaceHolderImages.find(p => p.id === 'blog-image-parquet');
+      const cuisineImage = PlaceHolderImages.find(p => p.id === 'project-kitchen-1');
+      const sdbImage = PlaceHolderImages.find(p => p.id === 'project-small-bathroom-after');
+      const finitionImage = PlaceHolderImages.find(p => p.id === 'service-pillar-finish');
 
       return (
         <>
-          <p>Rénover un appartement à Paris présente des défis uniques : <strong>espaces contraints</strong>, <strong>réglementations de copropriété strictes</strong>, et le charme de l'ancien à préserver. Chez ERG Rénovation, nous avons l'habitude de jongler avec ces contraintes pour créer des intérieurs modernes et fonctionnels. Voici nos 10 astuces clés pour garantir le succès de votre projet.</p>
+          <p>Rénover un appartement à Paris est un exercice d’équilibriste. Entre les surfaces souvent réduites, les contraintes de copropriété, les normes techniques exigeantes et le respect du cachet de l’ancien, chaque décision compte. Une rénovation réussie ne se limite pas à l’esthétique : elle doit améliorer le confort, valoriser le bien et anticiper les usages de demain.</p>
+          <p>Chez ERG Rénovation, nous accompagnons depuis des années des propriétaires parisiens dans des projets exigeants — du simple rafraîchissement à la rénovation complète tous corps d’état. Forts de cette expérience, nous partageons ici 10 astuces concrètes et éprouvées pour transformer votre appartement parisien en un espace fonctionnel, lumineux et durable.</p>
           
-          <h2>1. Optimisez chaque mètre carré</h2>
-          <p>Dans les appartements parisiens, chaque centimètre compte. Pensez "verticalité" avec des <strong>rangements toute hauteur</strong>, et "multifonctionnalité" avec du mobilier modulable. Une verrière d'atelier peut délimiter un espace sans bloquer la lumière, une solution idéale pour créer un coin bureau ou une chambre d'appoint.</p>
+          <h2>1. Optimisez chaque mètre carré (penser volume avant surface)</h2>
+          <p>Dans un appartement parisien, chaque centimètre a de la valeur. L’optimisation ne consiste pas seulement à « gagner de la place », mais à mieux exploiter les volumes.</p>
+          <ul>
+            <li><strong>Verticalité :</strong> rangements toute hauteur, bibliothèques intégrées, placards sur mesure jusqu’au plafond.</li>
+            <li><strong>Multifonction :</strong> canapé convertible de qualité, table escamotable, lit avec tiroirs.</li>
+            <li><strong>Cloisons intelligentes :</strong> verrières d’atelier, claustras ou portes coulissantes qui structurent sans assombrir.</li>
+          </ul>
+          <p>Une verrière permet par exemple de créer un coin bureau ou une chambre d’appoint, tout en conservant la lumière naturelle — un atout majeur dans les appartements traversants ou en second jour.</p>
           
           {verriereImage && (
             <div className="my-8 overflow-hidden rounded-lg">
-              <Image 
-                src={verriereImage.imageUrl} 
-                alt={verriereImage.description} 
-                width={800}
-                height={500}
-                className="w-full h-auto object-cover"
-                data-ai-hint={verriereImage.imageHint} 
-              />
+              <Image src={verriereImage.imageUrl} alt={verriereImage.description} width={800} height={500} className="w-full h-auto object-cover" data-ai-hint={verriereImage.imageHint} />
             </div>
           )}
 
-          <h2>2. La lumière, votre meilleure alliée</h2>
-          <p>Favorisez la lumière naturelle en décloisonnant lorsque c'est possible. Utilisez des <strong>couleurs claires</strong> sur les murs et des <strong>miroirs stratégiquement placés</strong> pour agrandir visuellement l'espace et réfléchir la lumière. Un bon plan d'éclairage artificiel, avec plusieurs sources (directes et indirectes), est également crucial.</p>
-          
-          <h2>3. Respectez l'âme du lieu</h2>
-          <p><strong>Parquet en point de Hongrie</strong>, <strong>moulures</strong>, <strong>cheminées en marbre</strong>... L'ancien a un charme fou. Plutôt que de tout cacher, restaurez et mettez en valeur ces éléments. Ils peuvent être magnifiquement contrastés avec des éléments de design contemporain pour un style "parisien chic" très recherché.</p>
+          <h2>2. Faites de la lumière votre fil conducteur</h2>
+          <p>À Paris, la lumière est précieuse. La rénovation doit la capter, la diffuser et la mettre en scène.</p>
+          <ul>
+            <li>Décloisonner quand c’est possible (et autorisé) pour favoriser les perspectives.</li>
+            <li>Couleurs claires sur murs et plafonds pour réfléchir la lumière.</li>
+            <li>Miroirs stratégiques pour amplifier les volumes.</li>
+            <li>Éclairage en strates : plafonnier, appliques, lampes indirectes, LED sous meubles.</li>
+          </ul>
+          <p>Un plan lumière bien pensé transforme radicalement la perception d’un espace, surtout dans les appartements orientés nord ou en étage bas.</p>
+
+          <h2>3. Respectez et sublimez l’âme de l’ancien</h2>
+          <p>Le charme de l’ancien est l’une des grandes richesses du parc immobilier parisien. Le secret ? Ne pas l’effacer, mais le révéler.</p>
+          <ul>
+              <li>Parquet en point de Hongrie ou à bâtons rompus</li>
+              <li>Moulures, rosaces, corniches</li>
+              <li>Cheminées en marbre ou en pierre</li>
+          </ul>
+          <p>Ces éléments peuvent être restaurés et mis en valeur par un contraste contemporain : cuisine design, verrière noire, mobilier épuré. Le résultat ? Un style « parisien chic » intemporel et très recherché.</p>
 
           {parquetImage && (
             <div className="my-8 overflow-hidden rounded-lg">
-              <Image 
-                src={parquetImage.imageUrl} 
-                alt={parquetImage.description} 
-                width={800}
-                height={500}
-                className="w-full h-auto object-cover"
-                data-ai-hint={parquetImage.imageHint} 
-              />
+              <Image src={parquetImage.imageUrl} alt={parquetImage.description} width={800} height={500} className="w-full h-auto object-cover" data-ai-hint={parquetImage.imageHint} />
             </div>
           )}
 
-          <h2>4. Anticipez les démarches de copropriété</h2>
-          <p>Ne sous-estimez pas les délais administratifs. Toute modification des murs porteurs, des fenêtres ou des parties communes nécessite l'accord de la copropriété. Présentez un <strong>dossier solide</strong>, préparé par des professionnels, pour mettre toutes les chances de votre côté.</p>
+          <h2>4. Anticipez les règles de copropriété (et gagnez du temps)</h2>
+          <p>C’est l’un des pièges les plus fréquents. À Paris, la copropriété est un acteur clé du projet.</p>
+          <p>Sont généralement soumis à autorisation :</p>
+          <ul>
+            <li>Modification d’un mur porteur</li>
+            <li>Changement de fenêtres</li>
+            <li>Intervention sur gaines ou parties communes</li>
+          </ul>
+          <p>Un dossier solide (plans, notes techniques, assurances) préparé par des professionnels accélère l’accord et évite les refus. Anticiper ces démarches permet aussi de sécuriser le planning et le budget.</p>
+
+          <h2>5. Investissez dans une isolation performante (confort et économies)</h2>
+          <p>Bruit de la rue, voisins proches, déperditions thermiques… Une rénovation réussie à Paris passe par une isolation de qualité.</p>
+          <ul>
+            <li><strong>Isolation phonique :</strong> doublage de murs, sous-couches acoustiques, portes isophoniques.</li>
+            <li><strong>Isolation thermique :</strong> amélioration du confort hiver/été et réduction des factures.</li>
+            <li><strong>Menuiseries performantes :</strong> double ou triple vitrage selon l’exposition.</li>
+          </ul>
+          <p>C’est un investissement invisible mais essentiel, qui augmente immédiatement la qualité de vie et la valeur du bien.</p>
           
-          <h2>5. Isolez, isolez, isolez !</h2>
-          <p>L'<strong>isolation phonique et thermique</strong> est un investissement essentiel pour le confort. Contre les bruits de la rue et des voisins, des solutions efficaces existent (doublage des murs, fenêtres à double vitrage performant). Une bonne isolation thermique vous fera également faire des économies d'énergie substantielles.</p>
+          {cuisineImage && (
+            <div className="my-8 overflow-hidden rounded-lg">
+              <Image src={cuisineImage.imageUrl} alt={cuisineImage.description} width={800} height={500} className="w-full h-auto object-cover" data-ai-hint={cuisineImage.imageHint} />
+            </div>
+          )}
+
+          <h2>6. Privilégiez les rangements intégrés sur mesure</h2>
+          <p>Les rangements standards atteignent vite leurs limites dans un appartement parisien aux murs irréguliers.</p>
+          <p>Les solutions sur mesure permettent :</p>
+          <ul>
+            <li>D’exploiter les recoins, niches et sous-pentes</li>
+            <li>De maintenir une harmonie visuelle</li>
+            <li>De libérer l’espace au sol</li>
+          </ul>
+          <p>Placards invisibles, dressings intégrés, bibliothèques murales : un intérieur ordonné paraît toujours plus grand.</p>
           
-          <h2>6. Pensez aux rangements intégrés</h2>
-          <p>Les <strong>rangements sur-mesure</strong> sont la clé d'un intérieur parisien réussi. Ils s'adaptent aux recoins, optimisent les volumes et se fondent dans le décor pour une sensation d'espace et d'ordre. Découvrez nos solutions d'<a href="/services/renovation-appartement">aménagement intérieur</a>.</p>
+          <h2>7. Choisissez des matériaux durables et adaptés à la vie urbaine</h2>
+          <p>À Paris, un logement est intensément utilisé. Les matériaux doivent être beaux, résistants et réparables.</p>
+          <ul>
+            <li>Parquet massif (ponçable et durable)</li>
+            <li>Carrelage grand format dans les zones humides</li>
+            <li>Peintures lessivables et écoresponsables</li>
+            <li>Robinetterie et équipements de qualité professionnelle</li>
+          </ul>
+          <p>Un bon matériau coûte parfois plus cher à l’achat, mais moins sur la durée.</p>
           
-          <h2>7. Choisissez des matériaux durables et adaptés</h2>
-          <p>Un parquet massif sera plus résistant et pourra être rénové plusieurs fois. Dans la salle de bain, privilégiez des matériaux résistants à l'humidité. Nos artisans sauront vous conseiller les meilleurs choix en fonction de votre budget et de votre style de vie.</p>
+          {sdbImage && (
+            <div className="my-8 overflow-hidden rounded-lg">
+              <Image src={sdbImage.imageUrl} alt={sdbImage.description} width={800} height={500} className="w-full h-auto object-cover" data-ai-hint={sdbImage.imageHint} />
+            </div>
+          )}
+
+          <h2>8. Soignez l’entrée, véritable carte de visite</h2>
+          <p>Souvent négligée, l’entrée conditionne la première impression.</p>
+          <ul>
+            <li>Rangements pour manteaux et chaussures</li>
+            <li>Miroir pour agrandir visuellement</li>
+            <li>Éclairage chaleureux</li>
+            <li>Banc ou console fonctionnelle</li>
+          </ul>
+          <p>Une entrée bien pensée crée une transition fluide vers les espaces de vie et améliore le quotidien.</p>
+
+          <h2>9. Confiez votre projet à un interlocuteur unique</h2>
+          <p>La coordination des corps de métier est l’un des aspects les plus complexes d’une rénovation : électricien, plombier, carreleur, peintre…</p>
+          <p>Faire appel à une entreprise tous corps d’état vous assure :</p>
+          <ul>
+            <li>Un chef de projet dédié</li>
+            <li>Un planning maîtrisé</li>
+            <li>Une responsabilité claire</li>
+            <li>Une exécution cohérente</li>
+          </ul>
+          <p>C’est la clé d’une rénovation sereine, fluide et sans mauvaises surprises.</p>
           
-          <h2>8. Ne négligez pas l'entrée</h2>
-          <p>L'entrée donne la première impression. Elle doit être à la fois fonctionnelle et accueillante. Pensez à un petit meuble, un miroir et un éclairage soigné pour créer une transition élégante vers le reste de l'appartement.</p>
+          {finitionImage && (
+            <div className="my-8 overflow-hidden rounded-lg">
+              <Image src={finitionImage.imageUrl} alt={finitionImage.description} width={800} height={500} className="w-full h-auto object-cover" data-ai-hint={finitionImage.imageHint} />
+            </div>
+          )}
+
+          <h2>10. Définissez un budget réaliste (et prévoyez une marge)</h2>
+          <p>À Paris, les imprévus sont fréquents : murs anciens, réseaux vétustes, surprises structurelles.</p>
+          <p>Nos recommandations :</p>
+          <ul>
+            <li>Un devis détaillé poste par poste</li>
+            <li>Une marge de sécurité de 10 à 15 %</li>
+            <li>Des arbitrages clairs entre priorités et options</li>
+          </ul>
+          <p>Cette approche vous permet de terminer votre projet sans stress et sans compromis de dernière minute.</p>
           
-          <h2>9. Un chef de projet unique pour votre tranquillité</h2>
-          <p>Coordonner les différents corps de métier (plombier, électricien, peintre...) peut vite devenir un casse-tête. Faire appel à une entreprise de rénovation tous corps d'état comme ERG Rénovation vous garantit un interlocuteur unique et une gestion de projet fluide.</p>
+          <h3>Pourquoi rénover à Paris est aussi un excellent investissement</h3>
+          <p>Au-delà du confort, une rénovation bien menée :</p>
+          <ul>
+            <li>Augmente la valeur patrimoniale du bien</li>
+            <li>Améliore le classement énergétique</li>
+            <li>Facilite la revente ou la mise en location</li>
+            <li>Répond aux nouvelles attentes des acquéreurs</li>
+          </ul>
+          <p>Dans un marché parisien exigeant, la qualité de la rénovation fait souvent la différence.</p>
           
-          <h2>10. Définissez un budget réaliste et prévoyez une marge</h2>
-          <p>Un projet de rénovation réserve souvent des surprises. Nous vous aidons à établir un devis détaillé, mais il est toujours prudent de prévoir une <strong>marge de 10 à 15%</strong> pour les imprévus. Cette précaution vous permettra de mener votre projet à terme en toute sérénité.</p>
-          
-          <p>Prêt à vous lancer ? <a href="/devis"><strong>Contactez-nous pour une étude personnalisée de votre projet.</strong></a></p>
+          <h3>En conclusion</h3>
+          <p>Rénover un appartement parisien est un projet ambitieux qui demande expertise, anticipation et précision. En suivant ces 10 astuces, vous posez les bases d’un projet réussi, durable et valorisant.</p>
+          <p>👉 <strong>Vous avez un projet de rénovation à Paris ou en petite couronne ?</strong> <a href="/devis">Contactez ERG Rénovation pour une étude personnalisée, un accompagnement sur mesure et un devis clair, adapté à vos besoins et à votre budget.</a></p>
         </>
       )
     })()
