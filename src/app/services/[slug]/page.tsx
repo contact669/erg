@@ -834,7 +834,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                     <CardDescription>Pour compléter votre projet.</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-2">
+                    <ul className="space-y-1">
                       {services
                         .filter((s) => s.slug !== service.slug)
                         .slice(0, 4)
@@ -843,11 +843,11 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                             <Button
                               variant="ghost"
                               asChild
-                              className="w-full justify-start text-muted-foreground hover:text-accent"
+                              className="w-full justify-start text-muted-foreground h-auto py-2 hover:bg-accent hover:text-accent-foreground"
                             >
-                              <Link href={`/services/${otherService.slug}`}>
-                                <otherService.icon className="mr-3 h-4 w-4" />
-                                {otherService.title}
+                              <Link href={`/services/${otherService.slug}`} className="flex items-start">
+                                <otherService.icon className="mr-3 h-4 w-4 mt-1 flex-shrink-0" />
+                                <span className="flex-1 text-left whitespace-normal">{otherService.title}</span>
                               </Link>
                             </Button>
                           </li>
