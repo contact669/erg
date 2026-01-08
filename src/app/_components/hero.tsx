@@ -105,7 +105,8 @@ export default function Hero() {
               id="hero-title"
               className="mt-6 font-headline text-4xl font-bold leading-[1.08] tracking-tight md:text-5xl lg:text-6xl"
             >
-              Entreprise de rénovation à Paris{' '}
+              Entreprise de rénovation à Paris
+              <br />
               <span className="text-primary-foreground/95">
                 Appartements & salles de bain clé en main
               </span>
