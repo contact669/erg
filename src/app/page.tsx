@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next"
 import Script from "next/script"
 import Link from "next/link"
@@ -186,49 +187,6 @@ export default function Home() {
           <GoogleReviews />
         </AnimatedSection>
 
-        {/* CTA “premium” + double action */}
-        <AnimatedSection>
-          <section className="border-t bg-secondary/40">
-            <div className="container py-14">
-              <div className="mx-auto max-w-4xl rounded-2xl border bg-background p-8 md:p-10">
-                <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-                  <div className="space-y-2">
-                    <p className="inline-flex items-center gap-2 text-sm text-muted-foreground">
-                      <Sparkles className="h-4 w-4 text-accent" />
-                      Devis détaillé • Visite sur site • Finitions soignées
-                    </p>
-                    <h2 className="font-headline text-2xl font-bold md:text-3xl">
-                      Parlons de votre projet (Paris & Île-de-France)
-                    </h2>
-                    <p className="text-muted-foreground">
-                      Dites-nous vos objectifs, contraintes et délais : nous vous répondons avec une estimation claire et des
-                      options de finition.
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col gap-3 sm:flex-row md:justify-end">
-                    <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                      <Link href="/devis">
-                        Demander un devis <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                    <Button asChild size="lg" variant="outline">
-                      <a href={`tel:${PHONE}`} aria-label="Appeler ERG Rénovation">
-                        <Phone className="mr-2 h-4 w-4" />
-                        Appeler
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-
-                <p className="mt-4 text-xs text-muted-foreground">
-                  {SERVICE_AREAS.join(" • ")} • Intervention rapide • Coordination tous corps d’état
-                </p>
-              </div>
-            </div>
-          </section>
-        </AnimatedSection>
-
         <AnimatedSection>
           <CtaBanner />
         </AnimatedSection>
@@ -240,12 +198,11 @@ export default function Home() {
               {/* Col texte */}
               <div className="lg:col-span-7">
                 <h2 id="seo-home-title" className="font-headline text-2xl font-bold tracking-tight md:text-3xl">
-                  Entreprise de rénovation à ${CITY} : un chantier maîtrisé, du premier rendez-vous aux finitions
+                  Entreprise de rénovation à Paris : un chantier maîtrisé, du premier rendez-vous aux finitions
                 </h2>
 
                 <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-                  Chez <strong className="text-foreground">${SITE_NAME}</strong>, nous rénovons des intérieurs à ${CITY} et en{" "}
-                  ${REGION} avec une exigence simple : <strong className="text-foreground">livrer propre</strong>,{" "}
+                  Chez ERG Rénovation, nous rénovons des intérieurs à Paris et en Île-de-France avec une exigence simple : <strong className="text-foreground">livrer propre</strong>,{" "}
                   <strong className="text-foreground">dans les règles</strong>, et{" "}
                   <strong className="text-foreground">sans zones floues</strong>.
                   L’objectif n’est pas seulement “beau” : c’est <strong className="text-foreground">durable</strong>,{" "}
@@ -277,7 +234,7 @@ export default function Home() {
                 <div className="mt-6 flex flex-wrap gap-2 text-xs text-muted-foreground">
                   <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1">
                     <MapPin className="h-3.5 w-3.5 text-accent" />
-                    ${SERVICE_AREAS.join(" • ")}
+                    {SERVICE_AREAS.join(" • ")}
                   </span>
                   <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1">
                     <CheckCircle2 className="h-3.5 w-3.5 text-accent" />
