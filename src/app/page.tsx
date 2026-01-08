@@ -240,12 +240,12 @@ export default function Home() {
               {/* Col texte */}
               <div className="lg:col-span-7">
                 <h2 id="seo-home-title" className="font-headline text-2xl font-bold tracking-tight md:text-3xl">
-                  Entreprise de rénovation à {CITY} : un chantier maîtrisé, du premier rendez-vous aux finitions
+                  Entreprise de rénovation à ${CITY} : un chantier maîtrisé, du premier rendez-vous aux finitions
                 </h2>
 
                 <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-                  Chez <strong className="text-foreground">{SITE_NAME}</strong>, nous rénovons des intérieurs à {CITY} et en{" "}
-                  {REGION} avec une exigence simple : <strong className="text-foreground">livrer propre</strong>,{" "}
+                  Chez <strong className="text-foreground">${SITE_NAME}</strong>, nous rénovons des intérieurs à ${CITY} et en{" "}
+                  ${REGION} avec une exigence simple : <strong className="text-foreground">livrer propre</strong>,{" "}
                   <strong className="text-foreground">dans les règles</strong>, et{" "}
                   <strong className="text-foreground">sans zones floues</strong>.
                   L’objectif n’est pas seulement “beau” : c’est <strong className="text-foreground">durable</strong>,{" "}
@@ -277,7 +277,7 @@ export default function Home() {
                 <div className="mt-6 flex flex-wrap gap-2 text-xs text-muted-foreground">
                   <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1">
                     <MapPin className="h-3.5 w-3.5 text-accent" />
-                    {SERVICE_AREAS.join(" • ")}
+                    ${SERVICE_AREAS.join(" • ")}
                   </span>
                   <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1">
                     <CheckCircle2 className="h-3.5 w-3.5 text-accent" />
