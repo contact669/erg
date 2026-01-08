@@ -17,6 +17,7 @@ import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import Breadcrumbs from '@/components/breadcrumbs';
 import TableOfContents from '@/components/table-of-contents';
+import { cn } from '@/lib/utils';
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({
@@ -115,17 +116,20 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                             <CardTitle className="font-headline">Nos services</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <ul className="space-y-2">
+                            <ul className="space-y-1">
                             {services
                                 .slice(0, 5)
                                 .map(service => (
                                 <li key={service.slug}>
-                                    <Button variant="ghost" asChild className="w-full justify-start text-muted-foreground hover:text-accent">
-                                    <Link href={`/services/${service.slug}`}>
-                                        <service.icon className="mr-3 h-4 w-4" />
-                                        {service.title}
+                                    <Link
+                                      href={`/services/${service.slug}`}
+                                      className={cn(
+                                        "flex items-start gap-3 rounded-md p-2 text-sm text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                      )}
+                                    >
+                                      <service.icon className="mt-1 h-4 w-4 shrink-0" />
+                                      <span className="flex-1 whitespace-normal">{service.title}</span>
                                     </Link>
-                                    </Button>
                                 </li>
                                 ))}
                             </ul>
