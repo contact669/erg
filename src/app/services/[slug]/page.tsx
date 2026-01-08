@@ -1,3 +1,4 @@
+
 import { notFound } from "next/navigation"
 import type { Metadata, ResolvingMetadata } from "next"
 import Script from "next/script"
@@ -840,10 +841,10 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                         .slice(0, 4)
                         .map((otherService) => (
                           <li key={otherService.slug}>
-                            <Link href={`/services/${otherService.slug}`}
+                            <Link
+                              href={`/services/${otherService.slug}`}
                               className={cn(
-                                "flex items-start gap-3 rounded-md p-2 text-sm text-muted-foreground",
-                                "transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                "flex items-start gap-3 rounded-md p-2 text-sm text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                               )}
                             >
                               <otherService.icon className="mt-1 h-4 w-4 shrink-0" />
