@@ -114,7 +114,7 @@ export default function Hero() {
 
             {/* Sous-texte : plus clean, moins listé */}
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/85 md:text-xl">
-              Rénovation intérieure à Paris 20 et en Île-de-France : conception, coordination, exécution.
+              Rénovation intérieure à Paris et en Île-de-France : conception, coordination, exécution.
               Un suivi de chantier structuré, des finitions soignées, un devis détaillé.
             </p>
 
