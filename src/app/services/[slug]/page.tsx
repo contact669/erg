@@ -840,16 +840,15 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                         .slice(0, 4)
                         .map((otherService) => (
                           <li key={otherService.slug}>
-                            <Button
-                              variant="ghost"
-                              asChild
-                              className="w-full justify-start text-muted-foreground h-auto py-2 hover:bg-accent hover:text-accent-foreground"
+                            <Link href={`/services/${otherService.slug}`}
+                              className={cn(
+                                "flex items-start gap-3 rounded-md p-2 text-sm text-muted-foreground",
+                                "transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                              )}
                             >
-                              <Link href={`/services/${otherService.slug}`} className="flex items-start">
-                                <otherService.icon className="mr-3 h-4 w-4 mt-1 flex-shrink-0" />
-                                <span className="flex-1 text-left whitespace-normal">{otherService.title}</span>
-                              </Link>
-                            </Button>
+                              <otherService.icon className="mt-1 h-4 w-4 shrink-0" />
+                              <span className="flex-1 whitespace-normal">{otherService.title}</span>
+                            </Link>
                           </li>
                         ))}
                     </ul>
