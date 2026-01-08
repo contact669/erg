@@ -88,27 +88,32 @@
     background: hsl(var(--muted-foreground));
   }
   
-  p, .prose p {
-    @apply leading-relaxed;
-  }
-
   .prose {
     @apply text-foreground;
   }
   .prose h1 {
-    @apply text-4xl font-bold;
+    @apply mb-6 mt-8 text-4xl font-bold;
   }
   .prose h2 {
-    @apply text-3xl font-semibold;
+    @apply mb-4 mt-10 text-3xl font-semibold;
   }
   .prose h3 {
-    @apply text-2xl font-semibold;
+    @apply mb-4 mt-8 text-2xl font-semibold;
   }
   .prose h4 {
-    @apply text-xl font-semibold;
+    @apply mb-3 mt-6 text-xl font-semibold;
   }
   .prose p {
-    @apply my-6;
+    @apply my-5 leading-relaxed;
+  }
+  .prose ul {
+    @apply my-5 ml-6 list-disc;
+  }
+  .prose ol {
+    @apply my-5 ml-6 list-decimal;
+  }
+  .prose li {
+    @apply my-2;
   }
   .prose a {
     @apply text-accent;
@@ -117,14 +122,9 @@
     @apply text-foreground;
   }
   .prose blockquote {
-    @apply border-l-accent;
+    @apply my-6 border-l-4 border-accent pl-4 italic;
   }
-  .prose ul > li::before {
-    @apply bg-accent;
-  }
-  .prose p {
-    @apply leading-relaxed;
-    margin-top: 1.5em;
-    margin-bottom: 1.5em;
+  .prose ul > li::marker {
+    @apply text-accent;
   }
 }
