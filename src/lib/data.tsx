@@ -17,7 +17,7 @@ import {
   Layers,
   Milestone,
   ShieldCheck,
-  Thermometer,
+  ThermometerSun,
   CheckCircle,
   Wrench,
   Scaling,
@@ -293,7 +293,7 @@ export const services: Service[] = [
     whyUs: [
         { title: "Étude de Structure", description: "Avant tout projet, nous vérifions la capacité portante du plancher et l'état de la charpente. Nous travaillons avec des bureaux d'études structure si nécessaire.", icon: Layers },
         { title: "Gestion Administrative (Permis)", description: "Nous prenons en charge le montage et le dépôt de votre dossier : Déclaration Préalable de Travaux ou Permis de Construire.", icon: FileOutput },
-        { title: 'Confort Thermique Garanti', description: "Notre priorité absolue est d'éviter l'effet \"fournaise\" en été. Nous soignons l'isolation et la ventilation (VMC) pour un espace habitable toute l'année.", icon: Thermometer }
+        { title: 'Confort Thermique Garanti', description: "Notre priorité absolue est d'éviter l'effet \"fournaise\" en été. Nous soignons l'isolation et la ventilation (VMC) pour un espace habitable toute l'année.", icon: ThermometerSun }
     ],
     zones: {
         description: "Nous intervenons sur l'aménagement de combles des maisons dans les Yvelines (78), les Hauts-de-Seine (92), le Val-de-Marne (94) et la Seine-Saint-Denis (93).",
@@ -1718,6 +1718,95 @@ export const processSteps: ProcessStep[] = [
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: 'reussir-renovation-salle-de-bain-paris',
+    title: 'Réussir la rénovation de votre salle de bain à Paris',
+    description: 'Guide complet, erreurs à éviter et conseils d’experts pour transformer votre salle de bain en un espace de confort et de valeur.',
+    date: '2025-10-25',
+    author: 'K. AIT',
+    featuredImageId: 'service-bathroom',
+    tags: ['Salle de bain', 'Rénovation', 'Paris', 'Guide'],
+    toc: [
+      { id: 'pourquoi-renover', title: 'Pourquoi rénover sa salle de bain à Paris ?', level: 'h2' },
+      { id: 'specificites-parisiennes', title: 'Les spécificités d’une salle de bain parisienne', level: 'h2' },
+      { id: 'etape-1-projet', title: 'Étape 1 : Définir un projet clair et réaliste', level: 'h2' },
+      { id: 'etape-2-agencement', title: 'Étape 2 : Optimiser l’agencement', level: 'h2' },
+      { id: 'etape-3-materiaux', title: 'Étape 3 : Choisir des matériaux adaptés', level: 'h2' },
+      { id: 'etape-4-technique', title: 'Étape 4 : Plomberie et électricité', level: 'h2' },
+      { id: 'etape-5-ventilation', title: 'Étape 5 : Ventilation et étanchéité', level: 'h2' },
+      { id: 'etape-6-lumiere', title: 'Étape 6 : Lumière et ambiance', level: 'h2' },
+      { id: 'budget', title: 'Budget : Combien coûte une rénovation ?', level: 'h2' },
+      { id: 'erreurs-a-eviter', title: 'Les erreurs fréquentes à éviter', level: 'h2' },
+      { id: 'conclusion', title: 'Conclusion', level: 'h2' },
+    ],
+    content: (() => {
+      const agencementImage = PlaceHolderImages.find(p => p.id === 'project-small-bathroom-after');
+      const finitionImage = PlaceHolderImages.find(p => p.id === 'project-bathroom-1');
+
+      return (
+        <>
+          <p>La salle de bain est aujourd’hui bien plus qu’une simple pièce fonctionnelle. À Paris, où les surfaces sont souvent limitées et les immeubles anciens nombreux, la rénovation d’une salle de bain représente un véritable défi technique et esthétique. Pourtant, lorsqu’elle est bien pensée, elle devient un espace de confort, de détente et un puissant levier de valorisation immobilière.</p>
+          <p>Chez ERG Rénovation, nous accompagnons régulièrement des propriétaires parisiens dans la transformation de leur salle de bain, qu’il s’agisse d’un studio, d’un appartement haussmannien ou d’un logement contemporain. Dans cet article de fond, nous vous livrons un guide exhaustif, à la fois pratique, technique et stratégique, pour réussir votre projet de rénovation de salle de bain à Paris, sans mauvaises surprises.</p>
+          
+          <h2 id="pourquoi-renover">Pourquoi rénover sa salle de bain à Paris est un projet stratégique</h2>
+          <p>Avant d’entrer dans les aspects techniques, il est essentiel de comprendre l’enjeu réel d’une rénovation de salle de bain.</p>
+          <h3>1. Une pièce clé pour le confort quotidien</h3>
+          <p>La salle de bain est l’un des espaces les plus utilisés du logement. Une mauvaise circulation, un manque de rangements ou une ventilation insuffisante impactent directement votre qualité de vie.</p>
+          <h3>2. Un fort impact sur la valeur du bien</h3>
+          <p>Dans un marché immobilier aussi tendu que Paris, une salle de bain rénovée, moderne et fonctionnelle : facilite la revente, accélère la mise en location et justifie un meilleur prix.</p>
+          <h3>3. Une opportunité de mise aux normes</h3>
+          <p>Les installations anciennes (plomberie, électricité, ventilation) sont souvent obsolètes. La rénovation permet d’améliorer la sécurité, de réduire la consommation d’eau et d’énergie et d’anticiper les exigences réglementaires futures.</p>
+
+          <h2 id="specificites-parisiennes">Les spécificités d’une salle de bain parisienne</h2>
+          <p>Rénover à Paris ne s’improvise pas. Plusieurs contraintes doivent être intégrées dès la phase de conception : des surfaces souvent réduites, des immeubles anciens et les règles de copropriété.</p>
+          
+          <h2 id="etape-1-projet">Étape 1 : Définir un projet clair et réaliste</h2>
+          <p>Une rénovation réussie commence toujours par une phase de réflexion approfondie. Identifiez vos besoins réels (douche ou baignoire ? rénovation esthétique ou complète ?) et hiérarchisez vos priorités. Mieux vaut une salle de bain simple mais parfaitement exécutée qu’un projet ambitieux mal maîtrisé.</p>
+
+          <h2 id="etape-2-agencement">Étape 2 : Optimiser l’agencement dans un petit espace</h2>
+          {agencementImage && (
+            <div className="my-8 overflow-hidden rounded-lg">
+              <Image src={agencementImage.imageUrl} alt={agencementImage.description} width={800} height={500} className="w-full h-auto object-cover" data-ai-hint={agencementImage.imageHint} />
+            </div>
+          )}
+          <p>L’agencement est le cœur du projet. La douche à l’italienne est très prisée à Paris pour son gain visuel et son accessibilité. Les meubles suspendus et les équipements compacts (WC, vasques) libèrent l'espace au sol et facilitent l'entretien.</p>
+
+          <h2 id="etape-3-materiaux">Étape 3 : Choisir des matériaux adaptés à la salle de bain</h2>
+          <p>Dans une pièce humide, le choix des matériaux est déterminant. Privilégiez le carrelage grand format, les peintures spéciales pièces humides, les sols antidérapants et du mobilier traité hydrofuge.</p>
+
+          <h2 id="etape-4-technique">Étape 4 : Plomberie et électricité – le socle invisible</h2>
+          <p>Souvent négligée, la partie technique est essentielle. Refaire la plomberie dans l'ancien sécurise l'installation. L'électricité doit respecter des volumes de sécurité stricts pour garantir votre sécurité.</p>
+
+          <h2 id="etape-5-ventilation">Étape 5 : Ventilation et étanchéité, deux points critiques</h2>
+          <p>Une VMC performante est obligatoire pour éviter l'humidité, surtout dans les salles de bain sans fenêtre. L'étanchéité, via un système SPEC, garantit la durabilité de la rénovation et évite les sinistres.</p>
+
+          {finitionImage && (
+            <div className="my-8 overflow-hidden rounded-lg">
+              <Image src={finitionImage.imageUrl} alt={finitionImage.description} width={800} height={500} className="w-full h-auto object-cover" data-ai-hint={finitionImage.imageHint} />
+            </div>
+          )}
+
+          <h2 id="etape-6-lumiere">Étape 6 : Lumière et ambiance</h2>
+          <p>Une salle de bain réussie est aussi une salle de bain agréable. Combinez un éclairage fonctionnel (miroir) et décoratif (lumières indirectes) avec des couleurs claires pour agrandir l'espace.</p>
+
+          <h2 id="budget">Budget : Combien coûte une rénovation de salle de bain à Paris ?</h2>
+          <p>Le budget varie selon la surface et le niveau de gamme. À Paris, comptez entre 7 000€ et 10 000€ pour une rénovation complète standard, et 12 000€ ou plus pour un projet haut de gamme. Prévoyez toujours une marge de 10-15% pour les imprévus.</p>
+          
+          <h2 id="erreurs-a-eviter">Les erreurs fréquentes à éviter absolument</h2>
+          <ul>
+              <li>Sous-estimer la partie technique (plomberie, électricité, étanchéité).</li>
+              <li>Choisir un artisan uniquement sur le prix.</li>
+              <li>Négliger la ventilation (VMC).</li>
+              <li>Multiplier les intervenants sans coordination.</li>
+          </ul>
+
+          <h2 id="conclusion">Conclusion : Une salle de bain parisienne réussie</h2>
+          <p>La rénovation de votre salle de bain est une opportunité unique d’améliorer votre quotidien et de valoriser votre patrimoine immobilier à Paris. Un agencement intelligent, des matériaux durables et une technique irréprochable sont les clés du succès.</p>
+          <p>👉 <strong>Vous avez un projet de rénovation de salle de bain ?</strong> <Link href="/devis">Contactez ERG Rénovation pour une étude personnalisée, un devis détaillé et un accompagnement de A à Z, en toute sérénité.</Link></p>
+        </>
+      )
+    })()
+  },
+  {
     slug: '10-astuces-renovation-appartement-parisien',
     title: '10 astuces expertes pour réussir la rénovation de votre appartement parisien',
     description: 'Découvrez nos conseils d’experts pour naviguer les défis uniques de la rénovation à Paris, de l’optimisation de l’espace à la gestion de la copropriété.',
@@ -1895,11 +1984,12 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: 'comment-choisir-bon-artisan-travaux',
-    title: 'Comment Choisir le Bon Artisan pour vos Travaux ? Les 5 points clés',
-    description: 'La réussite de vos travaux dépend grandement du choix de vos artisans. Voici les critères essentiels à vérifier avant de vous engager.',
+    title: 'Comment Choisir le Bon Artisan pour vos Travaux ?',
+    description: 'Les 5 points clés pour éviter les erreurs et réussir votre projet de rénovation en toute confiance.',
     date: '2025-10-15',
     author: 'K. AIT',
     featuredImageId: 'blog-post-2',
+    tags: ['Artisan', 'Travaux', 'Conseils'],
     toc: [
       { id: 'pourquoi-choix-artisan-capital', title: 'Pourquoi le choix de l’artisan est capital', level: 'h2' },
       { id: 'verifier-qualifications-assurances', title: '1. Vérifiez les qualifications et assurances', level: 'h2' },
@@ -1946,91 +2036,31 @@ export const blogPosts: BlogPost[] = [
           <h2 id="verifier-qualifications-assurances">1. Vérifiez les qualifications et les assurances (le socle non négociable)</h2>
           <p>C’est la première vérification, et elle doit être systématique. Un artisan sérieux n’a rien à cacher et vous fournira spontanément les documents suivants.</p>
           <h3>✔️ L’immatriculation officielle</h3>
-          <p>Un professionnel doit être :</p>
-          <ul>
-            <li>inscrit au Répertoire des Métiers (artisan),</li>
-            <li>ou au Registre du Commerce et des Sociétés (RCS).</li>
-          </ul>
-          <p>Cette immatriculation prouve l’existence légale de l’entreprise et vous protège en cas de litige.</p>
+          <p>Un professionnel doit être inscrit au Répertoire des Métiers (artisan) ou au Registre du Commerce et des Sociétés (RCS). Cette immatriculation prouve l’existence légale de l’entreprise et vous protège en cas de litige.</p>
           <h3>✔️ L’assurance responsabilité civile professionnelle (RC Pro)</h3>
-          <p>Elle couvre les dommages que l’artisan pourrait causer pendant les travaux :</p>
-          <ul>
-            <li>dégât des eaux,</li>
-            <li>casse,</li>
-            <li>détérioration d’un bien existant,</li>
-            <li>dommages à un tiers.</li>
-          </ul>
-          <p>Sans RC Pro valide, vous prenez un risque financier important.</p>
+          <p>Elle couvre les dommages que l’artisan pourrait causer pendant les travaux (dégât des eaux, casse...). Sans RC Pro valide, vous prenez un risque financier important.</p>
           <h3>✔️ L’assurance décennale (obligatoire pour certains travaux)</h3>
-          <p>Indispensable pour :</p>
-          <ul>
-            <li>le gros œuvre,</li>
-            <li>les travaux structurels,</li>
-            <li>l’électricité,</li>
-            <li>la plomberie,</li>
-            <li>l’étanchéité,</li>
-            <li>certains travaux de rénovation lourde.</li>
-          </ul>
-          <p>Elle vous protège pendant 10 ans contre les malfaçons affectant la solidité du bâtiment ou le rendant impropre à son usage.</p>
+          <p>Indispensable pour le gros œuvre, les travaux structurels, l’électricité, la plomberie et l'étanchéité, elle vous protège pendant 10 ans contre les malfaçons affectant la solidité du bâtiment.</p>
           <p>👉 <strong>Conseil d’expert :</strong> Demandez les attestations et vérifiez leur validité (dates, nature des travaux couverts, nom exact de l’entreprise).</p>
 
           <h2 id="analyser-clarte-devis">2. Analysez la clarté et le niveau de détail du devis</h2>
           <p>Le devis est bien plus qu’un simple document financier : c’est un engagement contractuel.</p>
-          <h3>❌ Les signaux d’alerte à éviter</h3>
-          <ul>
-            <li>Une seule ligne avec un montant global</li>
-            <li>Des termes vagues : “travaux divers”, “forfait rénovation”</li>
-            <li>Aucune mention des matériaux</li>
-            <li>Aucun délai indiqué</li>
-            <li>Un prix anormalement bas</li>
-          </ul>
-          <h3>✅ Ce qu’un devis professionnel doit impérativement contenir</h3>
-          <p>Un devis sérieux et transparent doit mentionner :</p>
-          <ul>
-            <li><strong>Le détail de chaque prestation :</strong> nature des travaux, quantités, prix unitaires.</li>
-            <li><strong>Les matériaux utilisés :</strong> marques, références, caractéristiques techniques.</li>
-            <li><strong>Le planning :</strong> date de début, durée estimée, phasage si nécessaire.</li>
-            <li><strong>Les conditions de paiement :</strong> acompte, échéancier, solde.</li>
-            <li><strong>Le taux de TVA applicable :</strong> 10 % ou 20 % selon les cas.</li>
-          </ul>
+          <p>Un devis professionnel doit impérativement contenir le détail de chaque prestation, les matériaux utilisés, un planning, les conditions de paiement et le taux de TVA. Méfiez-vous des devis vagues ou anormalement bas.</p>
           <p>👉 <strong>Règle d’or : comparez toujours au moins 3 devis.</strong> Cela vous permet d’évaluer le prix du marché et de détecter les incohérences.</p>
 
           <h2 id="voir-realisations-concretes">3. Demandez à voir des réalisations concrètes (preuve par l’exemple)</h2>
-          <p>Les discours sont importants, mais les preuves le sont encore plus.</p>
-          <h3>Photos, portfolios… un minimum</h3>
-          <p>Un artisan sérieux dispose :</p>
-          <ul>
-            <li>de photos avant/après,</li>
-            <li>de chantiers documentés,</li>
-            <li>parfois même de vidéos.</li>
-          </ul>
-          <p>Cela permet de juger : la qualité des finitions, le style, la diversité des projets réalisés. Vous pouvez consulter nos <Link href="/realisations">projets ici</Link>.</p>
-          <h3>Visiter un chantier terminé : l’idéal</h3>
-          <p>Quand c’est possible (avec l’accord du client), visiter un chantier récemment livré est extrêmement révélateur : alignements, propreté, détails de finition, cohérence globale. C’est aussi l’occasion d’échanger avec un ancien client sur : le respect des délais, la communication, la gestion des imprévus.</p>
+          <p>Un artisan sérieux dispose de photos avant/après, de chantiers documentés et parfois même de vidéos. Cela permet de juger la qualité des finitions et la diversité des projets. Vous pouvez consulter nos <Link href="/realisations">projets ici</Link>. Idéalement, demandez à visiter un chantier terminé pour échanger avec un ancien client.</p>
           <p>👉 <strong>Chez ERG Rénovation, nous présentons régulièrement des réalisations concrètes à nos clients pour une transparence totale.</strong></p>
 
           <h2 id="reputation-avis">4. Appuyez-vous sur la réputation et les avis (avec discernement)</h2>
-          <p>La réputation d’un artisan se construit sur la durée.</p>
-          <h3>Le bouche-à-oreille : toujours puissant</h3>
-          <p>Demandez autour de vous : famille, amis, voisins, collègues. Une recommandation directe reste l’un des meilleurs indicateurs de fiabilité.</p>
-          <h3>Les avis en ligne : utiles mais à analyser</h3>
-          <p>Consultez : Google, plateformes spécialisées, réseaux sociaux. Analysez la qualité des avis, pas seulement la note : avis détaillés, retours d’expérience précis, cohérence globale.</p>
-          <p>👉 <strong>Méfiez-vous :</strong> des avis trop courts ou génériques, des notes parfaites sans contenu, des profils douteux.</p>
+          <p>Le bouche-à-oreille reste un excellent indicateur. Demandez autour de vous. Pour les avis en ligne (Google, plateformes spécialisées), analysez la qualité des commentaires plutôt que la note seule. Méfiez-vous des avis trop courts ou génériques.</p>
 
           <h2 id="evaluer-communication">5. Évaluez la communication et le relationnel (clé d’un chantier serein)</h2>
-          <p>Un chantier dure plusieurs semaines, parfois plusieurs mois. Vous allez échanger régulièrement avec votre artisan.</p>
-          <h3>Les bonnes questions à se poser dès le départ</h3>
-          <ul>
-            <li>Est-il à l’écoute de vos besoins ?</li>
-            <li>Reformule-t-il votre demande ?</li>
-            <li>Propose-t-il des solutions adaptées ?</li>
-            <li>Explique-t-il clairement les contraintes techniques ?</li>
-            <li>Est-il joignable et réactif ?</li>
-          </ul>
-          <p>👉 <strong>La confiance et la communication sont aussi importantes que la technique.</strong> Un bon artisan sait : conseiller sans imposer, alerter sans inquiéter, trouver des solutions en cas d’imprévu.</p>
+          <p>Un bon artisan est à l'écoute, propose des solutions adaptées et explique clairement les contraintes. La confiance et la communication sont aussi importantes que la technique. Assurez-vous qu'il soit joignable et réactif dès les premiers échanges.</p>
+          <p>👉 <strong>Un bon artisan sait conseiller sans imposer, alerter sans inquiéter, et trouver des solutions en cas d’imprévu.</strong></p>
 
           <h2 id="entreprise-tous-corps-etat">Pourquoi choisir une entreprise tous corps d’état change tout</h2>
-          <p>Coordonner plusieurs artisans indépendants peut vite devenir un casse-tête : retards en cascade, responsabilités floues, stress permanent. Faire appel à une entreprise tous corps d’état, comme ERG Rénovation, offre de nombreux avantages :</p>
+          <p>Coordonner plusieurs artisans indépendants est un casse-tête. Faire appel à une entreprise tous corps d’état comme ERG Rénovation offre de nombreux avantages :</p>
           <ul>
             <li>✅ un interlocuteur unique,</li>
             <li>✅ une coordination fluide des artisans,</li>
@@ -2042,11 +2072,11 @@ export const blogPosts: BlogPost[] = [
 
           <h3>En résumé : les 5 points clés à retenir</h3>
           <ol>
-            <li>Vérifiez systématiquement les qualifications et assurances</li>
-            <li>Analysez un devis clair, détaillé et réaliste</li>
-            <li>Exigez des références et réalisations concrètes</li>
-            <li>Tenez compte de la réputation et des avis</li>
-            <li>Privilégiez la qualité du contact et de la communication</li>
+            <li>Vérifiez systématiquement les qualifications et assurances.</li>
+            <li>Analysez un devis clair, détaillé et réaliste.</li>
+            <li>Exigez des références et réalisations concrètes.</li>
+            <li>Tenez compte de la réputation et des avis.</li>
+            <li>Privilégiez la qualité du contact et de la communication.</li>
           </ol>
           <p>👉 <strong>Vous avez un projet de rénovation ?</strong> <Link href="/devis">Discutons ensemble de vos envies et construisons un projet solide, maîtrisé et durable.</Link></p>
         </>
