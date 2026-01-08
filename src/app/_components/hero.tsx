@@ -97,7 +97,7 @@ export default function Hero() {
 
         {/* Contenu */}
         <div className="container relative z-10 flex min-h-[560px] flex-col items-center justify-center px-4 py-24 text-center text-primary-foreground md:min-h-[620px] md:py-24 lg:min-h-[720px]">
-          <div className="mx-auto flex w-full max-w-3xl flex-col items-center">
+          <div className="mx-auto flex w-full max-w-4xl flex-col items-center">
             <GoogleReviewBadge />
 
             {/* H1 SEO : clair, court, puissant */}
