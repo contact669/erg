@@ -46,7 +46,7 @@ export default function ServiceAreas() {
           <AreaCard
             title="Seine-Saint-Denis (93)"
             description="Montreuil, Saint-Denis, Pantin, Aubervilliers, Noisy-le-Sec…"
-            href="/renovation-appartement/seine-saint-denis-93"
+            href="/renovation-seine-saint-denis"
           />
           <AreaCard
             title="Val-de-Marne (94)"
@@ -113,5 +113,3 @@ function AreaCard({
     </article>
   )
 }
-
-    
