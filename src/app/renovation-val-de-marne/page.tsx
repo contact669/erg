@@ -102,21 +102,24 @@ const valDeMarneSpecificities = [
         title: "Un marché immobilier dynamique",
         description: "À Vincennes, Ivry-sur-Seine ou Saint-Mandé, la demande est forte. Une rénovation bien réalisée permet de vendre plus vite et de louer plus facilement.",
         imageUrl: "https://picsum.photos/seed/9401/800/600",
-        imageAlt: "Rénovation d’un appartement dans le Val-de-Marne avec finitions soignées"
+        imageAlt: "Rénovation d’un appartement dans le Val-de-Marne avec finitions soignées",
+        imageHint: "renovated apartment"
     },
     {
         icon: Hammer,
         title: "Des contraintes techniques à anticiper",
         description: "Réseaux parfois vieillissants, isolation insuffisante, règles de copropriété strictes et attentes élevées en matière de finition. L'anticipation est la clé.",
         imageUrl: "https://picsum.photos/seed/9402/800/600",
-        imageAlt: "Chantier de rénovation intérieure à Vincennes dans le Val-de-Marne"
+        imageAlt: "Chantier de rénovation intérieure à Vincennes dans le Val-de-Marne",
+        imageHint: "renovation site"
     },
     {
         icon: Home,
         title: "Un parc immobilier varié",
         description: "Le 94 mêle immeubles anciens proches de Paris, résidences des années 60-90 et logements récents. Chaque projet est une opportunité de moderniser et valoriser.",
         imageUrl: "https://picsum.photos/seed/9403/800/600",
-        imageAlt: "Rénovation de salle de bain moderne dans un appartement du Val-de-Marne"
+        imageAlt: "Rénovation de salle de bain moderne dans un appartement du Val-de-Marne",
+        imageHint: "modern bathroom"
     }
 ];
 
@@ -235,7 +238,7 @@ export default function RenovationValDeMarnePage() {
                     {valDeMarneSpecificities.map(item => (
                         <Card key={item.title} className="overflow-hidden">
                             <div className="relative h-56 w-full">
-                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover"/>
+                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover" data-ai-hint={item.imageHint} />
                             </div>
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-3">
@@ -291,7 +294,7 @@ export default function RenovationValDeMarnePage() {
             <div className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
-                        <Image src="https://picsum.photos/seed/9404/800/1000" alt="Rénovation de cuisine sur mesure dans le Val-de-Marne (94)" fill className="object-cover"/>
+                        <Image src="https://picsum.photos/seed/9404/800/1000" alt="Rénovation de cuisine sur mesure dans le Val-de-Marne (94)" fill className="object-cover" data-ai-hint="custom kitchen"/>
                     </div>
                     <div>
                         <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation dans le Val-de-Marne ?</h2>
@@ -322,11 +325,20 @@ export default function RenovationValDeMarnePage() {
               <p className="mt-4 text-muted-foreground">Nous couvrons l'ensemble du département.</p>
             </div>
             <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-4xl mx-auto">
-              {cities94.map(city => (
-                <div key={city} className="p-3 border rounded-lg bg-background text-center text-sm font-medium">
-                  {city}
-                </div>
-              ))}
+              {cities94.map(city => {
+                if (city === "Vincennes") {
+                  return (
+                    <Button key={city} asChild variant="outline" className="font-medium bg-background hover:bg-accent hover:text-accent-foreground">
+                      <Link href="/renovation-vincennes">{city}</Link>
+                    </Button>
+                  )
+                }
+                return (
+                  <div key={city} className="p-3 border rounded-lg bg-background text-center text-sm font-medium">
+                    {city}
+                  </div>
+                )
+              })}
             </div>
           </div>
         </section>
