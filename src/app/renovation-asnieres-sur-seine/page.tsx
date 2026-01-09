@@ -28,28 +28,15 @@ import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Rénovation appartement Hauts-de-Seine (92) | ERG Rénovation",
+  title: "Rénovation appartement Asnières-sur-Seine (92600) | ERG Rénovation",
   description:
-    "Entreprise de rénovation dans les Hauts-de-Seine (92) : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions soignées.",
+    "Entreprise de rénovation à Asnières-sur-Seine (92600) : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions soignées.",
   alternates: {
-    canonical: "https://www.erg-renovation.fr/renovation-hauts-de-seine",
+    canonical: "https://www.erg-renovation.fr/renovation-asnieres-sur-seine",
   },
   robots: {
     index: true,
     follow: true,
-  },
-  openGraph: {
-    title: "Rénovation appartement Hauts-de-Seine (92) | ERG Rénovation",
-    description: "Rénovation intérieure dans le 92 : appartement, salle de bain, cuisine. Visite sur site, devis détaillé et finitions soignées.",
-    url: "https://www.erg-renovation.fr/renovation-hauts-de-seine",
-    type: "website",
-    locale: "fr_FR",
-    siteName: "ERG Rénovation",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Rénovation appartement Hauts-de-Seine (92) | ERG Rénovation",
-    description: "Entreprise de rénovation dans les Hauts-de-Seine : appartement, salle de bain, cuisine. Devis détaillé, suivi de chantier, finitions soignées.",
   },
 };
 
@@ -69,8 +56,8 @@ function JsonLd() {
       },
       "priceRange": "€€",
       "areaServed": {
-        "@type": "AdministrativeArea",
-        "name": "Hauts-de-Seine"
+        "@type": "City",
+        "name": "Asnières-sur-Seine"
       },
       "serviceType": [
         "Rénovation d’appartement",
@@ -78,11 +65,11 @@ function JsonLd() {
         "Rénovation de cuisine",
         "Travaux tous corps d’état",
       ],
-      "description": "ERG Rénovation, entreprise spécialisée en rénovation intérieure d'appartements, cuisines et salles de bain dans les Hauts-de-Seine (92)."
+      "description": "ERG Rénovation, entreprise spécialisée en rénovation d'appartements à Asnières-sur-Seine (92600). Devis gratuit, garantie décennale."
     };
     return (
         <Script
-            id="jsonld-renovation-hauts-de-seine"
+            id="jsonld-renovation-asnieres"
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
@@ -90,33 +77,33 @@ function JsonLd() {
 }
 
 const heroPoints = [
-    { text: "Intervention rapide" },
+    { text: "Intervention rapide à Asnières-sur-Seine" },
     { text: "Visite sur site gratuite" },
     { text: "Devis détaillé et transparent" },
     { text: "Un interlocuteur unique" },
 ];
 
-const hautsDeSeineSpecificities = [
+const asnieresSpecificities = [
     {
         icon: Building2,
-        title: "Un marché immobilier exigeant",
-        description: "À Boulogne-Billancourt, Courbevoie, ou Neuilly, la rénovation est un levier clé pour augmenter la valeur du bien, améliorer la performance énergétique et répondre aux attentes des acquéreurs.",
-        imageUrl: "https://picsum.photos/seed/9201/800/600",
-        imageAlt: "Rénovation d’un appartement dans les Hauts-de-Seine avec finitions soignées"
+        title: "Un parc immobilier majoritairement ancien",
+        description: "À Asnières, les immeubles des années 1900 à 1930 côtoient des résidences des années 50-80. La rénovation y est essentielle pour moderniser, isoler et sécuriser.",
+        imageUrl: "https://picsum.photos/seed/92601/800/600",
+        imageAlt: "Rénovation d’un appartement à Asnières-sur-Seine avec finitions soignées"
     },
     {
         icon: Hammer,
-        title: "Des contraintes techniques spécifiques",
-        description: "Réseaux parfois anciens, copropriétés structurées, normes acoustiques strictes et attentes élevées en matière de finition nécessitent méthode, expertise et coordination.",
-        imageUrl: "https://picsum.photos/seed/9202/800/600",
-        imageAlt: "Chantier de rénovation intérieure dans les Hauts-de-Seine (92)"
+        title: "Un enjeu de confort et de valorisation",
+        description: "La proximité de Paris et des transports rend Asnières attractive. Une rénovation bien menée augmente le confort de vie et la valeur patrimoniale du bien.",
+        imageUrl: "https://picsum.photos/seed/92602/800/600",
+        imageAlt: "Chantier de rénovation intérieure à Asnières-sur-Seine dans les Hauts-de-Seine"
     },
     {
         icon: Home,
-        title: "Un patrimoine immobilier varié",
-        description: "Le 92 mêle immeubles anciens, résidences des années 60-80 et constructions récentes. Chaque projet est une occasion de moderniser tout en respectant le caractère du lieu.",
-        imageUrl: "https://picsum.photos/seed/9203/800/600",
-        imageAlt: "Rénovation de salle de bain moderne dans un appartement des Hauts-de-Seine"
+        title: "Des attentes familiales et locatives",
+        description: "Les familles et les investisseurs recherchent des espaces fonctionnels, lumineux et dotés de rangements intelligents, avec des finitions propres et durables.",
+        imageUrl: "https://picsum.photos/seed/92603/800/600",
+        imageAlt: "Cuisine moderne rénovée dans un appartement à Asnières-sur-Seine"
     }
 ];
 
@@ -124,25 +111,25 @@ const renovationServices = [
     {
         icon: Home,
         title: "Rénovation complète d’appartement",
-        description: "Idéal pour un achat avec travaux ou la remise à neuf d'un bien. Nous gérons étude, conception, démolition, électricité, plomberie, isolation et finitions. Un projet clé en main, piloté par un chef de projet dédié.",
+        description: "Idéale pour un achat avec travaux ou un projet locatif. Nous pilotons le projet de A à Z : étude, démolition, électricité, plomberie, isolation et finitions.",
         link: "/services/renovation-appartement"
     },
     {
         icon: Bath,
         title: "Rénovation de salle de bain",
-        description: "Création d'espaces modernes et fonctionnels : douche à l’italienne, optimisation des petits espaces, étanchéité renforcée et ventilation performante. Nous adaptons chaque projet aux contraintes du logement.",
+        description: "Création d'espaces modernes et fonctionnels : douche à l’italienne, optimisation des petites surfaces, étanchéité renforcée et ventilation performante.",
         link: "/services/renovation-salle-de-bain"
     },
     {
         icon: UtensilsCrossed,
         title: "Rénovation de cuisine",
-        description: "Cuisine ouverte ou fermée, nous optimisons la circulation, créons des rangements intelligents et coordonnons tous les corps de métier pour un résultat esthétique, pratique et durable.",
+        description: "Cuisine ouverte ou fermée, nous optimisons les volumes, créons des rangements sur mesure et coordonnons tous les corps de métier pour un résultat esthétique et durable.",
         link: "/services/renovation-cuisine"
     },
     {
         icon: Sparkles,
         title: "Rénovation partielle & aménagement",
-        description: "Pour un rafraîchissement, une redistribution de pièces, ou la création de rangements sur mesure. Idéal pour moderniser un bien sans engager une rénovation lourde.",
+        description: "Pour un rafraîchissement, une redistribution de pièces ou la création de rangements sur mesure. Idéal pour moderniser un bien sans rénovation lourde.",
         link: "/services"
     }
 ];
@@ -150,47 +137,41 @@ const renovationServices = [
 const whyChooseUs = [
     {
         icon: ShieldCheck,
-        title: "Une expertise locale confirmée",
-        description: "Nous intervenons régulièrement dans le 92 et connaissons les copropriétés locales, les attentes des syndics et les contraintes techniques par commune."
+        title: "Une connaissance fine du tissu local",
+        description: "Nous intervenons régulièrement à Asnières et connaissons les copropriétés locales, les contraintes techniques et les attentes des familles et investisseurs."
     },
     {
         icon: Users,
-        title: "Un interlocuteur unique",
-        description: "Un chef de projet dédié assure la coordination des artisans, le respect des délais et le suivi qualité."
+        title: "Un interlocuteur unique pour votre projet",
+        description: "Un chef de projet dédié assure la coordination des artisans, le respect du planning et le contrôle qualité, pour votre tranquillité d'esprit."
     },
     {
         icon: ClipboardList,
-        title: "Une transparence totale",
-        description: "Nos devis sont détaillés, nos plannings clairs et votre budget est maîtrisé du début à la fin."
+        title: "Une transparence totale et des garanties",
+        description: "Nos devis sont clairs et détaillés, nos délais contractualisés et votre budget est maîtrisé. Tous nos travaux sont couverts par la garantie décennale."
     }
 ];
 
 const faqItems = [
     {
-        question: "Quel est le prix d’une rénovation dans le 92 ?",
-        answer: "Les prix varient selon la surface, l'état initial et le niveau de finition. À titre indicatif, comptez à partir de 700 €/m² pour une rénovation partielle et entre 1 100 et 1 700 €/m² pour une rénovation complète. Une visite sur site est indispensable pour un devis précis."
+        question: "Quel est le prix d’une rénovation à Asnières-sur-Seine ?",
+        answer: "Les prix varient selon la surface, l'état initial et le niveau de finition. À titre indicatif, comptez à partir de 750 €/m² pour une rénovation partielle et entre 1 100 et 1 600 €/m² pour une rénovation complète. Une visite sur site est indispensable pour un devis précis."
     },
     {
-        question: "Quels sont les délais moyens ?",
-        answer: "Les délais sont définis contractuellement. Comptez 2 à 4 semaines pour une salle de bain et 6 à 12 semaines pour une rénovation complète, en fonction de la complexité du projet."
+        question: "Quels sont les délais moyens pour rénover un appartement à Asnières-sur-Seine ?",
+        answer: "Une salle de bain se rénove en 2 à 4 semaines, tandis qu'une rénovation complète prend de 6 à 12 semaines. Les délais sont définis contractuellement avant le début des travaux."
     },
     {
-        question: "Faut-il l’accord de la copropriété ?",
-        answer: "Oui, un accord est souvent nécessaire pour les travaux touchant aux réseaux, aux murs porteurs ou à la ventilation. Nous vous accompagnons dans la constitution du dossier pour sécuriser les démarches."
+        question: "Faut-il un accord de la copropriété pour des travaux à Asnières-sur-Seine ?",
+        answer: "Oui, pour certains travaux (murs porteurs, réseaux, ventilation, changement de fenêtres). Nous vous accompagnons dans la constitution du dossier administratif pour sécuriser vos démarches."
     },
     {
         question: "Peut-on rénover un appartement occupé ?",
-        answer: "Oui, c'est possible. Nous adaptons l’organisation du chantier en planifiant les interventions par phases et en protégeant les zones non concernées pour limiter au maximum les nuisances."
+        answer: "Oui, c'est possible. Nous adaptons l'organisation du chantier en planifiant les interventions par phases et en protégeant les zones non concernées pour limiter au maximum les nuisances."
     }
 ];
 
-const cities92 = [
-    "Boulogne-Billancourt", "Nanterre", "Courbevoie", "Colombes", "Asnières-sur-Seine",
-    "Levallois-Perret", "Neuilly-sur-Seine", "Suresnes", "Rueil-Malmaison", "Clamart", "Issy-les-Moulineaux"
-];
-
-
-export default function RenovationHautsDeSeinePage() {
+export default function RenovationAsnieresPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <JsonLd />
@@ -201,10 +182,10 @@ export default function RenovationHautsDeSeinePage() {
         <section className="bg-secondary py-16 md:py-24">
           <div className="container text-center">
             <h1 className="font-headline text-4xl font-bold md:text-5xl lg:text-6xl">
-              Rénovation d’appartement dans les Hauts-de-Seine (92) – ERG Rénovation
+              Rénovation d’appartement à Asnières-sur-Seine (92600) – ERG Rénovation
             </h1>
             <p className="mt-4 mx-auto max-w-3xl text-lg text-muted-foreground">
-              ERG Rénovation intervient dans tout le département des Hauts-de-Seine (92) pour vos projets de rénovation intérieure : appartement, salle de bain, cuisine ou rénovation complète. Nous accompagnons les propriétaires avec un suivi structuré, des artisans qualifiés et des finitions soignées.
+              ERG Rénovation accompagne les propriétaires, familles et investisseurs pour leurs travaux de rénovation à Asnières-sur-Seine. Appartement, salle de bain, cuisine, nous assurons un pilotage de chantier structuré et des finitions soignées.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3">
                 {heroPoints.map(point => (
@@ -216,7 +197,7 @@ export default function RenovationHautsDeSeinePage() {
             </div>
             <div className="mt-8">
                 <Button asChild size="lg">
-                    <Link href="/devis">Obtenir mon devis gratuit</Link>
+                    <Link href="/devis">Mon devis à Asnières-sur-Seine</Link>
                 </Button>
             </div>
           </div>
@@ -226,16 +207,16 @@ export default function RenovationHautsDeSeinePage() {
         <section className="py-16 md:py-24">
             <div className="container">
                 <div className="text-center mx-auto max-w-2xl">
-                    <h2 className="font-headline text-3xl font-bold">Pourquoi rénover un appartement dans les Hauts-de-Seine ?</h2>
+                    <h2 className="font-headline text-3xl font-bold">Rénover à Asnières : un projet à fort potentiel</h2>
                     <p className="mt-4 text-muted-foreground">
-                        Le 92 présente un patrimoine immobilier varié. Rénover, c’est chercher un équilibre entre modernisation, confort et valorisation immobilière sur un marché exigeant.
+                      Proche de Paris, Asnières est un secteur attractif où la rénovation permet d'améliorer le confort de vie et de valoriser un patrimoine immobilier.
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {hautsDeSeineSpecificities.map(item => (
+                    {asnieresSpecificities.map(item => (
                         <Card key={item.title} className="overflow-hidden">
                             <div className="relative h-56 w-full">
-                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover"/>
+                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover" data-ai-hint={item.title.toLowerCase()} />
                             </div>
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-3">
@@ -257,9 +238,9 @@ export default function RenovationHautsDeSeinePage() {
         <section className="bg-secondary py-16 md:py-24">
             <div className="container">
                 <div className="text-center mx-auto max-w-2xl">
-                    <h2 className="font-headline text-3xl font-bold">Nos services de rénovation dans le 92</h2>
+                    <h2 className="font-headline text-3xl font-bold">Nos services de rénovation à Asnières-sur-Seine</h2>
                     <p className="mt-4 text-muted-foreground">
-                        Nous réalisons des projets sur mesure, adaptés à chaque commune et à chaque typologie de logement.
+                        Nous réalisons des projets sur mesure, adaptés aux besoins des particuliers comme des investisseurs.
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -291,10 +272,10 @@ export default function RenovationHautsDeSeinePage() {
             <div className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
-                        <Image src="https://picsum.photos/seed/9204/800/1000" alt="Exemple de projet de rénovation à Boulogne-Billancourt" fill className="object-cover"/>
+                        <Image src="https://picsum.photos/seed/92604/800/1000" alt="Chantier de rénovation d'un appartement à Asnières-sur-Seine" fill className="object-cover" data-ai-hint="renovation site" />
                     </div>
                     <div>
-                        <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation dans les Hauts-de-Seine ?</h2>
+                        <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation à Asnières-sur-Seine ?</h2>
                         <div className="mt-8 space-y-6">
                             {whyChooseUs.map(item => (
                                 <div key={item.title} className="flex items-start gap-4">
@@ -315,40 +296,10 @@ export default function RenovationHautsDeSeinePage() {
         </AnimatedSection>
         
         <AnimatedSection>
-        <section className="py-16 md:py-24 bg-secondary">
-          <div className="container">
-            <div className="text-center mx-auto max-w-2xl">
-              <h2 className="font-headline text-3xl font-bold">Villes d’intervention dans les Hauts-de-Seine (92)</h2>
-              <p className="mt-4 text-muted-foreground">Nous intervenons dans l’ensemble du département.</p>
-            </div>
-            <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-4xl mx-auto">
-              {cities92.map(city => {
-                const citySlug = city.toLowerCase().replace(/ /g, '-');
-                const pageExists = ['boulogne-billancourt', 'nanterre', 'courbevoie', 'asnieres-sur-seine'].includes(citySlug);
-
-                if (pageExists) {
-                  return (
-                    <Button key={city} asChild variant="outline" className="font-medium bg-background hover:bg-accent hover:text-accent-foreground">
-                      <Link href={`/renovation-${citySlug}`}>{city}</Link>
-                    </Button>
-                  )
-                }
-                return (
-                  <div key={city} className="p-3 border rounded-lg bg-background text-center text-sm font-medium">
-                    {city}
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-        </AnimatedSection>
-
-        <AnimatedSection>
         <section className="py-16 md:py-24">
             <div className="container max-w-3xl mx-auto">
                 <div className="text-center">
-                    <h2 className="font-headline text-3xl font-bold">FAQ – Rénovation dans les Hauts-de-Seine (92)</h2>
+                    <h2 className="font-headline text-3xl font-bold">FAQ – Rénovation d’appartement à Asnières-sur-Seine</h2>
                 </div>
                 <Accordion type="single" collapsible className="w-full mt-8">
                     {faqItems.map((item, index) => (
