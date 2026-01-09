@@ -9,7 +9,7 @@ import {
   Hammer,
   Paintbrush,
   Sparkles,
-  ClipboardCheck,
+  ClipboardList,
   Users,
   Award,
   BookOpen,
@@ -77,7 +77,7 @@ export const services: Service[] = [
         { title: "Une Expertise Reconnue à Paris et en Île-de-France", description: "Notre connaissance des spécificités de l'immobilier francilien (immeubles anciens, contraintes de copropriété, normes) est votre meilleure garantie. Nous intervenons quotidiennement dans le 75, 92, 93, 94 et 78.", icon: Award },
         { title: "La Garantie d'un Interlocuteur Unique", description: "Fini le stress de la coordination. Votre chef de projet dédié est votre seul point de contact. Il pilote les artisans, gère le planning et assure le contrôle qualité permanent.", icon: Users },
         { title: 'Des Finitions "Haut de Gamme"', description: "Le 'très très haut niveau' se voit dans les détails. Nous travaillons avec des matériaux nobles et nos artisans sont sélectionnés pour leur excellence (peintures soignées, pose de parquet, marbrerie...).", icon: Sparkles },
-        { title: 'Transparence et Garanties', description: "Tous nos travaux sont couverts par une assurance décennale et une assurance responsabilité civile. Nos devis sont clairs et nos délais, tenus.", icon: ClipboardCheck }
+        { title: 'Transparence et Garanties', description: "Tous nos travaux sont couverts par une assurance décennale et une assurance responsabilité civile. Nos devis sont clairs et nos délais, tenus.", icon: ClipboardList }
     ],
     zones: {
         description: "Basée au cœur de la région, ERG Rénovation déploie ses équipes pour tous projets de rénovation d'appartement à Paris (75) et en Île-de-France. Cliquez sur votre département pour découvrir notre expertise locale :",
@@ -134,7 +134,7 @@ export const services: Service[] = [
         { title: "La Maîtrise des Projets Complexes", description: "Une extension, une ouverture de mur porteur ou une réhabilitation complète ne s'improvisent pas. Nous disposons des assurances (décennale) et des compétences techniques (bureau d'études structure) pour sécuriser ces interventions majeures.", icon: Layers },
         { title: "Votre Interlocuteur Unique, du Plan à la Finition", description: "Nous internalisons ou pilotons l'ensemble des métiers : maçons, couvreurs, menuisiers... Vous n'avez qu'un seul responsable : ERG Rénovation.", icon: Users },
         { title: 'La Passion du "Sur Mesure"', description: "Votre maison est unique. Nous ne proposons pas de solutions standards, mais un projet entièrement sur mesure, des plans d'agencement aux menuiseries intégrées.", icon: Sparkles },
-        { title: 'Transparence et Garanties', description: "Tous nos travaux sont couverts par une assurance décennale et une assurance responsabilité civile. Nos devis sont clairs et nos délais, tenus.", icon: ClipboardCheck }
+        { title: 'Transparence et Garanties', description: "Tous nos travaux sont couverts par une assurance décennale et une assurance responsabilité civile. Nos devis sont clairs et nos délais, tenus.", icon: ClipboardList }
     ],
     zones: {
         description: "ERG Rénovation est le spécialiste des projets résidentiels haut de gamme en Île-de-France. Nos équipes interviennent pour la rénovation de maisons dans les Yvelines (78) (Versailles, Saint-Germain-en-Laye...) et les Hauts-de-Seine (92) (Meudon, Saint-Cloud, Sceaux...), où se concentrent de nombreux pavillons et demeures de caractère.",
@@ -342,7 +342,7 @@ export const services: Service[] = [
     whyUs: [
         { title: "Le Savoir-Faire de Nos Compagnons Peintres", description: "Nos artisans sont sélectionnés pour leur expertise dans les finitions tendues (sans effet \"peau d'orange\") et leur minutie, essentiels pour le luxe.", icon: Award },
         { title: "Des Matériaux qui Font la Différence", description: "Nous travaillons avec des peintures et revêtements reconnus pour leur qualité, leur tenue dans le temps et leur rendu esthétique (Ressource, Little Greene...).", icon: Sparkles },
-        { title: "Un Chantier Propre, une Prestation Sans Souci", description: "La propreté est partie intégrante de notre service haut de gamme. Protection, nettoyage quotidien et respect de votre domicile sont assurés.", icon: ClipboardCheck }
+        { title: "Un Chantier Propre, une Prestation Sans Souci", description: "La propreté est partie intégrante de notre service haut de gamme. Protection, nettoyage quotidien et respect de votre domicile sont assurés.", icon: ClipboardList }
     ],
     zones: {
         description: "Qu'il s'agisse de restaurer les moulures d'un Haussmannien à Paris (75) ou d'apporter des finitions contemporaines à une maison des Yvelines (78) ou des Hauts-de-Seine (92), nos équipes sont à votre disposition.",
@@ -1384,7 +1384,7 @@ export const allProjects: Project[] = [
         { title: "Rénovation Tous Corps d'État", icon: Layers },
         { title: "Cuisine et Salle de Bain", icon: CookingPot },
         { title: "Mise aux normes électrique", icon: Wrench },
-        { title: "Suivi de chantier rigoureux", icon: ClipboardCheck }
+        { title: "Suivi de chantier rigoureux", icon: ClipboardList }
       ]
     }
   },
@@ -1445,7 +1445,7 @@ export const allProjects: Project[] = [
       keyPoints: [
         { title: "Rénovation complète", icon: Building },
         { title: "Force de proposition", icon: Lightbulb },
-        { title: "Suivi de chantier rigoureux", icon: ClipboardCheck },
+        { title: "Suivi de chantier rigoureux", icon: ClipboardList },
         { title: "Qualité des finitions", icon: Sparkles }
       ]
     }
