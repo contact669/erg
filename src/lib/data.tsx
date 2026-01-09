@@ -23,7 +23,9 @@ import {
   Droplets,
   Calendar,
   Wallet,
-  Users
+  Users,
+  Gem,
+  LogOut
 } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
@@ -238,9 +240,9 @@ export const services: Service[] = [
       { step: 4, title: 'Pose et Réception', description: "Installation de la cuisine par nos menuisiers-poseurs, finitions et réception de chantier. Votre cuisine est prête à l'emploi." }
     ],
     whyUs: [
-      { title: "Plans de Travail", description: "Quartz (Silestone, Caesarstone), matériaux ultra-compacts (Dekton), pierre naturelle (marbre, granit) ou bois massif.", icon: Milestone },
-      { title: "Façades", description: "Laques mates ou brillantes, finitions bois nobles (chêne, noyer), Fénix (mat anti-traces), ou façades techniques (Inox).", icon: Layers },
-      { title: "Crédences & Robinetterie", description: "Solutions design et fonctionnelles (Zellige, verre, inox, robinetterie avec douchette, eau filtrante...).", icon: Sparkles }
+        { title: "Plans de Travail", description: "Quartz (Silestone, Caesarstone), matériaux ultra-compacts (Dekton), pierre naturelle (marbre, granit) ou bois massif.", icon: Milestone },
+        { title: "Façades", description: "Laques mates ou brillantes, finitions bois nobles (chêne, noyer), Fénix (mat anti-traces), ou façades techniques (Inox).", icon: Layers },
+        { title: "Crédences & Robinetterie", description: "Solutions design et fonctionnelles (Zellige, verre, inox, robinetterie avec douchette, eau filtrante...).", icon: Sparkles }
     ],
     zones: {
         description: "Nous intervenons pour la rénovation de cuisines dans les appartements parisiens (Paris 75), où l'optimisation de l'espace est cruciale. Notre expertise est également reconnue dans les Hauts-de-Seine (92) et les Yvelines (78) pour des projets d'envergure (cuisines ouvertes sur réception dans des maisons).",
@@ -400,68 +402,6 @@ const renovationAppartementPages: LocalLandingPage[] = [
       quote: "ERG Rénovation a su comprendre nos exigences pour notre appartement à Neuilly. Le suivi de chantier a été d'une rigueur exemplaire et les finitions sont absolument parfaites. C'est un vrai partenaire de confiance.",
       author: "M. et Mme Lambert, Neuilly-sur-Seine",
     },
-  },
-  {
-    slug: 'hauts-de-seine-92',
-    type: 'department',
-    title: "Rénovation d'Appartement Haut de Gamme dans les Hauts-de-Seine (92)",
-    metaTitle: 'Rénovation Appartement Hauts-de-Seine (92) | Neuilly, Boulogne | ERG',
-    metaDescription: "Expert en rénovation d'appartements de standing dans le 92 (Neuilly-sur-Seine, Boulogne, Saint-Cloud). Maîtrise des projets complexes en copropriété. Devis.",
-    parentService: services.find(s => s.slug === 'renovation-appartement')!,
-    introduction: "Les Hauts-de-Seine (92) regroupent certaines des adresses les plus prisées d'Île-de-France, de Neuilly-sur-Seine à Boulogne-Billancourt, en passant par Saint-Cloud. La rénovation d'un appartement dans ce département exige une expertise particulière : connaissance des immeubles des années 30 et Haussmanniens, gestion des contraintes de la copropriété, et exigence sur les finitions. ERG Rénovation est votre partenaire unique pour un projet d'excellence dans le 92.",
-    cta: {
-      primary: 'Demander une étude personnalisée dans le 92',
-      secondary: 'Voir nos réalisations à Neuilly-sur-Seine',
-    },
-    reassurancePoints: [
-      'Maîtrise des règlements de copropriété du 92',
-      'Expertise en isolation phonique (Appartements voisins)',
-      'Garantie décennale pour vos travaux structurels',
-    ],
-    mainContent: (
-      <>
-        <h2 id="expertise-92">Notre Expertise pour Votre Appartement dans le 92</h2>
-        <p>Que vous souhaitiez ouvrir l'espace, réhabiliter des volumes anciens ou créer une suite parentale, nous gérons l'intégralité des travaux (TCE).</p>
-        <div className="mt-8 space-y-6">
-            <div className="flex items-start gap-4">
-                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
-                <div>
-                    <h3 className="font-headline font-semibold text-lg">Abattage de Murs Porteurs et Ouverture d'Espace</h3>
-                    <p className="text-muted-foreground">Nous gérons l'étude structurelle, la pose d'IPN/HEA et l'obtention des autorisations de copropriété.</p>
-                </div>
-            </div>
-            <div className="flex items-start gap-4">
-                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
-                <div>
-                    <h3 className="font-headline font-semibold text-lg">Optimisation des Espaces et Création de Rangements</h3>
-                    <p className="text-muted-foreground">Conception et intégration de dressings, bibliothèques et meubles sur mesure pour maximiser la valeur de chaque mètre carré.</p>
-                </div>
-            </div>
-             <div className="flex items-start gap-4">
-                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
-                <div>
-                    <h3 className="font-headline font-semibold text-lg">Rénovation Complète des Salles d'Eau et Cuisines</h3>
-                    <p className="text-muted-foreground">Expertise technique dans les pièces humides, avec des finitions haut de gamme pour les cuisines et salles de bain (plomberie, étanchéité, carrelage grand format).</p>
-                </div>
-            </div>
-        </div>
-        <h2 id="villes-92">Les Villes du 92 où Nous Intervenons Prioritairement</h2>
-        <p className="mt-4">Notre expérience s'étend sur l'ensemble des Hauts-de-Seine, avec une forte concentration de projets d'exception dans les secteurs suivants :</p>
-      </>
-    ),
-    testimonial: {
-      quote: "La rénovation de notre appartement à Boulogne a été gérée avec une grande rigueur, sans aucune plainte de la copropriété.",
-      author: "Famille Dubois, Boulogne-Billancourt (92)",
-    },
-    relatedLocations: [
-      { name: 'Neuilly-sur-Seine', slug: 'neuilly-sur-seine' },
-      { name: 'Boulogne-Billancourt', slug: 'boulogne-billancourt' },
-      { name: 'Saint-Cloud', slug: 'saint-cloud' },
-      { name: 'Garches', slug: 'garches' },
-      { name: 'Sèvres', slug: 'sevres' },
-      { name: 'Sceaux', slug: 'sceaux' },
-      { name: 'Rueil-Malmaison', slug: 'rueil-malmaison' },
-    ]
   },
   {
     slug: 'val-de-marne-94',
@@ -2029,6 +1969,9 @@ export const blogPosts: BlogPost[] = [
 ];
 
     
+
+
+
 
 
 
