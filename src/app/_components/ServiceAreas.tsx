@@ -63,7 +63,7 @@ export default function ServiceAreas() {
         <div className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
           <AreaCard
             title="Hauts-de-Seine (92)"
-            description="Paris – tous arrondissements, Boulogne-Billancourt, Nanterre, Courbevoie, Colombes, Asnières…"
+            description="Boulogne-Billancourt, Nanterre, Courbevoie, Colombes, Asnières…"
             href="/renovation-92"
           />
           <AreaCard
