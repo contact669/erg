@@ -12,7 +12,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { CheckCircle, Hammer, Home, Bath, CookingPot, Layers, Sparkles, Award, Users, ClipboardCheck, Phone, ArrowRight, ShieldCheck, Building2, Bricks, PlugZap, Scale, Ratio, Wind, Hourglass, FunctionSquare, Gem, Maximize, Shield } from "lucide-react"
+import { CheckCircle, Hammer, Home, Bath, CookingPot, Layers, Sparkles, Award, Users, Phone, ArrowRight, ClipboardList, Building2, Bricks, Scale, PlugZap, Ratio, Wind, Hourglass, FunctionSquare, Gem, Maximize, Shield } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Paris (75) | ERG Rénovation",
@@ -66,7 +66,7 @@ export default function RenovationParisPage() {
               </p>
               <div className="mt-8 grid grid-cols-2 gap-4 text-sm text-muted-foreground md:grid-cols-4">
                 <span className="inline-flex items-center justify-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Intervention rapide</span>
-                <span className="inline-flex items-center justify-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Visite gratuite</span>
+                <span className="inline-flex items-center justify-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Visite sur site gratuite</span>
                 <span className="inline-flex items-center justify-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Devis détaillé</span>
                 <span className="inline-flex items-center justify-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Interlocuteur unique</span>
               </div>
@@ -87,14 +87,14 @@ export default function RenovationParisPage() {
                   <Card className="border-0 bg-secondary/30 shadow-none">
                     <CardHeader>
                       <CardTitle>Un parc immobilier ancien</CardTitle>
-                      <CardDescription>
-                        À Paris, une grande partie des logements date d’avant 1975, voire du XIXᵉ siècle.
+                       <CardDescription>
+                        À Paris, une grande partie des logements date d’avant 1975.
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <p className="flex items-center gap-3 text-sm"><Building2 className="h-5 w-5 text-accent" /> Immeubles haussmanniens</p>
-                      <p className="flex items-center gap-3 text-sm"><Layers className="h-5 w-5 text-accent" /> Planchers bois</p>
-                      <p className="flex items-center gap-3 text-sm"><Bricks className="h-5 w-5 text-accent" /> Murs porteurs épais</p>
+                      <p className="flex items-center gap-3 text-sm"><Bricks className="h-5 w-5 text-accent" /> Planchers bois</p>
+                      <p className="flex items-center gap-3 text-sm"><Scale className="h-5 w-5 text-accent" /> Murs porteurs épais</p>
                       <p className="flex items-center gap-3 text-sm"><PlugZap className="h-5 w-5 text-accent" /> Réseaux parfois vétustes</p>
                     </CardContent>
                   </Card>
@@ -102,7 +102,7 @@ export default function RenovationParisPage() {
                     <CardHeader>
                       <CardTitle>Des contraintes de copropriété</CardTitle>
                        <CardDescription>
-                        Des autorisations sont souvent nécessaires pour les travaux.
+                        Des autorisations sont souvent nécessaires.
                       </CardDescription>
                     </CardHeader>
                      <CardContent className="space-y-3">
@@ -116,7 +116,7 @@ export default function RenovationParisPage() {
                     <CardHeader>
                       <CardTitle>Des surfaces à optimiser</CardTitle>
                       <CardDescription>
-                        À Paris, chaque mètre carré compte. La rénovation doit conjuguer plusieurs aspects.
+                        À Paris, chaque mètre carré compte.
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-3">
@@ -186,7 +186,7 @@ export default function RenovationParisPage() {
                       <Award className="h-6 w-6 flex-shrink-0 text-accent" />
                       <div>
                         <h3 className="font-semibold">Une expertise locale réelle</h3>
-                        <p className="text-sm text-muted-foreground">Nous intervenons quotidiennement à Paris, dans tous les arrondissements. Nous connaissons les immeubles anciens, les contraintes des syndics et les attentes des clients parisiens.</p>
+                        <p className="text-sm text-muted-foreground">Nous intervenons quotidiennement à Paris. Nous connaissons les immeubles anciens, les contraintes des syndics et les attentes des clients parisiens.</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-4">
@@ -197,14 +197,14 @@ export default function RenovationParisPage() {
                       </div>
                     </li>
                     <li className="flex items-start gap-4">
-                      <ShieldCheck className="h-6 w-6 flex-shrink-0 text-accent" />
+                      <Shield className="h-6 w-6 flex-shrink-0 text-accent" />
                       <div>
                         <h3 className="font-semibold">Des artisans qualifiés et assurés</h3>
                         <p className="text-sm text-muted-foreground">Assurance décennale, responsabilité civile et respect des normes en vigueur.</p>
                       </div>
                     </li>
                      <li className="flex items-start gap-4">
-                      <ClipboardCheck className="h-6 w-6 flex-shrink-0 text-accent" />
+                      <ClipboardList className="h-6 w-6 flex-shrink-0 text-accent" />
                       <div>
                         <h3 className="font-semibold">Une transparence totale</h3>
                         <p className="text-sm text-muted-foreground">Devis détaillé, planning clair, budget maîtrisé.</p>
@@ -258,5 +258,3 @@ export default function RenovationParisPage() {
     </div>
   )
 }
-
-    
