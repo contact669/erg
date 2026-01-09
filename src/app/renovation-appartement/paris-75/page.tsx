@@ -12,7 +12,31 @@ import { PlaceHolderImages } from "@/lib/placeholder-images"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { CheckCircle, Hammer, Home, Bath, CookingPot, Layers, Sparkles, Award, Users, Phone, ArrowRight, ClipboardList, Building, Bricks, Scale, PlugZap, Ratio, Wind, Hourglass, Gem, Maximize, Building2, Scaling } from "lucide-react"
+import {
+  CheckCircle,
+  Hammer,
+  Home,
+  Bath,
+  CookingPot,
+  Layers,
+  Sparkles,
+  Award,
+  Users,
+  Phone,
+  ArrowRight,
+  ClipboardList,
+  Building2,
+  Bricks,
+  Scale,
+  PlugZap,
+  Ratio,
+  Wind,
+  Hourglass,
+  Gem,
+  Maximize,
+  Scaling,
+  ShieldCheck,
+} from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Paris (75) | ERG Rénovation",
@@ -197,7 +221,7 @@ export default function RenovationParisPage() {
                       </div>
                     </li>
                     <li className="flex items-start gap-4">
-                      <CheckCircle className="h-6 w-6 flex-shrink-0 text-accent" />
+                      <ShieldCheck className="h-6 w-6 flex-shrink-0 text-accent" />
                       <div>
                         <h3 className="font-semibold">Des artisans qualifiés et assurés</h3>
                         <p className="text-sm text-muted-foreground">Assurance décennale, responsabilité civile et respect des normes en vigueur.</p>
@@ -258,5 +282,3 @@ export default function RenovationParisPage() {
     </div>
   )
 }
-
-    
