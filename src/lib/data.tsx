@@ -2090,4 +2090,3 @@ export const blogPosts: BlogPost[] = [
     })()
   }
 ];
-
