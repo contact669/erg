@@ -12,7 +12,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { CheckCircle, Hammer, Home, Bath, CookingPot, Layers, Sparkles, Award, Users, Phone, ArrowRight, ClipboardList, Building2, Bricks, Scale, PlugZap, Ratio, Wind, Hourglass, FunctionSquare, Gem, Maximize, ShieldCheck, Building } from "lucide-react"
+import { CheckCircle, Hammer, Home, Bath, CookingPot, Layers, Sparkles, Award, Users, Phone, ArrowRight, ClipboardList, Building, Bricks, Scale, PlugZap, Ratio, Wind, Hourglass, Gem, Maximize, Building2, Scaling } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Paris (75) | ERG Rénovation",
@@ -92,7 +92,7 @@ export default function RenovationParisPage() {
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-3">
-                      <p className="flex items-center gap-3 text-sm"><Building className="h-5 w-5 text-accent" /> Immeubles haussmanniens</p>
+                      <p className="flex items-center gap-3 text-sm"><Building2 className="h-5 w-5 text-accent" /> Immeubles haussmanniens</p>
                       <p className="flex items-center gap-3 text-sm"><Bricks className="h-5 w-5 text-accent" /> Planchers bois</p>
                       <p className="flex items-center gap-3 text-sm"><Scale className="h-5 w-5 text-accent" /> Murs porteurs épais</p>
                       <p className="flex items-center gap-3 text-sm"><PlugZap className="h-5 w-5 text-accent" /> Réseaux parfois vétustes</p>
@@ -120,7 +120,7 @@ export default function RenovationParisPage() {
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-3">
-                       <p className="flex items-center gap-3 text-sm"><FunctionSquare className="h-5 w-5 text-accent" /> Fonctionnalité</p>
+                       <p className="flex items-center gap-3 text-sm"><Scaling className="h-5 w-5 text-accent" /> Fonctionnalité</p>
                        <p className="flex items-center gap-3 text-sm"><Gem className="h-5 w-5 text-accent" /> Esthétique</p>
                        <p className="flex items-center gap-3 text-sm"><Maximize className="h-5 w-5 text-accent" /> Optimisation des volumes</p>
                        <p className="flex items-center gap-3 text-sm"><ShieldCheck className="h-5 w-5 text-accent" /> Durabilité</p>
@@ -197,7 +197,7 @@ export default function RenovationParisPage() {
                       </div>
                     </li>
                     <li className="flex items-start gap-4">
-                      <ShieldCheck className="h-6 w-6 flex-shrink-0 text-accent" />
+                      <CheckCircle className="h-6 w-6 flex-shrink-0 text-accent" />
                       <div>
                         <h3 className="font-semibold">Des artisans qualifiés et assurés</h3>
                         <p className="text-sm text-muted-foreground">Assurance décennale, responsabilité civile et respect des normes en vigueur.</p>
@@ -258,3 +258,5 @@ export default function RenovationParisPage() {
     </div>
   )
 }
+
+    
