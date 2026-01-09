@@ -39,9 +39,9 @@ export default function ServiceAreas() {
             href="/renovation-paris"
           />
           <AreaCard
-            title="Yvelines (78)"
-            description="Versailles, Sartrouville, Mantes-la-Jolie, Saint-Germain-en-Laye..."
-            href="/renovation-maison/yvelines-78"
+            title="Hauts-de-Seine (92)"
+            description="Boulogne, Nanterre, Courbevoie, Asnières..."
+            href="/renovation-hauts-de-seine"
           />
           <AreaCard
             title="Seine-Saint-Denis (93)"
@@ -113,3 +113,5 @@ function AreaCard({
     </article>
   )
 }
+
+    
