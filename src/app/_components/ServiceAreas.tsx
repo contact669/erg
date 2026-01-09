@@ -34,6 +34,11 @@ export default function ServiceAreas() {
         {/* IDF cards */}
         <div className="mx-auto mt-12 grid max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <AreaCard
+            title="Paris (75)"
+            description="20e, 11e, 19e et tous les arrondissements"
+            href="/renovation-paris"
+          />
+          <AreaCard
             title="Hauts-de-Seine (92)"
             description="Boulogne-Billancourt, Nanterre, Courbevoie, Colombes, Asnières…"
             href="/renovation-appartement/hauts-de-seine-92"
@@ -47,11 +52,6 @@ export default function ServiceAreas() {
             title="Val-de-Marne (94)"
             description="Vincennes, Ivry-sur-Seine, Créteil, Vitry-sur-Seine…"
             href="/renovation-appartement/val-de-marne-94"
-          />
-           <AreaCard
-            title="Yvelines (78)"
-            description="Versailles, Sartrouville, Mantes-la-Jolie, Saint-Germain-en-Laye..."
-            href="/renovation-appartement/yvelines-78"
           />
         </div>
 
