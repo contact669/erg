@@ -12,7 +12,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { CheckCircle, Hammer, Home, Bath, CookingPot, Layers, Sparkles, Award, Users, ClipboardCheck, Phone, ArrowRight, ShieldCheck } from "lucide-react"
+import { CheckCircle, Hammer, Home, Bath, CookingPot, Layers, Sparkles, Award, Users, ClipboardCheck, Phone, ArrowRight, ShieldCheck, Building2, Bricks, PlugZap, Scale, Ratio, Wind, Hourglass, FunctionSquare, Gem, Maximize, Shield } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Paris (75) | ERG Rénovation",
@@ -25,8 +25,8 @@ export const metadata: Metadata = {
 
 export default function RenovationParisPage() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'project-apartment-paris-75');
-  const bathroomImage = PlaceHolderImages.find(p => p.id === 'project-small-bathroom-after');
-  const kitchenImage = PlaceHolderImages.find(p => p.id === 'project-kitchen-1');
+  const sdbImage = PlaceHolderImages.find(p => p.id === 'project-small-bathroom-after');
+  const cuisineImage = PlaceHolderImages.find(p => p.id === 'project-kitchen-1');
   const apartmentImage = PlaceHolderImages.find(p => p.id === 'project-apartment-1');
 
   const faqs = [
@@ -61,7 +61,8 @@ export default function RenovationParisPage() {
                 Rénovation d’appartement à Paris (75)
               </h1>
               <p className="mt-4 text-lg text-muted-foreground">
-                ERG Rénovation accompagne les particuliers, propriétaires occupants et investisseurs pour leurs travaux de rénovation à Paris, tous arrondissements confondus. De la rénovation complète d’appartement à la salle de bain ou à la cuisine, nous assurons un suivi structuré, des finitions soignées et une maîtrise totale du chantier, dans le respect des contraintes parisiennes.
+                ERG Rénovation accompagne les particuliers, propriétaires occupants et investisseurs pour leurs travaux de rénovation à Paris, tous arrondissements confondus.
+                De la rénovation complète d’appartement à la salle de bain ou à la cuisine, nous assurons un suivi structuré, des finitions soignées et une maîtrise totale du chantier, dans le respect des contraintes parisiennes.
               </p>
               <div className="mt-8 grid grid-cols-2 gap-4 text-sm text-muted-foreground md:grid-cols-4">
                 <span className="inline-flex items-center justify-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Intervention rapide</span>
@@ -86,45 +87,43 @@ export default function RenovationParisPage() {
                   <Card className="border-0 bg-secondary/30 shadow-none">
                     <CardHeader>
                       <CardTitle>Un parc immobilier ancien</CardTitle>
+                      <CardDescription>
+                        À Paris, une grande partie des logements date d’avant 1975, voire du XIXᵉ siècle.
+                      </CardDescription>
                     </CardHeader>
-                    <CardContent>
-                      <p>À Paris, une grande partie des logements date d’avant 1975, voire du XIXᵉ siècle :</p>
-                      <ul className="list-disc space-y-2 pl-5 text-muted-foreground mt-4">
-                        <li>Immeubles haussmanniens</li>
-                        <li>Planchers bois</li>
-                        <li>Murs porteurs épais</li>
-                        <li>Réseaux parfois vétustes</li>
-                      </ul>
-                       <p className="mt-4 text-sm font-semibold">Chaque projet nécessite une analyse technique précise avant travaux.</p>
+                    <CardContent className="space-y-3">
+                      <p className="flex items-center gap-3 text-sm"><Building2 className="h-5 w-5 text-accent" /> Immeubles haussmanniens</p>
+                      <p className="flex items-center gap-3 text-sm"><Layers className="h-5 w-5 text-accent" /> Planchers bois</p>
+                      <p className="flex items-center gap-3 text-sm"><Bricks className="h-5 w-5 text-accent" /> Murs porteurs épais</p>
+                      <p className="flex items-center gap-3 text-sm"><PlugZap className="h-5 w-5 text-accent" /> Réseaux parfois vétustes</p>
                     </CardContent>
                   </Card>
                   <Card className="border-0 bg-secondary/30 shadow-none">
                     <CardHeader>
                       <CardTitle>Des contraintes de copropriété</CardTitle>
+                       <CardDescription>
+                        Des autorisations sont souvent nécessaires pour les travaux.
+                      </CardDescription>
                     </CardHeader>
-                    <CardContent>
-                      <p>Autorisation pour :</p>
-                      <ul className="list-disc space-y-2 pl-5 text-muted-foreground mt-2">
-                        <li>Modification de cloisons</li>
-                        <li>Intervention sur les réseaux</li>
-                        <li>Évacuation, ventilation</li>
-                        <li>Nuisances sonores et horaires</li>
-                      </ul>
-                       <p className="mt-4 text-sm font-semibold">Nous vous accompagnons dans ces démarches pour sécuriser votre projet dès le départ.</p>
+                     <CardContent className="space-y-3">
+                      <p className="flex items-center gap-3 text-sm"><Ratio className="h-5 w-5 text-accent" /> Modification de cloisons</p>
+                      <p className="flex items-center gap-3 text-sm"><PlugZap className="h-5 w-5 text-accent" /> Intervention sur les réseaux</p>
+                      <p className="flex items-center gap-3 text-sm"><Wind className="h-5 w-5 text-accent" /> Évacuation, ventilation</p>
+                      <p className="flex items-center gap-3 text-sm"><Hourglass className="h-5 w-5 text-accent" /> Nuisances sonores et horaires</p>
                     </CardContent>
                   </Card>
                   <Card className="border-0 bg-secondary/30 shadow-none">
                     <CardHeader>
                       <CardTitle>Des surfaces à optimiser</CardTitle>
+                      <CardDescription>
+                        À Paris, chaque mètre carré compte. La rénovation doit conjuguer plusieurs aspects.
+                      </CardDescription>
                     </CardHeader>
-                    <CardContent>
-                       <p>À Paris, chaque mètre carré compte. La rénovation doit conjuguer :</p>
-                      <ul className="list-disc space-y-2 pl-5 text-muted-foreground mt-2">
-                        <li>Fonctionnalité</li>
-                        <li>Esthétique</li>
-                        <li>Optimisation des volumes</li>
-                        <li>Durabilité</li>
-                      </ul>
+                    <CardContent className="space-y-3">
+                       <p className="flex items-center gap-3 text-sm"><FunctionSquare className="h-5 w-5 text-accent" /> Fonctionnalité</p>
+                       <p className="flex items-center gap-3 text-sm"><Gem className="h-5 w-5 text-accent" /> Esthétique</p>
+                       <p className="flex items-center gap-3 text-sm"><Maximize className="h-5 w-5 text-accent" /> Optimisation des volumes</p>
+                       <p className="flex items-center gap-3 text-sm"><Shield className="h-5 w-5 text-accent" /> Durabilité</p>
                     </CardContent>
                   </Card>
               </div>
@@ -187,7 +186,7 @@ export default function RenovationParisPage() {
                       <Award className="h-6 w-6 flex-shrink-0 text-accent" />
                       <div>
                         <h3 className="font-semibold">Une expertise locale réelle</h3>
-                        <p className="text-sm text-muted-foreground">Nous connaissons les immeubles anciens, les contraintes des syndics et les attentes des clients parisiens.</p>
+                        <p className="text-sm text-muted-foreground">Nous intervenons quotidiennement à Paris, dans tous les arrondissements. Nous connaissons les immeubles anciens, les contraintes des syndics et les attentes des clients parisiens.</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-4">
