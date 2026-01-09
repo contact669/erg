@@ -24,6 +24,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CtaBanner from "@/app/_components/cta-banner";
 import AnimatedSection from "@/components/animated-section";
+import Breadcrumbs from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Paris (75) | ERG Rénovation",
@@ -106,7 +107,7 @@ const whyChooseUs = [
     {
         icon: ClipboardList,
         title: "Une transparence totale",
-        description: "Nous nous engageons sur un devis détaillé, un planning clair et un budget maîtrisé pour une rénovation sans surprise."
+        description: "devis détaillé, planning clair, budget maîtrisé."
     }
 ]
 
@@ -134,6 +135,7 @@ export default function RenovationParisPage() {
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
       <main className="flex-grow">
+        <Breadcrumbs />
         {/* Hero */}
         <section className="bg-secondary py-16 md:py-24">
           <div className="container text-center">
