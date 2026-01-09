@@ -5,7 +5,7 @@ import {
   Home,
   Bath,
   CookingPot,
-  Building,
+  Building2,
   Hammer,
   Paintbrush,
   Sparkles,
@@ -44,7 +44,7 @@ export const services: Service[] = [
     title: 'Rénovation d’appartement',
     slug: 'renovation-appartement',
     description: 'Transformation complète ou partielle de votre appartement.',
-    icon: Building,
+    icon: Building2,
     heroImageId: 'service-apartment',
     benefitImageId: 'service-pillar-kitchen',
     whyUsImageId: 'service-pillar-finish',
@@ -1007,7 +1007,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     metaTitle: "Rénovation Appartement Le Perreux-sur-Marne (94) | ERG Rénovation",
     metaDescription: "Expert en rénovation d'appartements au Perreux-sur-Marne. Agencement, finitions de qualité et respect des délais pour votre projet dans le 94170. Devis.",
     parentService: services.find(s => s.slug === 'renovation-appartement')!,
-    introduction: "Au Perreux-sur-Marne, la qualité de vie est une priorité. La rénovation de votre appartement doit refléter cet art de vivre, en créant des espaces confortables, lumineux et parfaitement finis. ERG Rénovation vous apporte son expertise pour tous vos projets au Perreux, de la rénovation complète à la modernisation de votre cuisine ou salle de bain, avec un interlocuteur unique pour votre tranquillité.",
+    introduction: "Au Perreux-sur-Marne, la qualité de vie est une priorité. La rénovation de votre appartement doit refléter cet art de vivre, en créant des espaces confortables, lumineux et parfaitement finis. ERG Rénovation vous apporte son expertise pour tous vos projets au Perreux, de la rénovation complète à la modernisation de votre cuisine ou de votre salle de bain, avec un interlocuteur unique pour votre tranquillité.",
     cta: {
       primary: 'Obtenir mon devis au Perreux',
       secondary: 'Découvrir nos cuisines',
@@ -1443,7 +1443,7 @@ export const allProjects: Project[] = [
           <p>Cette approche a permis de livrer un appartement entièrement rénové, conforme aux attentes du client, avec des finitions de qualité et une gestion de projet sans stress.</p>
       </>,
       keyPoints: [
-        { title: "Rénovation complète", icon: Building },
+        { title: "Rénovation complète", icon: Building2 },
         { title: "Force de proposition", icon: Lightbulb },
         { title: "Suivi de chantier rigoureux", icon: ClipboardList },
         { title: "Qualité des finitions", icon: Sparkles }
@@ -2090,3 +2090,4 @@ export const blogPosts: BlogPost[] = [
     })()
   }
 ];
+
