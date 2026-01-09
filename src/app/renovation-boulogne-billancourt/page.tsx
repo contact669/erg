@@ -28,30 +28,30 @@ import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Rénovation appartement Hauts-de-Seine (92) | ERG Rénovation",
+  title: "Rénovation appartement Boulogne-Billancourt (92100) | ERG Rénovation",
   description:
-    "Entreprise de rénovation dans les Hauts-de-Seine (92) : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions soignées.",
+    "Entreprise de rénovation à Boulogne-Billancourt (92100) : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions haut de gamme.",
   alternates: {
-    canonical: "https://www.erg-renovation.fr/renovation-hauts-de-seine",
+    canonical: "https://www.erg-renovation.fr/renovation-boulogne-billancourt",
   },
   robots: {
     index: true,
     follow: true,
   },
-  openGraph: {
-    title: "Rénovation appartement Hauts-de-Seine (92) | ERG Rénovation",
+   openGraph: {
+    title: "Rénovation appartement Boulogne-Billancourt (92100) | ERG Rénovation",
     description:
-      "Rénovation intérieure dans le 92 : appartement, salle de bain, cuisine. Visite sur site, devis détaillé et finitions soignées.",
-    url: "https://www.erg-renovation.fr/renovation-hauts-de-seine",
+      "Entreprise de rénovation à Boulogne-Billancourt (92100) : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions haut de gamme.",
+    url: "https://www.erg-renovation.fr/renovation-boulogne-billancourt",
     type: "website",
     locale: "fr_FR",
     siteName: "ERG Rénovation",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rénovation appartement Hauts-de-Seine (92) | ERG Rénovation",
+    title: "Rénovation appartement Boulogne-Billancourt (92100) | ERG Rénovation",
     description:
-      "Entreprise de rénovation dans les Hauts-de-Seine : appartement, salle de bain, cuisine. Devis détaillé, suivi de chantier, finitions soignées.",
+      "Entreprise de rénovation à Boulogne-Billancourt (92100) : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions haut de gamme.",
   },
 };
 
@@ -71,8 +71,8 @@ function JsonLd() {
       },
       "priceRange": "€€",
       "areaServed": {
-        "@type": "AdministrativeArea",
-        "name": "Hauts-de-Seine"
+        "@type": "City",
+        "name": "Boulogne-Billancourt"
       },
       "serviceType": [
         "Rénovation d’appartement",
@@ -80,11 +80,11 @@ function JsonLd() {
         "Rénovation de cuisine",
         "Travaux tous corps d’état",
       ],
-      "description": "ERG Rénovation, entreprise spécialisée en rénovation intérieure d'appartements, cuisines et salles de bain dans les Hauts-de-Seine (92)."
+      "description": "ERG Rénovation, entreprise spécialisée en rénovation d'appartements à Boulogne-Billancourt (92100). Devis gratuit, garantie décennale."
     };
     return (
         <Script
-            id="jsonld-renovation-hauts-de-seine"
+            id="jsonld-renovation-boulogne-billancourt"
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
@@ -92,33 +92,33 @@ function JsonLd() {
 }
 
 const heroPoints = [
-    { text: "Intervention rapide" },
+    { text: "Intervention rapide à Boulogne-Billancourt" },
     { text: "Visite sur site gratuite" },
     { text: "Devis détaillé et transparent" },
     { text: "Un interlocuteur unique" },
 ];
 
-const hautsDeSeineSpecificities = [
+const boulogneSpecificities = [
     {
         icon: Building2,
-        title: "Un marché immobilier exigeant",
-        description: "À Boulogne-Billancourt, Courbevoie, ou Neuilly, la rénovation est un levier clé pour augmenter la valeur du bien, améliorer la performance énergétique et répondre aux attentes des acquéreurs.",
-        imageUrl: "https://picsum.photos/seed/9201/800/600",
-        imageAlt: "Rénovation d’un appartement dans les Hauts-de-Seine avec finitions soignées"
+        title: "Un parc immobilier dense et varié",
+        description: "À Boulogne, les immeubles anciens côtoient des résidences modernes. Chaque projet demande une approche technique adaptée, que nous maîtrisons.",
+        imageUrl: "https://picsum.photos/seed/92101/800/600",
+        imageAlt: "Rénovation d’un appartement à Boulogne-Billancourt avec finitions haut de gamme"
     },
     {
         icon: Hammer,
-        title: "Des contraintes techniques spécifiques",
-        description: "Réseaux parfois anciens, copropriétés structurées, normes acoustiques strictes et attentes élevées en matière de finition nécessitent méthode, expertise et coordination.",
-        imageUrl: "https://picsum.photos/seed/9202/800/600",
-        imageAlt: "Chantier de rénovation intérieure dans les Hauts-de-Seine (92)"
+        title: "Des attentes élevées en finition",
+        description: "Les propriétaires boulonnais sont particulièrement attentifs à la qualité des matériaux et aux détails de finition. Notre exigence est notre norme.",
+        imageUrl: "https://picsum.photos/seed/92102/800/600",
+        imageAlt: "Chantier de rénovation intérieure à Boulogne-Billancourt dans les Hauts-de-Seine"
     },
     {
         icon: Home,
-        title: "Un patrimoine immobilier varié",
-        description: "Le 92 mêle immeubles anciens, résidences des années 60-80 et constructions récentes. Chaque projet est une occasion de moderniser tout en respectant le caractère du lieu.",
-        imageUrl: "https://picsum.photos/seed/9203/800/600",
-        imageAlt: "Rénovation de salle de bain moderne dans un appartement des Hauts-de-Seine"
+        title: "Un enjeu patrimonial fort",
+        description: "Rénover à Boulogne-Billancourt, c'est investir pour valoriser durablement son patrimoine sur un marché immobilier très recherché.",
+        imageUrl: "https://picsum.photos/seed/92103/800/600",
+        imageAlt: "Cuisine moderne rénovée dans un appartement à Boulogne-Billancourt"
     }
 ];
 
@@ -126,25 +126,25 @@ const renovationServices = [
     {
         icon: Home,
         title: "Rénovation complète d’appartement",
-        description: "Idéal pour un achat avec travaux ou la remise à neuf d'un bien. Nous gérons étude, conception, démolition, électricité, plomberie, isolation et finitions. Un projet clé en main, piloté par un chef de projet dédié.",
+        description: "Idéale pour un achat avec travaux ou une redistribution des espaces. Nous gérons l'étude, la démolition, l'électricité, la plomberie, l'isolation et les finitions.",
         link: "/services/renovation-appartement"
     },
     {
         icon: Bath,
         title: "Rénovation de salle de bain",
-        description: "Création d'espaces modernes et fonctionnels : douche à l’italienne, optimisation des petits espaces, étanchéité renforcée et ventilation performante. Nous adaptons chaque projet aux contraintes du logement.",
+        description: "Création de salles de bain modernes, fonctionnelles et élégantes. Nous maîtrisons l'optimisation des petites surfaces, l'étanchéité et la pose de matériaux nobles.",
         link: "/services/renovation-salle-de-bain"
     },
     {
         icon: UtensilsCrossed,
         title: "Rénovation de cuisine",
-        description: "Cuisine ouverte ou fermée, nous optimisons la circulation, créons des rangements intelligents et coordonnons tous les corps de métier pour un résultat esthétique, pratique et durable.",
+        description: "Cuisine ouverte ou fermée, nous optimisons les volumes, créons des rangements intelligents et coordonnons tous les corps de métier pour un résultat esthétique et durable.",
         link: "/services/renovation-cuisine"
     },
     {
         icon: Sparkles,
         title: "Rénovation partielle & aménagement",
-        description: "Pour un rafraîchissement, une redistribution de pièces, ou la création de rangements sur mesure. Idéal pour moderniser un bien sans engager une rénovation lourde.",
+        description: "Pour un rafraîchissement, une redistribution de pièces ou la création de rangements sur mesure. Idéal pour valoriser un bien sans rénovation lourde.",
         link: "/services"
     }
 ];
@@ -152,47 +152,41 @@ const renovationServices = [
 const whyChooseUs = [
     {
         icon: ShieldCheck,
-        title: "Une expertise locale confirmée",
-        description: "Nous intervenons régulièrement dans le 92 et connaissons les copropriétés locales, les attentes des syndics et les contraintes techniques par commune."
+        title: "Une parfaite connaissance du secteur",
+        description: "Nous intervenons régulièrement à Boulogne-Billancourt et connaissons ses typologies d'immeubles, les contraintes de copropriété et les attentes locales."
     },
     {
         icon: Users,
-        title: "Un interlocuteur unique",
-        description: "Un chef de projet dédié assure la coordination des artisans, le respect des délais et le suivi qualité."
+        title: "Un interlocuteur unique pour votre projet",
+        description: "Un chef de projet dédié assure la coordination des artisans, le respect du planning et le contrôle qualité, pour votre tranquillité d'esprit."
     },
     {
         icon: ClipboardList,
-        title: "Une transparence totale",
-        description: "Nos devis sont détaillés, nos plannings clairs et votre budget est maîtrisé du début à la fin."
+        title: "Une transparence totale et des garanties",
+        description: "Nos devis sont clairs et détaillés, nos délais contractualisés et votre budget est maîtrisé. Tous nos travaux sont couverts par la garantie décennale."
     }
 ];
 
 const faqItems = [
     {
-        question: "Quel est le prix d’une rénovation dans le 92 ?",
-        answer: "Les prix varient selon la surface, l'état initial et le niveau de finition. À titre indicatif, comptez à partir de 700 €/m² pour une rénovation partielle et entre 1 100 et 1 700 €/m² pour une rénovation complète. Une visite sur site est indispensable pour un devis précis."
+        question: "Quel est le prix d’une rénovation à Boulogne-Billancourt ?",
+        answer: "Les prix varient selon la surface, l'état initial et le niveau de finition. À titre indicatif, comptez à partir de 800 €/m² pour une rénovation partielle et entre 1 200 et 1 800 €/m² pour une rénovation complète. Une visite sur site est indispensable pour un devis précis."
     },
     {
-        question: "Quels sont les délais moyens ?",
-        answer: "Les délais sont définis contractuellement. Comptez 2 à 4 semaines pour une salle de bain et 6 à 12 semaines pour une rénovation complète, en fonction de la complexité du projet."
+        question: "Quels sont les délais moyens pour rénover un appartement à Boulogne ?",
+        answer: "Une salle de bain se rénove en 2 à 4 semaines, tandis qu'une rénovation complète prend de 6 à 12 semaines. Les délais sont définis contractuellement avant le début des travaux."
     },
     {
-        question: "Faut-il l’accord de la copropriété ?",
-        answer: "Oui, un accord est souvent nécessaire pour les travaux touchant aux réseaux, aux murs porteurs ou à la ventilation. Nous vous accompagnons dans la constitution du dossier pour sécuriser les démarches."
+        question: "Faut-il un accord de la copropriété pour des travaux à Boulogne ?",
+        answer: "Oui, pour certains travaux (murs porteurs, réseaux, ventilation, changement de fenêtres). Nous vous accompagnons dans la constitution du dossier administratif pour sécuriser vos démarches."
     },
     {
         question: "Peut-on rénover un appartement occupé ?",
-        answer: "Oui, c'est possible. Nous adaptons l’organisation du chantier en planifiant les interventions par phases et en protégeant les zones non concernées pour limiter au maximum les nuisances."
+        answer: "Oui, c'est possible. Nous adaptons l'organisation du chantier en planifiant les interventions par phases et en protégeant les zones non concernées pour limiter au maximum les nuisances."
     }
 ];
 
-const cities92 = [
-    "Boulogne-Billancourt", "Nanterre", "Courbevoie", "Colombes", "Asnières-sur-Seine",
-    "Levallois-Perret", "Neuilly-sur-Seine", "Suresnes", "Rueil-Malmaison", "Clamart", "Issy-les-Moulineaux"
-];
-
-
-export default function RenovationHautsDeSeinePage() {
+export default function RenovationBoulognePage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <JsonLd />
@@ -203,10 +197,10 @@ export default function RenovationHautsDeSeinePage() {
         <section className="bg-secondary py-16 md:py-24">
           <div className="container text-center">
             <h1 className="font-headline text-4xl font-bold md:text-5xl lg:text-6xl">
-              Rénovation d’appartement dans les Hauts-de-Seine (92) – ERG Rénovation
+              Rénovation d’appartement à Boulogne-Billancourt (92100) – ERG Rénovation
             </h1>
             <p className="mt-4 mx-auto max-w-3xl text-lg text-muted-foreground">
-              ERG Rénovation intervient dans tout le département des Hauts-de-Seine (92) pour vos projets de rénovation intérieure : appartement, salle de bain, cuisine ou rénovation complète. Nous accompagnons les propriétaires avec un suivi structuré, des artisans qualifiés et des finitions soignées.
+              ERG Rénovation accompagne les propriétaires pour leurs travaux de rénovation à Boulogne-Billancourt. De la rénovation complète d'appartement à la salle de bain ou la cuisine, nous assurons un suivi structuré et des finitions haut de gamme.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3">
                 {heroPoints.map(point => (
@@ -218,7 +212,7 @@ export default function RenovationHautsDeSeinePage() {
             </div>
             <div className="mt-8">
                 <Button asChild size="lg">
-                    <Link href="/devis">Obtenir mon devis gratuit</Link>
+                    <Link href="/devis">Mon devis à Boulogne-Billancourt</Link>
                 </Button>
             </div>
           </div>
@@ -228,16 +222,16 @@ export default function RenovationHautsDeSeinePage() {
         <section className="py-16 md:py-24">
             <div className="container">
                 <div className="text-center mx-auto max-w-2xl">
-                    <h2 className="font-headline text-3xl font-bold">Pourquoi rénover un appartement dans les Hauts-de-Seine ?</h2>
+                    <h2 className="font-headline text-3xl font-bold">Pourquoi rénover à Boulogne-Billancourt ?</h2>
                     <p className="mt-4 text-muted-foreground">
-                        Le 92 présente un patrimoine immobilier varié. Rénover, c’est chercher un équilibre entre modernisation, confort et valorisation immobilière sur un marché exigeant.
+                      Rénover un appartement à Boulogne, c'est investir dans un cadre de vie exceptionnel tout en valorisant durablement son patrimoine immobilier.
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {hautsDeSeineSpecificities.map(item => (
+                    {boulogneSpecificities.map(item => (
                         <Card key={item.title} className="overflow-hidden">
                             <div className="relative h-56 w-full">
-                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover"/>
+                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover" data-ai-hint={item.title.toLowerCase()} />
                             </div>
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-3">
@@ -259,9 +253,9 @@ export default function RenovationHautsDeSeinePage() {
         <section className="bg-secondary py-16 md:py-24">
             <div className="container">
                 <div className="text-center mx-auto max-w-2xl">
-                    <h2 className="font-headline text-3xl font-bold">Nos services de rénovation dans le 92</h2>
+                    <h2 className="font-headline text-3xl font-bold">Nos services de rénovation à Boulogne-Billancourt</h2>
                     <p className="mt-4 text-muted-foreground">
-                        Nous réalisons des projets sur mesure, adaptés à chaque commune et à chaque typologie de logement.
+                        Nous proposons des solutions sur mesure, adaptées à chaque projet et à chaque typologie d'appartement boulonnais.
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -293,10 +287,10 @@ export default function RenovationHautsDeSeinePage() {
             <div className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
-                        <Image src="https://picsum.photos/seed/9204/800/1000" alt="Exemple de projet de rénovation à Boulogne-Billancourt" fill className="object-cover"/>
+                        <Image src="https://picsum.photos/seed/92104/800/1000" alt="Chantier de rénovation d'un appartement à Boulogne-Billancourt" fill className="object-cover" data-ai-hint="renovation site" />
                     </div>
                     <div>
-                        <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation dans les Hauts-de-Seine ?</h2>
+                        <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation à Boulogne-Billancourt ?</h2>
                         <div className="mt-8 space-y-6">
                             {whyChooseUs.map(item => (
                                 <div key={item.title} className="flex items-start gap-4">
@@ -317,37 +311,10 @@ export default function RenovationHautsDeSeinePage() {
         </AnimatedSection>
         
         <AnimatedSection>
-        <section className="py-16 md:py-24 bg-secondary">
-          <div className="container">
-            <div className="text-center mx-auto max-w-2xl">
-              <h2 className="font-headline text-3xl font-bold">Villes d’intervention dans les Hauts-de-Seine (92)</h2>
-              <p className="mt-4 text-muted-foreground">Nous intervenons dans l’ensemble du département.</p>
-            </div>
-            <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-4xl mx-auto">
-              {cities92.map(city => {
-                if (city === "Boulogne-Billancourt") {
-                  return (
-                    <Button key={city} asChild variant="outline" className="font-medium bg-background hover:bg-accent hover:text-accent-foreground">
-                      <Link href="/renovation-boulogne-billancourt">{city}</Link>
-                    </Button>
-                  )
-                }
-                return (
-                  <div key={city} className="p-3 border rounded-lg bg-background text-center text-sm font-medium">
-                    {city}
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-        </AnimatedSection>
-
-        <AnimatedSection>
         <section className="py-16 md:py-24">
             <div className="container max-w-3xl mx-auto">
                 <div className="text-center">
-                    <h2 className="font-headline text-3xl font-bold">FAQ – Rénovation dans les Hauts-de-Seine (92)</h2>
+                    <h2 className="font-headline text-3xl font-bold">FAQ – Rénovation d’appartement à Boulogne-Billancourt</h2>
                 </div>
                 <Accordion type="single" collapsible className="w-full mt-8">
                     {faqItems.map((item, index) => (
@@ -367,5 +334,3 @@ export default function RenovationHautsDeSeinePage() {
     </div>
   );
 }
-
-    
