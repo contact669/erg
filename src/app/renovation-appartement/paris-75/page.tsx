@@ -114,10 +114,10 @@ export default function RenovationParisPage() {
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-3">
-                      <p>Immeubles haussmanniens</p>
-                      <p>Planchers bois</p>
-                      <p>Murs porteurs épais</p>
-                      <p>Réseaux parfois vétustes</p>
+                       <p className="flex items-center gap-3 text-sm"><Building2 className="h-5 w-5 text-accent" /> Immeubles haussmanniens</p>
+                       <p className="flex items-center gap-3 text-sm"><Bricks className="h-5 w-5 text-accent" /> Planchers bois</p>
+                       <p className="flex items-center gap-3 text-sm"><Home className="h-5 w-5 text-accent" /> Murs porteurs épais</p>
+                       <p className="flex items-center gap-3 text-sm"><PlugZap className="h-5 w-5 text-accent" /> Réseaux parfois vétustes</p>
                     </CardContent>
                   </Card>
                   <Card className="border-0 bg-secondary/30 shadow-none">
@@ -128,10 +128,10 @@ export default function RenovationParisPage() {
                       </CardDescription>
                     </CardHeader>
                      <CardContent className="space-y-3">
-                      <p>Modification de cloisons</p>
-                      <p>Intervention sur les réseaux</p>
-                      <p>Évacuation, ventilation</p>
-                      <p>Nuisances sonores et horaires</p>
+                       <p className="flex items-center gap-3 text-sm"><Scale className="h-5 w-5 text-accent" /> Modification de cloisons</p>
+                       <p className="flex items-center gap-3 text-sm"><Wrench className="h-5 w-5 text-accent" /> Intervention sur les réseaux</p>
+                       <p className="flex items-center gap-3 text-sm"><Home className="h-5 w-5 text-accent" /> Évacuation, ventilation</p>
+                       <p className="flex items-center gap-3 text-sm"><Home className="h-5 w-5 text-accent" /> Nuisances sonores et horaires</p>
                     </CardContent>
                   </Card>
                   <Card className="border-0 bg-secondary/30 shadow-none">
@@ -142,10 +142,10 @@ export default function RenovationParisPage() {
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-3">
-                       <p>Fonctionnalité</p>
-                       <p>Esthétique</p>
-                       <p>Optimisation des volumes</p>
-                       <p>Durabilité</p>
+                       <p className="flex items-center gap-3 text-sm"><DraftingCompass className="h-5 w-5 text-accent" /> Fonctionnalité</p>
+                       <p className="flex items-center gap-3 text-sm"><Gem className="h-5 w-5 text-accent" /> Esthétique</p>
+                       <p className="flex items-center gap-3 text-sm"><Maximize className="h-5 w-5 text-accent" /> Optimisation des volumes</p>
+                       <p className="flex items-center gap-3 text-sm"><ShieldCheck className="h-5 w-5 text-accent" /> Durabilité</p>
                     </CardContent>
                   </Card>
               </div>
@@ -168,11 +168,6 @@ export default function RenovationParisPage() {
                         Vous avez un projet de rénovation à Paris ? Nous vous accompagnons de A à Z, avec sérieux, transparence et exigence. Contactez-nous pour une visite sur site et un devis gratuit.
                         </CardDescription>
                     </CardHeader>
-                    <CardContent>
-                        <Button asChild>
-                            <Link href="/devis">Demander un devis gratuit</Link>
-                        </Button>
-                    </CardContent>
                 </Card>
             </div>
 
