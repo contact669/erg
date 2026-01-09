@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 import {
   CheckCircle,
   Building2,
@@ -35,6 +36,42 @@ export const metadata: Metadata = {
   },
 };
 
+function JsonLd() {
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "ERG Rénovation",
+      "url": "https://www.erg-renovation.fr",
+      "telephone": "+33699961375",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1 Sent. de la Pointe",
+        "addressLocality": "Paris",
+        "postalCode": "75020",
+        "addressCountry": "FR"
+      },
+      "priceRange": "€€",
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Paris"
+      },
+      "serviceType": [
+        "Rénovation d’appartement",
+        "Rénovation de salle de bain",
+        "Rénovation cuisine",
+        "Travaux tous corps d’état",
+      ],
+      "description": "ERG Rénovation, entreprise spécialisée en rénovation intérieure d'appartements, cuisines et salles de bain à Paris. Devis gratuit, garantie décennale."
+    };
+    return (
+        <Script
+            id="jsonld-renovation-paris"
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+    )
+}
+
 const heroPoints = [
     { text: "Intervention rapide" },
     { text: "Visite sur site gratuite" },
@@ -46,7 +83,7 @@ const parisConstraints = [
     {
         icon: Building2,
         title: "Un parc immobilier ancien",
-        description: "À Paris, une grande partie des logements date d’avant 1975. Immeubles haussmanniens, planchers bois, murs porteurs épais, réseaux parfois vétustes. Chaque projet nécessite une analyse technique précise avant travaux.",
+        description: "Immeubles haussmanniens, planchers bois, murs porteurs épais, réseaux parfois vétustes. Chaque projet nécessite une analyse technique précise avant travaux.",
         imageUrl: "/images/realisations/renovation-appartement-65m2-apres.webp",
         imageAlt: "Rénovation d’un appartement haussmannien à Paris avec finitions soignées"
     },
@@ -107,7 +144,7 @@ const whyChooseUs = [
     {
         icon: ClipboardList,
         title: "Une transparence totale",
-        description: "devis détaillé, planning clair, budget maîtrisé."
+        description: "Devis détaillé, planning clair, budget maîtrisé."
     }
 ]
 
@@ -133,6 +170,7 @@ const faqItems = [
 export default function RenovationParisPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
+      <JsonLd />
       <SiteHeader />
       <main className="flex-grow">
         <Breadcrumbs />
@@ -301,3 +339,5 @@ export default function RenovationParisPage() {
     </div>
   );
 }
+
+    
