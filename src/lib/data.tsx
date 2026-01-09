@@ -1718,6 +1718,94 @@ export const processSteps: ProcessStep[] = [
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: 'renovation-energetique-paris-guide-complet',
+    title: 'Rénovation énergétique à Paris : améliorer confort et factures sans dénaturer son appartement',
+    description: 'Guide expert complet pour réussir la rénovation énergétique de votre appartement ancien à Paris : isolation, fenêtres, chauffage, et aides disponibles.',
+    date: '2025-11-15',
+    author: 'K. AIT',
+    featuredImageId: 'blog-post-1',
+    tags: ['Rénovation énergétique', 'Paris', 'Guide', 'Isolation'],
+    toc: [
+      { id: 'pourquoi-renover-energetiquement', title: 'Pourquoi la rénovation énergétique est un enjeu majeur à Paris', level: 'h2' },
+      { id: 'specificites-parisiennes', title: 'Comprendre les spécificités de la rénovation énergétique parisienne', level: 'h2' },
+      { id: 'etape-1-diagnostic', title: 'Étape 1 : Réaliser un diagnostic énergétique intelligent', level: 'h2' },
+      { id: 'etape-2-isoler', title: 'Étape 2 : Isoler intelligemment sans perdre en confort', level: 'h2' },
+      { id: 'etape-3-fenetres', title: 'Étape 3 : Remplacer les fenêtres sans trahir l’esthétique', level: 'h2' },
+      { id: 'etape-4-chauffage', title: 'Étape 4 : Moderniser le chauffage et la production d’eau chaude', level: 'h2' },
+      { id: 'etape-5-ventilation', title: 'Étape 5 : Ventilation et qualité de l’air intérieur', level: 'h2' },
+      { id: 'etape-6-hierarchiser', title: 'Étape 6 : Hiérarchiser les travaux pour un retour sur investissement optimal', level: 'h2' },
+      { id: 'budget', title: 'Budget : combien investir pour une rénovation énergétique à Paris ?', level: 'h2' },
+      { id: 'erreurs-a-eviter', title: 'Les erreurs fréquentes à éviter', level: 'h2' },
+    ],
+    content: (() => {
+      const isolationImage = PlaceHolderImages.find(p => p.id === 'service-attic');
+      const fenetreImage = PlaceHolderImages.find(p => p.id === 'blog-image-verriere');
+
+      return (
+        <>
+          <p>La rénovation énergétique est devenue un sujet central pour les propriétaires parisiens. Hausse du coût de l’énergie, nouvelles réglementations, interdiction progressive de mise en location des passoires thermiques, exigence de confort accru… Aujourd’hui, améliorer la performance énergétique de son appartement à Paris n’est plus une option, mais une nécessité stratégique.</p>
+          <p>Pourtant, rénover énergétiquement un appartement parisien – souvent ancien, parfois classé, presque toujours en copropriété – est un exercice délicat. Comment isoler sans perdre de surface ? Comment remplacer les fenêtres sans trahir le cachet haussmannien ? Quels travaux sont réellement efficaces ? Et surtout, comment investir intelligemment sans dépenses inutiles ?</p>
+          
+          <h2 id="pourquoi-renover-energetiquement">Pourquoi la rénovation énergétique est un enjeu majeur à Paris</h2>
+          <h3>1. Un parc immobilier ancien et énergivore</h3>
+          <p>Plus de la moitié des logements parisiens ont été construits avant 1949. Ces immeubles offrent un charme incomparable, mais présentent souvent des murs peu ou pas isolés, des fenêtres anciennes, des systèmes de chauffage obsolètes, et une ventilation insuffisante.</p>
+          <h3>2. Des obligations réglementaires de plus en plus strictes</h3>
+          <p>La réglementation évolue rapidement, avec une interdiction progressive de location des logements classés F et G. Anticiper ces évolutions, c’est sécuriser la valeur de son bien.</p>
+          <h3>3. Un levier puissant de valorisation immobilière</h3>
+          <p>Un appartement énergétiquement performant se vend plus vite, se loue plus facilement et attire des acquéreurs plus exigeants.</p>
+
+          <h2 id="specificites-parisiennes">Comprendre les spécificités de la rénovation énergétique parisienne</h2>
+          <p>Rénover à Paris ne s’improvise pas. Il faut composer avec les contraintes de copropriété, la préciosité de chaque mètre carré et le respect du cachet architectural.</p>
+          
+          <h2 id="etape-1-diagnostic">Étape 1 : Réaliser un diagnostic énergétique intelligent</h2>
+          <p>Un audit énergétique sérieux est la vraie boussole de votre projet. Il permet d’identifier les sources de déperdition, de hiérarchiser les travaux et d’éviter les investissements inutiles.</p>
+
+          <h2 id="etape-2-isoler">Étape 2 : Isoler intelligemment sans perdre en confort</h2>
+          <h3>L’isolation des murs par l’intérieur (ITI)</h3>
+          <p>À Paris, c’est la solution privilégiée. Elle améliore le confort thermique et phonique, avec une perte de surface minimale si bien réalisée.</p>
+          {isolationImage && (
+            <div className="my-8 overflow-hidden rounded-lg">
+              <Image src={isolationImage.imageUrl} alt={isolationImage.description} width={800} height={500} className="w-full h-auto object-cover" data-ai-hint={isolationImage.imageHint} />
+            </div>
+          )}
+          <h3>L’isolation des plafonds et planchers</h3>
+          <p>Isoler le plafond (si logement au-dessus non chauffé) ou le plancher (au-dessus d'une cave) sont des postes souvent très rentables.</p>
+
+          <h2 id="etape-3-fenetres">Étape 3 : Remplacer les fenêtres sans trahir l’esthétique</h2>
+          <p>Il est aujourd'hui possible de conserver l'aspect bois et de respecter les profils anciens tout en améliorant considérablement l'isolation thermique et acoustique, un double bénéfice à Paris.</p>
+           {fenetreImage && (
+            <div className="my-8 overflow-hidden rounded-lg">
+              <Image src={fenetreImage.imageUrl} alt={fenetreImage.description} width={800} height={500} className="w-full h-auto object-cover" data-ai-hint={fenetreImage.imageHint} />
+            </div>
+          )}
+
+          <h2 id="etape-4-chauffage">Étape 4 : Moderniser le chauffage et la production d’eau chaude</h2>
+          <p>Le remplacement de radiateurs anciens, une régulation intelligente ou des thermostats programmables apportent de vrais gains, même sans changer la chaudière collective.</p>
+          
+          <h2 id="etape-5-ventilation">Étape 5 : Ventilation et qualité de l’air intérieur</h2>
+          <p>Un logement mieux isolé doit mieux respirer. Une VMC performante est obligatoire pour éviter l’humidité et les moisissures.</p>
+
+          <h2 id="etape-6-hierarchiser">Étape 6 : Hiérarchiser les travaux pour un retour sur investissement optimal</h2>
+          <p>L'ordre de priorité recommandé est : 1. Isolation (murs, plafonds), 2. Fenêtres, 3. Chauffage, 4. Ventilation.</p>
+          
+          <h2 id="budget">Budget : combien investir pour une rénovation énergétique à Paris ?</h2>
+          <p>Les coûts varient, mais prévoyez entre 5 000 et 10 000 € pour des actions ciblées, et de 15 000 à 30 000 € ou plus pour une rénovation globale. N'oubliez pas la marge de 10-15% pour les imprévus.</p>
+          
+          <h2 id="erreurs-a-eviter">Les erreurs fréquentes à éviter</h2>
+          <ul>
+            <li>Isoler sans traiter la ventilation.</li>
+            <li>Changer le chauffage sans isoler.</li>
+            <li>Négliger la copropriété.</li>
+          </ul>
+
+          <h3>Conclusion : rénover énergétiquement, c’est investir intelligemment</h3>
+          <p>La rénovation énergétique à Paris est un levier de confort, une protection contre la hausse des coûts, un atout réglementaire, et une valorisation patrimoniale durable. Bien pensée, elle respecte l’âme de votre appartement tout en l’adaptant aux exigences contemporaines.</p>
+          <p>👉 <strong>Vous envisagez une rénovation énergétique à Paris ?</strong> <Link href="/devis">Contactez ERG Rénovation pour une étude personnalisée, un diagnostic précis et un accompagnement expert de A à Z.</Link></p>
+        </>
+      )
+    })()
+  },
+  {
     slug: 'reussir-renovation-salle-de-bain-paris',
     title: 'Réussir la rénovation de votre salle de bain à Paris',
     description: 'Guide complet, erreurs à éviter et conseils d’experts pour transformer votre salle de bain en un espace de confort et de valeur.',
@@ -1727,16 +1815,15 @@ export const blogPosts: BlogPost[] = [
     tags: ['Salle de bain', 'Rénovation', 'Paris', 'Guide'],
     toc: [
       { id: 'pourquoi-renover', title: 'Pourquoi rénover sa salle de bain à Paris ?', level: 'h2' },
-      { id: 'specificites-parisiennes', title: 'Les spécificités d’une salle de bain parisienne', level: 'h2' },
+      { id: 'specificites-parisiennes-sdb', title: 'Les spécificités d’une salle de bain parisienne', level: 'h2' },
       { id: 'etape-1-projet', title: 'Étape 1 : Définir un projet clair et réaliste', level: 'h2' },
       { id: 'etape-2-agencement', title: 'Étape 2 : Optimiser l’agencement', level: 'h2' },
       { id: 'etape-3-materiaux', title: 'Étape 3 : Choisir des matériaux adaptés', level: 'h2' },
       { id: 'etape-4-technique', title: 'Étape 4 : Plomberie et électricité', level: 'h2' },
-      { id: 'etape-5-ventilation', title: 'Étape 5 : Ventilation et étanchéité', level: 'h2' },
+      { id: 'etape-5-ventilation-etancheite', title: 'Étape 5 : Ventilation et étanchéité', level: 'h2' },
       { id: 'etape-6-lumiere', title: 'Étape 6 : Lumière et ambiance', level: 'h2' },
-      { id: 'budget', title: 'Budget : Combien coûte une rénovation ?', level: 'h2' },
-      { id: 'erreurs-a-eviter', title: 'Les erreurs fréquentes à éviter', level: 'h2' },
-      { id: 'conclusion', title: 'Conclusion', level: 'h2' },
+      { id: 'budget-sdb', title: 'Budget : Combien coûte une rénovation ?', level: 'h2' },
+      { id: 'erreurs-a-eviter-sdb', title: 'Les erreurs fréquentes à éviter', level: 'h2' },
     ],
     content: (() => {
       const agencementImage = PlaceHolderImages.find(p => p.id === 'project-small-bathroom-after');
@@ -1745,22 +1832,19 @@ export const blogPosts: BlogPost[] = [
       return (
         <>
           <p>La salle de bain est aujourd’hui bien plus qu’une simple pièce fonctionnelle. À Paris, où les surfaces sont souvent limitées et les immeubles anciens nombreux, la rénovation d’une salle de bain représente un véritable défi technique et esthétique. Pourtant, lorsqu’elle est bien pensée, elle devient un espace de confort, de détente et un puissant levier de valorisation immobilière.</p>
-          <p>Chez ERG Rénovation, nous accompagnons régulièrement des propriétaires parisiens dans la transformation de leur salle de bain, qu’il s’agisse d’un studio, d’un appartement haussmannien ou d’un logement contemporain. Dans cet article de fond, nous vous livrons un guide exhaustif, à la fois pratique, technique et stratégique, pour réussir votre projet de rénovation de salle de bain à Paris, sans mauvaises surprises.</p>
           
           <h2 id="pourquoi-renover">Pourquoi rénover sa salle de bain à Paris est un projet stratégique</h2>
-          <p>Avant d’entrer dans les aspects techniques, il est essentiel de comprendre l’enjeu réel d’une rénovation de salle de bain.</p>
-          <h3>1. Une pièce clé pour le confort quotidien</h3>
-          <p>La salle de bain est l’un des espaces les plus utilisés du logement. Une mauvaise circulation, un manque de rangements ou une ventilation insuffisante impactent directement votre qualité de vie.</p>
-          <h3>2. Un fort impact sur la valeur du bien</h3>
-          <p>Dans un marché immobilier aussi tendu que Paris, une salle de bain rénovée, moderne et fonctionnelle : facilite la revente, accélère la mise en location et justifie un meilleur prix.</p>
-          <h3>3. Une opportunité de mise aux normes</h3>
-          <p>Les installations anciennes (plomberie, électricité, ventilation) sont souvent obsolètes. La rénovation permet d’améliorer la sécurité, de réduire la consommation d’eau et d’énergie et d’anticiper les exigences réglementaires futures.</p>
+          <ul>
+            <li><strong>Confort quotidien :</strong> Une meilleure circulation, plus de rangements et une bonne ventilation.</li>
+            <li><strong>Valeur du bien :</strong> Un atout majeur pour la revente ou la location sur le marché parisien.</li>
+            <li><strong>Mise aux normes :</strong> L'occasion de sécuriser les installations de plomberie et d'électricité.</li>
+          </ul>
 
-          <h2 id="specificites-parisiennes">Les spécificités d’une salle de bain parisienne</h2>
-          <p>Rénover à Paris ne s’improvise pas. Plusieurs contraintes doivent être intégrées dès la phase de conception : des surfaces souvent réduites, des immeubles anciens et les règles de copropriété.</p>
+          <h2 id="specificites-parisiennes-sdb">Les spécificités d’une salle de bain parisienne</h2>
+          <p>Rénover à Paris ne s’improvise pas. Il faut intégrer les contraintes des surfaces réduites, des immeubles anciens (murs irréguliers, colonnes techniques) et des règles de copropriété.</p>
           
           <h2 id="etape-1-projet">Étape 1 : Définir un projet clair et réaliste</h2>
-          <p>Une rénovation réussie commence toujours par une phase de réflexion approfondie. Identifiez vos besoins réels (douche ou baignoire ? rénovation esthétique ou complète ?) et hiérarchisez vos priorités. Mieux vaut une salle de bain simple mais parfaitement exécutée qu’un projet ambitieux mal maîtrisé.</p>
+          <p>Hiérarchisez vos priorités : douche ou baignoire ? Rénovation esthétique ou complète ? Budget vs. matériaux haut de gamme ? Mieux vaut une salle de bain simple mais parfaitement exécutée qu’un projet ambitieux mal maîtrisé.</p>
 
           <h2 id="etape-2-agencement">Étape 2 : Optimiser l’agencement dans un petit espace</h2>
           {agencementImage && (
@@ -1768,17 +1852,16 @@ export const blogPosts: BlogPost[] = [
               <Image src={agencementImage.imageUrl} alt={agencementImage.description} width={800} height={500} className="w-full h-auto object-cover" data-ai-hint={agencementImage.imageHint} />
             </div>
           )}
-          <p>L’agencement est le cœur du projet. La douche à l’italienne est très prisée à Paris pour son gain visuel et son accessibilité. Les meubles suspendus et les équipements compacts (WC, vasques) libèrent l'espace au sol et facilitent l'entretien.</p>
+          <p>La douche à l’italienne, les meubles suspendus et les équipements compacts (WC, vasques) sont vos meilleurs alliés pour libérer l'espace au sol et agrandir visuellement la pièce.</p>
 
           <h2 id="etape-3-materiaux">Étape 3 : Choisir des matériaux adaptés à la salle de bain</h2>
-          <p>Dans une pièce humide, le choix des matériaux est déterminant. Privilégiez le carrelage grand format, les peintures spéciales pièces humides, les sols antidérapants et du mobilier traité hydrofuge.</p>
+          <p>Privilégiez le carrelage grand format, les peintures spéciales pièces humides, les sols antidérapants (norme R10/R11) et du mobilier traité hydrofuge pour garantir la durabilité.</p>
 
           <h2 id="etape-4-technique">Étape 4 : Plomberie et électricité – le socle invisible</h2>
-          <p>Souvent négligée, la partie technique est essentielle. Refaire la plomberie dans l'ancien sécurise l'installation. L'électricité doit respecter des volumes de sécurité stricts pour garantir votre sécurité.</p>
+          <p>Refaire la plomberie dans l'ancien sécurise l'installation. L'électricité doit respecter des volumes de sécurité stricts (norme NF C 15-100) pour garantir votre sécurité.</p>
 
-          <h2 id="etape-5-ventilation">Étape 5 : Ventilation et étanchéité, deux points critiques</h2>
-          <p>Une VMC performante est obligatoire pour éviter l'humidité, surtout dans les salles de bain sans fenêtre. L'étanchéité, via un système SPEC, garantit la durabilité de la rénovation et évite les sinistres.</p>
-
+          <h2 id="etape-5-ventilation-etancheite">Étape 5 : Ventilation et étanchéité, deux points critiques</h2>
+          <p>Une VMC performante est obligatoire pour éviter l'humidité, surtout dans les salles de bain sans fenêtre. L'étanchéité (SPEC) est non-négociable pour garantir la durabilité et éviter les sinistres.</p>
           {finitionImage && (
             <div className="my-8 overflow-hidden rounded-lg">
               <Image src={finitionImage.imageUrl} alt={finitionImage.description} width={800} height={500} className="w-full h-auto object-cover" data-ai-hint={finitionImage.imageHint} />
@@ -1786,22 +1869,21 @@ export const blogPosts: BlogPost[] = [
           )}
 
           <h2 id="etape-6-lumiere">Étape 6 : Lumière et ambiance</h2>
-          <p>Une salle de bain réussie est aussi une salle de bain agréable. Combinez un éclairage fonctionnel (miroir) et décoratif (lumières indirectes) avec des couleurs claires pour agrandir l'espace.</p>
+          <p>Combinez un éclairage fonctionnel (miroir) et décoratif (lumières indirectes) avec des couleurs claires pour agrandir l'espace.</p>
 
-          <h2 id="budget">Budget : Combien coûte une rénovation de salle de bain à Paris ?</h2>
-          <p>Le budget varie selon la surface et le niveau de gamme. À Paris, comptez entre 7 000€ et 10 000€ pour une rénovation complète standard, et 12 000€ ou plus pour un projet haut de gamme. Prévoyez toujours une marge de 10-15% pour les imprévus.</p>
+          <h2 id="budget-sdb">Budget : Combien coûte une rénovation de salle de bain à Paris ?</h2>
+          <p>À Paris, comptez entre 7 000€ et 10 000€ pour une rénovation complète standard, et 12 000€ ou plus pour un projet haut de gamme. Prévoyez toujours une marge de 10-15% pour les imprévus.</p>
           
-          <h2 id="erreurs-a-eviter">Les erreurs fréquentes à éviter absolument</h2>
+          <h2 id="erreurs-a-eviter-sdb">Les erreurs fréquentes à éviter absolument</h2>
           <ul>
-              <li>Sous-estimer la partie technique (plomberie, électricité, étanchéité).</li>
+              <li>Sous-estimer la partie technique.</li>
               <li>Choisir un artisan uniquement sur le prix.</li>
               <li>Négliger la ventilation (VMC).</li>
               <li>Multiplier les intervenants sans coordination.</li>
           </ul>
 
-          <h2 id="conclusion">Conclusion : Une salle de bain parisienne réussie</h2>
-          <p>La rénovation de votre salle de bain est une opportunité unique d’améliorer votre quotidien et de valoriser votre patrimoine immobilier à Paris. Un agencement intelligent, des matériaux durables et une technique irréprochable sont les clés du succès.</p>
-          <p>👉 <strong>Vous avez un projet de rénovation de salle de bain ?</strong> <Link href="/devis">Contactez ERG Rénovation pour une étude personnalisée, un devis détaillé et un accompagnement de A à Z, en toute sérénité.</Link></p>
+          <h3>Conclusion : Une salle de bain parisienne réussie</h3>
+          <p>👉 <strong>Vous avez un projet de rénovation de salle de bain ?</strong> <Link href="/devis">Contactez ERG Rénovation pour une étude personnalisée et un accompagnement de A à Z.</Link></p>
         </>
       )
     })()
@@ -1836,7 +1918,6 @@ export const blogPosts: BlogPost[] = [
       return (
         <>
           <p>Rénover un appartement à Paris est un exercice d’équilibriste. Entre les surfaces souvent réduites, les contraintes de copropriété, les normes techniques exigeantes et le respect du cachet de l’ancien, chaque décision compte. Une rénovation réussie ne se limite pas à l’esthétique : elle doit améliorer le confort, valoriser le bien et anticiper les usages de demain.</p>
-          <p>Chez ERG Rénovation, nous accompagnons depuis des années des propriétaires parisiens dans des projets exigeants — du simple rafraîchissement à la rénovation complète tous corps d’état. Forts de cette expérience, nous partageons ici 10 astuces concrètes et éprouvées pour transformer votre appartement parisien en un espace fonctionnel, lumineux et durable.</p>
           
           <h2 id="optimiser-metre-carre">1. Optimisez chaque mètre carré (penser volume avant surface)</h2>
           <p>Dans un appartement parisien, chaque centimètre a de la valeur. L’optimisation ne consiste pas seulement à « gagner de la place », mais à mieux exploiter les volumes.</p>
@@ -1845,7 +1926,6 @@ export const blogPosts: BlogPost[] = [
             <li><strong>Multifonction :</strong> canapé convertible de qualité, table escamotable, lit avec tiroirs.</li>
             <li><strong>Cloisons intelligentes :</strong> verrières d’atelier, claustras ou portes coulissantes qui structurent sans assombrir.</li>
           </ul>
-          <p>Une verrière permet par exemple de créer un coin bureau ou une chambre d’appoint, tout en conservant la lumière naturelle — un atout majeur dans les appartements traversants ou en second jour.</p>
           
           {verriereImage && (
             <div className="my-8 overflow-hidden rounded-lg">
@@ -1854,23 +1934,10 @@ export const blogPosts: BlogPost[] = [
           )}
 
           <h2 id="lumiere-fil-conducteur">2. Faites de la lumière votre fil conducteur</h2>
-          <p>À Paris, la lumière est précieuse. La rénovation doit la capter, la diffuser et la mettre en scène.</p>
-          <ul>
-            <li>Décloisonner quand c’est possible (et autorisé) pour favoriser les perspectives.</li>
-            <li>Couleurs claires sur murs et plafonds pour réfléchir la lumière.</li>
-            <li>Miroirs stratégiques pour amplifier les volumes.</li>
-            <li>Éclairage en strates : plafonnier, appliques, lampes indirectes, LED sous meubles.</li>
-          </ul>
-          <p>Un plan lumière bien pensé transforme radicalement la perception d’un espace, surtout dans les appartements orientés nord ou en étage bas.</p>
-
+          <p>À Paris, la lumière est précieuse. La rénovation doit la capter, la diffuser et la mettre en scène. Décloisonner, utiliser des couleurs claires et des miroirs stratégiques transforme radicalement la perception d’un espace.</p>
+          
           <h2 id="sublimer-ancien">3. Respectez et sublimez l’âme de l’ancien</h2>
-          <p>Le charme de l’ancien est l’une des grandes richesses du parc immobilier parisien. Le secret ? Ne pas l’effacer, mais le révéler.</p>
-          <ul>
-              <li>Parquet en point de Hongrie ou à bâtons rompus</li>
-              <li>Moulures, rosaces, corniches</li>
-              <li>Cheminées en marbre ou en pierre</li>
-          </ul>
-          <p>Ces éléments peuvent être restaurés et mis en valeur par un contraste contemporain : cuisine design, verrière noire, mobilier épuré. Le résultat ? Un style « parisien chic » intemporel et très recherché.</p>
+          <p>Parquet, moulures, cheminées... Ces éléments peuvent être restaurés et mis en valeur par un contraste contemporain pour un style « parisien chic » intemporel.</p>
 
           {parquetImage && (
             <div className="my-8 overflow-hidden rounded-lg">
@@ -1879,77 +1946,35 @@ export const blogPosts: BlogPost[] = [
           )}
 
           <h2 id="anticiper-copropriete">4. Anticipez les règles de copropriété (et gagnez du temps)</h2>
-          <p>C’est l’un des pièges les plus fréquents. À Paris, la copropriété est un acteur clé du projet.</p>
-          <p>Sont généralement soumis à autorisation :</p>
-          <ul>
-            <li>Modification d’un mur porteur</li>
-            <li>Changement de fenêtres</li>
-            <li>Intervention sur gaines ou parties communes</li>
-          </ul>
-          <p>Un dossier solide (plans, notes techniques, assurances) préparé par des professionnels accélère l’accord et évite les refus. Anticiper ces démarches permet aussi de sécuriser le planning et le budget.</p>
+          <p>La modification d’un mur porteur ou le changement de fenêtres sont soumis à autorisation. Un dossier solide préparé par des professionnels accélère l’accord et sécurise le planning.</p>
 
           <h2 id="isolation-performante">5. Investissez dans une isolation performante (confort et économies)</h2>
-          <p>Bruit de la rue, voisins proches, déperditions thermiques… Une rénovation réussie à Paris passe par une isolation de qualité.</p>
-          <ul>
-            <li><strong>Isolation phonique :</strong> doublage de murs, sous-couches acoustiques, portes isophoniques.</li>
-            <li><strong>Isolation thermique :</strong> amélioration du confort hiver/été et réduction des factures.</li>
-            <li><strong>Menuiseries performantes :</strong> double ou triple vitrage selon l’exposition.</li>
-          </ul>
-          <p>C’est un investissement invisible mais essentiel, qui augmente immédiatement la qualité de vie et la valeur du bien.</p>
+          <p>Bruit de la rue, voisins proches, déperditions thermiques… Une bonne isolation phonique et thermique augmente immédiatement la qualité de vie et la valeur du bien.</p>
           
-          {cuisineImage && (
+          <h2 id="rangements-integres">6. Privilégiez les rangements intégrés sur mesure</h2>
+          <p>Les solutions sur mesure permettent d’exploiter les recoins, de maintenir une harmonie visuelle et de libérer l’espace au sol. Un intérieur ordonné paraît toujours plus grand.</p>
+          
+           {cuisineImage && (
             <div className="my-8 overflow-hidden rounded-lg">
               <Image src={cuisineImage.imageUrl} alt={cuisineImage.description} width={800} height={500} className="w-full h-auto object-cover" data-ai-hint={cuisineImage.imageHint} />
             </div>
           )}
 
-          <h2 id="rangements-integres">6. Privilégiez les rangements intégrés sur mesure</h2>
-          <p>Les rangements standards atteignent vite leurs limites dans un appartement parisien aux murs irréguliers.</p>
-          <p>Les solutions sur mesure permettent :</p>
-          <ul>
-            <li>D’exploiter les recoins, niches et sous-pentes</li>
-            <li>De maintenir une harmonie visuelle</li>
-            <li>De libérer l’espace au sol</li>
-          </ul>
-          <p>Placards invisibles, dressings intégrés, bibliothèques murales : un intérieur ordonné paraît toujours plus grand.</p>
-          
           <h2 id="materiaux-durables">7. Choisissez des matériaux durables et adaptés à la vie urbaine</h2>
-          <p>À Paris, un logement est intensément utilisé. Les matériaux doivent être beaux, résistants et réparables.</p>
-          <ul>
-            <li>Parquet massif (ponçable et durable)</li>
-            <li>Carrelage grand format dans les zones humides</li>
-            <li>Peintures lessivables et écoresponsables</li>
-            <li>Robinetterie et équipements de qualité professionnelle</li>
-          </ul>
-          <p>Un bon matériau coûte parfois plus cher à l’achat, mais moins sur la durée.</p>
-          
-          {sdbImage && (
+          <p>Un logement parisien est intensément utilisé. Optez pour du parquet massif, du carrelage grand format et des peintures lessivables pour un intérieur qui dure.</p>
+           
+           {sdbImage && (
             <div className="my-8 overflow-hidden rounded-lg">
               <Image src={sdbImage.imageUrl} alt={sdbImage.description} width={800} height={500} className="w-full h-auto object-cover" data-ai-hint={sdbImage.imageHint} />
             </div>
           )}
 
           <h2 id="soigner-entree">8. Soignez l’entrée, véritable carte de visite</h2>
-          <p>Souvent négligée, l’entrée conditionne la première impression.</p>
-          <ul>
-            <li>Rangements pour manteaux et chaussures</li>
-            <li>Miroir pour agrandir visuellement</li>
-            <li>Éclairage chaleureux</li>
-            <li>Banc ou console fonctionnelle</li>
-          </ul>
-          <p>Une entrée bien pensée crée une transition fluide vers les espaces de vie et améliore le quotidien.</p>
+          <p>Une entrée bien pensée avec des rangements, un miroir et un éclairage chaleureux crée une transition fluide et améliore le quotidien.</p>
 
           <h2 id="interlocuteur-unique">9. Confiez votre projet à un interlocuteur unique</h2>
-          <p>La coordination des corps de métier est l’un des aspects les plus complexes d’une rénovation : électricien, plombier, carreleur, peintre…</p>
-          <p>Faire appel à une entreprise tous corps d’état vous assure :</p>
-          <ul>
-            <li>Un chef de projet dédié</li>
-            <li>Un planning maîtrisé</li>
-            <li>Une responsabilité claire</li>
-            <li>Une exécution cohérente</li>
-          </ul>
-          <p>C’est la clé d’une rénovation sereine, fluide et sans mauvaises surprises.</p>
-          
+          <p>Faire appel à une entreprise tous corps d’état comme ERG Rénovation vous assure un chef de projet dédié, un planning maîtrisé et une responsabilité claire. C’est la clé d’une rénovation sereine.</p>
+
           {finitionImage && (
             <div className="my-8 overflow-hidden rounded-lg">
               <Image src={finitionImage.imageUrl} alt={finitionImage.description} width={800} height={500} className="w-full h-auto object-cover" data-ai-hint={finitionImage.imageHint} />
@@ -1957,27 +1982,11 @@ export const blogPosts: BlogPost[] = [
           )}
 
           <h2 id="budget-realiste">10. Définissez un budget réaliste (et prévoyez une marge)</h2>
-          <p>À Paris, les imprévus sont fréquents : murs anciens, réseaux vétustes, surprises structurelles.</p>
-          <p>Nos recommandations :</p>
-          <ul>
-            <li>Un devis détaillé poste par poste</li>
-            <li>Une marge de sécurité de 10 à 15 %</li>
-            <li>Des arbitrages clairs entre priorités et options</li>
-          </ul>
-          <p>Cette approche vous permet de terminer votre projet sans stress et sans compromis de dernière minute.</p>
-          
-          <h3>Pourquoi rénover à Paris est aussi un excellent investissement</h3>
-          <ul>
-            <li>Augmente la valeur patrimoniale du bien</li>
-            <li>Améliore le classement énergétique</li>
-            <li>Facilite la revente ou la mise en location</li>
-            <li>Répond aux nouvelles attentes des acquéreurs</li>
-          </ul>
-          <p>Dans un marché parisien exigeant, la qualité de la rénovation fait souvent la différence.</p>
+          <p>À Paris, les imprévus sont fréquents. Un devis détaillé et une marge de sécurité de 10-15% vous permettent de terminer votre projet sans stress.</p>
           
           <h3>En conclusion</h3>
-          <p>Rénover un appartement parisien est un projet ambitieux qui demande expertise, anticipation et précision. En suivant ces 10 astuces, vous posez les bases d’un projet réussi, durable et valorisant.</p>
-          <p>👉 <strong>Vous avez un projet de rénovation à Paris ou en petite couronne ?</strong> <Link href="/devis">Contactez ERG Rénovation pour une étude personnalisée, un accompagnement sur mesure et un devis clair, adapté à vos besoins et à votre budget.</Link></p>
+          <p>Rénover un appartement parisien est un projet ambitieux qui demande expertise et précision. En suivant ces 10 astuces, vous posez les bases d’un projet réussi, durable et valorisant.</p>
+          <p>👉 <strong>Vous avez un projet de rénovation à Paris ou en petite couronne ?</strong> <Link href="/devis">Contactez ERG Rénovation pour une étude personnalisée et un devis clair.</Link></p>
         </>
       )
     })()
@@ -2004,28 +2013,9 @@ export const blogPosts: BlogPost[] = [
       return (
       <>
           <p>Choisir un artisan pour ses travaux est une décision déterminante. Que vous envisagiez une rénovation complète d’appartement, une salle de bain, une cuisine ou de simples travaux d’aménagement, le professionnel que vous sélectionnez conditionne la réussite – ou l’échec – de votre projet.</p>
-          <p>Un bon artisan, c’est :</p>
-          <ul>
-            <li>des travaux réalisés dans les règles de l’art,</li>
-            <li>un chantier maîtrisé,</li>
-            <li>des délais respectés,</li>
-            <li>un budget tenu,</li>
-            <li>et une expérience sereine.</li>
-          </ul>
-          <p>À l’inverse, un mauvais choix peut entraîner retards, surcoûts, malfaçons, conflits et stress inutile. Dans un contexte comme Paris et l’Île-de-France, où les contraintes techniques et réglementaires sont nombreuses, cette décision est encore plus stratégique.</p>
-          <p>Fort de notre expérience chez ERG Rénovation, nous vous livrons dans cet article les 5 points clés incontournables pour choisir le bon artisan en toute confiance.</p>
           
           <h2 id="pourquoi-choix-artisan-capital">Pourquoi le choix de l’artisan est capital pour vos travaux</h2>
-          <p>Avant d’entrer dans le détail, il est important de comprendre ce qui est réellement en jeu.</p>
-          <p>Un chantier de rénovation, ce n’est pas seulement poser du carrelage ou repeindre des murs. C’est :</p>
-          <ul>
-            <li>intervenir sur un bâti existant (souvent ancien),</li>
-            <li>coordonner plusieurs corps de métier,</li>
-            <li>respecter des normes techniques strictes,</li>
-            <li>composer avec un logement occupé ou une copropriété,</li>
-            <li>et anticiper les imprévus.</li>
-          </ul>
-          <p>👉 <strong>L’artisan est le chef d’orchestre de cette complexité.</strong> D’où l’importance de ne rien laisser au hasard.</p>
+          <p>Un chantier de rénovation, ce n’est pas seulement poser du carrelage ou repeindre des murs. C’est intervenir sur un bâti existant, coordonner plusieurs corps de métier, respecter des normes techniques et anticiper les imprévus. L’artisan est le chef d’orchestre de cette complexité.</p>
 
           {artisanImage && (
             <div className="my-8 overflow-hidden rounded-lg">
@@ -2034,42 +2024,23 @@ export const blogPosts: BlogPost[] = [
           )}
 
           <h2 id="verifier-qualifications-assurances">1. Vérifiez les qualifications et les assurances (le socle non négociable)</h2>
-          <p>C’est la première vérification, et elle doit être systématique. Un artisan sérieux n’a rien à cacher et vous fournira spontanément les documents suivants.</p>
-          <h3>✔️ L’immatriculation officielle</h3>
-          <p>Un professionnel doit être inscrit au Répertoire des Métiers (artisan) ou au Registre du Commerce et des Sociétés (RCS). Cette immatriculation prouve l’existence légale de l’entreprise et vous protège en cas de litige.</p>
-          <h3>✔️ L’assurance responsabilité civile professionnelle (RC Pro)</h3>
-          <p>Elle couvre les dommages que l’artisan pourrait causer pendant les travaux (dégât des eaux, casse...). Sans RC Pro valide, vous prenez un risque financier important.</p>
-          <h3>✔️ L’assurance décennale (obligatoire pour certains travaux)</h3>
-          <p>Indispensable pour le gros œuvre, les travaux structurels, l’électricité, la plomberie et l'étanchéité, elle vous protège pendant 10 ans contre les malfaçons affectant la solidité du bâtiment.</p>
-          <p>👉 <strong>Conseil d’expert :</strong> Demandez les attestations et vérifiez leur validité (dates, nature des travaux couverts, nom exact de l’entreprise).</p>
-
+          <p>Un artisan sérieux vous fournira spontanément son immatriculation officielle, son assurance responsabilité civile professionnelle (RC Pro) et son assurance décennale. Demandez les attestations et vérifiez leur validité.</p>
+          
           <h2 id="analyser-clarte-devis">2. Analysez la clarté et le niveau de détail du devis</h2>
-          <p>Le devis est bien plus qu’un simple document financier : c’est un engagement contractuel.</p>
-          <p>Un devis professionnel doit impérativement contenir le détail de chaque prestation, les matériaux utilisés, un planning, les conditions de paiement et le taux de TVA. Méfiez-vous des devis vagues ou anormalement bas.</p>
-          <p>👉 <strong>Règle d’or : comparez toujours au moins 3 devis.</strong> Cela vous permet d’évaluer le prix du marché et de détecter les incohérences.</p>
+          <p>Un devis professionnel doit détailler chaque prestation (nature, quantités, prix), les matériaux, le planning, les conditions de paiement et le taux de TVA. Méfiez-vous des devis vagues ou anormalement bas.</p>
 
           <h2 id="voir-realisations-concretes">3. Demandez à voir des réalisations concrètes (preuve par l’exemple)</h2>
-          <p>Un artisan sérieux dispose de photos avant/après, de chantiers documentés et parfois même de vidéos. Cela permet de juger la qualité des finitions et la diversité des projets. Vous pouvez consulter nos <Link href="/realisations">projets ici</Link>. Idéalement, demandez à visiter un chantier terminé pour échanger avec un ancien client.</p>
-          <p>👉 <strong>Chez ERG Rénovation, nous présentons régulièrement des réalisations concrètes à nos clients pour une transparence totale.</strong></p>
+          <p>Un artisan sérieux dispose de photos avant/après et de chantiers documentés. Cela permet de juger la qualité des finitions. L'idéal est de visiter un chantier terminé pour échanger avec un ancien client.</p>
 
           <h2 id="reputation-avis">4. Appuyez-vous sur la réputation et les avis (avec discernement)</h2>
-          <p>Le bouche-à-oreille reste un excellent indicateur. Demandez autour de vous. Pour les avis en ligne (Google, plateformes spécialisées), analysez la qualité des commentaires plutôt que la note seule. Méfiez-vous des avis trop courts ou génériques.</p>
+          <p>Le bouche-à-oreille et les avis en ligne sont de bons indicateurs. Analysez la qualité des commentaires plutôt que la note seule.</p>
 
           <h2 id="evaluer-communication">5. Évaluez la communication et le relationnel (clé d’un chantier serein)</h2>
-          <p>Un bon artisan est à l'écoute, propose des solutions adaptées et explique clairement les contraintes. La confiance et la communication sont aussi importantes que la technique. Assurez-vous qu'il soit joignable et réactif dès les premiers échanges.</p>
-          <p>👉 <strong>Un bon artisan sait conseiller sans imposer, alerter sans inquiéter, et trouver des solutions en cas d’imprévu.</strong></p>
+          <p>Un bon artisan est à l'écoute, propose des solutions adaptées et explique clairement les contraintes. La confiance et la communication sont aussi importantes que la technique.</p>
 
           <h2 id="entreprise-tous-corps-etat">Pourquoi choisir une entreprise tous corps d’état change tout</h2>
-          <p>Coordonner plusieurs artisans indépendants est un casse-tête. Faire appel à une entreprise tous corps d’état comme ERG Rénovation offre de nombreux avantages :</p>
-          <ul>
-            <li>✅ un interlocuteur unique,</li>
-            <li>✅ une coordination fluide des artisans,</li>
-            <li>✅ un planning maîtrisé,</li>
-            <li>✅ une vision globale du projet,</li>
-            <li>✅ une responsabilité centralisée.</li>
-          </ul>
-          <p>Résultat : un chantier plus fluide, plus rapide et plus sécurisé.</p>
-
+          <p>Faire appel à une entreprise tous corps d’état comme ERG Rénovation offre un interlocuteur unique, une coordination fluide, un planning maîtrisé et une responsabilité centralisée. C'est la clé d'un chantier plus rapide, plus sûr et sans stress.</p>
+          
           <h3>En résumé : les 5 points clés à retenir</h3>
           <ol>
             <li>Vérifiez systématiquement les qualifications et assurances.</li>
