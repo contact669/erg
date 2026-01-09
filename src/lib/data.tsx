@@ -22,8 +22,7 @@ import {
   Wrench,
   Scaling,
   Lightbulb,
-  Droplet,
-  Signal,
+  Droplets,
   Calendar,
   Wallet,
 } from 'lucide-react';
@@ -1350,7 +1349,7 @@ export const allProjects: Project[] = [
           <p>La réactivité et le professionnalisme de nos équipes ont permis de transformer une situation de crise en une opportunité de valorisation du bien.</p>
       </>,
       keyPoints: [
-        { title: "Intervention d'urgence", icon: Signal },
+        { title: "Intervention d'urgence", icon: Milestone },
         { title: "Rénovation complète du studio", icon: Sparkles },
         { title: "Plomberie et électricité", icon: Wrench },
         { title: "Gestion de projet réactive", icon: Users }
@@ -1510,7 +1509,7 @@ export const allProjects: Project[] = [
         { title: "Deux salles de bain", icon: Bath },
         { title: "Finitions haute qualité", icon: Award },
         { title: "Gestion de chantier fiable", icon: Users },
-        { title: "Plomberie et étanchéité", icon: Droplet }
+        { title: "Plomberie et étanchéité", icon: Droplets }
       ]
     }
   },
@@ -2013,9 +2012,11 @@ export const blogPosts: BlogPost[] = [
       return (
       <>
           <p>Choisir un artisan pour ses travaux est une décision déterminante. Que vous envisagiez une rénovation complète d’appartement, une salle de bain, une cuisine ou de simples travaux d’aménagement, le professionnel que vous sélectionnez conditionne la réussite – ou l’échec – de votre projet.</p>
-          
+          <p>Un bon artisan, c’est : des travaux réalisés dans les règles de l’art, un chantier maîtrisé, des délais respectés, un budget tenu, et une expérience sereine. À l’inverse, un mauvais choix peut entraîner retards, surcoûts, malfaçons, conflits et stress inutile. Dans un contexte comme Paris et l’Île-de-France, où les contraintes techniques et réglementaires sont nombreuses, cette décision est encore plus stratégique.</p>
+          <p>Fort de notre expérience chez ERG Rénovation, nous vous livrons dans cet article les 5 points clés incontournables pour choisir le bon artisan en toute confiance.</p>
+
           <h2 id="pourquoi-choix-artisan-capital">Pourquoi le choix de l’artisan est capital pour vos travaux</h2>
-          <p>Un chantier de rénovation, ce n’est pas seulement poser du carrelage ou repeindre des murs. C’est intervenir sur un bâti existant, coordonner plusieurs corps de métier, respecter des normes techniques et anticiper les imprévus. L’artisan est le chef d’orchestre de cette complexité.</p>
+          <p>Avant d’entrer dans le détail, il est important de comprendre ce qui est réellement en jeu. Un chantier de rénovation, ce n’est pas seulement poser du carrelage ou repeindre des murs. C’est : intervenir sur un bâti existant (souvent ancien), coordonner plusieurs corps de métier, respecter des normes techniques strictes, composer avec un logement occupé ou une copropriété, et anticiper les imprévus. L’artisan est le chef d’orchestre de cette complexité. D’où l’importance de ne rien laisser au hasard.</p>
 
           {artisanImage && (
             <div className="my-8 overflow-hidden rounded-lg">
@@ -2024,31 +2025,65 @@ export const blogPosts: BlogPost[] = [
           )}
 
           <h2 id="verifier-qualifications-assurances">1. Vérifiez les qualifications et les assurances (le socle non négociable)</h2>
-          <p>Un artisan sérieux vous fournira spontanément son immatriculation officielle, son assurance responsabilité civile professionnelle (RC Pro) et son assurance décennale. Demandez les attestations et vérifiez leur validité.</p>
+          <p>C’est la première vérification, et elle doit être systématique. Un artisan sérieux n’a rien à cacher et vous fournira spontanément les documents suivants.</p>
+          <h3>✔️ L’immatriculation officielle</h3>
+          <p>Un professionnel doit être inscrit au Répertoire des Métiers (artisan) ou au Registre du Commerce et des Sociétés (RCS). Cette immatriculation prouve l’existence légale de l’entreprise et vous protège en cas de litige.</p>
+          <h3>✔️ L’assurance responsabilité civile professionnelle (RC Pro)</h3>
+          <p>Elle couvre les dommages que l’artisan pourrait causer pendant les travaux : dégât des eaux, casse, détérioration d’un bien existant, dommages à un tiers. Sans RC Pro valide, vous prenez un risque financier important.</p>
+          <h3>✔️ L’assurance décennale (obligatoire pour certains travaux)</h3>
+          <p>Indispensable pour le gros œuvre, les travaux structurels, l’électricité, la plomberie, l’étanchéité, et certains travaux de rénovation lourde. Elle vous protège pendant 10 ans contre les malfaçons affectant la solidité du bâtiment ou le rendant impropre à son usage.</p>
+          <p><strong>Conseil d’expert :</strong> Demandez les attestations et vérifiez leur validité (dates, nature des travaux couverts, nom exact de l’entreprise).</p>
           
           <h2 id="analyser-clarte-devis">2. Analysez la clarté et le niveau de détail du devis</h2>
-          <p>Un devis professionnel doit détailler chaque prestation (nature, quantités, prix), les matériaux, le planning, les conditions de paiement et le taux de TVA. Méfiez-vous des devis vagues ou anormalement bas.</p>
+          <p>Le devis est bien plus qu’un simple document financier : c’est un engagement contractuel.</p>
+          <h3>❌ Les signaux d’alerte à éviter</h3>
+          <ul>
+            <li>Une seule ligne avec un montant global</li>
+            <li>Des termes vagues : “travaux divers”, “forfait rénovation”</li>
+            <li>Aucune mention des matériaux</li>
+            <li>Aucun délai indiqué</li>
+            <li>Un prix anormalement bas</li>
+          </ul>
+          <h3>✅ Ce qu’un devis professionnel doit impérativement contenir</h3>
+          <ul>
+            <li>Le détail de chaque prestation (nature, quantités, prix unitaires)</li>
+            <li>Les matériaux utilisés (marques, références)</li>
+            <li>Le planning (date de début, durée estimée)</li>
+            <li>Les conditions de paiement (acompte, échéancier)</li>
+            <li>Le taux de TVA applicable</li>
+          </ul>
+          <p><strong>Règle d’or :</strong> comparez toujours au moins 3 devis. Cela vous permet d’évaluer le prix du marché et de détecter les incohérences.</p>
 
           <h2 id="voir-realisations-concretes">3. Demandez à voir des réalisations concrètes (preuve par l’exemple)</h2>
-          <p>Un artisan sérieux dispose de photos avant/après et de chantiers documentés. Cela permet de juger la qualité des finitions. L'idéal est de visiter un chantier terminé pour échanger avec un ancien client.</p>
-
+          <p>Les discours sont importants, mais les preuves le sont encore plus. Un artisan sérieux dispose de photos avant/après et de chantiers documentés. Cela permet de juger la qualité des finitions, le style, et la diversité des projets réalisés. L'idéal est de visiter un chantier récemment livré pour échanger avec un ancien client sur le respect des délais, la communication et la gestion des imprévus.</p>
+          
           <h2 id="reputation-avis">4. Appuyez-vous sur la réputation et les avis (avec discernement)</h2>
-          <p>Le bouche-à-oreille et les avis en ligne sont de bons indicateurs. Analysez la qualité des commentaires plutôt que la note seule.</p>
+          <p>Une recommandation directe reste l’un des meilleurs indicateurs de fiabilité. Les avis en ligne (Google, plateformes spécialisées) sont aussi utiles, mais analysez la qualité des commentaires plutôt que la note seule. Méfiez-vous des avis trop courts, des notes parfaites sans contenu, ou des profils douteux.</p>
 
           <h2 id="evaluer-communication">5. Évaluez la communication et le relationnel (clé d’un chantier serein)</h2>
-          <p>Un bon artisan est à l'écoute, propose des solutions adaptées et explique clairement les contraintes. La confiance et la communication sont aussi importantes que la technique.</p>
+          <p>Un bon artisan est à l'écoute, propose des solutions adaptées et explique clairement les contraintes techniques. La confiance et la communication sont aussi importantes que la technique. Un bon professionnel sait conseiller sans imposer, alerter sans inquiéter, et trouver des solutions en cas d’imprévu.</p>
 
           <h2 id="entreprise-tous-corps-etat">Pourquoi choisir une entreprise tous corps d’état change tout</h2>
-          <p>Faire appel à une entreprise tous corps d’état comme ERG Rénovation offre un interlocuteur unique, une coordination fluide, un planning maîtrisé et une responsabilité centralisée. C'est la clé d'un chantier plus rapide, plus sûr et sans stress.</p>
+          <p>Coordonner plusieurs artisans indépendants peut vite devenir un casse-tête. Faire appel à une entreprise tous corps d’état comme ERG Rénovation offre un interlocuteur unique, une coordination fluide, un planning maîtrisé et une responsabilité centralisée. Résultat : un chantier plus rapide, plus sûr et plus serein.</p>
           
+          <h3>Les erreurs fréquentes à éviter absolument</h3>
+          <ul>
+            <li>choisir uniquement sur le prix,</li>
+            <li>ne pas vérifier les assurances,</li>
+            <li>accepter un devis flou,</li>
+            <li>négliger la communication,</li>
+            <li>multiplier les intervenants sans coordination.</li>
+          </ul>
+
           <h3>En résumé : les 5 points clés à retenir</h3>
           <ol>
-            <li>Vérifiez systématiquement les qualifications et assurances.</li>
-            <li>Analysez un devis clair, détaillé et réaliste.</li>
-            <li>Exigez des références et réalisations concrètes.</li>
-            <li>Tenez compte de la réputation et des avis.</li>
-            <li>Privilégiez la qualité du contact et de la communication.</li>
+            <li>Vérifiez systématiquement les qualifications et assurances</li>
+            <li>Analysez un devis clair, détaillé et réaliste</li>
+            <li>Exigez des références et réalisations concrètes</li>
+            <li>Tenez compte de la réputation et des avis</li>
+            <li>Privilégiez la qualité du contact et de la communication</li>
           </ol>
+          <p>Faites le choix de la sérénité pour vos travaux. Chez ERG Rénovation, nous avons bâti notre réputation sur la transparence, la qualité d’exécution, la maîtrise des chantiers, et la satisfaction client. Nous vous accompagnons de la conception à la livraison, avec un chef de projet dédié et des artisans qualifiés.</p>
           <p>👉 <strong>Vous avez un projet de rénovation ?</strong> <Link href="/devis">Discutons ensemble de vos envies et construisons un projet solide, maîtrisé et durable.</Link></p>
         </>
       )
