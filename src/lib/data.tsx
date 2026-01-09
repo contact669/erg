@@ -81,7 +81,6 @@ export const services: Service[] = [
     zones: {
         description: "Basée au cœur de la région, ERG Rénovation déploie ses équipes pour tous projets de rénovation d'appartement à Paris (75) et en Île-de-France. Cliquez sur votre département pour découvrir notre expertise locale :",
         list: [
-            { name: 'Paris (75)', slug: 'paris-75' },
             { name: 'Hauts-de-Seine (92)', slug: 'hauts-de-seine-92' },
             { name: 'Val-de-Marne (94)', slug: 'val-de-marne-94' },
             { name: 'Yvelines (78)', slug: 'yvelines-78' },
@@ -193,7 +192,7 @@ export const services: Service[] = [
     zones: {
       description: "Notre expertise en rénovation de salle de bain s'exerce dans les appartements haussmanniens de Paris (75), où l'optimisation est reine, comme dans les maisons des Hauts-de-Seine (92) et des Yvelines (78) (création de suites parentales).",
       list: [
-        { name: 'Paris (75)', slug: 'paris-75' },
+        { name: 'Paris 16e', slug: 'paris-16' },
         { name: 'Hauts-de-Seine (92)', slug: 'hauts-de-seine-92' }
       ]
     },
@@ -462,67 +461,6 @@ const renovationAppartementPages: LocalLandingPage[] = [
       { name: 'Sèvres', slug: 'sevres' },
       { name: 'Sceaux', slug: 'sceaux' },
       { name: 'Rueil-Malmaison', slug: 'rueil-malmaison' },
-    ]
-  },
-  {
-    slug: 'paris-75',
-    type: 'department',
-    title: "Rénovation d'Appartement à Paris : L'Art de Sublimer le Patrimoine Haussmannien",
-    metaTitle: "Rénovation Appartement Prestige Paris (75) | Haussmannien | ERG Rénovation",
-    metaDescription: "Expertise unique en rénovation d'appartements Haussmanniens et de luxe à Paris. Restauration, optimisation d'espace, finitions sur-mesure. Devis 75.",
-    parentService: services.find(s => s.slug === 'renovation-appartement')!,
-    introduction: "Paris est le théâtre d'une architecture d'exception. La rénovation d'un appartement parisien – qu'il s'agisse de restaurer le charme d'un Haussmannien, de moderniser un duplex, ou d'optimiser un petit espace de luxe – exige une expertise pointue. ERG Rénovation est spécialisé dans l'art délicat de marier le prestige du passé avec les exigences du confort moderne. Nous maîtrisons les contraintes techniques, structurelles et logistiques de chaque arrondissement de la capitale.",
-    cta: {
-      primary: 'Démarrer mon projet de rénovation à Paris',
-      secondary: 'Découvrez notre expertise dans le 16e arrondissement',
-    },
-    reassurancePoints: [
-      "Maîtrise de la Restauration des Parquets et Moulures.",
-      "Gestion des Copropriétés (Syndics, Voisinage).",
-      "Intervention en milieu urbain contraint.",
-    ],
-    mainContent: (
-      <>
-        <h2 id="expertise-paris">Notre Expertise Spécifique en Milieu Parisien</h2>
-        <p>Travailler à Paris demande une approche méthodologique pour transformer les contraintes en opportunités, notamment en matière de luminosité et d'espace.</p>
-        <div className="mt-8 space-y-6">
-            <div className="flex items-start gap-4">
-                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
-                <div>
-                    <h3 className="font-headline font-semibold text-lg">Restauration et Conservation des Éléments d'Origine</h3>
-                    <p className="text-muted-foreground">Rénovation des parquets massifs (point de Hongrie, Versailles), restauration des moulures et corniches, remise en état des cheminées et boiseries.</p>
-                </div>
-            </div>
-            <div className="flex items-start gap-4">
-                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
-                <div>
-                    <h3 className="font-headline font-semibold text-lg">Optimisation des Petits Espaces de Luxe (Gain de m²)</h3>
-                    <p className="text-muted-foreground">Dans le 75, chaque mètre carré compte. Nous concevons des rangements intégrés, des solutions modulables et des aménagements sur mesure pour maximiser la surface utile.</p>
-                </div>
-            </div>
-             <div className="flex items-start gap-4">
-                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
-                <div>
-                    <h3 className="font-headline font-semibold text-lg">Logistique Urbaine et Gestion des Autorisations</h3>
-                    <p className="text-muted-foreground">Gestion de l'approvisionnement, des livraisons, des accès difficiles et des autorisations nécessaires pour les travaux touchant la façade ou les parties communes (ABF si pertinent).</p>
-                </div>
-            </div>
-        </div>
-        <h2 id="zones-paris">Nos Zones d'Intervention : Les Arrondissements Parisiens Ciblés</h2>
-        <p className="mt-4">Notre savoir-faire s'exprime dans les adresses les plus prestigieuses. Nous avons une connaissance approfondie des immeubles et des règlements de copropriété des arrondissements suivants :</p>
-      </>
-    ),
-    testimonial: {
-      quote: "La restauration des moulures de notre salon Haussmannien dans le 7ème arrondissement est un véritable chef-d'œuvre. ERG Rénovation a su allier respect de l'ancien et modernité.",
-      author: "M. et Mme Arnaud, Paris 7e",
-    },
-    relatedLocations: [
-      { name: 'Paris 16e (Passy, Auteuil)', slug: 'paris-16' },
-      { name: 'Paris 8e (Triangle d\'Or)', slug: 'paris-8' },
-      { name: 'Paris 17e (Monceau)', slug: 'paris-17' },
-      { name: 'Paris 7e (St-Germain)', slug: 'paris-7' },
-      { name: 'Paris 6e (Odéon)', slug: 'paris-6' },
-      { name: 'Paris 4e (Le Marais)', slug: 'paris-4' },
     ]
   },
   {
@@ -2091,6 +2029,7 @@ export const blogPosts: BlogPost[] = [
 ];
 
     
+
 
 
 
