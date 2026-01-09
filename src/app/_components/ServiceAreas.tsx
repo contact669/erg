@@ -59,45 +59,11 @@ export default function ServiceAreas() {
           </p>
         </header>
 
-        {/* Paris */}
-        <div className="mx-auto mt-12 max-w-5xl">
-          <div className="flex items-center justify-center gap-2">
-            <MapPin className="h-5 w-5 text-primary" />
-            <h3 className="text-lg font-semibold tracking-tight">
-              Paris – tous arrondissements
-            </h3>
-          </div>
-
-          {/* Chips */}
-          <ul className="mt-6 flex flex-wrap justify-center gap-2">
-            {PARIS_ARRONDISSEMENTS.map((area) => (
-              <li key={area}>
-                <Link
-                  href={parisHref(area)}
-                  className={cn(
-                    "inline-flex items-center justify-center rounded-full border bg-background px-3 py-2",
-                    "text-sm text-muted-foreground transition-colors",
-                    "hover:border-primary/30 hover:bg-primary/5 hover:text-foreground",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
-                  )}
-                  aria-label={`Rénovation à ${area}`}
-                >
-                  {area}
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          <p className="mt-4 text-center text-xs text-muted-foreground">
-            Intervention rapide, visite sur site et devis détaillé.
-          </p>
-        </div>
-
         {/* IDF cards */}
         <div className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
           <AreaCard
             title="Hauts-de-Seine (92)"
-            description="Boulogne-Billancourt, Nanterre, Courbevoie, Colombes, Asnières…"
+            description="Paris – tous arrondissements, Boulogne-Billancourt, Nanterre, Courbevoie, Colombes, Asnières…"
             href="/renovation-92"
           />
           <AreaCard
