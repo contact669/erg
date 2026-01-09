@@ -17,7 +17,7 @@ import {
   Hammer,
   Home,
   Bath,
-  CookingPot,
+  UtensilsCrossed,
   Layers,
   Sparkles,
   Award,
@@ -34,7 +34,6 @@ import {
   Hourglass,
   Gem,
   Maximize,
-  Scaling,
   ShieldCheck,
 } from "lucide-react"
 
@@ -92,7 +91,7 @@ export default function RenovationParisPage() {
                 <span className="inline-flex items-center justify-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Intervention rapide</span>
                 <span className="inline-flex items-center justify-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Visite sur site gratuite</span>
                 <span className="inline-flex items-center justify-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Devis détaillé</span>
-                <span className="inline-flex items-center justify-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Interlocuteur unique</span>
+                <span className="inline-flex items-center justify-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Un interlocuteur unique</span>
               </div>
             </div>
           </div>
@@ -144,7 +143,7 @@ export default function RenovationParisPage() {
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-3">
-                       <p className="flex items-center gap-3 text-sm"><Scaling className="h-5 w-5 text-accent" /> Fonctionnalité</p>
+                       <p className="flex items-center gap-3 text-sm"><Gem className="h-5 w-5 text-accent" /> Fonctionnalité</p>
                        <p className="flex items-center gap-3 text-sm"><Gem className="h-5 w-5 text-accent" /> Esthétique</p>
                        <p className="flex items-center gap-3 text-sm"><Maximize className="h-5 w-5 text-accent" /> Optimisation des volumes</p>
                        <p className="flex items-center gap-3 text-sm"><ShieldCheck className="h-5 w-5 text-accent" /> Durabilité</p>
@@ -178,7 +177,7 @@ export default function RenovationParisPage() {
               </Card>
               <Card>
                 <CardHeader>
-                  <CookingPot className="h-8 w-8 text-accent mb-2" />
+                  <UtensilsCrossed className="h-8 w-8 text-accent mb-2" />
                   <CardTitle>Rénovation de cuisine</CardTitle>
                   <CardDescription>Optimisation des circulations, rangements intelligents et coordination de tous les corps de métier pour un résultat durable.</CardDescription>
                 </CardHeader>
