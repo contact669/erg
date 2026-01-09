@@ -229,22 +229,18 @@ function SeoContentFallback({ page, areaServed }: { page: any; areaServed: strin
 
   const packs = [
     {
-      icon: ShowerHead,
       title: "Douche / baignoire",
       text: "Remplacement, création douche à l’italienne, robinetterie, parois, receveur, pentes.",
     },
     {
-      icon: Droplets,
       title: "Plomberie & évacuations",
       text: "Reprise/optimisation des réseaux, sécurisation des raccords, tests d’étanchéité.",
     },
     {
-      icon: ThermometerSun,
       title: "Confort & ventilation",
       text: "VMC/ventilation, sèche-serviettes, optimisation chauffage et circulation d’air.",
     },
     {
-      icon: Sparkles,
       title: "Finitions & pose",
       text: "Carrelage/faïence, joints, peintures adaptées pièces humides, détails soignés.",
     },
@@ -252,22 +248,18 @@ function SeoContentFallback({ page, areaServed }: { page: any; areaServed: strin
 
   const process = [
     {
-      icon: ClipboardList,
       title: "1) Visite technique",
       text: "Mesures, analyse de l’existant, contraintes (évacuations, hauteur, ventilation, accès).",
     },
     {
-      icon: Wrench,
       title: "2) Devis détaillé",
       text: "Postes clairs + options (gammes matériaux), planning réaliste, étapes validées.",
     },
     {
-      icon: ShieldCheck,
       title: "3) Chantier sécurisé",
       text: "Protections, organisation, suivi, contrôles (pentes, joints, étanchéité).",
     },
     {
-      icon: BadgeCheck,
       title: "4) Réception & finitions",
       text: "Contrôle final, levée de réserves, nettoyage, conseils d’entretien.",
     },
@@ -332,7 +324,7 @@ function SeoContentFallback({ page, areaServed }: { page: any; areaServed: strin
           <Card key={p.title} className="bg-secondary/30">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-base">
-                <p.icon className="h-5 w-5 text-accent" />
+                
                 {p.title}
               </CardTitle>
               <CardDescription>{p.text}</CardDescription>
@@ -352,7 +344,7 @@ function SeoContentFallback({ page, areaServed }: { page: any; areaServed: strin
           <Card key={s.title} className="bg-secondary/30">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-base">
-                <s.icon className="h-5 w-5 text-accent" />
+                
                 {s.title}
               </CardTitle>
               <CardDescription>{s.text}</CardDescription>

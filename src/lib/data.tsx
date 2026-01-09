@@ -10,7 +10,6 @@ import {
   Paintbrush,
   Sparkles,
   ClipboardList,
-  Users,
   Award,
   BookOpen,
   Layers,
@@ -24,6 +23,7 @@ import {
   Droplets,
   Calendar,
   Wallet,
+  Users
 } from 'lucide-react';
 import React from 'react';
 import Image from 'next/image';
@@ -283,10 +283,10 @@ export const services: Service[] = [
       }
     ],
     process: [
-      { step: 1, title: 'Visite & Faisabilité', description: "Analyse de vos combles (hauteur sous faîtage, pente du toit, type de charpente) et de vos besoins (suite parentale, salle de jeux, bureau...)." },
-      { step: 2, title: 'Conception & Chiffrage', description: "Proposition de plans d'aménagement optimisés et d'un devis détaillé (incluant isolation, structure, finitions)." },
-      { step: 3, title: 'Autorisations d\'Urbanisme', description: "Prise en charge complète du dossier administratif (DP ou PC)." },
-      { step: 4, title: 'Réalisation des Travaux', description: "Pilotage des équipes (charpentiers, couvreurs, plaquistes, plombiers...) par un conducteur de travaux unique." }
+        { step: 1, title: 'Visite & Faisabilité', description: "Analyse de vos combles (hauteur sous faîtage, pente du toit, type de charpente) et de vos besoins (suite parentale, salle de jeux, bureau...)." },
+        { step: 2, title: 'Conception & Chiffrage', description: "Proposition de plans d'aménagement optimisés et d'un devis détaillé (incluant isolation, structure, finitions)." },
+        { step: 3, title: 'Autorisations d\'Urbanisme', description: "Prise en charge complète du dossier administratif (DP ou PC)." },
+        { step: 4, title: 'Réalisation des Travaux', description: "Pilotage des équipes (charpentiers, couvreurs, plaquistes, plombiers...) par un conducteur de travaux unique." }
     ],
     whyUs: [
         { title: "Étude de Structure", description: "Avant tout projet, nous vérifions la capacité portante du plancher et l'état de la charpente. Nous travaillons avec des bureaux d'études structure si nécessaire.", icon: Layers },

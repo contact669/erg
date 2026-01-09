@@ -256,22 +256,18 @@ function SeoContentFallback({
 
   const process = [
     {
-      icon: Home,
       title: "1) Visite & écoute du besoin",
       text: "Objectifs, style, contraintes techniques, niveau de gamme, délais.",
     },
     {
-      icon: ClipboardList,
       title: "2) Devis détaillé & planning",
       text: "Postes clairs, variantes, calendrier réaliste et engagement sur le périmètre.",
     },
     {
-      icon: Wrench,
       title: "3) Réalisation & suivi",
       text: "Interlocuteur unique, points réguliers, validations à chaque étape clé.",
     },
     {
-      icon: BadgeCheck,
       title: "4) Contrôle qualité & livraison",
       text: "Réception, finitions, conseils d’entretien et documents de garantie.",
     },
@@ -279,22 +275,18 @@ function SeoContentFallback({
 
   const inclus = [
     {
-      icon: ClipboardList,
       t: "Étude & chiffrage précis",
       d: "Visite technique, métrés, options, postes détaillés et transparents.",
     },
     {
-      icon: Layers,
       t: "Préparation & protections",
       d: "Protection sols/murs, sécurisation des zones, plan de circulation sur chantier.",
     },
     {
-      icon: Hammer,
       t: "Travaux tous corps d’état",
       d: "Dépose, cloisons, sols, peinture, plomberie, électricité, cuisine & SDB.",
     },
     {
-      icon: Sparkles,
       t: "Finitions & réception",
       d: "Contrôle qualité, levée de réserves, nettoyage de fin de chantier.",
     },
@@ -370,7 +362,7 @@ function SeoContentFallback({
           <Card key={s.title} className="bg-secondary/30">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-base">
-                <s.icon className="h-5 w-5 text-accent" />
+                
                 {s.title}
               </CardTitle>
               <CardDescription>{s.text}</CardDescription>
@@ -392,7 +384,7 @@ function SeoContentFallback({
           <Card key={item.t} className="border-0 bg-secondary/40 shadow-none">
             <CardHeader>
               <CardTitle className="flex items-center gap-3 text-base font-semibold">
-                <item.icon className="h-5 w-5 text-accent" />
+                
                 {item.t}
               </CardTitle>
               <CardDescription>{item.d}</CardDescription>
@@ -748,7 +740,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                   </CardContent>
                 </Card>
 
-                <Card className="border-0 bg-secondary/30">
+                <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3 font-headline">
                       <ShieldCheck className="h-6 w-6 text-accent" />
