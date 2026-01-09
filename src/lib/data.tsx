@@ -4,7 +4,7 @@ import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, Loc
 import {
   Home,
   Bath,
-  CookingPot,
+  UtensilsCrossed,
   Building2,
   Hammer,
   Paintbrush,
@@ -13,7 +13,6 @@ import {
   Users,
   Award,
   BookOpen,
-  FileOutput,
   Layers,
   Milestone,
   ShieldCheck,
@@ -210,7 +209,7 @@ export const services: Service[] = [
     title: 'Rénovation de cuisine',
     slug: 'renovation-cuisine',
     description: 'Conception et installation de cuisines sur mesure.',
-    icon: CookingPot,
+    icon: UtensilsCrossed,
     heroImageId: 'service-kitchen',
     benefitImageId: 'project-kitchen-1',
     whyUsImageId: 'service-pillar-kitchen',
@@ -291,7 +290,7 @@ export const services: Service[] = [
     ],
     whyUs: [
         { title: "Étude de Structure", description: "Avant tout projet, nous vérifions la capacité portante du plancher et l'état de la charpente. Nous travaillons avec des bureaux d'études structure si nécessaire.", icon: Layers },
-        { title: "Gestion Administrative (Permis)", description: "Nous prenons en charge le montage et le dépôt de votre dossier : Déclaration Préalable de Travaux ou Permis de Construire.", icon: FileOutput },
+        { title: "Gestion Administrative (Permis)", description: "Nous prenons en charge le montage et le dépôt de votre dossier : Déclaration Préalable de Travaux ou Permis de Construire.", icon: Wrench },
         { title: 'Confort Thermique Garanti', description: "Notre priorité absolue est d'éviter l'effet \"fournaise\" en été. Nous soignons l'isolation et la ventilation (VMC) pour un espace habitable toute l'année.", icon: ThermometerSun }
     ],
     zones: {
@@ -1382,7 +1381,7 @@ export const allProjects: Project[] = [
       </>,
       keyPoints: [
         { title: "Rénovation Tous Corps d'État", icon: Layers },
-        { title: "Cuisine et Salle de Bain", icon: CookingPot },
+        { title: "Cuisine et Salle de Bain", icon: UtensilsCrossed },
         { title: "Mise aux normes électrique", icon: Wrench },
         { title: "Suivi de chantier rigoureux", icon: ClipboardList }
       ]
@@ -1582,7 +1581,7 @@ export const allProjects: Project[] = [
           <p>Le résultat est un appartement transformé, avec des espaces de vie conviviaux et des pièces techniques entièrement modernisées, le tout livré avec un haut niveau de qualité.</p>
       </>,
       keyPoints: [
-        { title: "Cuisine et Salle de Bain", icon: CookingPot },
+        { title: "Cuisine et Salle de Bain", icon: UtensilsCrossed },
         { title: "Suppression de cloisons", icon: Scaling },
         { title: "Rénovation Tous Corps d'État", icon: Layers },
         { title: "Conseils en aménagement", icon: Lightbulb }
@@ -2090,3 +2089,5 @@ export const blogPosts: BlogPost[] = [
     })()
   }
 ];
+
+    
