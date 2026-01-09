@@ -39,9 +39,9 @@ export default function ServiceAreas() {
             href="/renovation-paris"
           />
           <AreaCard
-            title="Hauts-de-Seine (92)"
-            description="Boulogne-Billancourt, Nanterre, Courbevoie, Colombes, Asnières…"
-            href="/renovation-appartement/hauts-de-seine-92"
+            title="Yvelines (78)"
+            description="Versailles, Sartrouville, Mantes-la-Jolie, Saint-Germain-en-Laye..."
+            href="/renovation-maison/yvelines-78"
           />
           <AreaCard
             title="Seine-Saint-Denis (93)"
