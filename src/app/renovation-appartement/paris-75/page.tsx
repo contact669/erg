@@ -29,11 +29,11 @@ import {
   Bricks,
   Scale,
   PlugZap,
-  Ratio,
-  Wind,
-  Hourglass,
   Gem,
   Maximize,
+  ShieldCheck,
+  Building,
+  DraftingCompass,
 } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -110,7 +110,7 @@ export default function RenovationParisPage() {
                     <CardHeader>
                       <CardTitle>Un parc immobilier ancien</CardTitle>
                        <CardDescription>
-                        À Paris, une grande partie des logements date d’avant 1975.
+                        À Paris, une grande partie des logements date d’avant 1975, voire du XIXᵉ siècle. Chaque projet nécessite une analyse technique précise avant travaux.
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-3">
@@ -124,7 +124,7 @@ export default function RenovationParisPage() {
                     <CardHeader>
                       <CardTitle>Des contraintes de copropriété</CardTitle>
                        <CardDescription>
-                        Des autorisations sont souvent nécessaires.
+                        Autorisation pour : modification de cloisons, intervention sur les réseaux, évacuation, ventilation, nuisances sonores et horaires. Nous vous accompagnons dans ces démarches pour sécuriser votre projet.
                       </CardDescription>
                     </CardHeader>
                      <CardContent className="space-y-3">
@@ -138,7 +138,7 @@ export default function RenovationParisPage() {
                     <CardHeader>
                       <CardTitle>Des surfaces à optimiser</CardTitle>
                       <CardDescription>
-                        À Paris, chaque mètre carré compte.
+                        À Paris, chaque mètre carré compte. La rénovation doit conjuguer : fonctionnalité, esthétique, optimisation des volumes, et durabilité.
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-3">
@@ -156,9 +156,26 @@ export default function RenovationParisPage() {
         <section className="bg-secondary/40 py-16 md:py-24">
           <div className="container">
             <div className="mx-auto max-w-3xl text-center">
-              <h2 className="font-headline text-3xl font-bold">Nos services de rénovation à Paris</h2>
+              <h2 id="nos-services" className="font-headline text-3xl font-bold">Nos services de rénovation à Paris</h2>
               <p className="mt-4 text-muted-foreground">Nous réalisons des projets de rénovation intérieure sur mesure, adaptés à chaque typologie d’appartement parisien.</p>
             </div>
+            
+            <div className="mt-12 text-center">
+                <Card className="inline-block">
+                    <CardHeader>
+                        <CardTitle>Demandez votre devis rénovation à Paris</CardTitle>
+                        <CardDescription>
+                        Vous avez un projet de rénovation à Paris ? Nous vous accompagnons de A à Z, avec sérieux, transparence et exigence. Contactez-nous pour une visite sur site et un devis gratuit.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <Button asChild>
+                            <Link href="/devis">Demander un devis gratuit</Link>
+                        </Button>
+                    </CardContent>
+                </Card>
+            </div>
+
             <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
               <Card>
                 <CardHeader>
@@ -231,6 +248,61 @@ export default function RenovationParisPage() {
           </section>
         </AnimatedSection>
         
+        <section className="bg-secondary/40 py-16 md:py-24">
+          <div className="container">
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="font-headline text-3xl font-bold">Rénovation à Paris : tous les arrondissements (75)</h2>
+                <p className="mt-4 text-muted-foreground">
+                    Nous intervenons dans l’ensemble des arrondissements parisiens. Des pages dédiées par arrondissement seront progressivement mises en ligne pour un accompagnement encore plus localisé.
+                </p>
+            </div>
+             <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-w-4xl mx-auto">
+                {[...Array(20)].map((_, i) => (
+                    <Button variant="outline" asChild key={i}>
+                        <Link href={`/renovation-appartement/paris-${i+1}`}>Paris {i+1}{i === 0 ? 'er' : 'e'}</Link>
+                    </Button>
+                ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 md:py-24">
+             <div className="container">
+                <div className="mx-auto max-w-3xl text-center mb-12">
+                    <h2 className="font-headline text-3xl font-bold">Exemples de projets réalisés à Paris</h2>
+                    <p className="mt-4 text-muted-foreground">
+                        Chaque projet est conçu pour valoriser durablement le bien.
+                    </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Rénovation complète d’un appartement haussmannien</CardTitle>
+                            <CardDescription>Redistribution des espaces</CardDescription>
+                        </CardHeader>
+                    </Card>
+                     <Card>
+                        <CardHeader>
+                            <CardTitle>Création d’une salle de bain compacte dans un studio</CardTitle>
+                            <CardDescription>Optimisation de l'espace</CardDescription>
+                        </CardHeader>
+                    </Card>
+                     <Card>
+                        <CardHeader>
+                            <CardTitle>Rénovation de cuisine avec ouverture sur séjour</CardTitle>
+                            <CardDescription>Modernisation et convivialité</CardDescription>
+                        </CardHeader>
+                    </Card>
+                     <Card>
+                        <CardHeader>
+                            <CardTitle>Optimisation d’un appartement locatif</CardTitle>
+                            <CardDescription>Valorisation pour mise en location</CardDescription>
+                        </CardHeader>
+                    </Card>
+                </div>
+             </div>
+        </section>
+
         <section className="bg-secondary/40 py-16 md:py-24">
           <div className="container">
             <div className="mx-auto max-w-3xl text-center">
