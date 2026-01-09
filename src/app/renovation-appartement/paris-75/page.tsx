@@ -12,11 +12,12 @@ import { PlaceHolderImages } from "@/lib/placeholder-images"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { CheckCircle, Hammer, Home, Bath, CookingPot, Layers, Sparkles, Award, Users, ClipboardCheck, Phone, ArrowRight } from "lucide-react"
+import { CheckCircle, Hammer, Home, Bath, CookingPot, Layers, Sparkles, Award, Users, ClipboardCheck, Phone, ArrowRight, ShieldCheck } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Paris (75) | ERG Rénovation",
-  description: "Entreprise de rénovation à Paris (75). Appartement, salle de bain, cuisine. Visite sur site, devis détaillé et suivi complet. Tous arrondissements.",
+  description:
+    "Entreprise de rénovation à Paris (75). Appartement, salle de bain, cuisine. Visite sur site, devis détaillé et suivi complet. Tous arrondissements.",
   alternates: {
     canonical: "https://www.erg-renovation.fr/renovation-appartement/paris-75",
   },
@@ -87,7 +88,8 @@ export default function RenovationParisPage() {
                       <CardTitle>Un parc immobilier ancien</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
+                      <p>À Paris, une grande partie des logements date d’avant 1975, voire du XIXᵉ siècle :</p>
+                      <ul className="list-disc space-y-2 pl-5 text-muted-foreground mt-4">
                         <li>Immeubles haussmanniens</li>
                         <li>Planchers bois</li>
                         <li>Murs porteurs épais</li>
@@ -101,14 +103,14 @@ export default function RenovationParisPage() {
                       <CardTitle>Des contraintes de copropriété</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="font-medium">Autorisation pour :</p>
+                      <p>Autorisation pour :</p>
                       <ul className="list-disc space-y-2 pl-5 text-muted-foreground mt-2">
                         <li>Modification de cloisons</li>
                         <li>Intervention sur les réseaux</li>
                         <li>Évacuation, ventilation</li>
                         <li>Nuisances sonores et horaires</li>
                       </ul>
-                       <p className="mt-4 text-sm font-semibold">Nous vous accompagnons dans ces démarches pour sécuriser votre projet.</p>
+                       <p className="mt-4 text-sm font-semibold">Nous vous accompagnons dans ces démarches pour sécuriser votre projet dès le départ.</p>
                     </CardContent>
                   </Card>
                   <Card className="border-0 bg-secondary/30 shadow-none">
@@ -116,14 +118,13 @@ export default function RenovationParisPage() {
                       <CardTitle>Des surfaces à optimiser</CardTitle>
                     </CardHeader>
                     <CardContent>
-                       <p className="font-medium">La rénovation doit conjuguer :</p>
+                       <p>À Paris, chaque mètre carré compte. La rénovation doit conjuguer :</p>
                       <ul className="list-disc space-y-2 pl-5 text-muted-foreground mt-2">
                         <li>Fonctionnalité</li>
                         <li>Esthétique</li>
                         <li>Optimisation des volumes</li>
                         <li>Durabilité</li>
                       </ul>
-                       <p className="mt-4 text-sm font-semibold">À Paris, chaque mètre carré compte.</p>
                     </CardContent>
                   </Card>
               </div>
@@ -142,21 +143,21 @@ export default function RenovationParisPage() {
                 <CardHeader>
                   <Home className="h-8 w-8 text-accent mb-2" />
                   <CardTitle>Rénovation complète</CardTitle>
-                  <CardDescription>Un projet clé en main, de la conception à la livraison. Démolition, électricité, plomberie, isolation, et finitions haut de gamme.</CardDescription>
+                  <CardDescription>Un projet clé en main, de la conception à la livraison, incluant redistribution, réseaux, isolation et finitions haut de gamme.</CardDescription>
                 </CardHeader>
               </Card>
               <Card>
                 <CardHeader>
                   <Bath className="h-8 w-8 text-accent mb-2" />
                   <CardTitle>Rénovation de salle de bain</CardTitle>
-                  <CardDescription>Douche à l’italienne, meubles sur mesure, étanchéité renforcée. Nous créons des salles de bain fonctionnelles et esthétiques.</CardDescription>
+                  <CardDescription>Création d'espaces fonctionnels et esthétiques : douche à l’italienne, meubles sur mesure, étanchéité renforcée.</CardDescription>
                 </CardHeader>
               </Card>
               <Card>
                 <CardHeader>
                   <CookingPot className="h-8 w-8 text-accent mb-2" />
                   <CardTitle>Rénovation de cuisine</CardTitle>
-                  <CardDescription>Cuisine ouverte ou fermée, nous optimisons les circulations et coordonnons tous les corps de métier pour un résultat durable.</CardDescription>
+                  <CardDescription>Optimisation des circulations, rangements intelligents et coordination de tous les corps de métier pour un résultat durable.</CardDescription>
                 </CardHeader>
               </Card>
                <Card>
@@ -180,7 +181,7 @@ export default function RenovationParisPage() {
                   </div>
                 }
                 <div>
-                  <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation ?</h2>
+                  <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation pour vos travaux à Paris ?</h2>
                   <ul className="mt-6 space-y-6">
                     <li className="flex items-start gap-4">
                       <Award className="h-6 w-6 flex-shrink-0 text-accent" />
