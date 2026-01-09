@@ -25,6 +25,9 @@ import {
   Phone,
   ArrowRight,
   ClipboardList,
+  Building,
+  DraftingCompass,
+  Wrench,
   Building2,
   Bricks,
   Scale,
@@ -32,9 +35,6 @@ import {
   Gem,
   Maximize,
   ShieldCheck,
-  Building,
-  DraftingCompass,
-  Wrench,
 } from "lucide-react"
 
 export const metadata: Metadata = {
