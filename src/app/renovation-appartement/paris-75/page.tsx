@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function RenovationParisPage() {
   const heroImage = PlaceHolderImages.find(p => p.id === 'project-apartment-paris-75');
-  const bathroomImage = PlaceHolderImages.find(p => p.id === 'project-bathroom-1');
+  const bathroomImage = PlaceHolderImages.find(p => p.id === 'project-small-bathroom-after');
   const kitchenImage = PlaceHolderImages.find(p => p.id === 'project-kitchen-1');
   const apartmentImage = PlaceHolderImages.find(p => p.id === 'project-apartment-1');
 
@@ -35,7 +35,7 @@ export default function RenovationParisPage() {
     },
     {
       q: "Quels sont les délais moyens ?",
-      a: "Une salle de bain prend généralement 2 à 3 semaines. Une rénovation complète d'appartement peut durer de 6 à 10 semaines. Les délais précis sont définis contractuellement avant le début des travaux."
+      a: "Pour une salle de bain, comptez 2 à 3 semaines. Pour une rénovation complète, prévoyez de 6 à 10 semaines. Les délais précis sont définis contractuellement avant le début des travaux."
     },
     {
       q: "Faut-il l’accord de la copropriété ?",
@@ -43,7 +43,7 @@ export default function RenovationParisPage() {
     },
     {
       q: "Peut-on rénover un appartement occupé ?",
-      a: "Oui, c'est possible. Nous adaptons l'organisation du chantier en procédant par phases et en protégeant soigneusement les zones non concernées pour limiter les nuisances et vous permettre de rester dans votre logement."
+      a: "Oui, c'est possible. Nous adaptons l'organisation du chantier en procédant par phases et en protégeant soigneusement les zones non concernées pour limiter les nuisances."
     }
   ];
 
@@ -60,12 +60,13 @@ export default function RenovationParisPage() {
                 Rénovation d’appartement à Paris (75)
               </h1>
               <p className="mt-4 text-lg text-muted-foreground">
-                ERG Rénovation accompagne les particuliers et investisseurs pour leurs travaux de rénovation à Paris. De la rénovation complète à la salle de bain, nous assurons un suivi structuré et des finitions soignées.
+                ERG Rénovation accompagne les particuliers, propriétaires occupants et investisseurs pour leurs travaux de rénovation à Paris, tous arrondissements confondus. De la rénovation complète d’appartement à la salle de bain ou à la cuisine, nous assurons un suivi structuré, des finitions soignées et une maîtrise totale du chantier, dans le respect des contraintes parisiennes.
               </p>
-              <div className="mt-8 flex justify-center gap-2 text-sm text-muted-foreground">
-                <span className="inline-flex items-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Intervention rapide</span>
-                <span className="inline-flex items-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Visite gratuite</span>
-                <span className="inline-flex items-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Devis détaillé</span>
+              <div className="mt-8 grid grid-cols-2 gap-4 text-sm text-muted-foreground md:grid-cols-4">
+                <span className="inline-flex items-center justify-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Intervention rapide</span>
+                <span className="inline-flex items-center justify-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Visite gratuite</span>
+                <span className="inline-flex items-center justify-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Devis détaillé</span>
+                <span className="inline-flex items-center justify-center gap-1.5"><CheckCircle className="h-4 w-4 text-accent" /> Interlocuteur unique</span>
               </div>
             </div>
           </div>
@@ -74,41 +75,57 @@ export default function RenovationParisPage() {
         <AnimatedSection>
           <section className="py-16 md:py-24">
             <div className="container">
-              <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
-                <div>
+              <div className="mx-auto max-w-4xl text-center mb-12">
                   <h2 className="font-headline text-3xl font-bold">Rénover un appartement à Paris : un projet exigeant</h2>
                   <p className="mt-4 text-muted-foreground">
-                    Le bâti ancien, la densité urbaine et les règles de copropriété imposent une approche rigoureuse et expérimentée. Chaque projet nécessite une analyse technique précise avant travaux.
+                    Rénover à Paris ne s’improvise pas. Le bâti ancien, la densité urbaine et les règles de copropriété imposent une approche rigoureuse et expérimentée.
                   </p>
-                  <ul className="mt-6 space-y-4">
-                    <li className="flex items-start gap-3">
-                      <Layers className="h-5 w-5 flex-shrink-0 text-accent" />
-                      <div>
-                        <h3 className="font-semibold">Un parc immobilier ancien</h3>
-                        <p className="text-sm text-muted-foreground">Immeubles haussmanniens, planchers bois, réseaux parfois vétustes.</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Users className="h-5 w-5 flex-shrink-0 text-accent" />
-                      <div>
-                        <h3 className="font-semibold">Des contraintes de copropriété</h3>
-                        <p className="text-sm text-muted-foreground">Autorisations pour cloisons, réseaux, nuisances sonores.</p>
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <Sparkles className="h-5 w-5 flex-shrink-0 text-accent" />
-                      <div>
-                        <h3 className="font-semibold">Des surfaces à optimiser</h3>
-                        <p className="text-sm text-muted-foreground">Chaque mètre carré compte pour allier fonctionnalité et esthétique.</p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                {heroImage &&
-                  <div className="relative h-80 w-full overflow-hidden rounded-lg lg:h-[450px]">
-                    <Image src={heroImage.imageUrl} alt="Rénovation d’un appartement haussmannien à Paris avec finitions soignées" fill className="object-cover" data-ai-hint={heroImage.imageHint} sizes="(max-width: 1024px) 100vw, 50vw" />
-                  </div>
-                }
+              </div>
+              <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-3">
+                  <Card className="border-0 bg-secondary/30 shadow-none">
+                    <CardHeader>
+                      <CardTitle>Un parc immobilier ancien</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
+                        <li>Immeubles haussmanniens</li>
+                        <li>Planchers bois</li>
+                        <li>Murs porteurs épais</li>
+                        <li>Réseaux parfois vétustes</li>
+                      </ul>
+                       <p className="mt-4 text-sm font-semibold">Chaque projet nécessite une analyse technique précise avant travaux.</p>
+                    </CardContent>
+                  </Card>
+                  <Card className="border-0 bg-secondary/30 shadow-none">
+                    <CardHeader>
+                      <CardTitle>Des contraintes de copropriété</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="font-medium">Autorisation pour :</p>
+                      <ul className="list-disc space-y-2 pl-5 text-muted-foreground mt-2">
+                        <li>Modification de cloisons</li>
+                        <li>Intervention sur les réseaux</li>
+                        <li>Évacuation, ventilation</li>
+                        <li>Nuisances sonores et horaires</li>
+                      </ul>
+                       <p className="mt-4 text-sm font-semibold">Nous vous accompagnons dans ces démarches pour sécuriser votre projet.</p>
+                    </CardContent>
+                  </Card>
+                  <Card className="border-0 bg-secondary/30 shadow-none">
+                    <CardHeader>
+                      <CardTitle>Des surfaces à optimiser</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                       <p className="font-medium">La rénovation doit conjuguer :</p>
+                      <ul className="list-disc space-y-2 pl-5 text-muted-foreground mt-2">
+                        <li>Fonctionnalité</li>
+                        <li>Esthétique</li>
+                        <li>Optimisation des volumes</li>
+                        <li>Durabilité</li>
+                      </ul>
+                       <p className="mt-4 text-sm font-semibold">À Paris, chaque mètre carré compte.</p>
+                    </CardContent>
+                  </Card>
               </div>
             </div>
           </section>
@@ -118,21 +135,21 @@ export default function RenovationParisPage() {
           <div className="container">
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="font-headline text-3xl font-bold">Nos services de rénovation à Paris</h2>
-              <p className="mt-4 text-muted-foreground">Nous réalisons des projets sur mesure, adaptés à chaque typologie d’appartement parisien.</p>
+              <p className="mt-4 text-muted-foreground">Nous réalisons des projets de rénovation intérieure sur mesure, adaptés à chaque typologie d’appartement parisien.</p>
             </div>
-            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
               <Card>
                 <CardHeader>
                   <Home className="h-8 w-8 text-accent mb-2" />
                   <CardTitle>Rénovation complète</CardTitle>
-                  <CardDescription>Un projet clé en main, de la conception à la livraison : redistribution des espaces, électricité, plomberie, isolation et finitions.</CardDescription>
+                  <CardDescription>Un projet clé en main, de la conception à la livraison. Démolition, électricité, plomberie, isolation, et finitions haut de gamme.</CardDescription>
                 </CardHeader>
               </Card>
               <Card>
                 <CardHeader>
                   <Bath className="h-8 w-8 text-accent mb-2" />
                   <CardTitle>Rénovation de salle de bain</CardTitle>
-                  <CardDescription>Spécialistes des petites surfaces, nous créons des salles de bain fonctionnelles avec douche à l'italienne et étanchéité renforcée.</CardDescription>
+                  <CardDescription>Douche à l’italienne, meubles sur mesure, étanchéité renforcée. Nous créons des salles de bain fonctionnelles et esthétiques.</CardDescription>
                 </CardHeader>
               </Card>
               <Card>
@@ -140,6 +157,13 @@ export default function RenovationParisPage() {
                   <CookingPot className="h-8 w-8 text-accent mb-2" />
                   <CardTitle>Rénovation de cuisine</CardTitle>
                   <CardDescription>Cuisine ouverte ou fermée, nous optimisons les circulations et coordonnons tous les corps de métier pour un résultat durable.</CardDescription>
+                </CardHeader>
+              </Card>
+               <Card>
+                <CardHeader>
+                  <Hammer className="h-8 w-8 text-accent mb-2" />
+                  <CardTitle>Rénovation partielle</CardTitle>
+                  <CardDescription>Rafraîchissement, redistribution de pièces, création de rangements sur mesure, et optimisation des petits espaces.</CardDescription>
                 </CardHeader>
               </Card>
             </div>
@@ -152,34 +176,38 @@ export default function RenovationParisPage() {
               <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
                  {apartmentImage &&
                   <div className="relative h-80 w-full overflow-hidden rounded-lg lg:h-[450px] order-last lg:order-first">
-                    <Image src={apartmentImage.imageUrl} alt="Chantier de rénovation intérieure d’un appartement à Paris" fill className="object-cover" data-ai-hint={apartmentImage.imageHint} sizes="(max-width: 1024px) 100vw, 50vw" />
+                    <Image src={apartmentImage.imageUrl} alt="Rénovation d’un appartement haussmannien à Paris avec finitions soignées" fill className="object-cover" data-ai-hint={apartmentImage.imageHint} sizes="(max-width: 1024px) 100vw, 50vw" />
                   </div>
                 }
                 <div>
                   <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation ?</h2>
-                  <p className="mt-4 text-muted-foreground">
-                    Notre connaissance du marché parisien et notre structure intégrée sont les garants de votre sérénité.
-                  </p>
-                  <ul className="mt-6 space-y-4">
-                    <li className="flex items-start gap-3">
-                      <Award className="h-5 w-5 flex-shrink-0 text-accent" />
+                  <ul className="mt-6 space-y-6">
+                    <li className="flex items-start gap-4">
+                      <Award className="h-6 w-6 flex-shrink-0 text-accent" />
                       <div>
                         <h3 className="font-semibold">Une expertise locale réelle</h3>
                         <p className="text-sm text-muted-foreground">Nous connaissons les immeubles anciens, les contraintes des syndics et les attentes des clients parisiens.</p>
                       </div>
                     </li>
-                    <li className="flex items-start gap-3">
-                      <Users className="h-5 w-5 flex-shrink-0 text-accent" />
+                    <li className="flex items-start gap-4">
+                      <Users className="h-6 w-6 flex-shrink-0 text-accent" />
                       <div>
                         <h3 className="font-semibold">Un interlocuteur unique</h3>
                         <p className="text-sm text-muted-foreground">Un chef de projet dédié pilote le chantier, coordonne les artisans et contrôle la qualité.</p>
                       </div>
                     </li>
-                    <li className="flex items-start gap-3">
-                      <ClipboardCheck className="h-5 w-5 flex-shrink-0 text-accent" />
+                    <li className="flex items-start gap-4">
+                      <ShieldCheck className="h-6 w-6 flex-shrink-0 text-accent" />
+                      <div>
+                        <h3 className="font-semibold">Des artisans qualifiés et assurés</h3>
+                        <p className="text-sm text-muted-foreground">Assurance décennale, responsabilité civile et respect des normes en vigueur.</p>
+                      </div>
+                    </li>
+                     <li className="flex items-start gap-4">
+                      <ClipboardCheck className="h-6 w-6 flex-shrink-0 text-accent" />
                       <div>
                         <h3 className="font-semibold">Une transparence totale</h3>
-                        <p className="text-sm text-muted-foreground">Devis détaillé, planning clair, budget maîtrisé et garanties décennales.</p>
+                        <p className="text-sm text-muted-foreground">Devis détaillé, planning clair, budget maîtrisé.</p>
                       </div>
                     </li>
                   </ul>
@@ -193,12 +221,11 @@ export default function RenovationParisPage() {
           <div className="container">
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="font-headline text-3xl font-bold">FAQ – Rénovation d’appartement à Paris</h2>
-              <p className="mt-4 text-muted-foreground">Les réponses aux questions que vous vous posez le plus souvent.</p>
             </div>
             <Accordion type="single" collapsible className="mt-8 max-w-3xl mx-auto">
               {faqs.map((faq, i) => (
                 <AccordionItem value={`item-${i}`} key={i}>
-                  <AccordionTrigger>{faq.q}</AccordionTrigger>
+                  <AccordionTrigger className="text-left">{faq.q}</AccordionTrigger>
                   <AccordionContent>{faq.a}</AccordionContent>
                 </AccordionItem>
               ))}
