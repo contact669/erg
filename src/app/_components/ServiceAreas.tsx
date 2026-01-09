@@ -51,7 +51,7 @@ export default function ServiceAreas() {
           <AreaCard
             title="Val-de-Marne (94)"
             description="Vincennes, Ivry-sur-Seine, Créteil, Vitry-sur-Seine…"
-            href="/renovation-appartement/val-de-marne-94"
+            href="/renovation-val-de-marne"
           />
         </div>
 
