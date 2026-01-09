@@ -1,4 +1,3 @@
-
 import Link from "next/link"
 import Image from "next/image"
 import { services, navItems } from "@/lib/data"
@@ -117,24 +116,34 @@ export default function SiteFooter() {
                 </a>
               </p>
             </div>
+          </div>
 
-            {/* CTA */}
-            <div className="grid gap-2 pt-2 sm:max-w-xs">
-              <Button asChild>
-                <Link href="/devis" className="inline-flex items-center justify-center gap-2">
-                  Demander un devis <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
+          {/* Zones */}
+          <div className="space-y-5">
+            <FooterTitle>Zones d'intervention</FooterTitle>
+            <ul className="space-y-2">
+              <li><FooterLink href="/renovation-paris">Paris (75)</FooterLink></li>
+              <li><FooterLink href="/renovation-hauts-de-seine">Hauts-de-Seine (92)</FooterLink></li>
+              <li><FooterLink href="/renovation-seine-saint-denis">Seine-Saint-Denis (93)</FooterLink></li>
+              <li><FooterLink href="/renovation-val-de-marne">Val-de-Marne (94)</FooterLink></li>
+            </ul>
+          </div>
 
-              <Button asChild variant="outline">
-                <a href={`tel:${PHONE_RAW}`} className="inline-flex items-center justify-center gap-2">
-                  <Phone className="h-4 w-4" />
-                  Appeler maintenant
-                </a>
-              </Button>
-
-              <p className="text-xs text-muted-foreground">Intervention : Paris • 92 • 93 • 94</p>
-            </div>
+          {/* Services */}
+          <div className="space-y-5">
+            <FooterTitle>Nos services</FooterTitle>
+            <ul className="space-y-2">
+              {services.slice(0, 4).map((service) => (
+                <li key={service.slug}>
+                  <FooterLink href={`/services/${service.slug}`}>{service.title}</FooterLink>
+                </li>
+              ))}
+              <li className="pt-1">
+                <FooterLink href="/services" className="font-medium text-foreground hover:text-primary">
+                  Voir tous les services →
+                </FooterLink>
+              </li>
+            </ul>
           </div>
 
           {/* Navigation */}
@@ -147,82 +156,6 @@ export default function SiteFooter() {
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* Services + requêtes fréquentes */}
-          <div className="space-y-5">
-            <FooterTitle>Nos services</FooterTitle>
-
-            <ul className="space-y-2">
-              {services.slice(0, 5).map((service) => (
-                <li key={service.slug}>
-                  <FooterLink href={`/services/${service.slug}`}>{service.title}</FooterLink>
-                </li>
-              ))}
-              <li className="pt-1">
-                <FooterLink href="/services" className="font-medium text-foreground hover:text-primary">
-                  Voir tous les services →
-                </FooterLink>
-              </li>
-            </ul>
-
-            {/* mini maillage interne (clean, non spammy) */}
-            <div className="rounded-2xl border bg-background/60 p-4 ring-1 ring-border/50">
-              <p className="text-xs font-semibold tracking-wide text-foreground">Recherches fréquentes</p>
-              <ul className="mt-3 space-y-2">
-                <li>
-                  <FooterLink href="/services/renovation-appartement">Rénovation appartement à Paris</FooterLink>
-                </li>
-                <li>
-                  <FooterLink href="/services/renovation-salle-de-bain">Salle de bain clé en main</FooterLink>
-                </li>
-                <li>
-                  <FooterLink href="/services/renovation-cuisine">Rénovation cuisine</FooterLink>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Newsletter */}
-          <div className="space-y-5">
-            <FooterTitle>Newsletter</FooterTitle>
-
-            <p className="text-sm text-muted-foreground">
-              Conseils travaux et dernières réalisations (1 à 2 emails/mois). Zéro spam.
-            </p>
-
-            {/* Server-safe */}
-            <form className="grid gap-3" action="/api/newsletter" method="post">
-              <label className="sr-only" htmlFor="newsletter-email">
-                Email
-              </label>
-
-              <div className="flex gap-2">
-                <Input
-                  id="newsletter-email"
-                  name="email"
-                  type="email"
-                  placeholder="Votre email"
-                  className="bg-background"
-                  autoComplete="email"
-                  required
-                />
-                <Button type="submit">OK</Button>
-              </div>
-
-              <label className="flex items-start gap-2 text-xs text-muted-foreground">
-                <input name="consent" type="checkbox" value="yes" required className="mt-1" />
-                <span>Désinscription en 1 clic. Données traitées conformément à la politique de confidentialité.</span>
-              </label>
-            </form>
-
-            <p className="text-xs text-muted-foreground">
-              En soumettant, vous acceptez notre{" "}
-              <Link href="/confidentialite" className="underline underline-offset-4 hover:text-primary">
-                politique de confidentialité
-              </Link>
-              .
-            </p>
           </div>
         </div>
 

@@ -1,5 +1,3 @@
-
-
 import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage } from './types';
 import {
   Home,
@@ -83,10 +81,10 @@ export const services: Service[] = [
     zones: {
         description: "Basée au cœur de la région, ERG Rénovation déploie ses équipes pour tous projets de rénovation d'appartement à Paris (75) et en Île-de-France. Cliquez sur votre département pour découvrir notre expertise locale :",
         list: [
-            { name: 'Hauts-de-Seine (92)', slug: 'hauts-de-seine-92' },
-            { name: 'Val-de-Marne (94)', slug: 'val-de-marne-94' },
+            { name: 'Hauts-de-Seine (92)', slug: 'renovation-hauts-de-seine' },
+            { name: 'Val-de-Marne (94)', slug: 'renovation-val-de-marne' },
             { name: 'Yvelines (78)', slug: 'yvelines-78' },
-            { name: 'Seine-Saint-Denis (93)', slug: 'seine-saint-denis-93' }
+            { name: 'Seine-Saint-Denis (93)', slug: 'renovation-seine-saint-denis' }
         ]
     },
     faq: [
@@ -140,9 +138,9 @@ export const services: Service[] = [
         description: "ERG Rénovation est le spécialiste des projets résidentiels haut de gamme en Île-de-France. Nos équipes interviennent pour la rénovation de maisons dans les Yvelines (78) (Versailles, Saint-Germain-en-Laye...) et les Hauts-de-Seine (92) (Meudon, Saint-Cloud, Sceaux...), où se concentrent de nombreux pavillons et demeures de caractère.",
         list: [
             { name: 'Yvelines (78)', slug: 'yvelines-78' },
-            { name: 'Hauts-de-Seine (92)', slug: 'hauts-de-seine-92' },
-            { name: 'Val-de-Marne (94)', slug: 'val-de-marne-94' },
-            { name: 'Seine-Saint-Denis (93)', slug: 'seine-saint-denis-93' }
+            { name: 'Hauts-de-Seine (92)', slug: 'renovation-hauts-de-seine' },
+            { name: 'Val-de-Marne (94)', slug: 'renovation-val-de-marne' },
+            { name: 'Seine-Saint-Denis (93)', slug: 'renovation-seine-saint-denis' }
         ]
     },
     faq: [
@@ -194,8 +192,8 @@ export const services: Service[] = [
     zones: {
       description: "Notre expertise en rénovation de salle de bain s'exerce dans les appartements haussmanniens de Paris (75), où l'optimisation est reine, comme dans les maisons des Hauts-de-Seine (92) et des Yvelines (78) (création de suites parentales).",
       list: [
-        { name: 'Paris 16e', slug: 'paris-16' },
-        { name: 'Hauts-de-Seine (92)', slug: 'hauts-de-seine-92' }
+        { name: 'Paris 16e', slug: 'renovation-salle-de-bain/paris-16' },
+        { name: 'Hauts-de-Seine (92)', slug: 'renovation-hauts-de-seine' }
       ]
     },
     faq: [
@@ -1969,6 +1967,7 @@ export const blogPosts: BlogPost[] = [
 ];
 
     
+
 
 
 
