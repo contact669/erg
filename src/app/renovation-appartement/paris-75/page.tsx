@@ -34,7 +34,6 @@ import {
   Hourglass,
   Gem,
   Maximize,
-  ShieldCheck,
 } from "lucide-react"
 
 export const metadata: Metadata = {
@@ -115,10 +114,10 @@ export default function RenovationParisPage() {
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-3">
-                      <p className="flex items-center gap-3 text-sm"><Building2 className="h-5 w-5 text-accent" /> Immeubles haussmanniens</p>
-                      <p className="flex items-center gap-3 text-sm"><Bricks className="h-5 w-5 text-accent" /> Planchers bois</p>
-                      <p className="flex items-center gap-3 text-sm"><Scale className="h-5 w-5 text-accent" /> Murs porteurs épais</p>
-                      <p className="flex items-center gap-3 text-sm"><PlugZap className="h-5 w-5 text-accent" /> Réseaux parfois vétustes</p>
+                      <p>Immeubles haussmanniens</p>
+                      <p>Planchers bois</p>
+                      <p>Murs porteurs épais</p>
+                      <p>Réseaux parfois vétustes</p>
                     </CardContent>
                   </Card>
                   <Card className="border-0 bg-secondary/30 shadow-none">
@@ -129,10 +128,10 @@ export default function RenovationParisPage() {
                       </CardDescription>
                     </CardHeader>
                      <CardContent className="space-y-3">
-                      <p className="flex items-center gap-3 text-sm"><Ratio className="h-5 w-5 text-accent" /> Modification de cloisons</p>
-                      <p className="flex items-center gap-3 text-sm"><PlugZap className="h-5 w-5 text-accent" /> Intervention sur les réseaux</p>
-                      <p className="flex items-center gap-3 text-sm"><Wind className="h-5 w-5 text-accent" /> Évacuation, ventilation</p>
-                      <p className="flex items-center gap-3 text-sm"><Hourglass className="h-5 w-5 text-accent" /> Nuisances sonores et horaires</p>
+                      <p>Modification de cloisons</p>
+                      <p>Intervention sur les réseaux</p>
+                      <p>Évacuation, ventilation</p>
+                      <p>Nuisances sonores et horaires</p>
                     </CardContent>
                   </Card>
                   <Card className="border-0 bg-secondary/30 shadow-none">
@@ -143,10 +142,10 @@ export default function RenovationParisPage() {
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-3">
-                       <p className="flex items-center gap-3 text-sm"><Gem className="h-5 w-5 text-accent" /> Fonctionnalité</p>
-                       <p className="flex items-center gap-3 text-sm"><Gem className="h-5 w-5 text-accent" /> Esthétique</p>
-                       <p className="flex items-center gap-3 text-sm"><Maximize className="h-5 w-5 text-accent" /> Optimisation des volumes</p>
-                       <p className="flex items-center gap-3 text-sm"><ShieldCheck className="h-5 w-5 text-accent" /> Durabilité</p>
+                       <p>Fonctionnalité</p>
+                       <p>Esthétique</p>
+                       <p>Optimisation des volumes</p>
+                       <p>Durabilité</p>
                     </CardContent>
                   </Card>
               </div>
@@ -163,30 +162,26 @@ export default function RenovationParisPage() {
             <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
               <Card>
                 <CardHeader>
-                  <Home className="h-8 w-8 text-accent mb-2" />
-                  <CardTitle>Rénovation complète</CardTitle>
-                  <CardDescription>Un projet clé en main, de la conception à la livraison, incluant redistribution, réseaux, isolation et finitions haut de gamme.</CardDescription>
+                  <CardTitle>Rénovation complète d’appartement</CardTitle>
+                  <CardDescription>Idéal pour : achat avec travaux, résidence principale, investissement locatif. Nos prestations incluent : démolition et redistribution des espaces, électricité et plomberie aux normes, isolation thermique et phonique, sols, murs, plafonds, finitions haut de gamme. Un projet clé en main, de la conception à la livraison.</CardDescription>
                 </CardHeader>
               </Card>
               <Card>
                 <CardHeader>
-                  <Bath className="h-8 w-8 text-accent mb-2" />
-                  <CardTitle>Rénovation de salle de bain</CardTitle>
-                  <CardDescription>Création d'espaces fonctionnels et esthétiques : douche à l’italienne, meubles sur mesure, étanchéité renforcée.</CardDescription>
+                  <CardTitle>Rénovation de salle de bain à Paris</CardTitle>
+                  <CardDescription>Spécialistes des petites surfaces parisiennes, nous concevons des salles de bain : fonctionnelles, durables, esthétiques. Prestations possibles : douche à l’italienne, meubles sur mesure, étanchéité renforcée, ventilation performante.</CardDescription>
                 </CardHeader>
               </Card>
               <Card>
                 <CardHeader>
-                  <UtensilsCrossed className="h-8 w-8 text-accent mb-2" />
                   <CardTitle>Rénovation de cuisine</CardTitle>
-                  <CardDescription>Optimisation des circulations, rangements intelligents et coordination de tous les corps de métier pour un résultat durable.</CardDescription>
+                  <CardDescription>Cuisine ouverte, semi-ouverte ou fermée : optimisation des circulations, rangements intelligents, matériaux résistants, intégration technique parfaite. Nous coordonnons menuiserie, plomberie et électricité pour un résultat cohérent et durable.</CardDescription>
                 </CardHeader>
               </Card>
                <Card>
                 <CardHeader>
-                  <Hammer className="h-8 w-8 text-accent mb-2" />
-                  <CardTitle>Rénovation partielle</CardTitle>
-                  <CardDescription>Rafraîchissement, redistribution de pièces, création de rangements sur mesure, et optimisation des petits espaces.</CardDescription>
+                  <CardTitle>Rénovation partielle & aménagement intérieur</CardTitle>
+                  <CardDescription>Rafraîchissement, redistribution de pièces, création de rangements sur mesure, optimisation des petits espaces.</CardDescription>
                 </CardHeader>
               </Card>
             </div>
@@ -206,28 +201,24 @@ export default function RenovationParisPage() {
                   <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation pour vos travaux à Paris ?</h2>
                   <ul className="mt-6 space-y-6">
                     <li className="flex items-start gap-4">
-                      <Award className="h-6 w-6 flex-shrink-0 text-accent" />
                       <div>
                         <h3 className="font-semibold">Une expertise locale réelle</h3>
-                        <p className="text-sm text-muted-foreground">Nous intervenons quotidiennement à Paris. Nous connaissons les immeubles anciens, les contraintes des syndics et les attentes des clients parisiens.</p>
+                        <p className="text-sm text-muted-foreground">Nous intervenons quotidiennement à Paris, dans tous les arrondissements. Nous connaissons les immeubles anciens, les contraintes des syndics, et les attentes des clients parisiens.</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-4">
-                      <Users className="h-6 w-6 flex-shrink-0 text-accent" />
                       <div>
                         <h3 className="font-semibold">Un interlocuteur unique</h3>
-                        <p className="text-sm text-muted-foreground">Un chef de projet dédié pilote le chantier, coordonne les artisans et contrôle la qualité.</p>
+                        <p className="text-sm text-muted-foreground">Un chef de projet dédié pilote l’ensemble du chantier : coordination des corps de métier, respect des délais, contrôle qualité.</p>
                       </div>
                     </li>
                     <li className="flex items-start gap-4">
-                      <ShieldCheck className="h-6 w-6 flex-shrink-0 text-accent" />
                       <div>
                         <h3 className="font-semibold">Des artisans qualifiés et assurés</h3>
                         <p className="text-sm text-muted-foreground">Assurance décennale, responsabilité civile et respect des normes en vigueur.</p>
                       </div>
                     </li>
                      <li className="flex items-start gap-4">
-                      <ClipboardList className="h-6 w-6 flex-shrink-0 text-accent" />
                       <div>
                         <h3 className="font-semibold">Une transparence totale</h3>
                         <p className="text-sm text-muted-foreground">Devis détaillé, planning clair, budget maîtrisé.</p>
