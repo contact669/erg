@@ -3,34 +3,6 @@ import { Button } from "@/components/ui/button"
 import { Phone, MapPin, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-const PARIS_ARRONDISSEMENTS = [
-  "Paris 1", "Paris 2", "Paris 3", "Paris 4", "Paris 5",
-  "Paris 6", "Paris 7", "Paris 8", "Paris 9", "Paris 10",
-  "Paris 11", "Paris 12", "Paris 13", "Paris 14", "Paris 15",
-  "Paris 16", "Paris 17", "Paris 18", "Paris 19", "Paris 20",
-] as const
-
-function toSlug(input: string) {
-  return input
-    .toLowerCase()
-    .normalize("NFD") // enlève accents
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/&/g, "et")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "")
-}
-
-/**
- * ⚠️ Assure-toi que ces routes existent :
- * - /renovation-paris-1 ... /renovation-paris-20
- * - /renovation-92, /renovation-93, /renovation-94
- */
-function parisHref(area: string) {
-  // "Paris 10" -> "paris-10"
-  const slug = toSlug(area)
-  return `/renovation-${slug}`
-}
-
 export default function ServiceAreas() {
   return (
     <section
@@ -135,7 +107,7 @@ function AreaCard({
           className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
           aria-label={`Voir la zone ${title}`}
         >
-          Voir la zone <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          <MapPin className="h-4 w-4 text-accent" /> Voir la zone
         </Link>
       </div>
     </article>
