@@ -28,28 +28,28 @@ import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Rénovation appartement Seine-Saint-Denis (93) | ERG Rénovation",
+  title: "Rénovation appartement Montreuil (93100) | ERG Rénovation",
   description:
-    "Entreprise de rénovation en Seine-Saint-Denis (93) : appartement, salle de bain, cuisine. Devis détaillé, visite sur site et finitions soignées.",
+    "Entreprise de rénovation à Montreuil (93100) : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions soignées.",
   alternates: {
-    canonical: "https://www.erg-renovation.fr/renovation-seine-saint-denis",
+    canonical: "https://www.erg-renovation.fr/renovation-montreuil",
   },
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: "Rénovation appartement Seine-Saint-Denis (93) | ERG Rénovation",
-    description: "Rénovation intérieure dans le 93 : appartement, salle de bain, cuisine. Devis détaillé, visite sur site et finitions soignées.",
-    url: "https://www.erg-renovation.fr/renovation-seine-saint-denis",
+    title: "Rénovation appartement Montreuil (93100) | ERG Rénovation",
+    description: "Entreprise de rénovation à Montreuil (93100) : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions soignées.",
+    url: "https://www.erg-renovation.fr/renovation-montreuil",
     type: "website",
     locale: "fr_FR",
     siteName: "ERG Rénovation",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rénovation appartement Seine-Saint-Denis (93) | ERG Rénovation",
-    description: "Entreprise de rénovation en Seine-Saint-Denis (93) : appartement, salle de bain, cuisine. Devis détaillé, suivi de chantier, finitions soignées.",
+    title: "Rénovation appartement Montreuil (93100) | ERG Rénovation",
+    description: "Entreprise de rénovation à Montreuil (93100) : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions soignées.",
   },
 };
 
@@ -69,8 +69,8 @@ function JsonLd() {
       },
       "priceRange": "€€",
       "areaServed": {
-        "@type": "AdministrativeArea",
-        "name": "Seine-Saint-Denis"
+        "@type": "City",
+        "name": "Montreuil"
       },
       "serviceType": [
         "Rénovation d’appartement",
@@ -78,11 +78,11 @@ function JsonLd() {
         "Rénovation de cuisine",
         "Travaux tous corps d’état",
       ],
-      "description": "ERG Rénovation, entreprise spécialisée en rénovation intérieure d'appartements, cuisines et salles de bain en Seine-Saint-Denis (93)."
+      "description": "ERG Rénovation, entreprise spécialisée en rénovation d'appartements à Montreuil (93100). Devis gratuit, garantie décennale."
     };
     return (
         <Script
-            id="jsonld-renovation-seine-saint-denis"
+            id="jsonld-renovation-montreuil"
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
@@ -90,33 +90,36 @@ function JsonLd() {
 }
 
 const heroPoints = [
-    { text: "Intervention rapide dans le 93" },
+    { text: "Intervention rapide à Montreuil" },
     { text: "Visite sur site gratuite" },
     { text: "Devis détaillé et transparent" },
     { text: "Un interlocuteur unique" },
 ];
 
-const seineSaintDenisSpecificities = [
+const montreuilSpecificities = [
     {
         icon: Building2,
         title: "Un parc immobilier hétérogène",
-        description: "À Montreuil, Pantin ou Saint-Denis, les logements anciens côtoient des constructions plus récentes, présentant des défis uniques : réseaux à moderniser, isolation à repenser et distributions à optimiser.",
-        imageUrl: "https://picsum.photos/seed/9301/800/600",
-        imageAlt: "Rénovation d’un appartement en Seine-Saint-Denis avec finitions soignées"
+        description: "À Montreuil, les logements anciens côtoient des constructions plus récentes, présentant des défis uniques : réseaux à moderniser, isolation à repenser et distributions à optimiser.",
+        imageUrl: "https://picsum.photos/seed/93101/800/600",
+        imageAlt: "Rénovation d’un appartement à Montreuil avec finitions soignées",
+        imageHint: "renovated apartment"
     },
     {
         icon: Hammer,
         title: "Un fort enjeu de valorisation",
-        description: "Dans ce département dynamique, une rénovation de qualité est un investissement stratégique pour améliorer l'attractivité locative, faciliter une revente ou simplement améliorer son confort de vie.",
-        imageUrl: "https://picsum.photos/seed/9302/800/600",
-        imageAlt: "Chantier de rénovation intérieure à Montreuil en Seine-Saint-Denis"
+        description: "Dans cette ville dynamique, une rénovation de qualité est un investissement stratégique pour améliorer l'attractivité locative, faciliter une revente ou simplement améliorer son confort de vie.",
+        imageUrl: "https://picsum.photos/seed/93102/800/600",
+        imageAlt: "Chantier de rénovation intérieure à Montreuil en Seine-Saint-Denis",
+        imageHint: "renovation site"
     },
     {
         icon: Home,
         title: "Le potentiel des volumes",
-        description: "Anciens ateliers ou appartements familiaux, le 93 offre de belles opportunités de transformation. Une rénovation bien pensée permet de créer des espaces de vie modernes et fonctionnels.",
-        imageUrl: "https://picsum.photos/seed/9303/800/600",
-        imageAlt: "Rénovation de cuisine sur mesure en Seine-Saint-Denis"
+        description: "Anciens ateliers ou appartements familiaux, Montreuil offre de belles opportunités de transformation. Une rénovation bien pensée permet de créer des espaces de vie modernes et fonctionnels.",
+        imageUrl: "https://picsum.photos/seed/93103/800/600",
+        imageAlt: "Rénovation de cuisine sur mesure à Montreuil (93100)",
+        imageHint: "custom kitchen"
     }
 ];
 
@@ -136,7 +139,7 @@ const renovationServices = [
     {
         icon: UtensilsCrossed,
         title: "Rénovation de cuisine",
-        description: "Cuisine ouverte ou fermée, nous optimisons la circulation, créons des rangements intelligents et coordonnons tous les corps de métier pour un résultat esthétique et durable.",
+        description: "Cuisine ouverte ou fermée, nous optimisons les volumes, créons des rangements sur mesure et coordonnons tous les corps de métier pour un résultat esthétique et durable.",
         link: "/services/renovation-cuisine"
     },
     {
@@ -151,24 +154,24 @@ const whyChooseUs = [
     {
         icon: ShieldCheck,
         title: "Une connaissance terrain du 93",
-        description: "Nous intervenons régulièrement dans le département et connaissons ses spécificités techniques, les copropriétés et les attentes des propriétaires."
+        description: "Nous intervenons régulièrement à Montreuil et connaissons les spécificités techniques, les copropriétés et les attentes des propriétaires et investisseurs."
     },
     {
         icon: Users,
         title: "Un interlocuteur unique",
-        description: "Un chef de projet dédié assure la coordination des artisans, le respect des délais et le contrôle qualité, pour votre tranquillité."
+        description: "Un chef de projet dédié assure la coordination des artisans, le respect du planning et le contrôle qualité, pour votre tranquillité."
     },
     {
         icon: ClipboardList,
         title: "Une transparence totale",
-        description: "Nos devis sont détaillés, nos plannings clairs et votre budget est maîtrisé du début à la fin. Tous nos travaux sont couverts par la garantie décennale."
+        description: "Nos devis sont détaillés, nos plannings clairs et votre budget est maîtrisé. Tous nos travaux sont couverts par la garantie décennale."
     }
 ];
 
 const faqItems = [
     {
-        question: "Quel est le prix d’une rénovation dans le 93 ?",
-        answer: "Les prix varient selon la surface, l'état du logement et le niveau de prestation. À titre indicatif, comptez à partir de 650 €/m² pour une rénovation partielle et entre 1 000 et 1 500 €/m² pour une rénovation complète. Un devis précis nécessite une visite sur site."
+        question: "Quel est le prix d’une rénovation à Montreuil ?",
+        answer: "Les prix varient selon la surface, l'état du logement et le niveau de prestation. À titre indicatif, comptez à partir de 700 €/m² pour une rénovation partielle et entre 1 000 et 1 500 €/m² pour une rénovation complète. Un devis précis nécessite une visite sur site."
     },
     {
         question: "Quels sont les délais moyens ?",
@@ -184,13 +187,7 @@ const faqItems = [
     }
 ];
 
-const cities93 = [
-    "Montreuil", "Saint-Denis", "Pantin", "Aubervilliers", "Noisy-le-Sec",
-    "Bobigny", "Drancy", "Bagnolet", "Les Lilas", "Romainville"
-];
-
-
-export default function RenovationSeineSaintDenisPage() {
+export default function RenovationMontreuilPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <JsonLd />
@@ -201,10 +198,10 @@ export default function RenovationSeineSaintDenisPage() {
         <section className="bg-secondary py-16 md:py-24">
           <div className="container text-center">
             <h1 className="font-headline text-4xl font-bold md:text-5xl lg:text-6xl">
-              Rénovation d’appartement en Seine-Saint-Denis (93) – ERG Rénovation
+              Rénovation d’appartement à Montreuil (93100) – ERG Rénovation
             </h1>
             <p className="mt-4 mx-auto max-w-3xl text-lg text-muted-foreground">
-              ERG Rénovation intervient dans toute la Seine-Saint-Denis (93) pour vos projets de rénovation intérieure : appartement, salle de bain, cuisine et rénovation complète. Nous accompagnons propriétaires et investisseurs avec une approche structurée, des artisans qualifiés et une exigence sur la qualité des finitions.
+              ERG Rénovation accompagne les propriétaires occupants, bailleurs et investisseurs pour leurs travaux de rénovation à Montreuil : appartement, salle de bain, cuisine ou rénovation complète. Nous intervenons avec une approche rigoureuse, un pilotage de chantier structuré et des finitions soignées, adaptées aux spécificités du parc immobilier montreuillois.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3">
                 {heroPoints.map(point => (
@@ -216,7 +213,7 @@ export default function RenovationSeineSaintDenisPage() {
             </div>
             <div className="mt-8">
                 <Button asChild size="lg">
-                    <Link href="/devis">Obtenir mon devis gratuit</Link>
+                    <Link href="/devis">Mon devis à Montreuil</Link>
                 </Button>
             </div>
           </div>
@@ -226,16 +223,16 @@ export default function RenovationSeineSaintDenisPage() {
         <section className="py-16 md:py-24">
             <div className="container">
                 <div className="text-center mx-auto max-w-2xl">
-                    <h2 className="font-headline text-3xl font-bold">Rénover en Seine-Saint-Denis : un enjeu stratégique</h2>
+                    <h2 className="font-headline text-3xl font-bold">Rénover à Montreuil : un projet à fort potentiel</h2>
                     <p className="mt-4 text-muted-foreground">
-                        Le 93, département en pleine mutation, offre un potentiel de valorisation immobilière unique. Une rénovation bien menée y est un investissement particulièrement rentable.
+                       La proximité de Paris et la diversité de son parc immobilier font de Montreuil un secteur stratégique pour la rénovation.
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {seineSaintDenisSpecificities.map(item => (
+                    {montreuilSpecificities.map(item => (
                         <Card key={item.title} className="overflow-hidden">
                             <div className="relative h-56 w-full">
-                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover"/>
+                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover" data-ai-hint={item.imageHint} />
                             </div>
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-3">
@@ -257,9 +254,9 @@ export default function RenovationSeineSaintDenisPage() {
         <section className="bg-secondary py-16 md:py-24">
             <div className="container">
                 <div className="text-center mx-auto max-w-2xl">
-                    <h2 className="font-headline text-3xl font-bold">Nos services de rénovation en Seine-Saint-Denis</h2>
+                    <h2 className="font-headline text-3xl font-bold">Nos services de rénovation à Montreuil</h2>
                     <p className="mt-4 text-muted-foreground">
-                        Nous réalisons des rénovations sur mesure, adaptées aux besoins de chaque logement et de chaque commune du 93.
+                        Nous réalisons des projets sur mesure, adaptés à chaque logement et à chaque objectif.
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -291,10 +288,10 @@ export default function RenovationSeineSaintDenisPage() {
             <div className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
-                        <Image src="https://picsum.photos/seed/9304/800/1000" alt="Équipe ERG Rénovation en réunion de chantier" fill className="object-cover"/>
+                        <Image src="https://picsum.photos/seed/93104/800/1000" alt="Chantier de rénovation d'un appartement à Montreuil" fill className="object-cover" data-ai-hint="renovation site" />
                     </div>
                     <div>
-                        <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation en Seine-Saint-Denis ?</h2>
+                        <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation à Montreuil ?</h2>
                         <div className="mt-8 space-y-6">
                             {whyChooseUs.map(item => (
                                 <div key={item.title} className="flex items-start gap-4">
@@ -315,37 +312,10 @@ export default function RenovationSeineSaintDenisPage() {
         </AnimatedSection>
         
         <AnimatedSection>
-        <section className="py-16 md:py-24 bg-secondary">
-          <div className="container">
-            <div className="text-center mx-auto max-w-2xl">
-              <h2 className="font-headline text-3xl font-bold">Villes d’intervention en Seine-Saint-Denis (93)</h2>
-              <p className="mt-4 text-muted-foreground">Nous couvrons l'ensemble du département.</p>
-            </div>
-            <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-4xl mx-auto">
-              {cities93.map(city => {
-                if (city === "Montreuil") {
-                  return (
-                    <Button key={city} asChild variant="outline" className="font-medium bg-background hover:bg-accent hover:text-accent-foreground">
-                      <Link href="/renovation-montreuil">{city}</Link>
-                    </Button>
-                  )
-                }
-                return (
-                  <div key={city} className="p-3 border rounded-lg bg-background text-center text-sm font-medium">
-                    {city}
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-        </AnimatedSection>
-
-        <AnimatedSection>
         <section className="py-16 md:py-24">
             <div className="container max-w-3xl mx-auto">
                 <div className="text-center">
-                    <h2 className="font-headline text-3xl font-bold">FAQ – Rénovation en Seine-Saint-Denis (93)</h2>
+                    <h2 className="font-headline text-3xl font-bold">FAQ – Rénovation d’appartement à Montreuil</h2>
                 </div>
                 <Accordion type="single" collapsible className="w-full mt-8">
                     {faqItems.map((item, index) => (
