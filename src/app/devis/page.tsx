@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { useState } from "react"
 import Link from "next/link"
-import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { collection, addDoc, serverTimestamp, writeBatch } from "firebase/firestore"
 import { useFirestore } from "@/firebase"
 
 import SiteHeader from "@/components/site-header"
@@ -87,17 +87,50 @@ export default function DevisPage() {
     })
 
     try {
-      const requestData = {
+      // Create a batch write to perform multiple operations atomically
+      const batch = writeBatch(firestore);
+
+      // 1. Create the quote request document
+      const quoteRequestsRef = collection(firestore, "quoteRequests");
+      const newRequestRef = await addDoc(quoteRequestsRef, {
         clientName: values.clientName.trim(),
         clientEmail: values.clientEmail.trim().toLowerCase(),
         clientPhone: (values.clientPhone ?? "").trim() || null,
         projectDescription: values.projectDescription.trim(),
         status: 'Nouvelle Demande',
         createdAt: serverTimestamp(),
-      }
-      // La création de ce document déclenchera la fonction API
-      // qui se chargera d'envoyer les e-mails.
-      await addDoc(collection(firestore, "quoteRequests"), requestData);
+      });
+
+      const mailCollectionRef = collection(firestore, "mail");
+
+      // 2. Create the email document for the admin
+      batch.set(doc(mailCollectionRef), {
+        to: ["contact@erg-renovation.fr"],
+        template: {
+          name: "quote-request-admin-email",
+          data: {
+            clientName: values.clientName,
+            clientEmail: values.clientEmail,
+            clientPhone: values.clientPhone || "Non fourni",
+            projectDescription: values.projectDescription,
+            requestId: newRequestRef.id,
+          },
+        },
+      });
+
+      // 3. Create the confirmation email document for the client
+      batch.set(doc(mailCollectionRef), {
+        to: [values.clientEmail],
+        template: {
+          name: "quote-request-confirmation-email",
+          data: {
+            clientName: values.clientName,
+          },
+        },
+      });
+
+      // Commit the batch
+      await batch.commit();
 
       toast({
         title: "Demande envoyée ✅",
@@ -107,7 +140,7 @@ export default function DevisPage() {
 
       form.reset()
     } catch (error) {
-      console.error("Error creating quote request:", error);
+      console.error("Error creating quote request and emails:", error);
       toast({
         variant: "destructive",
         title: "Impossible d’envoyer la demande",
@@ -383,3 +416,5 @@ export default function DevisPage() {
     </div>
   )
 }
+
+    
