@@ -53,23 +53,26 @@ const asnieresSpecificities = [
     {
         icon: Building2,
         title: "Un parc immobilier majoritairement ancien",
-        description: "À Asnières, les immeubles des années 1900 à 1930 côtoient des résidences des années 50-80. La rénovation y est essentielle pour moderniser, isoler et sécuriser.",
+        description: "À Asnières, les immeubles des années 1900 à 1980 sont nombreux. La rénovation y est cruciale pour moderniser, isoler et sécuriser les logements.",
         imageUrl: "https://picsum.photos/seed/92601/800/600",
-        imageAlt: "Rénovation d’un appartement à Asnières-sur-Seine avec finitions soignées"
+        imageAlt: "Rénovation d'un appartement à Asnières-sur-Seine avec finitions soignées",
+        imageHint: "renovated apartment"
     },
     {
         icon: Hammer,
-        title: "Un enjeu de confort et de valorisation",
-        description: "La proximité de Paris et des transports rend Asnières attractive. Une rénovation bien menée augmente le confort de vie et la valeur patrimoniale du bien.",
+        title: "Un fort impact sur la valeur",
+        description: "Dans cette ville en plein essor, une rénovation bien menée augmente le confort de vie et représente un investissement pertinent pour la valorisation du bien.",
         imageUrl: "https://picsum.photos/seed/92602/800/600",
-        imageAlt: "Chantier de rénovation intérieure à Asnières-sur-Seine dans les Hauts-de-Seine"
+        imageAlt: "Chantier de rénovation intérieure à Asnières-sur-Seine dans les Hauts-de-Seine",
+        imageHint: "renovation site"
     },
     {
         icon: Home,
-        title: "Des attentes familiales et locatives",
-        description: "Les familles et les investisseurs recherchent des espaces fonctionnels, lumineux et dotés de rangements intelligents, avec des finitions propres et durables.",
+        title: "Une demande forte pour les logements familiaux",
+        description: "Les familles recherchent des espaces fonctionnels, lumineux et dotés de rangements optimisés, avec des finitions propres et durables.",
         imageUrl: "https://picsum.photos/seed/92603/800/600",
-        imageAlt: "Cuisine moderne rénovée dans un appartement à Asnières-sur-Seine"
+        imageAlt: "Cuisine moderne rénovée dans un appartement à Asnières-sur-Seine",
+        imageHint: "modern kitchen"
     }
 ];
 
@@ -83,13 +86,13 @@ const renovationServices = [
     {
         icon: Bath,
         title: "Rénovation de salle de bain",
-        description: "Création d'espaces modernes et fonctionnels : douche à l’italienne, optimisation des petites surfaces, étanchéité renforcée et ventilation performante.",
+        description: "Création de salles de bain modernes et fonctionnelles. Nous maîtrisons l'optimisation des petites surfaces, l'étanchéité et la ventilation.",
         link: "/services/renovation-salle-de-bain"
     },
     {
         icon: UtensilsCrossed,
         title: "Rénovation de cuisine",
-        description: "Cuisine ouverte ou fermée, nous optimisons les volumes, créons des rangements sur mesure et coordonnons tous les corps de métier pour un résultat esthétique et durable.",
+        description: "Cuisine ouverte ou fermée, nous optimisons les volumes, créons des rangements sur mesure et coordonnons tous les corps de métier pour un résultat durable.",
         link: "/services/renovation-cuisine"
     },
     {
@@ -124,16 +127,16 @@ const faqItems = [
         a: "Les prix varient selon la surface, l'état initial et le niveau de finition. À titre indicatif, comptez à partir de 750 €/m² pour une rénovation partielle et entre 1 100 et 1 600 €/m² pour une rénovation complète. Une visite sur site est indispensable pour un devis précis."
     },
     {
-        q: "Quels sont les délais moyens pour rénover un appartement à Asnières-sur-Seine ?",
-        a: "Une salle de bain se rénove en 2 à 4 semaines, tandis qu'une rénovation complète prend de 6 à 12 semaines. Les délais sont définis contractuellement avant le début des travaux."
+        q: "Quels sont les délais moyens ?",
+        a: "Une salle de bain se rénove en 2 à 4 semaines, tandis qu'une rénovation complète prend de 6 à 12 semaines. Les délais sont définis contractuellement."
     },
     {
-        q: "Faut-il un accord de la copropriété pour des travaux à Asnières-sur-Seine ?",
-        a: "Oui, pour certains travaux (murs porteurs, réseaux, ventilation, changement de fenêtres). Nous vous accompagnons dans la constitution du dossier administratif pour sécuriser vos démarches."
+        q: "Faut-il l’accord de la copropriété ?",
+        a: "Oui, pour certains travaux (murs porteurs, réseaux, ventilation). Nous vous accompagnons dans les démarches administratives."
     },
     {
         q: "Peut-on rénover un appartement occupé ?",
-        a: "Oui, c'est possible. Nous adaptons l'organisation du chantier en planifiant les interventions par phases et en protégeant les zones non concernées pour limiter au maximum les nuisances."
+        a: "Oui. L’organisation du chantier est adaptée pour limiter les nuisances."
     }
 ];
 
@@ -194,14 +197,14 @@ export default function RenovationAsnieresPage() {
                 <div className="text-center mx-auto max-w-2xl">
                     <h2 className="font-headline text-3xl font-bold">Rénover à Asnières : un projet à fort potentiel</h2>
                     <p className="mt-4 text-muted-foreground">
-                      Proche de Paris, Asnières est un secteur attractif où la rénovation permet d'améliorer le confort de vie et de valoriser un patrimoine immobilier.
+                      Dans une ville en plein essor, la rénovation est essentielle pour améliorer le confort, mettre aux normes et valoriser son patrimoine.
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
                     {asnieresSpecificities.map(item => (
                         <Card key={item.title} className="overflow-hidden">
                             <div className="relative h-56 w-full">
-                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover" data-ai-hint={item.title.toLowerCase()} />
+                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover" data-ai-hint={item.imageHint} />
                             </div>
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-3">
@@ -225,7 +228,7 @@ export default function RenovationAsnieresPage() {
                 <div className="text-center mx-auto max-w-2xl">
                     <h2 className="font-headline text-3xl font-bold">Nos services de rénovation à Asnières-sur-Seine</h2>
                     <p className="mt-4 text-muted-foreground">
-                        Nous réalisons des projets sur mesure, adaptés aux besoins des particuliers comme des investisseurs.
+                        Nous proposons des projets 100 % sur mesure, adaptés aux objectifs de chaque client.
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">

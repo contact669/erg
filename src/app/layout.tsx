@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next"
-import Script from "next/script"
 import "./globals.css"
 
 import { Toaster } from "@/components/ui/toaster"
@@ -8,7 +7,6 @@ import CookieConsent from "@/components/cookie-consent"
 import { FirebaseClientProvider } from "@/firebase"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { ThemeProvider } from "@/components/theme-provider"
-import JsonLd from "@/components/JsonLd";
 import { buildLocalBusinessJsonLd, buildWebSiteJsonLd } from "@/lib/seo/jsonld";
 
 const SITE_NAME = "ERG Rénovation"
@@ -101,6 +99,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const jsonLd = [localBusiness, website];
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
@@ -111,7 +110,11 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
-        <JsonLd id="jsonld-global" data={[localBusiness, website]} />
+        <script
+          id="jsonld-global"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
 
       <body className="font-body antialiased">
