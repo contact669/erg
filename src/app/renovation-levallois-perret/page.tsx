@@ -28,6 +28,7 @@ import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
+import { InternalLinksCity92 } from "../renovation-hauts-de-seine/_components/internal-links";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Levallois-Perret (92300) | ERG Rénovation",
@@ -283,6 +284,22 @@ export default function RenovationLevalloisPage() {
         </section>
         </AnimatedSection>
         
+        <AnimatedSection>
+            <div className="container py-16 md:py-24">
+                <InternalLinksCity92
+                cityName="Levallois-Perret"
+                citySlug="/renovation-levallois-perret"
+                nearby={[
+                    { name: "Courbevoie", href: "/renovation-courbevoie" },
+                    { name: "Asnières-sur-Seine", href: "/renovation-asnieres-sur-seine" },
+                    { name: "Colombes", href: "/renovation-colombes" },
+                    { name: "Nanterre", href: "/renovation-nanterre" },
+                    { name: "Boulogne-Billancourt", href: "/renovation-boulogne-billancourt" },
+                ]}
+                />
+            </div>
+        </AnimatedSection>
+
         <AnimatedSection>
         <section className="py-16 md:py-24">
             <div className="container max-w-3xl mx-auto">

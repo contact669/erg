@@ -26,6 +26,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CtaBanner from "@/app/_components/cta-banner";
 import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
+import JsonLd from "@/components/JsonLd";
+import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
+import { InternalLinksCity92 } from "../renovation-hauts-de-seine/_components/internal-links";
+
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Nanterre (92000) | ERG Rénovation",
@@ -54,42 +58,6 @@ export const metadata: Metadata = {
       "Entreprise de rénovation à Nanterre (92000) : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions soignées.",
   },
 };
-
-function JsonLd() {
-    const jsonLd = {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "ERG Rénovation",
-      "url": "https://www.erg-renovation.fr",
-      "telephone": "+33699961375",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "1 Sent. de la Pointe",
-        "addressLocality": "Paris",
-        "postalCode": "75020",
-        "addressCountry": "FR"
-      },
-      "priceRange": "€€",
-      "areaServed": {
-        "@type": "City",
-        "name": "Nanterre"
-      },
-      "serviceType": [
-        "Rénovation d’appartement",
-        "Rénovation de salle de bain",
-        "Rénovation de cuisine",
-        "Travaux tous corps d’état",
-      ],
-      "description": "ERG Rénovation, entreprise spécialisée en rénovation d'appartements à Nanterre (92000). Devis gratuit, garantie décennale."
-    };
-    return (
-        <Script
-            id="jsonld-renovation-nanterre"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-    )
-}
 
 const heroPoints = [
     { text: "Intervention rapide à Nanterre" },
@@ -186,10 +154,29 @@ const faqItems = [
     }
 ];
 
+const SITE_URL = "https://www.erg-renovation.fr";
+
 export default function RenovationNanterrePage() {
+    const service = buildServiceJsonLd({
+        businessName: "ERG Rénovation",
+        siteUrl: SITE_URL,
+        url: "/renovation-nanterre",
+        city: "Nanterre",
+        postalCode: "92000",
+        serviceType: "Rénovation intérieure",
+    });
+
+    const breadcrumb = buildBreadcrumbJsonLd(SITE_URL, [
+        { name: "Accueil", url: "/" },
+        { name: "Hauts-de-Seine (92)", url: "/renovation-hauts-de-seine" },
+        { name: "Nanterre", url: "/renovation-nanterre" },
+    ]);
+
+    const faq = buildFaqJsonLd(faqItems);
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <JsonLd />
+      <JsonLd id="jsonld-nanterre" data={[service, breadcrumb, faq]} />
       <SiteHeader />
       <main className="flex-grow">
         <Breadcrumbs />
@@ -310,6 +297,22 @@ export default function RenovationNanterrePage() {
         </section>
         </AnimatedSection>
         
+        <AnimatedSection>
+            <div className="container py-16 md:py-24">
+                <InternalLinksCity92
+                cityName="Nanterre"
+                citySlug="/renovation-nanterre"
+                nearby={[
+                    { name: "Courbevoie", href: "/renovation-courbevoie" },
+                    { name: "Colombes", href: "/renovation-colombes" },
+                    { name: "Asnières-sur-Seine", href: "/renovation-asnieres-sur-seine" },
+                    { name: "Levallois-Perret", href: "/renovation-levallois-perret" },
+                    { name: "Boulogne-Billancourt", href: "/renovation-boulogne-billancourt" },
+                ]}
+                />
+            </div>
+        </AnimatedSection>
+
         <AnimatedSection>
         <section className="py-16 md:py-24">
             <div className="container max-w-3xl mx-auto">

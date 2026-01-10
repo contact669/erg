@@ -28,6 +28,7 @@ import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
+import { InternalLinksHautsDeSeine } from "./_components/internal-links";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Hauts-de-Seine (92) | ERG Rénovation",
@@ -306,30 +307,9 @@ export default function RenovationHautsDeSeinePage() {
         </AnimatedSection>
         
         <AnimatedSection>
-        <section className="py-16 md:py-24 bg-secondary">
-          <div className="container">
-            <div className="text-center mx-auto max-w-2xl">
-              <h2 className="font-headline text-3xl font-bold">Villes d’intervention dans les Hauts-de-Seine (92)</h2>
-              <p className="mt-4 text-muted-foreground">Nous intervenons dans l’ensemble du département.</p>
-            </div>
-            <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-4xl mx-auto">
-              {cities92.map(city => {
-                if (city.slug) {
-                  return (
-                    <Button key={city.name} asChild variant="outline" className="font-medium bg-background hover:bg-accent hover:text-accent-foreground">
-                      <Link href={`/${city.slug}`}>{city.name}</Link>
-                    </Button>
-                  )
-                }
-                return (
-                  <div key={city.name} className="p-3 border rounded-lg bg-background text-center text-sm font-medium">
-                    {city.name}
-                  </div>
-                )
-              })}
-            </div>
+          <div className="container py-16 md:py-24">
+            <InternalLinksHautsDeSeine />
           </div>
-        </section>
         </AnimatedSection>
 
         <AnimatedSection>

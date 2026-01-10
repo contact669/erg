@@ -28,6 +28,7 @@ import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
+import { InternalLinksCity92 } from "../renovation-hauts-de-seine/_components/internal-links";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Colombes (92700) | ERG Rénovation",
@@ -283,6 +284,21 @@ export default function RenovationColombesPage() {
         </section>
         </AnimatedSection>
         
+        <AnimatedSection>
+            <div className="container py-16 md:py-24">
+                <InternalLinksCity92
+                cityName="Colombes"
+                citySlug="/renovation-colombes"
+                nearby={[
+                    { name: "Asnières-sur-Seine", href: "/renovation-asnieres-sur-seine" },
+                    { name: "Courbevoie", href: "/renovation-courbevoie" },
+                    { name: "Nanterre", href: "/renovation-nanterre" },
+                    { name: "Levallois-Perret", href: "/renovation-levallois-perret" },
+                ]}
+                />
+            </div>
+        </AnimatedSection>
+
         <AnimatedSection>
         <section className="py-16 md:py-24">
             <div className="container max-w-3xl mx-auto">
