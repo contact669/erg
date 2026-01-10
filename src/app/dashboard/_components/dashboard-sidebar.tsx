@@ -87,7 +87,7 @@ function NavLink({
     setIsClient(true)
   }, []);
   
-  const isActive = isClient && pathname === href;
+  const isActive = isClient ? pathname === href : false;
 
   return (
     <Tooltip>
