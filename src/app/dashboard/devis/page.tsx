@@ -74,18 +74,17 @@ export default function DevisPage() {
   const [isClient, setIsClient] = useState(false);
   const [highlightId, setHighlightId] = useState<string | null>(null);
 
-  // ✅ évite petits soucis hydration (dates, Intl) + conserve ton comportement actuel
-  useEffect(() => setIsClient(true), []);
+  useEffect(() => {
+      setIsClient(true);
+  }, []);
 
-  // ✅ login requis
   useEffect(() => {
     if (!isUserLoading && !user) router.push('/connexion');
   }, [user, isUserLoading, router]);
 
-  // ✅ FIX TS: searchParams peut être null selon les defs/types => guard
   useEffect(() => {
     if (!searchParams) return;
-    const open = searchParams.get('open'); // ex: /dashboard/devis?open=QUOTE_ID
+    const open = searchParams.get('open');
     setHighlightId(open || null);
   }, [searchParams]);
 
@@ -110,15 +109,14 @@ export default function DevisPage() {
   }
 
   const handleView = (id: string) => {
-    router.push(`/dashboard/devis/${id}`); // à créer (page détail)
+    router.push(`/dashboard/devis/${id}`);
   };
 
   const handleEdit = (id: string) => {
-    router.push(`/dashboard/devis/${id}?mode=edit`); // à créer (ou même page détail)
+    router.push(`/dashboard/devis/${id}?mode=edit`);
   };
 
   const handleArchive = (id: string) => {
-    // TODO: implémenter (update Firestore status: "Archivé" ou champ archived=true)
     console.log('archive', id);
   };
 
