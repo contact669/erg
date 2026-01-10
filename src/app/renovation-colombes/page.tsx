@@ -26,6 +26,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CtaBanner from "@/app/_components/cta-banner";
 import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
+import JsonLd from "@/components/JsonLd";
+import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Colombes (92700) | ERG Rénovation",
@@ -39,42 +41,6 @@ export const metadata: Metadata = {
     follow: true,
   },
 };
-
-function JsonLd() {
-    const jsonLd = {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "ERG Rénovation",
-      "url": "https://www.erg-renovation.fr",
-      "telephone": "+33699961375",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "1 Sent. de la Pointe",
-        "addressLocality": "Paris",
-        "postalCode": "75020",
-        "addressCountry": "FR"
-      },
-      "priceRange": "€€",
-      "areaServed": {
-        "@type": "City",
-        "name": "Colombes"
-      },
-      "serviceType": [
-        "Rénovation d’appartement",
-        "Rénovation de salle de bain",
-        "Rénovation de cuisine",
-        "Travaux tous corps d’état",
-      ],
-      "description": "ERG Rénovation, entreprise spécialisée en rénovation d'appartements à Colombes (92700). Devis gratuit, garantie décennale."
-    };
-    return (
-        <Script
-            id="jsonld-renovation-colombes"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-    )
-}
 
 const heroPoints = [
     { text: "Intervention rapide à Colombes" },
@@ -157,27 +123,46 @@ const whyChooseUs = [
 
 const faqItems = [
     {
-        question: "Quel est le prix d’une rénovation à Colombes ?",
-        answer: "Les prix varient selon la surface, l'état initial et le niveau de finition. À titre indicatif, comptez à partir de 750 €/m² pour une rénovation partielle et entre 1 050 et 1 600 €/m² pour une rénovation complète. Une visite sur site est indispensable pour un devis précis."
+        q: "Quel est le prix d’une rénovation à Colombes ?",
+        a: "Les prix varient selon la surface, l'état initial et le niveau de finition. À titre indicatif, comptez à partir de 750 €/m² pour une rénovation partielle et entre 1 050 et 1 600 €/m² pour une rénovation complète. Une visite sur site est indispensable pour un devis précis."
     },
     {
-        question: "Quels sont les délais moyens ?",
-        answer: "Une salle de bain se rénove en 2 à 4 semaines, tandis qu'une rénovation complète prend de 6 à 12 semaines. Les délais sont définis contractuellement."
+        q: "Quels sont les délais moyens ?",
+        a: "Une salle de bain se rénove en 2 à 4 semaines, tandis qu'une rénovation complète prend de 6 à 12 semaines. Les délais sont définis contractuellement."
     },
     {
-        question: "Faut-il un accord de la copropriété ?",
-        answer: "Oui, pour certains travaux (murs porteurs, réseaux, ventilation). Nous vous accompagnons dans les démarches administratives."
+        q: "Faut-il l’accord de la copropriété ?",
+        a: "Oui, pour certains travaux (murs porteurs, réseaux, ventilation). Nous vous accompagnons dans les démarches administratives."
     },
     {
-        question: "Peut-on rénover un appartement occupé ?",
-        answer: "Oui. L’organisation du chantier est adaptée pour limiter les nuisances."
+        q: "Peut-on rénover un appartement occupé ?",
+        a: "Oui. L’organisation du chantier est adaptée pour limiter les nuisances."
     }
 ];
 
+const SITE_URL = "https://www.erg-renovation.fr";
+
 export default function RenovationColombesPage() {
+  const service = buildServiceJsonLd({
+    businessName: "ERG Rénovation",
+    siteUrl: SITE_URL,
+    url: "/renovation-colombes",
+    city: "Colombes",
+    postalCode: "92700",
+    serviceType: "Rénovation intérieure",
+  });
+
+  const breadcrumb = buildBreadcrumbJsonLd(SITE_URL, [
+    { name: "Accueil", url: "/" },
+    { name: "Hauts-de-Seine (92)", url: "/renovation-hauts-de-seine" },
+    { name: "Colombes", url: "/renovation-colombes" },
+  ]);
+
+  const faq = buildFaqJsonLd(faqItems);
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <JsonLd />
+      <JsonLd id="jsonld-colombes" data={[service, breadcrumb, faq]} />
       <SiteHeader />
       <main className="flex-grow">
         <Breadcrumbs />
@@ -243,7 +228,7 @@ export default function RenovationColombesPage() {
                 <div className="text-center mx-auto max-w-2xl">
                     <h2 className="font-headline text-3xl font-bold">Nos services de rénovation à Colombes</h2>
                     <p className="mt-4 text-muted-foreground">
-                        Nous proposons des projets 100% sur mesure, adaptés aux objectifs de chaque client.
+                        Nous proposons des projets 100 % sur mesure, adaptés aux objectifs de chaque client.
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -307,8 +292,8 @@ export default function RenovationColombesPage() {
                 <Accordion type="single" collapsible className="w-full mt-8">
                     {faqItems.map((item, index) => (
                         <AccordionItem value={`item-${index}`} key={index}>
-                            <AccordionTrigger className="text-left font-semibold text-lg">{item.question}</AccordionTrigger>
-                            <AccordionContent className="text-muted-foreground">{item.answer}</AccordionContent>
+                            <AccordionTrigger className="text-left font-semibold text-lg">{item.q}</AccordionTrigger>
+                            <AccordionContent className="text-muted-foreground">{item.a}</AccordionContent>
                         </AccordionItem>
                     ))}
                 </Accordion>

@@ -26,6 +26,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CtaBanner from "@/app/_components/cta-banner";
 import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
+import JsonLd from "@/components/JsonLd";
+import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Hauts-de-Seine (92) | ERG Rénovation",
@@ -52,42 +54,6 @@ export const metadata: Metadata = {
     description: "Entreprise de rénovation dans les Hauts-de-Seine : appartement, salle de bain, cuisine. Devis détaillé, suivi de chantier, finitions soignées.",
   },
 };
-
-function JsonLd() {
-    const jsonLd = {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "ERG Rénovation",
-      "url": "https://www.erg-renovation.fr",
-      "telephone": "+33699961375",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "1 Sent. de la Pointe",
-        "addressLocality": "Paris",
-        "postalCode": "75020",
-        "addressCountry": "FR"
-      },
-      "priceRange": "€€",
-      "areaServed": {
-        "@type": "AdministrativeArea",
-        "name": "Hauts-de-Seine"
-      },
-      "serviceType": [
-        "Rénovation d’appartement",
-        "Rénovation de salle de bain",
-        "Rénovation de cuisine",
-        "Travaux tous corps d’état",
-      ],
-      "description": "ERG Rénovation, entreprise spécialisée en rénovation intérieure d'appartements, cuisines et salles de bain dans les Hauts-de-Seine (92)."
-    };
-    return (
-        <Script
-            id="jsonld-renovation-hauts-de-seine"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-    )
-}
 
 const heroPoints = [
     { text: "Intervention rapide" },
@@ -167,30 +133,30 @@ const whyChooseUs = [
 
 const faqItems = [
     {
-        question: "Quel est le prix d’une rénovation dans le 92 ?",
-        answer: "Les prix varient selon la surface, l'état initial et le niveau de finition. À titre indicatif, comptez à partir de 700 €/m² pour une rénovation partielle et entre 1 100 et 1 700 €/m² pour une rénovation complète. Une visite sur site est indispensable pour un devis précis."
+        q: "Quel est le prix d’une rénovation dans le 92 ?",
+        a: "Les prix varient selon la surface, l'état initial et le niveau de finition. À titre indicatif, comptez à partir de 700 €/m² pour une rénovation partielle et entre 1 100 et 1 700 €/m² pour une rénovation complète. Une visite sur site est indispensable pour un devis précis."
     },
     {
-        question: "Quels sont les délais moyens ?",
-        answer: "Les délais sont définis contractuellement. Comptez 2 à 4 semaines pour une salle de bain et 6 à 12 semaines pour une rénovation complète, en fonction de la complexité du projet."
+        q: "Quels sont les délais moyens ?",
+        a: "Les délais sont définis contractuellement. Comptez 2 à 4 semaines pour une salle de bain et 6 à 12 semaines pour une rénovation complète, en fonction de la complexité du projet."
     },
     {
-        question: "Faut-il l’accord de la copropriété ?",
-        answer: "Oui, un accord est souvent nécessaire pour les travaux touchant aux réseaux, aux murs porteurs ou à la ventilation. Nous vous accompagnons dans la constitution du dossier pour sécuriser les démarches."
+        q: "Faut-il l’accord de la copropriété ?",
+        a: "Oui, un accord est souvent nécessaire pour les travaux touchant aux réseaux, aux murs porteurs ou à la ventilation. Nous vous accompagnons dans la constitution du dossier pour sécuriser les démarches."
     },
     {
-        question: "Peut-on rénover un appartement occupé ?",
-        answer: "Oui, c'est possible. Nous adaptons l’organisation du chantier en planifiant les interventions par phases et en protégeant les zones non concernées pour limiter au maximum les nuisances."
+        q: "Peut-on rénover un appartement occupé ?",
+        a: "Oui, c'est possible. Nous adaptons l’organisation du chantier en planifiant les interventions par phases et en protégeant les zones non concernées pour limiter au maximum les nuisances."
     }
 ];
 
 const cities92 = [
-    { name: "Boulogne-Billancourt", slug: "boulogne-billancourt" },
-    { name: "Nanterre", slug: "nanterre" },
-    { name: "Courbevoie", slug: "courbevoie" },
-    { name: "Colombes", slug: "colombes" },
-    { name: "Asnières-sur-Seine", slug: "asnieres-sur-seine" },
-    { name: "Levallois-Perret", slug: "levallois-perret" },
+    { name: "Boulogne-Billancourt", slug: "renovation-boulogne-billancourt" },
+    { name: "Nanterre", slug: "renovation-nanterre" },
+    { name: "Courbevoie", slug: "renovation-courbevoie" },
+    { name: "Colombes", slug: "renovation-colombes" },
+    { name: "Asnières-sur-Seine", slug: "renovation-asnieres-sur-seine" },
+    { name: "Levallois-Perret", slug: "renovation-levallois-perret" },
     { name: "Neuilly-sur-Seine", slug: "neuilly-sur-seine" },
     { name: "Suresnes", slug: "" },
     { name: "Rueil-Malmaison", slug: "" },
@@ -198,11 +164,27 @@ const cities92 = [
     { name: "Issy-les-Moulineaux", slug: "" },
 ];
 
+const SITE_URL = "https://www.erg-renovation.fr";
 
 export default function RenovationHautsDeSeinePage() {
+  const service = buildServiceJsonLd({
+    businessName: "ERG Rénovation",
+    siteUrl: SITE_URL,
+    url: "/renovation-hauts-de-seine",
+    department: "Hauts-de-Seine (92)",
+    serviceType: "Rénovation intérieure",
+  });
+
+  const breadcrumb = buildBreadcrumbJsonLd(SITE_URL, [
+    { name: "Accueil", url: "/" },
+    { name: "Hauts-de-Seine (92)", url: "/renovation-hauts-de-seine" },
+  ]);
+
+  const faq = buildFaqJsonLd(faqItems);
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <JsonLd />
+      <JsonLd id="jsonld-hauts-de-seine" data={[service, breadcrumb, faq]} />
       <SiteHeader />
       <main className="flex-grow">
         <Breadcrumbs />
@@ -335,7 +317,7 @@ export default function RenovationHautsDeSeinePage() {
                 if (city.slug) {
                   return (
                     <Button key={city.name} asChild variant="outline" className="font-medium bg-background hover:bg-accent hover:text-accent-foreground">
-                      <Link href={`/renovation-${city.slug}`}>{city.name}</Link>
+                      <Link href={`/${city.slug}`}>{city.name}</Link>
                     </Button>
                   )
                 }
@@ -359,8 +341,8 @@ export default function RenovationHautsDeSeinePage() {
                 <Accordion type="single" collapsible className="w-full mt-8">
                     {faqItems.map((item, index) => (
                         <AccordionItem value={`item-${index}`} key={index}>
-                            <AccordionTrigger className="text-left font-semibold text-lg">{item.question}</AccordionTrigger>
-                            <AccordionContent className="text-muted-foreground">{item.answer}</AccordionContent>
+                            <AccordionTrigger className="text-left font-semibold text-lg">{item.q}</AccordionTrigger>
+                            <AccordionContent className="text-muted-foreground">{item.a}</AccordionContent>
                         </AccordionItem>
                     ))}
                 </Accordion>

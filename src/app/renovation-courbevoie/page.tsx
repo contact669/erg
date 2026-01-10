@@ -26,6 +26,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CtaBanner from "@/app/_components/cta-banner";
 import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
+import JsonLd from "@/components/JsonLd";
+import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Courbevoie (92400) | ERG Rénovation",
@@ -54,42 +56,6 @@ export const metadata: Metadata = {
       "Entreprise de rénovation à Courbevoie (92400) près de La Défense : appartement, salle de bain, cuisine. Devis détaillé, finitions soignées.",
   },
 };
-
-function JsonLd() {
-    const jsonLd = {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "ERG Rénovation",
-      "url": "https://www.erg-renovation.fr",
-      "telephone": "+33699961375",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "1 Sent. de la Pointe",
-        "addressLocality": "Paris",
-        "postalCode": "75020",
-        "addressCountry": "FR"
-      },
-      "priceRange": "€€",
-      "areaServed": {
-        "@type": "City",
-        "name": "Courbevoie"
-      },
-      "serviceType": [
-        "Rénovation d’appartement",
-        "Rénovation de salle de bain",
-        "Rénovation de cuisine",
-        "Travaux tous corps d’état",
-      ],
-      "description": "ERG Rénovation, entreprise spécialisée en rénovation d'appartements à Courbevoie (92400) près de La Défense. Devis gratuit, garantie décennale."
-    };
-    return (
-        <Script
-            id="jsonld-renovation-courbevoie"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-    )
-}
 
 const heroPoints = [
     { text: "Intervention rapide à Courbevoie" },
@@ -169,27 +135,46 @@ const whyChooseUs = [
 
 const faqItems = [
     {
-        question: "Quel est le prix d’une rénovation à Courbevoie ?",
-        answer: "Les prix varient selon la surface, l'état initial et le niveau de finition. À titre indicatif, comptez à partir de 800 €/m² pour une rénovation partielle et entre 1 200 et 1 800 €/m² pour une rénovation complète. Une visite sur site est indispensable pour un devis précis."
+        q: "Quel est le prix d’une rénovation à Courbevoie ?",
+        a: "Les prix varient selon la surface, l'état initial et le niveau de finition. À titre indicatif, comptez à partir de 800 €/m² pour une rénovation partielle et entre 1 200 et 1 800 €/m² pour une rénovation complète. Une visite sur site est indispensable pour un devis précis."
     },
     {
-        question: "Quels sont les délais moyens pour rénover un appartement à Courbevoie ?",
-        answer: "Une salle de bain se rénove en 2 à 4 semaines, tandis qu'une rénovation complète prend de 6 à 12 semaines. Les délais sont définis contractuellement avant le début des travaux."
+        q: "Quels sont les délais moyens pour rénover un appartement à Courbevoie ?",
+        a: "Une salle de bain se rénove en 2 à 4 semaines, tandis qu'une rénovation complète prend de 6 à 12 semaines. Les délais sont définis contractuellement avant le début des travaux."
     },
     {
-        question: "Faut-il un accord de la copropriété pour des travaux à Courbevoie ?",
-        answer: "Oui, pour certains travaux (murs porteurs, réseaux, ventilation, changement de fenêtres). Nous vous accompagnons dans la constitution du dossier administratif pour sécuriser vos démarches."
+        q: "Faut-il un accord de la copropriété pour des travaux à Courbevoie ?",
+        a: "Oui, pour certains travaux (murs porteurs, réseaux, ventilation, changement de fenêtres). Nous vous accompagnons dans la constitution du dossier administratif pour sécuriser vos démarches."
     },
     {
-        question: "Peut-on rénover un appartement occupé ?",
-        answer: "Oui, c'est possible. Nous adaptons l'organisation du chantier en planifiant les interventions par phases et en protégeant les zones non concernées pour limiter au maximum les nuisances."
+        q: "Peut-on rénover un appartement occupé ?",
+        a: "Oui, c'est possible. Nous adaptons l'organisation du chantier en planifiant les interventions par phases et en protégeant les zones non concernées pour limiter au maximum les nuisances."
     }
 ];
 
+const SITE_URL = "https://www.erg-renovation.fr";
+
 export default function RenovationCourbevoiePage() {
+  const service = buildServiceJsonLd({
+    businessName: "ERG Rénovation",
+    siteUrl: SITE_URL,
+    url: "/renovation-courbevoie",
+    city: "Courbevoie",
+    postalCode: "92400",
+    serviceType: "Rénovation intérieure",
+  });
+
+  const breadcrumb = buildBreadcrumbJsonLd(SITE_URL, [
+    { name: "Accueil", url: "/" },
+    { name: "Hauts-de-Seine (92)", url: "/renovation-hauts-de-seine" },
+    { name: "Courbevoie", url: "/renovation-courbevoie" },
+  ]);
+
+  const faq = buildFaqJsonLd(faqItems);
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <JsonLd />
+      <JsonLd id="jsonld-courbevoie" data={[service, breadcrumb, faq]} />
       <SiteHeader />
       <main className="flex-grow">
         <Breadcrumbs />
@@ -319,8 +304,8 @@ export default function RenovationCourbevoiePage() {
                 <Accordion type="single" collapsible className="w-full mt-8">
                     {faqItems.map((item, index) => (
                         <AccordionItem value={`item-${index}`} key={index}>
-                            <AccordionTrigger className="text-left font-semibold text-lg">{item.question}</AccordionTrigger>
-                            <AccordionContent className="text-muted-foreground">{item.answer}</AccordionContent>
+                            <AccordionTrigger className="text-left font-semibold text-lg">{item.q}</AccordionTrigger>
+                            <AccordionContent className="text-muted-foreground">{item.a}</AccordionContent>
                         </AccordionItem>
                     ))}
                 </Accordion>

@@ -8,6 +8,8 @@ import CookieConsent from "@/components/cookie-consent"
 import { FirebaseClientProvider } from "@/firebase"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { ThemeProvider } from "@/components/theme-provider"
+import JsonLd from "@/components/JsonLd";
+import { buildLocalBusinessJsonLd, buildWebSiteJsonLd } from "@/lib/seo/jsonld";
 
 const SITE_NAME = "ERG Rénovation"
 const SITE_URL = "https://erg-renovation.fr"
@@ -77,36 +79,22 @@ export const viewport: Viewport = {
   themeColor: "#0B0B0B",
 }
 
-function JsonLdGlobal() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "HomeAndConstructionBusiness",
-    "name": "ERG Rénovation",
-    "url": "https://www.erg-renovation.fr",
-    "logo": "https://www.erg-renovation.fr/images/logo-clair.png",
-    "image": "https://www.erg-renovation.fr/images/og-image.jpg",
-    "telephone": PHONE,
-    "priceRange": "€€€",
-    "address": {
-      "@type": "PostalAddress",
-      ...ADDRESS,
-    },
-    "areaServed": [
-      { "@type": "AdministrativeArea", "name": "Paris (75)" },
-      { "@type": "AdministrativeArea", "name": "Hauts-de-Seine (92)" },
-      { "@type": "AdministrativeArea", "name": "Seine-Saint-Denis (93)" },
-      { "@type": "AdministrativeArea", "name": "Val-de-Marne (94)" }
-    ],
-  }
+const localBusiness = buildLocalBusinessJsonLd({
+  name: "ERG Rénovation",
+  siteUrl: SITE_URL,
+  logoUrl: `${SITE_URL}/images/logo-clair.png`,
+  imageUrl: `${SITE_URL}/images/og-image.jpg`,
+  phone: PHONE,
+  priceRange: "€€€",
+  address: ADDRESS,
+  areaServed: ["Paris (75)", "Hauts-de-Seine (92)", "Seine-Saint-Denis (93)", "Val-de-Marne (94)"],
+});
 
-  return (
-    <Script
-      id="jsonld-local-business"
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-    />
-  )
-}
+const website = buildWebSiteJsonLd({
+  name: "ERG Rénovation",
+  siteUrl: SITE_URL,
+});
+
 
 export default function RootLayout({
   children,
@@ -123,8 +111,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
-
-        <JsonLdGlobal />
+        <JsonLd id="jsonld-global" data={[localBusiness, website]} />
       </head>
 
       <body className="font-body antialiased">
