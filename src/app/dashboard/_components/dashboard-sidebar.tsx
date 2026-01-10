@@ -207,6 +207,11 @@ function UserProfileButton() {
   const auth = useAuth();
   const { user, isUserLoading } = useUser();
   const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleSignOut = async () => {
     if (!auth) return;
@@ -216,8 +221,12 @@ function UserProfileButton() {
   
   const userAvatar = PlaceHolderImages.find((p) => p.id === "founder-1");
   
-  if (isUserLoading) {
+  if (isUserLoading || !isClient) {
     return <Skeleton className="h-8 w-8 rounded-full" />;
+  }
+
+  if (!user) {
+    return null; // ou un bouton de connexion si besoin
   }
   
   return (
