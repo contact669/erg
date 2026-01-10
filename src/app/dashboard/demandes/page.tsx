@@ -3,7 +3,7 @@
 import { useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebase';
 import { collection, query, orderBy, where } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -12,6 +12,8 @@ import { MoreHorizontal, ArrowUpDown } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuLabel } from '@/components/ui/dropdown-menu';
 import { formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
+
+const ADMIN_UID = "pHcnP0Mc32frrhPRzTT2nFwCxno1";
 
 function getStatusBadgeVariant(status: string) {
     switch (status) {
@@ -38,6 +40,8 @@ export default function DemandesPage() {
     const firestore = useFirestore();
     const [isClient, setIsClient] = useState(false);
 
+    const isAdmin = useMemo(() => user?.uid === ADMIN_UID, [user]);
+
     useEffect(() => {
         setIsClient(true);
     }, []);
@@ -49,8 +53,9 @@ export default function DemandesPage() {
     }, [user, isUserLoading, router]);
 
     const requestsQuery = useMemoFirebase(() => 
-        firestore ? query(collection(firestore, 'quoteRequests'), orderBy('createdAt', 'desc')) : null
-    , [firestore]);
+        (firestore && isAdmin) ? query(collection(firestore, 'quoteRequests'), orderBy('createdAt', 'desc')) : null
+    , [firestore, isAdmin]);
+    
     const { data: requests, isLoading } = useCollection<any>(requestsQuery);
 
     if (isUserLoading || !user) {
