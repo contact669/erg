@@ -1,5 +1,3 @@
-
-
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -50,6 +48,43 @@ function countChars(s: string) {
   return (s ?? "").trim().length
 }
 
+const adminEmailHtml = (data: { clientName: string, clientEmail: string, clientPhone: string, projectDescription: string, requestId: string }) => `
+  <div style="font-family: sans-serif; padding: 20px; background-color: #f6f9fc;">
+    <div style="max-width: 600px; margin: auto; background-color: white; border: 1px solid #eee; border-radius: 5px; padding: 40px;">
+      <h1 style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">Nouvelle Demande de Devis</h1>
+      <p>Une nouvelle demande de devis a été soumise.</p>
+      <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
+      <p><strong>Nom :</strong> ${data.clientName}</p>
+      <p><strong>Email :</strong> <a href="mailto:${data.clientEmail}">${data.clientEmail}</a></p>
+      <p><strong>Téléphone :</strong> ${data.clientPhone}</p>
+      <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
+      <p><strong>Description du projet :</strong></p>
+      <div style="background-color: #f2f3f5; padding: 15px; border-radius: 4px; white-space: pre-wrap;">${data.projectDescription}</div>
+      <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
+      <div style="text-align: center;">
+        <a href="https://erg-renovation.fr/dashboard/demandes/${data.requestId}" style="background-color: #3056d3; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">Voir la demande dans le Dashboard</a>
+      </div>
+    </div>
+  </div>
+`;
+
+const confirmationEmailHtml = (name: string) => `
+  <div style="font-family: sans-serif; padding: 20px; background-color: #f6f9fc;">
+    <div style="max-width: 600px; margin: auto; background-color: white; border: 1px solid #eee; border-radius: 5px; padding: 40px;">
+      <h1 style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">Votre demande a bien été reçue !</h1>
+      <p>Bonjour ${name},</p>
+      <p>Nous vous remercions pour votre demande de devis. Nous avons bien reçu les détails de votre projet et allons l'étudier avec la plus grande attention.</p>
+      <p>Notre équipe reviendra vers vous très rapidement, généralement sous 24 heures ouvrées, pour discuter des prochaines étapes.</p>
+      <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
+      <p>En attendant, n'hésitez pas à découvrir nos réalisations :</p>
+      <div style="text-align: center; margin-top: 20px;">
+        <a href="https://erg-renovation.fr/realisations" style="background-color: #3056d3; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">Voir nos projets</a>
+      </div>
+      <p style="font-size: 12px; color: #8898aa; margin-top: 30px;">Cordialement,<br/>L'équipe ERG Rénovation</p>
+    </div>
+  </div>
+`;
+
 export default function DevisPage() {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -91,7 +126,6 @@ export default function DevisPage() {
     try {
       const batch = writeBatch(firestore);
 
-      const quoteRequestsRef = collection(firestore, "quoteRequests");
       const newRequestRef = doc(collection(firestore, "quoteRequests"));
       
       batch.set(newRequestRef, {
@@ -105,28 +139,28 @@ export default function DevisPage() {
       
       const mailCollectionRef = collection(firestore, "mail");
 
+      // Admin email
       batch.set(doc(mailCollectionRef), {
         to: ["contact@erg-renovation.fr"],
-        template: {
-          name: "quote-request-admin-email",
-          data: {
+        message: {
+          subject: `Nouvelle demande de devis de ${values.clientName}`,
+          html: adminEmailHtml({
             clientName: values.clientName,
             clientEmail: values.clientEmail,
             clientPhone: values.clientPhone || "Non fourni",
             projectDescription: values.projectDescription,
             requestId: newRequestRef.id,
-          },
+          }),
         },
       });
 
+      // Confirmation email
       batch.set(doc(mailCollectionRef), {
         to: [values.clientEmail],
-        template: {
-          name: "quote-request-confirmation-email",
-          data: {
-            clientName: values.clientName,
-          },
-        },
+        message: {
+          subject: 'Confirmation de votre demande de devis chez ERG Rénovation',
+          html: confirmationEmailHtml(values.clientName),
+        }
       });
 
       await batch.commit();
@@ -415,4 +449,3 @@ export default function DevisPage() {
     </div>
   )
 }
-    
