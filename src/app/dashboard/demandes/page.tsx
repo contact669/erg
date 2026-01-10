@@ -125,7 +125,7 @@ export default function DemandesPage() {
                                         </Badge>
                                     </TableCell>
                                     <TableCell className="hidden md:table-cell text-right" suppressHydrationWarning>
-                                        {createdAt ? formatDistanceToNow(createdAt, { addSuffix: true, locale: fr }) : 'N/A'}
+                                        {createdAt && isClient ? formatDistanceToNow(createdAt, { addSuffix: true, locale: fr }) : 'N/A'}
                                     </TableCell>
                                     <TableCell>
                                         <DropdownMenu>
