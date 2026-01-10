@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
 import {
   CheckCircle,
   Home,
@@ -13,8 +12,6 @@ import {
   ShieldCheck,
   Users,
   ClipboardList,
-  Phone,
-  ArrowRight,
   Building2,
 } from "lucide-react";
 
@@ -149,20 +146,6 @@ const faqItems = [
         q: "Peut-on rénover un appartement occupé ?",
         a: "Oui, c'est possible. Nous adaptons l’organisation du chantier en planifiant les interventions par phases et en protégeant les zones non concernées pour limiter au maximum les nuisances."
     }
-];
-
-const cities92 = [
-    { name: "Boulogne-Billancourt", slug: "renovation-boulogne-billancourt" },
-    { name: "Nanterre", slug: "renovation-nanterre" },
-    { name: "Courbevoie", slug: "renovation-courbevoie" },
-    { name: "Colombes", slug: "renovation-colombes" },
-    { name: "Asnières-sur-Seine", slug: "renovation-asnieres-sur-seine" },
-    { name: "Levallois-Perret", slug: "renovation-levallois-perret" },
-    { name: "Neuilly-sur-Seine", slug: "neuilly-sur-seine" },
-    { name: "Suresnes", slug: "" },
-    { name: "Rueil-Malmaison", slug: "" },
-    { name: "Clamart", slug: "" },
-    { name: "Issy-les-Moulineaux", slug: "" },
 ];
 
 const SITE_URL = "https://www.erg-renovation.fr";

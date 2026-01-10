@@ -13,6 +13,7 @@ import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
 import CtaBanner from "@/app/_components/cta-banner"
 import AnimatedSection from "@/components/animated-section"
+import InternalLinksService from "@/components/InternalLinksService"
 
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -754,32 +755,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                   </section>
                 ) : null}
 
-                {/* Zones */}
-                {service.zones ? (
-                  <section aria-labelledby="zones-title">
-                    <h2 id="zones-title" className="font-headline text-3xl font-bold">
-                      Nos zones d’intervention en Île-de-France
-                    </h2>
-
-                    {service.zones.description ? (
-                      <div className="prose max-w-none text-muted-foreground mt-4 prose-p:my-4">
-                        <p>{service.zones.description}</p>
-                      </div>
-                    ) : null}
-
-                    {Array.isArray(service.zones.list) ? (
-                      <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
-                        {service.zones.list.map((zone: any) => (
-                          <Button asChild variant="outline" key={zone.slug}>
-                            <Link href={`/${service.slug}/${zone.slug}`}>{zone.name}</Link>
-                          </Button>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="mt-4 text-sm font-semibold text-primary">{service.zones.list}</p>
-                    )}
-                  </section>
-                ) : null}
+                <InternalLinksService serviceLabel={service.title.toLowerCase()} />
 
                 {/* FAQ */}
                 {service.faq?.length ? (
