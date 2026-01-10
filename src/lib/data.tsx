@@ -1,3 +1,4 @@
+
 import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage } from './types';
 import {
   Home,
@@ -33,6 +34,7 @@ import Link from 'next/link';
 export const navItems: NavItem[] = [
   { title: 'Services', href: '/services' },
   { title: 'Réalisations', href: '/realisations' },
+  { title: 'Zones d\'intervention', href: '/zones-intervention' },
   { title: 'À Propos', href: '/a-propos' },
   { title: 'Blog', href: '/blog' },
   { title: 'Contact', href: '/contact' },
@@ -835,7 +837,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     slug: 'nogent-sur-marne',
     type: 'city',
     title: "Rénovation Appartement et Maison à Nogent-sur-Marne (94130)",
-    metaTitle: "Rénovation Appartement & Maison Nogent-sur-Marne (94) | ERG",
+    metaTitle: "Rénovation Maison & Appartement Nogent-sur-Marne (94) | ERG",
     metaDescription: "ERG Rénovation, votre expert pour la rénovation d'appartements et maisons à Nogent-sur-Marne. Projets clé en main, de la conception aux finitions. Devis.",
     parentService: services.find(s => s.slug === 'renovation-appartement')!,
     introduction: "Nogent-sur-Marne, avec son cadre de vie privilégié en bord de Marne, offre une grande diversité de biens, des appartements de standing aux maisons de caractère. ERG Rénovation met son expertise au service de vos projets nogentais, qu'il s'agisse de moderniser un appartement familial ou de rénover une maison pour l'adapter aux standards de confort actuels.",
@@ -1967,6 +1969,7 @@ export const blogPosts: BlogPost[] = [
 ];
 
     
+
 
 
 

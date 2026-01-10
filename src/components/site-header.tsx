@@ -79,15 +79,9 @@ function AuthButton() {
     )
   }
 
+  // Le bouton Dashboard est maintenant géré directement dans la sidebar du dashboard.
   if (user) {
-    return (
-      <Button asChild className="hidden md:inline-flex">
-        <Link href="/dashboard" aria-label="Accéder au tableau de bord">
-          <LayoutDashboard className="mr-2 h-4 w-4" />
-          Tableau de bord
-        </Link>
-      </Button>
-    )
+    return null
   }
 
   return (
