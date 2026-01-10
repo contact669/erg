@@ -95,41 +95,9 @@ export default function DevisPage() {
         status: 'Nouvelle Demande',
         createdAt: serverTimestamp(),
       }
-      const requestRef = await addDoc(collection(firestore, "quoteRequests"), requestData);
-      
-      const mailCollection = collection(firestore, "mail");
-
-      await addDoc(mailCollection, {
-        to: 'contact@erg-renovation.fr',
-        message: {
-          subject: `Nouvelle demande de devis de ${values.clientName}`,
-          html: `
-            <h1>Nouvelle Demande de Devis</h1>
-            <p><strong>Nom :</strong> ${values.clientName}</p>
-            <p><strong>Email :</strong> ${values.clientEmail}</p>
-            <p><strong>Téléphone :</strong> ${values.clientPhone || "Non fourni"}</p>
-            <hr>
-            <h3>Description du projet :</h3>
-            <p>${values.projectDescription}</p>
-            <hr>
-            <p>ID de la demande: ${requestRef.id}</p>
-            <p><a href="https://erg-renovation.fr/dashboard/demandes">Générer le devis dans le dashboard</a></p>
-          `,
-        },
-      })
-    
-      await addDoc(mailCollection, {
-        to: values.clientEmail,
-        message: {
-          subject: 'Confirmation de votre demande de devis',
-          html: `
-            <h1>Votre demande a bien été reçue !</h1>
-            <p>Bonjour ${values.clientName},</p>
-            <p>Nous vous remercions pour votre demande de devis. Nous avons bien reçu les détails de votre projet et nous allons l'étudier avec la plus grande attention.</p>
-            <p>Notre équipe reviendra vers vous très rapidement, généralement sous 24 heures ouvrées, pour discuter des prochaines étapes.</p>
-          `,
-        },
-      })
+      // La création de ce document déclenchera la fonction API
+      // qui se chargera d'envoyer les e-mails.
+      await addDoc(collection(firestore, "quoteRequests"), requestData);
 
       toast({
         title: "Demande envoyée ✅",

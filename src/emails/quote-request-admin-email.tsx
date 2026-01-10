@@ -47,7 +47,7 @@ export default function QuoteRequestAdminEmail() {
           <Hr style={hr} />
 
           <Section style={{ textAlign: 'center' }}>
-            <Button style={button} href="https://erg-renovation.fr/dashboard/demandes">
+            <Button style={button} href="https://erg-renovation.fr/dashboard/demandes/{{requestId}}">
               Générer le devis dans le dashboard
             </Button>
           </Section>

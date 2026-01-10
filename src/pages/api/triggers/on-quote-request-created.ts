@@ -21,7 +21,7 @@ export default async function handler(
 
     const getFieldValue = (field: any) => {
         if (!field) return undefined;
-        return field.stringValue || field.integerValue || field.doubleValue || undefined;
+        return field.stringValue || field.integerValue || field.doubleValue || field.timestampValue || undefined;
     }
     
     const clientName = getFieldValue(quoteRequest.clientName);
@@ -40,7 +40,7 @@ export default async function handler(
     await mailCollection.add({
       to: "contact@erg-renovation.fr", 
       template: {
-        name: "quote-request-admin",
+        name: "quote-request-admin-email",
         data: {
           clientName,
           clientEmail,
@@ -55,7 +55,7 @@ export default async function handler(
     await mailCollection.add({
       to: clientEmail,
       template: {
-        name: "quote-request-confirmation",
+        name: "quote-request-confirmation-email",
         data: {
           clientName,
         },
@@ -68,5 +68,3 @@ export default async function handler(
     res.status(500).json({ message: "Internal Server Error" });
   }
 }
-
-    
