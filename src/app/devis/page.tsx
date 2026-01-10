@@ -1,4 +1,5 @@
 
+
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -88,12 +89,12 @@ export default function DevisPage() {
     })
 
     try {
-      // Create a batch write to perform multiple operations atomically
       const batch = writeBatch(firestore);
 
-      // 1. Create the quote request document
       const quoteRequestsRef = collection(firestore, "quoteRequests");
-      const newRequestRef = await addDoc(quoteRequestsRef, {
+      const newRequestRef = doc(collection(firestore, "quoteRequests"));
+      
+      batch.set(newRequestRef, {
         clientName: values.clientName.trim(),
         clientEmail: values.clientEmail.trim().toLowerCase(),
         clientPhone: (values.clientPhone ?? "").trim() || null,
@@ -101,10 +102,9 @@ export default function DevisPage() {
         status: 'Nouvelle Demande',
         createdAt: serverTimestamp(),
       });
-
+      
       const mailCollectionRef = collection(firestore, "mail");
 
-      // 2. Create the email document for the admin
       batch.set(doc(mailCollectionRef), {
         to: ["contact@erg-renovation.fr"],
         template: {
@@ -119,7 +119,6 @@ export default function DevisPage() {
         },
       });
 
-      // 3. Create the confirmation email document for the client
       batch.set(doc(mailCollectionRef), {
         to: [values.clientEmail],
         template: {
@@ -130,7 +129,6 @@ export default function DevisPage() {
         },
       });
 
-      // Commit the batch
       await batch.commit();
 
       toast({
