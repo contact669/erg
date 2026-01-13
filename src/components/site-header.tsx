@@ -1,4 +1,5 @@
 
+
 "use client"
 
 import * as React from "react"
@@ -148,7 +149,7 @@ export default function SiteHeader() {
                         className={cn(
                           "bg-transparent text-sm font-medium",
                           "focus:bg-transparent data-[state=open]:bg-transparent",
-                          item.active ? "text-primary" : "text-muted-foreground hover:text-primary"
+                          item.active ? "text-primary" : "text-muted-foreground hover:text-primary-foreground"
                         )}
                       >
                         Services
@@ -198,7 +199,7 @@ export default function SiteHeader() {
                           navigationMenuTriggerStyle(),
                           "bg-transparent text-sm font-medium",
                           "focus:bg-transparent data-[active]:bg-transparent",
-                          item.active ? "text-primary" : "text-muted-foreground hover:text-primary"
+                          item.active ? "text-primary" : "text-muted-foreground hover:text-primary-foreground"
                         )}
                         aria-current={item.active ? "page" : undefined}
                       >
