@@ -1,8 +1,8 @@
 'use server';
 
 import { Resend } from 'resend';
-import AdminQuoteRequestEmail from '@/emails/quote-request-admin-email';
-import ClientQuoteConfirmationEmail from '@/emails/quote-request-confirmation-email';
+import AdminQuoteRequestEmail from '../../../emails/quote-request-admin-email';
+import ClientQuoteConfirmationEmail from '../../../emails/quote-request-confirmation-email';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const ADMIN_EMAIL = 'contact@erg-renovation.fr';

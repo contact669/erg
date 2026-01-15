@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.uid == "pHcnP0Mc32frrhPRzTT2nFwCxno1";
+    }
+
+    // Public collections
+    match /services/{id} { allow read: if true; allow write: if false; }
+    match /locations/{id} { allow read: if true; allow write: if false; }
+    match /combos/{id} { allow read: if true; allow write: if false; }
+    match /testimonials/{id} { allow read: if true; allow write: if false; }
+    match /blogPosts/{id} { allow read: if true; allow write: if false; }
+    match /media/{id} { allow read: if true; allow write: if false; }
+    match /templates/{id} { allow read: if isAdmin(); allow write: if isAdmin(); }
+
+    // Private admin collections
+    match /clients/{document=**} { allow read, write: if isAdmin(); }
+    match /projects/{document=**} { allow read, write: if isAdmin(); }
+    match /quotes/{document=**} { allow read, write: if isAdmin(); }
+    match /factures/{document=**} { allow read, write: if isAdmin(); }
+    
+    // Anyone can create a mail document
+    match /mail/{id} { allow create: if true; allow read, write: if false; }
+
+    // Leads can't be read by client
+    match /leads/{id} { allow create: if true; allow read, write: if false; }
+
+    // Quote Requests: anyone can create, only admin can read/update
+    match /quoteRequests/{requestId} {
+      allow create: if true;
+      allow read, write: if isAdmin();
+    }
+    
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
