@@ -31,16 +31,6 @@ service cloud.firestore {
       allow read, write: if isAdmin();
     }
     
-    // Mail collection for Trigger Email extension
-    // Anyone can create an email document to be sent.
-    // Only the system (extension) can read/write/delete to process the queue.
-    // No user, not even admin, needs client-side read/write access after creation.
-    match /mail/{mailId} {
-      allow create: if true;
-      allow read, update, delete: if false; // Deny all client-side reads and updates
-    }
-
-
     match /{document=**} {
       allow read, write: if false;
     }
