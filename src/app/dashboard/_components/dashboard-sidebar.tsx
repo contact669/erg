@@ -201,7 +201,7 @@ function Notifications() {
                   <span className="text-xs text-muted-foreground line-clamp-1">
                     {req.projectDescription}
                   </span>
-                  {createdAt && isClient && (
+                  {isClient && createdAt && (
                     <span
                       className="text-xs text-muted-foreground"
                     >
