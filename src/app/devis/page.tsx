@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { useState } from "react"
 import Link from "next/link"
-import { collection, addDoc, serverTimestamp, writeBatch, doc } from "firebase/firestore"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { useFirestore } from "@/firebase"
 
 import SiteHeader from "@/components/site-header"
@@ -89,10 +89,8 @@ export default function DevisPage() {
     })
 
     try {
-      const batch = writeBatch(firestore);
-
-      const newRequestRef = doc(collection(firestore, "quoteRequests"));
-      batch.set(newRequestRef, {
+      // 1. Create the quote request document
+      const newRequestRef = await addDoc(collection(firestore, "quoteRequests"), {
         clientName: values.clientName.trim(),
         clientEmail: values.clientEmail.trim().toLowerCase(),
         clientPhone: (values.clientPhone ?? "").trim() || null,
@@ -101,8 +99,8 @@ export default function DevisPage() {
         createdAt: serverTimestamp(),
       });
 
-      const adminMailRef = doc(collection(firestore, "mail"));
-      batch.set(adminMailRef, {
+      // 2. Create the admin email document
+      await addDoc(collection(firestore, "mail"), {
         to: [ADMIN_EMAIL],
         message: {
           subject: `Nouvelle demande de devis de ${values.clientName}`,
@@ -125,8 +123,8 @@ export default function DevisPage() {
         },
       });
 
-      const clientMailRef = doc(collection(firestore, "mail"));
-      batch.set(clientMailRef, {
+      // 3. Create the client confirmation email document
+      await addDoc(collection(firestore, "mail"), {
         to: [values.clientEmail],
         message: {
           subject: 'Confirmation de votre demande de devis',
@@ -143,8 +141,6 @@ export default function DevisPage() {
           `,
         },
       });
-
-      await batch.commit();
 
       toast({
         title: "Demande envoyée ✅",
