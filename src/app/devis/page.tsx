@@ -89,7 +89,7 @@ export default function DevisPage() {
     })
 
     try {
-      // 1. Create the quote request document
+      // 1. Create the quote request document to get its ID
       const newRequestRef = await addDoc(collection(firestore, "quoteRequests"), {
         clientName: values.clientName.trim(),
         clientEmail: values.clientEmail.trim().toLowerCase(),
@@ -99,7 +99,7 @@ export default function DevisPage() {
         createdAt: serverTimestamp(),
       });
 
-      // 2. Create the admin email document
+      // 2. Create the admin email document, now WITH the correct ID
       await addDoc(collection(firestore, "mail"), {
         to: [ADMIN_EMAIL],
         message: {
@@ -426,3 +426,5 @@ export default function DevisPage() {
     </div>
   )
 }
+
+    
