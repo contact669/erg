@@ -1,8 +1,6 @@
 'use server';
 
 import { Resend } from 'resend';
-import AdminQuoteRequestEmail from '@/emails/quote-request-admin-email';
-import ClientQuoteConfirmationEmail from '@/emails/quote-request-confirmation-email';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const ADMIN_EMAIL = 'contact@erg-renovation.fr';
@@ -15,19 +13,32 @@ type SendEmailPayload = {
     projectDescription: string;
 };
 
+const adminEmailHtml = (payload: SendEmailPayload) => `
+  <h1>Nouvelle Demande de Devis</h1>
+  <p><strong>Nom:</strong> ${payload.clientName}</p>
+  <p><strong>Email:</strong> ${payload.clientEmail}</p>
+  ${payload.clientPhone ? `<p><strong>Téléphone:</strong> ${payload.clientPhone}</p>` : ''}
+  <p><strong>Description du projet:</strong></p>
+  <p>${payload.projectDescription}</p>
+  <p>ID de la demande: ${payload.requestId}</p>
+`;
+
+const clientEmailHtml = (clientName: string) => `
+  <h1>Confirmation de votre demande de devis</h1>
+  <p>Bonjour ${clientName},</p>
+  <p>Nous avons bien reçu votre demande de devis et nous vous remercions de votre confiance.</p>
+  <p>Notre équipe va l'étudier attentivement et reviendra vers vous dans les plus brefs délais (généralement sous 24h ouvrées).</p>
+  <p>Cordialement,</p>
+  <p>L'équipe ERG Rénovation</p>
+`;
+
 export async function sendQuoteRequestEmail(payload: SendEmailPayload) {
     try {
         const { data: adminEmailData, error: adminEmailError } = await resend.emails.send({
             from: 'ERG Rénovation <contact@erg-renovation.fr>',
             to: [ADMIN_EMAIL],
             subject: `Nouvelle demande de devis de ${payload.clientName}`,
-            react: AdminQuoteRequestEmail({
-                clientName: payload.clientName,
-                clientEmail: payload.clientEmail,
-                clientPhone: payload.clientPhone,
-                projectDescription: payload.projectDescription,
-                requestId: payload.requestId,
-            }),
+            html: adminEmailHtml(payload),
         });
 
         if (adminEmailError) {
@@ -39,15 +50,11 @@ export async function sendQuoteRequestEmail(payload: SendEmailPayload) {
             from: 'ERG Rénovation <contact@erg-renovation.fr>',
             to: [payload.clientEmail],
             subject: 'Confirmation de votre demande de devis',
-            react: ClientQuoteConfirmationEmail({
-                clientName: payload.clientName,
-            }),
+            html: clientEmailHtml(payload.clientName),
         });
         
         if (clientEmailError) {
             console.error('Resend client email error:', clientEmailError);
-            // L'e-mail admin a été envoyé, on peut considérer que c'est un succès partiel
-            // mais on log l'erreur client.
             return { error: clientEmailError.message };
         }
 
