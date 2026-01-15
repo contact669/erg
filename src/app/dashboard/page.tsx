@@ -47,7 +47,7 @@ export default function DashboardPage() {
     const projectsQuery = useMemoFirebase(() => 
         firestore ? query(collection(firestore, 'projects'), orderBy('title', 'desc'), limit(5)) : null
     , [firestore]);
-    const { data: recentProjects } = useCollection(projectsQuery);
+    const { data: recentProjects, isLoading } = useCollection(projectsQuery);
     
     const quotesQuery = useMemoFirebase(() => 
         firestore ? query(collection(firestore, 'quotes'), where('status', '==', 'Envoyé')) : null
