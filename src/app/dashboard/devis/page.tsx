@@ -94,7 +94,6 @@ export default function DevisPage() {
 
     return query(
       collection(firestore, 'quotes'),
-      where('userId', '==', user.uid),
       orderBy('createdAt', 'desc')
     );
   }, [firestore, user?.uid]);
