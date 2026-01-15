@@ -1,3 +1,4 @@
+
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -89,7 +90,7 @@ export default function DevisPage() {
 
     try {
       const batch = writeBatch(firestore);
-      
+
       const newRequestRef = doc(collection(firestore, "quoteRequests"));
       batch.set(newRequestRef, {
         clientName: values.clientName.trim(),
