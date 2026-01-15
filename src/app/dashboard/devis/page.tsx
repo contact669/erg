@@ -177,7 +177,7 @@ export default function DevisPage() {
                 </TableRow>
               )}
 
-              {isClient && !isLoading && quotes && quotes.length === 0 && (
+              {isClient && !isLoading && quotes?.length === 0 && (
                 <TableRow>
                   <TableCell colSpan={6} className="h-24 text-center">
                     Aucun devis trouvé. Créez-en un depuis une demande.
@@ -211,7 +211,7 @@ export default function DevisPage() {
                       </TableCell>
 
                       <TableCell className="hidden sm:table-cell">
-                        {createdAt && isClient ? format(createdAt, 'd MMMM yyyy', { locale: fr }) : '...'}
+                        {createdAt ? format(createdAt, 'd MMMM yyyy', { locale: fr }) : '...'}
                       </TableCell>
 
                       <TableCell className="hidden md:table-cell text-right">
@@ -273,5 +273,3 @@ export default function DevisPage() {
     </div>
   );
 }
-
-    
