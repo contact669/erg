@@ -163,7 +163,9 @@ function Notifications() {
 
   const { data: newRequests, isLoading } = useCollection(requestsQuery);
 
-  const hasNewRequests = isClient && newRequests && newRequests.length > 0;
+  const hasNewRequests = useMemo(() => {
+    return isClient && !isLoading && newRequests && newRequests.length > 0;
+  }, [isClient, isLoading, newRequests]);
 
   return (
     <DropdownMenu>
@@ -175,7 +177,7 @@ function Notifications() {
               variant="destructive"
               className="absolute -top-1 -right-1 h-5 w-5 justify-center p-0 text-xs"
             >
-              {newRequests.length}
+              {newRequests!.length}
             </Badge>
           )}
           <span className="sr-only">Notifications</span>
@@ -189,7 +191,7 @@ function Notifications() {
         {isLoading ? (
             <DropdownMenuItem disabled>Chargement...</DropdownMenuItem>
         ) : hasNewRequests ? (
-          newRequests.map((req: any) => {
+          newRequests!.map((req: any) => {
             const createdAt = toDateSafe(req.createdAt);
 
             return (
