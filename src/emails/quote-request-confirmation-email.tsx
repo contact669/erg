@@ -1,74 +1,81 @@
-{
-  "name": "nextn",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev -p 9002",
-    "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
-    "genkit:watch": "genkit start -- tsx --watch src_ai_dev.ts",
-    "build": "NODE_ENV=production next build",
-    "start": "next start",
-    "lint": "next lint",
-    "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@genkit-ai/google-genai": "^1.20.0",
-    "@hookform/resolvers": "^4.1.3",
-    "@radix-ui/react-accordion": "^1.2.3",
-    "@radix-ui/react-alert-dialog": "^1.1.6",
-    "@radix-ui/react-avatar": "^1.1.3",
-    "@radix-ui/react-checkbox": "^1.1.4",
-    "@radix-ui/react-collapsible": "^1.1.11",
-    "@radix-ui/react-dialog": "^1.1.6",
-    "@radix-ui/react-dropdown-menu": "^2.1.6",
-    "@radix-ui/react-label": "^2.1.2",
-    "@radix-ui/react-menubar": "^1.1.6",
-    "@radix-ui/react-navigation-menu": "^1.2.0",
-    "@radix-ui/react-popover": "^1.1.6",
-    "@radix-ui/react-progress": "^1.1.2",
-    "@radix-ui/react-radio-group": "^1.2.3",
-    "@radix-ui/react-scroll-area": "^1.2.3",
-    "@radix-ui/react-select": "^2.1.6",
-    "@radix-ui/react-separator": "^1.1.2",
-    "@radix-ui/react-slider": "^1.2.3",
-    "@radix-ui/react-slot": "^1.2.3",
-    "@radix-ui/react-switch": "^1.1.3",
-    "@radix-ui/react-tabs": "^1.1.3",
-    "@radix-ui/react-toast": "^1.2.6",
-    "@radix-ui/react-tooltip": "^1.1.8",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "date-fns": "^3.6.0",
-    "dotenv": "^16.5.0",
-    "embla-carousel-autoplay": "^8.6.0",
-    "embla-carousel-react": "^8.6.0",
-    "firebase": "^10.12.3",
-    "firebase-admin": "^12.2.0",
-    "framer-motion": "^11.3.12",
-    "genkit": "^1.20.0",
-    "lucide-react": "^0.475.0",
-    "next": "14.2.35",
-    "next-themes": "^0.3.0",
-    "patch-package": "^8.0.0",
-    "react": "^18",
-    "react-day-picker": "^8.10.1",
-    "react-dom": "^18",
-    "react-hook-form": "^7.54.2",
-    "recharts": "^2.15.1",
-    "tailwind-merge": "^3.0.1",
-    "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.24.2"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "genkit-cli": "^1.20.0",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
-  },
-  "overrides": {
-    "js-yaml": "3.13.1"
-  }
+import {
+  Body,
+  Container,
+  Head,
+  Heading,
+  Hr,
+  Html,
+  Preview,
+  Section,
+  Text,
+} from '@react-email/components';
+import * as React from 'react';
+
+interface ClientQuoteConfirmationEmailProps {
+  clientName: string;
 }
+
+export default function ClientQuoteConfirmationEmail({ clientName }: ClientQuoteConfirmationEmailProps) {
+  const previewText = `Confirmation de votre demande de devis`;
+
+  return (
+    <Html>
+      <Head />
+      <Preview>{previewText}</Preview>
+      <Body style={main}>
+        <Container style={container}>
+          <Heading style={heading}>Nous avons bien reçu votre demande</Heading>
+          <Text style={paragraph}>Bonjour {clientName},</Text>
+          <Text style={paragraph}>
+            Merci de nous avoir contactés. Nous avons bien reçu votre demande de devis et nous vous remercions de votre confiance.
+          </Text>
+          <Text style={paragraph}>
+            Notre équipe va l'étudier attentivement et reviendra vers vous dans les plus brefs délais (généralement sous 24h ouvrées) pour discuter de votre projet.
+          </Text>
+          
+          <Hr style={hr} />
+
+          <Text style={paragraph}>
+            Cordialement,
+            <br />
+            <strong>L'équipe ERG Rénovation</strong>
+          </Text>
+        </Container>
+      </Body>
+    </Html>
+  );
+}
+
+// Styles
+const main = {
+  backgroundColor: '#f6f9fc',
+  fontFamily: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
+};
+
+const container = {
+  backgroundColor: '#ffffff',
+  margin: '0 auto',
+  padding: '20px 40px',
+  marginBottom: '64px',
+  border: '1px solid #eee',
+  borderRadius: '5px',
+};
+
+const heading = {
+  color: '#000',
+  fontSize: '24px',
+  fontWeight: 'bold',
+  lineHeight: '1.2',
+  margin: '30px 0',
+};
+
+const paragraph = {
+  color: '#555',
+  fontSize: '16px',
+  lineHeight: '24px',
+};
+
+const hr = {
+  borderColor: '#e6ebf1',
+  margin: '20px 0',
+};

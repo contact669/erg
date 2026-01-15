@@ -1,4 +1,3 @@
-
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -14,6 +13,7 @@ import SiteFooter from "@/components/site-footer"
 import Breadcrumbs from "@/components/breadcrumbs"
 
 import { useToast } from "@/hooks/use-toast"
+import { sendQuoteRequestEmail } from "./_actions/send-quote-request"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -25,7 +25,6 @@ import { Separator } from "@/components/ui/separator"
 import { Bot, User, ShieldCheck, Clock, ArrowRight } from "lucide-react"
 
 const PHONE = "+33699961375"
-const ADMIN_EMAIL = 'contact@erg-renovation.fr';
 
 const formSchema = z.object({
   clientName: z.string().min(2, "Le nom doit contenir au moins 2 caractères."),
@@ -49,6 +48,8 @@ type FormValues = z.infer<typeof formSchema>
 function countChars(s: string) {
   return (s ?? "").trim().length
 }
+
+const ADMIN_EMAIL = 'contact@erg-renovation.fr';
 
 export default function DevisPage() {
   const { toast } = useToast()
@@ -89,7 +90,6 @@ export default function DevisPage() {
     })
 
     try {
-      // 1. Create the quote request document to get its ID
       const newRequestRef = await addDoc(collection(firestore, "quoteRequests"), {
         clientName: values.clientName.trim(),
         clientEmail: values.clientEmail.trim().toLowerCase(),
@@ -99,47 +99,12 @@ export default function DevisPage() {
         createdAt: serverTimestamp(),
       });
 
-      // 2. Create the admin email document, now WITH the correct ID
-      await addDoc(collection(firestore, "mail"), {
-        to: [ADMIN_EMAIL],
-        message: {
-          subject: `Nouvelle demande de devis de ${values.clientName}`,
-          html: `
-            <div style="font-family: sans-serif; padding: 20px; color: #333;">
-              <h2>Nouvelle Demande de Devis</h2>
-              <p>Une nouvelle demande de devis a été soumise sur le site ERG Rénovation.</p>
-              <hr>
-              <h3>Informations du client :</h3>
-              <p><strong>Nom :</strong> ${values.clientName}</p>
-              <p><strong>Email :</strong> <a href="mailto:${values.clientEmail}">${values.clientEmail}</a></p>
-              ${values.clientPhone ? `<p><strong>Téléphone :</strong> ${values.clientPhone}</p>` : ''}
-              <hr>
-              <h3>Description du projet :</h3>
-              <p style="white-space: pre-wrap; background-color: #f9f9f9; padding: 10px; border-radius: 4px;">${values.projectDescription}</p>
-              <hr>
-              <p style="margin-top: 20px;"><a href="https://erg-renovation.fr/dashboard/demandes/${newRequestRef.id}" style="background-color: #0A0A0A; color: #FAFAFA; padding: 12px 20px; text-decoration: none; border-radius: 6px;">Voir la demande dans le Dashboard</a></p>
-            </div>
-          `,
-        },
-      });
-
-      // 3. Create the client confirmation email document
-      await addDoc(collection(firestore, "mail"), {
-        to: [values.clientEmail],
-        message: {
-          subject: 'Confirmation de votre demande de devis',
-          html: `
-            <div style="font-family: sans-serif; padding: 20px; color: #333;">
-              <h2>Nous avons bien reçu votre demande</h2>
-              <p>Bonjour ${values.clientName},</p>
-              <p>Merci de nous avoir contactés. Nous avons bien reçu votre demande de devis et nous vous remercions de votre confiance.</p>
-              <p>Notre équipe va l'étudier attentivement et reviendra vers vous dans les plus brefs délais (généralement sous 24h ouvrées) pour discuter de votre projet.</p>
-              <hr>
-              <p>Cordialement,</p>
-              <p><strong>L'équipe ERG Rénovation</strong></p>
-            </div>
-          `,
-        },
+      await sendQuoteRequestEmail({
+        requestId: newRequestRef.id,
+        clientName: values.clientName,
+        clientEmail: values.clientEmail,
+        clientPhone: values.clientPhone,
+        projectDescription: values.projectDescription,
       });
 
       toast({
@@ -150,7 +115,7 @@ export default function DevisPage() {
 
       form.reset()
     } catch (error) {
-      console.error("Error creating quote request and emails:", error);
+      console.error("Error creating quote request and sending emails:", error);
       toast({
         variant: "destructive",
         title: "Impossible d’envoyer la demande",
@@ -426,5 +391,3 @@ export default function DevisPage() {
     </div>
   )
 }
-
-    
