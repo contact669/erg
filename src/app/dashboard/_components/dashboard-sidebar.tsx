@@ -48,6 +48,7 @@ import {
 } from "lucide-react";
 
 import { useAuth, useUser, useCollection, useFirestore, useMemoFirebase } from "@/firebase";
+import { signOut } from "firebase/auth";
 import { collection, query, where, orderBy } from "firebase/firestore";
 import { formatDistanceToNow } from "date-fns";
 import { fr } from "date-fns/locale";
@@ -215,13 +216,13 @@ function UserProfileButton() {
 
   const handleSignOut = async () => {
     if (!auth) return;
-    await auth.signOut();
+    await signOut(auth);
     router.push("/");
   };
   
   const userAvatar = PlaceHolderImages.find((p) => p.id === "founder-1");
   
-  if (isUserLoading || !isClient) {
+  if (!isClient || isUserLoading) {
     return <Skeleton className="h-8 w-8 rounded-full" />;
   }
 
@@ -273,7 +274,7 @@ export default function DashboardSidebar() {
 
   const handleSignOut = async () => {
     if (!auth) return;
-    await auth.signOut();
+    await signOut(auth);
     router.push("/");
   };
 
@@ -373,4 +374,3 @@ export default function DashboardSidebar() {
     </>
   );
 }
-
