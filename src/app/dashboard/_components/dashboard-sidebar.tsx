@@ -146,11 +146,12 @@ function Notifications() {
   const { user } = useUser();
   const firestore = useFirestore();
   const [isClient, setIsClient] = useState(false);
+
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  const isAdmin = useMemo(() => user?.uid === ADMIN_UID, [user]);
+  const isAdmin = useMemo(() => !!user && user.uid === ADMIN_UID, [user]);
 
   const requestsQuery = useMemoFirebase(() => {
     if (!firestore || !isAdmin) return null;
@@ -163,9 +164,7 @@ function Notifications() {
 
   const { data: newRequests, isLoading } = useCollection(requestsQuery);
 
-  const hasNewRequests = useMemo(() => {
-    return isClient && !isLoading && newRequests && newRequests.length > 0;
-  }, [isClient, isLoading, newRequests]);
+  const hasNewRequests = isClient && !isLoading && newRequests && newRequests.length > 0;
 
   return (
     <DropdownMenu>
@@ -188,7 +187,7 @@ function Notifications() {
         <DropdownMenuLabel>Nouvelles Demandes</DropdownMenuLabel>
         <DropdownMenuSeparator />
 
-        {isLoading ? (
+        {isClient && isLoading ? (
             <DropdownMenuItem disabled>Chargement...</DropdownMenuItem>
         ) : hasNewRequests ? (
           newRequests!.map((req: any) => {
@@ -201,7 +200,7 @@ function Notifications() {
                   <span className="text-xs text-muted-foreground line-clamp-1">
                     {req.projectDescription}
                   </span>
-                  {isClient && createdAt && (
+                  {createdAt && (
                     <span
                       className="text-xs text-muted-foreground"
                     >
