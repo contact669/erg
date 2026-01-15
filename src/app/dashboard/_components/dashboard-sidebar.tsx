@@ -83,12 +83,11 @@ function NavLink({
   label: string;
 }) {
   const pathname = usePathname();
-  const [isClient, setIsClient] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+
   useEffect(() => {
-    setIsClient(true)
-  }, []);
-  
-  const isActive = isClient ? pathname === href : false;
+    setIsActive(pathname === href);
+  }, [pathname, href]);
 
   return (
     <Tooltip>
