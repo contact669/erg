@@ -13,6 +13,7 @@ import {
   Users,
   ClipboardList,
   Building2,
+  ArrowRight
 } from "lucide-react";
 
 import SiteHeader from "@/components/site-header";
@@ -25,7 +26,7 @@ import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
-import { InternalLinksHautsDeSeine } from "./_components/internal-links";
+import { InternalLinksHautsDeSeine } from "@/app/renovation-hauts-de-seine/_components/internal-links";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Hauts-de-Seine (92) | ERG Rénovation",
@@ -319,3 +320,5 @@ export default function RenovationHautsDeSeinePage() {
     </div>
   );
 }
+
+    
