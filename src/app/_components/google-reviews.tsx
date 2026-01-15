@@ -46,8 +46,10 @@ export default function GoogleReviews() {
   )
 
   const [stats, setStats] = React.useState<{ count: number; avg: number } | null>(null)
+  const [isClient, setIsClient] = React.useState(false)
 
   React.useEffect(() => {
+    setIsClient(true)
     const ratings = testimonials.map((t) => clampRating(t.rating)).filter((n) => n > 0)
     const avg =
       ratings.length > 0 ? ratings.reduce((a, b) => a + b, 0) / ratings.length : 0
@@ -84,7 +86,7 @@ export default function GoogleReviews() {
 
           {/* Micro-preuve */}
           <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
-            {stats && stats.avg > 0 && (
+            {isClient && stats && stats.avg > 0 && (
               <span className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-sm">
                 <span className="font-medium">{stats.avg}/5</span>
                 <span className="text-muted-foreground">sur {stats.count} avis</span>
@@ -140,7 +142,7 @@ export default function GoogleReviews() {
 
                           <div className="min-w-0">
                             <p className="truncate font-semibold">{testimonial.name}</p>
-                            <p className="text-sm text-muted-foreground">{testimonial.date}</p>
+                            <p className="text-sm text-muted-foreground">{isClient ? testimonial.date : ''}</p>
                           </div>
                         </div>
 
