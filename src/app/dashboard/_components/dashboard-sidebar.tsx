@@ -124,6 +124,10 @@ function toDateSafe(value: any): Date | null {
 function Notifications() {
   const { user } = useUser();
   const firestore = useFirestore();
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const isAdmin = useMemo(() => user?.uid === ADMIN_UID, [user]);
 
@@ -173,10 +177,9 @@ function Notifications() {
                   <span className="text-xs text-muted-foreground line-clamp-1">
                     {req.projectDescription}
                   </span>
-                  {createdAt && (
+                  {createdAt && isClient && (
                     <span
                       className="text-xs text-muted-foreground"
-                      suppressHydrationWarning
                     >
                       {formatDistanceToNow(createdAt, { addSuffix: true, locale: fr })}
                     </span>
@@ -374,3 +377,5 @@ export default function DashboardSidebar() {
     </>
   );
 }
+
+    

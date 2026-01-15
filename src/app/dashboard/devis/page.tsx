@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
@@ -210,7 +211,7 @@ export default function DevisPage() {
                       </TableCell>
 
                       <TableCell className="hidden sm:table-cell">
-                        {createdAt ? format(createdAt, 'd MMMM yyyy', { locale: fr }) : '—'}
+                        {createdAt && isClient ? format(createdAt, 'd MMMM yyyy', { locale: fr }) : '...'}
                       </TableCell>
 
                       <TableCell className="hidden md:table-cell text-right">
@@ -272,3 +273,5 @@ export default function DevisPage() {
     </div>
   );
 }
+
+    

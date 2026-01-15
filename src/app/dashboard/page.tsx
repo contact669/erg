@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useUser, useCollection, useMemoFirebase, useFirestore } from '@/firebase';
@@ -126,7 +127,7 @@ export default function DashboardPage() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {recentProjects && recentProjects.map((project: any) => (
+                            {isClient && recentProjects && recentProjects.map((project: any) => (
                                 <TableRow key={project.id}>
                                     <TableCell>
                                         <div className="font-medium">{project.title}</div>
@@ -161,9 +162,14 @@ export default function DashboardPage() {
                                     </TableCell>
                                 </TableRow>
                             ))}
-                             {!recentProjects?.length && (
+                             {!isLoading && isClient && !recentProjects?.length && (
                                 <TableRow>
                                     <TableCell colSpan={5} className="text-center h-24">Aucun chantier récent.</TableCell>
+                                </TableRow>
+                            )}
+                             {isLoading && (
+                                <TableRow>
+                                    <TableCell colSpan={5} className="text-center h-24">Chargement...</TableCell>
                                 </TableRow>
                             )}
                         </TableBody>
@@ -173,3 +179,5 @@ export default function DashboardPage() {
         </div>
     );
 }
+
+    

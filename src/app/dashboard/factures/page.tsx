@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebase';
@@ -131,7 +132,7 @@ export default function FacturesPage() {
                                         <div className="text-sm text-muted-foreground">{item.projectName}</div>
                                     </TableCell>
                                     <TableCell className="hidden sm:table-cell text-right">
-                                        {date ? format(date, "d MMM yyyy", { locale: fr }) : '-'}
+                                        {date && isClient ? format(date, "d MMM yyyy", { locale: fr }) : '...'}
                                     </TableCell>
                                     <TableCell className="hidden md:table-cell text-right">
                                         {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(item.total)}
@@ -177,3 +178,5 @@ export default function FacturesPage() {
         </div>
     );
 }
+
+    

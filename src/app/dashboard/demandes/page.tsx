@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebase';
@@ -129,8 +130,8 @@ export default function DemandesPage() {
                                             {request.status}
                                         </Badge>
                                     </TableCell>
-                                    <TableCell className="hidden md:table-cell text-right" suppressHydrationWarning>
-                                        {createdAt && isClient ? formatDistanceToNow(createdAt, { addSuffix: true, locale: fr }) : 'N/A'}
+                                    <TableCell className="hidden md:table-cell text-right">
+                                        {createdAt && isClient ? formatDistanceToNow(createdAt, { addSuffix: true, locale: fr }) : '...'}
                                     </TableCell>
                                     <TableCell>
                                         <DropdownMenu>
@@ -164,3 +165,5 @@ export default function DemandesPage() {
         </div>
     );
 }
+
+    
