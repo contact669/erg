@@ -139,9 +139,9 @@ function Notifications() {
     );
   }, [firestore, isAdmin]);
 
-  const { data: newRequests } = useCollection(requestsQuery);
+  const { data: newRequests, isLoading } = useCollection(requestsQuery);
 
-  const hasNewRequests = !!newRequests && newRequests.length > 0;
+  const hasNewRequests = isClient && newRequests && newRequests.length > 0;
 
   return (
     <DropdownMenu>
@@ -164,14 +164,15 @@ function Notifications() {
         <DropdownMenuLabel>Nouvelles Demandes</DropdownMenuLabel>
         <DropdownMenuSeparator />
 
-        {hasNewRequests ? (
+        {isLoading ? (
+            <DropdownMenuItem disabled>Chargement...</DropdownMenuItem>
+        ) : hasNewRequests ? (
           newRequests.map((req: any) => {
             const createdAt = toDateSafe(req.createdAt);
 
             return (
               <DropdownMenuItem key={req.id} asChild className="cursor-pointer">
-                {/* IMPORTANT: Link doit être l'élément racine slotté (pas de div racine) */}
-                <Link href="/dashboard/demandes" className="flex flex-col gap-0.5">
+                <Link href={`/dashboard/demandes/${req.id}`} className="flex flex-col gap-0.5">
                   <span className="font-semibold">{req.clientName}</span>
                   <span className="text-xs text-muted-foreground line-clamp-1">
                     {req.projectDescription}
