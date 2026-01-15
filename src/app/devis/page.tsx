@@ -3,9 +3,9 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import { useState } from "react"
+import { useMemo, useRef } from "react"
 import Link from "next/link"
-import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { collection, doc, serverTimestamp, writeBatch } from "firebase/firestore"
 import { useFirestore } from "@/firebase"
 
 import SiteHeader from "@/components/site-header"
@@ -13,7 +13,6 @@ import SiteFooter from "@/components/site-footer"
 import Breadcrumbs from "@/components/breadcrumbs"
 
 import { useToast } from "@/hooks/use-toast"
-import { sendQuoteRequestEmail } from "./_actions/send-quote-request"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -53,7 +52,7 @@ const ADMIN_EMAIL = 'contact@erg-renovation.fr';
 
 export default function DevisPage() {
   const { toast } = useToast()
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const isSubmittingRef = useRef(false)
   const firestore = useFirestore()
 
   const form = useForm<FormValues>({
@@ -71,8 +70,8 @@ export default function DevisPage() {
   const chars = countChars(description)
 
   async function onSubmit(values: FormValues) {
-    if (isSubmitting || !firestore) {
-      if(!firestore) {
+    if (isSubmittingRef.current || !firestore) {
+      if (!firestore) {
         toast({
           variant: "destructive",
           title: "Erreur de connexion",
@@ -82,7 +81,9 @@ export default function DevisPage() {
       return
     }
 
-    setIsSubmitting(true)
+    isSubmittingRef.current = true
+    // Force re-render to update disabled state on buttons
+    form.trigger()
 
     toast({
       title: "Envoi en cours…",
@@ -90,7 +91,10 @@ export default function DevisPage() {
     })
 
     try {
-      const newRequestRef = await addDoc(collection(firestore, "quoteRequests"), {
+      const batch = writeBatch(firestore);
+      
+      const newRequestRef = doc(collection(firestore, "quoteRequests"));
+      batch.set(newRequestRef, {
         clientName: values.clientName.trim(),
         clientEmail: values.clientEmail.trim().toLowerCase(),
         clientPhone: (values.clientPhone ?? "").trim() || null,
@@ -99,13 +103,50 @@ export default function DevisPage() {
         createdAt: serverTimestamp(),
       });
 
-      await sendQuoteRequestEmail({
-        requestId: newRequestRef.id,
-        clientName: values.clientName,
-        clientEmail: values.clientEmail,
-        clientPhone: values.clientPhone,
-        projectDescription: values.projectDescription,
+      const adminMailRef = doc(collection(firestore, "mail"));
+      batch.set(adminMailRef, {
+        to: [ADMIN_EMAIL],
+        message: {
+          subject: `Nouvelle demande de devis de ${values.clientName}`,
+          html: `
+            <div style="font-family: sans-serif; padding: 20px; color: #333;">
+              <h2>Nouvelle Demande de Devis</h2>
+              <p>Une nouvelle demande de devis a été soumise sur le site ERG Rénovation.</p>
+              <hr>
+              <h3>Informations du client :</h3>
+              <p><strong>Nom :</strong> ${values.clientName}</p>
+              <p><strong>Email :</strong> <a href="mailto:${values.clientEmail}">${values.clientEmail}</a></p>
+              ${values.clientPhone ? `<p><strong>Téléphone :</strong> ${values.clientPhone}</p>` : ''}
+              <hr>
+              <h3>Description du projet :</h3>
+              <p style="white-space: pre-wrap;">${values.projectDescription}</p>
+              <hr>
+              <p><a href="https://erg-renovation.fr/dashboard/demandes/${newRequestRef.id}">Voir dans le dashboard</a></p>
+            </div>
+          `,
+        },
       });
+
+      const clientMailRef = doc(collection(firestore, "mail"));
+      batch.set(clientMailRef, {
+        to: [values.clientEmail],
+        message: {
+          subject: 'Confirmation de votre demande de devis',
+          html: `
+            <div style="font-family: sans-serif; padding: 20px; color: #333;">
+              <h2>Nous avons bien reçu votre demande</h2>
+              <p>Bonjour ${values.clientName},</p>
+              <p>Merci de nous avoir contactés. Nous avons bien reçu votre demande de devis et nous vous remercions de votre confiance.</p>
+              <p>Notre équipe va l'étudier attentivement et reviendra vers vous dans les plus brefs délais (généralement sous 24h ouvrées) pour discuter de votre projet.</p>
+              <hr>
+              <p>Cordialement,</p>
+              <p><strong>L'équipe ERG Rénovation</strong></p>
+            </div>
+          `,
+        },
+      });
+
+      await batch.commit();
 
       toast({
         title: "Demande envoyée ✅",
@@ -115,14 +156,15 @@ export default function DevisPage() {
 
       form.reset()
     } catch (error) {
-      console.error("Error creating quote request and sending emails:", error);
+      console.error("Error creating quote request and emails:", error);
       toast({
         variant: "destructive",
         title: "Impossible d’envoyer la demande",
         description: "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer ou nous contacter directement.",
       })
     } finally {
-        setIsSubmitting(false)
+        isSubmittingRef.current = false
+        form.trigger()
     }
   }
 
@@ -298,8 +340,8 @@ export default function DevisPage() {
                     </fieldset>
 
                     <div className="space-y-3">
-                      <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-                        {isSubmitting ? "Envoi en cours…" : "Envoyer ma demande"}
+                      <Button type="submit" size="lg" className="w-full" disabled={form.formState.isSubmitting}>
+                        {form.formState.isSubmitting ? "Envoi en cours…" : "Envoyer ma demande"}
                       </Button>
 
                       <p className="text-center text-xs text-muted-foreground">
