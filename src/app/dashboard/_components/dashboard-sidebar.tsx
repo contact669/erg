@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import React, { useMemo, useState, useEffect } from "react";
@@ -84,10 +85,31 @@ function NavLink({
 }) {
   const pathname = usePathname();
   const [isActive, setIsActive] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsActive(pathname === href);
-  }, [pathname, href]);
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      setIsActive(pathname === href);
+    }
+  }, [pathname, href, isClient]);
+
+  if (!isClient) {
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors md:h-8 md:w-8">
+            <Icon className="h-5 w-5" />
+            <span className="sr-only">{label}</span>
+          </div>
+        </TooltipTrigger>
+        <TooltipContent side="right">{label}</TooltipContent>
+      </Tooltip>
+    );
+  }
 
   return (
     <Tooltip>
