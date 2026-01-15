@@ -52,8 +52,8 @@ export default function FacturesPage() {
     }, [user, isUserLoading, router]);
 
     const invoicesQuery = useMemoFirebase(() => 
-        firestore ? query(collection(firestore, 'factures'), orderBy('date', 'desc')) : null
-    , [firestore]);
+        (firestore && user) ? query(collection(firestore, 'factures'), orderBy('date', 'desc')) : null
+    , [firestore, user]);
     const { data: factures, isLoading } = useCollection<any>(invoicesQuery);
 
     if (isUserLoading || !user) {
