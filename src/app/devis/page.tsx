@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { useState } from "react"
 import Link from "next/link"
-import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { collection, addDoc, serverTimestamp, writeBatch, doc } from "firebase/firestore"
 import { useFirestore } from "@/firebase"
 
 import SiteHeader from "@/components/site-header"
@@ -22,9 +22,9 @@ import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
 
 import { Bot, User, ShieldCheck, Clock, ArrowRight } from "lucide-react"
-import { sendQuoteRequestEmail } from "@/app/devis/_actions/send-quote-request"
 
 const PHONE = "+33699961375"
+const ADMIN_EMAIL = 'contact@erg-renovation.fr';
 
 const formSchema = z.object({
   clientName: z.string().min(2, "Le nom doit contenir au moins 2 caractères."),
@@ -88,7 +88,10 @@ export default function DevisPage() {
     })
 
     try {
-      const newRequestRef = await addDoc(collection(firestore, "quoteRequests"), {
+      const batch = writeBatch(firestore);
+      
+      const newRequestRef = doc(collection(firestore, "quoteRequests"));
+      batch.set(newRequestRef, {
         clientName: values.clientName.trim(),
         clientEmail: values.clientEmail.trim().toLowerCase(),
         clientPhone: (values.clientPhone ?? "").trim() || null,
@@ -97,14 +100,50 @@ export default function DevisPage() {
         createdAt: serverTimestamp(),
       });
 
-      const emailResult = await sendQuoteRequestEmail({
-        requestId: newRequestRef.id,
-        ...values
+      const adminMailRef = doc(collection(firestore, "mail"));
+      batch.set(adminMailRef, {
+        to: [ADMIN_EMAIL],
+        message: {
+          subject: `Nouvelle demande de devis de ${values.clientName}`,
+          html: `
+            <div style="font-family: sans-serif; padding: 20px; color: #333;">
+              <h2>Nouvelle Demande de Devis</h2>
+              <p>Une nouvelle demande de devis a été soumise sur le site ERG Rénovation.</p>
+              <hr>
+              <h3>Informations du client :</h3>
+              <p><strong>Nom :</strong> ${values.clientName}</p>
+              <p><strong>Email :</strong> <a href="mailto:${values.clientEmail}">${values.clientEmail}</a></p>
+              ${values.clientPhone ? `<p><strong>Téléphone :</strong> ${values.clientPhone}</p>` : ''}
+              <hr>
+              <h3>Description du projet :</h3>
+              <p style="white-space: pre-wrap; background-color: #f9f9f9; padding: 10px; border-radius: 4px;">${values.projectDescription}</p>
+              <hr>
+              <p style="margin-top: 20px;"><a href="https://erg-renovation.fr/dashboard/demandes/${newRequestRef.id}" style="background-color: #0A0A0A; color: #FAFAFA; padding: 12px 20px; text-decoration: none; border-radius: 6px;">Voir la demande dans le Dashboard</a></p>
+            </div>
+          `,
+        },
       });
 
-      if (emailResult.error) {
-          throw new Error(emailResult.error);
-      }
+      const clientMailRef = doc(collection(firestore, "mail"));
+      batch.set(clientMailRef, {
+        to: [values.clientEmail],
+        message: {
+          subject: 'Confirmation de votre demande de devis',
+          html: `
+            <div style="font-family: sans-serif; padding: 20px; color: #333;">
+              <h2>Nous avons bien reçu votre demande</h2>
+              <p>Bonjour ${values.clientName},</p>
+              <p>Merci de nous avoir contactés. Nous avons bien reçu votre demande de devis et nous vous remercions de votre confiance.</p>
+              <p>Notre équipe va l'étudier attentivement et reviendra vers vous dans les plus brefs délais (généralement sous 24h ouvrées) pour discuter de votre projet.</p>
+              <hr>
+              <p>Cordialement,</p>
+              <p><strong>L'équipe ERG Rénovation</strong></p>
+            </div>
+          `,
+        },
+      });
+
+      await batch.commit();
 
       toast({
         title: "Demande envoyée ✅",
@@ -341,7 +380,7 @@ export default function DevisPage() {
                   <div>
                     <p className="font-medium text-foreground">Pour gagner du temps</p>
                     <p className="mt-1">
-                      Ajoutez (si possible) : ville/quartier, surface, photos, plans, date souhaitée et budget indicatif.
+                      Indiquez (si possible) : ville/quartier, surface, photos, plans, date souhaitée et budget indicatif.
                     </p>
                   </div>
                 </CardContent>

@@ -22,6 +22,9 @@ service cloud.firestore {
     match /quotes/{document=**} { allow read, write: if isAdmin(); }
     match /factures/{document=**} { allow read, write: if isAdmin(); }
     
+    // Anyone can create a mail document
+    match /mail/{id} { allow create: if true; allow read, write: if false; }
+
     // Leads can't be read by client
     match /leads/{id} { allow create: if true; allow read, write: if false; }
 
