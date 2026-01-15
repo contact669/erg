@@ -142,7 +142,7 @@ export default function GoogleReviews() {
 
                           <div className="min-w-0">
                             <p className="truncate font-semibold">{testimonial.name}</p>
-                            <p className="text-sm text-muted-foreground">{isClient ? testimonial.date : ''}</p>
+                            <p className="text-sm text-muted-foreground">{isClient && testimonial.date ? testimonial.date : ''}</p>
                           </div>
                         </div>
 
