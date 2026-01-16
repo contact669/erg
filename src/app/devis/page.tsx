@@ -3,8 +3,10 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import { useTransition } from "react"
+import { useState } from "react"
 import Link from "next/link"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { useFirestore } from "@/firebase"
 
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
@@ -17,7 +19,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
 import { Bot, User, ShieldCheck, Clock, ArrowRight } from "lucide-react"
-import { sendQuoteRequest } from "./_actions/send-quote-request"
 
 const PHONE = "+33699961375"
 
@@ -46,7 +47,8 @@ function countChars(s: string) {
 
 export default function DevisPage() {
   const { toast } = useToast()
-  const [isPending, startTransition] = useTransition()
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const firestore = useFirestore()
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -63,28 +65,42 @@ export default function DevisPage() {
   const chars = countChars(description)
 
   async function onSubmit(values: FormValues) {
-    startTransition(async () => {
+    if (!firestore) {
       toast({
-        title: "Envoi en cours…",
-        description: "Nous enregistrons votre demande de devis.",
+        variant: "destructive",
+        title: "Erreur de connexion",
+        description: "Le service de base de données n'est pas disponible. Veuillez réessayer.",
+      })
+      return
+    }
+
+    setIsSubmitting(true)
+
+    try {
+      await addDoc(collection(firestore, "quoteRequests"), {
+        clientName: values.clientName.trim(),
+        clientEmail: values.clientEmail.trim().toLowerCase(),
+        clientPhone: (values.clientPhone ?? "").trim() || null,
+        projectDescription: values.projectDescription.trim(),
+        status: 'Nouvelle Demande',
+        createdAt: serverTimestamp(),
       });
 
-      const result = await sendQuoteRequest(values);
-
-      if (result.success) {
-        toast({
-          title: "Demande envoyée ✅",
-          description: result.message,
-        })
-        form.reset()
-      } else {
-        toast({
-          variant: "destructive",
-          title: "Impossible d’envoyer la demande",
-          description: result.message,
-        })
-      }
-    });
+      toast({
+        title: "Demande envoyée ✅",
+        description: "Merci ! Nous avons bien reçu votre demande et nous vous recontacterons rapidement.",
+      });
+      form.reset();
+    } catch (error) {
+      console.error("Erreur lors de la création de la demande :", error);
+      toast({
+        variant: "destructive",
+        title: "Erreur d'enregistrement",
+        description: "Une erreur est survenue lors de l'enregistrement. Veuillez nous contacter directement.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -259,8 +275,8 @@ export default function DevisPage() {
                     </fieldset>
 
                     <div className="space-y-3">
-                      <Button type="submit" size="lg" className="w-full" disabled={isPending}>
-                        {isPending ? "Envoi en cours…" : "Envoyer ma demande"}
+                      <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                        {isSubmitting ? "Envoi en cours…" : "Envoyer ma demande"}
                       </Button>
 
                       <p className="text-center text-xs text-muted-foreground">
