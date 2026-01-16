@@ -27,7 +27,13 @@ const ADMIN_EMAIL = "contact@erg-renovation.fr"
 const formSchema = z.object({
   clientName: z.string().min(2, "Le nom doit contenir au moins 2 caractères."),
   clientEmail: z.string().email("Veuillez saisir une adresse email valide."),
-  clientPhone: z.string().optional(),
+  clientPhone: z
+    .string()
+    .optional()
+    .refine(
+      (v) => !v || /^[0-9+().\s-]{6,20}$/.test(v),
+      "Veuillez saisir un numéro valide."
+    ),
   projectDescription: z
     .string()
     .min(40, "Décrivez votre projet avec plus de détails (au moins 40 caractères).")
@@ -73,7 +79,7 @@ export default function DevisPage() {
       try {
         const batch = writeBatch(firestore)
 
-        // 1. Create the quote request document
+        // 1. Créer le document pour la demande de devis
         const newRequestRef = doc(collection(firestore, "quoteRequests"))
         batch.set(newRequestRef, {
           clientName: values.clientName.trim(),
@@ -84,7 +90,7 @@ export default function DevisPage() {
           createdAt: serverTimestamp(),
         })
 
-        // 2. Create the admin notification email document
+        // 2. Créer le document pour l'e-mail de notification admin
         const adminMailRef = doc(collection(firestore, "mail"))
         batch.set(adminMailRef, {
           to: [ADMIN_EMAIL],
@@ -109,7 +115,7 @@ export default function DevisPage() {
           },
         })
 
-        // 3. Create the client confirmation email document
+        // 3. Créer le document pour l'e-mail de confirmation client
         const clientMailRef = doc(collection(firestore, "mail"))
         batch.set(clientMailRef, {
           to: [values.clientEmail],
