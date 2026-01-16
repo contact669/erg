@@ -3,9 +3,9 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import { useState, useTransition } from "react"
+import { useState } from "react"
 import Link from "next/link"
-import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { collection, addDoc, serverTimestamp, writeBatch, doc } from "firebase/firestore"
 import { useFirestore } from "@/firebase"
 
 import SiteHeader from "@/components/site-header"
@@ -19,9 +19,9 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
 import { Bot, User, ShieldCheck, Clock, ArrowRight } from "lucide-react"
-import { sendQuoteNotifications } from "./_actions/send-notifications"
 
 const PHONE = "+33699961375"
+const ADMIN_EMAIL = "contact@erg-renovation.fr"
 
 const formSchema = z.object({
   clientName: z.string().min(2, "Le nom doit contenir au moins 2 caractères."),
@@ -47,7 +47,7 @@ function countChars(s: string) {
 
 export default function DevisPage() {
   const { toast } = useToast()
-  const [isPending, startTransition] = useTransition()
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const firestore = useFirestore()
 
   const form = useForm<FormValues>({
@@ -65,7 +65,7 @@ export default function DevisPage() {
   const chars = countChars(description)
 
   async function onSubmit(values: FormValues) {
-    if (isPending || !firestore) {
+    if (isSubmitting || !firestore) {
       if (!firestore) {
         toast({
           variant: "destructive",
@@ -76,59 +76,92 @@ export default function DevisPage() {
       return
     }
 
-    startTransition(async () => {
-      try {
-        toast({
-          title: "Envoi en cours…",
-          description: "Nous enregistrons votre demande.",
-        })
+    setIsSubmitting(true)
 
-        // Étape 1 : Enregistrer la demande dans Firestore
-        await addDoc(collection(firestore, "quoteRequests"), {
-          clientName: values.clientName.trim(),
-          clientEmail: values.clientEmail.trim().toLowerCase(),
-          clientPhone: (values.clientPhone ?? "").trim() || null,
-          projectDescription: values.projectDescription.trim(),
-          status: "Nouvelle Demande",
-          createdAt: serverTimestamp(),
-        })
-
-        // Étape 2 : Appeler l'action serveur pour envoyer les e-mails
-        const notificationResult = await sendQuoteNotifications({
-          clientName: values.clientName.trim(),
-          clientEmail: values.clientEmail.trim().toLowerCase(),
-          clientPhone: (values.clientPhone ?? "").trim() || null,
-          projectDescription: values.projectDescription.trim(),
-        })
-
-        if (!notificationResult.success) {
-          // La demande est sauvegardée, mais les notifications ont échoué.
-          // On informe l'utilisateur sans bloquer.
-          toast({
-            variant: "destructive",
-            title: "Demande enregistrée, mais...",
-            description:
-              "Nous n'avons pas pu envoyer les e-mails de notification. Nous traiterons votre demande manuellement.",
-          })
-        } else {
-          toast({
-            title: "Demande envoyée ✅",
-            description:
-              "Merci ! Nous avons bien reçu votre demande et vous avons envoyé un e-mail de confirmation.",
-          })
-        }
-
-        form.reset()
-      } catch (error) {
-        console.error("Erreur lors de la création de la demande :", error)
-        toast({
-          variant: "destructive",
-          title: "Impossible d'enregistrer la demande",
-          description:
-            "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer ou nous contacter directement.",
-        })
-      }
+    toast({
+      title: "Envoi en cours…",
+      description: "Nous enregistrons votre demande de devis.",
     })
+
+    try {
+      const batch = writeBatch(firestore)
+
+      // 1. Create the quote request document
+      const newRequestRef = doc(collection(firestore, "quoteRequests"))
+      batch.set(newRequestRef, {
+        clientName: values.clientName.trim(),
+        clientEmail: values.clientEmail.trim().toLowerCase(),
+        clientPhone: (values.clientPhone ?? "").trim() || null,
+        projectDescription: values.projectDescription.trim(),
+        status: "Nouvelle Demande",
+        createdAt: serverTimestamp(),
+      })
+
+      // 2. Create the admin email document for the extension
+      const adminMailRef = doc(collection(firestore, "mail"))
+      batch.set(adminMailRef, {
+        to: [ADMIN_EMAIL],
+        message: {
+          subject: `Nouvelle demande de devis de ${values.clientName}`,
+          html: `
+            <div style="font-family: sans-serif; padding: 20px; color: #333;">
+              <h2>Nouvelle Demande de Devis</h2>
+              <p>Une nouvelle demande de devis a été soumise sur le site ERG Rénovation.</p>
+              <hr>
+              <h3>Informations du client :</h3>
+              <p><strong>Nom :</strong> ${values.clientName}</p>
+              <p><strong>Email :</strong> <a href="mailto:${values.clientEmail}">${values.clientEmail}</a></p>
+              ${values.clientPhone ? `<p><strong>Téléphone :</strong> ${values.clientPhone}</p>` : ""}
+              <hr>
+              <h3>Description du projet :</h3>
+              <p style="white-space: pre-wrap;">${values.projectDescription}</p>
+              <hr>
+              <p>Consultez la demande dans le <a href="https://erg-renovation.fr/dashboard/demandes">tableau de bord</a>.</p>
+            </div>
+          `,
+        },
+      })
+
+      // 3. Create the client confirmation email document
+      const clientMailRef = doc(collection(firestore, "mail"))
+      batch.set(clientMailRef, {
+        to: [values.clientEmail.trim().toLowerCase()],
+        message: {
+          subject: "Confirmation de votre demande de devis",
+          html: `
+            <div style="font-family: sans-serif; padding: 20px; color: #333;">
+              <h2>Nous avons bien reçu votre demande</h2>
+              <p>Bonjour ${values.clientName},</p>
+              <p>Merci de nous avoir contactés. Nous avons bien reçu votre demande de devis et nous vous remercions de votre confiance.</p>
+              <p>Notre équipe va l'étudier attentivement et reviendra vers vous dans les plus brefs délais (généralement sous 24h ouvrées) pour discuter de votre projet.</p>
+              <hr>
+              <p>Cordialement,</p>
+              <p><strong>L'équipe ERG Rénovation</strong></p>
+            </div>
+          `,
+        },
+      })
+
+      await batch.commit()
+
+      toast({
+        title: "Demande envoyée ✅",
+        description:
+          "Merci ! Nous avons bien reçu votre demande et vous avons envoyé un e-mail de confirmation.",
+      })
+
+      form.reset()
+    } catch (error) {
+      console.error("Erreur lors de la création de la demande :", error)
+      toast({
+        variant: "destructive",
+        title: "Impossible d'enregistrer la demande",
+        description:
+          "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer ou nous contacter directement.",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -214,7 +247,7 @@ export default function DevisPage() {
                             <FormItem>
                               <FormLabel>Nom complet</FormLabel>
                               <FormControl>
-                                <Input placeholder="Ex : Amar Hachour" autoComplete="name" {...field} disabled={isPending} />
+                                <Input placeholder="Ex : Amar Hachour" autoComplete="name" {...field} disabled={isSubmitting} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -234,7 +267,7 @@ export default function DevisPage() {
                                   autoComplete="email"
                                   inputMode="email"
                                   {...field}
-                                  disabled={isPending}
+                                  disabled={isSubmitting}
                                 />
                               </FormControl>
                               <FormMessage />
@@ -255,7 +288,7 @@ export default function DevisPage() {
                                 autoComplete="tel"
                                 inputMode="tel"
                                 {...field}
-                                disabled={isPending}
+                                disabled={isSubmitting}
                               />
                             </FormControl>
                             <FormMessage />
@@ -286,7 +319,7 @@ export default function DevisPage() {
                                 ].join("\n")}
                                 className="min-h-[200px] resize-y"
                                 {...field}
-                                disabled={isPending}
+                                disabled={isSubmitting}
                               />
                             </FormControl>
 
@@ -306,8 +339,8 @@ export default function DevisPage() {
                     </fieldset>
 
                     <div className="space-y-3">
-                      <Button type="submit" size="lg" className="w-full" disabled={isPending}>
-                        {isPending ? "Envoi en cours…" : "Envoyer ma demande"}
+                      <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                        {isSubmitting ? "Envoi en cours…" : "Envoyer ma demande"}
                       </Button>
 
                       <p className="text-center text-xs text-muted-foreground">
