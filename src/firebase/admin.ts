@@ -1,16 +1,23 @@
 import * as admin from "firebase-admin";
 
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.applicationDefault(),
-  });
+/**
+ * This pattern ensures that Firebase Admin is initialized only once,
+ * even in a hot-reloading development environment.
+ */
+function getAdminServices() {
+  if (!admin.apps.length) {
+    admin.initializeApp({
+      credential: admin.credential.applicationDefault(),
+    });
+    // Apply settings right after initialization, and only once.
+    admin.firestore().settings({ databaseId: "ergrenov" });
+  }
+  return {
+    adminDb: admin.firestore(),
+    adminAuth: admin.auth(),
+  };
 }
 
-// ✅ Firestore Admin SDK
-const adminDb = admin.firestore();
+const { adminDb, adminAuth } = getAdminServices();
 
-// ✅ Si tu utilises une DB nommée "ergrenov"
-adminDb.settings({ databaseId: "ergrenov" });
-
-export { adminDb };
-export const adminAuth = admin.auth();
+export { adminDb, adminAuth };
