@@ -24,7 +24,7 @@ export async function sendQuoteRequest(data: unknown) {
     const validatedData = formSchema.parse(data);
     const { clientName, clientEmail, clientPhone, projectDescription } = validatedData;
 
-    // 2. Enregistrer la demande dans Firestore
+    // 2. Enregistrer la demande dans Firestore avec l'Admin SDK
     await adminDb.collection("quoteRequests").add({
         clientName,
         clientEmail: clientEmail.toLowerCase(),
