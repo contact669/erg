@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { useState } from "react"
 import Link from "next/link"
-import { collection, addDoc, serverTimestamp, writeBatch, doc } from "firebase/firestore"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { useFirestore } from "@/firebase"
 
 import SiteHeader from "@/components/site-header"
@@ -21,7 +21,6 @@ import { Separator } from "@/components/ui/separator"
 import { Bot, User, ShieldCheck, Clock, ArrowRight } from "lucide-react"
 
 const PHONE = "+33699961375"
-const ADMIN_EMAIL = "contact@erg-renovation.fr"
 
 const formSchema = z.object({
   clientName: z.string().min(2, "Le nom doit contenir au moins 2 caractères."),
@@ -77,87 +76,51 @@ export default function DevisPage() {
     }
 
     setIsSubmitting(true)
-
     toast({
       title: "Envoi en cours…",
       description: "Nous enregistrons votre demande de devis.",
     })
 
     try {
-      const batch = writeBatch(firestore)
-
-      // 1. Create the quote request document
-      const newRequestRef = doc(collection(firestore, "quoteRequests"))
-      batch.set(newRequestRef, {
+      // Étape 1 : Enregistrer dans Firestore
+      await addDoc(collection(firestore, "quoteRequests"), {
         clientName: values.clientName.trim(),
         clientEmail: values.clientEmail.trim().toLowerCase(),
         clientPhone: (values.clientPhone ?? "").trim() || null,
         projectDescription: values.projectDescription.trim(),
         status: "Nouvelle Demande",
         createdAt: serverTimestamp(),
-      })
+      });
 
-      // 2. Create the admin email document for the extension
-      const adminMailRef = doc(collection(firestore, "mail"))
-      batch.set(adminMailRef, {
-        to: [ADMIN_EMAIL],
-        message: {
-          subject: `Nouvelle demande de devis de ${values.clientName}`,
-          html: `
-            <div style="font-family: sans-serif; padding: 20px; color: #333;">
-              <h2>Nouvelle Demande de Devis</h2>
-              <p>Une nouvelle demande de devis a été soumise sur le site ERG Rénovation.</p>
-              <hr>
-              <h3>Informations du client :</h3>
-              <p><strong>Nom :</strong> ${values.clientName}</p>
-              <p><strong>Email :</strong> <a href="mailto:${values.clientEmail}">${values.clientEmail}</a></p>
-              ${values.clientPhone ? `<p><strong>Téléphone :</strong> ${values.clientPhone}</p>` : ""}
-              <hr>
-              <h3>Description du projet :</h3>
-              <p style="white-space: pre-wrap;">${values.projectDescription}</p>
-              <hr>
-              <p>Consultez la demande dans le <a href="https://erg-renovation.fr/dashboard/demandes">tableau de bord</a>.</p>
-            </div>
-          `,
-        },
-      })
+      // Étape 2 : Appeler l'API pour envoyer les e-mails
+      const emailResponse = await fetch('/api/send-quote-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(values),
+      });
 
-      // 3. Create the client confirmation email document
-      const clientMailRef = doc(collection(firestore, "mail"))
-      batch.set(clientMailRef, {
-        to: [values.clientEmail.trim().toLowerCase()],
-        message: {
-          subject: "Confirmation de votre demande de devis",
-          html: `
-            <div style="font-family: sans-serif; padding: 20px; color: #333;">
-              <h2>Nous avons bien reçu votre demande</h2>
-              <p>Bonjour ${values.clientName},</p>
-              <p>Merci de nous avoir contactés. Nous avons bien reçu votre demande de devis et nous vous remercions de votre confiance.</p>
-              <p>Notre équipe va l'étudier attentivement et reviendra vers vous dans les plus brefs délais (généralement sous 24h ouvrées) pour discuter de votre projet.</p>
-              <hr>
-              <p>Cordialement,</p>
-              <p><strong>L'équipe ERG Rénovation</strong></p>
-            </div>
-          `,
-        },
-      })
-
-      await batch.commit()
+      if (!emailResponse.ok) {
+        // Même si l'e-mail échoue, la demande est enregistrée. C'est le plus important.
+        // On affiche donc un message de succès partiel.
+        throw new Error('L\'envoi des e-mails de notification a échoué, mais votre demande a été enregistrée.');
+      }
 
       toast({
         title: "Demande envoyée ✅",
-        description:
-          "Merci ! Nous avons bien reçu votre demande et vous avons envoyé un e-mail de confirmation.",
+        description: "Merci ! Nous avons bien reçu votre demande et vous avons envoyé un e-mail de confirmation.",
       })
 
       form.reset()
     } catch (error) {
-      console.error("Erreur lors de la création de la demande :", error)
+      console.error("Erreur lors de la soumission :", error)
+      const errorMessage = (error instanceof Error) ? error.message : "Une erreur est survenue lors de l'envoi des notifications.";
+      
+      // Affiche un message d'erreur mais confirme que la demande est enregistrée.
       toast({
-        variant: "destructive",
-        title: "Impossible d'enregistrer la demande",
-        description:
-          "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer ou nous contacter directement.",
+        variant: "default",
+        title: "Demande enregistrée, mais...",
+        description: errorMessage,
+        duration: 10000,
       })
     } finally {
       setIsSubmitting(false)
