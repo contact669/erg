@@ -5,8 +5,6 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { useTransition } from "react"
 import Link from "next/link"
-import { collection, addDoc, serverTimestamp } from "firebase/firestore"
-import { useFirestore } from "@/firebase"
 
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
@@ -19,20 +17,14 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
 import { Bot, User, ShieldCheck, Clock, ArrowRight } from "lucide-react"
+import { sendQuoteRequest } from "./_actions/send-quote-request"
 
 const PHONE = "+33699961375"
 
 const formSchema = z.object({
   clientName: z.string().min(2, "Le nom doit contenir au moins 2 caractères."),
   clientEmail: z.string().email("Veuillez saisir une adresse email valide."),
-  clientPhone: z
-    .string()
-    .optional()
-    .transform((v) => (v ?? "").trim())
-    .refine(
-      (v) => v === "" || /^[+0-9().\s-]{6,}$/.test(v),
-      "Veuillez saisir un numéro de téléphone valide."
-    ),
+  clientPhone: z.string().optional(),
   projectDescription: z
     .string()
     .min(40, "Décrivez votre projet avec plus de détails (au moins 40 caractères).")
@@ -48,7 +40,6 @@ function countChars(s: string) {
 export default function DevisPage() {
   const { toast } = useToast()
   const [isPending, startTransition] = useTransition()
-  const firestore = useFirestore()
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -65,40 +56,22 @@ export default function DevisPage() {
   const chars = countChars(description)
 
   async function onSubmit(values: FormValues) {
-    if (!firestore) {
-      toast({
-        variant: "destructive",
-        title: "Erreur de connexion",
-        description: "La connexion à la base de données a échoué. Veuillez rafraîchir la page.",
-      });
-      return;
-    }
-
     startTransition(async () => {
-      try {
-        await addDoc(collection(firestore, "quoteRequests"), {
-          clientName: values.clientName.trim(),
-          clientEmail: values.clientEmail.trim().toLowerCase(),
-          clientPhone: (values.clientPhone ?? "").trim() || null,
-          projectDescription: values.projectDescription.trim(),
-          status: 'Nouvelle Demande',
-          createdAt: serverTimestamp(),
-        });
-
+      const result = await sendQuoteRequest(values)
+      if (result.success) {
         toast({
           title: "Demande envoyée ✅",
-          description: "Merci. Nous avons bien reçu votre demande et reviendrons vers vous rapidement.",
-        });
-        form.reset();
-      } catch (error) {
-        console.error("Erreur lors de la création de la demande :", error);
+          description: "Merci ! Nous avons bien reçu votre demande et vous avons envoyé un e-mail de confirmation.",
+        })
+        form.reset()
+      } else {
         toast({
           variant: "destructive",
-          title: "Erreur lors de la création de la demande",
-          description: "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer ou nous contacter directement.",
-        });
+          title: "Envoi impossible",
+          description: result.error || "Une erreur est survenue. Veuillez réessayer ou nous contacter directement.",
+        })
       }
-    });
+    })
   }
 
   return (

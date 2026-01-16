@@ -15,7 +15,7 @@ import * as React from 'react'
 interface EmailProps {
   clientName: string
   clientEmail: string
-  clientPhone?: string
+  clientPhone?: string | null
   projectDescription: string
   quoteRequestId: string
 }
