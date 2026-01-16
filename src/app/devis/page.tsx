@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { useTransition } from "react"
 import Link from "next/link"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { useFirestore } from "@/firebase"
 
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
@@ -17,7 +19,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
 import { Bot, User, ShieldCheck, Clock, ArrowRight } from "lucide-react"
-import { sendQuoteRequest } from "./_actions/send-quote-request"
 
 const PHONE = "+33699961375"
 
@@ -47,6 +48,7 @@ function countChars(s: string) {
 export default function DevisPage() {
   const { toast } = useToast()
   const [isPending, startTransition] = useTransition()
+  const firestore = useFirestore()
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -63,23 +65,40 @@ export default function DevisPage() {
   const chars = countChars(description)
 
   async function onSubmit(values: FormValues) {
-    startTransition(async () => {
-      const result = await sendQuoteRequest(values)
+    if (!firestore) {
+      toast({
+        variant: "destructive",
+        title: "Erreur de connexion",
+        description: "La connexion à la base de données a échoué. Veuillez rafraîchir la page.",
+      });
+      return;
+    }
 
-      if (result.success) {
+    startTransition(async () => {
+      try {
+        await addDoc(collection(firestore, "quoteRequests"), {
+          clientName: values.clientName.trim(),
+          clientEmail: values.clientEmail.trim().toLowerCase(),
+          clientPhone: (values.clientPhone ?? "").trim() || null,
+          projectDescription: values.projectDescription.trim(),
+          status: 'Nouvelle Demande',
+          createdAt: serverTimestamp(),
+        });
+
         toast({
           title: "Demande envoyée ✅",
-          description: "Merci. Nous avons bien reçu votre demande et nous vous avons envoyé un e-mail de confirmation.",
-        })
-        form.reset()
-      } else {
+          description: "Merci. Nous avons bien reçu votre demande et reviendrons vers vous rapidement.",
+        });
+        form.reset();
+      } catch (error) {
+        console.error("Erreur lors de la création de la demande :", error);
         toast({
           variant: "destructive",
-          title: "Impossible d’envoyer la demande",
-          description: result.error || "Une erreur est survenue. Veuillez réessayer ou nous contacter directement.",
-        })
+          title: "Erreur lors de la création de la demande",
+          description: "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer ou nous contacter directement.",
+        });
       }
-    })
+    });
   }
 
   return (
