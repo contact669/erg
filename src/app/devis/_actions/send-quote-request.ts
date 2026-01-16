@@ -45,7 +45,8 @@ export async function sendQuoteRequest(data: unknown) {
     newRequestId = newRequest.id
   } catch (error) {
     console.error('Erreur Firestore:', error)
-    return { success: false, error: "Erreur lors de l'enregistrement dans la base de données." }
+    const errorMessage = error instanceof Error ? error.message : "Une erreur inconnue est survenue.";
+    return { success: false, error: `Erreur Firestore: ${errorMessage}` }
   }
 
   // 3. Send emails
@@ -81,6 +82,6 @@ export async function sendQuoteRequest(data: unknown) {
     console.error('Erreur Resend:', error)
     // Optional: We could try to delete the Firestore doc here, but it's often better
     // to keep the request and handle the email failure manually (e.g., resend later).
-    return { success: false, error: "Erreur lors de l'envoi des e-mails." }
+    return { success: false, error: "Une erreur interne est survenue lors de l'envoi." }
   }
 }
