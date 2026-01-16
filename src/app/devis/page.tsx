@@ -5,23 +5,19 @@ import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { useMemo, useState } from "react"
 import Link from "next/link"
-import { collection, serverTimestamp, writeBatch, doc } from "firebase/firestore"
-import { useFirestore } from "@/firebase"
 
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
 import Breadcrumbs from "@/components/breadcrumbs"
-
 import { useToast } from "@/hooks/use-toast"
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
-
 import { Bot, User, ShieldCheck, Clock, ArrowRight } from "lucide-react"
+import { sendQuoteRequest } from "./_actions/send-quote-request"
 
 const PHONE = "+33699961375"
 
@@ -48,12 +44,9 @@ function countChars(s: string) {
   return (s ?? "").trim().length
 }
 
-const ADMIN_EMAIL = 'contact@erg-renovation.fr';
-
 export default function DevisPage() {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const firestore = useFirestore()
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -70,99 +63,30 @@ export default function DevisPage() {
   const chars = countChars(description)
 
   async function onSubmit(values: FormValues) {
-    if (isSubmitting || !firestore) {
-      if(!firestore) {
-        toast({
-          variant: "destructive",
-          title: "Erreur de connexion",
-          description: "La connexion à la base de données a échoué. Veuillez rafraîchir la page.",
-        })
-      }
-      return
-    }
-
     setIsSubmitting(true)
-
     toast({
       title: "Envoi en cours…",
       description: "Nous enregistrons votre demande de devis.",
     })
 
-    try {
-      const batch = writeBatch(firestore);
-      
-      const newRequestRef = doc(collection(firestore, "quoteRequests"));
-      batch.set(newRequestRef, {
-        clientName: values.clientName.trim(),
-        clientEmail: values.clientEmail.trim().toLowerCase(),
-        clientPhone: (values.clientPhone ?? "").trim() || null,
-        projectDescription: values.projectDescription.trim(),
-        status: 'Nouvelle Demande',
-        createdAt: serverTimestamp(),
-      });
+    const result = await sendQuoteRequest(values)
 
-      const adminMailRef = doc(collection(firestore, "mail"));
-      batch.set(adminMailRef, {
-        to: [ADMIN_EMAIL],
-        message: {
-          subject: `Nouvelle demande de devis de ${values.clientName}`,
-          html: `
-            <div style="font-family: sans-serif; padding: 20px; color: #333;">
-              <h2>Nouvelle Demande de Devis</h2>
-              <p>Une nouvelle demande de devis a été soumise sur le site ERG Rénovation.</p>
-              <hr>
-              <h3>Informations du client :</h3>
-              <p><strong>Nom :</strong> ${values.clientName}</p>
-              <p><strong>Email :</strong> <a href="mailto:${values.clientEmail}">${values.clientEmail}</a></p>
-              ${values.clientPhone ? `<p><strong>Téléphone :</strong> ${values.clientPhone}</p>` : ''}
-              <hr>
-              <h3>Description du projet :</h3>
-              <p style="white-space: pre-wrap;">${values.projectDescription}</p>
-              <hr>
-              <p><a href="https://erg-renovation.fr/dashboard/demandes/${newRequestRef.id}">Voir la demande dans le dashboard</a></p>
-            </div>
-          `,
-        },
-      });
-
-      const clientMailRef = doc(collection(firestore, "mail"));
-      batch.set(clientMailRef, {
-        to: [values.clientEmail],
-        message: {
-          subject: 'Confirmation de votre demande de devis',
-          html: `
-            <div style="font-family: sans-serif; padding: 20px; color: #333;">
-              <h2>Nous avons bien reçu votre demande</h2>
-              <p>Bonjour ${values.clientName},</p>
-              <p>Merci de nous avoir contactés. Nous avons bien reçu votre demande de devis et nous vous remercions de votre confiance.</p>
-              <p>Notre équipe va l'étudier attentivement et reviendra vers vous dans les plus brefs délais (généralement sous 24h ouvrées) pour discuter de votre projet.</p>
-              <hr>
-              <p>Cordialement,</p>
-              <p><strong>L'équipe ERG Rénovation</strong></p>
-            </div>
-          `,
-        },
-      });
-
-      await batch.commit();
-
+    if (result.success) {
       toast({
         title: "Demande envoyée ✅",
-        description:
-          "Merci. Nous avons bien reçu votre demande et nous vous avons envoyé un e-mail de confirmation.",
+        description: "Merci. Nous avons bien reçu votre demande et nous vous avons envoyé un e-mail de confirmation.",
       })
-
       form.reset()
-    } catch (error) {
-      console.error("Error creating quote request and emails:", error);
+    } else {
+      console.error("Erreur lors de la création de la demande :", result.message)
       toast({
         variant: "destructive",
         title: "Impossible d’envoyer la demande",
-        description: "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer ou nous contacter directement.",
+        description: result.message || "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer ou nous contacter directement.",
       })
-    } finally {
-        setIsSubmitting(false)
     }
+
+    setIsSubmitting(false)
   }
 
   return (
