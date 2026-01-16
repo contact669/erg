@@ -82,7 +82,6 @@ export default function DevisPage() {
     }
 
     isSubmittingRef.current = true
-    // Force re-render to update disabled state on buttons
     form.trigger()
 
     toast({
@@ -94,6 +93,7 @@ export default function DevisPage() {
       const batch = writeBatch(firestore);
       
       const newRequestRef = doc(collection(firestore, "quoteRequests"));
+      
       batch.set(newRequestRef, {
         clientName: values.clientName.trim(),
         clientEmail: values.clientEmail.trim().toLowerCase(),
