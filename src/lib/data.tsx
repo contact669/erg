@@ -1,5 +1,6 @@
 
-import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage } from './types';
+
+import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage, Area } from './types';
 import {
   Home,
   Bath,
@@ -873,7 +874,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
       </>
     ),
     testimonial: {
-      quote: "L'équipe d'ERG a rénové notre maison à Nogent avec un grand professionnalisme. Ils ont été à l'écoute et ont su nous conseiller. Nous sommes ravis du résultat.",
+      quote: "L'équipe d'ERG a été très à l'écoute et a su nous guider dans nos choix pour la rénovation de notre maison à Nogent-sur-Marne. Nous les recommandons sans hésiter.",
       author: "Famille L., Nogent-sur-Marne",
     },
   },
@@ -1968,13 +1969,52 @@ export const blogPosts: BlogPost[] = [
   }
 ];
 
+export const AREAS: Area[] = [
+  {
+    label: "Paris",
+    code: "75",
+    href: "/renovation-paris",
+    description: "Tous arrondissements : rénovation intérieure, salle de bain, cuisine, rénovation complète.",
+    cities: Array.from({ length: 20 }, (_, i) => {
+      const n = i + 1;
+      return { name: n === 1 ? "Paris 1er" : `Paris ${n}e`, href: null };
+    }),
+  },
+  {
+    label: "Hauts-de-Seine",
+    code: "92",
+    href: "/renovation-hauts-de-seine",
+    description: "Boulogne, Courbevoie, Levallois, Asnières, Colombes, Nanterre…",
+    cities: [
+      { name: "Boulogne-Billancourt", code: "92100", href: "/renovation-boulogne-billancourt" },
+      { name: "Courbevoie", code: "92400", href: "/renovation-courbevoie" },
+      { name: "Levallois-Perret", code: "92300", href: "/renovation-levallois-perret" },
+      { name: "Asnières-sur-Seine", code: "92600", href: "/renovation-asnieres-sur-seine" },
+      { name: "Colombes", code: "92700", href: "/renovation-colombes" },
+      { name: "Nanterre", code: "92000", href: "/renovation-nanterre" },
+    ],
+  },
+  {
+    label: "Seine-Saint-Denis",
+    code: "93",
+    href: "/renovation-seine-saint-denis",
+    description: "Montreuil, Pantin, Saint-Denis, Aubervilliers…",
+    cities: [
+      { name: "Montreuil", code: "93100", href: "/renovation-montreuil" },
+      // add later
+    ],
+  },
+  {
+    label: "Val-de-Marne",
+    code: "94",
+    href: "/renovation-val-de-marne",
+    description: "Vincennes, Créteil, Ivry-sur-Seine, Vitry-sur-Seine…",
+    cities: [
+      { name: "Vincennes", code: "94300", href: "/renovation-vincennes" },
+      // add later
+    ],
+  },
+];
     
 
-
-
-
-
-
-
-
-
+    

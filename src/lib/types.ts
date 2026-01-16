@@ -122,3 +122,13 @@ export interface BlogPost {
   content: ReactNode;
   toc?: TocSection[];
 }
+
+export type CityLink = { name: string; code?: string; href?: string | null };
+
+export type Area = {
+  label: string;
+  code: "75" | "92" | "93" | "94";
+  href: string;
+  description: string;
+  cities: CityLink[];
+};
