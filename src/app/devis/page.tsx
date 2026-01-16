@@ -74,7 +74,7 @@ export default function DevisPage() {
     if (result.success) {
       toast({
         title: "Demande envoyée ✅",
-        description: "Merci. Nous avons bien reçu votre demande et nous vous avons envoyé un e-mail de confirmation.",
+        description: "Merci. Nous avons bien reçu votre demande et la traiterons dans les meilleurs délais.",
       })
       form.reset()
     } else {
