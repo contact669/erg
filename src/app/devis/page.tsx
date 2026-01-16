@@ -3,8 +3,10 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import { useMemo, useState, useTransition } from "react"
+import { useState, useTransition } from "react"
 import Link from "next/link"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { useFirestore } from "@/firebase"
 
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
@@ -17,12 +19,9 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
 import { Bot, User, ShieldCheck, Clock, ArrowRight } from "lucide-react"
-
-import { useFirestore } from "@/firebase"
-import { collection, writeBatch, doc, serverTimestamp } from "firebase/firestore"
+import { sendQuoteNotifications } from "./_actions/send-notifications"
 
 const PHONE = "+33699961375"
-const ADMIN_EMAIL = "contact@erg-renovation.fr"
 
 const formSchema = z.object({
   clientName: z.string().min(2, "Le nom doit contenir au moins 2 caractères."),
@@ -66,22 +65,26 @@ export default function DevisPage() {
   const chars = countChars(description)
 
   async function onSubmit(values: FormValues) {
-    if (!firestore) {
-      toast({
-        variant: "destructive",
-        title: "Erreur de connexion",
-        description: "Service de base de données non disponible. Veuillez réessayer.",
-      })
+    if (isPending || !firestore) {
+      if (!firestore) {
+        toast({
+          variant: "destructive",
+          title: "Erreur de connexion",
+          description: "La connexion à la base de données a échoué. Veuillez rafraîchir la page.",
+        })
+      }
       return
     }
 
     startTransition(async () => {
       try {
-        const batch = writeBatch(firestore)
+        toast({
+          title: "Envoi en cours…",
+          description: "Nous enregistrons votre demande.",
+        })
 
-        // 1. Créer le document pour la demande de devis
-        const newRequestRef = doc(collection(firestore, "quoteRequests"))
-        batch.set(newRequestRef, {
+        // Étape 1 : Enregistrer la demande dans Firestore
+        await addDoc(collection(firestore, "quoteRequests"), {
           clientName: values.clientName.trim(),
           clientEmail: values.clientEmail.trim().toLowerCase(),
           clientPhone: (values.clientPhone ?? "").trim() || null,
@@ -90,64 +93,39 @@ export default function DevisPage() {
           createdAt: serverTimestamp(),
         })
 
-        // 2. Créer le document pour l'e-mail de notification admin
-        const adminMailRef = doc(collection(firestore, "mail"))
-        batch.set(adminMailRef, {
-          to: [ADMIN_EMAIL],
-          message: {
-            subject: `Nouvelle demande de devis de ${values.clientName}`,
-            html: `
-              <div style="font-family: sans-serif; padding: 20px; color: #333;">
-                <h2>Nouvelle Demande de Devis</h2>
-                <p>Une nouvelle demande de devis a été soumise sur le site ERG Rénovation.</p>
-                <hr>
-                <h3>Informations du client :</h3>
-                <p><strong>Nom :</strong> ${values.clientName}</p>
-                <p><strong>Email :</strong> <a href="mailto:${values.clientEmail}">${values.clientEmail}</a></p>
-                ${values.clientPhone ? `<p><strong>Téléphone :</strong> ${values.clientPhone}</p>` : ""}
-                <hr>
-                <h3>Description du projet :</h3>
-                <p style="white-space: pre-wrap;">${values.projectDescription}</p>
-                <hr>
-                <p><a href="https://erg-renovation.fr/dashboard/demandes/${newRequestRef.id}">Voir la demande dans le tableau de bord</a></p>
-              </div>
-            `,
-          },
+        // Étape 2 : Appeler l'action serveur pour envoyer les e-mails
+        const notificationResult = await sendQuoteNotifications({
+          clientName: values.clientName.trim(),
+          clientEmail: values.clientEmail.trim().toLowerCase(),
+          clientPhone: (values.clientPhone ?? "").trim() || null,
+          projectDescription: values.projectDescription.trim(),
         })
 
-        // 3. Créer le document pour l'e-mail de confirmation client
-        const clientMailRef = doc(collection(firestore, "mail"))
-        batch.set(clientMailRef, {
-          to: [values.clientEmail],
-          message: {
-            subject: "Confirmation de votre demande de devis",
-            html: `
-              <div style="font-family: sans-serif; padding: 20px; color: #333;">
-                <h2>Nous avons bien reçu votre demande</h2>
-                <p>Bonjour ${values.clientName},</p>
-                <p>Merci de nous avoir contactés. Nous avons bien reçu votre demande de devis et nous vous remercions de votre confiance.</p>
-                <p>Notre équipe va l'étudier attentivement et reviendra vers vous dans les plus brefs délais (généralement sous 24h ouvrées) pour discuter de votre projet.</p>
-                <hr>
-                <p>Cordialement,</p>
-                <p><strong>L'équipe ERG Rénovation</strong></p>
-              </div>
-            `,
-          },
-        })
+        if (!notificationResult.success) {
+          // La demande est sauvegardée, mais les notifications ont échoué.
+          // On informe l'utilisateur sans bloquer.
+          toast({
+            variant: "destructive",
+            title: "Demande enregistrée, mais...",
+            description:
+              "Nous n'avons pas pu envoyer les e-mails de notification. Nous traiterons votre demande manuellement.",
+          })
+        } else {
+          toast({
+            title: "Demande envoyée ✅",
+            description:
+              "Merci ! Nous avons bien reçu votre demande et vous avons envoyé un e-mail de confirmation.",
+          })
+        }
 
-        await batch.commit()
-
-        toast({
-          title: "Demande envoyée ✅",
-          description: "Merci ! Nous avons bien reçu votre demande et vous avons envoyé un e-mail de confirmation.",
-        })
         form.reset()
       } catch (error) {
         console.error("Erreur lors de la création de la demande :", error)
         toast({
           variant: "destructive",
           title: "Impossible d'enregistrer la demande",
-          description: "Une erreur est survenue. Veuillez réessayer ou nous contacter directement.",
+          description:
+            "Une erreur est survenue lors de l'enregistrement. Veuillez réessayer ou nous contacter directement.",
         })
       }
     })
