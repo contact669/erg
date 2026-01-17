@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
 import {
   CheckCircle,
   Home,
@@ -29,6 +28,7 @@ import Breadcrumbs from "@/components/breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
 import { InternalLinksCity92 } from "../renovation-hauts-de-seine/_components/internal-links";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Levallois-Perret (92300) | ERG Rénovation",
@@ -55,25 +55,19 @@ const levalloisSpecificities = [
         icon: Building2,
         title: "Un parc immobilier dense et qualitatif",
         description: "À Levallois-Perret, les immeubles anciens avec cachet côtoient des résidences modernes. Chaque projet exige une approche technique précise et une exécution irréprochable.",
-        imageUrl: "https://picsum.photos/seed/92301/800/600",
-        imageAlt: "Rénovation d'un appartement à Levallois-Perret avec finitions haut de gamme",
-        imageHint: "luxury apartment"
+        imageId: "levallois-spec-1"
     },
     {
         icon: Hammer,
         title: "Des attentes très élevées en finition",
         description: "Les propriétaires levalloisiens sont particulièrement attentifs à la qualité des matériaux, aux détails de finition et à la durabilité. Notre exigence est notre norme.",
-        imageUrl: "https://picsum.photos/seed/92302/800/600",
-        imageAlt: "Chantier de rénovation intérieure à Levallois-Perret",
-        imageHint: "renovation site"
+        imageId: "levallois-spec-2"
     },
     {
         icon: Home,
         title: "Un investissement patrimonial majeur",
         description: "Rénover à Levallois-Perret, c'est investir pour valoriser durablement son patrimoine sur un marché immobilier très dynamique et recherché.",
-        imageUrl: "https://picsum.photos/seed/92303/800/600",
-        imageAlt: "Cuisine moderne rénovée à Levallois-Perret",
-        imageHint: "modern kitchen"
+        imageId: "levallois-spec-3"
     }
 ];
 
@@ -160,6 +154,7 @@ export default function RenovationLevalloisPage() {
   ]);
 
   const faq = buildFaqJsonLd(faqItems);
+  const whyUsImage = PlaceHolderImages.find(p => p.id === 'levallois-why-us');
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -202,22 +197,27 @@ export default function RenovationLevalloisPage() {
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {levalloisSpecificities.map(item => (
-                        <Card key={item.title} className="overflow-hidden">
-                            <div className="relative h-56 w-full">
-                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover" data-ai-hint={item.imageHint} />
-                            </div>
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-3">
-                                    <item.icon className="h-6 w-6 text-accent"/>
-                                    {item.title}
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-muted-foreground text-sm">{item.description}</p>
-                            </CardContent>
-                        </Card>
-                    ))}
+                    {levalloisSpecificities.map(item => {
+                        const image = PlaceHolderImages.find(p => p.id === item.imageId);
+                        return (
+                            <Card key={item.title} className="overflow-hidden">
+                                {image && (
+                                  <div className="relative h-56 w-full">
+                                      <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
+                                  </div>
+                                )}
+                                <CardHeader>
+                                    <CardTitle className="flex items-center gap-3">
+                                        <item.icon className="h-6 w-6 text-accent"/>
+                                        {item.title}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-muted-foreground text-sm">{item.description}</p>
+                                </CardContent>
+                            </Card>
+                        )
+                    })}
                 </div>
             </div>
         </section>
@@ -260,9 +260,11 @@ export default function RenovationLevalloisPage() {
         <section className="py-16 md:py-24">
             <div className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
-                        <Image src="https://picsum.photos/seed/92304/800/1000" alt="Chantier de rénovation d'un appartement à Levallois-Perret" fill className="object-cover" data-ai-hint="renovation site" />
-                    </div>
+                    {whyUsImage && (
+                      <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
+                          <Image src={whyUsImage.imageUrl} alt={whyUsImage.description} fill className="object-cover" data-ai-hint={whyUsImage.imageHint} />
+                      </div>
+                    )}
                     <div>
                         <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation à Levallois-Perret ?</h2>
                         <div className="mt-8 space-y-6">

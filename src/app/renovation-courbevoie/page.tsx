@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
 import {
   CheckCircle,
   Home,
@@ -29,6 +28,7 @@ import Breadcrumbs from "@/components/breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
 import { InternalLinksCity92 } from "../renovation-hauts-de-seine/_components/internal-links";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Courbevoie (92400) | ERG Rénovation",
@@ -70,22 +70,19 @@ const courbevoieSpecificities = [
         icon: Building2,
         title: "Un parc immobilier dense et contrasté",
         description: "À Courbevoie, les immeubles anciens du centre côtoient les résidences modernes du Faubourg de l'Arche. Chaque projet exige une approche technique adaptée.",
-        imageUrl: "https://picsum.photos/seed/92401/800/600",
-        imageAlt: "Rénovation d’un appartement à Courbevoie avec finitions soignées"
+        imageId: "courbevoie-spec-1"
     },
     {
         icon: Hammer,
         title: "Un enjeu de confort et d'esthétique",
         description: "La proximité de La Défense et de Paris impose des standards élevés. Les occupants recherchent des espaces fonctionnels, bien isolés et aux finitions irréprochables.",
-        imageUrl: "https://picsum.photos/seed/92402/800/600",
-        imageAlt: "Chantier de rénovation intérieure à Courbevoie près de La Défense"
+        imageId: "courbevoie-spec-2"
     },
     {
         icon: Home,
         title: "Un investissement locatif stratégique",
         description: "Rénover un bien à Courbevoie, c'est garantir une attractivité maximale pour attirer des locataires exigeants (cadres, expatriés) et sécuriser son investissement.",
-        imageUrl: "https://picsum.photos/seed/92403/800/600",
-        imageAlt: "Cuisine moderne rénovée dans un appartement à Courbevoie"
+        imageId: "courbevoie-spec-3"
     }
 ];
 
@@ -172,6 +169,7 @@ export default function RenovationCourbevoiePage() {
   ]);
 
   const faq = buildFaqJsonLd(faqItems);
+  const whyUsImage = PlaceHolderImages.find(p => p.id === 'nanterre-why-us');
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -214,22 +212,27 @@ export default function RenovationCourbevoiePage() {
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {courbevoieSpecificities.map(item => (
-                        <Card key={item.title} className="overflow-hidden">
-                            <div className="relative h-56 w-full">
-                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover" data-ai-hint={item.title.toLowerCase()} />
-                            </div>
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-3">
-                                    <item.icon className="h-6 w-6 text-accent"/>
-                                    {item.title}
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-muted-foreground text-sm">{item.description}</p>
-                            </CardContent>
-                        </Card>
-                    ))}
+                    {courbevoieSpecificities.map(item => {
+                        const image = PlaceHolderImages.find(p => p.id === item.imageId);
+                        return (
+                            <Card key={item.title} className="overflow-hidden">
+                                {image && (
+                                  <div className="relative h-56 w-full">
+                                      <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
+                                  </div>
+                                )}
+                                <CardHeader>
+                                    <CardTitle className="flex items-center gap-3">
+                                        <item.icon className="h-6 w-6 text-accent"/>
+                                        {item.title}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-muted-foreground text-sm">{item.description}</p>
+                                </CardContent>
+                            </Card>
+                        )
+                    })}
                 </div>
             </div>
         </section>
@@ -272,9 +275,11 @@ export default function RenovationCourbevoiePage() {
         <section className="py-16 md:py-24">
             <div className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
-                        <Image src="https://picsum.photos/seed/92404/800/1000" alt="Chantier de rénovation d'un appartement à Courbevoie" fill className="object-cover" data-ai-hint="renovation site" />
-                    </div>
+                    {whyUsImage && (
+                      <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
+                          <Image src={whyUsImage.imageUrl} alt={whyUsImage.description} fill className="object-cover" data-ai-hint={whyUsImage.imageHint} />
+                      </div>
+                    )}
                     <div>
                         <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation à Courbevoie ?</h2>
                         <div className="mt-8 space-y-6">

@@ -39,7 +39,7 @@
     {
       "id": "project-apartment-1-before",
       "description": "Salon d'appartement encombré et ancien avant les travaux de rénovation.",
-      "imageUrl": "https://images.unsplash.com/photo-1612311533219-3687fcf1ee78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2x1dHRlcmVkJTIwcm9vbXxlbnwwfHx8fDE3NjI3NjQ2NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1612311533219-3687fcf1ee78?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxb3x8Y2x1dHRlcmVkJTIwcm9vbXxlbnwwfHx8fDE3NjI3NjQ2NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "cluttered room"
     },
     {
@@ -281,6 +281,246 @@
       "description": "Petite salle de bain moderne et lumineuse après rénovation complète.",
       "imageUrl": "/images/realisations/renovation-salle-de-bain-3m2-apres.webp",
       "imageHint": "modern bathroom"
+    },
+    {
+      "id": "asnieres-spec-1",
+      "description": "Immeuble ancien typique d'Asnières-sur-Seine, représentant le parc immobilier à rénover.",
+      "imageUrl": "https://images.unsplash.com/photo-1508162397467-82d021dfee45?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxvbGQlMjBidWlsZGluZ3xlbnwwfHx8fDE3Njg1ODg3ODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "old building"
+    },
+    {
+      "id": "asnieres-spec-2",
+      "description": "Chantier de rénovation d'un appartement à Asnières, symbolisant l'investissement et la valorisation du bien.",
+      "imageUrl": "https://images.unsplash.com/photo-1634586657092-438d8f1560ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyZW5vdmF0aW9uJTIwc2l0ZXxlbnwwfHx8fDE3Njg2NDI3OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "renovation site"
+    },
+    {
+      "id": "asnieres-spec-3",
+      "description": "Cuisine familiale moderne et lumineuse, répondant à la forte demande de logements fonctionnels à Asnières.",
+      "imageUrl": "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBraXRjaGVufGVufDB8fHx8MTc2ODYyMTYxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern kitchen"
+    },
+    {
+      "id": "boulogne-spec-1",
+      "description": "Rénovation d’un appartement à Boulogne-Billancourt avec finitions haut de gamme, illustrant la densité et la variété du parc immobilier.",
+      "imageUrl": "https://images.unsplash.com/photo-1580041065738-e72023775cdc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxsdXh1cnklMjBhcGFydG1lbnR8ZW58MHx8fHwxNzY4NTc1MDM1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "luxury apartment"
+    },
+    {
+      "id": "boulogne-spec-2",
+      "description": "Chantier de rénovation intérieure à Boulogne-Billancourt, montrant des attentes élevées en matière de finitions.",
+      "imageUrl": "https://images.unsplash.com/photo-1731871688430-a3e509d9227e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyZW5vdmF0aW9uJTIwc2l0ZXxlbnwwfHx8fDE3Njg2NDI3OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "renovation site"
+    },
+    {
+      "id": "boulogne-spec-3",
+      "description": "Cuisine moderne rénovée dans un appartement à Boulogne-Billancourt, soulignant l'enjeu patrimonial.",
+      "imageUrl": "https://images.unsplash.com/photo-1600489000022-c2086d79f9d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBraXRjaGVufGVufDB8fHx8MTc2ODYyMTYxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern kitchen"
+    },
+    {
+      "id": "colombes-spec-1",
+      "description": "Rénovation d'un appartement ancien à Colombes avec des finitions soignées, typique du parc immobilier local.",
+      "imageUrl": "https://images.unsplash.com/photo-1696454596753-12d58cc1578a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxyZW5vdmF0ZWQlMjBhcGFydG1lbnR8ZW58MHx8fHwxNzY4NjQyNzkzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "renovated apartment"
+    },
+    {
+      "id": "colombes-spec-2",
+      "description": "Chantier de rénovation intérieure à Colombes, illustrant l'impact d'une rénovation sur la valeur du bien.",
+      "imageUrl": "https://images.unsplash.com/photo-1634586657092-438d8f1560ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyZW5vdmF0aW9uJTIwc2l0ZXxlbnwwfHx8fDE3Njg2NDI3OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "renovation site"
+    },
+    {
+      "id": "colombes-spec-3",
+      "description": "Cuisine moderne et familiale dans un appartement rénové à Colombes.",
+      "imageUrl": "https://images.unsplash.com/photo-1592506119503-c0b18879bd5a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtb2Rlcm4lMjBraXRjaGVufGVufDB8fHx8MTc2ODYyMTYxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern kitchen"
+    },
+    {
+      "id": "courbevoie-spec-1",
+      "description": "Rénovation d’un appartement à Courbevoie avec vue sur La Défense, illustrant le parc immobilier dense et contrasté.",
+      "imageUrl": "https://images.unsplash.com/photo-1461253205884-5aa82520ee48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjaXR5JTIwdmlld3xlbnwwfHx8fDE3Njg1NzE0MTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "city view"
+    },
+    {
+      "id": "courbevoie-spec-2",
+      "description": "Chantier de rénovation intérieure à Courbevoie, soulignant le confort et l'esthétique.",
+      "imageUrl": "https://images.unsplash.com/photo-1634586621169-93e12e0bd604?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxyZW5vdmF0aW9uJTIwc2l0ZXxlbnwwfHx8fDE3Njg2NDI3OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "renovation site"
+    },
+    {
+      "id": "courbevoie-spec-3",
+      "description": "Cuisine moderne et fonctionnelle dans un appartement à Courbevoie, optimisée pour un investissement locatif.",
+      "imageUrl": "https://images.unsplash.com/photo-1592506119503-c0b18879bd5a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtb2Rlcm4lMjBraXRjaGVufGVufDB8fHx8MTc2ODYyMTYxNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern kitchen"
+    },
+    {
+      "id": "hauts-de-seine-spec-1",
+      "description": "Rénovation d'un appartement de standing dans les Hauts-de-Seine, reflétant un marché immobilier exigeant.",
+      "imageUrl": "https://images.unsplash.com/photo-1686056040370-b5e5c06c4273?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBhcGFydG1lbnR8ZW58MHx8fHwxNzY4NTc1MDM1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "luxury apartment"
+    },
+    {
+      "id": "hauts-de-seine-spec-2",
+      "description": "Détail d'un chantier de rénovation dans le 92, montrant la complexité et les contraintes techniques spécifiques.",
+      "imageUrl": "https://images.unsplash.com/photo-1724644327127-25f1a3fae691?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb25zdHJ1Y3Rpb24lMjBkZXRhaWx8ZW58MHx8fHwxNzY4NjQyNzkzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "construction detail"
+    },
+    {
+      "id": "hauts-de-seine-spec-3",
+      "description": "Rénovation de salle de bain moderne dans un appartement des Hauts-de-Seine, illustrant la variété du patrimoine.",
+      "imageUrl": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBiYXRocm9vbXxlbnwwfHx8fDE3Njg2Mzk1ODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern bathroom"
+    },
+    {
+      "id": "hauts-de-seine-why-us",
+      "description": "Exemple de projet de rénovation à Boulogne-Billancourt, illustrant notre expertise locale.",
+      "imageUrl": "https://images.unsplash.com/photo-1768321916253-a5621240e9f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxyZW5vdmF0aW9uJTIwcHJvamVjdHxlbnwwfHx8fDE3Njg2NDI3OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "renovation project"
+    },
+    {
+      "id": "levallois-spec-1",
+      "description": "Rénovation d'un appartement de luxe à Levallois-Perret, mettant en avant la qualité du parc immobilier.",
+      "imageUrl": "https://images.unsplash.com/photo-1632743441209-8a09b8a37e25?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxsdXh1cnklMjBhcGFydG1lbnR8ZW58MHx8fHwxNzY4NTc1MDM1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "luxury apartment"
+    },
+    {
+      "id": "levallois-spec-2",
+      "description": "Chantier de rénovation intérieure à Levallois-Perret, montrant des finitions haut de gamme.",
+      "imageUrl": "https://images.unsplash.com/photo-1730298878684-33c8b2c81aac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxoaWdoLWVuZCUyMGZpbmlzaHxlbnwwfHx8fDE3Njg2NDI3OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "high-end finish"
+    },
+    {
+      "id": "levallois-spec-3",
+      "description": "Cuisine moderne et design dans un appartement rénové à Levallois-Perret.",
+      "imageUrl": "https://images.unsplash.com/photo-1669046222569-a7672da06e12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkZXNpZ25lciUyMGtpdGNoZW58ZW58MHx8fHwxNzY4NjQyNzkzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "designer kitchen"
+    },
+    {
+      "id": "levallois-why-us",
+      "description": "Chantier de rénovation d'un appartement à Levallois-Perret, illustrant notre savoir-faire.",
+      "imageUrl": "https://images.unsplash.com/photo-1768321914136-8329ceafb160?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cmVub3ZhdGlvbiUyMHNpdGV8ZW58MHx8fHwxNzY4NjQyNzkzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "renovation site"
+    },
+    {
+      "id": "montreuil-spec-1",
+      "description": "Appartement rénové à Montreuil, montrant le potentiel du parc immobilier hétérogène.",
+      "imageUrl": "https://images.unsplash.com/photo-1759691337957-ebc9ed54dc44?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxyZW5vdmF0ZWQlMjBhcGFydG1lbnR8ZW58MHx8fHwxNzY4NjQyNzkzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "renovated apartment"
+    },
+    {
+      "id": "montreuil-spec-2",
+      "description": "Chantier de rénovation à Montreuil, soulignant l'enjeu de valorisation du bien.",
+      "imageUrl": "https://images.unsplash.com/photo-1634586648651-f1fb9ec10d90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxyZW5vdmF0aW9uJTIwc2l0ZXxlbnwwfHx8fDE3Njg2NDI3OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "renovation site"
+    },
+    {
+      "id": "montreuil-spec-3",
+      "description": "Transformation d'un ancien atelier en cuisine moderne à Montreuil.",
+      "imageUrl": "https://images.unsplash.com/photo-1610177534644-34d881503b83?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsb2Z0JTIwa2l0Y2hlbnxlbnwwfHx8fDE3Njg2NDI3OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "loft kitchen"
+    },
+    {
+      "id": "montreuil-why-us",
+      "description": "Équipe en réunion de chantier sur un projet de rénovation à Montreuil.",
+      "imageUrl": "https://images.unsplash.com/photo-1709715357510-b687304cee3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0ZWFtJTIwbWVldGluZ3xlbnwwfHx8fDE3Njg1NzMyMjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "team meeting"
+    },
+    {
+      "id": "nanterre-spec-1",
+      "description": "Rénovation d'un appartement moderne à Nanterre, illustrant la diversité du parc immobilier.",
+      "imageUrl": "https://images.unsplash.com/photo-1515263487990-61b07816b324?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBhcGFydG1lbnR8ZW58MHx8fHwxNzY4NTg4Nzg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern apartment"
+    },
+    {
+      "id": "nanterre-spec-2",
+      "description": "Chantier de rénovation à Nanterre, proche de La Défense, un enjeu de valorisation.",
+      "imageUrl": "https://images.unsplash.com/photo-1634586621169-93e12e0bd604?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxyZW5vdmF0aW9uJTIwc2l0ZXxlbnwwfHx8fDE3Njg2NDI3OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "renovation site"
+    },
+    {
+      "id": "nanterre-spec-3",
+      "description": "Intérieur d'un appartement rénové à Nanterre, axé sur le confort et la fonctionnalité.",
+      "imageUrl": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb3p5JTIwaW50ZXJpb3J8ZW58MHx8fHwxNzY4NTUxMDY1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cozy interior"
+    },
+    {
+      "id": "nanterre-why-us",
+      "description": "Chantier de rénovation d'un appartement à Nanterre, montrant l'expertise de l'équipe.",
+      "imageUrl": "https://images.unsplash.com/photo-1561535703-01c6cbc20c82?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y29uc3RydWN0aW9uJTIwdGVhbXxlbnwwfHx8fDE3Njg1OTg1OTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "construction team"
+    },
+    {
+      "id": "seine-saint-denis-spec-1",
+      "description": "Rénovation d'un loft en Seine-Saint-Denis, exemple du parc immobilier hétérogène.",
+      "imageUrl": "https://images.unsplash.com/photo-1741099443106-ee5b6d0c8552?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxsb2Z0JTIwYXBhcnRtZW50fGVufDB8fHx8MTc2ODY0Mjc5NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "loft apartment"
+    },
+    {
+      "id": "seine-saint-denis-spec-2",
+      "description": "Travaux de rénovation en Seine-Saint-Denis, un investissement pour la valorisation.",
+      "imageUrl": "https://images.unsplash.com/photo-1707623988408-ab88c9981730?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxpbnZlc3RtZW50JTIwcHJvcGVydHl8ZW58MHx8fHwxNzY4NjQyNzk0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "investment property"
+    },
+    {
+      "id": "seine-saint-denis-spec-3",
+      "description": "Cuisine sur mesure dans un appartement rénové en Seine-Saint-Denis, optimisant les volumes.",
+      "imageUrl": "https://images.unsplash.com/photo-1624895674048-ab6ed423555e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjdXN0b20lMjBraXRjaGVufGVufDB8fHx8MTc2ODY0Mjc5M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "custom kitchen"
+    },
+    {
+      "id": "seine-saint-denis-why-us",
+      "description": "Réunion de chantier pour un projet de rénovation en Seine-Saint-Denis.",
+      "imageUrl": "https://images.unsplash.com/photo-1760963301666-582b92218a19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb25zdHJ1Y3Rpb24lMjBtZWV0aW5nfGVufDB8fHx8MTc2ODY0Mjc5M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "construction meeting"
+    },
+    {
+      "id": "val-de-marne-spec-1",
+      "description": "Appartement rénové à Vincennes, illustrant le dynamisme du marché immobilier du Val-de-Marne.",
+      "imageUrl": "https://images.unsplash.com/photo-1759691337957-ebc9ed54dc44?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxyZW5vdmF0ZWQlMjBhcGFydG1lbnR8ZW58MHx8fHwxNzY4NjQyNzkzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "renovated apartment"
+    },
+    {
+      "id": "val-de-marne-spec-2",
+      "description": "Chantier de rénovation à Saint-Mandé, montrant l'anticipation des contraintes techniques.",
+      "imageUrl": "https://images.unsplash.com/photo-1768321914136-8329ceafb160?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cmVub3ZhdGlvbiUyMHNpdGV8ZW58MHx8fHwxNzY4NjQyNzkzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "renovation site"
+    },
+    {
+      "id": "val-de-marne-spec-3",
+      "description": "Salle de bain moderne dans une résidence du Val-de-Marne, après rénovation.",
+      "imageUrl": "https://images.unsplash.com/photo-1643949719317-4342d8d4031e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtb2Rlcm4lMjBiYXRocm9vbXxlbnwwfHx8fDE3Njg2Mzk1ODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern bathroom"
+    },
+    {
+      "id": "val-de-marne-why-us",
+      "description": "Cuisine sur mesure installée dans un projet de rénovation dans le Val-de-Marne.",
+      "imageUrl": "https://images.unsplash.com/photo-1715582888585-f357318c0a1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjdXN0b20lMjBraXRjaGVufGVufDB8fHx8MTc2ODY0Mjc5M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "custom kitchen"
+    },
+    {
+      "id": "vincennes-spec-1",
+      "description": "Immeuble de caractère en brique à Vincennes, typique du parc immobilier local.",
+      "imageUrl": "https://images.unsplash.com/photo-1571501679680-de32f1e7aad4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxicmljayUyMGJ1aWxkaW5nfGVufDB8fHx8MTc2ODY0Mjc5M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "brick building"
+    },
+    {
+      "id": "vincennes-spec-2",
+      "description": "Chantier de rénovation à Vincennes avec une attention particulière portée aux finitions.",
+      "imageUrl": "https://images.unsplash.com/photo-1723037970740-def39d9b5ed8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxxdWFsaXR5JTIwZmluaXNofGVufDB8fHx8MTc2ODY0Mjc5NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "quality finish"
+    },
+    {
+      "id": "vincennes-spec-3",
+      "description": "Espace de vie familial optimisé après rénovation dans un appartement à Vincennes.",
+      "imageUrl": "https://images.unsplash.com/photo-1612165747975-e49b923dd294?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmYW1pbHklMjBsaXZpbmd8ZW58MHx8fHwxNzY4NjQyNzkzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "family living"
+    },
+    {
+      "id": "vincennes-why-us",
+      "description": "Chantier de rénovation d'un appartement à Vincennes, illustrant le savoir-faire de l'équipe.",
+      "imageUrl": "https://images.unsplash.com/photo-1563481911853-c14860cd6947?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxyZW5vdmF0aW9uJTIwdGVhbXxlbnwwfHx8fDE3Njg2NDI3OTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "renovation team"
     }
   ]
 }

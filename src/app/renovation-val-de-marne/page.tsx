@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -38,6 +39,7 @@ import {
 import CtaBanner from "@/app/_components/cta-banner";
 import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const PAGE_URL = "https://www.erg-renovation.fr/renovation-val-de-marne";
 const SITE_URL = "https://www.erg-renovation.fr";
@@ -69,7 +71,6 @@ export const metadata: Metadata = {
 };
 
 function JsonLd() {
-  // ✅ LocalBusiness + Service + FAQ (améliore l’éligibilité rich results)
   const localBusiness = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -131,28 +132,21 @@ const valDeMarneSpecificities = [
     title: "Un marché immobilier dynamique",
     description:
       "À Vincennes, Ivry-sur-Seine ou Saint-Mandé, la demande est forte. Une rénovation bien réalisée permet de vendre plus vite et de louer plus facilement.",
-    imageUrl: "https://picsum.photos/seed/9401/800/600",
-    imageAlt:
-      "Rénovation d’un appartement dans le Val-de-Marne avec finitions soignées",
-    imageHint: "renovated apartment",
+    imageId: "val-de-marne-spec-1",
   },
   {
     icon: Hammer,
     title: "Des contraintes techniques à anticiper",
     description:
       "Réseaux parfois vieillissants, isolation insuffisante, règles de copropriété strictes et attentes élevées en matière de finition. L'anticipation est la clé.",
-    imageUrl: "https://picsum.photos/seed/9402/800/600",
-    imageAlt: "Chantier de rénovation intérieure à Vincennes dans le Val-de-Marne",
-    imageHint: "renovation site",
+    imageId: "val-de-marne-spec-2",
   },
   {
     icon: Home,
     title: "Un parc immobilier varié",
     description:
       "Le 94 mêle immeubles anciens proches de Paris, résidences des années 60-90 et logements récents. Chaque projet est une opportunité de moderniser et valoriser.",
-    imageUrl: "https://picsum.photos/seed/9403/800/600",
-    imageAlt: "Rénovation de salle de bain moderne dans un appartement du Val-de-Marne",
-    imageHint: "modern bathroom",
+    imageId: "val-de-marne-spec-3",
   },
 ];
 
@@ -168,14 +162,14 @@ const renovationServices = [
     icon: Bath,
     title: "Rénovation de salle de bain",
     description:
-      "Création de salles de bain modernes et durables : douche à l’italienne, optimisation des petits espaces, étanchéité renforcée et ventilation performante.",
+      "Création de salles de bain modernes, fonctionnelles et durables : douche à l’italienne, optimisation des petits espaces, étanchéité renforcée et ventilation performante.",
     link: "/services/renovation-salle-de-bain",
   },
   {
     icon: UtensilsCrossed,
     title: "Rénovation de cuisine",
     description:
-      "Cuisine ouverte ou fermée : optimisation des volumes, rangements sur mesure et coordination tous corps d’état pour un résultat durable.",
+      "Cuisine ouverte ou fermée, nous optimisons les volumes, créons des rangements sur mesure et coordonnons tous les corps de métier pour un résultat esthétique et durable.",
     link: "/services/renovation-cuisine",
   },
   {
@@ -245,6 +239,7 @@ const cities94 = [
 ];
 
 export default function RenovationValDeMarnePage() {
+  const whyUsImage = PlaceHolderImages.find(p => p.id === 'val-de-marne-why-us');
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <JsonLd />
@@ -253,7 +248,6 @@ export default function RenovationValDeMarnePage() {
       <main className="flex-grow">
         <Breadcrumbs />
 
-        {/* HERO */}
         <section className="bg-secondary py-16 md:py-24">
           <div className="container">
             <div className="mx-auto max-w-4xl text-center">
@@ -304,7 +298,6 @@ export default function RenovationValDeMarnePage() {
           </div>
         </section>
 
-        {/* SPECIFICITES */}
         <AnimatedSection>
           <section className="py-16 md:py-24">
             <div className="container">
@@ -313,41 +306,45 @@ export default function RenovationValDeMarnePage() {
                   Pourquoi rénover un appartement dans le Val-de-Marne ?
                 </h2>
                 <p className="mt-4 text-muted-foreground">
-                  Département stratégique aux portes de Paris : la rénovation y améliore le confort
+                  Département stratégique aux portes de Paris, la rénovation y améliore le confort
                   et valorise durablement votre patrimoine.
                 </p>
               </div>
 
               <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                {valDeMarneSpecificities.map((item) => (
-                  <Card key={item.title} className="overflow-hidden">
-                    <div className="relative h-56 w-full">
-                      <Image
-                        src={item.imageUrl}
-                        alt={item.imageAlt}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={item.imageHint}
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                    </div>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-3">
-                        <item.icon className="h-6 w-6 text-accent" />
-                        {item.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground text-sm">{item.description}</p>
-                    </CardContent>
-                  </Card>
-                ))}
+                {valDeMarneSpecificities.map((item) => {
+                  const image = PlaceHolderImages.find(p => p.id === item.imageId);
+                  return (
+                    <Card key={item.title} className="overflow-hidden">
+                      {image && (
+                        <div className="relative h-56 w-full">
+                          <Image
+                            src={image.imageUrl}
+                            alt={image.description}
+                            fill
+                            className="object-cover"
+                            data-ai-hint={image.imageHint}
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                          />
+                        </div>
+                      )}
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-3">
+                          <item.icon className="h-6 w-6 text-accent" />
+                          {item.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-muted-foreground text-sm">{item.description}</p>
+                      </CardContent>
+                    </Card>
+                  )
+                })}
               </div>
             </div>
           </section>
         </AnimatedSection>
 
-        {/* SERVICES */}
         <AnimatedSection>
           <section className="bg-secondary py-16 md:py-24">
             <div className="container">
@@ -389,21 +386,22 @@ export default function RenovationValDeMarnePage() {
           </section>
         </AnimatedSection>
 
-        {/* POURQUOI NOUS */}
         <AnimatedSection>
           <section className="py-16 md:py-24">
             <div className="container">
               <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div className="relative h-80 md:h-[520px] w-full rounded-xl overflow-hidden">
-                  <Image
-                    src="https://picsum.photos/seed/9404/800/1000"
-                    alt="Rénovation de cuisine sur mesure dans le Val-de-Marne (94)"
-                    fill
-                    className="object-cover"
-                    data-ai-hint="custom kitchen"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
+                {whyUsImage && (
+                  <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
+                    <Image
+                      src={whyUsImage.imageUrl}
+                      alt={whyUsImage.description}
+                      fill
+                      className="object-cover"
+                      data-ai-hint={whyUsImage.imageHint}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                )}
 
                 <div>
                   <h2 className="font-headline text-3xl font-bold">
@@ -438,7 +436,6 @@ export default function RenovationValDeMarnePage() {
           </section>
         </AnimatedSection>
 
-        {/* VILLES */}
         <AnimatedSection>
           <section className="py-16 md:py-24 bg-secondary">
             <div className="container">
@@ -447,7 +444,7 @@ export default function RenovationValDeMarnePage() {
                   Villes d’intervention dans le Val-de-Marne (94)
                 </h2>
                 <p className="mt-4 text-muted-foreground">
-                  Nous couvrons l’ensemble du département. Sélectionnez une ville (si page dédiée disponible).
+                  Nous couvrons l’ensemble du département.
                 </p>
               </div>
 
@@ -472,17 +469,10 @@ export default function RenovationValDeMarnePage() {
                   )
                 )}
               </div>
-
-              <div className="mt-10 text-center">
-                <Button asChild size="lg">
-                  <Link href="/devis">Obtenir une estimation</Link>
-                </Button>
-              </div>
             </div>
           </section>
         </AnimatedSection>
 
-        {/* FAQ */}
         <AnimatedSection>
           <section className="py-16 md:py-24">
             <div className="container max-w-3xl mx-auto">
@@ -510,7 +500,6 @@ export default function RenovationValDeMarnePage() {
 
         <CtaBanner />
       </main>
-
       <SiteFooter />
     </div>
   );

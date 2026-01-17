@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
 import {
   CheckCircle,
   Home,
@@ -29,6 +28,7 @@ import Breadcrumbs from "@/components/breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
 import { InternalLinksCity92 } from "../renovation-hauts-de-seine/_components/internal-links";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Boulogne-Billancourt (92100) | ERG Rénovation",
@@ -70,22 +70,19 @@ const boulogneSpecificities = [
         icon: Building2,
         title: "Un parc immobilier dense et varié",
         description: "À Boulogne, les immeubles anciens côtoient des résidences modernes. Chaque projet demande une approche technique adaptée, que nous maîtrisons.",
-        imageUrl: "https://picsum.photos/seed/92101/800/600",
-        imageAlt: "Rénovation d’un appartement à Boulogne-Billancourt avec finitions haut de gamme"
+        imageId: "boulogne-spec-1"
     },
     {
         icon: Hammer,
         title: "Des attentes élevées en finition",
         description: "Les propriétaires boulonnais sont particulièrement attentifs à la qualité des matériaux et aux détails de finition. Notre exigence est notre norme.",
-        imageUrl: "https://picsum.photos/seed/92102/800/600",
-        imageAlt: "Chantier de rénovation intérieure à Boulogne-Billancourt dans les Hauts-de-Seine"
+        imageId: "boulogne-spec-2"
     },
     {
         icon: Home,
         title: "Un enjeu patrimonial fort",
         description: "Rénover à Boulogne-Billancourt, c'est investir pour valoriser durablement son patrimoine sur un marché immobilier très recherché.",
-        imageUrl: "https://picsum.photos/seed/92103/800/600",
-        imageAlt: "Cuisine moderne rénovée dans un appartement à Boulogne-Billancourt"
+        imageId: "boulogne-spec-3"
     }
 ];
 
@@ -172,6 +169,7 @@ export default function RenovationBoulognePage() {
     ]);
 
     const faq = buildFaqJsonLd(faqItems);
+    const whyUsImage = PlaceHolderImages.find(p => p.id === 'nanterre-why-us');
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -214,22 +212,27 @@ export default function RenovationBoulognePage() {
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {boulogneSpecificities.map(item => (
-                        <Card key={item.title} className="overflow-hidden">
-                            <div className="relative h-56 w-full">
-                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover" data-ai-hint={item.title.toLowerCase()} />
-                            </div>
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-3">
-                                    <item.icon className="h-6 w-6 text-accent"/>
-                                    {item.title}
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-muted-foreground text-sm">{item.description}</p>
-                            </CardContent>
-                        </Card>
-                    ))}
+                    {boulogneSpecificities.map(item => {
+                        const image = PlaceHolderImages.find(p => p.id === item.imageId);
+                        return (
+                            <Card key={item.title} className="overflow-hidden">
+                                {image && (
+                                  <div className="relative h-56 w-full">
+                                      <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
+                                  </div>
+                                )}
+                                <CardHeader>
+                                    <CardTitle className="flex items-center gap-3">
+                                        <item.icon className="h-6 w-6 text-accent"/>
+                                        {item.title}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-muted-foreground text-sm">{item.description}</p>
+                                </CardContent>
+                            </Card>
+                        )
+                    })}
                 </div>
             </div>
         </section>
@@ -272,9 +275,11 @@ export default function RenovationBoulognePage() {
         <section className="py-16 md:py-24">
             <div className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
-                        <Image src="https://picsum.photos/seed/92104/800/1000" alt="Chantier de rénovation d'un appartement à Boulogne-Billancourt" fill className="object-cover" data-ai-hint="renovation site" />
-                    </div>
+                    {whyUsImage && (
+                      <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
+                          <Image src={whyUsImage.imageUrl} alt={whyUsImage.description} fill className="object-cover" data-ai-hint={whyUsImage.imageHint} />
+                      </div>
+                    )}
                     <div>
                         <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation à Boulogne-Billancourt ?</h2>
                         <div className="mt-8 space-y-6">

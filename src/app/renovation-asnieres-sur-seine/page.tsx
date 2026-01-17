@@ -29,6 +29,7 @@ import Breadcrumbs from "@/components/breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
 import { InternalLinksCity92 } from "../renovation-hauts-de-seine/_components/internal-links";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Asnières-sur-Seine (92600) | ERG Rénovation",
@@ -55,25 +56,19 @@ const asnieresSpecificities = [
         icon: Building2,
         title: "Un parc immobilier majoritairement ancien",
         description: "À Asnières, les immeubles des années 1900 à 1980 sont nombreux. La rénovation y est cruciale pour moderniser, isoler et sécuriser les logements.",
-        imageUrl: "https://picsum.photos/seed/92601/800/600",
-        imageAlt: "Rénovation d'un appartement à Asnières-sur-Seine avec finitions soignées",
-        imageHint: "renovated apartment"
+        imageId: "asnieres-spec-1"
     },
     {
         icon: Hammer,
         title: "Un fort impact sur la valeur",
         description: "Dans cette ville en plein essor, une rénovation bien menée augmente le confort de vie et représente un investissement pertinent pour la valorisation du bien.",
-        imageUrl: "https://picsum.photos/seed/92602/800/600",
-        imageAlt: "Chantier de rénovation intérieure à Asnières-sur-Seine dans les Hauts-de-Seine",
-        imageHint: "renovation site"
+        imageId: "asnieres-spec-2"
     },
     {
         icon: Home,
         title: "Une demande forte pour les logements familiaux",
         description: "Les familles recherchent des espaces fonctionnels, lumineux et dotés de rangements optimisés, avec des finitions propres et durables.",
-        imageUrl: "https://picsum.photos/seed/92603/800/600",
-        imageAlt: "Cuisine moderne rénovée dans un appartement à Asnières-sur-Seine",
-        imageHint: "modern kitchen"
+        imageId: "asnieres-spec-3"
     }
 ];
 
@@ -160,6 +155,7 @@ export default function RenovationAsnieresPage() {
   ]);
 
   const faq = buildFaqJsonLd(faqItems);
+  const whyUsImage = PlaceHolderImages.find(p => p.id === 'renovation-site');
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -202,11 +198,15 @@ export default function RenovationAsnieresPage() {
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {asnieresSpecificities.map(item => (
+                    {asnieresSpecificities.map(item => {
+                      const image = PlaceHolderImages.find(p => p.id === item.imageId);
+                      return (
                         <Card key={item.title} className="overflow-hidden">
-                            <div className="relative h-56 w-full">
-                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover" data-ai-hint={item.imageHint} />
-                            </div>
+                            {image && (
+                              <div className="relative h-56 w-full">
+                                  <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
+                              </div>
+                            )}
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-3">
                                     <item.icon className="h-6 w-6 text-accent"/>
@@ -217,7 +217,8 @@ export default function RenovationAsnieresPage() {
                                 <p className="text-muted-foreground text-sm">{item.description}</p>
                             </CardContent>
                         </Card>
-                    ))}
+                      )
+                    })}
                 </div>
             </div>
         </section>
@@ -260,9 +261,11 @@ export default function RenovationAsnieresPage() {
         <section className="py-16 md:py-24">
             <div className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
-                        <Image src="https://picsum.photos/seed/92604/800/1000" alt="Chantier de rénovation d'un appartement à Asnières-sur-Seine" fill className="object-cover" data-ai-hint="renovation site" />
-                    </div>
+                    {whyUsImage && (
+                      <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
+                          <Image src={whyUsImage.imageUrl} alt={whyUsImage.description} fill className="object-cover" data-ai-hint={whyUsImage.imageHint} />
+                      </div>
+                    )}
                     <div>
                         <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation à Asnières-sur-Seine ?</h2>
                         <div className="mt-8 space-y-6">

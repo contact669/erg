@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -27,6 +28,7 @@ import CtaBanner from "@/app/_components/cta-banner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const BRAND = "ERG Rénovation";
 const SITE_URL = "https://www.erg-renovation.fr";
@@ -60,7 +62,6 @@ export const metadata: Metadata = {
 };
 
 function JsonLd() {
-  // ✅ Minimal & “rich-results-ready” (sans surcharger)
   const graph = [
     {
       "@context": "https://schema.org",
@@ -118,27 +119,21 @@ const proofCards = [
     title: "Parc immobilier hétérogène",
     description:
       "Logements anciens, copropriétés et résidences récentes : nous adaptons les solutions (réseaux, isolation, distribution, finitions).",
-    imageUrl: "https://picsum.photos/seed/9301/900/650",
-    imageAlt: "Rénovation d’un appartement en Seine-Saint-Denis (93) avec finitions soignées",
-    hint: "renovated apartment",
+    imageId: "seine-saint-denis-spec-1",
   },
   {
     icon: Sparkles,
     title: "Valorisation rentable",
     description:
       "Une rénovation maîtrisée améliore l’attractivité locative, sécurise une revente et augmente le confort au quotidien.",
-    imageUrl: "https://picsum.photos/seed/9302/900/650",
-    imageAlt: "Travaux de rénovation intérieure en Seine-Saint-Denis (93)",
-    hint: "renovation site",
+    imageId: "seine-saint-denis-spec-2",
   },
   {
     icon: Home,
     title: "Optimisation des volumes",
     description:
       "Réagencement, rangements, lumière, circulation : on transforme des contraintes en espaces de vie fonctionnels et durables.",
-    imageUrl: "https://picsum.photos/seed/9303/900/650",
-    imageAlt: "Cuisine rénovée sur mesure en Seine-Saint-Denis (93)",
-    hint: "custom kitchen",
+    imageId: "seine-saint-denis-spec-3",
   },
 ];
 
@@ -227,6 +222,8 @@ const cities = [
 ];
 
 export default function RenovationSeineSaintDenisPage() {
+  const whyUsImage = PlaceHolderImages.find(p => p.id === 'seine-saint-denis-why-us');
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <JsonLd />
@@ -235,7 +232,6 @@ export default function RenovationSeineSaintDenisPage() {
       <main className="flex-grow">
         <Breadcrumbs />
 
-        {/* HERO — épuré + conversion */}
         <section className="border-b bg-secondary">
           <div className="container py-16 md:py-24">
             <div className="mx-auto max-w-4xl text-center">
@@ -288,7 +284,6 @@ export default function RenovationSeineSaintDenisPage() {
           </div>
         </section>
 
-        {/* PREUVES / CONTEXTE LOCAL — 3 cartes visuelles */}
         <AnimatedSection>
           <section className="py-16 md:py-24">
             <div className="container">
@@ -303,35 +298,39 @@ export default function RenovationSeineSaintDenisPage() {
               </div>
 
               <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                {proofCards.map((item) => (
-                  <Card key={item.title} className="overflow-hidden">
-                    <div className="relative h-56 w-full">
-                      <Image
-                        src={item.imageUrl}
-                        alt={item.imageAlt}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={item.hint}
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                    </div>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-3">
-                        <item.icon className="h-6 w-6 text-accent" />
-                        {item.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground text-sm">{item.description}</p>
-                    </CardContent>
-                  </Card>
-                ))}
+                {proofCards.map((item) => {
+                  const image = PlaceHolderImages.find(p => p.id === item.imageId);
+                  return (
+                    <Card key={item.title} className="overflow-hidden">
+                      {image && (
+                        <div className="relative h-56 w-full">
+                          <Image
+                            src={image.imageUrl}
+                            alt={image.description}
+                            fill
+                            className="object-cover"
+                            data-ai-hint={image.imageHint}
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                          />
+                        </div>
+                      )}
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-3">
+                          <item.icon className="h-6 w-6 text-accent" />
+                          {item.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-muted-foreground text-sm">{item.description}</p>
+                      </CardContent>
+                    </Card>
+                  )
+                })}
               </div>
             </div>
           </section>
         </AnimatedSection>
 
-        {/* SERVICES — bloc clair, orienté intention */}
         <AnimatedSection>
           <section className="bg-secondary py-16 md:py-24 border-y">
             <div className="container">
@@ -372,22 +371,22 @@ export default function RenovationSeineSaintDenisPage() {
           </section>
         </AnimatedSection>
 
-        {/* WHY US — 2 colonnes + image, très propre */}
         <AnimatedSection>
           <section className="py-16 md:py-24">
             <div className="container">
               <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div className="relative h-80 md:h-[520px] w-full rounded-xl overflow-hidden">
-                  <Image
-                    src="https://picsum.photos/seed/9304/900/1100"
-                    alt="Réunion de chantier et coordination travaux en Seine-Saint-Denis (93)"
-                    fill
-                    className="object-cover"
-                    data-ai-hint="construction meeting"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-
+                {whyUsImage && (
+                  <div className="relative h-80 md:h-[520px] w-full rounded-xl overflow-hidden">
+                    <Image
+                      src={whyUsImage.imageUrl}
+                      alt={whyUsImage.description}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      data-ai-hint={whyUsImage.imageHint}
+                    />
+                  </div>
+                )}
                 <div>
                   <h2 className="font-headline text-3xl font-bold">
                     Une rénovation maîtrisée, du devis aux finitions
@@ -431,7 +430,6 @@ export default function RenovationSeineSaintDenisPage() {
           </section>
         </AnimatedSection>
 
-        {/* VILLES — UX simple : liens seulement si pages dispo */}
         <AnimatedSection>
           <section className="bg-secondary py-16 md:py-24 border-y">
             <div className="container">
@@ -476,7 +474,6 @@ export default function RenovationSeineSaintDenisPage() {
           </section>
         </AnimatedSection>
 
-        {/* FAQ — concise, orientée conversion */}
         <AnimatedSection>
           <section className="py-16 md:py-24">
             <div className="container max-w-3xl mx-auto">

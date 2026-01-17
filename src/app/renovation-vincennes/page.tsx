@@ -26,6 +26,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CtaBanner from "@/app/_components/cta-banner";
 import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Vincennes (94300) | ERG Rénovation",
@@ -101,22 +102,19 @@ const vincennesSpecificities = [
         icon: Building2,
         title: "Un parc immobilier de caractère",
         description: "Vincennes mêle immeubles anciens en brique ou pierre et résidences de standing. Une rénovation réussie doit respecter ce cachet tout en modernisant l'intérieur.",
-        imageUrl: "https://picsum.photos/seed/94301/800/600",
-        imageAlt: "Rénovation d’un appartement à Vincennes avec finitions soignées"
+        imageId: "vincennes-spec-1"
     },
     {
         icon: Hammer,
         title: "Des attentes élevées en finitions",
         description: "Les propriétaires vincennois sont particulièrement attentifs à la qualité des matériaux, aux détails de finition et à la durabilité des travaux. L'exigence est notre norme.",
-        imageUrl: "https://picsum.photos/seed/94302/800/600",
-        imageAlt: "Chantier de rénovation intérieure à Vincennes (94300)"
+        imageId: "vincennes-spec-2"
     },
     {
         icon: Home,
         title: "L'optimisation des espaces familiaux",
         description: "La rénovation est souvent l'occasion d'optimiser l'agencement pour une vie de famille plus confortable : cuisine ouverte, suite parentale, rangements sur mesure.",
-        imageUrl: "https://picsum.photos/seed/94303/800/600",
-        imageAlt: "Cuisine moderne rénovée dans un appartement à Vincennes"
+        imageId: "vincennes-spec-3"
     }
 ];
 
@@ -185,6 +183,7 @@ const faqItems = [
 ];
 
 export default function RenovationVincennesPage() {
+  const whyUsImage = PlaceHolderImages.find(p => p.id === 'vincennes-why-us');
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <JsonLd />
@@ -226,22 +225,27 @@ export default function RenovationVincennesPage() {
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {vincennesSpecificities.map(item => (
-                        <Card key={item.title} className="overflow-hidden">
-                            <div className="relative h-56 w-full">
-                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover" data-ai-hint={item.title.toLowerCase()} />
-                            </div>
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-3">
-                                    <item.icon className="h-6 w-6 text-accent"/>
-                                    {item.title}
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-muted-foreground text-sm">{item.description}</p>
-                            </CardContent>
-                        </Card>
-                    ))}
+                    {vincennesSpecificities.map(item => {
+                        const image = PlaceHolderImages.find(p => p.id === item.imageId);
+                        return (
+                            <Card key={item.title} className="overflow-hidden">
+                                {image && (
+                                  <div className="relative h-56 w-full">
+                                      <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
+                                  </div>
+                                )}
+                                <CardHeader>
+                                    <CardTitle className="flex items-center gap-3">
+                                        <item.icon className="h-6 w-6 text-accent"/>
+                                        {item.title}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-muted-foreground text-sm">{item.description}</p>
+                                </CardContent>
+                            </Card>
+                        )
+                    })}
                 </div>
             </div>
         </section>
@@ -284,9 +288,11 @@ export default function RenovationVincennesPage() {
         <section className="py-16 md:py-24">
             <div className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
-                        <Image src="https://picsum.photos/seed/94304/800/1000" alt="Chantier de rénovation d'un appartement à Vincennes" fill className="object-cover" data-ai-hint="renovation site" />
-                    </div>
+                    {whyUsImage && (
+                      <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
+                          <Image src={whyUsImage.imageUrl} alt={whyUsImage.description} fill className="object-cover" data-ai-hint={whyUsImage.imageHint} />
+                      </div>
+                    )}
                     <div>
                         <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation à Vincennes ?</h2>
                         <div className="mt-8 space-y-6">

@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
 import {
   CheckCircle,
   Home,
@@ -26,6 +25,9 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CtaBanner from "@/app/_components/cta-banner";
 import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
+import JsonLd from "@/components/JsonLd";
+import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Montreuil (93100) | ERG Rénovation",
@@ -53,42 +55,6 @@ export const metadata: Metadata = {
   },
 };
 
-function JsonLd() {
-    const jsonLd = {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "ERG Rénovation",
-      "url": "https://www.erg-renovation.fr",
-      "telephone": "+33699961375",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "1 Sent. de la Pointe",
-        "addressLocality": "Paris",
-        "postalCode": "75020",
-        "addressCountry": "FR"
-      },
-      "priceRange": "€€",
-      "areaServed": {
-        "@type": "City",
-        "name": "Montreuil"
-      },
-      "serviceType": [
-        "Rénovation d’appartement",
-        "Rénovation de salle de bain",
-        "Rénovation de cuisine",
-        "Travaux tous corps d’état",
-      ],
-      "description": "ERG Rénovation, entreprise spécialisée en rénovation d'appartements à Montreuil (93100). Devis gratuit, garantie décennale."
-    };
-    return (
-        <Script
-            id="jsonld-renovation-montreuil"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-    )
-}
-
 const heroPoints = [
     { text: "Intervention rapide à Montreuil" },
     { text: "Visite sur site gratuite" },
@@ -101,25 +67,19 @@ const montreuilSpecificities = [
         icon: Building2,
         title: "Un parc immobilier hétérogène",
         description: "À Montreuil, les logements anciens côtoient des constructions plus récentes, présentant des défis uniques : réseaux à moderniser, isolation à repenser et distributions à optimiser.",
-        imageUrl: "https://picsum.photos/seed/93101/800/600",
-        imageAlt: "Rénovation d’un appartement à Montreuil avec finitions soignées",
-        imageHint: "renovated apartment"
+        imageId: "montreuil-spec-1"
     },
     {
         icon: Hammer,
         title: "Un fort enjeu de valorisation",
         description: "Dans cette ville dynamique, une rénovation de qualité est un investissement stratégique pour améliorer l'attractivité locative, faciliter une revente ou simplement améliorer son confort de vie.",
-        imageUrl: "https://picsum.photos/seed/93102/800/600",
-        imageAlt: "Chantier de rénovation intérieure à Montreuil en Seine-Saint-Denis",
-        imageHint: "renovation site"
+        imageId: "montreuil-spec-2"
     },
     {
         icon: Home,
         title: "Le potentiel des volumes",
         description: "Anciens ateliers ou appartements familiaux, Montreuil offre de belles opportunités de transformation. Une rénovation bien pensée permet de créer des espaces de vie modernes et fonctionnels.",
-        imageUrl: "https://picsum.photos/seed/93103/800/600",
-        imageAlt: "Rénovation de cuisine sur mesure à Montreuil (93100)",
-        imageHint: "custom kitchen"
+        imageId: "montreuil-spec-3"
     }
 ];
 
@@ -170,27 +130,47 @@ const whyChooseUs = [
 
 const faqItems = [
     {
-        question: "Quel est le prix d’une rénovation à Montreuil ?",
-        answer: "Les prix varient selon la surface, l'état du logement et le niveau de prestation. À titre indicatif, comptez à partir de 700 €/m² pour une rénovation partielle et entre 1 000 et 1 500 €/m² pour une rénovation complète. Un devis précis nécessite une visite sur site."
+        q: "Quel est le prix d’une rénovation à Montreuil ?",
+        a: "Les prix varient selon la surface, l'état du logement et le niveau de prestation. À titre indicatif, comptez à partir de 700 €/m² pour une rénovation partielle et entre 1 000 et 1 500 €/m² pour une rénovation complète. Un devis précis nécessite une visite sur site."
     },
     {
-        question: "Quels sont les délais moyens ?",
-        answer: "Une salle de bain se rénove en 2 à 4 semaines, tandis qu'une rénovation complète d'appartement prend de 6 à 12 semaines. Les délais sont contractualisés avant le début des travaux."
+        q: "Quels sont les délais moyens ?",
+        a: "Une salle de bain se rénove en 2 à 4 semaines, tandis qu'une rénovation complète d'appartement prend de 6 à 12 semaines. Les délais sont contractualisés avant le début des travaux."
     },
     {
-        question: "Faut-il l’accord de la copropriété ?",
-        answer: "Oui, un accord est souvent nécessaire pour les travaux touchant aux réseaux, aux murs porteurs ou à la ventilation. Nous vous accompagnons dans ces démarches pour sécuriser votre projet."
+        q: "Faut-il l’accord de la copropriété ?",
+        a: "Oui, un accord est souvent nécessaire pour les travaux touchant aux réseaux, aux murs porteurs ou à la ventilation. Nous vous accompagnons dans ces démarches pour sécuriser votre projet."
     },
     {
-        question: "Peut-on rénover un logement occupé ?",
-        answer: "Oui, c'est possible. Dans ce cas, nous adaptons l'organisation du chantier en planifiant les interventions par phases pour limiter au maximum les nuisances."
+        q: "Peut-on rénover un logement occupé ?",
+        a: "Oui, c'est possible. Dans ce cas, nous adaptons l'organisation du chantier en planifiant les interventions par phases pour limiter au maximum les nuisances."
     }
 ];
 
+const SITE_URL = "https://www.erg-renovation.fr";
+
 export default function RenovationMontreuilPage() {
+    const service = buildServiceJsonLd({
+        businessName: "ERG Rénovation",
+        siteUrl: SITE_URL,
+        url: "/renovation-montreuil",
+        city: "Montreuil",
+        postalCode: "93100",
+        serviceType: "Rénovation intérieure",
+    });
+
+    const breadcrumb = buildBreadcrumbJsonLd(SITE_URL, [
+        { name: "Accueil", url: "/" },
+        { name: "Seine-Saint-Denis (93)", url: "/renovation-seine-saint-denis" },
+        { name: "Montreuil", url: "/renovation-montreuil" },
+    ]);
+    
+    const faq = buildFaqJsonLd(faqItems);
+    const whyUsImage = PlaceHolderImages.find(p => p.id === 'montreuil-why-us');
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <JsonLd />
+      <JsonLd id="jsonld-montreuil" data={[service, breadcrumb, faq]} />
       <SiteHeader />
       <main className="flex-grow">
         <Breadcrumbs />
@@ -229,22 +209,27 @@ export default function RenovationMontreuilPage() {
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {montreuilSpecificities.map(item => (
-                        <Card key={item.title} className="overflow-hidden">
-                            <div className="relative h-56 w-full">
-                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover" data-ai-hint={item.imageHint} />
-                            </div>
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-3">
-                                    <item.icon className="h-6 w-6 text-accent"/>
-                                    {item.title}
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-muted-foreground text-sm">{item.description}</p>
-                            </CardContent>
-                        </Card>
-                    ))}
+                    {montreuilSpecificities.map(item => {
+                        const image = PlaceHolderImages.find(p => p.id === item.imageId);
+                        return (
+                            <Card key={item.title} className="overflow-hidden">
+                                {image && (
+                                  <div className="relative h-56 w-full">
+                                      <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
+                                  </div>
+                                )}
+                                <CardHeader>
+                                    <CardTitle className="flex items-center gap-3">
+                                        <item.icon className="h-6 w-6 text-accent"/>
+                                        {item.title}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-muted-foreground text-sm">{item.description}</p>
+                                </CardContent>
+                            </Card>
+                        )
+                    })}
                 </div>
             </div>
         </section>
@@ -287,9 +272,11 @@ export default function RenovationMontreuilPage() {
         <section className="py-16 md:py-24">
             <div className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
-                        <Image src="https://picsum.photos/seed/93104/800/1000" alt="Chantier de rénovation d'un appartement à Montreuil" fill className="object-cover" data-ai-hint="renovation site" />
-                    </div>
+                    {whyUsImage && (
+                      <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
+                          <Image src={whyUsImage.imageUrl} alt={whyUsImage.description} fill className="object-cover" data-ai-hint={whyUsImage.imageHint} />
+                      </div>
+                    )}
                     <div>
                         <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation à Montreuil ?</h2>
                         <div className="mt-8 space-y-6">
@@ -320,8 +307,8 @@ export default function RenovationMontreuilPage() {
                 <Accordion type="single" collapsible className="w-full mt-8">
                     {faqItems.map((item, index) => (
                         <AccordionItem value={`item-${index}`} key={index}>
-                            <AccordionTrigger className="text-left font-semibold text-lg">{item.question}</AccordionTrigger>
-                            <AccordionContent className="text-muted-foreground">{item.answer}</AccordionContent>
+                            <AccordionTrigger className="text-left font-semibold text-lg">{item.q}</AccordionTrigger>
+                            <AccordionContent className="text-muted-foreground">{item.a}</AccordionContent>
                         </AccordionItem>
                     ))}
                 </Accordion>

@@ -27,6 +27,7 @@ import Breadcrumbs from "@/components/breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
 import { InternalLinksHautsDeSeine } from "@/app/renovation-hauts-de-seine/_components/internal-links";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Hauts-de-Seine (92) | ERG Rénovation",
@@ -66,22 +67,19 @@ const hautsDeSeineSpecificities = [
         icon: Building2,
         title: "Un marché immobilier exigeant",
         description: "À Boulogne-Billancourt, Courbevoie, ou Neuilly, la rénovation est un levier clé pour augmenter la valeur du bien, améliorer la performance énergétique et répondre aux attentes des acquéreurs.",
-        imageUrl: "https://picsum.photos/seed/9201/800/600",
-        imageAlt: "Rénovation d’un appartement dans les Hauts-de-Seine avec finitions soignées"
+        imageId: "hauts-de-seine-spec-1"
     },
     {
         icon: Hammer,
         title: "Des contraintes techniques spécifiques",
         description: "Réseaux parfois anciens, copropriétés structurées, normes acoustiques strictes et attentes élevées en matière de finition nécessitent méthode, expertise et coordination.",
-        imageUrl: "https://picsum.photos/seed/9202/800/600",
-        imageAlt: "Chantier de rénovation intérieure dans les Hauts-de-Seine (92)"
+        imageId: "hauts-de-seine-spec-2"
     },
     {
         icon: Home,
         title: "Un patrimoine immobilier varié",
         description: "Le 92 mêle immeubles anciens, résidences des années 60-80 et constructions récentes. Chaque projet est une occasion de moderniser tout en respectant le caractère du lieu.",
-        imageUrl: "https://picsum.photos/seed/9203/800/600",
-        imageAlt: "Rénovation de salle de bain moderne dans un appartement des Hauts-de-Seine"
+        imageId: "hauts-de-seine-spec-3"
     }
 ];
 
@@ -166,6 +164,7 @@ export default function RenovationHautsDeSeinePage() {
   ]);
 
   const faq = buildFaqJsonLd(faqItems);
+  const whyUsImage = PlaceHolderImages.find(p => p.id === 'hauts-de-seine-why-us');
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -208,22 +207,27 @@ export default function RenovationHautsDeSeinePage() {
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {hautsDeSeineSpecificities.map(item => (
-                        <Card key={item.title} className="overflow-hidden">
-                            <div className="relative h-56 w-full">
-                                <Image src={item.imageUrl} alt={item.imageAlt} fill className="object-cover"/>
-                            </div>
-                            <CardHeader>
-                                <CardTitle className="flex items-center gap-3">
-                                    <item.icon className="h-6 w-6 text-accent"/>
-                                    {item.title}
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-muted-foreground text-sm">{item.description}</p>
-                            </CardContent>
-                        </Card>
-                    ))}
+                    {hautsDeSeineSpecificities.map(item => {
+                        const image = PlaceHolderImages.find(p => p.id === item.imageId);
+                        return (
+                            <Card key={item.title} className="overflow-hidden">
+                                {image && (
+                                    <div className="relative h-56 w-full">
+                                        <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
+                                    </div>
+                                )}
+                                <CardHeader>
+                                    <CardTitle className="flex items-center gap-3">
+                                        <item.icon className="h-6 w-6 text-accent"/>
+                                        {item.title}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-muted-foreground text-sm">{item.description}</p>
+                                </CardContent>
+                            </Card>
+                        )
+                    })}
                 </div>
             </div>
         </section>
@@ -266,9 +270,11 @@ export default function RenovationHautsDeSeinePage() {
         <section className="py-16 md:py-24">
             <div className="container">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
-                        <Image src="https://picsum.photos/seed/9204/800/1000" alt="Exemple de projet de rénovation à Boulogne-Billancourt" fill className="object-cover"/>
-                    </div>
+                    {whyUsImage && (
+                        <div className="relative h-80 md:h-[500px] w-full rounded-xl overflow-hidden">
+                            <Image src={whyUsImage.imageUrl} alt={whyUsImage.description} fill className="object-cover" data-ai-hint={whyUsImage.imageHint} />
+                        </div>
+                    )}
                     <div>
                         <h2 className="font-headline text-3xl font-bold">Pourquoi choisir ERG Rénovation dans les Hauts-de-Seine ?</h2>
                         <div className="mt-8 space-y-6">
@@ -320,5 +326,3 @@ export default function RenovationHautsDeSeinePage() {
     </div>
   );
 }
-
-    

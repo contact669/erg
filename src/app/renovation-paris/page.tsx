@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -38,6 +39,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const BRAND = "ERG Rénovation";
 const SITE_URL = "https://www.erg-renovation.fr";
@@ -71,7 +73,6 @@ export const metadata: Metadata = {
 };
 
 function JsonLd({ faqs }: { faqs: { q: string; a: string }[] }) {
-  // ✅ WebPage + LocalBusiness + FAQPage (rich results)
   const webPage = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -144,27 +145,21 @@ const parisProof = [
     title: "Bâti ancien, diagnostic précis",
     description:
       "Haussmanniens, planchers bois, murs porteurs, réseaux à remettre aux normes : une rénovation à Paris commence par l’analyse technique.",
-    imageUrl: "/images/realisations/renovation-appartement-65m2-apres.webp",
-    imageAlt: "Rénovation d’un appartement haussmannien à Paris avec finitions soignées",
-    hint: "haussmann apartment",
+    imageId: "project-apartment-2",
   },
   {
     icon: Home,
     title: "Copropriété et règles à respecter",
     description:
       "Réseaux, ventilation, évacuation, nuisances : nous vous aidons à sécuriser le dossier syndic et à organiser un chantier propre.",
-    imageUrl: "/images/realisations-erg.webp",
-    imageAlt: "Chantier de rénovation intérieure d’un appartement à Paris",
-    hint: "renovation site",
+    imageId: "about-story",
   },
   {
     icon: Sparkles,
     title: "Optimisation des m²",
     description:
       "Circulation, rangements, lumière, finitions : on valorise chaque mètre carré pour un confort durable et une meilleure valeur du bien.",
-    imageUrl: "/images/realisations/renovation-cuisine-apres.webp",
-    imageAlt: "Rénovation de cuisine sur mesure dans un appartement à Paris",
-    hint: "custom kitchen",
+    imageId: "project-kitchen-1",
   },
 ];
 
@@ -173,29 +168,29 @@ const services = [
     icon: Building2,
     title: "Rénovation complète d’appartement",
     description:
-      "Redistribution, électricité, plomberie, isolation, sols, peinture : un projet clé en main, piloté du devis à la livraison.",
-    href: "/services/renovation-appartement",
+      "Idéal pour un achat avec travaux, votre résidence principale ou un investissement locatif. Nos prestations incluent démolition, redistribution des espaces, électricité, plomberie, isolation et finitions haut de gamme. Un projet clé en main, de la conception à la livraison.",
+    link: "/services/renovation-appartement",
   },
   {
     icon: Bath,
-    title: "Rénovation de salle de bain",
+    title: "Rénovation de salle de bain à Paris",
     description:
-      "Douche à l’italienne, étanchéité, ventilation, optimisation petite surface : une salle de bain fiable et élégante.",
-    href: "/services/renovation-salle-de-bain",
+      "Spécialistes des petites surfaces parisiennes, nous concevons des salles de bain fonctionnelles, durables et esthétiques : douche à l’italienne, meubles sur mesure, étanchéité renforcée, ventilation performante.",
+    link: "/services/renovation-salle-de-bain",
   },
   {
     icon: UtensilsCrossed,
     title: "Rénovation de cuisine",
     description:
-      "Cuisine ouverte/fermée : circulation, rangements intelligents, coordination menuiserie/plomberie/électricité.",
-    href: "/services/renovation-cuisine",
+      "Cuisine ouverte, semi-ouverte ou fermée. Nous optimisons les circulations, créons des rangements intelligents et coordonnons menuiserie, plomberie et électricité pour un résultat cohérent et durable.",
+    link: "/services/renovation-cuisine",
   },
   {
-    icon: Sparkles,
-    title: "Rénovation partielle & aménagement",
+    icon: Hammer,
+    title: "Rénovation partielle & aménagement intérieur",
     description:
-      "Rafraîchissement, redistribution, rangements sur mesure : valoriser sans tout refaire.",
-    href: "/services",
+      "Pour un simple rafraîchissement, une redistribution de pièces, la création de rangements sur mesure ou l'optimisation de petits espaces, nous mettons notre expertise à votre service.",
+    link: "/services",
   },
 ];
 
@@ -245,6 +240,7 @@ const arrondissements = Array.from({ length: 20 }, (_, i) => i + 1).map((n) => (
 }));
 
 export default function RenovationParisPage() {
+  const whyUsImage = PlaceHolderImages.find(p => p.id === 'about-hero');
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <JsonLd faqs={faqs} />
@@ -253,8 +249,7 @@ export default function RenovationParisPage() {
       <main className="flex-grow">
         <Breadcrumbs />
 
-        {/* HERO — au-dessus de la ligne de flottaison, preuve + CTA */}
-        <section className="bg-secondary border-b">
+        <section className="border-b bg-secondary">
           <div className="container py-16 md:py-24">
             <div className="mx-auto max-w-4xl text-center">
               <p className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-sm font-medium text-foreground/80">
@@ -306,7 +301,6 @@ export default function RenovationParisPage() {
           </div>
         </section>
 
-        {/* PREUVES — 3 cartes visuelles, texte court et utile */}
         <AnimatedSection>
           <section className="py-16 md:py-24">
             <div className="container">
@@ -321,35 +315,39 @@ export default function RenovationParisPage() {
               </div>
 
               <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                {parisProof.map((item) => (
-                  <Card key={item.title} className="overflow-hidden">
-                    <div className="relative h-56 w-full">
-                      <Image
-                        src={item.imageUrl}
-                        alt={item.imageAlt}
-                        fill
-                        className="object-cover"
-                        data-ai-hint={item.hint}
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                    </div>
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-3">
-                        <item.icon className="h-6 w-6 text-accent" />
-                        {item.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground text-sm">{item.description}</p>
-                    </CardContent>
-                  </Card>
-                ))}
+                {parisProof.map((item) => {
+                  const image = PlaceHolderImages.find(p => p.id === item.imageId);
+                  return (
+                    <Card key={item.title} className="overflow-hidden">
+                      {image && (
+                        <div className="relative h-56 w-full">
+                          <Image
+                            src={image.imageUrl}
+                            alt={image.description}
+                            fill
+                            className="object-cover"
+                            data-ai-hint={image.imageHint}
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                          />
+                        </div>
+                      )}
+                      <CardHeader>
+                        <CardTitle className="flex items-center gap-3">
+                          <item.icon className="h-6 w-6 text-accent" />
+                          {item.title}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-muted-foreground text-sm">{item.description}</p>
+                      </CardContent>
+                    </Card>
+                  )
+                })}
               </div>
             </div>
           </section>
         </AnimatedSection>
 
-        {/* SERVICES — intention → clic */}
         <AnimatedSection>
           <section className="bg-secondary py-16 md:py-24 border-y">
             <div className="container">
@@ -376,7 +374,7 @@ export default function RenovationParisPage() {
 
                     <CardContent className="flex-grow flex items-end">
                       <Button variant="link" asChild className="p-0 text-accent">
-                        <Link href={s.href}>
+                        <Link href={s.link}>
                           En savoir plus <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                       </Button>
@@ -388,20 +386,22 @@ export default function RenovationParisPage() {
           </section>
         </AnimatedSection>
 
-        {/* WHY US — simple, pro, convertissant */}
         <AnimatedSection>
           <section className="py-16 md:py-24">
             <div className="container">
               <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div className="relative h-80 md:h-[520px] w-full rounded-xl overflow-hidden">
-                  <Image
-                    src="/images/equipe-erg-renovation.webp"
-                    alt="Équipe ERG Rénovation : suivi de chantier et contrôle qualité à Paris"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
+                {whyUsImage && (
+                  <div className="relative h-80 md:h-[520px] w-full rounded-xl overflow-hidden">
+                    <Image
+                      src={whyUsImage.imageUrl}
+                      alt={whyUsImage.description}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      data-ai-hint={whyUsImage.imageHint}
+                    />
+                  </div>
+                )}
 
                 <div>
                   <h2 className="font-headline text-3xl font-bold">
@@ -447,7 +447,6 @@ export default function RenovationParisPage() {
           </section>
         </AnimatedSection>
 
-        {/* ARRONDISSEMENTS — UX propre : pas de liens “vides” */}
         <AnimatedSection>
           <section className="bg-secondary py-16 md:py-24 border-y">
             <div className="container">
@@ -489,7 +488,6 @@ export default function RenovationParisPage() {
           </section>
         </AnimatedSection>
 
-        {/* FAQ — + JSON-LD auto */}
         <AnimatedSection>
           <section className="py-16 md:py-24">
             <div className="container max-w-3xl mx-auto">
