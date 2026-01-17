@@ -333,7 +333,6 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
             </section>
           </AnimatedSection>
         )}
-
         <CtaBanner />
       </main>
 

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
-import { ArrowRight, Search, Sparkles, X } from "lucide-react"
+import { ArrowRight, Search, X } from "lucide-react"
 
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
@@ -14,12 +14,9 @@ import CtaBanner from "@/app/_components/cta-banner"
 import { allProjects, projectCategories } from "@/lib/data"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
 
-import { cn } from "@/lib/utils"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 const PROJECTS_PER_PAGE = 9
 
@@ -28,7 +25,6 @@ export default function RealisationsPage() {
   const [query, setQuery] = useState("")
   const [visibleCount, setVisibleCount] = useState(PROJECTS_PER_PAGE)
 
-  // reset pagination when filters change
   useEffect(() => {
     setVisibleCount(PROJECTS_PER_PAGE)
   }, [activeCategory, query])
@@ -36,14 +32,14 @@ export default function RealisationsPage() {
   const normalizedQuery = query.trim().toLowerCase()
 
   const filteredProjects = useMemo(() => {
-    const byCategory =
+    const base =
       activeCategory === "Tous"
         ? allProjects
         : allProjects.filter((p) => p.category === activeCategory)
 
-    if (!normalizedQuery) return byCategory
+    if (!normalizedQuery) return base
 
-    return byCategory.filter((p) => {
+    return base.filter((p) => {
       const hay = `${p.title} ${p.description} ${p.category}`.toLowerCase()
       return hay.includes(normalizedQuery)
     })
@@ -55,6 +51,12 @@ export default function RealisationsPage() {
   )
 
   const canLoadMore = visibleCount < filteredProjects.length
+  const hasFilters = activeCategory !== "Tous" || !!query
+
+  const resetFilters = () => {
+    setActiveCategory("Tous")
+    setQuery("")
+  }
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -63,25 +65,25 @@ export default function RealisationsPage() {
       <main className="flex-grow">
         <Breadcrumbs />
 
-        {/* HERO — sobre, premium */}
-        <section className="border-b bg-secondary/40">
-          <div className="container py-14 md:py-20">
+        {/* HERO — très sobre */}
+        <section className="border-b bg-secondary/30">
+          <div className="container py-12 md:py-16">
             <div className="mx-auto max-w-3xl text-center">
-              <p className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
-                Réalisations • Avant / Après
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                Réalisations
               </p>
 
               <h1 className="mt-4 font-headline text-4xl font-bold tracking-tight md:text-5xl">
-                Des chantiers livrés avec une exigence de finition
+                Avant / Après : des finitions nettes, un chantier maîtrisé
               </h1>
 
-              <p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">
-                Parcourez une sélection de projets : rénovation d’appartement, salle de bain, cuisine et finitions.
-                Chaque réalisation illustre notre méthode, notre précision et notre sens du détail.
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-lg">
+                Rénovation d’appartement, salle de bain, cuisine : une sélection de projets livrés avec méthode,
+                précision et souci du détail.
               </p>
 
-              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+              <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <Button asChild size="lg">
                   <Link href="/devis">
                     Demander un devis <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
@@ -96,17 +98,17 @@ export default function RealisationsPage() {
           </div>
         </section>
 
-        {/* CONTROLS — filtres + recherche (UX + SEO long-tail) */}
+        {/* CONTROLS — clean */}
         <section className="py-10 md:py-12">
           <div className="container">
             <div className="mx-auto max-w-6xl">
               <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                 <div>
                   <h2 className="font-headline text-2xl font-semibold tracking-tight md:text-3xl">
-                    Explorer les réalisations
+                    Explorer
                   </h2>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Filtrez par catégorie ou recherchez un type de projet.
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Filtrez par catégorie ou recherchez un mot-clé.
                   </p>
                 </div>
 
@@ -116,8 +118,8 @@ export default function RealisationsPage() {
                     <Input
                       value={query}
                       onChange={(e) => setQuery(e.target.value)}
-                      placeholder="Rechercher (ex : douche, cuisine, peinture...)"
-                      className="pl-9"
+                      placeholder="Ex : douche, cuisine, peinture…"
+                      className="pl-9 pr-10"
                       aria-label="Rechercher une réalisation"
                     />
                     {query && (
@@ -134,43 +136,34 @@ export default function RealisationsPage() {
                 </div>
               </div>
 
-              {/* Filter chips */}
-              <div className="mt-6 flex flex-wrap items-center gap-2">
-                <Button
-                  variant={activeCategory === "Tous" ? "default" : "outline"}
+              {/* Chips catégorie — plus sobres */}
+              <div className="mt-6 flex flex-wrap gap-2">
+                <Chip
+                  active={activeCategory === "Tous"}
                   onClick={() => setActiveCategory("Tous")}
-                  className="rounded-full"
                 >
                   Tous
-                </Button>
-
+                </Chip>
                 {projectCategories.map((cat) => (
-                  <Button
+                  <Chip
                     key={cat}
-                    variant={activeCategory === cat ? "default" : "outline"}
+                    active={activeCategory === cat}
                     onClick={() => setActiveCategory(cat)}
-                    className="rounded-full"
                   >
                     {cat}
-                  </Button>
+                  </Chip>
                 ))}
               </div>
 
-              {/* Results summary */}
+              {/* Summary */}
               <div className="mt-4 flex items-center justify-between text-sm text-muted-foreground">
                 <p>
                   <span className="font-medium text-foreground">{filteredProjects.length}</span>{" "}
-                  {filteredProjects.length > 1 ? "projets" : "projet"} trouvés
+                  {filteredProjects.length > 1 ? "projets" : "projet"}
                 </p>
-                {(activeCategory !== "Tous" || query) && (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => {
-                      setActiveCategory("Tous")
-                      setQuery("")
-                    }}
-                  >
+
+                {hasFilters && (
+                  <Button variant="ghost" size="sm" onClick={resetFilters}>
                     Réinitialiser
                   </Button>
                 )}
@@ -184,23 +177,7 @@ export default function RealisationsPage() {
           <div className="container">
             <div className="mx-auto max-w-6xl">
               {filteredProjects.length === 0 ? (
-                <div className="rounded-xl border bg-secondary/30 p-10 text-center">
-                  <p className="text-lg font-medium">Aucun projet ne correspond à votre recherche.</p>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Essayez un autre mot-clé ou réinitialisez les filtres.
-                  </p>
-                  <div className="mt-6 flex justify-center">
-                    <Button
-                      variant="outline"
-                      onClick={() => {
-                        setActiveCategory("Tous")
-                        setQuery("")
-                      }}
-                    >
-                      Réinitialiser
-                    </Button>
-                  </div>
-                </div>
+                <EmptyState onReset={resetFilters} />
               ) : (
                 <>
                   <AnimatePresence mode="popLayout">
@@ -208,14 +185,14 @@ export default function RealisationsPage() {
                       layout
                       className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3"
                     >
-                      {projectsToShow.map((project, index) => (
+                      {projectsToShow.map((project) => (
                         <motion.div
-                          key={`${project.slug}-${activeCategory}-${normalizedQuery}`}
+                          key={project.slug}
                           layout
-                          initial={{ opacity: 0, y: 10, scale: 0.98 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 10, scale: 0.98 }}
-                          transition={{ duration: 0.25, delay: Math.min(index, 8) * 0.03 }}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 0.22 }}
                         >
                           <ProjectCard project={project} />
                         </motion.div>
@@ -234,18 +211,18 @@ export default function RealisationsPage() {
                     </div>
                   )}
 
-                  {/* Mini contenu SEO propre (court, utile, indexable) */}
+                  {/* Bloc SEO propre (court + utile) */}
                   <div className="mt-16 rounded-xl border bg-secondary/20 p-8">
                     <h2 className="font-headline text-xl font-semibold tracking-tight md:text-2xl">
-                      Avant / Après : une rénovation maîtrisée, du gros œuvre aux finitions
+                      Une rénovation “clé en main”, du gros œuvre aux finitions
                     </h2>
                     <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                      Nos réalisations reflètent une approche “clé en main” : planification, coordination des corps de métier,
-                      exécution rigoureuse et contrôle qualité. Pour estimer votre projet (appartement, salle de bain,
-                      cuisine, peinture), demandez un devis : réponse rapide et chiffrage clair.
+                      Planification, coordination, exécution rigoureuse et contrôle qualité : nos réalisations montrent
+                      une méthode claire et des finitions soignées. Pour estimer votre projet, demandez un devis : réponse
+                      rapide et chiffrage détaillé.
                     </p>
                     <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                      <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
+                      <Button asChild>
                         <Link href="/devis">Demander un devis</Link>
                       </Button>
                       <Button asChild variant="outline">
@@ -267,85 +244,129 @@ export default function RealisationsPage() {
   )
 }
 
+function Chip({
+  active,
+  children,
+  onClick,
+}: {
+  active: boolean
+  children: React.ReactNode
+  onClick: () => void
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={[
+        "rounded-full px-4 py-2 text-sm font-medium transition-colors border",
+        active
+          ? "bg-foreground text-background border-foreground"
+          : "bg-background text-foreground border-border hover:bg-secondary",
+      ].join(" ")}
+    >
+      {children}
+    </button>
+  )
+}
+
+function EmptyState({ onReset }: { onReset: () => void }) {
+  return (
+    <div className="rounded-xl border bg-secondary/20 p-10 text-center">
+      <p className="text-lg font-medium">Aucun projet ne correspond à votre recherche.</p>
+      <p className="mt-2 text-sm text-muted-foreground">
+        Essayez un autre mot-clé ou réinitialisez les filtres.
+      </p>
+      <div className="mt-6 flex justify-center">
+        <Button variant="outline" onClick={onReset}>
+          Réinitialiser
+        </Button>
+      </div>
+    </div>
+  )
+}
+
 function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
   const beforeImage = PlaceHolderImages.find((img) => img.id === project.images.before)
   const afterImage = PlaceHolderImages.find((img) => img.id === project.images.after)
 
+  const [mode, setMode] = useState<"after" | "before">("after")
+
+  const img = mode === "after" ? afterImage : beforeImage
+  const alt =
+    mode === "after"
+      ? project.description
+      : `Avant – ${project.description}`
+
   return (
     <Card className="group h-full overflow-hidden">
       <CardContent className="p-0">
-        <Tabs defaultValue="after" className="relative w-full">
-          <div className="relative h-64 w-full overflow-hidden">
-            {/* Overlay premium */}
-            <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/45 via-black/0 to-black/0" />
+        <div className="relative h-64 w-full overflow-hidden">
+          <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/40 via-black/0 to-black/0" />
 
-            <TabsContent value="after" className="m-0 h-full">
-              {afterImage ? (
-                <Image
-                  src={afterImage.imageUrl}
-                  alt={project.description}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                  data-ai-hint={afterImage.imageHint}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-              ) : (
-                <div className="h-full w-full bg-muted" />
-              )}
-            </TabsContent>
+          {img ? (
+            <Image
+              src={img.imageUrl}
+              alt={alt}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              data-ai-hint={img.imageHint}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority={false}
+            />
+          ) : (
+            <div className="h-full w-full bg-muted" />
+          )}
 
-            <TabsContent value="before" className="m-0 h-full">
-              {beforeImage ? (
-                <Image
-                  src={beforeImage.imageUrl}
-                  alt={`Avant - ${project.description}`}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                  data-ai-hint={beforeImage.imageHint}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-              ) : (
-                <div className="h-full w-full bg-muted" />
-              )}
-            </TabsContent>
-
-            {/* Tabs */}
-            <TabsList className="absolute bottom-3 left-1/2 z-20 -translate-x-1/2 bg-black/30 backdrop-blur-md">
-              <TabsTrigger value="before" className="text-white/80 data-[state=active]:text-white">
+          {/* Toggle Avant/Après — simple & clean */}
+          <div className="absolute bottom-3 left-1/2 z-20 -translate-x-1/2">
+            <div className="inline-flex overflow-hidden rounded-full border bg-black/30 backdrop-blur-md">
+              <button
+                type="button"
+                onClick={() => setMode("before")}
+                className={[
+                  "px-4 py-2 text-sm font-medium transition-colors",
+                  mode === "before" ? "text-white bg-white/10" : "text-white/75 hover:text-white",
+                ].join(" ")}
+              >
                 Avant
-              </TabsTrigger>
-              <TabsTrigger value="after" className="text-white/80 data-[state=active]:text-white">
-                <Sparkles className="mr-2 h-4 w-4 text-amber-300" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setMode("after")}
+                className={[
+                  "px-4 py-2 text-sm font-medium transition-colors",
+                  mode === "after" ? "text-white bg-white/10" : "text-white/75 hover:text-white",
+                ].join(" ")}
+              >
                 Après
-              </TabsTrigger>
-            </TabsList>
+              </button>
+            </div>
           </div>
-        </Tabs>
-      </CardContent>
-
-      <div className="flex flex-col p-6">
-        <div className="flex items-center justify-between gap-3">
-          <Badge variant="secondary" className="w-fit">
-            {project.category}
-          </Badge>
         </div>
 
-        <h3 className="pt-3 font-headline text-xl font-semibold tracking-tight">
-          {project.title}
-        </h3>
+        <div className="p-6">
+          <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
+            {project.category}
+          </p>
 
-        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
-          {project.description}
-        </p>
+          <h3 className="mt-2 font-headline text-xl font-semibold tracking-tight">
+            {project.title}
+          </h3>
 
-        <CardFooter className="mt-5 p-0">
-          <Button variant="link" asChild className="p-0 text-accent hover:text-accent">
-            <Link href={`/realisations/${project.slug}`} className="inline-flex items-center gap-2">
-              Voir les détails <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </Link>
-          </Button>
-        </CardFooter>
-      </div>
+          <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+            {project.description}
+          </p>
+
+          <div className="mt-5">
+            <Button variant="link" asChild className="p-0 text-accent hover:text-accent">
+              <Link href={`/realisations/${project.slug}`} className="inline-flex items-center gap-2">
+                Voir les détails{" "}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </CardContent>
     </Card>
   )
 }

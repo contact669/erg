@@ -17,6 +17,7 @@ import {
   Sparkles,
   UtensilsCrossed,
   Users,
+  Hammer,
 } from "lucide-react";
 
 import SiteHeader from "@/components/site-header";
