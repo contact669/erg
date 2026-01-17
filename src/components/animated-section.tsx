@@ -1,26 +1,17 @@
 "use client"
 
-import { useRef, type ReactNode } from "react"
-import { motion, useInView, type Variants } from "framer-motion"
+import { type ReactNode } from "react"
+import { motion, type Variants } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 interface AnimatedSectionProps {
   children: ReactNode
   className?: string
-  /**
-   * Déclenchement plus ou moins tôt dans le viewport (0 → 1).
-   * 0.2 = quand ~20% du bloc est visible.
-   */
   amount?: number
-  /** N’anime qu’une seule fois (par défaut) */
   once?: boolean
-  /** Désactive l’animation (utile pour pages lourdes / A/B / debug) */
   disabled?: boolean
-  /** Décalage vertical (px) */
   y?: number
-  /** Durée en secondes */
   duration?: number
-  /** Delay en secondes */
   delay?: number
 }
 
@@ -39,21 +30,20 @@ export default function AnimatedSection({
   duration = 0.55,
   delay = 0,
 }: AnimatedSectionProps) {
-  const ref = useRef<HTMLDivElement | null>(null)
-  const isInView = useInView(ref, { once, amount })
-
-  const shouldAnimate = !disabled && isInView
+  if (disabled) {
+    return <div className={className}>{children}</div>
+  }
 
   return (
     <motion.div
-      ref={ref}
       initial="hidden"
-      animate={shouldAnimate ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once, amount }}
       variants={variants(y)}
       transition={{
         duration,
         delay,
-        ease: [0.22, 1, 0.36, 1], // easing premium (type "easeOutExpo-like")
+        ease: [0.22, 1, 0.36, 1],
       }}
       className={cn("will-change-transform", className)}
     >
