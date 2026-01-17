@@ -166,7 +166,7 @@ export default function RenovationBoulognePage() {
     ]);
 
     const faq = buildFaqJsonLd(faqItems);
-    const whyUsImage = PlaceHolderImages.find(p => p.id === 'nanterre-why-us');
+    const whyUsImage = PlaceHolderImages.find(p => p.id === 'hauts-de-seine-why-us');
 
   return (
     <div className="flex min-h-screen flex-col bg-background">

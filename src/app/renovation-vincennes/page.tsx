@@ -28,6 +28,7 @@ import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Vincennes (94300) | ERG Rénovation",
@@ -96,7 +97,7 @@ const renovationServices = [
     {
         icon: UtensilsCrossed,
         title: "Rénovation de cuisine",
-        description: "Cuisine ouverte ou fermée, nous optimisons les volumes, créons des rangements intelligents et coordonnons tous les corps de métier pour un résultat esthétique et durable.",
+        description: "Cuisine ouverte ou fermée, nous optimisons les volumes, créons des rangements sur mesure et coordonnons tous les corps de métier pour un résultat durable.",
         link: "/services/renovation-cuisine"
     },
     {
@@ -131,16 +132,16 @@ const faqItems = [
         a: "Les prix varient selon la surface, l'état initial et le niveau de finition. À titre indicatif, comptez à partir de 750 €/m² pour une rénovation partielle et entre 1 100 et 1 700 €/m² pour une rénovation complète. Une visite sur site est indispensable pour un devis précis."
     },
     {
-        q: "Quels sont les délais moyens pour rénover un appartement à Vincennes ?",
-        a: "Une salle de bain se rénove en 2 à 4 semaines, tandis qu'une rénovation complète prend de 6 à 12 semaines. Les délais sont définis contractuellement avant le début des travaux."
+        q: "Quels sont les délais moyens ?",
+        a: "Une salle de bain se rénove en 2 à 4 semaines, tandis qu'une rénovation complète prend de 6 à 12 semaines. Les délais sont définis contractuellement."
     },
     {
-        q: "Faut-il un accord de la copropriété pour des travaux à Vincennes ?",
-        a: "Oui, pour certains travaux (murs porteurs, réseaux, ventilation, changement de fenêtres). Nous vous accompagnons dans la constitution du dossier administratif pour sécuriser vos démarches."
+        q: "Faut-il l’accord de la copropriété ?",
+        a: "Oui, pour certains travaux (murs porteurs, réseaux, ventilation). Nous vous accompagnons dans les démarches administratives."
     },
     {
         q: "Peut-on rénover un appartement occupé ?",
-        a: "Oui, c'est possible. Nous adaptons l'organisation du chantier en planifiant les interventions par phases et en protégeant les zones non concernées pour limiter au maximum les nuisances."
+        a: "Oui. L’organisation du chantier est adaptée pour limiter les nuisances."
     }
 ];
 
@@ -296,8 +297,8 @@ export default function RenovationVincennesPage() {
                 <Accordion type="single" collapsible className="w-full mt-8">
                     {faqItems.map((item, index) => (
                         <AccordionItem value={`item-${index}`} key={index}>
-                            <AccordionTrigger className="text-left font-semibold text-lg">{item.question}</AccordionTrigger>
-                            <AccordionContent className="text-muted-foreground">{item.answer}</AccordionContent>
+                            <AccordionTrigger className="text-left font-semibold text-lg">{item.q}</AccordionTrigger>
+                            <AccordionContent className="text-muted-foreground">{item.a}</AccordionContent>
                         </AccordionItem>
                     ))}
                 </Accordion>
