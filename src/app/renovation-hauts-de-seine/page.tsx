@@ -67,19 +67,16 @@ const hautsDeSeineSpecificities = [
         icon: Building2,
         title: "Un marché immobilier exigeant",
         description: "À Boulogne-Billancourt, Courbevoie, ou Neuilly, la rénovation est un levier clé pour augmenter la valeur du bien, améliorer la performance énergétique et répondre aux attentes des acquéreurs.",
-        imageId: "hauts-de-seine-spec-1"
     },
     {
         icon: Hammer,
         title: "Des contraintes techniques spécifiques",
         description: "Réseaux parfois anciens, copropriétés structurées, normes acoustiques strictes et attentes élevées en matière de finition nécessitent méthode, expertise et coordination.",
-        imageId: "hauts-de-seine-spec-2"
     },
     {
         icon: Home,
         title: "Un patrimoine immobilier varié",
         description: "Le 92 mêle immeubles anciens, résidences des années 60-80 et constructions récentes. Chaque projet est une occasion de moderniser tout en respectant le caractère du lieu.",
-        imageId: "hauts-de-seine-spec-3"
     }
 ];
 
@@ -208,14 +205,8 @@ export default function RenovationHautsDeSeinePage() {
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
                     {hautsDeSeineSpecificities.map(item => {
-                        const image = PlaceHolderImages.find(p => p.id === item.imageId);
                         return (
                             <Card key={item.title} className="overflow-hidden">
-                                {image && (
-                                    <div className="relative h-56 w-full">
-                                        <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
-                                    </div>
-                                )}
                                 <CardHeader>
                                     <CardTitle className="flex items-center gap-3">
                                         <item.icon className="h-6 w-6 text-accent"/>
