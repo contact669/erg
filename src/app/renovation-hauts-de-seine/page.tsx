@@ -204,21 +204,19 @@ export default function RenovationHautsDeSeinePage() {
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {hautsDeSeineSpecificities.map(item => {
-                        return (
-                            <Card key={item.title} className="overflow-hidden">
-                                <CardHeader>
-                                    <CardTitle className="flex items-center gap-3">
-                                        <item.icon className="h-6 w-6 text-accent"/>
-                                        {item.title}
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <p className="text-muted-foreground text-sm">{item.description}</p>
-                                </CardContent>
-                            </Card>
-                        )
-                    })}
+                    {hautsDeSeineSpecificities.map(item => (
+                        <Card key={item.title} className="overflow-hidden">
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-3">
+                                    <item.icon className="h-6 w-6 text-accent"/>
+                                    {item.title}
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground text-sm">{item.description}</p>
+                            </CardContent>
+                        </Card>
+                    ))}
                 </div>
             </div>
         </section>
