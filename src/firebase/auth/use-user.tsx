@@ -11,8 +11,8 @@ interface UserState {
 
 export function useUser(): UserState {
   const [userState, setUserState] = useState<UserState>({
-    user: auth.currentUser,
-    isUserLoading: auth.currentUser === null,
+    user: null, // Always start with null user on server and initial client render
+    isUserLoading: true, // Always start in loading state
   });
 
   useEffect(() => {
