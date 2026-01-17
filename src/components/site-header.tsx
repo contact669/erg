@@ -96,8 +96,15 @@ function AuthButton() {
 
 export default function SiteHeader() {
   const pathnameRaw = usePathname()
-  const pathname = pathnameRaw ?? "/" // ✅ Fix: never null
-  const [isScrolled, setIsScrolled] = React.useState(false)
+  const [pathname, setPathname] = React.useState("/");
+  const [isScrolled, setIsScrolled] = React.useState(false);
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+    setPathname(pathnameRaw || "/");
+  }, [pathnameRaw]);
+
 
   React.useEffect(() => {
     let raf = 0
@@ -114,12 +121,13 @@ export default function SiteHeader() {
   }, [])
 
   const items = React.useMemo(() => {
+    if (!isMounted) return navItems.map(item => ({ ...item, href: item.href, active: false }));
     return navItems.map((item) => {
-      const href = resolveNavHref(pathname, item.href) // ✅ pathname is string
-      const active = isActiveLink(pathname, href) // ✅ pathname is string
+      const href = resolveNavHref(pathname, item.href) 
+      const active = isActiveLink(pathname, href) 
       return { ...item, href, active }
     })
-  }, [pathname])
+  }, [pathname, isMounted])
 
   return (
     <header

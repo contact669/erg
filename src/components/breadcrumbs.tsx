@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Fragment, useMemo } from "react"
+import { Fragment, useMemo, useState, useEffect } from "react"
 import { ChevronRight, Home } from "lucide-react"
 
 import { services, allProjects, blogPosts, localLandingPages } from "@/lib/data"
@@ -94,8 +94,13 @@ function shouldCenter(pathname: string) {
 
 export default function Breadcrumbs() {
   const pathname = usePathname()
+  const [mounted, setMounted] = useState(false);
 
-  if (!pathname || HIDE_ON.includes(pathname)) return null
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || !pathname || HIDE_ON.includes(pathname)) return null
 
   const centered = shouldCenter(pathname)
 
