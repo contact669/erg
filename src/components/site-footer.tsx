@@ -67,6 +67,7 @@ export default function SiteFooter() {
     { title: "Mentions légales", href: "/mentions-legales" },
     { title: "Politique de confidentialité", href: "/confidentialite" },
     { title: "Gestion des cookies", href: "/cookies" },
+    { title: "Plan du site", href: "/plan-du-site" },
   ]
 
   return (
