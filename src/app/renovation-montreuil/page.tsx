@@ -67,19 +67,16 @@ const montreuilSpecificities = [
         icon: Building2,
         title: "Un parc immobilier hétérogène",
         description: "À Montreuil, les logements anciens côtoient des constructions plus récentes, présentant des défis uniques : réseaux à moderniser, isolation à repenser et distributions à optimiser.",
-        imageId: "montreuil-spec-1"
     },
     {
         icon: Hammer,
         title: "Un fort enjeu de valorisation",
         description: "Dans cette ville dynamique, une rénovation de qualité est un investissement stratégique pour améliorer l'attractivité locative, faciliter une revente ou simplement améliorer son confort de vie.",
-        imageId: "montreuil-spec-2"
     },
     {
         icon: Home,
         title: "Le potentiel des volumes",
         description: "Anciens ateliers ou appartements familiaux, Montreuil offre de belles opportunités de transformation. Une rénovation bien pensée permet de créer des espaces de vie modernes et fonctionnels.",
-        imageId: "montreuil-spec-3"
     }
 ];
 
@@ -209,27 +206,19 @@ export default function RenovationMontreuilPage() {
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {montreuilSpecificities.map(item => {
-                        const image = PlaceHolderImages.find(p => p.id === item.imageId);
-                        return (
-                            <Card key={item.title} className="overflow-hidden">
-                                {image && (
-                                  <div className="relative h-56 w-full">
-                                      <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
-                                  </div>
-                                )}
-                                <CardHeader>
-                                    <CardTitle className="flex items-center gap-3">
-                                        <item.icon className="h-6 w-6 text-accent"/>
-                                        {item.title}
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <p className="text-muted-foreground text-sm">{item.description}</p>
-                                </CardContent>
-                            </Card>
-                        )
-                    })}
+                    {montreuilSpecificities.map(item => (
+                        <Card key={item.title} className="overflow-hidden">
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-3">
+                                    <item.icon className="h-6 w-6 text-accent"/>
+                                    {item.title}
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground text-sm">{item.description}</p>
+                            </CardContent>
+                        </Card>
+                    ))}
                 </div>
             </div>
         </section>

@@ -55,19 +55,16 @@ const levalloisSpecificities = [
         icon: Building2,
         title: "Un parc immobilier dense et qualitatif",
         description: "À Levallois-Perret, les immeubles anciens avec cachet côtoient des résidences modernes. Chaque projet exige une approche technique précise et une exécution irréprochable.",
-        imageId: "levallois-spec-1"
     },
     {
         icon: Hammer,
         title: "Des attentes très élevées en finition",
         description: "Les propriétaires levalloisiens sont particulièrement attentifs à la qualité des matériaux, aux détails de finition et à la durabilité. Notre exigence est notre norme.",
-        imageId: "levallois-spec-2"
     },
     {
         icon: Home,
         title: "Un investissement patrimonial majeur",
         description: "Rénover à Levallois-Perret, c'est investir pour valoriser durablement son patrimoine sur un marché immobilier très dynamique et recherché.",
-        imageId: "levallois-spec-3"
     }
 ];
 
@@ -197,27 +194,19 @@ export default function RenovationLevalloisPage() {
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {levalloisSpecificities.map(item => {
-                        const image = PlaceHolderImages.find(p => p.id === item.imageId);
-                        return (
-                            <Card key={item.title} className="overflow-hidden">
-                                {image && (
-                                  <div className="relative h-56 w-full">
-                                      <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
-                                  </div>
-                                )}
-                                <CardHeader>
-                                    <CardTitle className="flex items-center gap-3">
-                                        <item.icon className="h-6 w-6 text-accent"/>
-                                        {item.title}
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <p className="text-muted-foreground text-sm">{item.description}</p>
-                                </CardContent>
-                            </Card>
-                        )
-                    })}
+                    {levalloisSpecificities.map(item => (
+                        <Card key={item.title} className="overflow-hidden">
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-3">
+                                    <item.icon className="h-6 w-6 text-accent"/>
+                                    {item.title}
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground text-sm">{item.description}</p>
+                            </CardContent>
+                        </Card>
+                    ))}
                 </div>
             </div>
         </section>

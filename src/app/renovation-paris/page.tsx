@@ -145,21 +145,18 @@ const parisProof = [
     title: "Bâti ancien, diagnostic précis",
     description:
       "Haussmanniens, planchers bois, murs porteurs, réseaux à remettre aux normes : une rénovation à Paris commence par l’analyse technique.",
-    imageId: "project-apartment-2",
   },
   {
     icon: Home,
     title: "Copropriété et règles à respecter",
     description:
       "Réseaux, ventilation, évacuation, nuisances : nous vous aidons à sécuriser le dossier syndic et à organiser un chantier propre.",
-    imageId: "about-story",
   },
   {
     icon: Sparkles,
     title: "Optimisation des m²",
     description:
       "Circulation, rangements, lumière, finitions : on valorise chaque mètre carré pour un confort durable et une meilleure valeur du bien.",
-    imageId: "project-kitchen-1",
   },
 ];
 
@@ -315,22 +312,8 @@ export default function RenovationParisPage() {
               </div>
 
               <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                {parisProof.map((item) => {
-                  const image = PlaceHolderImages.find(p => p.id === item.imageId);
-                  return (
+                {parisProof.map((item) => (
                     <Card key={item.title} className="overflow-hidden">
-                      {image && (
-                        <div className="relative h-56 w-full">
-                          <Image
-                            src={image.imageUrl}
-                            alt={image.description}
-                            fill
-                            className="object-cover"
-                            data-ai-hint={image.imageHint}
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                          />
-                        </div>
-                      )}
                       <CardHeader>
                         <CardTitle className="flex items-center gap-3">
                           <item.icon className="h-6 w-6 text-accent" />
@@ -341,8 +324,7 @@ export default function RenovationParisPage() {
                         <p className="text-muted-foreground text-sm">{item.description}</p>
                       </CardContent>
                     </Card>
-                  )
-                })}
+                ))}
               </div>
             </div>
           </section>
@@ -351,7 +333,7 @@ export default function RenovationParisPage() {
         <AnimatedSection>
           <section className="bg-secondary py-16 md:py-24 border-y">
             <div className="container">
-              <div className="text-center mx-auto max-w-2xl">
+              <div className="mx-auto max-w-2xl text-center">
                 <h2 className="font-headline text-3xl font-bold">Nos services de rénovation à Paris</h2>
                 <p className="mt-4 text-muted-foreground">
                   Une rénovation sur mesure, adaptée aux appartements parisiens : exécution propre, coordination TCE,

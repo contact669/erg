@@ -119,21 +119,18 @@ const proofCards = [
     title: "Parc immobilier hétérogène",
     description:
       "Logements anciens, copropriétés et résidences récentes : nous adaptons les solutions (réseaux, isolation, distribution, finitions).",
-    imageId: "seine-saint-denis-spec-1",
   },
   {
     icon: Sparkles,
     title: "Valorisation rentable",
     description:
       "Une rénovation maîtrisée améliore l’attractivité locative, sécurise une revente et augmente le confort au quotidien.",
-    imageId: "seine-saint-denis-spec-2",
   },
   {
     icon: Home,
     title: "Optimisation des volumes",
     description:
       "Réagencement, rangements, lumière, circulation : on transforme des contraintes en espaces de vie fonctionnels et durables.",
-    imageId: "seine-saint-denis-spec-3",
   },
 ];
 
@@ -168,7 +165,7 @@ const services = [
   },
 ];
 
-const whyUs = [
+const whyChooseUs = [
   {
     icon: MapPin,
     title: "Connaissance terrain du 93",
@@ -298,22 +295,8 @@ export default function RenovationSeineSaintDenisPage() {
               </div>
 
               <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                {proofCards.map((item) => {
-                  const image = PlaceHolderImages.find(p => p.id === item.imageId);
-                  return (
+                {proofCards.map((item) => (
                     <Card key={item.title} className="overflow-hidden">
-                      {image && (
-                        <div className="relative h-56 w-full">
-                          <Image
-                            src={image.imageUrl}
-                            alt={image.description}
-                            fill
-                            className="object-cover"
-                            data-ai-hint={image.imageHint}
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                          />
-                        </div>
-                      )}
                       <CardHeader>
                         <CardTitle className="flex items-center gap-3">
                           <item.icon className="h-6 w-6 text-accent" />
@@ -324,8 +307,7 @@ export default function RenovationSeineSaintDenisPage() {
                         <p className="text-muted-foreground text-sm">{item.description}</p>
                       </CardContent>
                     </Card>
-                  )
-                })}
+                ))}
               </div>
             </div>
           </section>

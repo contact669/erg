@@ -70,19 +70,16 @@ const boulogneSpecificities = [
         icon: Building2,
         title: "Un parc immobilier dense et varié",
         description: "À Boulogne, les immeubles anciens côtoient des résidences modernes. Chaque projet demande une approche technique adaptée, que nous maîtrisons.",
-        imageId: "boulogne-spec-1"
     },
     {
         icon: Hammer,
         title: "Des attentes élevées en finition",
         description: "Les propriétaires boulonnais sont particulièrement attentifs à la qualité des matériaux et aux détails de finition. Notre exigence est notre norme.",
-        imageId: "boulogne-spec-2"
     },
     {
         icon: Home,
         title: "Un enjeu patrimonial fort",
         description: "Rénover à Boulogne-Billancourt, c'est investir pour valoriser durablement son patrimoine sur un marché immobilier très recherché.",
-        imageId: "boulogne-spec-3"
     }
 ];
 
@@ -212,27 +209,19 @@ export default function RenovationBoulognePage() {
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {boulogneSpecificities.map(item => {
-                        const image = PlaceHolderImages.find(p => p.id === item.imageId);
-                        return (
-                            <Card key={item.title} className="overflow-hidden">
-                                {image && (
-                                  <div className="relative h-56 w-full">
-                                      <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
-                                  </div>
-                                )}
-                                <CardHeader>
-                                    <CardTitle className="flex items-center gap-3">
-                                        <item.icon className="h-6 w-6 text-accent"/>
-                                        {item.title}
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <p className="text-muted-foreground text-sm">{item.description}</p>
-                                </CardContent>
-                            </Card>
-                        )
-                    })}
+                    {boulogneSpecificities.map(item => (
+                        <Card key={item.title} className="overflow-hidden">
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-3">
+                                    <item.icon className="h-6 w-6 text-accent"/>
+                                    {item.title}
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground text-sm">{item.description}</p>
+                            </CardContent>
+                        </Card>
+                    ))}
                 </div>
             </div>
         </section>

@@ -71,19 +71,16 @@ const nanterreSpecificities = [
         icon: Building2,
         title: "Un parc immobilier diversifié",
         description: "À Nanterre, les immeubles anciens du centre-ville côtoient des résidences plus récentes. Chaque projet de rénovation demande une approche technique adaptée, que nous maîtrisons.",
-        imageId: "nanterre-spec-1"
     },
     {
         icon: Hammer,
         title: "Un fort enjeu de valorisation",
         description: "Avec la proximité de La Défense, une rénovation de qualité est un investissement stratégique pour améliorer l'attractivité locative, faciliter une revente ou simplement améliorer son confort.",
-        imageId: "nanterre-spec-2"
     },
     {
         icon: Home,
         title: "Des attentes croissantes en confort",
         description: "Les propriétaires à Nanterre recherchent une meilleure isolation, des espaces plus fonctionnels et des matériaux durables. Une rénovation bien pensée transforme le quotidien.",
-        imageId: "nanterre-spec-3"
     }
 ];
 
@@ -213,27 +210,19 @@ export default function RenovationNanterrePage() {
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {nanterreSpecificities.map(item => {
-                        const image = PlaceHolderImages.find(p => p.id === item.imageId);
-                        return (
-                            <Card key={item.title} className="overflow-hidden">
-                                {image && (
-                                  <div className="relative h-56 w-full">
-                                      <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
-                                  </div>
-                                )}
-                                <CardHeader>
-                                    <CardTitle className="flex items-center gap-3">
-                                        <item.icon className="h-6 w-6 text-accent"/>
-                                        {item.title}
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <p className="text-muted-foreground text-sm">{item.description}</p>
-                                </CardContent>
-                            </Card>
-                        )
-                    })}
+                    {nanterreSpecificities.map(item => (
+                        <Card key={item.title} className="overflow-hidden">
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-3">
+                                    <item.icon className="h-6 w-6 text-accent"/>
+                                    {item.title}
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground text-sm">{item.description}</p>
+                            </CardContent>
+                        </Card>
+                    ))}
                 </div>
             </div>
         </section>

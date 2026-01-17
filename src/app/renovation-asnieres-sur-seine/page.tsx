@@ -56,19 +56,16 @@ const asnieresSpecificities = [
         icon: Building2,
         title: "Un parc immobilier majoritairement ancien",
         description: "À Asnières, les immeubles des années 1900 à 1980 sont nombreux. La rénovation y est cruciale pour moderniser, isoler et sécuriser les logements.",
-        imageId: "asnieres-spec-1"
     },
     {
         icon: Hammer,
         title: "Un fort impact sur la valeur",
         description: "Dans cette ville en plein essor, une rénovation bien menée augmente le confort de vie et représente un investissement pertinent pour la valorisation du bien.",
-        imageId: "asnieres-spec-2"
     },
     {
         icon: Home,
         title: "Une demande forte pour les logements familiaux",
         description: "Les familles recherchent des espaces fonctionnels, lumineux et dotés de rangements optimisés, avec des finitions propres et durables.",
-        imageId: "asnieres-spec-3"
     }
 ];
 
@@ -199,14 +196,8 @@ export default function RenovationAsnieresPage() {
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
                     {asnieresSpecificities.map(item => {
-                      const image = PlaceHolderImages.find(p => p.id === item.imageId);
                       return (
                         <Card key={item.title} className="overflow-hidden">
-                            {image && (
-                              <div className="relative h-56 w-full">
-                                  <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
-                              </div>
-                            )}
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-3">
                                     <item.icon className="h-6 w-6 text-accent"/>

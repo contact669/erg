@@ -70,19 +70,16 @@ const courbevoieSpecificities = [
         icon: Building2,
         title: "Un parc immobilier dense et contrasté",
         description: "À Courbevoie, les immeubles anciens du centre côtoient les résidences modernes du Faubourg de l'Arche. Chaque projet exige une approche technique adaptée.",
-        imageId: "courbevoie-spec-1"
     },
     {
         icon: Hammer,
         title: "Un enjeu de confort et d'esthétique",
         description: "La proximité de La Défense et de Paris impose des standards élevés. Les occupants recherchent des espaces fonctionnels, bien isolés et aux finitions irréprochables.",
-        imageId: "courbevoie-spec-2"
     },
     {
         icon: Home,
         title: "Un investissement locatif stratégique",
         description: "Rénover un bien à Courbevoie, c'est garantir une attractivité maximale pour attirer des locataires exigeants (cadres, expatriés) et sécuriser son investissement.",
-        imageId: "courbevoie-spec-3"
     }
 ];
 
@@ -212,27 +209,19 @@ export default function RenovationCourbevoiePage() {
                     </p>
                 </div>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {courbevoieSpecificities.map(item => {
-                        const image = PlaceHolderImages.find(p => p.id === item.imageId);
-                        return (
-                            <Card key={item.title} className="overflow-hidden">
-                                {image && (
-                                  <div className="relative h-56 w-full">
-                                      <Image src={image.imageUrl} alt={image.description} fill className="object-cover" data-ai-hint={image.imageHint} />
-                                  </div>
-                                )}
-                                <CardHeader>
-                                    <CardTitle className="flex items-center gap-3">
-                                        <item.icon className="h-6 w-6 text-accent"/>
-                                        {item.title}
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <p className="text-muted-foreground text-sm">{item.description}</p>
-                                </CardContent>
-                            </Card>
-                        )
-                    })}
+                    {courbevoieSpecificities.map(item => (
+                        <Card key={item.title} className="overflow-hidden">
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-3">
+                                    <item.icon className="h-6 w-6 text-accent"/>
+                                    {item.title}
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground text-sm">{item.description}</p>
+                            </CardContent>
+                        </Card>
+                    ))}
                 </div>
             </div>
         </section>
