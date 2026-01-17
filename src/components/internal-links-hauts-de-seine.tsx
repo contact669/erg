@@ -1,6 +1,6 @@
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button } from "./ui/button";
 
 const SERVICES = [
   { name: "Rénovation d’appartement", href: "/services/renovation-appartement" },

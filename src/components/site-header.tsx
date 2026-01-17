@@ -1,12 +1,10 @@
-
-
 "use client"
 
 import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X, Phone, LogIn, LayoutDashboard, ArrowRight } from "lucide-react"
+import { Menu, X, Phone, LogIn, ArrowRight } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
@@ -23,11 +21,12 @@ import {
 import { navItems, services } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import { useUser } from "@/firebase"
-import { ModeToggle } from "./mode-toggle"
+import { ModeToggle } from "@/components/mode-toggle"
+
+
+/* --------------------------------- Helpers -------------------------------- */
 
 function DynamicLogo() {
-  // Affiche les deux images et utilise les classes dark: pour basculer.
-  // Cela garantit un HTML identique côté serveur et client, évitant l'hydratation.
   return (
     <>
       <Image
@@ -52,7 +51,6 @@ function DynamicLogo() {
 
 function isActiveLink(pathname: string, href: string) {
   if (href === "/") return pathname === "/"
-  // ancres : on compare uniquement la page
   if (href.startsWith("/#")) return pathname === "/"
   return pathname === href || pathname.startsWith(href + "/")
 }
@@ -68,6 +66,8 @@ function resolveNavHref(pathname: string, href: string) {
   return pathname === "/" ? href : `/${href}`
 }
 
+/* -------------------------------- AuthBtn -------------------------------- */
+
 function AuthButton() {
   const { user, isUserLoading } = useUser()
 
@@ -80,10 +80,7 @@ function AuthButton() {
     )
   }
 
-  // Le bouton Dashboard est maintenant géré directement dans la sidebar du dashboard.
-  if (user) {
-    return null
-  }
+  if (user) return null
 
   return (
     <Button asChild variant="outline" className="hidden md:inline-flex">
@@ -95,8 +92,11 @@ function AuthButton() {
   )
 }
 
+/* -------------------------------- SiteHeader ------------------------------- */
+
 export default function SiteHeader() {
-  const pathname = usePathname()
+  const pathnameRaw = usePathname()
+  const pathname = pathnameRaw ?? "/" // ✅ Fix: never null
   const [isScrolled, setIsScrolled] = React.useState(false)
 
   React.useEffect(() => {
@@ -115,8 +115,8 @@ export default function SiteHeader() {
 
   const items = React.useMemo(() => {
     return navItems.map((item) => {
-      const href = resolveNavHref(pathname, item.href)
-      const active = isActiveLink(pathname, href)
+      const href = resolveNavHref(pathname, item.href) // ✅ pathname is string
+      const active = isActiveLink(pathname, href) // ✅ pathname is string
       return { ...item, href, active }
     })
   }, [pathname])
@@ -283,10 +283,10 @@ function MobileNav({
 }: {
   items: Array<{ title: string; href: string; active: boolean }>
 }) {
-  const pathname = usePathname()
+  const pathnameRaw = usePathname()
+  const pathname = pathnameRaw ?? "/" // ✅ Fix: never null
   const [open, setOpen] = React.useState(false)
 
-  // services list on mobile
   const servicesLinks = React.useMemo(
     () =>
       services.map((s) => ({
@@ -335,7 +335,7 @@ function MobileNav({
                 .map((item) => (
                   <MobileLink
                     key={item.href}
-                    href={resolveNavHref(pathname, item.href)}
+                    href={resolveNavHref(pathname, item.href)} // ✅ pathname is string
                     active={item.active}
                     onClick={() => setOpen(false)}
                   >
@@ -351,7 +351,11 @@ function MobileNav({
               </p>
               <div className="space-y-1">
                 {servicesLinks.slice(0, 8).map((s) => (
-                  <MobileSubLink key={s.href} href={s.href} onClick={() => setOpen(false)}>
+                  <MobileSubLink
+                    key={s.href}
+                    href={s.href}
+                    onClick={() => setOpen(false)}
+                  >
                     {s.title}
                   </MobileSubLink>
                 ))}
@@ -374,9 +378,7 @@ function MobileNav({
                 <Phone className="h-4 w-4" />
                 06 99 96 13 75
               </a>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Paris • 92 • 93 • 94
-              </p>
+              <p className="mt-1 text-xs text-muted-foreground">Paris • 92 • 93 • 94</p>
             </div>
           </nav>
 

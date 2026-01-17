@@ -26,7 +26,7 @@ import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
-import { InternalLinksHautsDeSeine } from "@/components/internal-links-city-92";
+import { InternalLinksHautsDeSeine } from "@/components/internal-links-hauts-de-seine";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export const metadata: Metadata = {
@@ -84,7 +84,7 @@ const renovationServices = [
     {
         icon: Home,
         title: "Rénovation complète d’appartement",
-        description: "Idéal pour un achat avec travaux ou la remise à neuf d'un bien. Nous gérons étude, conception, démolition, électricité, plomberie, isolation et finitions. Un projet clé en main, piloté par un chef de projet dédié.",
+        description: "Idéale pour un achat avec travaux ou la remise à neuf d'un bien. Nous gérons étude, conception, démolition, électricité, plomberie, isolation et finitions. Un projet clé en main, piloté par un chef de projet dédié.",
         link: "/services/renovation-appartement"
     },
     {
@@ -96,7 +96,7 @@ const renovationServices = [
     {
         icon: UtensilsCrossed,
         title: "Rénovation de cuisine",
-        description: "Cuisine ouverte ou fermée, nous optimisons la circulation, créons des rangements intelligents et coordonnons tous les corps de métier pour un résultat esthétique, pratique et durable.",
+        description: "Cuisine ouverte ou fermée, nous optimisons les circulations, créons des rangements intelligents et coordonnons tous les corps de métier pour un résultat esthétique, pratique et durable.",
         link: "/services/renovation-cuisine"
     },
     {
@@ -121,7 +121,7 @@ const whyChooseUs = [
     {
         icon: ClipboardList,
         title: "Une transparence totale",
-        description: "Nos devis sont détaillés, nos plannings clairs et votre budget est maîtrisé du début à la fin."
+        description: "Nos devis sont détaillés, nos plannings clairs et votre budget est maîtrisé. Tous nos travaux sont couverts par la garantie décennale."
     }
 ];
 
