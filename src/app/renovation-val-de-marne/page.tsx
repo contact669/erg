@@ -100,55 +100,48 @@ const valDeMarneSpecificities = [
 ];
 
 const renovationServices = [
-  {
-    icon: Home,
-    title: "Rénovation complète d’appartement",
-    description:
-      "Idéale pour un achat avec travaux, une rénovation globale ou un projet locatif. Nous gérons étude, démolition, électricité, plomberie, isolation et finitions.",
-    link: "/services/renovation-appartement",
-  },
-  {
-    icon: Bath,
-    title: "Rénovation de salle de bain",
-    description:
-      "Création de salles de bain modernes, fonctionnelles et durables : douche à l’italienne, optimisation des petits espaces, étanchéité renforcée et ventilation performante.",
-    link: "/services/renovation-salle-de-bain",
-  },
-  {
-    icon: UtensilsCrossed,
-    title: "Rénovation de cuisine",
-    description:
-      "Cuisine ouverte ou fermée, nous optimisons les volumes, créons des rangements sur mesure et coordonnons tous les corps de métier pour un résultat esthétique et durable.",
-    link: "/services/renovation-cuisine",
-  },
-  {
-    icon: Sparkles,
-    title: "Rénovation partielle & aménagement",
-    description:
-      "Rafraîchissement, redistribution de pièces, rangements sur mesure : valorisez un bien sans chantier lourd.",
-    link: "/services",
-  },
+    {
+        icon: Home,
+        title: "Rénovation complète d’appartement",
+        description: "Idéale pour un achat avec travaux, une rénovation globale ou un projet locatif. Nous gérons étude, démolition, électricité, plomberie, isolation et finitions.",
+        link: "/services/renovation-appartement"
+    },
+    {
+        icon: Bath,
+        title: "Rénovation de salle de bain",
+        description: "Création de salles de bain modernes, fonctionnelles et durables : douche à l’italienne, optimisation des petits espaces, étanchéité renforcée et ventilation performante.",
+        link: "/services/renovation-salle-de-bain"
+    },
+    {
+        icon: UtensilsCrossed,
+        title: "Rénovation de cuisine",
+        description: "Cuisine ouverte ou fermée, nous optimisons les volumes, créons des rangements sur mesure et coordonnons tous les corps de métier pour un résultat esthétique et durable.",
+        link: "/services/renovation-cuisine"
+    },
+    {
+        icon: Sparkles,
+        title: "Rénovation partielle & aménagement",
+        description: "Pour un rafraîchissement, une redistribution de pièces ou la création de rangements sur mesure. Idéal pour valoriser un bien sans chantier lourd.",
+        link: "/services"
+    }
 ];
 
 const whyChooseUs = [
-  {
-    icon: ShieldCheck,
-    title: "Une expertise locale confirmée",
-    description:
-      "Interventions régulières dans le 94 : typologies de logements, copropriétés, contraintes et bonnes pratiques.",
-  },
-  {
-    icon: Users,
-    title: "Un interlocuteur unique",
-    description:
-      "Un chef de projet dédié coordonne les artisans, sécurise le planning et contrôle la qualité à chaque étape.",
-  },
-  {
-    icon: ClipboardList,
-    title: "Une transparence totale",
-    description:
-      "Devis clairs et détaillés, délais contractualisés, budget maîtrisé. Travaux couverts par la garantie décennale.",
-  },
+    {
+        icon: ShieldCheck,
+        title: "Une expertise locale confirmée",
+        description: "Interventions régulières dans le 94 : typologies de logements, copropriétés, contraintes et bonnes pratiques.",
+    },
+    {
+        icon: Users,
+        title: "Un interlocuteur unique",
+        description: "Un chef de projet dédié coordonne les artisans, sécurise le planning et contrôle la qualité à chaque étape.",
+    },
+    {
+        icon: ClipboardList,
+        title: "Une transparence totale",
+        description: "Devis clairs et détaillés, délais contractualisés, budget maîtrisé. Travaux couverts par la garantie décennale.",
+    }
 ];
 
 const faqItems = [
