@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
 import {
   CheckCircle,
   Home,
@@ -152,7 +151,7 @@ export default function RenovationAsnieresPage() {
   ]);
 
   const faq = buildFaqJsonLd(faqItems);
-  const whyUsImage = PlaceHolderImages.find(p => p.id === 'renovation-site');
+  const whyUsImage = PlaceHolderImages.find(p => p.id === 'nanterre-why-us');
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
