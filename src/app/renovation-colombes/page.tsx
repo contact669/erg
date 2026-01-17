@@ -27,7 +27,7 @@ import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
-import { InternalLinksCity92 } from "../renovation-hauts-de-seine/_components/internal-links";
+import { InternalLinksCity92 } from "@/components/internal-links-city-92";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export const metadata: Metadata = {
