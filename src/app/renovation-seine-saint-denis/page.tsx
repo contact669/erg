@@ -41,13 +41,13 @@ const PHONE_DISPLAY = "06 99 96 13 75";
 export const metadata: Metadata = {
   title: `Rénovation appartement Seine-Saint-Denis (93) | ${BRAND}`,
   description:
-    "Entreprise de rénovation en Seine-Saint-Denis (93) : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions soignées.",
+    "Entreprise de rénovation en Seine-Saint-Denis (93) : appartement, salle de bain, cuisine. Devis détaillé, visite sur site et finitions soignées.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
     title: `Rénovation appartement Seine-Saint-Denis (93) | ${BRAND}`,
     description:
-      "Rénovation intérieure dans le 93 : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions soignées.",
+      "Rénovation intérieure dans le 93 : appartement, salle de bain, cuisine. Devis détaillé, visite sur site et finitions soignées.",
     url: PAGE_URL,
     type: "website",
     locale: "fr_FR",
@@ -160,7 +160,7 @@ const services = [
     icon: Sparkles,
     title: "Rénovation partielle & aménagement",
     description:
-      "Rafraîchissement, redistribution, rangements sur mesure : valoriser sans tout refaire.",
+      "Rafraîchissement, redistribution de pièces, rangements sur mesure : valoriser sans tout refaire.",
     href: "/services",
   },
 ];
@@ -379,7 +379,7 @@ export default function RenovationSeineSaintDenisPage() {
                   </p>
 
                   <div className="mt-8 space-y-6">
-                    {whyUs.map((item) => (
+                    {whyChooseUs.map((item) => (
                       <div key={item.title} className="flex items-start gap-4">
                         <div className="flex-shrink-0 h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                           <item.icon className="h-6 w-6" />

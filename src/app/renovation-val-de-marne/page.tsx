@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
 import {
   CheckCircle,
   Home,
@@ -13,10 +12,10 @@ import {
   ShieldCheck,
   Users,
   ClipboardList,
+  Phone,
   ArrowRight,
   Building2,
   MapPin,
-  Phone,
   Clock3,
 } from "lucide-react";
 
@@ -39,6 +38,8 @@ import {
 import CtaBanner from "@/app/_components/cta-banner";
 import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
+import JsonLd from "@/components/JsonLd";
+import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const PAGE_URL = "https://www.erg-renovation.fr/renovation-val-de-marne";
@@ -69,55 +70,6 @@ export const metadata: Metadata = {
       "Entreprise de rénovation dans le Val-de-Marne (94) : appartement, salle de bain, cuisine. Devis détaillé, suivi de chantier, finitions soignées.",
   },
 };
-
-function JsonLd() {
-  const localBusiness = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: BUSINESS_NAME,
-    url: SITE_URL,
-    telephone: PHONE_E164,
-    image: `${SITE_URL}/og.jpg`,
-    priceRange: "€€",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "1 Sent. de la Pointe",
-      addressLocality: "Paris",
-      postalCode: "75020",
-      addressCountry: "FR",
-    },
-    areaServed: [
-      { "@type": "AdministrativeArea", name: "Val-de-Marne" },
-      { "@type": "AdministrativeArea", name: "Île-de-France" },
-    ],
-    serviceType: [
-      "Rénovation d’appartement",
-      "Rénovation de salle de bain",
-      "Rénovation de cuisine",
-      "Travaux tous corps d’état",
-    ],
-    description:
-      "ERG Rénovation, entreprise spécialisée en rénovation intérieure d'appartements, cuisines et salles de bain dans le Val-de-Marne (94).",
-  };
-
-  const webPage = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "Rénovation appartement Val-de-Marne (94)",
-    url: PAGE_URL,
-    isPartOf: { "@type": "WebSite", name: BUSINESS_NAME, url: SITE_URL },
-  };
-
-  const jsonLd = [localBusiness, webPage];
-
-  return (
-    <Script
-      id="jsonld-renovation-val-de-marne"
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-    />
-  );
-}
 
 const heroPoints = [
   { text: "Intervention rapide dans le Val-de-Marne" },
@@ -201,23 +153,23 @@ const whyChooseUs = [
 
 const faqItems = [
   {
-    question: "Quel est le prix d’une rénovation dans le 94 ?",
-    answer:
+    q: "Quel est le prix d’une rénovation dans le 94 ?",
+    a:
       "Le prix dépend de la surface, de l’état initial et du niveau de prestation. À titre indicatif : dès 700 €/m² pour une rénovation partielle et 1 000 à 1 600 €/m² pour une rénovation complète. Une visite sur site est indispensable pour un chiffrage précis.",
   },
   {
-    question: "Quels sont les délais moyens ?",
-    answer:
+    q: "Quels sont les délais moyens ?",
+    a:
       "Une salle de bain se rénove généralement en 2 à 4 semaines. Une rénovation complète d’appartement prend souvent 6 à 12 semaines selon l’ampleur des travaux. Les délais sont définis et contractualisés avant le démarrage.",
   },
   {
-    question: "Faut-il l’accord de la copropriété ?",
-    answer:
+    q: "Faut-il l’accord de la copropriété ?",
+    a:
       "Oui, pour certains travaux (réseaux, ventilation, modification structurelle, murs porteurs). Nous vous aidons à préparer un dossier clair pour sécuriser l’autorisation.",
   },
   {
-    question: "Peut-on rénover un logement occupé ?",
-    answer:
+    q: "Peut-on rénover un logement occupé ?",
+    a:
       "Oui. Nous planifions le chantier par phases pour limiter les nuisances, sécuriser les zones et maintenir un maximum de confort au quotidien.",
   },
 ];
@@ -236,10 +188,24 @@ const cities94 = [
 ];
 
 export default function RenovationValDeMarnePage() {
+  const service = buildServiceJsonLd({
+    businessName: "ERG Rénovation",
+    siteUrl: SITE_URL,
+    url: "/renovation-val-de-marne",
+    department: "Val-de-Marne (94)",
+    serviceType: "Rénovation intérieure",
+  });
+
+  const breadcrumb = buildBreadcrumbJsonLd(SITE_URL, [
+    { name: "Accueil", url: "/" },
+    { name: "Val-de-Marne (94)", url: "/renovation-val-de-marne" },
+  ]);
+  
+  const faq = buildFaqJsonLd(faqItems.map(item => ({ q: item.q, a: item.a })));
   const whyUsImage = PlaceHolderImages.find(p => p.id === 'val-de-marne-why-us');
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <JsonLd />
+      <JsonLd id="jsonld-renovation-val-de-marne" data={[service, breadcrumb, faq]} />
       <SiteHeader />
 
       <main className="flex-grow">
@@ -468,10 +434,10 @@ export default function RenovationValDeMarnePage() {
                 {faqItems.map((item, index) => (
                   <AccordionItem value={`item-${index}`} key={index}>
                     <AccordionTrigger className="text-left font-semibold text-lg">
-                      {item.question}
+                      {item.q}
                     </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">
-                      {item.answer}
+                      {item.a}
                     </AccordionContent>
                   </AccordionItem>
                 ))}

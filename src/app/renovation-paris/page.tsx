@@ -73,55 +73,53 @@ export const metadata: Metadata = {
 };
 
 function JsonLd({ faqs }: { faqs: { q: string; a: string }[] }) {
-  const webPage = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "Rénovation appartement Paris (75)",
-    url: PAGE_URL,
-    isPartOf: { "@type": "WebSite", name: BRAND, url: SITE_URL },
-    about: {
-      "@type": "Service",
-      name: "Rénovation intérieure (appartement, cuisine, salle de bain)",
-      areaServed: "Paris",
+  const graph = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: "Rénovation appartement Paris (75)",
+      url: PAGE_URL,
+      isPartOf: { "@type": "WebSite", name: BRAND, url: SITE_URL },
+      about: {
+        "@type": "Service",
+        name: "Rénovation intérieure (appartement, cuisine, salle de bain)",
+        areaServed: "Paris",
+      },
     },
-  };
-
-  const localBusiness = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: BRAND,
-    url: SITE_URL,
-    telephone: PHONE_E164,
-    priceRange: "€€",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "1 Sent. de la Pointe",
-      addressLocality: "Paris",
-      postalCode: "75020",
-      addressCountry: "FR",
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      name: BRAND,
+      url: SITE_URL,
+      telephone: PHONE_E164,
+      priceRange: "€€",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "1 Sent. de la Pointe",
+        addressLocality: "Paris",
+        postalCode: "75020",
+        addressCountry: "FR",
+      },
+      areaServed: [{ "@type": "City", name: "Paris" }],
+      serviceType: [
+        "Rénovation d’appartement",
+        "Rénovation de salle de bain",
+        "Rénovation de cuisine",
+        "Travaux tous corps d’état",
+      ],
+      description:
+        "ERG Rénovation, entreprise spécialisée en rénovation intérieure d'appartements, cuisines et salles de bain à Paris. Devis gratuit, garantie décennale.",
     },
-    areaServed: [{ "@type": "City", name: "Paris" }],
-    serviceType: [
-      "Rénovation d’appartement",
-      "Rénovation de salle de bain",
-      "Rénovation de cuisine",
-      "Travaux tous corps d’état",
-    ],
-    description:
-      "ERG Rénovation, entreprise spécialisée en rénovation intérieure d'appartements, cuisines et salles de bain à Paris. Devis gratuit, garantie décennale.",
-  };
-
-  const faqPage = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
-
-  const graph = [webPage, localBusiness, faqPage];
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
+  ];
 
   return (
     <Script

@@ -26,7 +26,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import CtaBanner from "@/app/_components/cta-banner";
 import AnimatedSection from "@/components/animated-section";
 import Breadcrumbs from "@/components/breadcrumbs";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
+import JsonLd from "@/components/JsonLd";
+import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
 
 export const metadata: Metadata = {
   title: "Rénovation appartement Vincennes (94300) | ERG Rénovation",
@@ -53,42 +54,6 @@ export const metadata: Metadata = {
     description: "Entreprise de rénovation à Vincennes (94300) : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions soignées.",
   },
 };
-
-function JsonLd() {
-    const jsonLd = {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "ERG Rénovation",
-      "url": "https://www.erg-renovation.fr",
-      "telephone": "+33699961375",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "1 Sent. de la Pointe",
-        "addressLocality": "Paris",
-        "postalCode": "75020",
-        "addressCountry": "FR"
-      },
-      "priceRange": "€€",
-      "areaServed": {
-        "@type": "City",
-        "name": "Vincennes"
-      },
-      "serviceType": [
-        "Rénovation d’appartement",
-        "Rénovation de salle de bain",
-        "Rénovation de cuisine",
-        "Travaux tous corps d’état",
-      ],
-      "description": "ERG Rénovation, entreprise spécialisée en rénovation d'appartements à Vincennes (94300). Devis gratuit, garantie décennale."
-    };
-    return (
-        <Script
-            id="jsonld-renovation-vincennes"
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-    )
-}
 
 const heroPoints = [
     { text: "Intervention rapide à Vincennes" },
@@ -162,28 +127,47 @@ const whyChooseUs = [
 
 const faqItems = [
     {
-        question: "Quel est le prix d’une rénovation à Vincennes ?",
-        answer: "Les prix varient selon la surface, l'état initial et le niveau de finition. À titre indicatif, comptez à partir de 750 €/m² pour une rénovation partielle et entre 1 100 et 1 700 €/m² pour une rénovation complète. Une visite sur site est indispensable pour un devis précis."
+        q: "Quel est le prix d’une rénovation à Vincennes ?",
+        a: "Les prix varient selon la surface, l'état initial et le niveau de finition. À titre indicatif, comptez à partir de 750 €/m² pour une rénovation partielle et entre 1 100 et 1 700 €/m² pour une rénovation complète. Une visite sur site est indispensable pour un devis précis."
     },
     {
-        question: "Quels sont les délais moyens pour rénover un appartement à Vincennes ?",
-        answer: "Une salle de bain se rénove en 2 à 4 semaines, tandis qu'une rénovation complète prend de 6 à 12 semaines. Les délais sont définis contractuellement avant le début des travaux."
+        q: "Quels sont les délais moyens pour rénover un appartement à Vincennes ?",
+        a: "Une salle de bain se rénove en 2 à 4 semaines, tandis qu'une rénovation complète prend de 6 à 12 semaines. Les délais sont définis contractuellement avant le début des travaux."
     },
     {
-        question: "Faut-il un accord de la copropriété pour des travaux à Vincennes ?",
-        answer: "Oui, pour certains travaux (murs porteurs, réseaux, ventilation, changement de fenêtres). Nous vous accompagnons dans la constitution du dossier administratif pour sécuriser vos démarches."
+        q: "Faut-il un accord de la copropriété pour des travaux à Vincennes ?",
+        a: "Oui, pour certains travaux (murs porteurs, réseaux, ventilation, changement de fenêtres). Nous vous accompagnons dans la constitution du dossier administratif pour sécuriser vos démarches."
     },
     {
-        question: "Peut-on rénover un appartement occupé ?",
-        answer: "Oui, c'est possible. Nous adaptons l'organisation du chantier en planifiant les interventions par phases et en protégeant les zones non concernées pour limiter au maximum les nuisances."
+        q: "Peut-on rénover un appartement occupé ?",
+        a: "Oui, c'est possible. Nous adaptons l'organisation du chantier en planifiant les interventions par phases et en protégeant les zones non concernées pour limiter au maximum les nuisances."
     }
 ];
 
+const SITE_URL = "https://www.erg-renovation.fr";
+
 export default function RenovationVincennesPage() {
-  const whyUsImage = PlaceHolderImages.find(p => p.id === 'vincennes-why-us');
+    const service = buildServiceJsonLd({
+        businessName: "ERG Rénovation",
+        siteUrl: SITE_URL,
+        url: "/renovation-vincennes",
+        city: "Vincennes",
+        postalCode: "94300",
+        serviceType: "Rénovation intérieure",
+    });
+
+    const breadcrumb = buildBreadcrumbJsonLd(SITE_URL, [
+        { name: "Accueil", url: "/" },
+        { name: "Val-de-Marne (94)", url: "/renovation-val-de-marne" },
+        { name: "Vincennes", url: "/renovation-vincennes" },
+    ]);
+    
+    const faq = buildFaqJsonLd(faqItems);
+    const whyUsImage = PlaceHolderImages.find(p => p.id === 'vincennes-why-us');
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <JsonLd />
+      <JsonLd id="jsonld-vincennes" data={[service, breadcrumb, faq]} />
       <SiteHeader />
       <main className="flex-grow">
         <Breadcrumbs />
