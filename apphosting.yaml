@@ -4,9 +4,11 @@
 location: europe-west4
 
 runConfig:
-  # Increase this value if you'd like to automatically spin up
-  # more instances in response to increased traffic.
   maxInstances: 1
+
+env:
+  - variable: RESEND_API_KEY
+    secret: RESEND_API_KEY
 
 taskQueue:
   rateLimits:

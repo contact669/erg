@@ -94,17 +94,14 @@ function shouldCenter(pathname: string) {
 
 export default function Breadcrumbs() {
   const pathname = usePathname()
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted || !pathname || HIDE_ON.includes(pathname)) return null
-
-  const centered = shouldCenter(pathname)
+    setMounted(true)
+  }, [])
 
   const crumbs = useMemo<Crumb[]>(() => {
+    if (!pathname) return []
     const segments = pathname.split("/").filter(Boolean)
 
     return segments.map((segment, index) => {
@@ -118,6 +115,10 @@ export default function Breadcrumbs() {
       }
     })
   }, [pathname])
+
+  if (!mounted || !pathname || HIDE_ON.includes(pathname)) return null
+
+  const centered = shouldCenter(pathname)
 
   return (
     <div className={cn(!centered && "bg-secondary/60")}>
