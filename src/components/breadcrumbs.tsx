@@ -23,6 +23,7 @@ const CENTERED_ROUTES: string[] = [
   "/cookies",
   "/mentions-legales",
   "/connexion",
+  "/plan-du-site",
 ]
 
 const MANUAL_LABELS: Record<string, string> = {
@@ -36,6 +37,7 @@ const MANUAL_LABELS: Record<string, string> = {
   cookies: "Cookies",
   "mentions-legales": "Mentions légales",
   connexion: "Connexion",
+  "plan-du-site": "Plan du site",
   "renovation-appartement": "Rénovation appartement",
   "renovation-maison": "Rénovation maison",
   "renovation-salle-de-bain": "Rénovation salle de bain",
@@ -44,7 +46,6 @@ const MANUAL_LABELS: Record<string, string> = {
   "peinture-finitions": "Peinture & finitions",
 }
 
-/** Fallback propre : "renovation-salle-de-bain" -> "Rénovation salle de bain" */
 function humanizeSlug(slug: string) {
   return slug
     .replace(/-/g, " ")
@@ -53,7 +54,6 @@ function humanizeSlug(slug: string) {
     .replace(/^\p{L}/u, (m) => m.toUpperCase())
 }
 
-/** Coupe intelligemment le dernier crumb si trop long */
 function truncateSmart(input: string, max = 56) {
   const t = input.trim()
   if (t.length <= max) return t
@@ -63,14 +63,12 @@ function truncateSmart(input: string, max = 56) {
 function resolveLabel(slug: string, fullPath: string): string {
   if (MANUAL_LABELS[slug]) return MANUAL_LABELS[slug]
 
-  // Recherche data “classique”
   const sources: any[] = [services, allProjects, blogPosts]
   for (const source of sources) {
     const found = source?.find?.((i: any) => i?.slug === slug)
     if (found?.title) return String(found.title)
   }
 
-  // Recherche pages locales : /{parentServiceSlug}/{localSlug}
   const segments = fullPath.split("/").filter(Boolean)
   const parentServiceSlug = segments.length > 1 ? segments[0] : undefined
   const possibleParent = segments.length > 1 ? segments[segments.length - 2] : undefined
@@ -92,8 +90,14 @@ function shouldCenter(pathname: string) {
   return false
 }
 
-export default function Breadcrumbs() {
-  const pathname = usePathname()
+export default function Breadcrumbs({
+  className,
+  variant = "light",
+}: {
+  className?: string
+  variant?: "light" | "dark"
+}) {
+  const pathname = usePathname() ?? "/"
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -103,7 +107,6 @@ export default function Breadcrumbs() {
   const crumbs = useMemo<Crumb[]>(() => {
     if (!pathname) return []
     const segments = pathname.split("/").filter(Boolean)
-
     return segments.map((segment, index) => {
       const href = "/" + segments.slice(0, index + 1).join("/")
       const isLast = index === segments.length - 1
@@ -116,59 +119,69 @@ export default function Breadcrumbs() {
     })
   }, [pathname])
 
-  if (!mounted || !pathname || HIDE_ON.includes(pathname)) return null
+  if (!mounted || HIDE_ON.includes(pathname)) return null
 
   const centered = shouldCenter(pathname)
+  const isDark = variant === "dark"
 
   return (
-    <div className={cn(!centered && "bg-secondary/60")}>
-      <div className="container">
-        <nav aria-label="Fil d’Ariane" className="py-3">
-          <ol
+    <nav
+      aria-label="Fil d’Ariane"
+      className={cn(className)}
+    >
+      <ol
+        className={cn(
+          "flex flex-wrap items-center gap-x-2 gap-y-1 py-3 text-sm",
+          isDark ? "text-primary-foreground/80" : "text-muted-foreground",
+          centered && "justify-center"
+        )}
+      >
+        <li>
+          <Link
+            href="/"
             className={cn(
-              "flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground",
-              centered && "justify-center"
+              "inline-flex items-center gap-1.5 rounded-md px-1 py-0.5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+              isDark ? "hover:text-primary-foreground" : "hover:text-primary"
             )}
           >
-            <li>
-              <Link
-                href="/"
-                className="inline-flex items-center gap-1.5 rounded-md px-1 py-0.5 transition-colors hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              >
-                <Home className="h-4 w-4" />
-                <span>Accueil</span>
-              </Link>
+            <Home className="h-4 w-4" />
+            <span>Accueil</span>
+          </Link>
+        </li>
+
+        {crumbs.map((c) => (
+          <Fragment key={c.href}>
+            <li aria-hidden="true" className="select-none opacity-60">
+              <ChevronRight className="h-4 w-4" />
             </li>
 
-            {crumbs.map((c) => (
-              <Fragment key={c.href}>
-                <li aria-hidden="true" className="select-none text-muted-foreground/70">
-                  <ChevronRight className="h-4 w-4" />
-                </li>
-
-                <li>
-                  {c.isLast ? (
-                    <span
-                      aria-current="page"
-                      className="inline-flex max-w-[70vw] items-center truncate font-medium text-foreground md:max-w-[520px]"
-                      title={c.label}
-                    >
-                      {c.label}
-                    </span>
-                  ) : (
-                    <Link
-                      href={c.href}
-                      className="inline-flex items-center rounded-md px-1 py-0.5 transition-colors hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    >
-                      {c.label}
-                    </Link>
+            <li>
+              {c.isLast ? (
+                <span
+                  aria-current="page"
+                  className={cn(
+                    "inline-flex max-w-[70vw] items-center truncate font-medium md:max-w-[520px]",
+                    isDark ? "text-primary-foreground" : "text-foreground"
                   )}
-                </li>
-              </Fragment>
-            ))}
-          </ol>
-        </nav>
-      </div>
-    </div>
+                  title={c.label}
+                >
+                  {c.label}
+                </span>
+              ) : (
+                <Link
+                  href={c.href}
+                  className={cn(
+                    "inline-flex items-center rounded-md px-1 py-0.5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    isDark ? "hover:text-primary-foreground" : "hover:text-primary"
+                  )}
+                >
+                  {c.label}
+                </Link>
+              )}
+            </li>
+          </Fragment>
+        ))}
+      </ol>
+    </nav>
   )
 }

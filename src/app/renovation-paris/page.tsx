@@ -164,7 +164,7 @@ const services = [
     icon: Building2,
     title: "Rénovation complète d’appartement",
     description:
-      "Idéal pour un achat avec travaux, votre résidence principale ou un investissement locatif. Nos prestations incluent démolition, redistribution des espaces, électricité, plomberie, isolation et finitions haut de gamme. Un projet clé en main, de la conception à la livraison.",
+      "Idéale pour un achat avec travaux, votre résidence principale ou un investissement locatif. Nos prestations incluent démolition, redistribution des espaces, électricité, plomberie, isolation et finitions haut de gamme. Un projet clé en main, de la conception à la livraison.",
     link: "/services/renovation-appartement",
   },
   {
@@ -243,12 +243,11 @@ export default function RenovationParisPage() {
       <SiteHeader />
 
       <main className="flex-grow">
-        <Breadcrumbs />
-
         <section className="border-b bg-secondary">
           <div className="container py-16 md:py-24">
             <div className="mx-auto max-w-4xl text-center">
-              <p className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-sm font-medium text-foreground/80">
+              <Breadcrumbs />
+              <p className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-sm font-medium text-foreground/80 mt-4">
                 <MapPin className="h-4 w-4" />
                 Paris (75) • Tous arrondissements
               </p>

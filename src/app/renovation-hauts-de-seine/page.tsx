@@ -168,11 +168,11 @@ export default function RenovationHautsDeSeinePage() {
       <JsonLd id="jsonld-hauts-de-seine" data={[service, breadcrumb, faq]} />
       <SiteHeader />
       <main className="flex-grow">
-        <Breadcrumbs />
         
         <section className="bg-secondary py-16 md:py-24">
           <div className="container text-center">
-            <h1 className="font-headline text-4xl font-bold md:text-5xl lg:text-6xl">
+            <Breadcrumbs />
+            <h1 className="font-headline text-4xl font-bold md:text-5xl lg:text-6xl mt-4">
               Rénovation d’appartement dans les Hauts-de-Seine (92) – ERG Rénovation
             </h1>
             <p className="mt-4 mx-auto max-w-3xl text-lg text-muted-foreground">

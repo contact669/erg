@@ -132,12 +132,11 @@ export default function DevisPage() {
       <SiteHeader />
 
       <main className="flex-grow">
-        <Breadcrumbs />
-
         <section className="border-b bg-secondary py-12 md:py-16">
           <div className="container">
             <div className="mx-auto max-w-3xl text-center">
-              <div className="mx-auto mb-4 w-fit rounded-full bg-primary/10 p-3 text-primary">
+              <Breadcrumbs />
+              <div className="mx-auto mb-4 w-fit rounded-full bg-primary/10 p-3 text-primary mt-4">
                 <Bot className="h-7 w-7" />
               </div>
 

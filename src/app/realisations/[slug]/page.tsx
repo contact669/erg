@@ -75,12 +75,11 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
       <SiteHeader />
 
       <main className="flex-grow">
-        <Breadcrumbs />
-
         {/* HERO — premium, sobre */}
         <section className="border-b bg-secondary/35">
           <div className="container py-14 md:py-20">
             <div className="mx-auto max-w-4xl text-center">
+              <Breadcrumbs />
               <Badge variant="secondary" className="mt-4">
                 {project.category}
               </Badge>

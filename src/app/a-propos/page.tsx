@@ -79,8 +79,6 @@ export default function AboutPage() {
       <SiteHeader />
 
       <main className="flex-grow">
-        <Breadcrumbs />
-
         {/* HERO — sobre, premium */}
         <section className="relative overflow-hidden">
           <div className="relative h-[58vh] min-h-[420px] w-full">
@@ -102,14 +100,15 @@ export default function AboutPage() {
             <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/60" />
             <div className="absolute inset-0 bg-primary/20" />
 
-            <div className="container absolute inset-0 z-10 flex items-center">
+            <div className="container absolute inset-0 z-10 flex flex-col items-center justify-center">
+              <Breadcrumbs variant="dark" />
               <div className="mx-auto max-w-4xl text-center text-primary-foreground">
                 <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-medium text-white/90 backdrop-blur">
                   <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                   Entreprise familiale • Paris & Île-de-France
                 </p>
 
-                <h1 className="mt-6 font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
+                <h1 className="mt-4 font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
                   Bâtir sur la confiance,
                   <br className="hidden sm:block" />
                   rénover avec exigence

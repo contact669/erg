@@ -63,13 +63,12 @@ export default function RealisationsPage() {
       <SiteHeader />
 
       <main className="flex-grow">
-        <Breadcrumbs />
-
         {/* HERO — très sobre */}
         <section className="border-b bg-secondary/30">
           <div className="container py-12 md:py-16">
             <div className="mx-auto max-w-3xl text-center">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+              <Breadcrumbs />
+              <p className="mt-4 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
                 Réalisations
               </p>
 

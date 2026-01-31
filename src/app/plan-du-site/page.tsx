@@ -33,10 +33,10 @@ export default function PlanDuSitePage() {
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
       <main className="flex-grow">
-        <Breadcrumbs />
         <section className="container py-16 md:py-24">
           <header className="mx-auto max-w-3xl text-center">
-            <h1 className="font-headline text-4xl font-bold tracking-tight md:text-5xl">
+            <Breadcrumbs />
+            <h1 className="font-headline text-4xl font-bold tracking-tight md:text-5xl mt-4">
               Plan du Site
             </h1>
             <p className="mt-4 text-muted-foreground md:text-lg">

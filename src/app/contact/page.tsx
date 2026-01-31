@@ -100,13 +100,12 @@ export default function ContactPage() {
       <SiteHeader />
 
       <main className="flex-grow">
-        <Breadcrumbs />
-
         {/* Hero plus “premium” + orienté conversion */}
         <section className="border-b bg-secondary/50">
           <div className="container py-12 md:py-16">
             <div className="mx-auto max-w-3xl text-center">
-              <div className="mx-auto inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-xs text-muted-foreground">
+              <Breadcrumbs />
+              <div className="mx-auto inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-xs text-muted-foreground mt-4">
                 <ShieldCheck className="h-4 w-4 text-accent" />
                 Devis & conseils — réponse rapide
               </div>

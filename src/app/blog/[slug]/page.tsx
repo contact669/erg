@@ -40,7 +40,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
       <main className="flex-grow">
-        <Breadcrumbs />
         {/* Post Header */}
         <section className="relative h-[50vh] min-h-[350px] w-full">
           {featuredImage && (
@@ -55,6 +54,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           )}
           <div className="absolute inset-0 bg-primary/70" />
           <div className="container relative z-10 flex h-full flex-col items-center justify-center text-center text-primary-foreground">
+            <Breadcrumbs variant="dark" />
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mt-4">
               {post.tags && post.tags.map(tag => (
                  <Badge key={tag} variant="secondary" className="bg-white/20 text-white border-none">

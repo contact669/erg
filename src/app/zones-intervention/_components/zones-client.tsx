@@ -69,13 +69,12 @@ export default function ZonesInterventionClient() {
       <SiteHeader />
 
       <main className="flex-grow">
-        <Breadcrumbs />
-
         {/* HERO */}
         <section className="bg-secondary border-b">
           <div className="container py-14 md:py-20">
             <div className="mx-auto max-w-4xl text-center">
-              <p className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-sm font-medium text-foreground/80">
+              <Breadcrumbs />
+              <p className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-sm font-medium text-foreground/80 mt-4">
                 <MapPin className="h-4 w-4" />
                 Paris & Petite Couronne
               </p>
@@ -260,5 +259,3 @@ export default function ZonesInterventionClient() {
     </div>
   );
 }
-
-    

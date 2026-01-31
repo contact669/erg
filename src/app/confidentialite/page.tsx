@@ -35,10 +35,9 @@ export default function ConfidentialitePage() {
 
       <main className="flex-grow">
         <div className="container py-16 md:py-24">
-          <Breadcrumbs />
-
           <header className="mx-auto mt-6 max-w-3xl text-center">
-            <h1 className="font-headline text-4xl font-bold tracking-tight md:text-5xl">
+            <Breadcrumbs />
+            <h1 className="mt-4 font-headline text-4xl font-bold tracking-tight md:text-5xl">
               Politique de confidentialité
             </h1>
             <p className="mt-4 text-muted-foreground">

@@ -7,6 +7,7 @@ import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
 import CtaBanner from "@/app/_components/cta-banner"
 import AnimatedSection from "@/components/animated-section"
+import Breadcrumbs from "@/components/breadcrumbs"
 
 import { Button } from "@/components/ui/button"
 import { services } from "@/lib/data"
@@ -136,11 +137,6 @@ function JsonLdServicesPage() {
 export default function ServicesPage() {
   const processImage = PlaceHolderImages.find((p) => p.id === "cta-banner-image")
 
-  const breadcrumbs = [
-    { name: "Accueil", href: "/" },
-    { name: "Services", href: "/services" },
-  ]
-
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
@@ -148,38 +144,12 @@ export default function ServicesPage() {
       <main className="flex-grow">
         <JsonLdServicesPage />
 
-        {/* Breadcrumbs HTML safe (évite toute incohérence de props) */}
-        <section className="border-b bg-background">
-          <div className="container py-4">
-            <nav aria-label="Fil d’ariane" className="text-sm text-muted-foreground">
-              <ol className="flex flex-wrap items-center gap-2">
-                {breadcrumbs.map((b, idx) => {
-                  const isLast = idx === breadcrumbs.length - 1
-                  return (
-                    <li key={b.href} className="flex items-center gap-2">
-                      {isLast ? (
-                        <span aria-current="page" className="font-medium text-foreground">
-                          {b.name}
-                        </span>
-                      ) : (
-                        <Link href={b.href} className="hover:underline">
-                          {b.name}
-                        </Link>
-                      )}
-                      {!isLast ? <span className="opacity-60">/</span> : null}
-                    </li>
-                  )
-                })}
-              </ol>
-            </nav>
-          </div>
-        </section>
-
         {/* HERO — intention, promesse, conversion */}
         <section className="relative overflow-hidden bg-secondary py-16 md:py-24">
           <div className="container">
             <div className="mx-auto max-w-4xl text-center">
-              <p className="inline-flex items-center gap-2 rounded-full bg-background px-4 py-2 text-sm text-muted-foreground">
+               <Breadcrumbs />
+              <p className="inline-flex items-center gap-2 rounded-full bg-background px-4 py-2 text-sm text-muted-foreground mt-4">
                 <ShieldCheck className="h-4 w-4 text-accent" />
                 Paris & Île-de-France • Devis détaillé • Garantie décennale
               </p>
