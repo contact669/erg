@@ -35,7 +35,7 @@ import Link from 'next/link';
 export const navItems: NavItem[] = [
   { title: 'Services', href: '/services' },
   { title: 'Réalisations', href: '/realisations' },
-  { title: 'Zones d\'intervention', href: '/zones-intervention' },
+  { title: 'Zones', href: '/zones-intervention' },
   { title: 'À Propos', href: '/a-propos' },
   { title: 'Blog', href: '/blog' },
   { title: 'Contact', href: '/contact' },

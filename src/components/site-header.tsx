@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -96,7 +97,7 @@ function AuthButton() {
 
 export default function SiteHeader() {
   const pathnameRaw = usePathname()
-  const [pathname, setPathname] = React.useState("/");
+  const [pathname, setPathname] = React.useState(pathnameRaw || "/");
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMounted, setIsMounted] = React.useState(false);
 
@@ -236,7 +237,6 @@ export default function SiteHeader() {
             <Link href="/devis">Devis</Link>
           </Button>
 
-          <AuthButton />
           <ModeToggle />
 
           <MobileNav items={items} />
@@ -395,12 +395,6 @@ function MobileNav({
             <Button asChild size="lg">
               <Link href="/devis" onClick={() => setOpen(false)}>
                 Demander un devis
-              </Link>
-            </Button>
-
-            <Button asChild size="lg" variant="outline">
-              <Link href="/connexion" onClick={() => setOpen(false)}>
-                Espace Pro
               </Link>
             </Button>
           </div>
