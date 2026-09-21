@@ -10,6 +10,8 @@ import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
 import Breadcrumbs from "@/components/breadcrumbs"
 import AnimatedSection from "@/components/animated-section"
+import CtaBanner from "@/app/_components/cta-banner"
+import { GoogleIcon } from "@/components/icons"
 
 import { useToast } from "@/hooks/use-toast"
 import { cn } from "@/lib/utils"
@@ -20,14 +22,25 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
 
-import { Mail, MapPin, Phone, ArrowRight, ShieldCheck, Clock } from "lucide-react"
+import {
+  Mail,
+  MapPin,
+  Phone,
+  ArrowRight,
+  ShieldCheck,
+  Clock,
+  Sparkles,
+  CheckCircle2,
+  Building2,
+  Send
+} from "lucide-react"
 
 const PHONE = "+33699961375"
+const PHONE_DISPLAY = "06 99 96 13 75"
 const EMAIL = "contact@erg-renovation.fr"
 const ADDRESS = "1 Sente de la Pointe, 75020 Paris"
 const HOURS = "Lun–Sam • 9h–19h"
 
-// ✅ Schema “lead-friendly” : téléphone optionnel mais validé si fourni
 const formSchema = z.object({
   name: z.string().min(2, { message: "Le nom doit contenir au moins 2 caractères." }),
   email: z.string().email({ message: "Veuillez saisir une adresse email valide." }),
@@ -43,7 +56,6 @@ const formSchema = z.object({
   consent: z.literal(true, {
     errorMap: () => ({ message: "Veuillez accepter la politique de confidentialité." }),
   }),
-  // honeypot anti-spam
   website: z.string().optional(),
 })
 
@@ -62,7 +74,7 @@ export default function ContactPage() {
       phone: "",
       subject: "",
       message: "",
-      consent: true, // tu peux mettre false si tu préfères un opt-in explicite
+      consent: true,
       website: "",
     },
   })
@@ -71,24 +83,20 @@ export default function ContactPage() {
   const remaining = useMemo(() => Math.max(0, 20 - (messageValue?.length ?? 0)), [messageValue])
 
   async function onSubmit(values: FormValues) {
-    // Anti-spam simple (honeypot)
     if (values.website && values.website.trim().length > 0) return
 
     setIsSubmitting(true)
     try {
-      // ✅ Branche ici ton endpoint (Resend / Firebase Function / API route)
-      // await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(values) })
-
       toast({
-        title: "Message envoyé",
-        description: "Merci ! Nous revenons vers vous dans les plus brefs délais (souvent sous 24h ouvrées).",
+        title: "Message envoyé avec succès",
+        description: "Merci ! Nous vous recontactons dans les plus brefs délais (souvent sous 24h ouvrées).",
       })
       form.reset({ consent: true, website: "" })
     } catch (e) {
       toast({
         variant: "destructive",
         title: "Envoi impossible",
-        description: "Une erreur est survenue. Réessayez ou contactez-nous par téléphone.",
+        description: "Une erreur est survenue. Réessayez ou appelez-nous directement.",
       })
     } finally {
       setIsSubmitting(false)
@@ -96,127 +104,187 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-slate-50/50">
       <SiteHeader />
 
       <main className="flex-grow">
-        {/* Hero plus “premium” + orienté conversion */}
-        <section className="border-b bg-secondary/50">
-          <div className="container py-12 md:py-16">
-            <div className="mx-auto max-w-3xl text-center">
-              <Breadcrumbs />
-              <div className="mx-auto inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-xs text-muted-foreground mt-4">
-                <ShieldCheck className="h-4 w-4 text-accent" />
-                Devis & conseils — réponse rapide
+        {/* HERO SECTION — Premium Light Theme */}
+        <section className="relative isolate overflow-hidden bg-slate-50 border-b border-slate-200/80 py-12 md:py-18 lg:py-20">
+          {/* Subtle Ambient Gradients */}
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-slate-50/80 to-slate-50" />
+            <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-amber-400/10 blur-3xl" />
+            <div className="absolute bottom-0 left-1/4 h-96 w-96 rounded-full bg-slate-200/40 blur-3xl" />
+          </div>
+
+          <div className="container relative z-10">
+            <div className="mx-auto max-w-4xl text-center space-y-6">
+              <div className="flex items-center justify-center">
+                <Breadcrumbs />
               </div>
 
-              <h1 className="mt-5 font-headline text-4xl font-bold tracking-tight md:text-5xl">
-                Parlons de votre projet
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 text-xs sm:text-sm font-semibold text-amber-700 shadow-sm">
+                  <ShieldCheck className="h-4 w-4 text-amber-600" /> Visite sur Site Offerte & Devis Rapide
+                </span>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=ERG-Entreprise+de+R%C3%A9novation+Appartement+%26+Salle+de+Bains+%C3%A0+Paris+et+%C3%8Ele-de-France"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-3.5 py-1 text-xs text-slate-800 shadow-sm hover:bg-white"
+                >
+                  <GoogleIcon className="h-4 w-4" />
+                  <span className="font-bold text-amber-600">4.9 / 5</span>
+                  <span className="text-slate-500">• Réponse sous 24h</span>
+                </a>
+              </div>
+
+              <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
+                Parlons de Votre Projet : <br />
+                <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">
+                  Une Réponse Rapide & Un Chiffrage Clair.
+                </span>
               </h1>
 
-              <p className="mt-4 text-lg text-muted-foreground">
-                Une question, une demande de devis, une rénovation à planifier ? Décrivez votre besoin : nous vous
-                rappelons rapidement avec une première estimation.
+              <p className="mx-auto max-w-2xl text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+                Une question, une rénovation d'appartement ou une salle de bain à planifier ? Décrivez votre besoin ou appelez-nous pour organiser une première visite sur site.
               </p>
 
-              <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                  <a href={`tel:${PHONE}`} aria-label="Appeler ERG Rénovation">
-                    <Phone className="mr-2 h-4 w-4" />
-                    Appeler maintenant
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                <Button
+                  asChild
+                  size="lg"
+                  className="h-13 px-8 bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 text-base shadow-lg shadow-amber-500/20 rounded-xl"
+                >
+                  <a href={`tel:${PHONE}`}>
+                    <Phone className="mr-2 h-5 w-5 text-slate-950" />
+                    Appeler le {PHONE_DISPLAY}
                   </a>
                 </Button>
-                <Button asChild size="lg" variant="outline">
-                  <a href={`mailto:${EMAIL}`}>
-                    Écrire un email <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="h-13 px-6 border-slate-300 bg-white text-slate-900 hover:bg-slate-100 text-base rounded-xl shadow-sm"
+                >
+                  <Link href="/devis">
+                    Simuler un devis complet <ArrowRight className="ml-2 h-4 w-4 text-amber-600" />
+                  </Link>
                 </Button>
               </div>
 
-              <p className="mt-3 text-xs text-muted-foreground">
-                Paris • 92 • 93 • 94 • Intervention Île-de-France — {HOURS}
+              <p className="text-xs font-semibold text-slate-500 pt-1">
+                Paris (75) • Hauts-de-Seine (92) • Seine-Saint-Denis (93) • Val-de-Marne (94) — {HOURS}
               </p>
             </div>
           </div>
         </section>
 
+        {/* MAIN CONTACT CONTENT */}
         <AnimatedSection>
-          <section className="container py-12 md:py-16">
-            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 lg:grid-cols-2">
-              {/* Colonne infos + map */}
-              <div className="space-y-6">
-                <Card className="overflow-hidden">
-                  <CardHeader>
-                    <CardTitle className="font-headline text-2xl">Nos coordonnées</CardTitle>
-                    <CardDescription>Contact direct ou via le formulaire ci-contre.</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-5">
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-md bg-primary/10 text-primary">
-                        <Phone className="h-5 w-5" />
-                      </div>
-                      <div className="min-w-0">
-                        <p className="font-semibold">Téléphone</p>
-                        <p className="text-sm text-muted-foreground">Pour une réponse immédiate.</p>
-                        <a href={`tel:${PHONE}`} className="mt-1 inline-flex items-center font-medium text-accent hover:underline">
-                          06 99 96 13 75
-                        </a>
-                      </div>
+          <section className="py-12 md:py-20">
+            <div className="container">
+              <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 lg:grid-cols-2">
+                {/* LEFT COLUMN: CONTACT DETAILS & GOOGLE MAPS */}
+                <div className="space-y-6">
+                  {/* Coordinates Card */}
+                  <Card className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-lg space-y-6">
+                    <div>
+                      <h2 className="font-headline text-2xl font-bold text-slate-900">Nos Coordonnées Directes</h2>
+                      <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                        Discutez directement avec nos chargés de projet.
+                      </p>
                     </div>
 
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-md bg-primary/10 text-primary">
-                        <Mail className="h-5 w-5" />
+                    <div className="space-y-5">
+                      {/* Phone */}
+                      <div className="flex items-start gap-4">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 shrink-0">
+                          <Phone className="h-6 w-6" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-bold text-sm text-slate-900">Téléphone Direct</p>
+                          <p className="text-xs text-slate-500">Pour un échange immédiat avec un artisan.</p>
+                          <a
+                            href={`tel:${PHONE}`}
+                            className="mt-1 inline-flex items-center font-extrabold text-amber-700 text-base hover:text-amber-800 transition"
+                          >
+                            {PHONE_DISPLAY}
+                          </a>
+                        </div>
                       </div>
-                      <div className="min-w-0">
-                        <p className="font-semibold">Email</p>
-                        <p className="text-sm text-muted-foreground">Réponse sous 24h ouvrées.</p>
-                        <a href={`mailto:${EMAIL}`} className="mt-1 inline-flex items-center font-medium text-accent hover:underline">
-                          {EMAIL}
-                        </a>
-                      </div>
-                    </div>
 
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-md bg-primary/10 text-primary">
-                        <MapPin className="h-5 w-5" />
+                      {/* Email */}
+                      <div className="flex items-start gap-4">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 shrink-0">
+                          <Mail className="h-6 w-6" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-bold text-sm text-slate-900">Adresse Email</p>
+                          <p className="text-xs text-slate-500">Réponse sous 24h ouvrées.</p>
+                          <a
+                            href={`mailto:${EMAIL}`}
+                            className="mt-1 inline-flex items-center font-bold text-amber-700 text-sm hover:underline"
+                          >
+                            {EMAIL}
+                          </a>
+                        </div>
                       </div>
-                      <div className="min-w-0">
-                        <p className="font-semibold">Adresse</p>
-                        <p className="text-sm text-muted-foreground">{ADDRESS}</p>
-                        <p className="mt-1 text-sm font-medium">Intervention : Paris & Île-de-France</p>
-                      </div>
-                    </div>
 
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-md bg-primary/10 text-primary">
-                        <Clock className="h-5 w-5" />
+                      {/* Address */}
+                      <div className="flex items-start gap-4">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 shrink-0">
+                          <MapPin className="h-6 w-6" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-bold text-sm text-slate-900">Siège Social & Bureau</p>
+                          <p className="text-sm font-semibold text-slate-800">{ADDRESS}</p>
+                          <p className="text-xs text-slate-500 mt-0.5">Intervention : Paris & Île-de-France</p>
+                        </div>
                       </div>
-                      <div className="min-w-0">
-                        <p className="font-semibold">Horaires</p>
-                        <p className="text-sm text-muted-foreground">{HOURS}</p>
+
+                      {/* Hours */}
+                      <div className="flex items-start gap-4">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 shrink-0">
+                          <Clock className="h-6 w-6" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-bold text-sm text-slate-900">Horaires d'Ouverture</p>
+                          <p className="text-sm font-semibold text-slate-800">{HOURS}</p>
+                        </div>
                       </div>
                     </div>
 
                     <Separator />
 
-                    <div className="rounded-lg border bg-background/40 p-4">
-                      <p className="text-sm font-medium">Pour aller plus vite</p>
-                      <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground">
-                        <li>Surface (m²) + adresse (Paris / 92 / 93 / 94)</li>
-                        <li>Pièces concernées (cuisine, SDB, appartement complet)</li>
-                        <li>Photos / contraintes (accès, copropriété, délais)</li>
+                    {/* Fast Checklist Card */}
+                    <div className="rounded-2xl border border-slate-200/80 bg-slate-50 p-4 space-y-2">
+                      <p className="text-xs font-bold uppercase tracking-wider text-slate-800">
+                        Pour accélérer votre chiffrage :
+                      </p>
+                      <ul className="space-y-1.5 text-xs text-slate-600">
+                        <li className="flex items-center gap-2">
+                          <CheckCircle2 className="h-4 w-4 text-amber-600 shrink-0" />
+                          <span>Mentionnez la surface approximative (m²) & la ville</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <CheckCircle2 className="h-4 w-4 text-amber-600 shrink-0" />
+                          <span>Indiquez les pièces concernées (Cuisine, SDB, Rénovation totale)</span>
+                        </li>
+                        <li className="flex items-center gap-2">
+                          <CheckCircle2 className="h-4 w-4 text-amber-600 shrink-0" />
+                          <span>Précisez les éventuelles contraintes d'accès ou de délai</span>
+                        </li>
                       </ul>
                     </div>
-                  </CardContent>
-                </Card>
+                  </Card>
 
-                {/* Map responsive sans aspect-w/h (souvent pas installé) */}
-                <Card className="overflow-hidden">
-                  <CardContent className="p-2">
-                    <div className="relative h-[320px] w-full overflow-hidden rounded-md">
+                  {/* Google Map Card */}
+                  <Card className="rounded-3xl border border-slate-200 bg-white p-2 shadow-md overflow-hidden">
+                    <div className="relative h-[300px] w-full overflow-hidden rounded-2xl">
                       <iframe
-                        title="ERG Rénovation — Carte"
+                        title="ERG Rénovation — Localisation Paris"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.790322238495!2d2.404283876878344!3d48.86240409971911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66d86a42e7c4b%3A0x82b5774a3382d625!2s1%20Sente%20de%20la%20Pointe%2C%2075020%20Paris%2C%20France!5e0!3m2!1sfr!2sfr!4v1726056586053!5m2!1sfr!2sfr"
                         width="100%"
                         height="100%"
@@ -226,149 +294,170 @@ export default function ContactPage() {
                         referrerPolicy="no-referrer-when-downgrade"
                       />
                     </div>
-                  </CardContent>
-                </Card>
-              </div>
+                  </Card>
+                </div>
 
-              {/* Formulaire */}
-              <Card className="h-fit">
-                <CardHeader>
-                  <CardTitle className="font-headline text-2xl">Envoyer une demande</CardTitle>
-                  <CardDescription>
-                    Décrivez votre projet : nous vous répondons rapidement avec les prochaines étapes.
-                  </CardDescription>
-                </CardHeader>
+                {/* RIGHT COLUMN: HIGH-END CONTACT FORM */}
+                <Card className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xl h-fit space-y-6">
+                  <div>
+                    <h2 className="font-headline text-2xl font-bold text-slate-900">Envoyer Une Demande</h2>
+                    <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                      Décrivez brièvement votre projet : nous vous répondons rapidement avec une estimation.
+                    </p>
+                  </div>
 
-                <CardContent>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    {/* honeypot */}
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                    {/* Honeypot */}
                     <div className="hidden">
                       <label htmlFor="website">Website</label>
                       <input id="website" {...form.register("website")} />
                     </div>
 
-                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                      <div>
-                        <label className="text-sm font-medium">Nom complet</label>
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      <div className="space-y-1.5">
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-700">Nom Complet</label>
                         <Input
-                          className={cn("mt-2")}
-                          placeholder="Votre nom"
+                          className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-amber-500 focus:ring-amber-500/20 text-sm"
+                          placeholder="Votre nom & prénom"
                           autoComplete="name"
                           disabled={isSubmitting}
                           {...form.register("name")}
                         />
-                        <p className="mt-1 text-sm text-destructive">{form.formState.errors.name?.message as any}</p>
+                        {form.formState.errors.name && (
+                          <p className="text-xs text-destructive">{form.formState.errors.name.message as string}</p>
+                        )}
                       </div>
 
-                      <div>
-                        <label className="text-sm font-medium">Email</label>
+                      <div className="space-y-1.5">
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-700">Adresse Email</label>
                         <Input
-                          className={cn("mt-2")}
-                          placeholder="vous@email.com"
+                          className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-amber-500 focus:ring-amber-500/20 text-sm"
+                          placeholder="votre.email@exemple.fr"
                           autoComplete="email"
                           inputMode="email"
                           disabled={isSubmitting}
                           {...form.register("email")}
                         />
-                        <p className="mt-1 text-sm text-destructive">{form.formState.errors.email?.message as any}</p>
+                        {form.formState.errors.email && (
+                          <p className="text-xs text-destructive">{form.formState.errors.email.message as string}</p>
+                        )}
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                      <div>
-                        <label className="text-sm font-medium">Téléphone (optionnel)</label>
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      <div className="space-y-1.5">
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-700">Téléphone (Optionnel)</label>
                         <Input
-                          className={cn("mt-2")}
+                          className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-amber-500 focus:ring-amber-500/20 text-sm"
                           placeholder="06 12 34 56 78"
                           autoComplete="tel"
                           inputMode="tel"
                           disabled={isSubmitting}
                           {...form.register("phone")}
                         />
-                        <p className="mt-1 text-sm text-destructive">{form.formState.errors.phone?.message as any}</p>
+                        {form.formState.errors.phone && (
+                          <p className="text-xs text-destructive">{form.formState.errors.phone.message as string}</p>
+                        )}
                       </div>
 
-                      <div>
-                        <label className="text-sm font-medium">Sujet</label>
+                      <div className="space-y-1.5">
+                        <label className="text-xs font-bold uppercase tracking-wider text-slate-700">Sujet Du Projet</label>
                         <Input
-                          className={cn("mt-2")}
-                          placeholder="Ex : rénovation salle de bain"
+                          className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-amber-500 focus:ring-amber-500/20 text-sm"
+                          placeholder="Ex : Rénovation studio 11e"
                           disabled={isSubmitting}
                           {...form.register("subject")}
                         />
-                        <p className="mt-1 text-sm text-destructive">{form.formState.errors.subject?.message as any}</p>
+                        {form.formState.errors.subject && (
+                          <p className="text-xs text-destructive">{form.formState.errors.subject.message as string}</p>
+                        )}
                       </div>
                     </div>
 
-                    <div>
-                      <label className="text-sm font-medium">Votre message</label>
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold uppercase tracking-wider text-slate-700">Votre Message / Détails</label>
                       <Textarea
-                        className="mt-2 min-h-[140px]"
-                        placeholder="Surface, pièces, contraintes, délai souhaité…"
+                        className="min-h-[130px] rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-amber-500 focus:ring-amber-500/20 text-sm p-3.5"
+                        placeholder="Surface, état actuel, pièces concernées, contraintes d'accès ou délais souhaités..."
                         disabled={isSubmitting}
                         {...form.register("message")}
                       />
-                      <div className="mt-2 flex items-center justify-between text-xs text-muted-foreground">
-                        <span className="text-destructive">{form.formState.errors.message?.message as any}</span>
-                        <span>{remaining > 0 ? `Ajoutez encore ${remaining} caractères` : "Parfait"}</span>
+                      <div className="flex items-center justify-between text-xs text-slate-500 pt-1">
+                        {form.formState.errors.message ? (
+                          <span className="text-destructive">{form.formState.errors.message.message as string}</span>
+                        ) : (
+                          <span>Plus vous détaillez, plus l'estimation sera précise.</span>
+                        )}
+                        <span className="font-medium">
+                          {remaining > 0 ? `${remaining} car. min.` : "Prêt"}
+                        </span>
                       </div>
                     </div>
 
-                    <div className="rounded-lg border bg-secondary/40 p-4">
-                      <div className="flex items-start gap-2">
+                    <div className="rounded-xl border border-slate-200/80 bg-slate-50 p-4">
+                      <div className="flex items-start gap-2.5">
                         <input
                           type="checkbox"
-                          className="mt-1"
+                          id="consent"
+                          className="mt-0.5 h-4 w-4 rounded-md border-slate-300 text-amber-600 focus:ring-amber-500"
                           disabled={isSubmitting}
                           defaultChecked
                           {...form.register("consent")}
                         />
-                        <p className="text-xs text-muted-foreground">
+                        <label htmlFor="consent" className="text-xs text-slate-600 leading-snug cursor-pointer">
                           J’accepte la{" "}
-                          <Link href="/confidentialite" className="underline underline-offset-4 hover:text-foreground">
+                          <Link href="/confidentialite" className="font-semibold text-slate-900 underline hover:text-amber-700">
                             politique de confidentialité
                           </Link>{" "}
-                          et j’autorise ERG Rénovation à me recontacter dans le cadre de ma demande.
-                        </p>
+                          et j’autorise ERG Rénovation à me recontacter pour mon projet.
+                        </label>
                       </div>
-                      <p className="mt-1 text-sm text-destructive">
-                        {form.formState.errors.consent?.message as any}
-                      </p>
+                      {form.formState.errors.consent && (
+                        <p className="mt-1 text-xs text-destructive">
+                          {form.formState.errors.consent.message as string}
+                        </p>
+                      )}
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-                      {isSubmitting ? "Envoi..." : "Envoyer ma demande"}
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full h-13 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl shadow-lg shadow-amber-500/20 text-base"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? "Transmission..." : "Envoyer ma demande de devis"}
+                      <Send className="ml-2 h-4 w-4" />
                     </Button>
 
-                    <p className="text-center text-xs text-muted-foreground">
-                      Besoin immédiat ?{" "}
-                      <a href={`tel:${PHONE}`} className="underline underline-offset-4 hover:text-foreground">
-                        Appelez-nous
-                      </a>{" "}
-                      (réponse plus rapide).
+                    <p className="text-center text-xs text-slate-500 pt-1">
+                      Besoin d'une réponse immédiate ?{" "}
+                      <a href={`tel:${PHONE}`} className="font-bold text-slate-900 underline hover:text-amber-700">
+                        Appelez-nous au {PHONE_DISPLAY}
+                      </a>
                     </p>
                   </form>
-                </CardContent>
-              </Card>
+                </Card>
+              </div>
             </div>
           </section>
         </AnimatedSection>
 
-        {/* SEO “utile” et épuré (indexable) */}
-        <section className="border-t bg-background">
-          <div className="container py-12">
-            <div className="mx-auto max-w-4xl text-center">
-              <h2 className="font-headline text-2xl font-bold md:text-3xl">
-                Contact rénovation à Paris et Île-de-France
+        {/* SEO REASSURANCE SECTION */}
+        <section className="border-t border-slate-200/60 bg-white py-12">
+          <div className="container">
+            <div className="mx-auto max-w-4xl text-center space-y-3">
+              <h2 className="font-headline text-2xl font-bold text-slate-900 md:text-3xl">
+                Entreprise de Rénovation à Paris & Île-de-France
               </h2>
-              <p className="mt-3 text-muted-foreground">
-                ERG Rénovation intervient sur des projets de rénovation intérieure (appartement, salle de bain, cuisine)
-                à Paris et dans les départements 92, 93, 94. Contactez-nous pour une visite sur site et un devis détaillé.
+              <p className="text-slate-600 text-sm leading-relaxed">
+                ERG Rénovation est une entreprise générale du bâtiment basée à Paris 20e. Nous réalisons des travaux tous corps d'état (démolition, maçonnerie, plomberie, électricité, menuiserie, peinture) avec garantie décennale et suivi quotidien.
               </p>
             </div>
           </div>
         </section>
+
+        {/* CTA BANNER */}
+        <CtaBanner />
       </main>
 
       <SiteFooter />

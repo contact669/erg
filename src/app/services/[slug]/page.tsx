@@ -520,13 +520,13 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
         />
 
         {/* HERO */}
-        <section className="relative overflow-hidden bg-primary py-16 text-primary-foreground md:py-24">
+        <section className="relative overflow-hidden bg-slate-50/80 border-b border-slate-200/80 py-16 md:py-24 text-slate-900">
           {serviceImage ? (
             <Image
               src={serviceImage.imageUrl}
               alt={service.title}
               fill
-              className="object-cover opacity-10"
+              className="object-cover opacity-10 blur-xs"
               priority
               data-ai-hint={serviceImage.imageHint}
               sizes="100vw"
@@ -535,18 +535,18 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
 
           <div className="container relative z-10">
             {/* Breadcrumbs safe (HTML) */}
-            <nav aria-label="Fil d’ariane" className="text-sm text-primary-foreground/80">
+            <nav aria-label="Fil d’ariane" className="text-sm text-slate-600">
               <ol className="flex flex-wrap items-center gap-2">
                 {breadcrumbs.map((b, idx) => {
                   const isLast = idx === breadcrumbs.length - 1
                   return (
                     <li key={b.item} className="flex items-center gap-2">
                       {isLast ? (
-                        <span aria-current="page" className="font-medium text-primary-foreground">
+                        <span aria-current="page" className="font-semibold text-slate-900">
                           {b.name}
                         </span>
                       ) : (
-                        <Link href={toRelPath(b.item)} className="hover:underline">
+                        <Link href={toRelPath(b.item)} className="hover:underline hover:text-amber-700">
                           {b.name}
                         </Link>
                       )}
@@ -558,21 +558,21 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             </nav>
 
             <div className="mt-6 max-w-4xl">
-              <p className="inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 text-sm text-primary-foreground/90">
-                <MapPin className="h-4 w-4 text-accent" />
+              <p className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-amber-700 shadow-xs">
+                <MapPin className="h-4 w-4 text-amber-600" />
                 Paris & Île-de-France • Devis détaillé • Garantie décennale
               </p>
 
-              <h1 className="mt-5 max-w-4xl font-headline text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
+              <h1 className="mt-5 max-w-4xl font-headline text-4xl font-extrabold leading-tight text-slate-900 md:text-5xl lg:text-6xl">
                 {content ? content.h1 : service.title}
               </h1>
 
-              <p className="mt-6 max-w-3xl text-lg text-primary-foreground/80 md:leading-relaxed">
+              <p className="mt-6 max-w-3xl text-lg text-slate-600 font-normal md:leading-relaxed">
                 {content ? content.intro : service.longDescription}
               </p>
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+                <Button asChild size="lg" className="bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 shadow-md h-12 px-7 rounded-xl">
                   <Link href="/devis">{content ? content.cta : "Obtenir un devis"}</Link>
                 </Button>
 
@@ -580,19 +580,19 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                   asChild
                   size="lg"
                   variant="outline"
-                  className="border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary"
+                  className="border-slate-300 bg-white text-slate-900 hover:bg-slate-100 h-12 px-7 rounded-xl shadow-xs"
                 >
                   <a href={PHONE_TEL} aria-label="Appeler ERG Rénovation">
-                    <Phone className="mr-2 h-4 w-4" />
+                    <Phone className="mr-2 h-4 w-4 text-amber-600" />
                     Appeler maintenant
                   </a>
                 </Button>
               </div>
 
-              <div className="mt-8 flex flex-col gap-2 text-sm text-primary-foreground/80 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2">
+              <div className="mt-8 flex flex-col gap-2 text-sm font-semibold text-slate-700 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2">
                 {heroBadges.map((b) => (
                   <div key={b.text} className="flex items-center gap-2">
-                    <b.icon className="h-4 w-4 text-accent" />
+                    <b.icon className="h-4 w-4 text-amber-600" />
                     <span>{b.text}</span>
                   </div>
                 ))}

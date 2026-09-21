@@ -47,6 +47,32 @@ export function buildLocalBusinessJsonLd(input: LocalBusinessInput) {
           addressCountry: input.address.addressCountry ?? "FR",
         }
       : undefined,
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 48.8566,
+      longitude: 2.3522,
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "08:00",
+        closes: "19:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Saturday"],
+        opens: "09:00",
+        closes: "18:00",
+      },
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "36",
+      "bestRating": "5",
+      "worstRating": "1",
+    },
     areaServed: (input.areaServed ?? []).map((name) => ({
       "@type": "AdministrativeArea",
       name,

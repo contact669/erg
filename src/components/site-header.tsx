@@ -5,7 +5,19 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X, Phone, LogIn, ArrowRight } from "lucide-react"
+import {
+  Menu,
+  X,
+  Phone,
+  ArrowRight,
+  Sparkles,
+  ShieldCheck,
+  Star,
+  Clock,
+  MapPin,
+  ChevronDown,
+  UserCheck,
+} from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
@@ -21,32 +33,19 @@ import {
 
 import { navItems, services } from "@/lib/data"
 import { cn } from "@/lib/utils"
-import { useUser } from "@/firebase"
-import { ModeToggle } from "@/components/mode-toggle"
-
 
 /* --------------------------------- Helpers -------------------------------- */
 
 function DynamicLogo() {
   return (
-    <>
-      <Image
-        src="/images/logo-clair.png"
-        alt="ERG Rénovation Logo"
-        width={131}
-        height={75}
-        className="dark:hidden"
-        unoptimized
-      />
-      <Image
-        src="/images/logo-sombre.png"
-        alt="ERG Rénovation Logo"
-        width={131}
-        height={75}
-        className="hidden dark:block"
-        unoptimized
-      />
-    </>
+    <Image
+      src="/images/logo-erg.webp"
+      alt="ERG Rénovation Logo"
+      width={280}
+      height={100}
+      className="h-16 sm:h-20 md:h-24 w-auto object-contain"
+      priority
+    />
   )
 }
 
@@ -56,62 +55,30 @@ function isActiveLink(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(href + "/")
 }
 
-/**
- * Si un item est "#section":
- * - sur la home : "#section"
- * - ailleurs : "/#section"
- */
 function resolveNavHref(pathname: string, href: string) {
   const isAnchor = href.startsWith("#")
   if (!isAnchor) return href
   return pathname === "/" ? href : `/${href}`
 }
 
-/* -------------------------------- AuthBtn -------------------------------- */
-
-function AuthButton() {
-  const { user, isUserLoading } = useUser()
-
-  if (isUserLoading) {
-    return (
-      <Button variant="ghost" size="icon" className="md:h-10 md:w-auto md:px-4">
-        <div className="h-5 w-5 animate-spin rounded-full border-2 border-border border-t-primary" />
-        <span className="sr-only">Chargement</span>
-      </Button>
-    )
-  }
-
-  if (user) return null
-
-  return (
-    <Button asChild variant="outline" className="hidden md:inline-flex">
-      <Link href="/connexion" aria-label="Accéder à l’espace professionnel">
-        <LogIn className="mr-2 h-4 w-4" />
-        Espace Pro
-      </Link>
-    </Button>
-  )
-}
-
 /* -------------------------------- SiteHeader ------------------------------- */
 
 export default function SiteHeader() {
   const pathnameRaw = usePathname()
-  const [pathname, setPathname] = React.useState(pathnameRaw || "/");
-  const [isScrolled, setIsScrolled] = React.useState(false);
-  const [isMounted, setIsMounted] = React.useState(false);
+  const [pathname, setPathname] = React.useState(pathnameRaw || "/")
+  const [isScrolled, setIsScrolled] = React.useState(false)
+  const [isMounted, setIsMounted] = React.useState(false)
 
   React.useEffect(() => {
-    setIsMounted(true);
-    setPathname(pathnameRaw || "/");
-  }, [pathnameRaw]);
-
+    setIsMounted(true)
+    setPathname(pathnameRaw || "/")
+  }, [pathnameRaw])
 
   React.useEffect(() => {
     let raf = 0
     const onScroll = () => {
       cancelAnimationFrame(raf)
-      raf = requestAnimationFrame(() => setIsScrolled(window.scrollY > 8))
+      raf = requestAnimationFrame(() => setIsScrolled(window.scrollY > 12))
     }
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
@@ -122,124 +89,179 @@ export default function SiteHeader() {
   }, [])
 
   const items = React.useMemo(() => {
-    if (!isMounted) return navItems.map(item => ({ ...item, href: item.href, active: false }));
+    if (!isMounted) return navItems.map((item) => ({ ...item, href: item.href, active: false }))
     return navItems.map((item) => {
-      const href = resolveNavHref(pathname, item.href) 
-      const active = isActiveLink(pathname, href) 
+      const href = resolveNavHref(pathname, item.href)
+      const active = isActiveLink(pathname, href)
       return { ...item, href, active }
     })
   }, [pathname, isMounted])
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 w-full",
-        "border-b border-border/60 bg-background/75 backdrop-blur supports-[backdrop-filter]:bg-background/60",
-        "transition-shadow duration-300",
-        isScrolled ? "shadow-sm" : "shadow-none"
-      )}
-      role="banner"
-    >
-      <div className="container flex h-auto items-center justify-between gap-3 py-2">
-        {/* Brand */}
-        <Link href="/" className="flex items-center gap-2" aria-label="Aller à l’accueil">
-          <DynamicLogo />
-        </Link>
+    <header className="sticky top-0 z-50 w-full transition-all duration-300">
+      
+      {/* Top Architectural Reassurance Ribbon */}
+      <div className="hidden sm:block border-b border-stone-200/80 bg-[#FAF8F5]/90 backdrop-blur-md py-1.5 text-xs font-semibold text-slate-700">
+        <div className="container flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <span className="inline-flex items-center gap-1.5 text-slate-900 font-bold">
+              <Sparkles className="h-3.5 w-3.5 text-amber-600" />
+              <span>Rénovation Haute Précision • Paris & Île-de-France</span>
+            </span>
+            <span className="hidden md:inline-flex items-center gap-1 text-slate-500">
+              <MapPin className="h-3 w-3 text-amber-600" /> 75 • 92 • 93 • 94
+            </span>
+          </div>
 
-        {/* Desktop Nav */}
-        <nav className="hidden items-center md:flex" aria-label="Navigation principale">
-          <NavigationMenu>
-            <NavigationMenuList>
-              {items.map((item) => {
-                if (item.title === "Services") {
+          <div className="flex items-center gap-5">
+            <span className="inline-flex items-center gap-1 text-slate-800">
+              <ShieldCheck className="h-3.5 w-3.5 text-amber-600" />
+              Garantie Décennale 10 Ans
+            </span>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=ERG-Entreprise+de+R%C3%A9novation+Appartement+%26+Salle+de+Bains+%C3%A0+Paris+et+%C3%8Ele-de-France"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-slate-900 hover:text-amber-600 transition-colors font-bold"
+            >
+              <Star className="h-3.5 w-3.5 fill-amber-500 text-amber-500" />
+              <span>4.9/5 Google (36+ avis)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Glassmorphic Navbar */}
+      <div
+        className={cn(
+          "w-full border-b border-slate-200/80 bg-white/90 backdrop-blur-xl transition-all duration-300",
+          isScrolled ? "shadow-md shadow-slate-200/50 py-2.5" : "shadow-xs py-3.5"
+        )}
+      >
+        <div className="container flex items-center justify-between gap-4">
+          
+          {/* Brand Logo & Tagline */}
+          <Link href="/" className="flex items-center gap-3 group transition-transform hover:scale-105" aria-label="Accueil ERG Rénovation">
+            <DynamicLogo />
+          </Link>
+
+          {/* Desktop Navigation Menu */}
+          <nav className="hidden lg:flex items-center" aria-label="Navigation principale">
+            <NavigationMenu>
+              <NavigationMenuList className="gap-1">
+                {items.map((item) => {
+                  if (item.title === "Services") {
+                    return (
+                      <NavigationMenuItem key={item.href}>
+                        <NavigationMenuTrigger
+                          className={cn(
+                            "bg-transparent text-sm font-semibold h-10 px-4 rounded-xl transition-all",
+                            "hover:bg-slate-100/80 focus:bg-transparent data-[state=open]:bg-slate-100",
+                            item.active ? "text-amber-700 font-extrabold" : "text-slate-800 hover:text-amber-700"
+                          )}
+                        >
+                          Services
+                        </NavigationMenuTrigger>
+
+                        <NavigationMenuContent>
+                          <div className="w-[720px] p-5 lg:w-[840px] bg-white rounded-3xl border border-slate-200 shadow-2xl">
+                            <div className="mb-3 flex items-center justify-between border-b border-slate-100 pb-3">
+                              <span className="text-xs font-extrabold uppercase tracking-widest text-slate-900 flex items-center gap-2">
+                                <Sparkles className="h-4 w-4 text-amber-600" />
+                                Nos Prestations Tous Corps d'État
+                              </span>
+                              <span className="text-xs font-semibold text-amber-700">
+                                Accompagnement de A à Z
+                              </span>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-3">
+                              {services.map((service) => (
+                                <MegaMenuItem
+                                  key={service.slug}
+                                  href={`/services/${service.slug}`}
+                                  title={service.title}
+                                  description={service.description}
+                                  icon={service.icon}
+                                />
+                              ))}
+                            </div>
+
+                            {/* Footer inside mega menu */}
+                            <div className="mt-4 flex items-center justify-between rounded-2xl border border-slate-200/90 bg-slate-50 p-4">
+                              <div className="flex items-center gap-3">
+                                <UserCheck className="h-5 w-5 text-amber-600" />
+                                <span className="text-xs font-semibold text-slate-800">
+                                  Interlocuteur unique & devis poste par poste
+                                </span>
+                              </div>
+
+                              <div className="flex items-center gap-3">
+                                <Link
+                                  href="/services"
+                                  className="text-xs font-bold text-slate-900 hover:text-amber-700 transition-colors"
+                                >
+                                  Toutes les prestations →
+                                </Link>
+                                <Button asChild size="sm" className="h-9 bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 rounded-xl">
+                                  <Link href="/devis">Simuler mon devis</Link>
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                        </NavigationMenuContent>
+                      </NavigationMenuItem>
+                    )
+                  }
+
                   return (
                     <NavigationMenuItem key={item.href}>
-                      <NavigationMenuTrigger
-                        className={cn(
-                          "bg-transparent text-sm font-medium",
-                          "focus:bg-transparent data-[state=open]:bg-transparent",
-                          item.active ? "text-primary" : "text-muted-foreground hover:text-primary-foreground"
-                        )}
-                      >
-                        Services
-                      </NavigationMenuTrigger>
-
-                      <NavigationMenuContent>
-                        <div className="w-[680px] p-4 lg:w-[820px]">
-                          <div className="grid grid-cols-2 gap-3">
-                            {services.map((service) => (
-                              <MegaMenuItem
-                                key={service.slug}
-                                href={`/services/${service.slug}`}
-                                title={service.title}
-                                description={service.description}
-                                icon={service.icon}
-                              />
-                            ))}
-                          </div>
-
-                          {/* Footer mega menu */}
-                          <div className="mt-4 flex items-center justify-between rounded-xl border bg-secondary/50 px-4 py-3">
-                            <Link
-                              href="/services"
-                              className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-                            >
-                              Voir tous les services <ArrowRight className="h-4 w-4" />
-                            </Link>
-
-                            <Button asChild size="sm" className="h-9">
-                              <Link href="/devis" aria-label="Demander un devis gratuit">
-                                Demander un devis
-                              </Link>
-                            </Button>
-                          </div>
-                        </div>
-                      </NavigationMenuContent>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href={item.href}
+                          className={cn(
+                            navigationMenuTriggerStyle(),
+                            "bg-transparent text-sm font-semibold h-10 px-4 rounded-xl transition-all",
+                            "hover:bg-slate-100/80 focus:bg-transparent data-[active]:bg-transparent",
+                            item.active
+                              ? "text-amber-700 font-extrabold bg-amber-500/10 border border-amber-500/20"
+                              : "text-slate-800 hover:text-amber-700"
+                          )}
+                          aria-current={item.active ? "page" : undefined}
+                        >
+                          {item.title}
+                        </Link>
+                      </NavigationMenuLink>
                     </NavigationMenuItem>
                   )
-                }
+                })}
+              </NavigationMenuList>
+            </NavigationMenu>
+          </nav>
 
-                return (
-                  <NavigationMenuItem key={item.href}>
-                    <NavigationMenuLink asChild>
-                      <Link
-                        href={item.href}
-                        className={cn(
-                          navigationMenuTriggerStyle(),
-                          "bg-transparent text-sm font-medium",
-                          "focus:bg-transparent data-[active]:bg-transparent",
-                          item.active ? "text-primary" : "text-muted-foreground hover:text-primary-foreground"
-                        )}
-                        aria-current={item.active ? "page" : undefined}
-                      >
-                        {item.title}
-                      </Link>
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
-                )
-              })}
-            </NavigationMenuList>
-          </NavigationMenu>
-        </nav>
+          {/* Right Action Buttons */}
+          <div className="flex items-center gap-3">
+            <a
+              href="tel:+33699961375"
+              className="hidden md:inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-bold text-slate-900 hover:bg-slate-100 transition-all shadow-2xs"
+              aria-label="Appeler ERG Rénovation"
+            >
+              <Phone className="h-3.5 w-3.5 text-amber-600" />
+              <span>06 99 96 13 75</span>
+            </a>
 
-        {/* Right actions */}
-        <div className="flex items-center gap-2">
-          <a
-            href="tel:+33699961375"
-            className="hidden items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-muted-foreground hover:text-primary md:flex"
-            aria-label="Appeler ERG Rénovation"
-          >
-            <Phone className="h-4 w-4" />
-            <span>06 99 96 13 75</span>
-          </a>
+            <Button
+              asChild
+              className="hidden sm:inline-flex bg-amber-500 text-slate-950 font-extrabold hover:bg-amber-400 shadow-md shadow-amber-500/20 rounded-xl px-5 h-10 text-xs sm:text-sm"
+            >
+              <Link href="/devis" aria-label="Demander un devis gratuit">
+                Devis Gratuit <ArrowRight className="ml-1.5 h-4 w-4" />
+              </Link>
+            </Button>
 
-          <Button asChild className="hidden md:inline-flex">
-            <Link href="/devis">Devis</Link>
-          </Button>
+            <MobileNav items={items} />
+          </div>
 
-          <ModeToggle />
-
-          <MobileNav items={items} />
         </div>
       </div>
     </header>
@@ -261,20 +283,22 @@ const MegaMenuItem = React.forwardRef<
       <a
         ref={ref}
         className={cn(
-          "group flex gap-3 rounded-xl border bg-background p-3",
-          "transition-colors hover:bg-accent hover:text-accent-foreground",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30",
+          "group flex items-start gap-3.5 rounded-2xl border border-slate-200/80 bg-white p-3.5",
+          "transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500/40 hover:shadow-md",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500",
           className
         )}
         {...props}
       >
-        <span className="mt-0.5 inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-accent-foreground/15 group-hover:text-accent-foreground">
+        <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-amber-700 font-bold border border-amber-500/20 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
           <Icon className="h-5 w-5" aria-hidden="true" />
         </span>
 
-        <span className="min-w-0">
-          <span className="block text-sm font-semibold leading-tight">{title}</span>
-          <span className="mt-1 block line-clamp-2 text-xs leading-relaxed text-muted-foreground group-hover:text-accent-foreground/80">
+        <span className="min-w-0 space-y-0.5">
+          <span className="block text-sm font-bold text-slate-900 group-hover:text-amber-700 transition-colors">
+            {title}
+          </span>
+          <span className="block line-clamp-2 text-xs font-normal leading-relaxed text-slate-600">
             {description}
           </span>
         </span>
@@ -292,7 +316,7 @@ function MobileNav({
   items: Array<{ title: string; href: string; active: boolean }>
 }) {
   const pathnameRaw = usePathname()
-  const pathname = pathnameRaw ?? "/" // ✅ Fix: never null
+  const pathname = pathnameRaw ?? "/"
   const [open, setOpen] = React.useState(false)
 
   const servicesLinks = React.useMemo(
@@ -306,15 +330,15 @@ function MobileNav({
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild className="md:hidden">
-        <Button variant="ghost" size="icon" aria-label="Ouvrir le menu">
-          <Menu className="h-6 w-6" />
+      <SheetTrigger asChild className="lg:hidden">
+        <Button variant="outline" size="icon" className="h-10 w-10 rounded-xl border-slate-200" aria-label="Ouvrir le menu">
+          <Menu className="h-5 w-5 text-slate-900" />
         </Button>
       </SheetTrigger>
 
-      <SheetContent side="right" className="w-[320px] p-0">
-        <SheetHeader className="border-b px-5 py-4">
-          <SheetTitle className="sr-only">Menu</SheetTitle>
+      <SheetContent side="right" className="w-[320px] sm:w-[380px] p-0 bg-white">
+        <SheetHeader className="border-b border-slate-200 px-6 py-4">
+          <SheetTitle className="sr-only">Menu principal</SheetTitle>
 
           <div className="flex items-center justify-between">
             <Link
@@ -327,23 +351,27 @@ function MobileNav({
             </Link>
 
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label="Fermer le menu">
-                <X className="h-6 w-6" />
+              <Button variant="ghost" size="icon" className="rounded-xl" aria-label="Fermer le menu">
+                <X className="h-5 w-5 text-slate-700" />
               </Button>
             </SheetTrigger>
           </div>
         </SheetHeader>
 
-        <div className="flex h-full flex-col px-5 pb-6">
-          <nav className="mt-6 space-y-6" aria-label="Navigation mobile">
+        <div className="flex h-[calc(100vh-80px)] flex-col justify-between px-6 py-6 overflow-y-auto">
+          <nav className="space-y-6" aria-label="Navigation mobile">
+            
             {/* Main links */}
             <div className="space-y-1">
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                Navigation
+              </p>
               {items
                 .filter((i) => i.title !== "Services")
                 .map((item) => (
                   <MobileLink
                     key={item.href}
-                    href={resolveNavHref(pathname, item.href)} // ✅ pathname is string
+                    href={resolveNavHref(pathname, item.href)}
                     active={item.active}
                     onClick={() => setOpen(false)}
                   >
@@ -353,12 +381,12 @@ function MobileNav({
             </div>
 
             {/* Services */}
-            <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Services
+            <div className="space-y-2 pt-2 border-t border-slate-100">
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                Nos Services Clés
               </p>
               <div className="space-y-1">
-                {servicesLinks.slice(0, 8).map((s) => (
+                {servicesLinks.slice(0, 6).map((s) => (
                   <MobileSubLink
                     key={s.href}
                     href={s.href}
@@ -370,31 +398,33 @@ function MobileNav({
                 <Link
                   href="/services"
                   onClick={() => setOpen(false)}
-                  className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+                  className="mt-2 inline-flex items-center gap-2 text-xs font-bold text-amber-700 hover:underline pt-1"
                 >
-                  Voir tous les services <ArrowRight className="h-4 w-4" />
+                  Voir tous les services <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
               </div>
             </div>
 
-            {/* Contact */}
-            <div className="rounded-xl border bg-secondary/40 p-4">
+            {/* Direct Call Box */}
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 space-y-2">
+              <span className="text-xs font-bold text-slate-900 block flex items-center gap-2">
+                <Phone className="h-4 w-4 text-amber-600" /> Contact direct 7j/7
+              </span>
               <a
                 href="tel:+33699961375"
-                className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary"
+                className="text-base font-extrabold text-slate-900 hover:text-amber-600 transition-colors block"
               >
-                <Phone className="h-4 w-4" />
                 06 99 96 13 75
               </a>
-              <p className="mt-1 text-xs text-muted-foreground">Paris • 92 • 93 • 94</p>
+              <p className="text-[11px] text-slate-500 font-medium">Paris (75) • 92 • 93 • 94</p>
             </div>
           </nav>
 
-          {/* CTA bottom */}
-          <div className="mt-auto grid gap-2 pt-6">
-            <Button asChild size="lg">
+          {/* Bottom Action Button */}
+          <div className="pt-6 border-t border-slate-100">
+            <Button asChild size="lg" className="w-full bg-amber-500 text-slate-950 font-extrabold hover:bg-amber-400 h-12 rounded-xl text-base shadow-md">
               <Link href="/devis" onClick={() => setOpen(false)}>
-                Demander un devis
+                Simuler mon Devis Gratuit
               </Link>
             </Button>
           </div>
@@ -420,13 +450,12 @@ function MobileLink({
       onClick={onClick}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "flex items-center justify-between rounded-xl px-3 py-2 text-base font-medium",
-        "transition-colors hover:bg-secondary",
-        active ? "text-primary" : "text-foreground"
+        "flex items-center justify-between rounded-xl px-3 py-2.5 text-base font-semibold transition-colors",
+        active ? "bg-amber-500/10 text-amber-700 font-extrabold" : "text-slate-800 hover:bg-slate-100"
       )}
     >
       <span>{children}</span>
-      <ArrowRight className="h-4 w-4 text-muted-foreground" />
+      <ArrowRight className="h-4 w-4 text-slate-400" />
     </Link>
   )
 }
@@ -440,9 +469,10 @@ function MobileSubLink({
     <Link
       href={href}
       onClick={onClick}
-      className="block rounded-lg px-3 py-2 text-sm text-foreground transition-colors hover:bg-secondary"
+      className="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-900"
     >
       {children}
     </Link>
   )
 }
+

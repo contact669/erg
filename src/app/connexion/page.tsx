@@ -9,11 +9,13 @@ import * as z from "zod"
 
 import { useAuth } from "@/firebase"
 import { FirebaseError } from "firebase/app"
-import { signInWithEmailAndPassword, sendPasswordResetEmail, signOut } from "firebase/auth"
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth"
 
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
 import Breadcrumbs from "@/components/breadcrumbs"
+import CtaBanner from "@/app/_components/cta-banner"
+import { GoogleIcon } from "@/components/icons"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -23,7 +25,7 @@ import { Separator } from "@/components/ui/separator"
 import { useToast } from "@/hooks/use-toast"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { cn } from "@/lib/utils"
-import { ShieldCheck, Lock, Mail, ArrowRight, Eye, EyeOff } from "lucide-react"
+import { ShieldCheck, Lock, Mail, ArrowRight, Eye, EyeOff, Building2, Layers, CheckCircle2 } from "lucide-react"
 
 const formSchema = z.object({
   email: z.string().email({ message: "Veuillez saisir une adresse email valide." }),
@@ -101,7 +103,7 @@ export default function ConnexionPage() {
     try {
       await signInWithEmailAndPassword(auth!, values.email, values.password)
 
-      toast({ title: "Connexion réussie", description: "Bienvenue dans l’espace administrateur." })
+      toast({ title: "Connexion réussie", description: "Bienvenue dans votre espace CRM." })
       router.push("/dashboard")
     } catch (error) {
       const msg = authErrorToMessage(error)
@@ -142,68 +144,74 @@ export default function ConnexionPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-slate-50/50">
       <SiteHeader />
 
       <main className="flex-grow">
-        <Breadcrumbs />
+        {/* HERO SECTION */}
+        <section className="relative isolate overflow-hidden bg-slate-50 border-b border-slate-200/80 py-12 md:py-16">
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-slate-50/80 to-slate-50" />
+          </div>
 
-        <section className="border-b bg-secondary/50">
-          <div className="container py-10 md:py-14">
-            <div className="mx-auto max-w-3xl text-center">
-              <div className="mx-auto inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-xs text-muted-foreground">
-                <ShieldCheck className="h-4 w-4 text-accent" />
-                Accès sécurisé — administrateur uniquement
+          <div className="container relative z-10">
+            <div className="mx-auto max-w-3xl text-center space-y-4">
+              <Breadcrumbs />
+
+              <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/30 px-3.5 py-1 text-xs font-semibold text-amber-700">
+                <ShieldCheck className="h-3.5 w-3.5 text-amber-600" /> Portail CRM & Espace Artisan Sécurisé
               </div>
 
-              <h1 className="mt-5 font-headline text-3xl font-bold tracking-tight md:text-5xl">
-                {showReset ? "Réinitialiser le mot de passe" : "Connexion administrateur"}
+              <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900">
+                {showReset ? "Réinitialiser le Mot de Passe" : "Connexion CRM & Artisan"}
               </h1>
 
-              <p className="mt-3 text-muted-foreground md:text-lg">
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
                 {showReset
-                  ? "Recevez un lien de réinitialisation par email."
-                  : "Connectez-vous pour accéder au tableau de bord et gérer le site."}
+                  ? "Saisissez votre email professionnel pour recevoir un lien de réinitialisation sécurisé."
+                  : "Accédez au tableau de bord ERG Rénovation pour gérer les chantiers, plannings et devis clients."}
               </p>
             </div>
           </div>
         </section>
 
-        <section className="container py-10 md:py-14">
-          <div className="mx-auto max-w-md">
-            <Card className="overflow-hidden">
-              <CardHeader className="space-y-2 text-center">
-                <CardTitle className="font-headline text-2xl">
-                  {showReset ? "Mot de passe oublié" : "Espace Admin"}
-                </CardTitle>
-                <CardDescription>
-                  {showReset
-                    ? "Saisissez votre email. Nous vous enverrons un lien sécurisé."
-                    : "Authentification via Firebase. Accès réservé."}
-                </CardDescription>
-              </CardHeader>
+        {/* LOGIN FORM SECTION */}
+        <section className="py-12 md:py-20">
+          <div className="container">
+            <div className="mx-auto max-w-md">
+              <Card className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-xl space-y-6">
+                <div className="text-center space-y-1">
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-600 font-bold mb-3">
+                    <Lock className="h-6 w-6" />
+                  </div>
+                  <h2 className="font-headline text-2xl font-bold text-slate-900">
+                    {showReset ? "Mot de Passe Oublié" : "Espace Authentification"}
+                  </h2>
+                  <p className="text-xs text-slate-500">
+                    {showReset ? "Récupération sécurisée d'accès" : "Connexion réservée aux maîtres d'œuvre et artisans ERG."}
+                  </p>
+                </div>
 
-              <CardContent className="space-y-6">
                 <Form {...form}>
                   <form
                     onSubmit={showReset ? (e) => e.preventDefault() : form.handleSubmit(onSubmit)}
-                    className="space-y-5"
+                    className="space-y-4"
                   >
                     <FormField
                       control={form.control}
                       name="email"
                       render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="inline-flex items-center gap-2">
-                            <Mail className="h-4 w-4 text-muted-foreground" />
-                            Email
+                        <FormItem className="space-y-1.5">
+                          <FormLabel className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                            <Mail className="h-3.5 w-3.5 text-amber-600" /> Adresse Email
                           </FormLabel>
                           <FormControl>
                             <Input
                               type="email"
-                              placeholder="admin@exemple.com"
+                              placeholder="artisan@erg-renovation.fr"
                               autoComplete="email"
                               inputMode="email"
+                              className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white text-sm"
                               {...field}
                               disabled={isSubmitting}
                             />
@@ -218,10 +226,9 @@ export default function ConnexionPage() {
                         control={form.control}
                         name="password"
                         render={({ field }) => (
-                          <FormItem>
-                             <FormLabel className="inline-flex items-center gap-2">
-                              <Lock className="h-4 w-4 text-muted-foreground" />
-                              Mot de passe
+                          <FormItem className="space-y-1.5">
+                            <FormLabel className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                              <Lock className="h-3.5 w-3.5 text-amber-600" /> Mot de passe
                             </FormLabel>
                             <div className="relative">
                               <FormControl>
@@ -229,18 +236,18 @@ export default function ConnexionPage() {
                                   type={showPassword ? "text" : "password"}
                                   placeholder="••••••••"
                                   autoComplete="current-password"
+                                  className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white text-sm pr-10"
                                   {...field}
                                   disabled={isSubmitting}
-                                  className="pr-10"
                                 />
                               </FormControl>
                               <button
                                 type="button"
                                 onClick={() => setShowPassword((prev) => !prev)}
-                                className="absolute inset-y-0 right-0 flex items-center px-3 text-muted-foreground hover:text-foreground"
+                                className="absolute inset-y-0 right-0 flex items-center px-3 text-slate-400 hover:text-slate-700"
                                 aria-label={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
                               >
-                                {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                               </button>
                             </div>
                             <FormMessage />
@@ -250,12 +257,12 @@ export default function ConnexionPage() {
                     )}
 
                     {showReset ? (
-                      <div className="grid gap-3">
+                      <div className="grid gap-3 pt-2">
                         <Button
                           type="button"
                           onClick={onResetPassword}
                           disabled={isSubmitting || !canReset}
-                          className="w-full"
+                          className="h-12 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl shadow-md text-sm"
                         >
                           {isSubmitting ? "Envoi..." : "Envoyer le lien de réinitialisation"}
                         </Button>
@@ -264,23 +271,27 @@ export default function ConnexionPage() {
                           variant="outline"
                           onClick={() => setShowReset(false)}
                           disabled={isSubmitting}
-                          className="w-full"
+                          className="h-11 border-slate-300 font-semibold rounded-xl text-xs"
                         >
                           Retour à la connexion
                         </Button>
                       </div>
                     ) : (
-                      <div className="grid gap-3">
-                        <Button type="submit" disabled={isSubmitting} className="w-full">
-                          {isSubmitting ? "Connexion..." : "Se connecter"}
+                      <div className="grid gap-3 pt-2">
+                        <Button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="h-12 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl shadow-lg shadow-amber-500/20 text-sm"
+                        >
+                          {isSubmitting ? "Connexion en cours..." : "Se connecter au CRM"}
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
 
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between pt-1">
                           <button
                             type="button"
                             className={cn(
-                              "text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline",
+                              "text-xs font-semibold text-slate-500 hover:text-amber-700 hover:underline",
                               isSubmitting && "pointer-events-none opacity-60"
                             )}
                             onClick={() => setShowReset(true)}
@@ -290,7 +301,7 @@ export default function ConnexionPage() {
 
                           <Link
                             href="/confidentialite"
-                            className="text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+                            className="text-xs font-semibold text-slate-500 hover:text-slate-800 hover:underline"
                           >
                             Confidentialité
                           </Link>
@@ -302,22 +313,20 @@ export default function ConnexionPage() {
 
                 <Separator />
 
-                <p className="text-center text-xs text-muted-foreground">
-                  En continuant, vous acceptez nos{" "}
-                  <Link href="/mentions-legales" className="underline underline-offset-4 hover:text-foreground">
-                    mentions légales
-                  </Link>{" "}
-                  et notre{" "}
-                  <Link href="/confidentialite" className="underline underline-offset-4 hover:text-foreground">
-                    politique de confidentialité
-                  </Link>
-                  .
-                </p>
-              </CardContent>
-            </Card>
-
+                <div className="rounded-2xl border border-slate-200/80 bg-slate-50 p-4 space-y-2 text-xs text-slate-600">
+                  <p className="font-bold text-slate-900 flex items-center gap-1.5">
+                    <ShieldCheck className="h-4 w-4 text-amber-600" /> Espace Sécurisé ERG Rénovation
+                  </p>
+                  <p className="text-[11px] leading-relaxed">
+                    Plateforme dédiée à la gestion des dossiers clients, plannings d'artisans, réceptions de chantier et pièces comptables.
+                  </p>
+                </div>
+              </Card>
+            </div>
           </div>
         </section>
+
+        <CtaBanner />
       </main>
 
       <SiteFooter />

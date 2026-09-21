@@ -67,10 +67,13 @@ const navItems = [
 
 function DynamicLogo() {
   return (
-    <>
-      <Image src="/images/logo-clair.png" alt="ERG Rénovation Logo" width={32} height={32} className="h-8 w-8 dark:hidden" unoptimized />
-      <Image src="/images/logo-sombre.png" alt="ERG Rénovation Logo" width={32} height={32} className="h-8 w-8 hidden dark:block" unoptimized />
-    </>
+    <Image
+      src="/images/logo-erg.webp"
+      alt="ERG Rénovation Logo"
+      width={32}
+      height={32}
+      className="h-8 w-8 object-contain"
+    />
   )
 }
 

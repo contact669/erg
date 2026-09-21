@@ -1,170 +1,130 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
 import Breadcrumbs from "@/components/breadcrumbs"
+import CtaBanner from "@/app/_components/cta-banner"
+import { Cookie, ShieldCheck, CheckCircle2, Lock } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Politique de gestion des cookies | ERG Rénovation",
+  title: "Gestion des Cookies | ERG Rénovation",
   description:
-    "Informations sur l’utilisation des cookies sur le site ERG Rénovation : types de cookies, finalités, durée de conservation et moyens de gestion de vos préférences.",
+    "Informations sur l’utilisation des cookies sur le site ERG Rénovation : types de cookies, finalités, durée de conservation et gestion de vos préférences.",
   alternates: { canonical: "https://erg-renovation.fr/cookies" },
-  robots: { index: true, follow: true },
 }
 
-const LAST_UPDATE = "1 janvier 2026"
-
 export default function CookiesPage() {
+  const lastUpdated = "1 janvier 2026"
+
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-slate-50/50">
       <SiteHeader />
 
       <main className="flex-grow">
-        <div className="container py-14 md:py-20">
-          <Breadcrumbs />
+        {/* HERO SECTION */}
+        <section className="relative isolate overflow-hidden bg-slate-50 border-b border-slate-200/80 py-12 md:py-16">
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-slate-50/80 to-slate-50" />
+          </div>
 
-          <header className="mx-auto max-w-3xl text-center">
-            <h1 className="mt-6 font-headline text-4xl font-bold tracking-tight md:text-5xl">
-              Politique de gestion des cookies
-            </h1>
-            <p className="mt-4 text-muted-foreground">
-              Dernière mise à jour : <span className="font-medium text-foreground">{LAST_UPDATE}</span>
-            </p>
-          </header>
+          <div className="container relative z-10">
+            <div className="mx-auto max-w-3xl text-center space-y-4">
+              <Breadcrumbs />
+              
+              <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/30 px-3.5 py-1 text-xs font-semibold text-amber-700">
+                <Cookie className="h-3.5 w-3.5 text-amber-600" /> Respect de Votre Vie Privée
+              </div>
 
-          <section className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-10 lg:grid-cols-[1fr_320px]">
-            {/* Contenu principal */}
-            <article className="prose prose-neutral max-w-none dark:prose-invert prose-headings:font-headline prose-a:text-accent">
-              <h2>1) Définition</h2>
-              <p>
-                Un cookie est un petit fichier texte enregistré sur votre terminal (ordinateur, mobile, tablette) lors de
-                la consultation d’un site. Il permet notamment de mémoriser des informations liées à votre navigation
-                (langue, préférences, consentement) afin d’améliorer votre expérience.
+              <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900">
+                Politique de Gestion des Cookies
+              </h1>
+
+              <p className="text-xs sm:text-sm text-slate-500 font-medium">
+                Dernière mise à jour : <strong className="text-slate-800">{lastUpdated}</strong>
               </p>
+            </div>
+          </div>
+        </section>
 
-              <h2>2) Cookies utilisés sur ce site</h2>
-              <p>
-                Nous utilisons des cookies strictement nécessaires au fonctionnement du site et, le cas échéant, des
-                cookies optionnels (mesure d’audience) uniquement si vous y consentez.
-              </p>
-
-              <h3>2.1 Cookies strictement nécessaires</h3>
-              <p>
-                Ces cookies sont indispensables au fonctionnement du site (ex : mémoriser votre choix concernant les
-                cookies).
-              </p>
-
-              <ul>
-                <li>
-                  <strong>cookie_consent</strong> : mémorise votre choix (acceptation/refus).<br />
-                  <strong>Finalité</strong> : gestion du consentement.<br />
-                  <strong>Durée</strong> : 12 mois.<br />
-                  <strong>Base légale</strong> : intérêt légitime / obligation de prouver le consentement selon le cas.
-                </li>
-              </ul>
-
-              <h3>2.2 Cookies de mesure d’audience (si activés)</h3>
-              <p>
-                Ils nous aident à comprendre l’utilisation du site (pages consultées, temps de visite, sources de trafic)
-                afin d’améliorer la performance et les contenus. Ils ne sont déposés <strong>qu’avec votre consentement</strong>.
-              </p>
-              <ul>
-                <li>
-                  <strong>Outil éventuel</strong> : Google Analytics (ou équivalent).<br />
-                  <strong>Finalité</strong> : statistiques anonymisées / agrégées.<br />
-                  <strong>Durée</strong> : variable selon l’outil et la configuration.<br />
-                  <strong>Base légale</strong> : consentement.
-                </li>
-              </ul>
-
-              <h2>3) Accepter, refuser ou modifier vos préférences</h2>
-              <p>
-                Lors de votre première visite, un bandeau vous permet d’accepter ou de refuser les cookies non essentiels.
-                Vous pouvez ensuite modifier votre choix à tout moment :
-              </p>
-              <ul>
-                <li>
-                  via votre navigateur (suppression/gestion des cookies), ou
-                </li>
-                <li>
-                  en supprimant le cookie de consentement <strong>cookie_consent</strong> pour réafficher le bandeau lors
-                  de votre prochaine visite.
-                </li>
-              </ul>
-
-              <h2>4) Paramétrage via votre navigateur</h2>
-              <p>
-                La configuration dépend de votre navigateur. Vous pouvez notamment supprimer des cookies, bloquer tous
-                les cookies ou autoriser uniquement certains cookies.
-              </p>
-              <ul>
-                <li>Chrome™</li>
-                <li>Firefox™</li>
-                <li>Safari™</li>
-                <li>Edge™</li>
-                <li>Opera™</li>
-              </ul>
-
-              <h2>5) Plus d’informations</h2>
-              <p>
-                Pour en savoir plus sur les cookies et vos droits, vous pouvez consulter les ressources de la CNIL :
-                {" "}
-                <a
-                  href="https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Cookies : les outils pour les maîtriser
-                </a>.
-              </p>
-
-              <h2>6) Contact</h2>
-              <p>
-                Pour toute question concernant cette politique, vous pouvez nous contacter :
-                <br />
-                <strong>ERG Rénovation</strong>
-                <br />
-                1 Sente de la Pointe, 75020 Paris
-                <br />
-                contact@erg-renovation.fr
-              </p>
-            </article>
-
-            {/* Encadré “pro” */}
-            <aside className="h-fit rounded-xl border bg-secondary/40 p-6">
-              <h3 className="font-headline text-lg font-semibold">En résumé</h3>
-
-              <div className="mt-4 space-y-4 text-sm text-muted-foreground">
+        {/* CONTENT GRID */}
+        <section className="py-12 md:py-20">
+          <div className="container">
+            <div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
+              {/* Main Article */}
+              <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-lg space-y-6 text-sm text-slate-700 leading-relaxed">
                 <div>
-                  <p className="font-medium text-foreground">Cookie de consentement</p>
-                  <p>Indispensable pour mémoriser votre choix (12 mois).</p>
-                </div>
-
-                <div>
-                  <p className="font-medium text-foreground">Mesure d’audience</p>
-                  <p>Optionnelle, déposée uniquement si vous acceptez.</p>
-                </div>
-
-                <div>
-                  <p className="font-medium text-foreground">Modifier vos préférences</p>
-                  <p>
-                    Via votre navigateur, ou en supprimant <code>cookie_consent</code>.
+                  <h2 className="font-headline text-xl font-bold text-slate-900 mb-2">1. Définition d'un Cookie</h2>
+                  <p className="text-slate-600">
+                    Un cookie est un fichier texte temporaire déposé sur votre appareil lors de la navigation. Il permet de mémoriser vos préférences de navigation et d'assurer le fonctionnement optimal du site.
                   </p>
                 </div>
 
-                <div className="pt-2">
-                  <a
-                    href="https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-accent hover:underline"
-                  >
-                    Ressources CNIL →
-                  </a>
+                <div className="pt-4 border-t border-slate-100">
+                  <h2 className="font-headline text-xl font-bold text-slate-900 mb-3">2. Cookies Utilisés sur ERG Rénovation</h2>
+                  
+                  <div className="space-y-4">
+                    <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+                      <div className="flex items-center gap-2 font-bold text-slate-900 mb-1">
+                        <CheckCircle2 className="h-4 w-4 text-amber-600" />
+                        <span>Cookies Essentiels (Fonctionnement)</span>
+                      </div>
+                      <p className="text-xs text-slate-600">
+                        Indispensables à la navigation, la mémoire de vos préférences de consentement et la sécurité des formulaires.
+                      </p>
+                    </div>
+
+                    <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+                      <div className="flex items-center gap-2 font-bold text-slate-900 mb-1">
+                        <CheckCircle2 className="h-4 w-4 text-amber-600" />
+                        <span>Cookies d'Audience Anonymisés (Analytics)</span>
+                      </div>
+                      <p className="text-xs text-slate-600">
+                        Utilisés pour mesurer la fréquentation globale de notre site sans identification nominative.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-slate-100">
+                  <h2 className="font-headline text-xl font-bold text-slate-900 mb-2">3. Gestion & Refus via le Navigateur</h2>
+                  <p className="text-slate-600 mb-2">
+                    Vous pouvez désactiver les cookies à tout moment dans les options de votre navigateur Internet (Chrome, Firefox, Safari, Edge).
+                  </p>
                 </div>
               </div>
-            </aside>
-          </section>
-        </div>
+
+              {/* Sidebar Summary */}
+              <aside className="h-fit rounded-3xl border border-slate-200 bg-white p-6 shadow-md space-y-4">
+                <h3 className="font-headline text-lg font-bold text-slate-900">En Résumé</h3>
+
+                <div className="space-y-3 text-xs text-slate-600">
+                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+                    <p className="font-bold text-slate-900 mb-0.5">Choix de Consentement</p>
+                    <p>Mémorisé pour 12 mois dans votre navigateur.</p>
+                  </div>
+
+                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+                    <p className="font-bold text-slate-900 mb-0.5">Données Sécurisées</p>
+                    <p>Aucun cookie publicitaire tiers n'est revendu.</p>
+                  </div>
+
+                  <div className="pt-2">
+                    <a
+                      href="https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 font-bold text-amber-700 hover:underline"
+                    >
+                      Conseils de la CNIL →
+                    </a>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <CtaBanner />
       </main>
 
       <SiteFooter />

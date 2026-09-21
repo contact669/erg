@@ -77,23 +77,23 @@ export default function StickyCallToAction({
     <div className={classes} aria-hidden={!visible}>
       <div className="container">
         <div className="grid grid-cols-2 gap-2">
-          <Button asChild size="lg" className="h-12 rounded-xl">
+          <Button asChild size="lg" className="h-12 rounded-xl bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 shadow-md">
             <Link href="/devis" className="inline-flex items-center justify-center gap-2">
               <Calendar className="h-4 w-4" />
-              <span className="font-medium">Devis gratuit</span>
+              <span className="font-semibold">Devis gratuit</span>
             </Link>
           </Button>
 
-          <Button asChild variant="outline" size="lg" className="h-12 rounded-xl">
+          <Button asChild variant="outline" size="lg" className="h-12 rounded-xl border-slate-300 bg-white text-slate-900 hover:bg-slate-100 shadow-sm">
             <a href={`tel:${PHONE}`} className="inline-flex items-center justify-center gap-2">
-              <Phone className="h-4 w-4" />
-              <span className="font-medium">Appeler</span>
+              <Phone className="h-4 w-4 text-amber-600" />
+              <span className="font-semibold">Appeler</span>
             </a>
           </Button>
         </div>
 
-        <p className="mt-2 text-center text-[11px] leading-snug text-muted-foreground">
-          Réponse rapide • Paris & Île-de-France (92, 93, 94)
+        <p className="mt-1.5 text-center text-[10px] font-semibold text-slate-600">
+          ⭐ 4.9/5 Google • Devis gratuit en 24h • Décennale
         </p>
       </div>
     </div>

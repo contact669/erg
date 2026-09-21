@@ -1,393 +1,124 @@
-"use client"
-
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { useState } from "react"
-import Link from "next/link"
-import { collection, addDoc, serverTimestamp } from "firebase/firestore"
-import { useFirestore } from "@/firebase"
-
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
 import Breadcrumbs from "@/components/breadcrumbs"
-import { useToast } from "@/hooks/use-toast"
+import InteractiveQuoteWizard from "@/components/interactive-quote-wizard"
+import CtaBanner from "@/app/_components/cta-banner"
+import { ShieldCheck, Clock, User, Phone, Sparkles, CheckCircle2, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Separator } from "@/components/ui/separator"
-import { Bot, User, ShieldCheck, Clock, ArrowRight } from "lucide-react"
 
 const PHONE = "+33699961375"
-
-const formSchema = z.object({
-  clientName: z.string().min(2, "Le nom doit contenir au moins 2 caractères."),
-  clientEmail: z.string().email("Veuillez saisir une adresse email valide."),
-  clientPhone: z
-    .string()
-    .optional()
-    .refine(
-      (v) => !v || /^[0-9+().\s-]{6,20}$/.test(v),
-      "Veuillez saisir un numéro valide."
-    ),
-  projectDescription: z
-    .string()
-    .min(40, "Décrivez votre projet avec plus de détails (au moins 40 caractères).")
-    .max(2000, "Merci de limiter la description à 2000 caractères."),
-})
-
-type FormValues = z.infer<typeof formSchema>
-
-function countChars(s: string) {
-  return (s ?? "").trim().length
-}
+const PHONE_DISPLAY = "06 99 96 13 75"
 
 export default function DevisPage() {
-  const { toast } = useToast()
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const firestore = useFirestore()
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    mode: "onTouched",
-    defaultValues: {
-      clientName: "",
-      clientEmail: "",
-      clientPhone: "",
-      projectDescription: "",
-    },
-  })
-
-  const description = form.watch("projectDescription")
-  const chars = countChars(description)
-
-  async function onSubmit(values: FormValues) {
-    if (isSubmitting || !firestore) {
-      if (!firestore) {
-        toast({
-          variant: "destructive",
-          title: "Erreur de connexion",
-          description: "La connexion à la base de données a échoué. Veuillez rafraîchir la page.",
-        })
-      }
-      return
-    }
-
-    setIsSubmitting(true)
-    toast({
-      title: "Envoi en cours…",
-      description: "Nous enregistrons votre demande de devis.",
-    })
-
-    try {
-      // Étape 1 : Enregistrer dans Firestore
-      await addDoc(collection(firestore, "quoteRequests"), {
-        clientName: values.clientName.trim(),
-        clientEmail: values.clientEmail.trim().toLowerCase(),
-        clientPhone: (values.clientPhone ?? "").trim() || null,
-        projectDescription: values.projectDescription.trim(),
-        status: "Nouvelle Demande",
-        createdAt: serverTimestamp(),
-      });
-
-      // Étape 2 : Appeler l'API pour envoyer les e-mails
-      const emailResponse = await fetch('/api/send-quote-email', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(values),
-      });
-
-      if (!emailResponse.ok) {
-        // Même si l'e-mail échoue, la demande est enregistrée. C'est le plus important.
-        // On affiche donc un message de succès partiel.
-        throw new Error('L\'envoi des e-mails de notification a échoué, mais votre demande a été enregistrée.');
-      }
-
-      toast({
-        title: "Demande envoyée ✅",
-        description: "Merci ! Nous avons bien reçu votre demande et vous avons envoyé un e-mail de confirmation.",
-      })
-
-      form.reset()
-    } catch (error) {
-      console.error("Erreur lors de la soumission :", error)
-      const errorMessage = (error instanceof Error) ? error.message : "Une erreur est survenue lors de l'envoi des notifications.";
-      
-      // Affiche un message d'erreur mais confirme que la demande est enregistrée.
-      toast({
-        variant: "default",
-        title: "Demande enregistrée, mais...",
-        description: errorMessage,
-        duration: 10000,
-      })
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-slate-50/50 text-slate-900">
       <SiteHeader />
 
       <main className="flex-grow">
-        <section className="border-b bg-secondary py-12 md:py-16">
-          <div className="container">
-            <div className="mx-auto max-w-3xl text-center">
-              <Breadcrumbs />
-              <div className="mx-auto mb-4 w-fit rounded-full bg-primary/10 p-3 text-primary mt-4">
-                <Bot className="h-7 w-7" />
+        {/* HERO SECTION — Premium Light Theme */}
+        <section className="relative isolate overflow-hidden bg-slate-50 border-b border-slate-200/80 py-12 md:py-18 lg:py-20">
+          {/* Ambient Warm Glow */}
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-slate-50/80 to-slate-50" />
+            <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-amber-400/10 blur-3xl" />
+            <div className="absolute bottom-0 left-1/4 h-96 w-96 rounded-full bg-slate-200/40 blur-3xl" />
+          </div>
+
+          <div className="container relative z-10">
+            <div className="mx-auto max-w-4xl text-center space-y-6">
+              <div className="flex items-center justify-center">
+                <Breadcrumbs />
               </div>
 
-              <h1 className="font-headline text-4xl font-bold tracking-tight md:text-5xl">
-                Demande de devis rénovation
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 text-xs sm:text-sm font-semibold text-amber-700 shadow-sm">
+                  <Sparkles className="h-4 w-4 text-amber-600" /> Visite sur Site Offered & Devis Gratuit
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-3.5 py-1 text-xs text-slate-800 shadow-sm">
+                  <FileText className="h-4 w-4 text-amber-600" />
+                  <span className="font-bold text-slate-900">Poste par Poste</span>
+                  <span className="text-slate-500">• Sans mauvaises surprises</span>
+                </span>
+              </div>
+
+              <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
+                Demande de Devis Rénovation : <br />
+                <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">
+                  Étude Personnalisée & Diagnostic Gratuit
+                </span>
               </h1>
 
-              <p className="mt-4 text-lg text-muted-foreground">
-                Décrivez votre projet en 2 minutes. Nous vous recontactons rapidement avec une estimation claire et les
-                prochaines étapes.
+              <p className="mx-auto max-w-2xl text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+                Configurez votre projet en 4 étapes simples. Un maître d'œuvre ERG Rénovation analyse votre besoin et organise une visite gratuite sur site sous 48h.
               </p>
 
-              <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                  <a href={`tel:${PHONE}`} aria-label="Appeler ERG Rénovation">
-                    Appeler maintenant <ArrowRight className="ml-2 h-4 w-4" />
+              {/* Trust Features Bar */}
+              <div className="pt-2 flex flex-wrap justify-center gap-3 text-xs sm:text-sm font-semibold text-slate-700">
+                <span className="flex items-center gap-1.5 rounded-full border border-slate-200/90 bg-white/90 px-4 py-1.5 shadow-xs backdrop-blur-md">
+                  <ShieldCheck className="h-4 w-4 text-amber-600" /> Garantie Décennale 10 Ans
+                </span>
+                <span className="flex items-center gap-1.5 rounded-full border border-slate-200/90 bg-white/90 px-4 py-1.5 shadow-xs backdrop-blur-md">
+                  <Clock className="h-4 w-4 text-amber-600" /> Réponse sous 24h ouvrées
+                </span>
+                <span className="flex items-center gap-1.5 rounded-full border border-slate-200/90 bg-white/90 px-4 py-1.5 shadow-xs backdrop-blur-md">
+                  <User className="h-4 w-4 text-amber-600" /> Interlocuteur Unique Dédié
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* WIZARD CONTAINER */}
+        <section className="container py-12 md:py-20">
+          <InteractiveQuoteWizard />
+        </section>
+
+        {/* DIRECT PHONE CALL SECTION */}
+        <section className="border-t border-slate-200/80 bg-white py-12 md:py-16">
+          <div className="container">
+            <div className="mx-auto max-w-4xl text-center space-y-6">
+              <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/30 px-3.5 py-1 text-xs font-semibold text-amber-700">
+                <Phone className="h-3.5 w-3.5 text-amber-600" /> Échange Direct par Téléphone
+              </div>
+              
+              <h2 className="font-headline text-2xl sm:text-3xl font-extrabold text-slate-900">
+                Vous préférez discuter de votre projet de vive voix ?
+              </h2>
+
+              <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+                Nos conducteurs de travaux vous conseillent immédiatement sur la faisabilité technique, les arbitrages de matériaux et planifient une visite gratuite sur site.
+              </p>
+
+              <div className="pt-2">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 h-13 px-8 text-base shadow-xl rounded-xl"
+                >
+                  <a href={`tel:${PHONE}`}>
+                    <Phone className="mr-2 h-5 w-5 text-slate-950" />
+                    Appeler le {PHONE_DISPLAY}
                   </a>
                 </Button>
-                <Button asChild size="lg" variant="outline">
-                  <Link href="/services">
-                    Voir nos services <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
               </div>
 
-              <div className="mt-6 grid gap-3 text-sm text-muted-foreground sm:grid-cols-3">
-                <div className="flex items-center justify-center gap-2">
-                  <Clock className="h-4 w-4 text-accent" />
-                  Réponse rapide
-                </div>
-                <div className="flex items-center justify-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-accent" />
-                  Garantie décennale
-                </div>
-                <div className="flex items-center justify-center gap-2">
-                  <User className="h-4 w-4 text-accent" />
-                  Interlocuteur unique
-                </div>
+              <div className="pt-4 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500 font-semibold">
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-4 w-4 text-amber-600" /> Visite sans engagement
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-4 w-4 text-amber-600" /> Paris & Petite Couronne (75, 92, 93, 94)
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 className="h-4 w-4 text-amber-600" /> Lun-Sam • 9h–19h
+                </span>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="container py-12 md:py-16">
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-[1fr_360px]">
-            <Card className="overflow-hidden">
-              <CardHeader className="border-b bg-background">
-                <CardTitle className="font-headline text-2xl md:text-3xl">Votre demande</CardTitle>
-                <CardDescription>
-                  Plus vous êtes précis, plus notre estimation sera pertinente. (Vous pouvez ajouter des contraintes,
-                  photos/plan plus tard.)
-                </CardDescription>
-              </CardHeader>
-
-              <CardContent className="p-6 md:p-8">
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                    <fieldset className="space-y-4 rounded-xl border p-5">
-                      <legend className="-ml-1 px-1 text-sm font-medium text-foreground">
-                        <span className="inline-flex items-center gap-2">
-                          <User className="h-4 w-4 text-accent" /> Vos informations
-                        </span>
-                      </legend>
-
-                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        <FormField
-                          control={form.control}
-                          name="clientName"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Nom complet</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Ex : Amar Hachour" autoComplete="name" {...field} disabled={isSubmitting} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-
-                        <FormField
-                          control={form.control}
-                          name="clientEmail"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Email</FormLabel>
-                              <FormControl>
-                                <Input
-                                  type="email"
-                                  placeholder="ex : vous@email.com"
-                                  autoComplete="email"
-                                  inputMode="email"
-                                  {...field}
-                                  disabled={isSubmitting}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-
-                      <FormField
-                        control={form.control}
-                        name="clientPhone"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Téléphone (optionnel)</FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="Ex : 06 12 34 56 78"
-                                autoComplete="tel"
-                                inputMode="tel"
-                                {...field}
-                                disabled={isSubmitting}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </fieldset>
-
-                    <fieldset className="space-y-4 rounded-xl border p-5">
-                      <legend className="-ml-1 px-1 text-sm font-medium text-foreground">
-                        <span className="inline-flex items-center gap-2">
-                          <Bot className="h-4 w-4 text-accent" /> Votre projet
-                        </span>
-                      </legend>
-
-                      <FormField
-                        control={form.control}
-                        name="projectDescription"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Description</FormLabel>
-                            <FormControl>
-                              <Textarea
-                                placeholder={[
-                                  "Exemple : rénovation salle de bain 5m² à Paris 20e.",
-                                  "Souhait : douche à l’italienne, meuble vasque, carrelage, reprise plomberie/électricité.",
-                                  "Contraintes : immeuble ancien, horaires, date souhaitée, budget indicatif…",
-                                ].join("\n")}
-                                className="min-h-[200px] resize-y"
-                                {...field}
-                                disabled={isSubmitting}
-                              />
-                            </FormControl>
-
-                            <div className="mt-2 flex items-center justify-between text-xs">
-                              <span className="text-muted-foreground">
-                                Indiquez : surface, ville, état actuel, éléments à remplacer, niveau de finition.
-                              </span>
-                              <span className={chars < 40 ? "text-destructive" : "text-muted-foreground"}>
-                                {chars}/2000
-                              </span>
-                            </div>
-
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </fieldset>
-
-                    <div className="space-y-3">
-                      <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-                        {isSubmitting ? "Envoi en cours…" : "Envoyer ma demande"}
-                      </Button>
-
-                      <p className="text-center text-xs text-muted-foreground">
-                        En envoyant, vous acceptez notre{" "}
-                        <Link href="/confidentialite" className="underline underline-offset-4 hover:text-primary">
-                          politique de confidentialité
-                        </Link>
-                        .
-                      </p>
-                    </div>
-                  </form>
-                </Form>
-              </CardContent>
-            </Card>
-
-            <aside className="h-fit space-y-6 lg:sticky lg:top-24">
-              <Card className="bg-secondary/40">
-                <CardHeader>
-                  <CardTitle className="font-headline text-lg">Ce que vous obtenez</CardTitle>
-                  <CardDescription>Une demande simple, un cadrage clair.</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4 text-sm text-muted-foreground">
-                  <ul className="space-y-2">
-                    <li className="flex items-start gap-2">
-                      <ShieldCheck className="mt-0.5 h-4 w-4 text-accent" />
-                      Estimation cohérente selon votre besoin + conseils techniques
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Clock className="mt-0.5 h-4 w-4 text-accent" />
-                      Prise de contact rapide (souvent sous 24h ouvrées)
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <User className="mt-0.5 h-4 w-4 text-accent" />
-                      Un interlocuteur dédié pour organiser la suite
-                    </li>
-                  </ul>
-
-                  <Separator />
-
-                  <div>
-                    <p className="font-medium text-foreground">Pour gagner du temps</p>
-                    <p className="mt-1">
-                      Indiquez (si possible) : ville/quartier, surface, photos, plans, date souhaitée et budget indicatif.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="font-headline text-lg">Zones d’intervention</CardTitle>
-                  <CardDescription>Paris & Île-de-France</CardDescription>
-                </CardHeader>
-                <CardContent className="text-sm text-muted-foreground">
-                  Paris (75), Hauts-de-Seine (92), Seine-Saint-Denis (93), Val-de-Marne (94), Yvelines (78) selon projet.
-                </CardContent>
-              </Card>
-
-              <div className="rounded-xl border p-5">
-                <p className="text-sm font-medium text-foreground">Besoin d’une réponse immédiate ?</p>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Appelez-nous, on vous guide sur la faisabilité et les prochaines étapes.
-                </p>
-                <Button asChild className="mt-4 w-full">
-                  <a href={`tel:${PHONE}`}>Appeler {PHONE.replace("+33", "0")}</a>
-                </Button>
-              </div>
-            </aside>
-          </div>
-        </section>
-
-        <section className="border-t bg-background">
-          <div className="container py-10">
-            <div className="mx-auto max-w-4xl text-center">
-              <h2 className="font-headline text-2xl font-bold md:text-3xl">
-                Devis rénovation à Paris : une estimation claire, un suivi maîtrisé
-              </h2>
-              <p className="mt-4 text-muted-foreground">
-                ERG Rénovation accompagne les projets de rénovation intérieure (appartement, salle de bain, cuisine) à
-                Paris et en Île-de-France. Votre demande est étudiée avec attention pour proposer un cadrage fiable :
-                contraintes techniques, niveau de finition, planification et coordination des corps de métier.
-              </p>
-            </div>
-          </div>
-        </section>
+        {/* CTA BANNER */}
+        <CtaBanner />
       </main>
 
       <SiteFooter />

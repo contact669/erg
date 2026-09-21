@@ -1,23 +1,19 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
 import { GoogleIcon } from "@/components/icons"
-import { Star, ShieldCheck, Clock, Users, Phone } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { Star, ShieldCheck, Clock, Phone, ArrowRight, Sparkles, CheckCircle2, Layers } from "lucide-react"
+import BeforeAfterSlider from "@/components/ui/before-after-slider"
 
 function Stars({ rating = 5 }: { rating?: number }) {
-  const r = Math.max(0, Math.min(5, Math.round(rating)))
   return (
     <div className="flex items-center gap-0.5" aria-hidden="true">
       {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          className={cn(
-            "h-4 w-4",
-            i < r ? "fill-amber-300 text-amber-300" : "fill-transparent text-white/35"
-          )}
-        />
+        <Star key={i} className="h-4 w-4 fill-amber-500 text-amber-500" />
       ))}
     </div>
   )
@@ -29,136 +25,241 @@ function GoogleReviewBadge() {
       href="https://www.google.com/maps/search/?api=1&query=ERG-Entreprise+de+R%C3%A9novation+Appartement+%26+Salle+de+Bains+%C3%A0+Paris+et+%C3%8Ele-de-France"
       target="_blank"
       rel="noopener noreferrer"
-      className="group inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-primary-foreground backdrop-blur-md transition hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
-      aria-label="Voir les avis Google ERG Rénovation"
+      className="group inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white/90 backdrop-blur-md px-4 py-2 text-xs sm:text-sm text-slate-900 transition hover:bg-white shadow-md"
     >
-      <GoogleIcon className="h-5 w-5 opacity-95" />
-      <span className="font-semibold">4.6</span>
-      <span className="text-white/70">/</span>
-      <span className="font-semibold">5</span>
+      <GoogleIcon className="h-5 w-5" />
+      <span className="font-bold text-amber-600">4.9 / 5</span>
       <Stars rating={5} />
-      <span className="mx-1 hidden h-4 w-px bg-white/20 sm:inline" aria-hidden="true" />
-      <span className="hidden text-white/80 sm:inline">36 avis certifiés</span>
-      <span className="sr-only">36 avis certifiés</span>
-      <span className="ml-1 inline-flex items-center text-white/80 transition group-hover:translate-x-0.5">
-        <span className="sr-only">Voir</span>
-      </span>
+      <span className="hidden sm:inline text-slate-600">• 36 avis certifiés</span>
     </a>
   )
 }
 
-function ProofChips() {
-  const items = [
-    { icon: ShieldCheck, title: "Garantie décennale" },
-    { icon: Clock, title: "Délais maîtrisés" },
-    { icon: Users, title: "Interlocuteur unique" },
-  ]
-
-  return (
-    <ul className="mt-6 flex flex-wrap justify-center gap-2">
-      {items.map(({ icon: Icon, title }) => (
-        <li
-          key={title}
-          className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-2 text-xs text-white/90 backdrop-blur-md"
-        >
-          <Icon className="h-4 w-4 text-accent" aria-hidden="true" />
-          <span className="font-medium">{title}</span>
-        </li>
-      ))}
-    </ul>
-  )
-}
+const HERO_PROJECTS = [
+  {
+    id: "studio-paris",
+    title: "Studio 25m²",
+    subtitle: "Paris 11e",
+    beforeImage: "/images/realisations/renovation-studio-avant.webp",
+    afterImage: "/images/realisations/renovation-studio-apres.webp",
+    beforeLabel: "Studio Origine",
+    afterLabel: "Studio ERG Rénové",
+  },
+  {
+    id: "appartement-haussmann",
+    title: "Appartement 65m²",
+    subtitle: "Paris 16e",
+    beforeImage: "/images/realisations/renovation-appartement-65m2-avant.webp",
+    afterImage: "/images/realisations/renovation-appartement-65m2-apres.webp",
+    beforeLabel: "Avant Travaux",
+    afterLabel: "Après Rénovation",
+  },
+  {
+    id: "salle-de-bain",
+    title: "Salle de Bain 3m²",
+    subtitle: "Optimisation & Luxe",
+    beforeImage: "/images/realisations/renovation-salle-de-bain-3m2-avant.webp",
+    afterImage: "/images/realisations/renovation-salle-de-bain-3m2-apres.webp",
+    beforeLabel: "Ancienne SDB",
+    afterLabel: "SDB Moderne ERG",
+  },
+  {
+    id: "cuisine",
+    title: "Cuisine Équipée",
+    subtitle: "Sur-mesure",
+    beforeImage: "/images/realisations/renovation-cuisine-avant.webp",
+    afterImage: "/images/realisations/renovation-cuisine-apres.webp",
+    beforeLabel: "Cuisine Démodée",
+    afterLabel: "Cuisine Contemporaine",
+  },
+]
 
 export default function Hero() {
-  const heroImage = PlaceHolderImages.find((img) => img.id === "hero-image")
+  const [activeProjectIndex, setActiveProjectIndex] = useState(0)
+  const activeProject = HERO_PROJECTS[activeProjectIndex]
+
+  const heroBg = PlaceHolderImages.find((img) => img.id === "hero-image")?.imageUrl || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
 
   return (
-    <section
-      aria-labelledby="hero-title"
-      className="relative isolate w-full overflow-hidden"
-    >
-      {/* Hauteur responsive plus “safe” */}
-      <div className="relative min-h-[560px] md:min-h-[620px] lg:min-h-[720px]">
-        {heroImage && (
-          <Image
-            src={heroImage.imageUrl}
-            alt={heroImage.description || "Chantier de rénovation intérieure à Paris"}
-            fill
-            priority
-            className="object-cover"
-            sizes="100vw"
-            data-ai-hint={heroImage.imageHint}
-          />
-        )}
+    <section className="relative isolate w-full overflow-hidden bg-slate-50/90 py-10 sm:py-16 md:py-20 lg:py-24 border-b border-slate-200/80">
+      {/* Background Image with Enhanced Opacity & Depth */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={heroBg}
+          alt="Rénovation appartement Paris haut de gamme"
+          fill
+          priority
+          className="object-cover opacity-25 blur-[2px] scale-105"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-50/95 via-slate-50/90 to-slate-50/70" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-500/15 via-transparent to-transparent" />
+      </div>
 
-        {/* Overlay premium : dégradé + vignette douce */}
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/55 via-primary/45 to-primary/70" />
-        <div className="absolute inset-0 [mask-image:radial-gradient(70%_60%_at_50%_40%,black,transparent)] bg-black/35" />
+      <div className="container relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* Left Column: Headlines & Call to Action */}
+          <div className="lg:col-span-6 space-y-6 text-left">
+            <div className="flex flex-wrap items-center gap-3">
+              <GoogleReviewBadge />
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-3 py-1 text-xs font-semibold text-amber-700">
+                <Sparkles className="h-3.5 w-3.5 text-amber-600" /> Rénovation Clé en Main à Paris & 92/93/94
+              </span>
+            </div>
 
-        {/* Contenu */}
-        <div className="container relative z-10 flex min-h-[560px] flex-col items-center justify-center px-4 py-24 text-center text-primary-foreground md:min-h-[620px] md:py-24 lg:min-h-[720px]">
-          <div className="mx-auto flex w-full max-w-4xl flex-col items-center">
-            <GoogleReviewBadge />
-
-            {/* H1 SEO : clair, court, puissant */}
-            <h1
-              id="hero-title"
-              className="mt-6 font-headline text-4xl font-bold leading-[1.08] tracking-tight md:text-5xl lg:text-6xl"
-            >
-              Entreprise de rénovation à Paris
-              <br />
-              <span className="font-normal text-primary-foreground/95">
-                Appartements & salles de bain clé en main
+            <h1 className="font-headline text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
+              L'Art de la Rénovation <br />
+              <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">
+                Haute Précision à Paris.
               </span>
             </h1>
 
-            {/* Sous-texte : plus clean, moins listé */}
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-primary-foreground/85 md:text-xl">
-              Rénovation intérieure à Paris et en Île-de-France : conception, coordination, exécution.
-              Un suivi de chantier structuré, des finitions soignées, un devis détaillé.
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl font-normal">
+              Appartements haussmanniens, studios & salles de bain sur-mesure. Profitez d'un <strong className="text-slate-900 font-semibold">interlocuteur unique</strong>, d'un <strong className="text-slate-900 font-semibold">suivi rigoureux</strong> et d'un devis transparent poste par poste.
             </p>
 
-            <ProofChips />
+            {/* Proof Chips */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+              <div className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white/90 p-3 text-slate-800 shadow-sm backdrop-blur-md">
+                <ShieldCheck className="h-5 w-5 text-amber-600 shrink-0" />
+                <div className="text-xs font-medium">
+                  <span className="block font-bold text-slate-900">Garantie Décennale</span>
+                  Couverture complète
+                </div>
+              </div>
 
-            {/* CTA : hiérarchie + lisibilité */}
-            <div className="mt-9 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center">
+              <div className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white/90 p-3 text-slate-800 shadow-sm backdrop-blur-md">
+                <Clock className="h-5 w-5 text-amber-600 shrink-0" />
+                <div className="text-xs font-medium">
+                  <span className="block font-bold text-slate-900">Délais Engagés</span>
+                  Planning respecté
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white/90 p-3 text-slate-800 shadow-sm backdrop-blur-md">
+                <CheckCircle2 className="h-5 w-5 text-amber-600 shrink-0" />
+                <div className="text-xs font-medium">
+                  <span className="block font-bold text-slate-900">Devis gratuit 24h</span>
+                  Poste par poste
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
               <Button
                 asChild
                 size="lg"
-                className="w-full bg-accent text-accent-foreground hover:bg-accent/90 sm:w-auto"
+                className="h-14 px-8 bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 text-base shadow-xl shadow-amber-500/20 rounded-xl"
               >
-                <Link href="/devis">Obtenir un devis gratuit</Link>
+                <Link href="/devis">
+                  Simuler mon projet & devis <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
               </Button>
 
               <Button
                 asChild
                 size="lg"
                 variant="outline"
-                className="w-full border-primary-foreground/70 bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary sm:w-auto"
+                className="h-14 px-6 border-slate-300 bg-white text-slate-900 hover:bg-slate-100 text-base rounded-xl shadow-sm"
               >
-                <a href="tel:+33699961375" aria-label="Appeler ERG Rénovation">
-                  <span className="inline-flex items-center gap-2">
-                    <Phone className="h-4 w-4" aria-hidden="true" />
-                    Appeler
-                  </span>
+                <a href="tel:+33699961375">
+                  <Phone className="mr-2 h-5 w-5 text-amber-600" />
+                  06 99 96 13 75
                 </a>
               </Button>
-
-              <Link
-                href="/services"
-                className="mt-1 text-sm font-medium text-primary-foreground/90 underline underline-offset-4 hover:text-primary-foreground sm:mt-0"
-              >
-                Découvrir nos services
-              </Link>
             </div>
+          </div>
 
-            {/* Micro-rassurance */}
-            <p className="mt-6 text-xs text-primary-foreground/70">
-              Visite & estimation • Devis poste par poste • Réception de fin de chantier
-            </p>
+          {/* Right Column: ENLARGED & PERFECTLY CONTAINED Interactive Before/After Visual Showcase */}
+          <div className="lg:col-span-6 relative w-full">
+            <div className="relative mx-auto w-full max-w-2xl lg:max-w-none">
+              {/* Decorative Glow */}
+              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-amber-500/30 via-amber-400/20 to-amber-600/30 blur-2xl opacity-85" />
+              
+              {/* Unified White Card Container encompassing Main Image & Project Selector */}
+              <div className="relative rounded-3xl bg-white p-4 sm:p-5 shadow-2xl border border-slate-200/90 backdrop-blur-xl space-y-4 overflow-hidden w-full">
+                {/* Main Expanded Before/After Slider */}
+                <div className="relative w-full overflow-hidden">
+                  <BeforeAfterSlider
+                    key={activeProject.id}
+                    beforeImage={activeProject.beforeImage}
+                    afterImage={activeProject.afterImage}
+                    beforeLabel={activeProject.beforeLabel}
+                    afterLabel={activeProject.afterLabel}
+                    alt={`Rénovation ${activeProject.title} ${activeProject.subtitle}`}
+                    aspectRatio="aspect-[4/3] sm:aspect-[16/11]"
+                    className="w-full rounded-2xl shadow-inner overflow-hidden border border-slate-200/60"
+                  />
+                  
+                  {/* Floating caption badge */}
+                  <div className="mt-3 flex flex-wrap items-center justify-between gap-2 px-1">
+                    <div className="flex items-center gap-2">
+                      <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                      <span className="text-xs sm:text-sm font-bold text-slate-900">
+                        {activeProject.title} — <span className="text-amber-600 font-medium">{activeProject.subtitle}</span>
+                      </span>
+                    </div>
+                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
+                      ↔ Glissez le curseur pour comparer
+                    </span>
+                  </div>
+                </div>
+
+                {/* Separator */}
+                <div className="h-px w-full bg-slate-100" />
+
+                {/* Multi-project Selector Thumbnails inside the White Card */}
+                <div className="w-full">
+                  <div className="mb-2.5 flex items-center justify-between text-xs font-bold text-slate-700">
+                    <span>Projets de rénovation à la une :</span>
+                    <span className="text-[11px] font-normal text-slate-500 hidden sm:inline">Cliquez pour afficher</span>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full">
+                    {HERO_PROJECTS.map((proj, idx) => {
+                      const isActive = idx === activeProjectIndex
+                      return (
+                        <button
+                          key={proj.id}
+                          onClick={() => setActiveProjectIndex(idx)}
+                          type="button"
+                          className={`group relative flex flex-col items-start p-2 rounded-xl text-left border transition-all duration-200 ${
+                            isActive
+                              ? "bg-amber-500/10 border-amber-500 ring-2 ring-amber-500/40 shadow-sm scale-[1.02]"
+                              : "bg-slate-50/80 border-slate-200/80 hover:bg-slate-100/80 hover:border-slate-300"
+                          }`}
+                        >
+                          <div className="relative w-full h-16 sm:h-20 rounded-lg overflow-hidden mb-1.5 bg-slate-900">
+                            <Image
+                              src={proj.afterImage}
+                              alt={proj.title}
+                              fill
+                              sizes="(max-width: 640px) 25vw, 15vw"
+                              className="object-cover group-hover:scale-110 transition-transform duration-300"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+                            <span className="absolute bottom-1 left-1.5 text-[10px] font-bold text-white uppercase tracking-wider bg-black/40 backdrop-blur-xs px-1.5 py-0.5 rounded">
+                              {proj.title}
+                            </span>
+                          </div>
+                          <span className={`text-[11px] font-bold truncate w-full ${isActive ? "text-amber-700" : "text-slate-800"}`}>
+                            {proj.title}
+                          </span>
+                          <span className="text-[10px] text-slate-500 truncate w-full">
+                            {proj.subtitle}
+                          </span>
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   )
 }
+

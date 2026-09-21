@@ -93,7 +93,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
               </p>
 
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
+                  <Button asChild size="lg" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold shadow-md rounded-xl">
                   <Link href="/devis">
                     Demander un devis <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
@@ -273,20 +273,20 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
                     </CardHeader>
                     <CardContent className="space-y-3 text-sm text-muted-foreground">
                       <div className="flex items-center gap-2">
-                        <Award className="h-4 w-4 text-accent" />
+                        <Award className="h-4 w-4 text-amber-600" />
                         <span>Finitions soignées & contrôle qualité</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <ShieldCheck className="h-4 w-4 text-accent" />
+                        <ShieldCheck className="h-4 w-4 text-amber-600" />
                         <span>Travaux couverts par garantie décennale</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4 text-accent" />
+                        <Clock className="h-4 w-4 text-amber-600" />
                         <span>Organisation & coordination des étapes</span>
                       </div>
 
                       <div className="pt-4">
-                        <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
+                        <Button asChild className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl shadow-md">
                           <Link href="/devis">Demander un devis gratuit</Link>
                         </Button>
                         <p className="mt-3 text-xs text-muted-foreground">
@@ -369,7 +369,7 @@ function RelatedProjectCard({ project }: { project: (typeof allProjects)[0] }) {
         </div>
 
         <CardContent className="p-6">
-          <h3 className="font-headline text-xl font-semibold tracking-tight group-hover:text-accent">
+          <h3 className="font-headline text-xl font-semibold tracking-tight group-hover:text-amber-600">
             {project.title}
           </h3>
           <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
@@ -378,7 +378,7 @@ function RelatedProjectCard({ project }: { project: (typeof allProjects)[0] }) {
         </CardContent>
 
         <CardFooter className="px-6 pb-6 pt-0">
-          <span className="inline-flex items-center gap-2 text-sm font-semibold text-accent group-hover:underline">
+          <span className="inline-flex items-center gap-2 text-sm font-semibold text-amber-600 group-hover:underline">
             Voir le projet
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </span>

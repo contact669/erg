@@ -10,7 +10,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { buildLocalBusinessJsonLd, buildWebSiteJsonLd } from "@/lib/seo/jsonld";
 
 const SITE_NAME = "ERG Rénovation"
-const SITE_URL = "https://erg-renovation.fr"
+const SITE_URL = "https://www.erg-renovation.fr"
 const DEFAULT_TITLE = `${SITE_NAME} | Rénovation intérieure à Paris & Île-de-France`
 const DEFAULT_DESCRIPTION =
   "Spécialiste de la rénovation intérieure à Paris et en Île-de-France : appartements, maisons, cuisines, salles de bain. Devis gratuit, finitions soignées, garantie décennale."
@@ -80,7 +80,7 @@ export const viewport: Viewport = {
 const localBusiness = buildLocalBusinessJsonLd({
   name: "ERG Rénovation",
   siteUrl: SITE_URL,
-  logoUrl: `${SITE_URL}/images/logo-clair.png`,
+  logoUrl: `${SITE_URL}/images/logo-erg.webp`,
   imageUrl: `${SITE_URL}/images/og-image.jpg`,
   phone: PHONE,
   priceRange: "€€€",
@@ -107,7 +107,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
         <script

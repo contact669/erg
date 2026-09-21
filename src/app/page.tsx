@@ -15,6 +15,7 @@ import ServiceAreas from "./_components/ServiceAreas"
 import FeaturedProjects from "./_components/featured-projects"
 import GoogleReviews from "./_components/google-reviews"
 import CtaBanner from "./_components/cta-banner"
+import SeoExpertise from "./_components/seo-expertise"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
@@ -192,132 +193,9 @@ export default function Home() {
           <CtaBanner />
         </AnimatedSection>
 
-        {/* ✅ SEO INDEXABLE (ultra clean, unique, conversion + E-E-A-T) */}
-        <section className="border-t bg-background" aria-labelledby="seo-home-title">
-          <div className="container py-16 md:py-20">
-            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
-              {/* Col texte */}
-              <div className="lg:col-span-7">
-                <h2 id="seo-home-title" className="font-headline text-2xl font-bold tracking-tight md:text-3xl">
-                  Entreprise de rénovation à Paris : un chantier maîtrisé, du premier rendez-vous aux finitions
-                </h2>
-
-                <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-                  Chez ERG Rénovation, nous rénovons des intérieurs à Paris et en Île-de-France avec une exigence simple : <strong className="text-foreground">livrer propre</strong>,{" "}
-                  <strong className="text-foreground">dans les règles</strong>, et{" "}
-                  <strong className="text-foreground">sans zones floues</strong>.
-                  L’objectif n’est pas seulement “beau” : c’est <strong className="text-foreground">durable</strong>,{" "}
-                  <strong className="text-foreground">précis</strong>, et <strong className="text-foreground">bien suivi</strong>.
-                </p>
-
-                <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                  Pour une rénovation d’appartement, de salle de bain ou de cuisine, vous bénéficiez d’un{" "}
-                  <strong className="text-foreground">interlocuteur unique</strong>, d’une{" "}
-                  <strong className="text-foreground">coordination tous corps d’état</strong>, et d’un{" "}
-                  <strong className="text-foreground">devis détaillé</strong> (poste par poste) pour arbitrer sereinement les
-                  options de finitions et de matériaux.
-                </p>
-
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                    <Link href="/devis">
-                      Décrire mon projet <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                  <Button asChild size="lg" variant="outline">
-                    <a href={`tel:${PHONE}`} aria-label="Appeler ERG Rénovation">
-                      <Phone className="mr-2 h-4 w-4" />
-                      Appeler maintenant
-                    </a>
-                  </Button>
-                </div>
-
-                <div className="mt-6 flex flex-wrap gap-2 text-xs text-muted-foreground">
-                  <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1">
-                    <MapPin className="h-3.5 w-3.5 text-accent" />
-                    {SERVICE_AREAS.join(" • ")}
-                  </span>
-                  <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-accent" />
-                    Visite sur site & estimation claire
-                  </span>
-                  <span className="inline-flex items-center gap-2 rounded-full border px-3 py-1">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-accent" />
-                    Protection & propreté du chantier
-                  </span>
-                </div>
-              </div>
-
-              {/* Col “piliers” */}
-              <div className="lg:col-span-5">
-                <div className="grid gap-4">
-                  <Card className="border-muted/60">
-                    <CardContent className="p-6">
-                      <h3 className="flex items-center gap-2 font-semibold">
-                        <CheckCircle2 className="h-4 w-4 text-accent" />
-                        Devis clair & arbitrages facilités
-                      </h3>
-                      <p className="mt-2 text-sm text-muted-foreground">
-                        Un chiffrage lisible, des options de finitions, et une logique simple pour décider sans surprises.
-                      </p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border-muted/60">
-                    <CardContent className="p-6">
-                      <h3 className="flex items-center gap-2 font-semibold">
-                        <CheckCircle2 className="h-4 w-4 text-accent" />
-                        Coordination tous corps d’état
-                      </h3>
-                      <p className="mt-2 text-sm text-muted-foreground">
-                        Une organisation claire : planification, enchaînement des étapes, et contrôles réguliers.
-                      </p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="border-muted/60">
-                    <CardContent className="p-6">
-                      <h3 className="flex items-center gap-2 font-semibold">
-                        <CheckCircle2 className="h-4 w-4 text-accent" />
-                        Finitions & propreté : la différence
-                      </h3>
-                      <p className="mt-2 text-sm text-muted-foreground">
-                        Protection des lieux, finitions soignées, réception cadrée : un rendu premium, livré propre.
-                      </p>
-                    </CardContent>
-                  </Card>
-
-                  {/* Mini maillage interne (SEO + UX, discret) */}
-                  <div className="rounded-2xl border bg-secondary/30 p-6">
-                    <p className="text-sm font-semibold">Explorer nos services clés</p>
-                    <ul className="mt-3 grid gap-2 text-sm">
-                      <li>
-                        <Link className="inline-flex items-center text-muted-foreground hover:text-accent" href="/services/renovation-appartement">
-                          Rénovation d’appartement <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="inline-flex items-center text-muted-foreground hover:text-accent" href="/services/renovation-salle-de-bain">
-                          Rénovation salle de bain <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="inline-flex items-center text-muted-foreground hover:text-accent" href="/services/renovation-cuisine">
-                          Rénovation cuisine <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="inline-flex items-center text-muted-foreground hover:text-accent" href="/services">
-                          Voir toutes les prestations <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <AnimatedSection>
+          <SeoExpertise />
+        </AnimatedSection>
       </main>
 
       <SiteFooter />
