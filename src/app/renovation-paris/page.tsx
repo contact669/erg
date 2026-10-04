@@ -232,7 +232,7 @@ const faqs = [
 
 const arrondissements = Array.from({ length: 20 }, (_, i) => i + 1).map((n) => ({
   name: n === 1 ? "Paris 1er" : `Paris ${n}e`,
-  href: null as string | null, // mettra un lien quand la page sera prête
+  href: `/renovation-paris/paris-${n}`,
 }));
 
 export default function RenovationParisPage() {

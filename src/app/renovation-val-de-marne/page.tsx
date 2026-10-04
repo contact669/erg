@@ -169,15 +169,13 @@ const faqItems = [
 
 const cities94 = [
   { name: "Vincennes", href: "/renovation-vincennes" },
-  { name: "Ivry-sur-Seine", href: null },
-  { name: "Créteil", href: null },
-  { name: "Vitry-sur-Seine", href: null },
-  { name: "Saint-Mandé", href: null },
-  { name: "Charenton-le-Pont", href: null },
-  { name: "Maisons-Alfort", href: null },
-  { name: "Alfortville", href: null },
-  { name: "Villejuif", href: null },
-  { name: "Le Kremlin-Bicêtre", href: null },
+  { name: "Saint-Mandé", href: "/renovation-saint-mande" },
+  { name: "Nogent-sur-Marne", href: "/renovation-nogent-sur-marne" },
+  { name: "Le Perreux-sur-Marne", href: "/renovation-le-perreux-sur-marne" },
+  { name: "Saint-Maur-des-Fossés", href: "/renovation-saint-maur-des-fosses" },
+  { name: "Créteil", href: "/renovation-creteil" },
+  { name: "Maisons-Alfort", href: "/renovation-maisons-alfort" },
+  { name: "Ivry-sur-Seine", href: "/renovation-ivry-sur-seine" },
 ];
 
 export default function RenovationValDeMarnePage() {

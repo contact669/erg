@@ -46,6 +46,8 @@ import {
   Bell,
   Receipt,
   MailQuestion,
+  Kanban,
+  Printer,
 } from "lucide-react";
 
 import { useAuth, useUser, useCollection, useFirestore, useMemoFirebase } from "@/firebase";
@@ -58,7 +60,9 @@ const ADMIN_UID = "pHcnP0Mc32frrhPRzTT2nFwCxno1";
 
 const navItems = [
   { href: "/dashboard", icon: LayoutDashboard, label: "Tableau de Bord" },
+  { href: "/dashboard/pipeline", icon: Kanban, label: "Pipeline CRM" },
   { href: "/dashboard/demandes", icon: MailQuestion, label: "Demandes" },
+  { href: "/dashboard/documents", icon: Printer, label: "Studio PDF" },
   { href: "/dashboard/devis", icon: FileText, label: "Devis" },
   { href: "/dashboard/factures", icon: Receipt, label: "Factures" },
   { href: "/dashboard/chantiers", icon: Construction, label: "Chantiers" },
@@ -70,11 +74,12 @@ function DynamicLogo() {
     <Image
       src="/images/logo-erg.webp"
       alt="ERG Rénovation Logo"
-      width={32}
-      height={32}
-      className="h-8 w-8 object-contain"
+      width={120}
+      height={40}
+      className="h-8 w-auto object-contain"
+      priority
     />
-  )
+  );
 }
 
 function NavLink({
@@ -290,15 +295,15 @@ export default function DashboardSidebar() {
 
   return (
     <>
-      <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
+      <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex print:hidden">
         <TooltipProvider>
           <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
             <Link
               href="/"
-              className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
+              className="group flex items-center justify-center p-1 hover:scale-105 transition-transform"
             >
               <DynamicLogo />
-              <span className="sr-only">ERG</span>
+              <span className="sr-only">ERG Rénovation</span>
             </Link>
 
             {navItems.map((item) => (
@@ -324,7 +329,7 @@ export default function DashboardSidebar() {
         </TooltipProvider>
       </aside>
 
-      <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+      <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6 print:hidden">
         <Sheet>
           <SheetTrigger asChild>
             <Button size="icon" variant="outline" className="sm:hidden">
@@ -337,10 +342,10 @@ export default function DashboardSidebar() {
             <nav className="grid gap-6 text-lg font-medium">
               <Link
                 href="/"
-                className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
+                className="group flex items-center gap-2 p-1 hover:scale-105 transition-transform"
               >
                 <DynamicLogo />
-                <span className="sr-only">ERG</span>
+                <span className="sr-only">ERG Rénovation</span>
               </Link>
 
               {navItems.map((item) => (

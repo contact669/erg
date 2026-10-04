@@ -23,6 +23,37 @@ function getStatusBadgeVariant(status: string) {
 }
 
 
+const MOCK_PROJECTS = [
+  {
+    id: 'chantier-1',
+    title: 'Rénovation Complète Appartement Haussmannien 120m²',
+    clientName: 'Alexandre de Saint-Germain',
+    status: 'En cours',
+    progress: 72,
+  },
+  {
+    id: 'chantier-2',
+    title: 'Aménagement & Rénovation Énergétique 85m²',
+    clientName: 'Florence Morel',
+    status: 'Planification',
+    progress: 25,
+  },
+  {
+    id: 'chantier-3',
+    title: 'Rénovation Salle de Bain Luxe & Suite Parentale',
+    clientName: 'Édouard Vasseur',
+    status: 'Terminé',
+    progress: 100,
+  },
+  {
+    id: 'chantier-4',
+    title: 'Réhabilitation Loft Industriel 140m²',
+    clientName: 'Julien Roche',
+    status: 'En cours',
+    progress: 45,
+  },
+];
+
 export default function ChantiersPage() {
     const { user, isUserLoading } = useUser();
     const router = useRouter();
@@ -42,8 +73,9 @@ export default function ChantiersPage() {
     const projectsQuery = useMemoFirebase(() => 
         firestore ? query(collection(firestore, 'projects'), orderBy('title', 'desc')) : null
     , [firestore]);
-    const { data: chantiers, isLoading } = useCollection<any>(projectsQuery);
+    const { data: dbChantiers, isLoading } = useCollection<any>(projectsQuery);
 
+    const chantiers = dbChantiers && dbChantiers.length > 0 ? dbChantiers : MOCK_PROJECTS;
 
     if (isUserLoading || !user) {
         return (
@@ -63,9 +95,9 @@ export default function ChantiersPage() {
                     </p>
                 </div>
                 <div className="flex items-center space-x-2">
-                    <Button>
+                    <Button onClick={() => router.push('/dashboard/documents?type=suivi')} className="bg-amber-600 hover:bg-amber-500 font-bold">
                         <PlusCircle className="mr-2 h-4 w-4" />
-                        Ajouter un chantier
+                        Générer Rapport de Chantier PDF
                     </Button>
                 </div>
             </div>
@@ -74,29 +106,19 @@ export default function ChantiersPage() {
                  <CardHeader>
                     <CardTitle>Liste des chantiers</CardTitle>
                     <CardDescription>
-                        Retrouvez ici tous vos chantiers, de la planification à la facturation.
+                        Retrouvez ici tous vos chantiers, de la planification à la réception.
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <Table>
                         <TableHeader>
                             <TableRow>
-                                <TableHead>
-                                     <Button variant="ghost" className="p-0 hover:bg-transparent">
-                                        Nom du chantier
-                                        <ArrowUpDown className="ml-2 h-4 w-4" />
-                                    </Button>
-                                </TableHead>
+                                <TableHead>Nom du chantier</TableHead>
                                 <TableHead className="hidden sm:table-cell">Client</TableHead>
-                                <TableHead className="hidden sm:table-cell">
-                                    <Button variant="ghost" className="p-0 hover:bg-transparent">
-                                        Statut
-                                        <ArrowUpDown className="ml-2 h-4 w-4" />
-                                    </Button>
-                                </TableHead>
+                                <TableHead className="hidden sm:table-cell">Statut</TableHead>
                                 <TableHead className="hidden md:table-cell">Avancement</TableHead>
-                                <TableHead>
-                                    <span className="sr-only">Actions</span>
+                                <TableHead className="text-right">
+                                    <span>Actions PDF & Gestion</span>
                                 </TableHead>
                             </TableRow>
                         </TableHeader>
@@ -106,11 +128,11 @@ export default function ChantiersPage() {
                                     <TableCell colSpan={5} className="h-24 text-center">Chargement...</TableCell>
                                 </TableRow>
                             )}
-                            {isClient && chantiers && chantiers.map((chantier) => (
+                            {isClient && chantiers && chantiers.map((chantier: any) => (
                                 <TableRow key={chantier.id}>
                                     <TableCell>
                                         <div className="font-medium">{chantier.title}</div>
-                                        <div className="text-sm text-muted-foreground sm:hidden">{chantier.client}</div>
+                                        <div className="text-sm text-muted-foreground sm:hidden">{chantier.clientName}</div>
                                     </TableCell>
                                     <TableCell className="hidden sm:table-cell">{chantier.clientName}</TableCell>
                                     <TableCell className="hidden sm:table-cell">
@@ -124,7 +146,7 @@ export default function ChantiersPage() {
                                             <span className="text-xs text-muted-foreground">{chantier.progress}%</span>
                                         </div>
                                     </TableCell>
-                                    <TableCell>
+                                    <TableCell className="text-right">
                                         <DropdownMenu>
                                             <DropdownMenuTrigger asChild>
                                                 <Button aria-haspopup="true" size="icon" variant="ghost">
@@ -133,23 +155,21 @@ export default function ChantiersPage() {
                                                 </Button>
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end">
-                                                <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                                <DropdownMenuItem>Voir le chantier</DropdownMenuItem>
-                                                <DropdownMenuItem>Modifier</DropdownMenuItem>
-                                                <DropdownMenuItem>Générer un devis</DropdownMenuItem>
-                                                <DropdownMenuItem className="text-destructive focus:text-destructive focus:bg-destructive/10">
-                                                    Archiver
+                                                <DropdownMenuLabel>Actions & Documents</DropdownMenuLabel>
+                                                <DropdownMenuItem onClick={() => router.push('/dashboard/documents?type=suivi')}>
+                                                    Imprimer Rapport de Chantier PDF
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem onClick={() => router.push('/dashboard/documents?type=pv')}>
+                                                    Imprimer PV de Réception (AXA)
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem onClick={() => router.push('/dashboard/documents?type=devis')}>
+                                                    Générer Devis Avenant
                                                 </DropdownMenuItem>
                                             </DropdownMenuContent>
                                         </DropdownMenu>
                                     </TableCell>
                                 </TableRow>
                             ))}
-                             {isClient && !isLoading && !chantiers?.length && (
-                                <TableRow>
-                                    <TableCell colSpan={5} className="text-center h-24">Aucun chantier trouvé.</TableCell>
-                                </TableRow>
-                            )}
                         </TableBody>
                     </Table>
                 </CardContent>

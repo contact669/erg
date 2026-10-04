@@ -15,6 +15,8 @@ import { GoogleIcon } from "@/components/icons"
 
 import { useToast } from "@/hooks/use-toast"
 import { cn } from "@/lib/utils"
+import { firestore } from "@/firebase/init"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -87,6 +89,40 @@ export default function ContactPage() {
 
     setIsSubmitting(true)
     try {
+      const formattedDesc = `[Sujet : ${values.subject}]\n\n${values.message}`
+
+      // Synchronisation directe vers la collection Firestore CRM quoteRequests
+      try {
+        await addDoc(collection(firestore, "quoteRequests"), {
+          clientName: values.name,
+          clientEmail: values.email,
+          clientPhone: values.phone || "",
+          department: "75",
+          projectType: "Contact Direct",
+          projectDescription: formattedDesc,
+          status: "Nouvelle Demande",
+          createdAt: serverTimestamp(),
+        })
+      } catch (fsErr) {
+        console.error("Erreur de synchronisation Firestore CRM:", fsErr)
+      }
+
+      // Envoi de notification email
+      try {
+        await fetch("/api/send-quote-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            clientName: values.name,
+            clientEmail: values.email,
+            clientPhone: values.phone || "",
+            projectDescription: formattedDesc,
+          }),
+        })
+      } catch (emailErr) {
+        console.error("Email send error:", emailErr)
+      }
+
       toast({
         title: "Message envoyé avec succès",
         description: "Merci ! Nous vous recontactons dans les plus brefs délais (souvent sous 24h ouvrées).",

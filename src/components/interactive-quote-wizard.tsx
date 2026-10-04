@@ -30,6 +30,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Slider } from "@/components/ui/slider"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
+import { firestore } from "@/firebase/init"
+import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 
 type ProjectType = "appartement" | "salle-de-bain" | "cuisine" | "maison"
 type ScopeType = "rafraichissement" | "complete" | "lourde"
@@ -145,19 +147,44 @@ export default function InteractiveQuoteWizard() {
 
     setIsSubmitting(true)
     try {
+      const dept = postalCode ? postalCode.trim().substring(0, 2) : "75"
+      const formattedDescription = `[Projet : ${selectedProj.title}] [Surface : ${surface} m²] [Ampleur : ${selectedScope.title}] [Finition : ${selectedFinish.title}]${details ? `\n\nPrécisions client : ${details}` : ""}`
+
+      // Synchronisation directe vers la collection Firestore CRM quoteRequests
+      try {
+        await addDoc(collection(firestore, "quoteRequests"), {
+          clientName: fullName,
+          clientEmail: email,
+          clientPhone: phone || "",
+          postalCode: postalCode || "",
+          department: dept,
+          projectType: selectedProj.title,
+          surface: `${surface} m²`,
+          projectDescription: formattedDescription,
+          status: "Nouvelle Demande",
+          createdAt: serverTimestamp(),
+        })
+      } catch (fsErr) {
+        console.error("Erreur de synchronisation Firestore CRM:", fsErr)
+      }
+
       const response = await fetch("/api/send-quote-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           fullName,
+          clientName: fullName,
           email,
+          clientEmail: email,
           phone,
+          clientPhone: phone,
           postalCode,
           projectType: selectedProj.title,
           surface: `${surface} m²`,
           scope: selectedScope.title,
           finish: selectedFinish.title,
           details,
+          projectDescription: formattedDescription,
         }),
       })
 

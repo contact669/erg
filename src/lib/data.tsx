@@ -1977,20 +1977,25 @@ export const AREAS: Area[] = [
     description: "Tous arrondissements : rénovation intérieure, salle de bain, cuisine, rénovation complète.",
     cities: Array.from({ length: 20 }, (_, i) => {
       const n = i + 1;
-      return { name: n === 1 ? "Paris 1er" : `Paris ${n}e`, href: null };
+      return { name: n === 1 ? "Paris 1er" : `Paris ${n}e`, code: `750${n < 10 ? '0' + n : n}`, href: `/renovation-paris/paris-${n}` };
     }),
   },
   {
     label: "Hauts-de-Seine",
     code: "92",
     href: "/renovation-hauts-de-seine",
-    description: "Boulogne, Courbevoie, Levallois, Asnières, Colombes, Nanterre…",
+    description: "Boulogne, Neuilly, Levallois, Courbevoie, Asnières, Colombes, Nanterre, Rueil…",
     cities: [
       { name: "Boulogne-Billancourt", code: "92100", href: "/renovation-boulogne-billancourt" },
-      { name: "Courbevoie", code: "92400", href: "/renovation-courbevoie" },
+      { name: "Neuilly-sur-Seine", code: "92200", href: "/renovation-neuilly-sur-seine" },
       { name: "Levallois-Perret", code: "92300", href: "/renovation-levallois-perret" },
+      { name: "Courbevoie", code: "92400", href: "/renovation-courbevoie" },
+      { name: "Rueil-Malmaison", code: "92500", href: "/renovation-rueil-malmaison" },
       { name: "Asnières-sur-Seine", code: "92600", href: "/renovation-asnieres-sur-seine" },
       { name: "Colombes", code: "92700", href: "/renovation-colombes" },
+      { name: "Issy-les-Moulineaux", code: "92130", href: "/renovation-issy-les-moulineaux" },
+      { name: "Suresnes", code: "92150", href: "/renovation-suresnes" },
+      { name: "Clichy", code: "92100", href: "/renovation-clichy" },
       { name: "Nanterre", code: "92000", href: "/renovation-nanterre" },
     ],
   },
@@ -1998,20 +2003,31 @@ export const AREAS: Area[] = [
     label: "Seine-Saint-Denis",
     code: "93",
     href: "/renovation-seine-saint-denis",
-    description: "Montreuil, Pantin, Saint-Denis, Aubervilliers…",
+    description: "Montreuil, Pantin, Saint-Denis, Saint-Ouen, Les Lilas, Aubervilliers, Le Raincy…",
     cities: [
       { name: "Montreuil", code: "93100", href: "/renovation-montreuil" },
-      // add later
+      { name: "Pantin", code: "93500", href: "/renovation-pantin" },
+      { name: "Saint-Denis", code: "93000", href: "/renovation-saint-denis" },
+      { name: "Saint-Ouen", code: "93400", href: "/renovation-saint-ouen" },
+      { name: "Les Lilas", code: "93260", href: "/renovation-les-lilas" },
+      { name: "Aubervilliers", code: "93300", href: "/renovation-aubervilliers" },
+      { name: "Le Raincy", code: "93340", href: "/renovation-le-raincy" },
     ],
   },
   {
     label: "Val-de-Marne",
     code: "94",
     href: "/renovation-val-de-marne",
-    description: "Vincennes, Créteil, Ivry-sur-Seine, Vitry-sur-Seine…",
+    description: "Vincennes, Saint-Mandé, Nogent, Le Perreux, Saint-Maur, Créteil, Maisons-Alfort, Ivry…",
     cities: [
       { name: "Vincennes", code: "94300", href: "/renovation-vincennes" },
-      // add later
+      { name: "Saint-Mandé", code: "94160", href: "/renovation-saint-mande" },
+      { name: "Nogent-sur-Marne", code: "94130", href: "/renovation-nogent-sur-marne" },
+      { name: "Le Perreux-sur-Marne", code: "94170", href: "/renovation-le-perreux-sur-marne" },
+      { name: "Saint-Maur-des-Fossés", code: "94100", href: "/renovation-saint-maur-des-fosses" },
+      { name: "Créteil", code: "94000", href: "/renovation-creteil" },
+      { name: "Maisons-Alfort", code: "94700", href: "/renovation-maisons-alfort" },
+      { name: "Ivry-sur-Seine", code: "94200", href: "/renovation-ivry-sur-seine" },
     ],
   },
 ];

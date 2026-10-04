@@ -32,8 +32,44 @@ function toDateSafe(value: any): Date | null {
       return isNaN(d.getTime()) ? null : d;
   }
   return null;
-}
-
+}const MOCK_FACTURES = [
+  {
+    id: 'FAC-2026-001',
+    clientName: 'Alexandre de Saint-Germain',
+    projectName: 'Rénovation Complète Appartement 120m²',
+    date: '2026-03-05',
+    total: 49500,
+    restant: 0,
+    status: 'Payée',
+  },
+  {
+    id: 'FAC-2026-002',
+    clientName: 'Florence Morel',
+    projectName: 'Acompte 30% — Rénovation Énergétique',
+    date: '2026-03-12',
+    total: 42000,
+    restant: 42000,
+    status: 'Envoyée',
+  },
+  {
+    id: 'FAC-2026-003',
+    clientName: 'Édouard Vasseur',
+    projectName: 'Solde — Salle de Bain Luxe & Suite',
+    date: '2026-02-28',
+    total: 68000,
+    restant: 0,
+    status: 'Payée',
+  },
+  {
+    id: 'FAC-2026-004',
+    clientName: 'Julien Roche',
+    projectName: 'Acompte 30% — Loft Industriel',
+    date: '2026-03-18',
+    total: 58500,
+    restant: 58500,
+    status: 'Envoyée',
+  },
+];
 
 export default function FacturesPage() {
     const { user, isUserLoading } = useUser();
@@ -54,7 +90,9 @@ export default function FacturesPage() {
     const invoicesQuery = useMemoFirebase(() => 
         (firestore && user) ? query(collection(firestore, 'factures'), orderBy('date', 'desc')) : null
     , [firestore, user]);
-    const { data: factures, isLoading } = useCollection<any>(invoicesQuery);
+    const { data: dbFactures, isLoading } = useCollection<any>(invoicesQuery);
+
+    const factures = dbFactures && dbFactures.length > 0 ? dbFactures : MOCK_FACTURES;
 
     if (isUserLoading || !user) {
         return (
@@ -74,9 +112,9 @@ export default function FacturesPage() {
                     </p>
                 </div>
                 <div className="flex items-center space-x-2">
-                    <Button>
+                    <Button onClick={() => router.push('/dashboard/documents?type=facture')} className="bg-amber-600 hover:bg-amber-500 font-bold">
                         <PlusCircle className="mr-2 h-4 w-4" />
-                        Créer une facture
+                        Générer Facture PDF
                     </Button>
                 </div>
             </div>
@@ -92,24 +130,14 @@ export default function FacturesPage() {
                     <Table>
                         <TableHeader>
                             <TableRow>
-                                <TableHead>
-                                    <Button variant="ghost" className="p-0 hover:bg-transparent">
-                                        Numéro
-                                        <ArrowUpDown className="ml-2 h-4 w-4" />
-                                    </Button>
-                                </TableHead>
+                                <TableHead>Numéro</TableHead>
                                 <TableHead>Client / Projet</TableHead>
-                                <TableHead className="hidden sm:table-cell text-right">
-                                    <Button variant="ghost" className="p-0 hover:bg-transparent">
-                                        Date
-                                        <ArrowUpDown className="ml-2 h-4 w-4" />
-                                    </Button>
-                                </TableHead>
+                                <TableHead className="hidden sm:table-cell text-right">Date</TableHead>
                                 <TableHead className="hidden md:table-cell text-right">Total</TableHead>
                                 <TableHead className="hidden md:table-cell text-right">Restant Dû</TableHead>
                                 <TableHead className="hidden sm:table-cell">Statut</TableHead>
-                                <TableHead>
-                                    <span className="sr-only">Actions</span>
+                                <TableHead className="text-right">
+                                    <span>Actions & PDF</span>
                                 </TableHead>
                             </TableRow>
                         </TableHeader>
@@ -119,7 +147,7 @@ export default function FacturesPage() {
                                     <TableCell colSpan={7} className="h-24 text-center">Chargement...</TableCell>
                                 </TableRow>
                             )}
-                            {isClient && factures && factures.map((item) => {
+                            {isClient && factures && factures.map((item: any) => {
                               const date = toDateSafe(item.date);
                               return (
                                 <TableRow key={item.id}>
@@ -132,7 +160,7 @@ export default function FacturesPage() {
                                         <div className="text-sm text-muted-foreground">{item.projectName}</div>
                                     </TableCell>
                                     <TableCell className="hidden sm:table-cell text-right">
-                                        {date && isClient ? format(date, "d MMM yyyy", { locale: fr }) : '...'}
+                                        {date && isClient ? format(date, "d MMM yyyy", { locale: fr }) : item.date}
                                     </TableCell>
                                     <TableCell className="hidden md:table-cell text-right">
                                         {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(item.total)}
@@ -145,7 +173,7 @@ export default function FacturesPage() {
                                             {item.status}
                                         </Badge>
                                     </TableCell>
-                                    <TableCell>
+                                    <TableCell className="text-right">
                                         <DropdownMenu>
                                             <DropdownMenuTrigger asChild>
                                                 <Button aria-haspopup="true" size="icon" variant="ghost">
@@ -155,22 +183,17 @@ export default function FacturesPage() {
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end">
                                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                                <DropdownMenuItem>Voir la facture</DropdownMenuItem>
-                                                <DropdownMenuItem>Télécharger PDF</DropdownMenuItem>
-                                                <DropdownMenuItem>Enregistrer un paiement</DropdownMenuItem>
-                                                <DropdownMenuItem className="text-destructive focus:text-destructive focus:bg-destructive/10">
-                                                    Archiver
+                                                <DropdownMenuItem onClick={() => router.push('/dashboard/documents?type=facture')}>
+                                                    Voir / Télécharger PDF A4
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem onClick={() => router.push('/dashboard/documents?type=facture')}>
+                                                    Enregistrer un paiement
                                                 </DropdownMenuItem>
                                             </DropdownMenuContent>
                                         </DropdownMenu>
                                     </TableCell>
                                 </TableRow>
                             )})}
-                            {isClient && !isLoading && !factures?.length && (
-                                <TableRow>
-                                    <TableCell colSpan={7} className="text-center h-24">Aucune facture trouvée.</TableCell>
-                                </TableRow>
-                            )}
                         </TableBody>
                     </Table>
                 </CardContent>

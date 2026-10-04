@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { Button } from "./ui/button";
 
@@ -6,16 +5,21 @@ const SERVICES = [
   { name: "Rénovation d’appartement", href: "/services/renovation-appartement" },
   { name: "Rénovation de salle de bain", href: "/services/renovation-salle-de-bain" },
   { name: "Rénovation de cuisine", href: "/services/renovation-cuisine" },
-  { name: "Rénovation complète", href: "/services/renovation-complete" },
+  { name: "Rénovation de maison", href: "/services/renovation-maison" },
 ];
 
 const CITIES_92_PRIMARY = [
   { name: "Boulogne-Billancourt", code: "92100", href: "/renovation-boulogne-billancourt" },
-  { name: "Nanterre", code: "92000", href: "/renovation-nanterre" },
-  { name: "Courbevoie", code: "92400", href: "/renovation-courbevoie" },
+  { name: "Neuilly-sur-Seine", code: "92200", href: "/renovation-neuilly-sur-seine" },
   { name: "Levallois-Perret", code: "92300", href: "/renovation-levallois-perret" },
+  { name: "Courbevoie", code: "92400", href: "/renovation-courbevoie" },
+  { name: "Rueil-Malmaison", code: "92500", href: "/renovation-rueil-malmaison" },
   { name: "Asnières-sur-Seine", code: "92600", href: "/renovation-asnieres-sur-seine" },
   { name: "Colombes", code: "92700", href: "/renovation-colombes" },
+  { name: "Issy-les-Moulineaux", code: "92130", href: "/renovation-issy-les-moulineaux" },
+  { name: "Suresnes", code: "92150", href: "/renovation-suresnes" },
+  { name: "Clichy", code: "92100", href: "/renovation-clichy" },
+  { name: "Nanterre", code: "92000", href: "/renovation-nanterre" },
 ];
 
 export function InternalLinksHautsDeSeine() {
@@ -26,7 +30,7 @@ export function InternalLinksHautsDeSeine() {
         <h2 className="text-2xl font-semibold">Zones principales – Hauts-de-Seine (92)</h2>
         <p className="mt-2 text-sm text-muted-foreground">
           ERG Rénovation intervient dans tout le département pour vos travaux de rénovation intérieure
-          (appartement, salle de bain, cuisine et rénovation complète), avec visite sur site, devis détaillé
+          (appartement, maison, salle de bain, cuisine et rénovation complète), avec visite sur site, devis détaillé
           et pilotage de chantier par un interlocuteur unique.
         </p>
         <div className="mt-4 flex flex-col gap-3 sm:flex-row">
@@ -68,7 +72,7 @@ export function InternalLinksHautsDeSeine() {
 
       {/* Cities */}
       <div className="rounded-2xl border bg-background p-6 shadow-sm">
-        <h3 className="text-xl font-semibold">Villes les plus demandées (92)</h3>
+        <h3 className="text-xl font-semibold">Villes couvertes dans les Hauts-de-Seine (92)</h3>
         <p className="mt-2 text-sm text-muted-foreground">
           Consultez nos pages locales pour des contenus adaptés aux contraintes de votre commune (copropriété, ancien,
           optimisation de surface, isolation, etc.).
@@ -77,20 +81,12 @@ export function InternalLinksHautsDeSeine() {
         <ul className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {CITIES_92_PRIMARY.map((c) => (
             <li key={c.href}>
-              <Link className="underline underline-offset-4 hover:text-accent" href={c.href}>
+              <Link className="underline underline-offset-4 hover:text-accent font-semibold" href={c.href}>
                 Rénovation à {c.name} ({c.code})
               </Link>
             </li>
           ))}
         </ul>
-
-        <div className="mt-5 rounded-xl bg-muted/30 p-4 text-sm">
-          <p className="font-medium">Astuce :</p>
-          <p className="mt-1 text-muted-foreground">
-            Pour maximiser votre SEO local, ces pages villes doivent ensuite renvoyer vers cette page pilier (92),
-            vers les services, et vers 3 à 6 villes proches.
-          </p>
-        </div>
       </div>
 
       {/* Secondary CTA */}
@@ -107,8 +103,8 @@ export function InternalLinksHautsDeSeine() {
             </Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href="/services/renovation-complete">
-              Voir la rénovation complète
+            <Link href="/services/renovation-appartement">
+              Rénovation d'appartement
             </Link>
           </Button>
         </div>

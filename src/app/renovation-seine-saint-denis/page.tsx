@@ -207,15 +207,12 @@ const faq = [
 
 const cities = [
   { name: "Montreuil", href: "/renovation-montreuil" },
-  { name: "Saint-Denis", href: null },
-  { name: "Pantin", href: null },
-  { name: "Aubervilliers", href: null },
-  { name: "Noisy-le-Sec", href: null },
-  { name: "Bobigny", href: null },
-  { name: "Drancy", href: null },
-  { name: "Bagnolet", href: null },
-  { name: "Les Lilas", href: null },
-  { name: "Romainville", href: null },
+  { name: "Pantin", href: "/renovation-pantin" },
+  { name: "Saint-Denis", href: "/renovation-saint-denis" },
+  { name: "Saint-Ouen", href: "/renovation-saint-ouen" },
+  { name: "Les Lilas", href: "/renovation-les-lilas" },
+  { name: "Aubervilliers", href: "/renovation-aubervilliers" },
+  { name: "Le Raincy", href: "/renovation-le-raincy" },
 ];
 
 export default function RenovationSeineSaintDenisPage() {
