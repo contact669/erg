@@ -12,7 +12,7 @@ const SITE_URL = "https://erg-renovation.fr"
 const PAGE_URL = `${SITE_URL}/confidentialite`
 
 export const metadata: Metadata = {
-  title: `Politique de Confidentialité | ${SITE_NAME}`,
+  title: `Politique de Confidentialité`,
   description:
     "Politique de confidentialité d’ERG Rénovation : données collectées, finalités, base légale, durée de conservation, cookies et droits RGPD.",
   alternates: { canonical: PAGE_URL },

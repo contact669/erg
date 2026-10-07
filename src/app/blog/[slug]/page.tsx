@@ -1,4 +1,6 @@
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+import { pageMetadata, SITE_URL } from '@/lib/seo/metadata';
 import Link from 'next/link';
 import Image from 'next/image';
 import { blogPosts, services } from '@/lib/data';
@@ -16,6 +18,20 @@ import { fr } from 'date-fns/locale';
 import Breadcrumbs from '@/components/breadcrumbs';
 import TableOfContents from '@/components/table-of-contents';
 import { cn } from '@/lib/utils';
+
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const post = blogPosts.find(p => p.slug === params.slug);
+  if (!post) notFound();
+  const image = PlaceHolderImages.find(p => p.id === post.featuredImageId);
+  const metadata = pageMetadata(`/blog/${post.slug}`, post.title, post.description);
+  return {
+    ...metadata,
+    openGraph: {
+      ...metadata.openGraph, type: 'article', publishedTime: post.date, authors: [post.author],
+      ...(image ? { images: [{ url: new URL(image.imageUrl, SITE_URL).toString(), alt: post.title }] } : {}),
+    },
+  };
+}
 
 export async function generateStaticParams() {
   return blogPosts.map((post) => ({

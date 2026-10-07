@@ -88,7 +88,7 @@ export default function GoogleReviews() {
           </h2>
 
           <p className="mx-auto max-w-2xl text-base sm:text-lg font-normal leading-relaxed text-slate-600">
-            Notre priorité : un chantier maîtrisé, des finitions soignées et une expérience fluide. Voici quelques retours récents de nos clients à Paris et Île-de-France.
+            Notre priorité : un chantier maîtrisé, des finitions soignées et une expérience fluide. Voici quelques témoignages de nos clients à Paris et Île-de-France.
           </p>
 
           {/* Google Score Banner */}

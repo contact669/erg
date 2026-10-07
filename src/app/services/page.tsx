@@ -33,7 +33,7 @@ const PHONE_NUMBER = "+33699961375"
 const PHONE_TEL = "tel:+33699961375"
 
 export const metadata: Metadata = {
-  title: `Prestations de rénovation | Appartement, salle de bain, cuisine | ${SITE_NAME}`,
+  title: `Prestations de rénovation | Appartement, salle de bain, cuisine`,
   description:
     "Découvrez toutes nos prestations de rénovation intérieure à Paris et en Île-de-France : rénovation d’appartement, salle de bain, cuisine, finitions, coordination tous corps d’état. Devis gratuit.",
   alternates: { canonical: PAGE_URL },
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: `Prestations de rénovation | ${SITE_NAME}`,
+    title: `Prestations de rénovation`,
     description:
       "Rénovation intérieure à Paris & Île-de-France : appartement, salle de bain, cuisine. Devis gratuit, suivi de chantier, finitions soignées.",
     url: PAGE_URL,
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `Prestations de rénovation | ${SITE_NAME}`,
+    title: `Prestations de rénovation`,
     description:
       "Rénovation intérieure à Paris & Île-de-France : appartement, salle de bain, cuisine. Devis gratuit, suivi de chantier, finitions soignées.",
   },

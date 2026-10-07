@@ -7,7 +7,7 @@ import CtaBanner from "@/app/_components/cta-banner"
 import { Cookie, ShieldCheck, CheckCircle2, Lock } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Gestion des Cookies | ERG Rénovation",
+  title: "Gestion des Cookies",
   description:
     "Informations sur l’utilisation des cookies sur le site ERG Rénovation : types de cookies, finalités, durée de conservation et gestion de vos préférences.",
   alternates: { canonical: "https://erg-renovation.fr/cookies" },

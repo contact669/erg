@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { privateMetadata } from '@/lib/seo/metadata';
+export const metadata = privateMetadata;
 import DashboardSidebar from "./_components/dashboard-sidebar";
 
 export default function DashboardLayout({

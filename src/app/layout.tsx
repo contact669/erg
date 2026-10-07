@@ -10,7 +10,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { buildLocalBusinessJsonLd, buildWebSiteJsonLd } from "@/lib/seo/jsonld";
 
 const SITE_NAME = "ERG Rénovation"
-const SITE_URL = "https://www.erg-renovation.fr"
+const SITE_URL = "https://erg-renovation.fr"
 const DEFAULT_TITLE = `${SITE_NAME} | Rénovation intérieure à Paris & Île-de-France`
 const DEFAULT_DESCRIPTION =
   "Spécialiste de la rénovation intérieure à Paris et en Île-de-France : appartements, maisons, cuisines, salles de bain. Devis gratuit, finitions soignées, garantie décennale."
@@ -31,9 +31,6 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: DEFAULT_DESCRIPTION,
-  alternates: {
-    canonical: SITE_URL,
-  },
   robots: {
     index: true,
     follow: true,
@@ -52,23 +49,15 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630, alt: SITE_NAME }],
+    images: [{ url: "/images/og-image.png", width: 1200, height: 630, alt: SITE_NAME }],
   },
   twitter: {
     card: "summary_large_image",
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
-    images: ["/images/og-image.jpg"],
+    images: ["/images/og-image.png"],
   },
-  icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
-  },
-  manifest: "/site.webmanifest",
+  icons: { icon: "/favicon.ico" },
 }
 
 export const viewport: Viewport = {
@@ -81,7 +70,7 @@ const localBusiness = buildLocalBusinessJsonLd({
   name: "ERG Rénovation",
   siteUrl: SITE_URL,
   logoUrl: `${SITE_URL}/images/logo-erg.webp`,
-  imageUrl: `${SITE_URL}/images/og-image.jpg`,
+  imageUrl: `${SITE_URL}/images/og-image.png`,
   phone: PHONE,
   priceRange: "€€€",
   address: ADDRESS,

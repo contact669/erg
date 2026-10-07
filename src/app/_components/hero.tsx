@@ -108,9 +108,9 @@ export default function Hero() {
             </div>
 
             <h1 className="font-headline text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
-              L'Art de la Rénovation <br />
+              Rénovation intérieure <br />
               <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">
-                Haute Précision à Paris.
+                à Paris et en Île-de-France.
               </span>
             </h1>
 
@@ -153,7 +153,7 @@ export default function Hero() {
                 className="h-14 px-8 bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 text-base shadow-xl shadow-amber-500/20 rounded-xl"
               >
                 <Link href="/devis">
-                  Simuler mon projet & devis <ArrowRight className="ml-2 h-5 w-5" />
+                  Préparer mon devis gratuit <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
 

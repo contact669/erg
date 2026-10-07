@@ -34,12 +34,12 @@ const SITE_URL = "https://erg-renovation.fr"
 const PAGE_URL = `${SITE_URL}/a-propos`
 
 export const metadata: Metadata = {
-  title: `À propos | ${SITE_NAME}`,
+  title: `À propos`,
   description:
     "Découvrez l’histoire et les valeurs d’ERG Rénovation : entreprise familiale spécialisée en rénovation intérieure à Paris et en Île-de-France. Exécution soignée, transparence, garantie décennale.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: `À propos | ${SITE_NAME}`,
+    title: `À propos`,
     description:
       "Entreprise familiale de rénovation intérieure à Paris & Île-de-France : savoir-faire, méthode, transparence, garantie décennale.",
     url: PAGE_URL,
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `À propos | ${SITE_NAME}`,
+    title: `À propos`,
     description:
       "Entreprise familiale de rénovation intérieure à Paris & Île-de-France : savoir-faire, méthode, transparence, garantie décennale.",
   },

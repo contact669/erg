@@ -1,4 +1,7 @@
 import SiteHeader from "@/components/site-header"
+import { pageMetadata } from "@/lib/seo/metadata"
+
+export const metadata = pageMetadata('/devis', 'Devis rénovation à Paris : préparer votre projet', 'Décrivez vos travaux de rénovation d’appartement, de cuisine ou de salle de bain à Paris et en Île-de-France. Demande de devis gratuit et sans engagement.')
 import SiteFooter from "@/components/site-footer"
 import Breadcrumbs from "@/components/breadcrumbs"
 import InteractiveQuoteWizard from "@/components/interactive-quote-wizard"
@@ -32,7 +35,7 @@ export default function DevisPage() {
 
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 text-xs sm:text-sm font-semibold text-amber-700 shadow-sm">
-                  <Sparkles className="h-4 w-4 text-amber-600" /> Visite sur Site Offered & Devis Gratuit
+                  <Sparkles className="h-4 w-4 text-amber-600" /> Visite sur site offerte & devis gratuit
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-3.5 py-1 text-xs text-slate-800 shadow-sm">
                   <FileText className="h-4 w-4 text-amber-600" />

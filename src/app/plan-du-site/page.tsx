@@ -10,7 +10,7 @@ import { ArrowRight, MapPin, Wrench, Home, BookOpen, Layers, Sparkles } from "lu
 import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
-  title: "Plan du Site | ERG Rénovation",
+  title: "Plan du Site",
   description:
     "Explorez l'architecture de notre site. Retrouvez rapidement toutes nos pages : services, réalisations, zones d'intervention, blog et informations pratiques.",
   alternates: { canonical: "https://erg-renovation.fr/plan-du-site" },

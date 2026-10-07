@@ -7,7 +7,7 @@ import CtaBanner from "@/app/_components/cta-banner"
 import { ShieldCheck, Building2, Phone, Mail, FileText, Scale, Lock, Globe } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Mentions Légales | ERG Rénovation",
+  title: "Mentions Légales",
   description:
     "Mentions légales et informations juridiques d'ERG Rénovation : éditeur, hébergeur, propriété intellectuelle et données personnelles.",
   alternates: { canonical: "https://erg-renovation.fr/mentions-legales" },

@@ -40,13 +40,13 @@ export async function generateMetadata({
   const description = `Avant / Après : ${project.title}. ${project.description}`.slice(0, 155)
 
   return {
-    title: `${project.title} | ERG Rénovation`,
+    title: `${project.title}`,
     description,
     alternates: {
       canonical: `https://erg-renovation.fr/realisations/${project.slug}`,
     },
     openGraph: {
-      title: `${project.title} | ERG Rénovation`,
+      title: `${project.title}`,
       description,
       type: "article",
       url: `https://erg-renovation.fr/realisations/${project.slug}`,

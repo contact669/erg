@@ -42,20 +42,20 @@ import JsonLd from "@/components/JsonLd";
 import { buildServiceJsonLd, buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo/jsonld";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
-const PAGE_URL = "https://www.erg-renovation.fr/renovation-val-de-marne";
-const SITE_URL = "https://www.erg-renovation.fr";
+const PAGE_URL = "https://erg-renovation.fr/renovation-val-de-marne";
+const SITE_URL = "https://erg-renovation.fr";
 const BUSINESS_NAME = "ERG Rénovation";
 const PHONE_DISPLAY = "06 99 96 13 75";
 const PHONE_E164 = "+33699961375";
 
 export const metadata: Metadata = {
-  title: "Rénovation appartement Val-de-Marne (94) | ERG Rénovation",
+  title: "Rénovation appartement Val-de-Marne (94)",
   description:
     "Entreprise de rénovation dans le Val-de-Marne (94) : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions soignées.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "Rénovation appartement Val-de-Marne (94) | ERG Rénovation",
+    title: "Rénovation appartement Val-de-Marne (94)",
     description:
       "Rénovation intérieure dans le 94 : appartement, salle de bain, cuisine. Visite sur site, devis détaillé et finitions soignées.",
     url: PAGE_URL,
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rénovation appartement Val-de-Marne (94) | ERG Rénovation",
+    title: "Rénovation appartement Val-de-Marne (94)",
     description:
       "Entreprise de rénovation dans le Val-de-Marne (94) : appartement, salle de bain, cuisine. Devis détaillé, suivi de chantier, finitions soignées.",
   },

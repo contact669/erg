@@ -43,7 +43,7 @@ import {
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const BRAND = "ERG Rénovation";
-const SITE_URL = "https://www.erg-renovation.fr";
+const SITE_URL = "https://erg-renovation.fr";
 const PAGE_SLUG = "/renovation-paris";
 const PAGE_URL = `${SITE_URL}${PAGE_SLUG}`;
 
@@ -51,13 +51,13 @@ const PHONE_E164 = "+33699961375";
 const PHONE_DISPLAY = "06 99 96 13 75";
 
 export const metadata: Metadata = {
-  title: `Rénovation appartement Paris (75) | ${BRAND}`,
+  title: `Travaux de rénovation à Paris : nos arrondissements`,
   description:
     "Entreprise de rénovation à Paris (75). Appartement, salle de bain, cuisine. Visite sur site, devis détaillé et suivi complet. Tous arrondissements.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
-    title: `Rénovation appartement Paris (75) | ${BRAND}`,
+    title: `Rénovation appartement Paris (75)`,
     description:
       "Rénovation intérieure à Paris : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions soignées.",
     url: PAGE_URL,
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `Rénovation appartement Paris (75) | ${BRAND}`,
+    title: `Rénovation appartement Paris (75)`,
     description:
       "Entreprise de rénovation à Paris (75) : appartement, salle de bain, cuisine. Devis détaillé, suivi de chantier, finitions soignées.",
   },

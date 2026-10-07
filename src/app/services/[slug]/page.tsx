@@ -371,48 +371,48 @@ export async function generateMetadata(
   const computed = (() => {
     if (service.slug === "renovation-appartement") {
       return {
-        title: "Rénovation Appartement Paris & IDF (92, 93, 94, 78) | ERG Rénovation",
+        title: "Rénovation Appartement Paris & IDF (92, 93, 94, 78)",
         description:
           "Confiez votre projet de rénovation d'appartement à Paris et IDF à ERG Rénovation. Expertise haut de gamme, gestion de A à Z, devis sur-mesure.",
       }
     }
     if (service.slug === "renovation-maison") {
       return {
-        title: "Rénovation Maison Paris & IDF (78, 92, 93, 94) | ERG Rénovation",
+        title: "Rénovation Maison Paris & IDF (78, 92, 93, 94)",
         description:
           "Votre maison est un projet de vie. ERG Rénovation gère sa rénovation, extension ou aménagement en Île-de-France. Expertise haut de gamme de A à Z.",
       }
     }
     if (service.slug === "renovation-salle-de-bain") {
       return {
-        title: "Rénovation Salle de Bain Paris & IDF (92, 93, 94, 78) | ERG Rénovation",
+        title: "Rénovation Salle de Bain Paris & IDF (92, 93, 94, 78)",
         description:
           "Transformez votre salle de bain en un espace bien-être. ERG Rénovation, expert en rénovation haut de gamme à Paris et IDF. Devis pour votre douche à l'italienne.",
       }
     }
     if (service.slug === "renovation-cuisine") {
       return {
-        title: "Rénovation Cuisine Paris & IDF (92, 93, 94, 78) | ERG Rénovation",
+        title: "Rénovation Cuisine Paris & IDF (92, 93, 94, 78)",
         description:
           "ERG Rénovation gère la rénovation complète de votre cuisine à Paris et IDF. Conception sur mesure, îlot central, finitions haut de gamme. Devis A à Z.",
       }
     }
     if (service.slug === "amenagement-combles") {
       return {
-        title: "Aménagement de Combles Paris & IDF (78, 92, 94, 93) | ERG Rénovation",
+        title: "Aménagement de Combles Paris & IDF (78, 92, 94, 93)",
         description:
           "Gagnez des m² précieux. ERG Rénovation gère l'aménagement de vos combles à Paris et IDF. Isolation, structure, suite parentale. Gestion A à Z.",
       }
     }
     if (service.slug === "peinture-finitions") {
       return {
-        title: "Peinture & Finitions Haut de Gamme Paris & IDF | ERG Rénovation",
+        title: "Peinture & Finitions Haut de Gamme Paris & IDF",
         description:
           "Finitions impeccables pour vos murs et plafonds à Paris et IDF. Préparation minutieuse, matériaux d'exception. Demandez votre diagnostic finition.",
       }
     }
     return {
-      title: `${service.title} | ${SITE_NAME}`,
+      title: `${service.title}`,
       description: `${safeText(service.longDescription).slice(0, 155)}...`,
     }
   })()
@@ -438,7 +438,7 @@ export async function generateMetadata(
       url,
       siteName: SITE_NAME,
       locale: "fr_FR",
-      type: "article",
+      type: "website",
     },
     twitter: {
       card: "summary_large_image",

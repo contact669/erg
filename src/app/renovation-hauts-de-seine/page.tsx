@@ -30,27 +30,27 @@ import { InternalLinksHautsDeSeine } from "@/components/internal-links-hauts-de-
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export const metadata: Metadata = {
-  title: "Rénovation appartement Hauts-de-Seine (92) | ERG Rénovation",
+  title: "Rénovation appartement Hauts-de-Seine (92)",
   description:
     "Entreprise de rénovation dans les Hauts-de-Seine (92) : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions soignées.",
   alternates: {
-    canonical: "https://www.erg-renovation.fr/renovation-hauts-de-seine",
+    canonical: "https://erg-renovation.fr/renovation-hauts-de-seine",
   },
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: "Rénovation appartement Hauts-de-Seine (92) | ERG Rénovation",
+    title: "Rénovation appartement Hauts-de-Seine (92)",
     description: "Rénovation intérieure dans le 92 : appartement, salle de bain, cuisine. Visite sur site, devis détaillé et finitions soignées.",
-    url: "https://www.erg-renovation.fr/renovation-hauts-de-seine",
+    url: "https://erg-renovation.fr/renovation-hauts-de-seine",
     type: "website",
     locale: "fr_FR",
     siteName: "ERG Rénovation",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rénovation appartement Hauts-de-Seine (92) | ERG Rénovation",
+    title: "Rénovation appartement Hauts-de-Seine (92)",
     description: "Entreprise de rénovation dans les Hauts-de-Seine : appartement, salle de bain, cuisine. Devis détaillé, suivi de chantier, finitions soignées.",
   },
 };
@@ -144,7 +144,7 @@ const faqItems = [
     }
 ];
 
-const SITE_URL = "https://www.erg-renovation.fr";
+const SITE_URL = "https://erg-renovation.fr";
 
 export default function RenovationHautsDeSeinePage() {
   const service = buildServiceJsonLd({

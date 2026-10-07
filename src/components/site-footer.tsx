@@ -235,13 +235,13 @@ export default function SiteFooter() {
                 Estimation Gratuite
               </span>
               <p className="text-xs text-slate-600 font-normal">
-                Calculez le budget de votre chantier en 4 étapes simples.
+                Préparez votre demande de devis en 4 étapes simples.
               </p>
               <Link
                 href="/devis"
                 className="mt-2 inline-flex items-center justify-center w-full rounded-xl bg-amber-500 text-slate-950 px-4 py-2 text-xs font-bold hover:bg-amber-400 transition-colors shadow-sm"
               >
-                Simuler mon devis →
+                Préparer mon devis →
               </Link>
             </div>
           </div>

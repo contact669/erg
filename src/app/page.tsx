@@ -30,7 +30,7 @@ const REGION = "Île-de-France"
 const SERVICE_AREAS = ["Paris", "Hauts-de-Seine (92)", "Seine-Saint-Denis (93)", "Val-de-Marne (94)"]
 
 export const metadata: Metadata = {
-  title: `Entreprise de rénovation à ${CITY} | Appartement, salle de bain, cuisine | ${SITE_NAME}`,
+  title: { absolute: `Entreprise de rénovation à ${CITY} | ${SITE_NAME}` },
   description: `${SITE_NAME} : rénovation intérieure clé en main à ${CITY} et en ${REGION} (92, 93, 94). Devis détaillé gratuit, interlocuteur unique, finitions soignées, garantie décennale.`,
   alternates: { canonical: PAGE_URL },
   robots: {
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: `Entreprise de rénovation à ${CITY} | ${SITE_NAME}`,
+    title: `Entreprise de rénovation à ${CITY}`,
     description: `Rénovation intérieure à ${CITY} : appartement, salle de bain, cuisine. Devis gratuit, suivi de chantier, finitions soignées, garantie décennale.`,
     url: PAGE_URL,
     siteName: SITE_NAME,
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `Entreprise de rénovation à ${CITY} | ${SITE_NAME}`,
+    title: `Entreprise de rénovation à ${CITY}`,
     description: `Rénovation intérieure à ${CITY} : appartement, salle de bain, cuisine. Devis gratuit, suivi de chantier, finitions soignées, garantie décennale.`,
   },
 }
@@ -64,13 +64,6 @@ function JsonLd() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "WebSite",
-        "@id": `${SITE_URL}/#website`,
-        url: SITE_URL,
-        name: SITE_NAME,
-        inLanguage: "fr-FR",
-      },
-      {
         "@type": "WebPage",
         "@id": `${PAGE_URL}#webpage`,
         url: PAGE_URL,
@@ -78,29 +71,6 @@ function JsonLd() {
         description: `${SITE_NAME} : rénovation intérieure à ${CITY} et en ${REGION}.`,
         isPartOf: { "@id": `${SITE_URL}/#website` },
         inLanguage: "fr-FR",
-      },
-      {
-        "@type": "LocalBusiness",
-        "@id": `${SITE_URL}/#business`,
-        name: SITE_NAME,
-        url: SITE_URL,
-        telephone: PHONE,
-        priceRange: "€€",
-        areaServed: SERVICE_AREAS,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: "1 Sent. de la Pointe",
-          postalCode: "75020",
-          addressLocality: CITY,
-          addressRegion: REGION,
-          addressCountry: "FR",
-        },
-        serviceType: [
-          "Rénovation d’appartement",
-          "Rénovation de salle de bain",
-          "Rénovation cuisine",
-          "Travaux tous corps d’état",
-        ],
       },
       {
         "@type": "Service",

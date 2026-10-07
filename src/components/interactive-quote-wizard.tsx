@@ -214,7 +214,7 @@ export default function InteractiveQuoteWizard() {
               <Calculator className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="font-headline text-lg font-bold text-white">Simulateur de Devis ERG Rénovation</h3>
+              <h3 className="font-headline text-lg font-bold text-white">Votre demande de devis ERG Rénovation</h3>
               <p className="text-xs text-slate-400">Étude technique personnalisée & devis gratuit sans engagement</p>
             </div>
           </div>
@@ -332,13 +332,13 @@ export default function InteractiveQuoteWizard() {
                 <Slider
                   value={[surface]}
                   onValueChange={(val) => setSurface(val[0])}
-                  min={10}
+                  min={projectType === "salle-de-bain" || projectType === "cuisine" ? 1 : 10}
                   max={200}
                   step={1}
                   className="py-4"
                 />
                 <div className="flex justify-between text-xs text-slate-500 font-medium">
-                  <span>10 m² (Studio / SDB)</span>
+                  <span>{projectType === "salle-de-bain" || projectType === "cuisine" ? "1 m²" : "10 m²"}</span>
                   <span>75 m² (T3 / T4)</span>
                   <span>200+ m² (Maison / Grand bien)</span>
                 </div>
@@ -632,7 +632,7 @@ export default function InteractiveQuoteWizard() {
                     variant="outline"
                     className="mt-4 rounded-xl border-slate-300 font-semibold"
                   >
-                    Simuler un autre projet
+                    Préparer un autre projet
                   </Button>
                 </div>
               )}

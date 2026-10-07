@@ -45,7 +45,7 @@ import {
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 const BRAND = "ERG Rénovation";
-const SITE_URL = "https://www.erg-renovation.fr";
+const SITE_URL = "https://erg-renovation.fr";
 const PHONE_E164 = "+33699961375";
 const PHONE_DISPLAY = "06 99 96 13 75";
 
@@ -499,9 +499,9 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const data = PARIS_ARRONDISSEMENTS[params.slug];
-  if (!data) return { title: `Rénovation appartement Paris | ${BRAND}` };
+  if (!data) return { title: `Rénovation appartement Paris` };
 
-  const pageTitle = `Rénovation appartement ${data.name} | ${BRAND}`;
+  const pageTitle = `Rénovation appartement Paris ${data.number === 1 ? '1er' : `${data.number}e`} (${data.postalCode})`;
   const pageDescription = `Entreprise de rénovation d'appartement à ${data.name} (${data.postalCode}). Devis gratuit poste par poste, garantie décennale, suivi sur-mesure. ${data.neighborhoods.join(", ")}.`;
   const canonicalUrl = `${SITE_URL}/renovation-paris/${data.slug}`;
 
@@ -549,14 +549,6 @@ function JsonLd({ data }: { data: ParisArrondissementData }) {
         addressLocality: "Paris",
         postalCode: "75020",
         addressCountry: "FR",
-      },
-      geo: { "@type": "GeoCoordinates", latitude: 48.8566, longitude: 2.3522 },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "36",
-        bestRating: "5",
-        worstRating: "1",
       },
       areaServed: [{ "@type": "City", name: data.name, postalCode: data.postalCode }],
       serviceType: [
@@ -707,7 +699,7 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
                     <span className="text-sm font-semibold text-slate-900 block">{data.architecturalStyle}</span>
                   </div>
                   <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">Budget Moyen Constaté</span>
+                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">Fourchette indicative de travaux</span>
                     <span className="text-sm font-bold text-amber-700 block">{data.avgPricePerSqm}</span>
                   </div>
                 </div>
@@ -728,19 +720,19 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
               <div className="lg:col-span-5">
                 <div className="rounded-3xl bg-white p-4 shadow-2xl border border-slate-200 space-y-3">
                   <span className="text-xs font-bold uppercase tracking-wider text-amber-700 block">
-                    Réalisation récente — {data.postalCode}
+                    Exemple de transformation ERG
                   </span>
                   <BeforeAfterSlider
                     beforeImage={data.beforeAfterProject.beforeImage}
                     afterImage={data.beforeAfterProject.afterImage}
                     beforeLabel={data.beforeAfterProject.beforeLabel}
                     afterLabel={data.beforeAfterProject.afterLabel}
-                    alt={data.beforeAfterProject.title}
+                    alt={"Exemple de rénovation ERG — photos illustratives, localisation non attribuée"}
                     aspectRatio="aspect-[4/3]"
                     className="rounded-2xl overflow-hidden shadow-md"
                   />
                   <span className="block text-xs font-bold text-slate-900 text-center pt-1">
-                    {data.beforeAfterProject.title}
+                    {"Exemple de rénovation ERG — photos illustratives, localisation non attribuée"}
                   </span>
                 </div>
               </div>

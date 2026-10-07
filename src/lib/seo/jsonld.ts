@@ -15,7 +15,7 @@ type SocialLinks = {
 
 type LocalBusinessInput = {
   name: string;                 // "ERG Rénovation"
-  siteUrl: string;              // "https://www.erg-renovation.fr"
+  siteUrl: string;              // "https://erg-renovation.fr"
   logoUrl: string;              // "https://.../logo.png"
   imageUrl?: string;            // "https://.../og-image.jpg"
   phone?: string;               // "+33..."
@@ -31,6 +31,7 @@ export function buildLocalBusinessJsonLd(input: LocalBusinessInput) {
   return {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
+    "@id": `${input.siteUrl}/#business`,
     name: input.name,
     url: input.siteUrl,
     logo: input.logoUrl,
@@ -47,11 +48,6 @@ export function buildLocalBusinessJsonLd(input: LocalBusinessInput) {
           addressCountry: input.address.addressCountry ?? "FR",
         }
       : undefined,
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 48.8566,
-      longitude: 2.3522,
-    },
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -66,13 +62,6 @@ export function buildLocalBusinessJsonLd(input: LocalBusinessInput) {
         closes: "18:00",
       },
     ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "36",
-      "bestRating": "5",
-      "worstRating": "1",
-    },
     areaServed: (input.areaServed ?? []).map((name) => ({
       "@type": "AdministrativeArea",
       name,
@@ -92,6 +81,7 @@ export function buildWebSiteJsonLd(input: WebSiteInput) {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${input.siteUrl}/#website`,
     name: input.name,
     url: input.siteUrl,
     potentialAction: input.searchUrlTemplate
@@ -106,7 +96,7 @@ export function buildWebSiteJsonLd(input: WebSiteInput) {
 
 type BuildServiceParams = {
   businessName: string;  // "ERG Rénovation"
-  siteUrl: string;       // "https://www.erg-renovation.fr"
+  siteUrl: string;       // "https://erg-renovation.fr"
   url: string;           // "/renovation-courbevoie" ou URL absolue
   city?: string;         // "Courbevoie"
   postalCode?: string;   // "92400"
