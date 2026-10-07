@@ -32,6 +32,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { firestore } from "@/firebase/init"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { submitQuoteRequest } from "@/lib/submit-quote-request"
 
 type ProjectType = "appartement" | "salle-de-bain" | "cuisine" | "maison"
 type ScopeType = "rafraichissement" | "complete" | "lourde"
@@ -120,6 +121,7 @@ export default function InteractiveQuoteWizard() {
   const [details, setDetails] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [notificationSent, setNotificationSent] = useState(true)
 
   const selectedProj = useMemo(
     () => PROJECT_TYPES.find((p) => p.id === projectType) || PROJECT_TYPES[0],
@@ -147,58 +149,20 @@ export default function InteractiveQuoteWizard() {
 
     setIsSubmitting(true)
     try {
-      const dept = postalCode ? postalCode.trim().substring(0, 2) : "75"
       const formattedDescription = `[Projet : ${selectedProj.title}] [Surface : ${surface} m²] [Ampleur : ${selectedScope.title}] [Finition : ${selectedFinish.title}]${details ? `\n\nPrécisions client : ${details}` : ""}`
-
-      // Synchronisation directe vers la collection Firestore CRM quoteRequests
-      try {
-        await addDoc(collection(firestore, "quoteRequests"), {
-          clientName: fullName,
-          clientEmail: email,
-          clientPhone: phone || "",
-          postalCode: postalCode || "",
-          department: dept,
-          projectType: selectedProj.title,
-          surface: `${surface} m²`,
-          projectDescription: formattedDescription,
-          status: "Nouvelle Demande",
-          createdAt: serverTimestamp(),
-        })
-      } catch (fsErr) {
-        console.error("Erreur de synchronisation Firestore CRM:", fsErr)
-      }
-
-      const response = await fetch("/api/send-quote-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName,
-          clientName: fullName,
-          email,
-          clientEmail: email,
-          phone,
-          clientPhone: phone,
-          postalCode,
-          projectType: selectedProj.title,
-          surface: `${surface} m²`,
-          scope: selectedScope.title,
-          finish: selectedFinish.title,
-          details,
-          projectDescription: formattedDescription,
-        }),
-      })
-
-      if (response.ok) {
-        setIsSubmitted(true)
-        toast({
-          title: "Demande de devis envoyée avec succès !",
-          description: "Un conducteur de travaux ERG Rénovation vous recontactera sous 24h.",
-        })
-      } else {
-        setIsSubmitted(true)
-      }
-    } catch (error) {
+      const result = await submitQuoteRequest({
+        clientName: fullName, clientEmail: email, clientPhone: phone,
+        projectDescription: formattedDescription,
+      }, payload => addDoc(collection(firestore, "quoteRequests"), {
+        ...payload, postalCode: postalCode.trim(),
+        department: postalCode.trim().substring(0, 2), projectType: selectedProj.title,
+        surface: `${surface} m²`, status: "Nouvelle Demande", createdAt: serverTimestamp(),
+      }))
+      setNotificationSent(result.notificationSent)
       setIsSubmitted(true)
+      toast({ title: "Demande enregistrée", description: "Votre projet a bien été enregistré. Notre équipe vous recontactera." })
+    } catch {
+      toast({ title: "Enregistrement impossible", description: "Votre demande n’a pas été confirmée. Vos informations sont conservées : réessayez ou appelez-nous au 06 99 96 13 75.", variant: "destructive" })
     } finally {
       setIsSubmitting(false)
     }
@@ -619,11 +583,12 @@ export default function InteractiveQuoteWizard() {
                     <CheckCircle2 className="h-10 w-10" />
                   </div>
                   <h4 className="font-headline text-2xl font-bold text-slate-900">
-                    Votre demande de devis a bien été transmise !
+                    Votre demande de devis est enregistrée !
                   </h4>
                   <p className="max-w-md mx-auto text-sm text-slate-600 leading-relaxed">
                     Merci <strong>{fullName}</strong>. Notre maître d'œuvre étudie votre projet ({surface} m², {selectedProj.title}) et vous rappellera au <strong>{phone}</strong> sous 24h ouvrées.
                   </p>
+                  {!notificationSent && <p className="text-sm text-slate-600">La notification par email n’a pas pu être confirmée. Votre demande reste bien enregistrée ; vous pouvez nous joindre au 06 99 96 13 75.</p>}
                   <Button
                     onClick={() => {
                       setIsSubmitted(false)

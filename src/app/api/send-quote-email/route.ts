@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 import QuoteRequestAdminEmail from "@/emails/quote-request-admin"
 import QuoteRequestClientEmail from "@/emails/quote-request-client"
+import { quoteRequestSchema } from '@/lib/quote-request-schema'
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -11,26 +12,23 @@ const FROM_EMAIL = "ERG Rénovation <contact@erg-renovation.fr>"
 
 export async function POST(req: NextRequest) {
   try {
+    let body: unknown
+    try { body = await req.json() } catch {
+      return NextResponse.json({ error: 'Demande invalide.' }, { status: 400 })
+    }
+    const parsed = quoteRequestSchema.safeParse(body)
+    if (!parsed.success) return NextResponse.json({ error: 'Veuillez vérifier les informations de votre demande.' }, { status: 400 })
+    const { clientName, clientEmail, clientPhone, projectDescription } = parsed.data
     const apiKey = process.env.RESEND_API_KEY
     if (!apiKey) {
       console.error("RESEND_API_KEY is missing (server env).")
       return NextResponse.json(
-        { error: "Server misconfiguration: RESEND_API_KEY missing." },
+        { error: "La notification email est momentanément indisponible." },
         { status: 500 }
       )
     }
 
     const resend = new Resend(apiKey)
-
-    const body = await req.json()
-    const { clientName, clientEmail, clientPhone, projectDescription } = body
-
-    if (!clientName || !clientEmail || !projectDescription) {
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
-      )
-    }
 
     const adminEmailPromise = resend.emails.send({
       from: FROM_EMAIL,
@@ -58,14 +56,15 @@ export async function POST(req: NextRequest) {
 
     if ((adminResult as any)?.error) {
       console.error("Resend admin email error:", (adminResult as any).error)
-      // on ne throw pas : on renvoie success (comme ton intention)
     }
 
     if ((clientResult as any)?.error) {
       console.error("Resend client email error:", (clientResult as any).error)
-      // on ne throw pas : même logique
     }
 
+    if (adminResult.error || clientResult.error) {
+      return NextResponse.json({ success: false, error: 'Une notification email n’a pas pu être envoyée.' }, { status: 502 })
+    }
     return NextResponse.json({ success: true })
   } catch (error) {
     console.error("API send-quote-email error:", error)

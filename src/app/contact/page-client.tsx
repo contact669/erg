@@ -17,6 +17,7 @@ import { useToast } from "@/hooks/use-toast"
 import { cn } from "@/lib/utils"
 import { firestore } from "@/firebase/init"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"
+import { submitQuoteRequest } from "@/lib/submit-quote-request"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -89,43 +90,18 @@ export default function ContactPage() {
 
     setIsSubmitting(true)
     try {
-      const formattedDesc = `[Sujet : ${values.subject}]\n\n${values.message}`
-
-      // Synchronisation directe vers la collection Firestore CRM quoteRequests
-      try {
-        await addDoc(collection(firestore, "quoteRequests"), {
-          clientName: values.name,
-          clientEmail: values.email,
-          clientPhone: values.phone || "",
-          department: "75",
-          projectType: "Contact Direct",
-          projectDescription: formattedDesc,
-          status: "Nouvelle Demande",
-          createdAt: serverTimestamp(),
-        })
-      } catch (fsErr) {
-        console.error("Erreur de synchronisation Firestore CRM:", fsErr)
-      }
-
-      // Envoi de notification email
-      try {
-        await fetch("/api/send-quote-email", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            clientName: values.name,
-            clientEmail: values.email,
-            clientPhone: values.phone || "",
-            projectDescription: formattedDesc,
-          }),
-        })
-      } catch (emailErr) {
-        console.error("Email send error:", emailErr)
-      }
-
+      const result = await submitQuoteRequest({
+        clientName: values.name, clientEmail: values.email, clientPhone: values.phone || "",
+        projectDescription: `[Sujet : ${values.subject}]\n\n${values.message}`,
+      }, payload => addDoc(collection(firestore, "quoteRequests"), {
+        ...payload, department: "", projectType: "Contact Direct",
+        status: "Nouvelle Demande", createdAt: serverTimestamp(),
+      }))
       toast({
-        title: "Message envoyé avec succès",
-        description: "Merci ! Nous vous recontactons dans les plus brefs délais (souvent sous 24h ouvrées).",
+        title: "Message enregistré",
+        description: result.notificationSent
+          ? "Votre demande a bien été enregistrée. Nous vous recontactons dans les plus brefs délais."
+          : "Votre demande est enregistrée, mais la notification email n’a pas pu être confirmée. Vous pouvez nous joindre au 06 99 96 13 75.",
       })
       form.reset({ consent: true, website: "" })
     } catch (e) {
