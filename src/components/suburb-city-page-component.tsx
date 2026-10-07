@@ -233,8 +233,8 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                   </ul>
 
                   <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                    <span>Note clients certifiée</span>
-                    <span className="font-bold text-amber-400">★ 4.9 / 5 (36+ avis)</span>
+                    <span>Retours de nos clients</span>
+                    <span className="font-bold text-amber-400">Témoignages clients</span>
                   </div>
                 </div>
               </div>

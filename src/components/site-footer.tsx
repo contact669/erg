@@ -107,8 +107,8 @@ export default function SiteFooter() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 p-2">
               <Star className="h-5 w-5 text-amber-600 fill-amber-500 shrink-0" />
               <div className="text-left text-xs font-semibold text-slate-800">
-                <span className="block font-bold text-slate-900">4.9 / 5 sur Google</span>
-                36+ avis certifiés
+                <span className="block font-bold text-slate-900">Devis détaillé</span>
+                Sans engagement
               </div>
             </div>
 

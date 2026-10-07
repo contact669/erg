@@ -15,6 +15,7 @@ function walk(dir) {
       if (relative === '_not-found.html') continue;
       const route = relative === 'index.html' ? '/' : '/' + relative.slice(0, -5);
       const html = fs.readFileSync(file, 'utf8');
+      if (/4\.9\s*\/\s*5|36\+? avis|Avis vérifié|avis Google certifiés/.test(html)) failures.push(`${route}: unverified hardcoded review claim`);
       if (/1 (?:Sente|Sent\.) de la Pointe|818 676 652 00019/.test(html)) failures.push(`${route}: obsolete company identity`);
       const privatePage = /^\/(dashboard|crm|connexion)(\/|$)/.test(route);
       if (privatePage) {

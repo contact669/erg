@@ -6,18 +6,8 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
 import { GoogleIcon } from "@/components/icons"
-import { Star, ShieldCheck, Clock, Phone, ArrowRight, Sparkles, CheckCircle2, Layers } from "lucide-react"
+import { ShieldCheck, Clock, Phone, ArrowRight, Sparkles, CheckCircle2, Layers } from "lucide-react"
 import BeforeAfterSlider from "@/components/ui/before-after-slider"
-
-function Stars({ rating = 5 }: { rating?: number }) {
-  return (
-    <div className="flex items-center gap-0.5" aria-hidden="true">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star key={i} className="h-4 w-4 fill-amber-500 text-amber-500" />
-      ))}
-    </div>
-  )
-}
 
 function GoogleReviewBadge() {
   return (
@@ -28,9 +18,9 @@ function GoogleReviewBadge() {
       className="group inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white/90 backdrop-blur-md px-4 py-2 text-xs sm:text-sm text-slate-900 transition hover:bg-white shadow-md"
     >
       <GoogleIcon className="h-5 w-5" />
-      <span className="font-bold text-amber-600">4.9 / 5</span>
-      <Stars rating={5} />
-      <span className="hidden sm:inline text-slate-600">• 36 avis certifiés</span>
+      <span className="font-bold text-amber-600">Avis clients</span>
+
+      <span className="hidden sm:inline text-slate-600">• Témoignages clients</span>
     </a>
   )
 }
@@ -177,7 +167,7 @@ export default function Hero() {
             <div className="relative mx-auto w-full max-w-2xl lg:max-w-none">
               {/* Decorative Glow */}
               <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-amber-500/30 via-amber-400/20 to-amber-600/30 blur-2xl opacity-85" />
-              
+
               {/* Unified White Card Container encompassing Main Image & Project Selector */}
               <div className="relative rounded-3xl bg-white p-4 sm:p-5 shadow-2xl border border-slate-200/90 backdrop-blur-xl space-y-4 overflow-hidden w-full">
                 {/* Main Expanded Before/After Slider */}
@@ -193,7 +183,7 @@ export default function Hero() {
                     aspectRatio="aspect-[4/3] sm:aspect-[16/11]"
                     className="w-full rounded-2xl shadow-inner overflow-hidden border border-slate-200/60"
                   />
-                  
+
                   {/* Floating caption badge */}
                   <div className="mt-3 flex flex-wrap items-center justify-between gap-2 px-1">
                     <div className="flex items-center gap-2">

@@ -125,7 +125,7 @@ export default function SiteHeader() {
               className="inline-flex items-center gap-1 text-slate-900 hover:text-amber-600 transition-colors font-bold"
             >
               <Star className="h-3.5 w-3.5 fill-amber-500 text-amber-500" />
-              <span>4.9/5 Google (36+ avis)</span>
+              <span>Consulter les avis Google</span>
             </a>
           </div>
         </div>

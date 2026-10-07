@@ -93,7 +93,7 @@ export default function StickyCallToAction({
         </div>
 
         <p className="mt-1.5 text-center text-[10px] font-semibold text-slate-600">
-          ⭐ 4.9/5 Google • Devis gratuit • Décennale
+          Devis gratuit • Décennale
         </p>
       </div>
     </div>

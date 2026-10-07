@@ -115,7 +115,7 @@ export default function ZonesInterventionClient() {
                   className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-3.5 py-1 text-xs text-slate-800 shadow-sm hover:bg-white"
                 >
                   <GoogleIcon className="h-4 w-4" />
-                  <span className="font-bold text-amber-600">4.9 / 5</span>
+                  <span className="font-bold text-amber-600">Avis clients</span>
                   <span className="text-slate-500">• Artisans de confiance</span>
                 </a>
               </div>
