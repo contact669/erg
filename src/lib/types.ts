@@ -112,6 +112,8 @@ export interface TocSection {
 }
 
 export interface BlogPost {
+  relatedServiceSlugs?: string[];
+  relatedProjectSlugs?: string[];
   slug: string;
   title: string;
   description: string;

@@ -6,7 +6,7 @@ const SERVICES = [
   { name: "Rénovation d’appartement", href: "/services/renovation-appartement" },
   { name: "Rénovation de salle de bain", href: "/services/renovation-salle-de-bain" },
   { name: "Rénovation de cuisine", href: "/services/renovation-cuisine" },
-  { name: "Rénovation complète", href: "/services/renovation-complete" },
+  { name: "Rénovation de maison", href: "/services/renovation-maison" },
 ];
 
 const CITIES_92_PRIMARY = [
@@ -85,10 +85,9 @@ export function InternalLinksHautsDeSeine() {
         </ul>
 
         <div className="mt-5 rounded-xl bg-muted/30 p-4 text-sm">
-          <p className="font-medium">Astuce :</p>
+          <p className="font-medium">Préparer votre visite :</p>
           <p className="mt-1 text-muted-foreground">
-            Pour maximiser votre SEO local, ces pages villes doivent ensuite renvoyer vers cette page pilier (92),
-            vers les services, et vers 3 à 6 villes proches.
+            Précisez les pièces concernées, la surface et les contraintes d’accès au logement pour préparer un devis adapté.
           </p>
         </div>
       </div>
@@ -107,8 +106,8 @@ export function InternalLinksHautsDeSeine() {
             </Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href="/services/renovation-complete">
-              Voir la rénovation complète
+            <Link href="/services/renovation-maison">
+              Voir la rénovation de maison
             </Link>
           </Button>
         </div>

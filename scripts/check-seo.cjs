@@ -5,6 +5,7 @@ const root = path.resolve('.next/server/app');
 const origin = 'https://erg-renovation.fr';
 const failures = [];
 const pages = new Map();
+const internalLinks = [];
 function walk(dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const file = path.join(dir, entry.name);
@@ -26,7 +27,20 @@ function walk(dir) {
       if (!/<meta name="description" content="[^"]+"/.test(html)) failures.push(`${route}: missing description`);
       const h1s = (html.match(/<h1(?:\s|>)/g) ?? []).length;
       if (h1s !== 1) failures.push(`${route}: ${h1s} H1 elements`);
+      const schemas = [];
+      for (const script of html.matchAll(/<script\b(?=[^>]*type="application\/ld\+json")[^>]*>([\s\S]*?)<\/script>/g)) {
+        try { const data = JSON.parse(script[1]); schemas.push(...(Array.isArray(data) ? data : [data])); }
+        catch { failures.push(`${route}: invalid JSON-LD`); }
+      }
+      if (route.startsWith('/blog/')) {
+        const article = schemas.find(schema => schema['@type'] === 'BlogPosting');
+        if (!article?.headline || !article?.datePublished || article?.mainEntityOfPage?.['@id'] !== origin + route) failures.push(`${route}: missing or incomplete article schema`);
+      }
       pages.set(route, title);
+      for (const match of html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)) {
+        const href = match[1].replaceAll('&amp;', '&');
+        if (href.startsWith('/') || href.startsWith(origin + '/')) internalLinks.push({ route, href });
+      }
     }
   }
 }
@@ -41,5 +55,15 @@ for (const url of urls) {
 for (const route of pages.keys()) {
   if (!urls.includes(origin + route)) failures.push(`Public page missing from sitemap: ${route}`);
 }
+const broken = new Map();
+for (const { route, href } of internalLinks) {
+  const target = new URL(href, origin).pathname.replace(/\/$/, '') || '/';
+  if (/^\/(dashboard|crm|connexion|api)(\/|$)/.test(target)) continue;
+  if (!pages.has(target) && !fs.existsSync(path.join('public', target))) {
+    if (!broken.has(target)) broken.set(target, new Set());
+    broken.get(target).add(route);
+  }
+}
+for (const [target, sources] of broken) failures.push(`Broken internal link ${target} from ${[...sources].slice(0, 3).join(', ')}`);
 if (failures.length) { console.error(failures.join('\n')); process.exitCode = 1; }
-else console.log(`SEO checks passed: ${pages.size} public pages, ${urls.length} sitemap URLs; canonicals, titles, descriptions, H1 and private noindex verified.`);
+else console.log(`SEO checks passed: ${pages.size} public pages, ${urls.length} sitemap URLs; canonicals, titles, descriptions, H1, private noindex and ${internalLinks.length} internal links verified.`);

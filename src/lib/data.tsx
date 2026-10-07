@@ -31,6 +31,7 @@ import React from 'react';
 import Image from 'next/image';
 import { PlaceHolderImages } from './placeholder-images';
 import Link from 'next/link';
+import { renovationGuides } from './seo/renovation-guides';
 
 export const navItems: NavItem[] = [
   { title: 'Services', href: '/services' },
@@ -1594,6 +1595,7 @@ export const processSteps: ProcessStep[] = [
 ];
 
 export const blogPosts: BlogPost[] = [
+  ...renovationGuides,
   {
     slug: 'renovation-energetique-paris-guide-complet',
     title: 'Rénovation énergétique à Paris : améliorer confort et factures sans dénaturer son appartement',
@@ -2031,6 +2033,3 @@ export const AREAS: Area[] = [
     ],
   },
 ];
-    
-
-    

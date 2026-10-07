@@ -10,6 +10,7 @@ import CtaBanner from "@/app/_components/cta-banner"
 import AnimatedSection from "@/components/animated-section"
 
 import { localLandingPages } from "@/lib/data"
+import { SUBURBS_DATA } from "@/lib/seo/suburbs-data"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
 
 import { Button } from "@/components/ui/button"
@@ -624,14 +625,16 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                       </p>
 
                       <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-                        {page.relatedLocations.map((location: any) => (
-                          <Button asChild key={location.slug} variant="outline" className="justify-between">
-                            <Link href={`/${parentService.slug}/${location.slug}`}>
-                              {location.name}
-                              <ArrowRight className="ml-2 h-4 w-4" />
-                            </Link>
-                          </Button>
-                        ))}
+                        {page.relatedLocations.map((location) => {
+                          const landing = localLandingPages.find(item => item.slug === location.slug);
+                          const href = landing ? `/${landing.parentService.slug}/${landing.slug}`
+                            : SUBURBS_DATA[location.slug] ? `/renovation-${location.slug}` : null;
+                          return href ? (
+                            <Button asChild key={location.slug} variant="outline" className="justify-between">
+                              <Link href={href}>{location.name}<ArrowRight className="ml-2 h-4 w-4" /></Link>
+                            </Button>
+                          ) : <span key={location.slug} className="rounded-md border px-4 py-2 text-sm">{location.name}</span>;
+                        })}
                       </div>
                     </div>
                   ) : null}

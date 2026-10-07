@@ -9,7 +9,8 @@ import Breadcrumbs from "@/components/breadcrumbs"
 import AnimatedSection from "@/components/animated-section"
 import CtaBanner from "@/app/_components/cta-banner"
 
-import { allProjects } from "@/lib/data"
+import { allProjects, services } from "@/lib/data"
+import RelatedGuides from "@/components/related-guides"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
 
 import { cn } from "@/lib/utils"
@@ -332,6 +333,16 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
             </section>
           </AnimatedSection>
         )}
+        <section className="container py-12">
+          <h2 className="font-headline text-2xl font-semibold">Les prestations pour un projet similaire</h2>
+          <ul className="mt-4 flex flex-wrap gap-4">
+            {services.filter(service => service.relatedProjectSlugs.includes(project.slug)).map(service => (
+              <li key={service.slug}><Link href={`/services/${service.slug}`} className="text-amber-700 underline underline-offset-4">{service.title}</Link></li>
+            ))}
+            <li><Link href="/services" className="underline underline-offset-4">Toutes nos prestations</Link></li>
+          </ul>
+        </section>
+        <RelatedGuides projectSlug={project.slug} />
         <CtaBanner />
       </main>
 

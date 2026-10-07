@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { pageMetadata, SITE_URL } from '@/lib/seo/metadata';
+import JsonLd from '@/components/JsonLd';
 import Link from 'next/link';
 import Image from 'next/image';
 import { blogPosts, services } from '@/lib/data';
@@ -47,11 +48,28 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   }
 
   const featuredImage = PlaceHolderImages.find(p => p.id === post.featuredImageId);
-  const authorImage = PlaceHolderImages.find(p => p.id === (post.author === 'A. AIT' ? 'founder-2' : 'founder-1'));
-  const otherPosts = blogPosts.filter(p => p.slug !== post.slug).slice(0, 2);
+  const isEditorialTeam = post.author === 'Équipe ERG Rénovation';
+  const authorImage = isEditorialTeam ? undefined : PlaceHolderImages.find(p => p.id === (post.author === 'A. AIT' ? 'founder-2' : 'founder-1'));
+  const authorDescription = isEditorialTeam
+    ? 'L’équipe ERG Rénovation partage des repères pratiques pour préparer votre projet, préciser vos besoins et comprendre les travaux proposés.'
+    : 'Co-fondateur d’ERG Rénovation, il partage ses conseils sur la rénovation intérieure à Paris et en Île-de-France.';
+  const relatedServices = post.relatedServiceSlugs?.length
+    ? services.filter(service => post.relatedServiceSlugs!.includes(service.slug)) : services.slice(0, 5);
+  const relevance = (candidate: (typeof blogPosts)[number]) => candidate.tags.filter(tag => post.tags.includes(tag)).length
+    + (candidate.relatedServiceSlugs ?? []).filter(slug => post.relatedServiceSlugs?.includes(slug)).length;
+  const otherPosts = blogPosts.filter(p => p.slug !== post.slug).sort((a, b) => relevance(b) - relevance(a)).slice(0, 2);
+  const pageUrl = `${SITE_URL}/blog/${post.slug}`;
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50/50">
+      <JsonLd id="jsonld-article" data={{
+        '@context': 'https://schema.org', '@type': 'BlogPosting', '@id': `${pageUrl}#article`,
+        headline: post.title, description: post.description, datePublished: post.date,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
+        author: { '@type': isEditorialTeam ? 'Organization' : 'Person', name: post.author, url: `${SITE_URL}/a-propos` },
+        publisher: { '@id': `${SITE_URL}/#business` }, inLanguage: 'fr-FR',
+        ...(featuredImage ? { image: new URL(featuredImage.imageUrl, SITE_URL).toString() } : {}),
+      }} />
       <SiteHeader />
       <main className="flex-grow">
         {/* Post Header Banner */}
@@ -102,7 +120,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-4 lg:gap-16">
             {/* Main Article Content */}
             <div className="lg:col-span-3">
-              <article className="prose prose-slate max-w-none prose-headings:font-headline prose-headings:font-bold prose-headings:text-slate-900 prose-a:text-amber-600 hover:prose-a:text-amber-700 prose-strong:text-slate-900 prose-img:rounded-2xl text-slate-700 text-base leading-relaxed">
+              <article className="prose prose-slate max-w-none text-slate-700 text-base leading-relaxed [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:scroll-mt-40 [&_h2]:font-headline [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h3]:mt-6 [&_h3]:font-semibold [&_p]:my-4 [&_ul]:my-4 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:my-2 [&_a]:text-amber-700 [&_a]:underline [&_a]:underline-offset-4 [&_table]:w-full [&_table]:border-collapse [&_th]:border [&_th]:border-slate-200 [&_th]:bg-slate-100 [&_th]:p-3 [&_th]:text-left [&_td]:border [&_td]:border-slate-200 [&_td]:p-3 [&_td]:align-top">
                 {post.content}
               </article>
 
@@ -115,7 +133,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 <div className="space-y-2 text-center sm:text-left">
                   <h4 className="font-headline text-lg font-bold text-slate-900">À propos de l'auteur : {post.author}</h4>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    Co-fondateur d'ERG Rénovation et expert en rénovation intérieure à Paris. Il veille à la qualité d'exécution des chantiers et partage ses conseils pratiques pour des projets réussis.
+                    {authorDescription}
                   </p>
                   <div className="pt-1 flex items-center justify-center sm:justify-start gap-3">
                     <Button asChild size="sm" className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-xs">
@@ -146,7 +164,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 </CardHeader>
                 <CardContent className="p-0 pt-3">
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    Expert BTP & co-fondateur d'ERG Rénovation à Paris et Île-de-France.
+                    {authorDescription}
                   </p>
                 </CardContent>
               </Card>
@@ -162,8 +180,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                 </CardHeader>
                 <CardContent className="p-0 space-y-2">
                   <ul className="space-y-1">
-                    {services
-                      .slice(0, 5)
+                    {relatedServices
                       .map(service => (
                         <li key={service.slug}>
                           <Link

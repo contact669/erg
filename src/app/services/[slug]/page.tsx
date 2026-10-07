@@ -14,6 +14,7 @@ import SiteFooter from "@/components/site-footer"
 import CtaBanner from "@/app/_components/cta-banner"
 import AnimatedSection from "@/components/animated-section"
 import InternalLinksService from "@/components/InternalLinksService"
+import RelatedGuides from "@/components/related-guides"
 
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -870,6 +871,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
           </AnimatedSection>
         ) : null}
 
+        <RelatedGuides serviceSlug={service.slug} />
         <CtaBanner />
       </main>
 

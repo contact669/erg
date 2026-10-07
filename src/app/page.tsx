@@ -16,6 +16,7 @@ import FeaturedProjects from "./_components/featured-projects"
 import GoogleReviews from "./_components/google-reviews"
 import CtaBanner from "./_components/cta-banner"
 import SeoExpertise from "./_components/seo-expertise"
+import RelatedGuides from "@/components/related-guides"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
@@ -166,6 +167,7 @@ export default function Home() {
         <AnimatedSection>
           <SeoExpertise />
         </AnimatedSection>
+        <RelatedGuides />
       </main>
 
       <SiteFooter />

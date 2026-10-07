@@ -41,9 +41,9 @@ export default function InternalLinksService({ serviceLabel }: { serviceLabel: s
 
       {/* Villes populaires */}
       <div className="rounded-2xl border bg-background p-6 shadow-sm">
-        <h2 className="text-xl font-semibold">Villes populaires</h2>
+        <h2 className="text-xl font-semibold">Votre projet en Île-de-France</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          Sélection de communes où la demande est forte. (Liste évolutive, ajout progressif de pages.)
+          Retrouvez les prestations et les informations de préparation des travaux pour votre commune.
         </p>
         <ul className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
           {POPULAR_CITIES.map((c) => (
