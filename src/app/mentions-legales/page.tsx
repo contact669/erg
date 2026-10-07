@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { COMPANY } from "@/lib/company"
 import Link from "next/link"
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 }
 
 export default function MentionsLegalesPage() {
-  const lastUpdated = "1 janvier 2026"
+  const lastUpdated = "7 octobre 2026"
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50/50">
@@ -63,8 +64,13 @@ export default function MentionsLegalesPage() {
                   <h2 className="font-headline text-xl font-bold text-slate-900">Éditeur du site</h2>
                 </div>
                 <div className="bg-slate-50 rounded-2xl border border-slate-200/80 p-5 text-sm text-slate-700 space-y-2">
-                  <p><strong>Dénomination sociale / Nom commercial :</strong> ERG Rénovation</p>
-                  <p><strong>Siège social :</strong> 1 Sente de la Pointe, 75020 Paris, France</p>
+                  <p><strong>Dénomination sociale :</strong> {COMPANY.legalName} (ERG)</p>
+                  <p><strong>Nom commercial :</strong> {COMPANY.name}</p>
+                  <p><strong>Forme juridique :</strong> {COMPANY.legalForm}</p>
+                  <p><strong>SIREN :</strong> {COMPANY.siren}</p>
+                  <p><strong>SIRET du siège :</strong> {COMPANY.siret}</p>
+                  <p><strong>Siège social :</strong> {COMPANY.address}, France</p>
+                  <p><a href={COMPANY.registryUrl} className="text-amber-700 hover:underline">Consulter la fiche officielle dans l’Annuaire des entreprises</a></p>
                   <p><strong>Téléphone direct :</strong> <a href="tel:+33699961375" className="text-amber-700 font-bold hover:underline">06 99 96 13 75</a></p>
                   <p><strong>Email :</strong> <a href="mailto:contact@erg-renovation.fr" className="text-amber-700 font-bold hover:underline">contact@erg-renovation.fr</a></p>
                   <p><strong>Activité :</strong> Rénovation intérieure et tous travaux de bâtiment (maçonnerie, plomberie, électricité, menuiserie, peinture).</p>

@@ -103,7 +103,7 @@ function JsonLdServicesPage() {
         priceRange: "€€",
         address: {
           "@type": "PostalAddress",
-          streetAddress: "1 Sent. de la Pointe",
+          streetAddress: "1 Sentier de la Pointe",
           postalCode: "75020",
           addressLocality: "Paris",
           addressRegion: "Île-de-France",

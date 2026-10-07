@@ -139,7 +139,7 @@ export default function Hero() {
               <div className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white/90 p-3 text-slate-800 shadow-sm backdrop-blur-md">
                 <CheckCircle2 className="h-5 w-5 text-amber-600 shrink-0" />
                 <div className="text-xs font-medium">
-                  <span className="block font-bold text-slate-900">Devis gratuit 24h</span>
+                  <span className="block font-bold text-slate-900">Devis gratuit</span>
                   Poste par poste
                 </div>
               </div>

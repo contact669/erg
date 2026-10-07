@@ -1,3 +1,4 @@
+import { COMPANY } from "@/lib/company";
 import type { Metadata, Viewport } from "next"
 import { Inter, Outfit } from "next/font/google"
 import "./globals.css"
@@ -12,15 +13,15 @@ import { buildLocalBusinessJsonLd, buildWebSiteJsonLd } from "@/lib/seo/jsonld";
 const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' })
 const outfit = Outfit({ subsets: ['latin'], display: 'swap', variable: '--font-outfit' })
 
-const SITE_NAME = "ERG Rénovation"
-const SITE_URL = "https://erg-renovation.fr"
+const SITE_NAME = COMPANY.name
+const SITE_URL = COMPANY.siteUrl
 const DEFAULT_TITLE = `${SITE_NAME} | Rénovation intérieure à Paris & Île-de-France`
 const DEFAULT_DESCRIPTION =
   "Spécialiste de la rénovation intérieure à Paris et en Île-de-France : appartements, maisons, cuisines, salles de bain. Devis gratuit, finitions soignées, garantie décennale."
 
-const PHONE = "+33699961375"
+const PHONE = COMPANY.phone
 const ADDRESS = {
-  streetAddress: "1 Sent. de la Pointe",
+  streetAddress: COMPANY.streetAddress,
   postalCode: "75020",
   addressLocality: "Paris",
   addressRegion: "Île-de-France",

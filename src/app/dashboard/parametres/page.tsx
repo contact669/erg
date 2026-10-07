@@ -89,7 +89,7 @@ export default function ParametresPage() {
             </div>
              <div className="space-y-2">
                 <Label htmlFor="company-address">Adresse</Label>
-                <Input id="company-address" defaultValue="1 Sente de la Pointe, 75020 Paris" />
+                <Input id="company-address" defaultValue="1 Sentier de la Pointe, 75020 Paris" />
             </div>
              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">

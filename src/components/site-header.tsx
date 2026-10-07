@@ -408,7 +408,7 @@ function MobileNav({
             {/* Direct Call Box */}
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 space-y-2">
               <span className="text-xs font-bold text-slate-900 block flex items-center gap-2">
-                <Phone className="h-4 w-4 text-amber-600" /> Contact direct 7j/7
+                <Phone className="h-4 w-4 text-amber-600" /> Contact direct
               </span>
               <a
                 href="tel:+33699961375"

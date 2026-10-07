@@ -1,3 +1,4 @@
+import { COMPANY } from "@/lib/company";
 export interface CatalogItem {
   id: string;
   category: string;
@@ -20,10 +21,10 @@ export interface CatalogCategory {
  */
 export const ERG_COMPANY_INFO = {
   name: "ERG Rénovation",
-  legalForm: "SAS / Entreprise Générale de Rénovation",
+  legalForm: COMPANY.legalForm,
   rcs: "RCS PARIS 818 676 652",
-  siret: "818 676 652 00019",
-  address: "1 sentier de la Pointe, 75020 PARIS",
+  siret: COMPANY.siret,
+  address: COMPANY.address,
   phone1: "06 99 96 13 75",
   phone2: "09 80 93 84 18",
   email: "contact@erg-renovation.fr",

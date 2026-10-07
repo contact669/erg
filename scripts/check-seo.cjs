@@ -15,6 +15,7 @@ function walk(dir) {
       if (relative === '_not-found.html') continue;
       const route = relative === 'index.html' ? '/' : '/' + relative.slice(0, -5);
       const html = fs.readFileSync(file, 'utf8');
+      if (/1 (?:Sente|Sent\.) de la Pointe|818 676 652 00019/.test(html)) failures.push(`${route}: obsolete company identity`);
       const privatePage = /^\/(dashboard|crm|connexion)(\/|$)/.test(route);
       if (privatePage) {
         if (!/<meta name="robots" content="[^"]*noindex/.test(html)) failures.push(`${route}: missing noindex`);
@@ -51,6 +52,10 @@ function walk(dir) {
   }
 }
 walk(root);
+const legalHtml = fs.readFileSync(path.join(root, 'mentions-legales.html'), 'utf8');
+for (const value of ['ENTREPRISE DE RENOVATION GENERALE', '818 676 652 00014', 'annuaire-entreprises.data.gouv.fr/entreprise/818676652']) {
+  if (!legalHtml.includes(value)) failures.push(`Legal page missing verified company identity: ${value}`);
+}
 const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml.body'), 'utf8');
 const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]);
 if (new Set(urls).size !== urls.length) failures.push('Duplicate sitemap URLs');

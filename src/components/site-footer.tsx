@@ -1,14 +1,15 @@
+import { COMPANY } from "@/lib/company";
 import Link from "next/link"
 import Image from "next/image"
 import { services, navItems } from "@/lib/data"
 import { Mail, MapPin, Phone, ArrowRight, ShieldCheck, Star, Award, Clock, Sparkles } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-const SITE_NAME = "ERG Rénovation"
-const PHONE_RAW = "+33699961375"
-const PHONE_LABEL = "06 99 96 13 75"
-const EMAIL = "contact@erg-renovation.fr"
-const ADDRESS = "1 Sentier de la Pointe, 75020 Paris"
+const SITE_NAME = COMPANY.name
+const PHONE_RAW = COMPANY.phone
+const PHONE_LABEL = COMPANY.phoneLabel
+const EMAIL = COMPANY.email
+const ADDRESS = COMPANY.address
 
 function DynamicLogo() {
   return (
@@ -144,7 +145,7 @@ export default function SiteFooter() {
                   </a>
                 </div>
                 <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                  Devis sous 24h
+                  Devis gratuit
                 </span>
               </div>
 

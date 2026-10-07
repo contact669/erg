@@ -151,7 +151,7 @@ export function QuotePreview({ quote, onEditRequested }: QuotePreviewProps) {
               <strong className="text-slate-900 font-bold">ERG Rénovation</strong> — Entreprise Générale de Rénovation<br />
               1 sentier de la Pointe, 75020 PARIS<br />
               Tél : 06 99 96 13 75 / 09 80 93 84 18 — Email : contact@erg-renovation.fr<br />
-              RCS PARIS 818 676 652 — SIRET : 818 676 652 00019 — Site : www.erg-renovation.fr
+              RCS PARIS 818 676 652 — SIRET : 818 676 652 00014 — Site : www.erg-renovation.fr
             </p>
 
             {/* Quality Badges */}

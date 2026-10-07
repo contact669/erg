@@ -1,7 +1,8 @@
+import { COMPANY } from "@/lib/company";
 import type { Metadata } from 'next';
 
-export const SITE_URL = 'https://erg-renovation.fr';
-export const SITE_NAME = 'ERG Rénovation';
+export const SITE_URL = COMPANY.siteUrl;
+export const SITE_NAME = COMPANY.name;
 
 export function pageMetadata(path: string, title: string, description: string): Metadata {
   const url = new URL(path, SITE_URL).toString();

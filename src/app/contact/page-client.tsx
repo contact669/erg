@@ -1,5 +1,7 @@
 "use client"
 
+import { COMPANY } from "@/lib/company";
+
 import Link from "next/link"
 import { useMemo, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -38,10 +40,10 @@ import {
   Send
 } from "lucide-react"
 
-const PHONE = "+33699961375"
-const PHONE_DISPLAY = "06 99 96 13 75"
-const EMAIL = "contact@erg-renovation.fr"
-const ADDRESS = "1 Sente de la Pointe, 75020 Paris"
+const PHONE = COMPANY.phone
+const PHONE_DISPLAY = COMPANY.phoneLabel
+const EMAIL = COMPANY.email
+const ADDRESS = COMPANY.address
 const HOURS = "Lun–Sam • 9h–19h"
 
 const formSchema = z.object({

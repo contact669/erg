@@ -77,7 +77,7 @@ export default function ConfidentialitePage() {
                 <div>
                   <h3 className="font-headline text-lg font-bold text-slate-900 mb-2">1. Responsable du traitement</h3>
                   <p className="text-slate-600">
-                    Le responsable du traitement des données est la société <strong>ERG Rénovation</strong> (1 Sente de la Pointe, 75020 Paris • <a href="mailto:contact@erg-renovation.fr" className="text-amber-700 font-bold hover:underline">contact@erg-renovation.fr</a>).
+                    Le responsable du traitement des données est la société <strong>ERG Rénovation</strong> (1 Sentier de la Pointe, 75020 Paris • <a href="mailto:contact@erg-renovation.fr" className="text-amber-700 font-bold hover:underline">contact@erg-renovation.fr</a>).
                   </p>
                 </div>
 

@@ -87,7 +87,7 @@ export function HandoverPvPdf({ data, onEditRequested }: HandoverPvPdfProps) {
             <p className="text-xs text-slate-700 leading-relaxed font-medium">
               <strong className="text-slate-900 font-bold">ERG Rénovation</strong> — Entreprise Générale de Rénovation<br />
               1 sentier de la Pointe, 75020 PARIS — Tél : 06 99 96 13 75 / 09 80 93 84 18<br />
-              SIRET : 818 676 652 00019 — Email : contact@erg-renovation.fr — www.erg-renovation.fr
+              SIRET : 818 676 652 00014 — Email : contact@erg-renovation.fr — www.erg-renovation.fr
             </p>
           </div>
 

@@ -102,7 +102,7 @@ export default function CtaBanner() {
 
           {/* Footer Subtext */}
           <p className="text-xs font-medium text-slate-500 pt-2">
-            ⚡ Réponse garantie sous 24h • Visite sur site offerte à Paris & Île-de-France • Devis détaillé et transparent sans engagement
+            Visite sur site offerte à Paris & Île-de-France • Devis détaillé et transparent sans engagement
           </p>
         </div>
       </div>

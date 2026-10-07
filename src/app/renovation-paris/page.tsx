@@ -96,7 +96,7 @@ function JsonLd({ faqs }: { faqs: { q: string; a: string }[] }) {
       priceRange: "€€",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "1 Sent. de la Pointe",
+        streetAddress: "1 Sentier de la Pointe",
         addressLocality: "Paris",
         postalCode: "75020",
         addressCountry: "FR",

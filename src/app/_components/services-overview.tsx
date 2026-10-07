@@ -145,7 +145,7 @@ export default function ServicesOverview() {
           </div>
 
           <p className="text-xs font-medium text-slate-500">
-            Devis détaillé offert sous 24h • Visite sur site gratuite à Paris & Île-de-France (92, 93, 94)
+            Devis détaillé gratuit • Visite sur site gratuite à Paris & Île-de-France (92, 93, 94)
           </p>
         </div>
       </div>
