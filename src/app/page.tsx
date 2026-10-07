@@ -149,11 +149,11 @@ export default function Home() {
         </AnimatedSection>
 
         <AnimatedSection>
-          <ServiceAreas />
+          <FeaturedProjects />
         </AnimatedSection>
 
         <AnimatedSection>
-          <FeaturedProjects />
+          <ServiceAreas />
         </AnimatedSection>
 
         <AnimatedSection>

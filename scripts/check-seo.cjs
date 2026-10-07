@@ -37,6 +37,12 @@ function walk(dir) {
         if (!article?.headline || !article?.datePublished || article?.mainEntityOfPage?.['@id'] !== origin + route) failures.push(`${route}: missing or incomplete article schema`);
       }
       pages.set(route, title);
+      for (const image of html.matchAll(/<img\b[^>]*\bsrc="([^"]+)"/g)) {
+        const src = image[1].replaceAll('&amp;', '&');
+        const imageUrl = new URL(src, origin);
+        const asset = imageUrl.pathname === '/_next/image' ? imageUrl.searchParams.get('url') : imageUrl.pathname;
+        if (asset?.startsWith('/') && !asset.startsWith('/_next/') && imageUrl.origin === origin && !fs.existsSync(path.join('public', asset))) failures.push(`${route}: missing image ${asset}`);
+      }
       for (const match of html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)) {
         const href = match[1].replaceAll('&amp;', '&');
         if (href.startsWith('/') || href.startsWith(origin + '/')) internalLinks.push({ route, href });
@@ -66,4 +72,4 @@ for (const { route, href } of internalLinks) {
 }
 for (const [target, sources] of broken) failures.push(`Broken internal link ${target} from ${[...sources].slice(0, 3).join(', ')}`);
 if (failures.length) { console.error(failures.join('\n')); process.exitCode = 1; }
-else console.log(`SEO checks passed: ${pages.size} public pages, ${urls.length} sitemap URLs; canonicals, titles, descriptions, H1, private noindex and ${internalLinks.length} internal links verified.`);
+else console.log(`SEO checks passed: ${pages.size} public pages, ${urls.length} sitemap URLs; metadata, local images, private noindex and ${internalLinks.length} internal links verified.`);

@@ -83,12 +83,12 @@ export default function Hero() {
   return (
     <section className="relative isolate w-full overflow-hidden bg-slate-50/90 py-10 sm:py-16 md:py-20 lg:py-24 border-b border-slate-200/80">
       {/* Background Image with Enhanced Opacity & Depth */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 hidden lg:block">
         <Image
           src={heroBg}
           alt="Rénovation appartement Paris haut de gamme"
           fill
-          priority
+          loading="lazy"
           className="object-cover opacity-25 blur-[2px] scale-105"
           sizes="100vw"
         />
@@ -99,7 +99,7 @@ export default function Hero() {
       <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Headlines & Call to Action */}
-          <div className="lg:col-span-6 space-y-6 text-left">
+          <div className="lg:col-span-6 space-y-5 text-left flex flex-col">
             <div className="flex flex-wrap items-center gap-3">
               <GoogleReviewBadge />
               <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-3 py-1 text-xs font-semibold text-amber-700">
@@ -119,7 +119,7 @@ export default function Hero() {
             </p>
 
             {/* Proof Chips */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+            <div className="hidden sm:grid sm:grid-cols-3 gap-3 pt-2 order-1">
               <div className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white/90 p-3 text-slate-800 shadow-sm backdrop-blur-md">
                 <ShieldCheck className="h-5 w-5 text-amber-600 shrink-0" />
                 <div className="text-xs font-medium">
@@ -146,7 +146,7 @@ export default function Hero() {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1 sm:order-2">
               <Button
                 asChild
                 size="lg"
@@ -169,6 +169,7 @@ export default function Hero() {
                 </a>
               </Button>
             </div>
+            <p className="sm:hidden text-xs text-slate-600">Devis gratuit · Interlocuteur unique · Garantie décennale</p>
           </div>
 
           {/* Right Column: ENLARGED & PERFECTLY CONTAINED Interactive Before/After Visual Showcase */}
@@ -184,6 +185,7 @@ export default function Hero() {
                   <BeforeAfterSlider
                     key={activeProject.id}
                     beforeImage={activeProject.beforeImage}
+                    priority={activeProjectIndex === 0}
                     afterImage={activeProject.afterImage}
                     beforeLabel={activeProject.beforeLabel}
                     afterLabel={activeProject.afterLabel}

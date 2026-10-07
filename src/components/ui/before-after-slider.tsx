@@ -12,6 +12,7 @@ interface BeforeAfterSliderProps {
   alt?: string
   aspectRatio?: string
   className?: string
+  priority?: boolean
 }
 
 export default function BeforeAfterSlider({
@@ -22,6 +23,7 @@ export default function BeforeAfterSlider({
   alt = "Comparaison de rénovation",
   aspectRatio = "aspect-[4/3]",
   className = "",
+  priority = false,
 }: BeforeAfterSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(50)
   const [isDragging, setIsDragging] = useState(false)
@@ -90,7 +92,7 @@ export default function BeforeAfterSlider({
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover"
-          priority
+          priority={priority}
         />
         <span className="absolute top-4 right-4 z-10 rounded-full bg-amber-500/90 backdrop-blur-md px-3 py-1 text-xs font-semibold text-slate-950 shadow-md">
           {afterLabel}
@@ -108,7 +110,7 @@ export default function BeforeAfterSlider({
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover grayscale brightness-90"
-          priority
+          priority={priority}
         />
         <span className="absolute top-4 left-4 z-10 rounded-full bg-slate-900/80 backdrop-blur-md px-3 py-1 text-xs font-semibold text-slate-200 shadow-md">
           {beforeLabel}
@@ -121,7 +123,27 @@ export default function BeforeAfterSlider({
         style={{ left: `${sliderPosition}%` }}
       >
         {/* Handle Button */}
-        <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white text-slate-900 shadow-2xl border-2 border-amber-500 hover:scale-110 transition-transform">
+        <div
+          role="slider"
+          tabIndex={0}
+          aria-label="Comparer les photos avant et après travaux"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(sliderPosition)}
+          aria-valuetext={`${Math.round(sliderPosition)} % de la photo avant travaux`}
+          onKeyDown={(event) => {
+            const positions: Record<string, number> = {
+              ArrowLeft: sliderPosition - 5, ArrowRight: sliderPosition + 5,
+              ArrowDown: sliderPosition - 5, ArrowUp: sliderPosition + 5,
+              Home: 0, End: 100,
+            }
+            if (event.key in positions) {
+              event.preventDefault()
+              setSliderPosition(Math.max(0, Math.min(100, positions[event.key])))
+            }
+          }}
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white text-slate-900 shadow-2xl border-2 border-amber-500 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400 hover:scale-110 transition-transform"
+        >
           <MoveHorizontal className="h-5 w-5 text-amber-600" />
         </div>
       </div>

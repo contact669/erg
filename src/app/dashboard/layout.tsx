@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FirebaseClientProvider } from '@/firebase/client-provider';
 import { privateMetadata } from '@/lib/seo/metadata';
 export const metadata = privateMetadata;
 import DashboardSidebar from "./_components/dashboard-sidebar";
@@ -9,7 +10,7 @@ export default function DashboardLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="flex min-h-screen w-full flex-col bg-muted/40 print:bg-white print:p-0">
+        <FirebaseClientProvider><div className="flex min-h-screen w-full flex-col bg-muted/40 print:bg-white print:p-0">
             <div className="print:hidden">
                 <DashboardSidebar />
             </div>
@@ -23,6 +24,6 @@ export default function DashboardLayout({
                     </p>
                 </footer>
             </div>
-        </div>
+        </div></FirebaseClientProvider>
     );
 }
