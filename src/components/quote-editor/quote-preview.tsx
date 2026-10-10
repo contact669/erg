@@ -114,7 +114,7 @@ export function QuotePreview({ quote, onEditRequested }: QuotePreviewProps) {
                 {COMPANY.decennale && (
                   <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-50 border border-amber-200 text-[10px] font-bold text-amber-900">
                     <ShieldCheck className="h-3 w-3 text-amber-700" />
-                    Décennale {COMPANY.decennale}
+                    Assurance décennale Allianz
                   </span>
                 )}
                 {COMPANY.certifications.map((certification) => (
@@ -333,6 +333,7 @@ export function QuotePreview({ quote, onEditRequested }: QuotePreviewProps) {
         {/* FOOTER */}
         <div className="text-center text-[10px] text-slate-500 border-t border-slate-200 pt-3 font-medium">
           {COMPANY.name} ({COMPANY.legalName}) — {companyLegalLine()} — {COMPANY.address} — Tél : {COMPANY.phoneLabel}
+          {COMPANY.decennale && <span className="block pt-1">Assurance décennale : {COMPANY.decennale}</span>}
         </div>
       </div>
     </div>

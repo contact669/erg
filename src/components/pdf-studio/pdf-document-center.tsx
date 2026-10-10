@@ -233,7 +233,7 @@ export function PdfDocumentCenter() {
             </CardTitle>
             <CardDescription>
               Ouvrez un devis accepté puis « Émettre une facture » (acompte, solde ou totalité). La facture reçoit le numéro
-              suivant de la série FAC et se retrouve dans l'onglet Factures, où vous pouvez la télécharger, l'envoyer et
+              suivant de la série F (F00307, F00308…) et se retrouve dans l'onglet Factures, où vous pouvez la télécharger, l'envoyer et
               enregistrer les paiements.
             </CardDescription>
           </CardHeader>

@@ -172,7 +172,7 @@ export function CreateInvoiceDialog({ quote, onClose }: CreateInvoiceDialogProps
             </p>
           )}
           <p className="text-xs text-muted-foreground">
-            Une facture émise reçoit le numéro suivant de la série FAC et ne peut plus être modifiée ni supprimée.
+            Une facture émise reçoit le numéro suivant de la série {COMPANY.invoicePrefix} (après {COMPANY.invoicePrefix}{String(COMPANY.lastInvoiceBeforeCrm).padStart(5, "0")} et les factures du CRM) et ne peut plus être modifiée ni supprimée.
           </p>
         </div>
 

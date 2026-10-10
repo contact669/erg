@@ -21,8 +21,15 @@ export async function nextQuoteNumber(firestore: Firestore, date = new Date()): 
   return nextNumberFrom(snapshot.docs.map((d) => d.get('number')), 'DEV', date.getFullYear());
 }
 
-// Invoices share one unbroken yearly series (deposits included), as required for French invoices.
-export async function nextInvoiceNumber(firestore: Firestore, date = new Date()): Promise<string> {
-  const snapshot = await getDocs(collection(firestore, 'factures'));
-  return nextNumberFrom(snapshot.docs.map((d) => d.get('number')), 'FAC', date.getFullYear());
+/**
+ * Next number of a running series without year, e.g. F00307 after F00306. `floor` is the last number
+ * issued before the CRM, so the series carries on without gap or duplicate.
+ */
+export function nextRunningNumber(existing: Array<string | undefined>, prefix: string, floor = 0): string {
+  const pattern = new RegExp(`^${prefix}(\\d{${DIGITS}})$`);
+  const highest = existing.reduce((max, number) => {
+    const match = number?.match(pattern);
+    return match ? Math.max(max, Number(match[1])) : max;
+  }, floor);
+  return `${prefix}${String(highest + 1).padStart(DIGITS, '0')}`;
 }

@@ -1,6 +1,7 @@
 import { arrayUnion, collection, doc, getDocs, serverTimestamp, updateDoc, writeBatch, type Firestore } from 'firebase/firestore';
 import type { QuoteData, QuoteLot } from '@/components/quote-editor/quote-types';
-import { nextNumberFrom } from '@/lib/crm/numbering';
+import { nextNumberFrom, nextRunningNumber } from '@/lib/crm/numbering';
+import { COMPANY } from '@/lib/company';
 
 export type InvoiceKind = 'acompte' | 'solde' | 'totale' | 'avoir';
 export type InvoiceStatus = 'Émise' | 'Partiellement payée' | 'Payée' | 'Annulée' | 'Émis';
@@ -201,7 +202,7 @@ export function creditNoteError(
   return null;
 }
 
-/** Issues the invoice: takes the next number of the FAC series and links it to the quote. */
+/** Issues the invoice: takes the next number of the F series (deposits included) and links it to the quote. */
 export async function createInvoice(
   firestore: Firestore,
   quote: QuoteData & { clientId?: string | null },
@@ -228,7 +229,7 @@ export async function createInvoice(
   if (error) throw new Error(error);
 
   const amounts = invoiceAmounts(totals, options.kind, options.percent, previous);
-  const number = nextNumberFrom(all.map((invoice) => invoice.number), 'FAC', new Date(`${options.date}T12:00:00`).getFullYear());
+  const number = nextRunningNumber(all.map((invoice) => invoice.number), COMPANY.invoicePrefix, COMPANY.lastInvoiceBeforeCrm);
   const ref = doc(collection(firestore, 'factures'));
   const invoice: InvoiceData = {
     id: ref.id,

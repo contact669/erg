@@ -58,13 +58,25 @@ const { findOrCreateClient } = mod.exports;
   assert.equal(nextNumberFrom([], 'DEV', 2026), 'DEV-2026-00001');
   assert.equal(nextNumberFrom(['DEV-2026-00007', 'DEV-2026-4821', undefined, 'DEV-2025-00090', 'DEV-2026-00003'], 'DEV', 2026), 'DEV-2026-00008',
     'Old random numbers and other years are ignored');
-  assert.equal(nextNumberFrom(['FAC-2026-00001', 'FAC-2026-00002'], 'FAC', 2026), 'FAC-2026-00003', 'Deposits and balances share one series');
+  const { nextRunningNumber } = numbering.exports;
+  assert.equal(nextRunningNumber([], 'F', 306), 'F00307', 'The CRM carries on after the last invoice issued outside it');
+  assert.equal(nextRunningNumber(['F00307', 'F00308', 'AV-2026-00001', 'FAC-2026-00009', undefined], 'F', 306), 'F00309', 'Deposits and balances share one series');
+  assert.equal(nextRunningNumber(['F00290'], 'F', 306), 'F00307', 'Older numbers never move the series back');
 
   const invoicesFile = path.resolve('src/lib/crm/invoices.ts');
   const invoicesMod = new Module(invoicesFile, module);
   invoicesMod.filename = invoicesFile;
   invoicesMod.paths = Module._nodeModulePaths(path.dirname(invoicesFile));
-  invoicesMod.require = id => (id === 'firebase/firestore' ? firestoreStub : id === '@/lib/crm/numbering' ? numbering.exports : originalRequire(id));
+  const companyFile = path.resolve('src/lib/company.ts');
+  const company = new Module(companyFile, module);
+  company.filename = companyFile;
+  company._compile(ts.transpileModule(fs.readFileSync(companyFile, 'utf8'), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
+  }).outputText, companyFile);
+  invoicesMod.require = id => (id === 'firebase/firestore' ? firestoreStub
+    : id === '@/lib/crm/numbering' ? numbering.exports
+    : id === '@/lib/company' ? company.exports
+    : originalRequire(id));
   invoicesMod._compile(ts.transpileModule(fs.readFileSync(invoicesFile, 'utf8'), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
   }).outputText, invoicesFile);
@@ -97,8 +109,8 @@ const { findOrCreateClient } = mod.exports;
   assert.equal(addDays('2026-01-31', 30), '2026-03-02');
 
   // Credit notes: own AV series, negative amounts, and what is left to pay on the invoice.
-  assert.equal(nextNumberFrom(['FAC-2026-00004', 'AV-2026-00001'], 'AV', 2026), 'AV-2026-00002');
-  assert.equal(nextNumberFrom(['FAC-2026-00004', 'AV-2026-00001'], 'FAC', 2026), 'FAC-2026-00005', 'Credit notes do not use FAC numbers');
+  assert.equal(nextNumberFrom(['F00307', 'AV-2026-00001'], 'AV', 2026), 'AV-2026-00002');
+  assert.equal(nextRunningNumber(['F00307', 'AV-2026-00001'], 'F', 306), 'F00308', 'Credit notes do not use invoice numbers');
   const partial = creditNoteAmounts(remainingToCredit(deposit, []), 'partiel', 1000);
   assert.equal(partial.totalTTC, -1000);
   assert.equal(Math.round((partial.totalHT + partial.totalTVA10 + partial.totalTVA20) * 100) / 100, -1000, 'Partial credit note adds up');
