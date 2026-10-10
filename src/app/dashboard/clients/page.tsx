@@ -18,6 +18,7 @@ import {
   DropdownMenuLabel,
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { NewClientDialog } from './_components/new-client-dialog';
 
 import {
   PlusCircle,
@@ -46,63 +47,7 @@ function getStatusBadgeVariant(status: string) {
   }
 }
 
-const MOCK_CLIENTS = [
-  {
-    id: 'cli-1',
-    name: 'Alexandre de Saint-Germain',
-    email: 'a.stgermain@gmail.com',
-    phone: '06 12 34 56 78',
-    city: 'Paris 7e (Invalides)',
-    status: 'Actif',
-    projectsCount: 2,
-    totalSpent: 165000,
-    avatarUrl: '/images/fondateurs/k-ait.webp',
-  },
-  {
-    id: 'cli-2',
-    name: 'Florence Morel',
-    email: 'f.morel@orange.fr',
-    phone: '06 98 76 54 32',
-    city: 'Boulogne-Billancourt (92)',
-    status: 'Prospect',
-    projectsCount: 1,
-    totalSpent: 140000,
-    avatarUrl: null,
-  },
-  {
-    id: 'cli-3',
-    name: 'Julien Roche',
-    email: 'julien.roche@tech.io',
-    phone: '06 45 12 89 33',
-    city: 'Montreuil (93)',
-    status: 'Prospect',
-    projectsCount: 1,
-    totalSpent: 95000,
-    avatarUrl: null,
-  },
-  {
-    id: 'cli-4',
-    name: 'Édouard Vasseur',
-    email: 'e.vasseur@cabinet-law.fr',
-    phone: '06 33 22 11 00',
-    city: 'Neuilly-sur-Seine (92)',
-    status: 'Actif',
-    projectsCount: 3,
-    totalSpent: 310000,
-    avatarUrl: null,
-  },
-  {
-    id: 'cli-5',
-    name: 'Marie-Christine Lambert',
-    email: 'mc.lambert@neuf.fr',
-    phone: '06 77 88 99 00',
-    city: 'Vincennes (94)',
-    status: 'Prospect',
-    projectsCount: 1,
-    totalSpent: 48000,
-    avatarUrl: null,
-  },
-];
+
 
 export default function ClientsPage() {
   const { user, isUserLoading } = useUser();
@@ -111,6 +56,7 @@ export default function ClientsPage() {
 
   const [isClient, setIsClient] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isNewClientOpen, setIsNewClientOpen] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -129,7 +75,7 @@ export default function ClientsPage() {
   const { data: dbClients, isLoading } = useCollection<any>(clientsQuery);
 
   const displayClients = useMemo(() => {
-    const list = dbClients && dbClients.length > 0 ? dbClients : MOCK_CLIENTS;
+    const list = dbClients ?? [];
 
     if (!searchQuery.trim()) return list;
 
@@ -169,9 +115,9 @@ export default function ClientsPage() {
           <Button onClick={() => router.push('/dashboard/pipeline')} variant="outline" className="rounded-xl border-slate-300">
             Pipeline CRM
           </Button>
-          <Button onClick={() => router.push('/dashboard/devis')} className="bg-amber-600 hover:bg-amber-500 text-white rounded-xl shadow-md font-bold">
+          <Button onClick={() => setIsNewClientOpen(true)} className="bg-amber-600 hover:bg-amber-500 text-white rounded-xl shadow-md font-bold">
             <PlusCircle className="mr-2 h-4 w-4" />
-            Nouveau Client / Devis
+            Nouveau client
           </Button>
         </div>
       </div>
@@ -211,6 +157,13 @@ export default function ClientsPage() {
             </TableHeader>
 
             <TableBody>
+              {isClient && !isLoading && displayClients.length === 0 && (
+                <TableRow>
+                  <TableCell colSpan={5} className="h-24 text-center text-muted-foreground">
+                    {searchQuery.trim() ? 'Aucun client ne correspond à votre recherche.' : 'Aucun client enregistré pour le moment.'}
+                  </TableCell>
+                </TableRow>
+              )}
               {isClient && displayClients.map((client: any) => {
                 const initials = (client.name || 'U')
                   .split(' ')
@@ -240,7 +193,7 @@ export default function ClientsPage() {
                     <TableCell className="hidden md:table-cell text-xs font-semibold text-slate-700 dark:text-slate-300">
                       <div className="flex items-center gap-1.5">
                         <MapPin className="h-3.5 w-3.5 text-amber-600" />
-                        <span>{client.city || 'Paris & IDF'}</span>
+                        <span>{[client.postalCode, client.city].filter(Boolean).join(' ') || '—'}</span>
                       </div>
                     </TableCell>
 
@@ -251,7 +204,7 @@ export default function ClientsPage() {
                     </TableCell>
 
                     <TableCell className="hidden lg:table-cell font-extrabold text-amber-700 dark:text-amber-400 text-sm">
-                      {(client.totalSpent || 85000).toLocaleString('fr-FR')} €
+                      {client.totalSpent ? `${Number(client.totalSpent).toLocaleString('fr-FR')} €` : '—'}
                     </TableCell>
 
                     <TableCell className="text-right">
@@ -285,8 +238,8 @@ export default function ClientsPage() {
                             <DropdownMenuItem onClick={() => router.push('/dashboard/pipeline')}>
                               Voir dans le Pipeline
                             </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => router.push('/dashboard/devis')}>
-                              Émettre un nouveau devis
+                            <DropdownMenuItem onClick={() => router.push(`/dashboard/devis/nouveau?client=${client.id}`)}>
+                              Créer un devis pour ce client
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -299,6 +252,7 @@ export default function ClientsPage() {
           </Table>
         </CardContent>
       </Card>
+      <NewClientDialog open={isNewClientOpen} onOpenChange={setIsNewClientOpen} />
     </div>
   );
 }

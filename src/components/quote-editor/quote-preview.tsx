@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Printer, ShieldCheck, Download, Award, FileText, CheckCircle2, Building } from "lucide-react";
 
 import { downloadElementAsPdf } from "@/lib/generate-pdf";
+import { COMPANY } from "@/lib/company";
 
 interface QuotePreviewProps {
   quote: QuoteData;
@@ -155,16 +156,22 @@ export function QuotePreview({ quote, onEditRequested }: QuotePreviewProps) {
             </p>
 
             {/* Quality Badges */}
-            <div className="flex flex-wrap items-center gap-2 pt-0.5">
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-50 border border-amber-200 text-[10px] font-bold text-amber-900">
-                <ShieldCheck className="h-3 w-3 text-amber-700" />
-                Décennale AXA N° AXA-BTP-9847291
-              </span>
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-[10px] font-bold text-slate-700">
-                <Award className="h-3 w-3 text-amber-600" />
-                Certifié RGE Qualibat
-              </span>
-            </div>
+            {(COMPANY.decennale || COMPANY.certifications.length > 0) && (
+              <div className="flex flex-wrap items-center gap-2 pt-0.5">
+                {COMPANY.decennale && (
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-amber-50 border border-amber-200 text-[10px] font-bold text-amber-900">
+                    <ShieldCheck className="h-3 w-3 text-amber-700" />
+                    Décennale {COMPANY.decennale}
+                  </span>
+                )}
+                {COMPANY.certifications.map((certification) => (
+                  <span key={certification} className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-[10px] font-bold text-slate-700">
+                    <Award className="h-3 w-3 text-amber-600" />
+                    {certification}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Document Title & Number Header */}
@@ -295,11 +302,13 @@ export function QuotePreview({ quote, onEditRequested }: QuotePreviewProps) {
             </div>
 
             {/* IBAN details */}
-            <div className="p-2 rounded bg-white border border-slate-200 text-[10px] space-y-0.5 font-mono text-slate-600">
-              <p className="font-sans font-bold text-slate-900 text-[10px]">Coordonnées bancaires virement :</p>
-              <p>IBAN : <span className="font-bold text-slate-900">FR76 3000 4012 3456 7890 1234 567</span></p>
-              <p>BIC : <span className="font-bold text-slate-900">BNPAFRPPXXX</span> (BNP Paribas Paris)</p>
-            </div>
+            {COMPANY.iban && (
+              <div className="p-2 rounded bg-white border border-slate-200 text-[10px] space-y-0.5 font-mono text-slate-600">
+                <p className="font-sans font-bold text-slate-900 text-[10px]">Coordonnées bancaires virement :</p>
+                <p>IBAN : <span className="font-bold text-slate-900">{COMPANY.iban}</span></p>
+                {COMPANY.bic && <p>BIC : <span className="font-bold text-slate-900">{COMPANY.bic}</span></p>}
+              </div>
+            )}
           </div>
 
           {/* Financial Totals Card */}

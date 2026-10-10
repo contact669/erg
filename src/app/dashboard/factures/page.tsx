@@ -32,44 +32,7 @@ function toDateSafe(value: any): Date | null {
       return isNaN(d.getTime()) ? null : d;
   }
   return null;
-}const MOCK_FACTURES = [
-  {
-    id: 'FAC-2026-001',
-    clientName: 'Alexandre de Saint-Germain',
-    projectName: 'Rénovation Complète Appartement 120m²',
-    date: '2026-03-05',
-    total: 49500,
-    restant: 0,
-    status: 'Payée',
-  },
-  {
-    id: 'FAC-2026-002',
-    clientName: 'Florence Morel',
-    projectName: 'Acompte 30% — Rénovation Énergétique',
-    date: '2026-03-12',
-    total: 42000,
-    restant: 42000,
-    status: 'Envoyée',
-  },
-  {
-    id: 'FAC-2026-003',
-    clientName: 'Édouard Vasseur',
-    projectName: 'Solde — Salle de Bain Luxe & Suite',
-    date: '2026-02-28',
-    total: 68000,
-    restant: 0,
-    status: 'Payée',
-  },
-  {
-    id: 'FAC-2026-004',
-    clientName: 'Julien Roche',
-    projectName: 'Acompte 30% — Loft Industriel',
-    date: '2026-03-18',
-    total: 58500,
-    restant: 58500,
-    status: 'Envoyée',
-  },
-];
+}
 
 export default function FacturesPage() {
     const { user, isUserLoading } = useUser();
@@ -92,7 +55,7 @@ export default function FacturesPage() {
     , [firestore, user]);
     const { data: dbFactures, isLoading } = useCollection<any>(invoicesQuery);
 
-    const factures = dbFactures && dbFactures.length > 0 ? dbFactures : MOCK_FACTURES;
+    const factures = dbFactures ?? [];
 
     if (isUserLoading || !user) {
         return (
@@ -147,7 +110,12 @@ export default function FacturesPage() {
                                     <TableCell colSpan={7} className="h-24 text-center">Chargement...</TableCell>
                                 </TableRow>
                             )}
-                            {isClient && factures && factures.map((item: any) => {
+                            {isClient && !isLoading && factures.length === 0 && (
+                                <TableRow>
+                                    <TableCell colSpan={7} className="h-24 text-center text-muted-foreground">Aucune facture enregistrée pour le moment.</TableCell>
+                                </TableRow>
+                            )}
+                            {isClient && factures.map((item: any) => {
                               const date = toDateSafe(item.date);
                               return (
                                 <TableRow key={item.id}>

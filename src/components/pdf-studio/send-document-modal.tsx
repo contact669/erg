@@ -16,6 +16,8 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Send, CheckCircle2, AlertCircle, Loader2, Mail, FileText } from "lucide-react";
+import { useUser } from "@/firebase";
+import { elementToPdfBase64 } from "@/lib/generate-pdf";
 
 interface SendDocumentModalProps {
   isOpen: boolean;
@@ -24,6 +26,8 @@ interface SendDocumentModalProps {
   documentNumber: string;
   defaultClientName?: string;
   defaultClientEmail?: string;
+  /** Id of the rendered document on the page; when set, the PDF can be attached. */
+  pdfElementId?: string;
 }
 
 export function SendDocumentModal({
@@ -31,16 +35,17 @@ export function SendDocumentModal({
   onClose,
   documentType,
   documentNumber,
-  defaultClientName = "Alexandre de Saint-Germain",
-  defaultClientEmail = "a.stgermain@gmail.com",
+  defaultClientName = "",
+  defaultClientEmail = "",
+  pdfElementId,
 }: SendDocumentModalProps) {
+  const { user } = useUser();
   const [clientName, setClientName] = useState(defaultClientName);
   const [clientEmail, setClientEmail] = useState(defaultClientEmail);
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
-  const [attachPdf, setAttachPdf] = useState(true);
-  const [notifySms, setNotifySms] = useState(true);
+  const [attachPdf, setAttachPdf] = useState(!!pdfElementId);
   const [copyAdmin, setCopyAdmin] = useState(true);
 
   const [isSending, setIsSending] = useState(false);
@@ -52,11 +57,12 @@ export function SendDocumentModal({
     setClientEmail(defaultClientEmail);
     setSubject(`[ERG Rénovation] Votre ${documentType} N° ${documentNumber}`);
     setMessage(
-      `Bonjour ${defaultClientName},\n\nVeuillez trouver ci-joint votre document officiel ${documentType} N° ${documentNumber} édité par ERG Rénovation Numérique.\n\nRestant à votre entière disposition pour tout renseignement complémentaire.\n\nCordialement,\nL'équipe ERG Rénovation`
+      `Bonjour ${defaultClientName || "Madame, Monsieur"},\n\nVeuillez trouver votre document ${documentType} N° ${documentNumber} édité par ERG Rénovation.\n\nRestant à votre entière disposition pour tout renseignement complémentaire.\n\nCordialement,\nL'équipe ERG Rénovation`
     );
+    setAttachPdf(!!pdfElementId);
     setSendSuccess(false);
     setErrorMessage("");
-  }, [documentType, documentNumber, defaultClientName, defaultClientEmail, isOpen]);
+  }, [pdfElementId, documentType, documentNumber, defaultClientName, defaultClientEmail, isOpen]);
 
   const handleSend = async () => {
     if (!clientEmail.trim()) {
@@ -64,13 +70,28 @@ export function SendDocumentModal({
       return;
     }
 
+    if (!user) {
+      setErrorMessage("Votre session a expiré. Reconnectez-vous pour envoyer ce document.");
+      return;
+    }
+
     setIsSending(true);
     setErrorMessage("");
 
     try {
+      let pdfBase64: string | undefined;
+      if (attachPdf && pdfElementId) {
+        const pdf = await elementToPdfBase64(pdfElementId);
+        if (!pdf) {
+          setErrorMessage("Le PDF n'a pas pu être généré. Affichez l'aperçu du document puis réessayez.");
+          return;
+        }
+        pdfBase64 = pdf;
+      }
+      const idToken = await user.getIdToken();
       const res = await fetch("/api/send-document-email", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${idToken}` },
         body: JSON.stringify({
           clientEmail,
           clientName,
@@ -78,7 +99,9 @@ export function SendDocumentModal({
           documentNumber,
           customSubject: subject,
           customMessage: message,
-          attachPdf,
+          copyAdmin,
+          pdfBase64,
+          pdfFileName: `${documentType}_${documentNumber}`,
         }),
       });
 
@@ -112,7 +135,7 @@ export function SendDocumentModal({
             Transmettre le Document {documentNumber}
           </DialogTitle>
           <DialogDescription className="text-xs text-muted-foreground">
-            Envoyez directement votre document officiel au client par email sécurisé avec notifications.
+            Envoyez le document au client par email depuis contact@erg-renovation.fr.
           </DialogDescription>
         </DialogHeader>
 
@@ -123,7 +146,7 @@ export function SendDocumentModal({
             </div>
             <h3 className="text-lg font-bold text-foreground">Document transmis avec succès !</h3>
             <p className="text-xs text-muted-foreground max-w-sm">
-              Le document {documentNumber} a été envoyé à <strong>{clientEmail}</strong> avec copie à la direction.
+              Le document {documentNumber} a été envoyé à <strong>{clientEmail}</strong>{copyAdmin ? " avec copie à la direction" : ""}.
             </p>
           </div>
         ) : (
@@ -182,11 +205,16 @@ export function SendDocumentModal({
                 <Checkbox
                   id="attachPdf"
                   checked={attachPdf}
+                  disabled={!pdfElementId}
                   onCheckedChange={(checked) => setAttachPdf(!!checked)}
                 />
                 <label htmlFor="attachPdf" className="font-medium cursor-pointer flex items-center gap-1.5">
                   <FileText className="h-3.5 w-3.5 text-amber-600" />
-                  <span>Joindre le fichier PDF vectoriel Haute Définition</span>
+                  <span>
+                    {pdfElementId
+                      ? "Joindre le document en PDF"
+                      : "Pièce jointe disponible depuis l'aperçu du document"}
+                  </span>
                 </label>
               </div>
 

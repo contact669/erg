@@ -10,9 +10,10 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Bot, Wand2 } from "lucide-react";
+import { ArrowLeft, FilePlus2, FileText } from "lucide-react";
+import { COMPANY } from "@/lib/company";
 
-const ADMIN_UID = "pHcnP0Mc32frrhPRzTT2nFwCxno1";
+const ADMIN_UID = COMPANY.adminUid;
 
 function statusBadgeVariant(status: string) {
   if (status === "Nouvelle Demande") return "destructive";
@@ -107,15 +108,25 @@ export default function DemandeDetailPage() {
             <p className="whitespace-pre-wrap">{request.projectDescription ?? "—"}</p>
           </div>
 
+          {(request.projectType || request.surface || request.postalCode) && (
+            <div className="flex flex-wrap gap-2 text-sm">
+              {request.projectType && <Badge variant="outline">{request.projectType}</Badge>}
+              {request.surface && <Badge variant="outline">{request.surface}</Badge>}
+              {request.postalCode && <Badge variant="outline">{request.postalCode}</Badge>}
+            </div>
+          )}
+
           <div className="flex flex-wrap gap-2">
-            <Button variant="secondary" className="gap-2" onClick={() => router.push(`/dashboard/devis?fromRequest=${id}`)}>
-              <Bot className="h-4 w-4" />
-              Convertir en brouillon
+            <Button className="gap-2" onClick={() => router.push(`/dashboard/devis/nouveau?fromRequest=${id}`)}>
+              <FilePlus2 className="h-4 w-4" />
+              {request.quoteIds?.length ? "Créer un autre devis" : "Créer le client et le devis"}
             </Button>
-            <Button className="gap-2" onClick={() => router.push(`/dashboard/devis?fromRequestAI=${id}`)}>
-              <Wand2 className="h-4 w-4" />
-              Convertir via IA
-            </Button>
+            {request.quoteIds?.map((quoteId: string) => (
+              <Button key={quoteId} variant="outline" className="gap-2" onClick={() => router.push(`/dashboard/devis/${quoteId}`)}>
+                <FileText className="h-4 w-4" />
+                Voir le devis
+              </Button>
+            ))}
           </div>
         </CardContent>
       </Card>

@@ -71,50 +71,7 @@ function toDateSafe(value: any): Date | null {
   return null;
 }
 
-const MOCK_QUOTES = [
-  {
-    id: "D00207",
-    number: "D00207",
-    clientName: "Mr BAH",
-    clientEmail: "bah.client@gmail.com",
-    clientPhone: "06 12 34 56 78",
-    clientAddress: "8 bis, rue de l'Argonne, 75020 Paris",
-    projectTitle: "Rénovation d'un appartement de type F2",
-    projectDescription: "Démolition, chape allégée Weber P3, électricité Schneider ODACE, plomberie cuivre/PVC, VMC SAUTER, chauffe-eau connecté, carrelage & faïence, peinture intégrale 37m².",
-    total: 29645,
-    totalHT: 26950,
-    status: "Accepté",
-    createdAt: "2025-03-12",
-  },
-  {
-    id: "D0192",
-    number: "D0192",
-    clientName: "Mr Jacques Sebaouni",
-    clientEmail: "j.sebaouni@wanadoo.fr",
-    clientPhone: "06 98 76 54 32",
-    clientAddress: "206 boulevard de Charonne, 75020 Paris",
-    projectTitle: "Rénovation d'un appartement de type F3 67m²",
-    projectDescription: "Protection du chantier, dépose moquette & colle 50m², fourniture et pose parquet contrecollé avec isolant phonique 20dB, plinthes 70ml, peinture générale acrylique/glycéro 67.8m².",
-    total: 18227,
-    totalHT: 16570,
-    status: "Envoyé",
-    createdAt: "2025-03-12",
-  },
-  {
-    id: "D0192-SOL",
-    number: "D0192-SOL",
-    clientName: "Soliko (Copropriété)",
-    clientEmail: "contact@soliko-copro.fr",
-    clientPhone: "01 43 56 89 20",
-    clientAddress: "5 bis Rue de Tlemcen, 75020 Paris",
-    projectTitle: "Entretien & Nettoyage Récurrent Copropriétés (18 Appts)",
-    projectDescription: "Nettoyage immeubles 8 et 10 appts F2, entretien hebdomadaire cour/escaliers/rampe/paliers/hall, sortie quotidienne conteneurs poubelles, nettoyage mensuel des vitres.",
-    total: 1728,
-    totalHT: 1440,
-    status: "Facturé",
-    createdAt: "2025-03-31",
-  },
-];
+
 
 export default function DevisPageClient() {
   const { user, isUserLoading } = useUser();
@@ -155,7 +112,7 @@ export default function DevisPageClient() {
   const { data: dbQuotes, isLoading, error } = useCollection<any>(quotesQuery);
 
   const displayQuotes = useMemo(() => {
-    const list = dbQuotes && dbQuotes.length > 0 ? dbQuotes : MOCK_QUOTES;
+    const list = dbQuotes ?? [];
 
     return list.filter((item: any) => {
       const matchSearch =
@@ -173,7 +130,7 @@ export default function DevisPageClient() {
 
   // Statistics calculation
   const stats = useMemo(() => {
-    const list = dbQuotes && dbQuotes.length > 0 ? dbQuotes : MOCK_QUOTES;
+    const list = dbQuotes ?? [];
     const totalCount = list.length;
     const totalAmount = list.reduce((sum: number, q: any) => sum + (q.total || q.totalTTC || 0), 0);
     const acceptedCount = list.filter((q: any) => q.status === "Accepté" || q.status === "Facturé").length;
@@ -218,8 +175,8 @@ export default function DevisPageClient() {
     setSendModalDoc({
       isOpen: true,
       number: item.number || item.id || "DEV-2026-004",
-      clientName: item.clientName || "Alexandre de Saint-Germain",
-      clientEmail: item.clientEmail || "a.stgermain@gmail.com",
+      clientName: item.clientName || "",
+      clientEmail: item.clientEmail || "",
     });
   };
 
@@ -374,6 +331,13 @@ export default function DevisPageClient() {
               </TableHeader>
 
               <TableBody>
+                {isClientMounted && !isLoading && displayQuotes.length === 0 && (
+                  <TableRow>
+                    <TableCell colSpan={6} className="h-24 text-center text-muted-foreground">
+                      {dbQuotes && dbQuotes.length > 0 ? "Aucun devis ne correspond à ces filtres." : "Aucun devis pour le moment. Créez votre premier devis."}
+                    </TableCell>
+                  </TableRow>
+                )}
                 {isClientMounted &&
                   displayQuotes.map((item: any) => {
                     const createdAt = toDateSafe(item.createdAt);

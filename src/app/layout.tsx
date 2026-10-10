@@ -72,6 +72,9 @@ export const viewport: Viewport = {
 
 const localBusiness = buildLocalBusinessJsonLd({
   name: "ERG Rénovation",
+  legalName: COMPANY.legalName,
+  email: COMPANY.email,
+  siret: COMPANY.siret,
   siteUrl: SITE_URL,
   logoUrl: `${SITE_URL}/images/logo-erg.webp`,
   imageUrl: `${SITE_URL}/images/og-image.png`,

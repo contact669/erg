@@ -1,25 +1,66 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { Suspense, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { arrayUnion, collection, doc, getDoc, setDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { useUser, useFirestore } from "@/firebase";
 import { QuoteBuilder } from "@/components/quote-editor/quote-builder";
 import { QuotePreview } from "@/components/quote-editor/quote-preview";
 import { QuoteData } from "@/components/quote-editor/quote-types";
 import { createEmptyQuote } from "@/components/quote-editor/quote-helpers";
+import { findOrCreateClient } from "@/lib/crm/clients";
+import { useToast } from "@/hooks/use-toast";
 
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Save, Eye, Edit3, CheckCircle, Sparkles } from "lucide-react";
 
 export default function NouveauDevisPage() {
+  return (
+    <Suspense fallback={<div className="p-6">Chargement…</div>}>
+      <NouveauDevis />
+    </Suspense>
+  );
+}
+
+function NouveauDevis() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const fromRequest = searchParams.get("fromRequest");
+  const fromClient = searchParams.get("client");
+  const { toast } = useToast();
   const { user, isUserLoading } = useUser();
   const firestore = useFirestore();
 
   const [quote, setQuote] = useState<QuoteData>(() => createEmptyQuote());
   const [activeTab, setActiveTab] = useState<"edit" | "preview">("edit");
   const [isSaving, setIsSaving] = useState(false);
+  const [clientId, setClientId] = useState<string | null>(fromClient);
+
+  // Pre-fill the quote from a website request or an existing client.
+  useEffect(() => {
+    if (!firestore || !user) return;
+    const source = fromRequest ? doc(firestore, "quoteRequests", fromRequest) : fromClient ? doc(firestore, "clients", fromClient) : null;
+    if (!source) return;
+    getDoc(source)
+      .then((snapshot) => {
+        if (!snapshot.exists()) return;
+        const data = snapshot.data();
+        const address = [data.address, [data.postalCode, data.city].filter(Boolean).join(" ")].filter(Boolean).join(", ");
+        setQuote(createEmptyQuote({
+          clientName: data.clientName ?? data.name ?? "",
+          clientEmail: data.clientEmail ?? data.email ?? "",
+          clientPhone: data.clientPhone ?? data.phone ?? "",
+          clientAddress: address,
+          siteAddress: address,
+          projectTitle: data.projectType ?? "",
+          projectDescription: data.projectDescription ?? "",
+        }));
+      })
+      .catch((error) => {
+        console.error("Pré-remplissage du devis impossible:", error);
+        toast({ variant: "destructive", title: "Impossible de charger les informations du client" });
+      });
+  }, [firestore, user, fromRequest, fromClient, toast]);
 
   if (isUserLoading || !user) {
     return (
@@ -42,17 +83,43 @@ export default function NouveauDevisPage() {
         id: newDocRef.id,
       };
 
+      // Every quote is attached to a client record, created on the fly if needed.
+      let linkedClientId = clientId;
+      if (!linkedClientId && quote.clientName.trim()) {
+        linkedClientId = await findOrCreateClient(firestore, {
+          name: quote.clientName,
+          email: quote.clientEmail,
+          phone: quote.clientPhone,
+          address: quote.clientAddress,
+          source: fromRequest ? "Site web" : "Saisie manuelle",
+          requestId: fromRequest ?? undefined,
+        });
+        setClientId(linkedClientId);
+      }
+
       await setDoc(newDocRef, {
         ...finalQuote,
         total: finalQuote.totalTTC,
+        clientId: linkedClientId ?? null,
+        requestId: fromRequest ?? null,
         userId: user.uid,
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
       });
 
+      if (fromRequest) {
+        await updateDoc(doc(firestore, "quoteRequests", fromRequest), {
+          status: "Traité",
+          pipelineStage: "quoting",
+          quoteIds: arrayUnion(newDocRef.id),
+          clientId: linkedClientId ?? null,
+        });
+      }
+
       router.push(`/dashboard/devis/${newDocRef.id}`);
     } catch (err) {
       console.error("Erreur lors de la création du devis:", err);
+      toast({ variant: "destructive", title: "Le devis n'a pas pu être enregistré", description: "Vérifiez votre connexion puis réessayez." });
     } finally {
       setIsSaving(false);
     }
@@ -103,7 +170,7 @@ export default function NouveauDevisPage() {
             disabled={isSaving}
             className="bg-amber-600 hover:bg-amber-500 text-white font-semibold gap-2"
           >
-            <Save className="h-4 w-4" /> {isSaving ? "Création..." : "Enregistrer & Enregistrer"}
+            <Save className="h-4 w-4" /> {isSaving ? "Création..." : "Enregistrer le devis"}
           </Button>
         </div>
       </div>

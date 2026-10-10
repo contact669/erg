@@ -1,4 +1,5 @@
 import { QuoteData, QuoteLot, QuoteLineItem } from './quote-types';
+import { COMPANY } from '@/lib/company';
 
 export function sanitizeProjectDescription(desc?: string | null): string {
   if (!desc) return '';
@@ -74,7 +75,14 @@ export function recalculateQuote(quote: QuoteData): QuoteData {
   };
 }
 
-export function createEmptyQuote(): QuoteData {
+const DEFAULT_QUOTE_NOTES = [
+  "Devis valable 30 jours. Les travaux seront exécutés selon les règles de l'art et les normes DTU en vigueur.",
+  COMPANY.decennale
+    ? `Entreprise couverte par une assurance décennale et responsabilité civile professionnelle (${COMPANY.decennale}).`
+    : null,
+].filter(Boolean).join(' ');
+
+export function createEmptyQuote(prefill: Partial<QuoteData> = {}): QuoteData {
   const today = new Date().toISOString().split('T')[0];
   const randomNum = Math.floor(1000 + Math.random() * 9000);
 
@@ -84,16 +92,16 @@ export function createEmptyQuote(): QuoteData {
     date: today,
     validityDays: 30,
     status: 'Brouillon',
-    clientName: 'M. et Mme Dupont',
-    clientEmail: 'client@example.com',
-    clientPhone: '06 12 34 56 78',
-    clientAddress: '15 Avenue Montaigne, 75008 Paris',
-    siteAddress: '15 Avenue Montaigne, 75008 Paris (Chantier Rénovation Appartement 120 m²)',
-    siteAccessDetails: '3ème étage avec ascenseur, Code accès: 48A29, Interphone Dupont',
-    projectTitle: 'Rénovation Complète Appartement Haussmannien',
-    projectDescription: 'Travaux de rénovation globale de haute qualité comprenant démolition, électricité aux normes, plomberie, plâtrerie RGE, menuiserie parquet et peinture de finition.',
+    clientName: '',
+    clientEmail: '',
+    clientPhone: '',
+    clientAddress: '',
+    siteAddress: '',
+    siteAccessDetails: '',
+    projectTitle: '',
+    projectDescription: '',
     lots: [],
-    notes: 'Devis valable 30 jours. Les travaux seront exécutés selon les règles de l\'art et les normes DTU en vigueur. Entreprise couverte par assurance Décennale et Responsabilité Civile Professionnelle (Axa Assurances n° AXA-BTP-9847291).',
+    notes: DEFAULT_QUOTE_NOTES,
     paymentTerms: {
       downPaymentPercent: 30,
       midTermPercent: 40,
@@ -104,6 +112,7 @@ export function createEmptyQuote(): QuoteData {
     totalTVA10: 0,
     totalTVA20: 0,
     totalTTC: 0,
+    ...prefill,
   };
 
   return recalculateQuote(initialQuote);

@@ -29,8 +29,9 @@ import {
 
 import { formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
+import { COMPANY } from "@/lib/company";
 
-const ADMIN_UID = 'pHcnP0Mc32frrhPRzTT2nFwCxno1';
+const ADMIN_UID = COMPANY.adminUid;
 
 type QuoteRequest = {
   id: string;

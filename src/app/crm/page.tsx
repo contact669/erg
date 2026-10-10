@@ -64,7 +64,7 @@ export default function CRMPage() {
           <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
             <Image
               src="/images/logo-erg.webp"
-              alt="ERG Rénovation Numérique Logo"
+              alt="ERG Rénovation"
               width={160}
               height={50}
               className="h-10 w-auto object-contain"

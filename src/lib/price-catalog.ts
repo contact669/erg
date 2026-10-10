@@ -29,7 +29,7 @@ export const ERG_COMPANY_INFO = {
   phone2: "09 80 93 84 18",
   email: "contact@erg-renovation.fr",
   website: "www.erg-renovation.fr",
-  decennale: "AXA Assurances N° AXA-BTP-9847291",
+  decennale: COMPANY.decennale,
   paymentSchedule: [
     { label: "Acompte début des travaux", percent: 30 },
     { label: "Réalisation 1/2 des travaux", percent: 30 },

@@ -3,6 +3,7 @@ import { Resend } from "resend"
 import QuoteRequestAdminEmail from "@/emails/quote-request-admin"
 import QuoteRequestClientEmail from "@/emails/quote-request-client"
 import { quoteRequestSchema } from '@/lib/quote-request-schema'
+import { clientIp, isRateLimited } from '@/lib/server/rate-limit'
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -11,6 +12,10 @@ const ADMIN_EMAIL = "contact@erg-renovation.fr"
 const FROM_EMAIL = "ERG Rénovation <contact@erg-renovation.fr>"
 
 export async function POST(req: NextRequest) {
+  // A visitor rarely sends more than one or two requests; this stops the route being used to mass-mail.
+  if (isRateLimited(`quote:${clientIp(req)}`, 3, 60 * 60 * 1000)) {
+    return NextResponse.json({ error: 'Trop de demandes envoyées. Merci de nous appeler directement.' }, { status: 429 })
+  }
   try {
     let body: unknown
     try { body = await req.json() } catch {
@@ -19,6 +24,9 @@ export async function POST(req: NextRequest) {
     const parsed = quoteRequestSchema.safeParse(body)
     if (!parsed.success) return NextResponse.json({ error: 'Veuillez vérifier les informations de votre demande.' }, { status: 400 })
     const { clientName, clientEmail, clientPhone, projectDescription } = parsed.data
+    if (isRateLimited(`quote-email:${clientEmail.toLowerCase()}`, 2, 24 * 60 * 60 * 1000)) {
+      return NextResponse.json({ error: 'Une demande a déjà été envoyée avec cette adresse aujourd’hui.' }, { status: 429 })
+    }
     const apiKey = process.env.RESEND_API_KEY
     if (!apiKey) {
       console.error("RESEND_API_KEY is missing (server env).")

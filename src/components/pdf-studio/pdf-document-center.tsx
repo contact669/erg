@@ -39,6 +39,13 @@ import { Send, Download } from "lucide-react";
 
 import { downloadElementAsPdf } from "@/lib/generate-pdf";
 
+const PDF_CONTAINER_IDS: Record<DocumentType, string> = {
+  DEVIS: "quote-pdf-container",
+  FACTURE: "quote-pdf-container",
+  SUIVI_CHANTIER: "site-report-pdf-container",
+  PV_RECEPTION: "handover-pv-pdf-container",
+};
+
 export function PdfDocumentCenter() {
   const searchParams = useSearchParams();
   const initialTypeParam = searchParams?.get("type");
@@ -95,8 +102,8 @@ export function PdfDocumentCenter() {
   const sendInfo = (() => {
     if (docType === "DEVIS") return { typeLabel: "Devis Officiel BTP", docNum: quoteData.number || "DEV-2026-004", clientName: quoteData.clientName, clientEmail: quoteData.clientEmail };
     if (docType === "FACTURE") return { typeLabel: "Facture d'Acompte / Travaux", docNum: quoteData.number || "FAC-2026-001", clientName: quoteData.clientName, clientEmail: quoteData.clientEmail };
-    if (docType === "SUIVI_CHANTIER") return { typeLabel: "Rapport de Suivi de Chantier", docNum: siteReportData.reportNumber || "RAP-2026-003", clientName: siteReportData.clientName, clientEmail: "a.stgermain@gmail.com" };
-    return { typeLabel: "Procès-Verbal de Réception", docNum: pvData.pvNumber || "PV-2026-001", clientName: pvData.clientName, clientEmail: "a.stgermain@gmail.com" };
+    if (docType === "SUIVI_CHANTIER") return { typeLabel: "Rapport de Suivi de Chantier", docNum: siteReportData.reportNumber || "RAP-2026-003", clientName: siteReportData.clientName, clientEmail: "" };
+    return { typeLabel: "Procès-Verbal de Réception", docNum: pvData.pvNumber || "PV-2026-001", clientName: pvData.clientName, clientEmail: "" };
   })();
 
   return (
@@ -390,6 +397,7 @@ export function PdfDocumentCenter() {
         documentNumber={sendInfo.docNum}
         defaultClientName={sendInfo.clientName}
         defaultClientEmail={sendInfo.clientEmail}
+        pdfElementId={activeTab === "preview" ? PDF_CONTAINER_IDS[docType] : undefined}
       />
     </div>
   );

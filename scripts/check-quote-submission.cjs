@@ -37,6 +37,7 @@ const payload = { clientName: '  Test Client  ', clientEmail: 'client@example.te
   }
   // Exercise the real API route, replacing only the email provider and templates.
   let mailResults = [];
+  let rateLimited = false;
   const filename = path.resolve('src/app/api/send-quote-email/route.ts');
   const routeModule = new Module(filename, module);
   routeModule.filename = filename;
@@ -50,6 +51,7 @@ const payload = { clientName: '  Test Client  ', clientEmail: 'client@example.te
     } }; } };
     if (id.startsWith('@/emails/')) return () => null;
     if (id === '@/lib/quote-request-schema') return require('../src/lib/quote-request-schema.ts');
+    if (id === '@/lib/server/rate-limit') return { clientIp: () => 'test', isRateLimited: () => rateLimited };
     return originalRequire(id);
   };
   routeModule._compile(ts.transpileModule(fs.readFileSync(filename, 'utf8'), {
@@ -78,10 +80,16 @@ const payload = { clientName: '  Test Client  ', clientEmail: 'client@example.te
     assert.equal((await post(JSON.stringify(payload))).status, 500);
     delete process.env.RESEND_API_KEY;
     assert.equal((await post(JSON.stringify(payload))).status, 500);
+    rateLimited = true;
+    assert.equal((await post(JSON.stringify(payload))).status, 429, 'Rate-limited requests send no email');
+    rateLimited = false;
   } finally {
     console.error = savedLog;
     if (savedKey === undefined) delete process.env.RESEND_API_KEY;
     else process.env.RESEND_API_KEY = savedKey;
   }
-  console.log('Quote submission and API checks passed: invalid input, persistence failure, ordering, success, email failures and missing configuration. No real emails or database writes.');
+  const { isRateLimited } = require('../src/lib/server/rate-limit.ts');
+  const key = `check-${Date.now()}`;
+  assert.deepEqual([1, 2, 3, 4].map(() => isRateLimited(key, 3, 60000)), [false, false, false, true]);
+  console.log('Quote submission and API checks passed: invalid input, persistence failure, ordering, success, email failures, missing configuration and rate limiting. No real emails or database writes.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

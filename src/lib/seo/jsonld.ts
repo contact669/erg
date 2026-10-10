@@ -15,6 +15,9 @@ type SocialLinks = {
 
 type LocalBusinessInput = {
   name: string;                 // "ERG Rénovation"
+  legalName?: string;           // raison sociale
+  email?: string;
+  siret?: string;
   siteUrl: string;              // "https://erg-renovation.fr"
   logoUrl: string;              // "https://.../logo.png"
   imageUrl?: string;            // "https://.../og-image.jpg"
@@ -33,8 +36,13 @@ export function buildLocalBusinessJsonLd(input: LocalBusinessInput) {
     "@type": "HomeAndConstructionBusiness",
     "@id": `${input.siteUrl}/#business`,
     name: input.name,
+    legalName: input.legalName,
     url: input.siteUrl,
     logo: input.logoUrl,
+    email: input.email,
+    identifier: input.siret
+      ? { "@type": "PropertyValue", propertyID: "SIRET", value: input.siret.replace(/\s/g, "") }
+      : undefined,
     image: input.imageUrl ?? input.logoUrl,
     telephone: input.phone,
     priceRange: input.priceRange,

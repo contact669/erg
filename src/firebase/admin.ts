@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { firebaseConfig } from './config';
 
 // This pattern ensures that Firebase Admin is initialized only once
 // in a server environment with hot-reloading (like Next.js dev).
@@ -17,6 +18,7 @@ if (!global.__firebaseAdminServices) {
   // If the services aren't cached, initialize them.
   const app = admin.apps.length > 0 ? admin.app() : admin.initializeApp({
     credential: admin.credential.applicationDefault(),
+    projectId: firebaseConfig.projectId,
   });
 
   const db = admin.firestore(app);

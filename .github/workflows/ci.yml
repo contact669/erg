@@ -1,0 +1,31 @@
+name: Vérifications
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Types
+        run: npm run typecheck
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+      - name: SEO (canonicals, sitemap, H1, JSON-LD, liens internes)
+        run: npm run check:seo
+      - name: Formulaire de devis
+        run: npm run check:quotes
+      - name: Envoi de documents
+        run: npm run check:documents
+      - name: Fiches clients du CRM
+        run: npm run check:crm

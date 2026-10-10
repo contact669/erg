@@ -35,7 +35,7 @@ export interface HandoverPVData {
   clientAddress: string;
   siteAddress: string;
   projectTitle: string;
-  contractorName: string; // ERG Rénovation Numérique
+  contractorName: string; // ERG Rénovation
   guaranteeStartDate: string;
   decennaleRef: string;
   reservesCount: number; // e.g. 2 réserves mineures

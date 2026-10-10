@@ -23,36 +23,7 @@ function getStatusBadgeVariant(status: string) {
 }
 
 
-const MOCK_PROJECTS = [
-  {
-    id: 'chantier-1',
-    title: 'Rénovation Complète Appartement Haussmannien 120m²',
-    clientName: 'Alexandre de Saint-Germain',
-    status: 'En cours',
-    progress: 72,
-  },
-  {
-    id: 'chantier-2',
-    title: 'Aménagement & Rénovation Énergétique 85m²',
-    clientName: 'Florence Morel',
-    status: 'Planification',
-    progress: 25,
-  },
-  {
-    id: 'chantier-3',
-    title: 'Rénovation Salle de Bain Luxe & Suite Parentale',
-    clientName: 'Édouard Vasseur',
-    status: 'Terminé',
-    progress: 100,
-  },
-  {
-    id: 'chantier-4',
-    title: 'Réhabilitation Loft Industriel 140m²',
-    clientName: 'Julien Roche',
-    status: 'En cours',
-    progress: 45,
-  },
-];
+
 
 export default function ChantiersPage() {
     const { user, isUserLoading } = useUser();
@@ -75,7 +46,7 @@ export default function ChantiersPage() {
     , [firestore]);
     const { data: dbChantiers, isLoading } = useCollection<any>(projectsQuery);
 
-    const chantiers = dbChantiers && dbChantiers.length > 0 ? dbChantiers : MOCK_PROJECTS;
+    const chantiers = dbChantiers ?? [];
 
     if (isUserLoading || !user) {
         return (
@@ -128,7 +99,12 @@ export default function ChantiersPage() {
                                     <TableCell colSpan={5} className="h-24 text-center">Chargement...</TableCell>
                                 </TableRow>
                             )}
-                            {isClient && chantiers && chantiers.map((chantier: any) => (
+                            {isClient && !isLoading && chantiers.length === 0 && (
+                                <TableRow>
+                                    <TableCell colSpan={5} className="h-24 text-center text-muted-foreground">Aucun chantier enregistré pour le moment.</TableCell>
+                                </TableRow>
+                            )}
+                            {isClient && chantiers.map((chantier: any) => (
                                 <TableRow key={chantier.id}>
                                     <TableCell>
                                         <div className="font-medium">{chantier.title}</div>
@@ -160,7 +136,7 @@ export default function ChantiersPage() {
                                                     Imprimer Rapport de Chantier PDF
                                                 </DropdownMenuItem>
                                                 <DropdownMenuItem onClick={() => router.push('/dashboard/documents?type=pv')}>
-                                                    Imprimer PV de Réception (AXA)
+                                                    Imprimer le PV de réception
                                                 </DropdownMenuItem>
                                                 <DropdownMenuItem onClick={() => router.push('/dashboard/documents?type=devis')}>
                                                     Générer Devis Avenant

@@ -1,28 +1,41 @@
-# Welcome to Antigravity!
+# ERG Rénovation : site et CRM
 
-Welcome to your new developer home! Your Firebase Studio project has been successfully migrated to Antigravity.
+Site public de https://erg-renovation.fr et CRM interne (`/dashboard`), dans une seule application Next.js 14 (App Router) hébergée sur Firebase App Hosting.
 
-Antigravity is our next-generation, agent-first IDE designed for high-velocity, autonomous development. Because Antigravity runs locally on your machine, you now have access to powerful local workflows and fully integrated AI editing capabilities that go beyond a cloud-based web IDE.
+## Stack
 
-## Getting Started
-- **Run Locally**: Use the **Run and Debug** menu on the left sidebar to start your local development server.
-  - Or in a terminal run `npm run dev` and visit `http://localhost:9002`.
-- **Deploy**: You can deploy your changes to Firebase App Hosting by using the integrated terminal and standard Firebase CLI commands, just as you did in Firebase Studio.
-- **Cleanup**: Cleanup unused artifacts with the @cleanup workflow.
+- Next.js 14, React 18, TypeScript, Tailwind, shadcn/ui
+- Firebase : Firestore (base `ergrenov`), Auth (un compte admin), App Hosting
+- Resend pour les emails (secret `RESEND_API_KEY` dans App Hosting)
 
-Enjoy the next era of AI-driven development!
+## Démarrer
 
-File any bugs at https://github.com/firebase/firebase-tools/issues
+```bash
+npm install
+npm run dev        # http://localhost:9003
+```
 
-**Firebase Studio Export Date:** 2026-09-19
+## Vérifications
 
+```bash
+npm run typecheck
+npm run build
+npm run check:seo        # après le build : canonicals, sitemap, H1, JSON-LD, liens internes
+npm run check:quotes     # formulaire de devis et route /api/send-quote-email
+npm run check:documents  # route /api/send-document-email (admin, pièce jointe)
+npm run check:crm        # rapprochement des fiches clients par email
+```
 
----
+Ces vérifications tournent aussi sur GitHub à chaque push (`.github/workflows/ci.yml`).
 
-## Previous README.md contents:
+## Où modifier quoi
 
-e de# Firebase Studio
+- Identité légale, assurance, IBAN, certifications : `src/lib/company.ts`. Ne jamais y mettre de valeur d'exemple : ces champs sont imprimés sur les devis et les emails.
+- Contenus SEO (services, réalisations, blog, villes) : `src/lib/data.tsx` et `src/lib/seo/`.
+- Règles Firestore : `firestore.rules`. L'UID admin doit correspondre à `COMPANY.adminUid`.
 
-This is a NextJS starter in Firebase Studio.
+## Déployer
 
-To get started, take a look at src/app/page.tsx.
+```bash
+firebase deploy
+```

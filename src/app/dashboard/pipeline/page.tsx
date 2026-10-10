@@ -56,99 +56,6 @@ const STAGES = [
   { id: 'lost', title: '📁 Classé / Perdu', color: 'border-slate-500 bg-slate-500/10 text-slate-700 dark:text-slate-400' },
 ];
 
-const INITIAL_MOCK_DEALS: DealItem[] = [
-  {
-    id: 'deal-101',
-    clientName: 'Alexandre de Saint-Germain',
-    clientEmail: 'a.stgermain@gmail.com',
-    clientPhone: '06 12 34 56 78',
-    projectTitle: 'Rénovation complète Haussmannien 110m²',
-    location: 'Paris 7e (Invalides)',
-    department: '75',
-    estimatedValue: 165000,
-    stage: 'sent',
-    createdAt: '2026-09-20',
-    type: 'Appartement',
-  },
-  {
-    id: 'deal-102',
-    clientName: 'Florence & Marc Morel',
-    clientEmail: 'f.morel@orange.fr',
-    clientPhone: '06 98 76 54 32',
-    projectTitle: 'Rénovation maison & extension verrière',
-    location: 'Boulogne-Billancourt (92)',
-    department: '92',
-    estimatedValue: 140000,
-    stage: 'quoting',
-    createdAt: '2026-09-21',
-    type: 'Maison',
-  },
-  {
-    id: 'deal-103',
-    clientName: 'Camille & Julien Roche',
-    clientEmail: 'julien.roche@tech.io',
-    clientPhone: '06 45 12 89 33',
-    projectTitle: 'Transformation d\'atelier en loft 85m²',
-    location: 'Bas-Montreuil (93)',
-    department: '93',
-    estimatedValue: 95000,
-    stage: 'visit',
-    createdAt: '2026-09-22',
-    type: 'Loft',
-  },
-  {
-    id: 'deal-104',
-    clientName: 'Édouard & Sophie Vasseur',
-    clientEmail: 'e.vasseur@cabinet-law.fr',
-    clientPhone: '06 33 22 11 00',
-    projectTitle: 'Réhabilitation appartement bourgeois 120m²',
-    location: 'Neuilly-sur-Seine (92)',
-    department: '92',
-    estimatedValue: 185000,
-    stage: 'won',
-    createdAt: '2026-09-18',
-    type: 'Appartement',
-  },
-  {
-    id: 'deal-105',
-    clientName: 'Marie-Christine Lambert',
-    clientEmail: 'mc.lambert@neuf.fr',
-    clientPhone: '06 77 88 99 00',
-    projectTitle: 'Création Suite Parentale & 2 SDB',
-    location: 'Vincennes (94)',
-    department: '94',
-    estimatedValue: 48000,
-    stage: 'lead',
-    createdAt: '2026-09-22',
-    type: 'Salle de bain',
-  },
-  {
-    id: 'deal-106',
-    clientName: 'Thomas Dubreuil',
-    clientEmail: 't.dubreuil@invest.com',
-    clientPhone: '06 55 44 33 22',
-    projectTitle: 'Rénovation 2 pièces pour investissement',
-    location: 'Paris 11e (Oberkampf)',
-    department: '75',
-    estimatedValue: 52000,
-    stage: 'won',
-    createdAt: '2026-09-15',
-    type: 'Appartement',
-  },
-  {
-    id: 'deal-107',
-    clientName: 'Valérie & Nicolas Dupont',
-    clientEmail: 'v.dupont@gmail.com',
-    clientPhone: '06 22 11 44 55',
-    projectTitle: 'Rénovation cuisine ouverte & verrière acier',
-    location: 'Levallois-Perret (92)',
-    department: '92',
-    estimatedValue: 32000,
-    stage: 'sent',
-    createdAt: '2026-09-19',
-    type: 'Cuisine',
-  },
-];
 
 function toDateSafe(value: any): Date | null {
   if (!value) return null;
@@ -178,7 +85,7 @@ export default function PipelinePage() {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [departmentFilter, setDepartmentFilter] = useState('all');
-  const [deals, setDeals] = useState<DealItem[]>(INITIAL_MOCK_DEALS);
+  const [deals, setDeals] = useState<DealItem[]>([]);
 
   useEffect(() => {
     if (!isUserLoading && !user) {
@@ -193,26 +100,23 @@ export default function PipelinePage() {
   );
   const { data: dbRequests } = useCollection<any>(requestsQuery);
 
-  // Merge Firestore quoteRequests into deals if available
+  // Every deal is a real quote request; its stage is stored on the request itself.
   useEffect(() => {
-    if (dbRequests && dbRequests.length > 0) {
+    if (dbRequests) {
       const dbItems: DealItem[] = dbRequests.map((req: any) => ({
         id: req.id,
         clientName: req.clientName || 'Prospect sans nom',
         clientEmail: req.clientEmail || 'Non renseigné',
         clientPhone: req.clientPhone || 'Non renseigné',
         projectTitle: req.projectDescription || 'Projet de rénovation',
-        location: req.location || 'Paris & IDF',
-        department: req.department || '75',
-        estimatedValue: req.estimatedBudget || 65000,
-        stage: req.status === 'Traité' ? 'won' : req.status === 'Supprimée' ? 'lost' : 'lead',
+        location: req.postalCode || req.location || 'Non renseigné',
+        department: req.department || '',
+        estimatedValue: Number(req.estimatedBudget) || 0,
+        stage: req.pipelineStage ?? (req.status === 'Traité' ? 'won' : req.status === 'Supprimée' ? 'lost' : 'lead'),
         createdAt: formatDateSafe(req.createdAt),
         type: req.projectType || 'Rénovation',
       }));
-
-      // Combine with mock items for a full visual experience
-      const merged = [...dbItems, ...INITIAL_MOCK_DEALS.filter((m) => !dbItems.some((d) => d.id === m.id))];
-      setDeals(merged);
+      setDeals(dbItems);
     }
   }, [dbRequests]);
 
@@ -240,8 +144,16 @@ export default function PipelinePage() {
     return { totalValue, wonValue, totalDeals, wonDeals, conversionRate, avgDealValue };
   }, [filteredDeals]);
 
-  const moveStage = (dealId: string, newStage: DealItem['stage']) => {
+  const moveStage = async (dealId: string, newStage: DealItem['stage']) => {
+    const previous = deals;
     setDeals((prev) => prev.map((d) => (d.id === dealId ? { ...d, stage: newStage } : d)));
+    try {
+      await updateDoc(doc(firestore, 'quoteRequests', dealId), { pipelineStage: newStage });
+    } catch (error) {
+      console.error('Pipeline stage update failed:', error);
+      setDeals(previous);
+      window.alert("Le changement d'étape n'a pas pu être enregistré. Réessayez.");
+    }
   };
 
   if (isUserLoading || !user) {
@@ -431,6 +343,13 @@ export default function PipelinePage() {
                                   {s.title}
                                 </DropdownMenuItem>
                               ))}
+                              <div className="my-1 h-px bg-slate-100 dark:bg-slate-800" />
+                              <DropdownMenuItem onClick={() => router.push(`/dashboard/demandes/${deal.id}`)} className="text-xs font-medium cursor-pointer">
+                                Voir la demande
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => router.push(`/dashboard/devis/nouveau?fromRequest=${deal.id}`)} className="text-xs font-bold cursor-pointer text-amber-700">
+                                Créer le client et le devis
+                              </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
                         </div>
@@ -446,7 +365,7 @@ export default function PipelinePage() {
 
                         <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-800 text-xs">
                           <span className="font-extrabold text-amber-700 dark:text-amber-400 text-sm">
-                            {deal.estimatedValue.toLocaleString('fr-FR')} €
+                            {deal.estimatedValue > 0 ? `${deal.estimatedValue.toLocaleString('fr-FR')} €` : 'À chiffrer'}
                           </span>
                           <Badge variant="outline" className="text-[10px] font-semibold">
                             {deal.type}

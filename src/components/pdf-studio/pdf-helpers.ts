@@ -1,4 +1,5 @@
 import { SiteReportData, HandoverPVData } from './pdf-types';
+import { COMPANY } from '@/lib/company';
 
 export function createDefaultSiteReport(): SiteReportData {
   const today = new Date().toISOString().split('T')[0];
@@ -84,9 +85,9 @@ export function createDefaultHandoverPV(): HandoverPVData {
     clientAddress: '15 Avenue Montaigne, 75008 Paris',
     siteAddress: '15 Avenue Montaigne, 75008 Paris',
     projectTitle: 'Rénovation Globale Appartement Haussmannien 120m²',
-    contractorName: 'ERG Rénovation Numérique SAS',
+    contractorName: COMPANY.name,
     guaranteeStartDate: today,
-    decennaleRef: 'AXA Assurances N° AXA-BTP-9847291',
+    decennaleRef: COMPANY.decennale ?? '',
     reservesCount: 2,
     reservesList: [
       {

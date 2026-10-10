@@ -4,7 +4,7 @@ import { useUser, useCollection, useMemoFirebase, useFirestore } from '@/firebas
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
-import { collection, query, where, orderBy, limit } from 'firebase/firestore';
+import { collection, query, orderBy } from 'firebase/firestore';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
@@ -47,6 +47,26 @@ import {
   Legend,
 } from 'recharts';
 
+const PIPELINE_STAGES = [
+  { id: 'lead', name: 'Leads entrants', color: '#3b82f6' },
+  { id: 'visit', name: 'Visites planifiées', color: '#a855f7' },
+  { id: 'quoting', name: 'En chiffrage', color: '#f59e0b' },
+  { id: 'sent', name: 'Devis envoyés', color: '#06b6d4' },
+  { id: 'won', name: 'Chantiers gagnés', color: '#10b981' },
+];
+
+function toDateSafe(value: any): Date | null {
+  if (value?.toDate && typeof value.toDate === 'function') return value.toDate();
+  const d = value ? new Date(value) : null;
+  return d && !isNaN(d.getTime()) ? d : null;
+}
+
+function requestStage(req: any): string {
+  return req.pipelineStage ?? (req.status === 'Traité' ? 'won' : req.status === 'Supprimée' ? 'lost' : 'lead');
+}
+
+const euro = (value: number) => `${Math.round(value).toLocaleString('fr-FR')} €`;
+
 function getStatusBadgeVariant(status: string) {
   switch (status) {
     case 'En cours':
@@ -62,22 +82,7 @@ function getStatusBadgeVariant(status: string) {
   }
 }
 
-const MONTHLY_PERFORMANCE = [
-  { month: 'Avr', ca: 85000, objectif: 70000 },
-  { month: 'Mai', ca: 110000, objectif: 85000 },
-  { month: 'Juin', ca: 135000, objectif: 90000 },
-  { month: 'Juil', ca: 95000, objectif: 80000 },
-  { month: 'Août', ca: 60000, objectif: 50000 },
-  { month: 'Sept', ca: 145000, objectif: 100000 },
-];
 
-const PIPELINE_DISTRIBUTION = [
-  { name: 'Leads Entrants', value: 48000, color: '#3b82f6' },
-  { name: 'Visites Planifiées', value: 95000, color: '#a855f7' },
-  { name: 'En Chiffrage', value: 140000, color: '#f59e0b' },
-  { name: 'Devis Envoyés', value: 197000, color: '#06b6d4' },
-  { name: 'Chantiers Gagnés', value: 237000, color: '#10b981' },
-];
 
 export default function DashboardPage() {
   const { user, isUserLoading } = useUser();
@@ -102,55 +107,87 @@ export default function DashboardPage() {
   const { data: clients } = useCollection(clientsQuery);
 
   const projectsQuery = useMemoFirebase(
-    () => (firestore ? query(collection(firestore, 'projects'), orderBy('title', 'desc'), limit(5)) : null),
+    () => (firestore ? query(collection(firestore, 'projects'), orderBy('title', 'desc')) : null),
     [firestore]
   );
-  const { data: recentProjects } = useCollection(projectsQuery);
+  const { data: projects } = useCollection(projectsQuery);
+  const recentProjects = projects?.slice(0, 5);
 
   const quotesQuery = useMemoFirebase(
-    () => (firestore ? query(collection(firestore, 'quotes'), where('status', '==', 'Envoyé')) : null),
+    () => (firestore ? collection(firestore, 'quotes') : null),
     [firestore]
   );
-  const { data: pendingQuotes } = useCollection(quotesQuery);
+  const { data: quotes } = useCollection(quotesQuery);
 
   const invoicesQuery = useMemoFirebase(
-    () => (firestore ? query(collection(firestore, 'factures'), where('status', '==', 'Envoyée')) : null),
+    () => (firestore ? collection(firestore, 'factures') : null),
     [firestore]
   );
-  const { data: unpaidInvoices } = useCollection(invoicesQuery);
+  const { data: invoices } = useCollection(invoicesQuery);
+
+  const requestsQuery = useMemoFirebase(
+    () => (firestore ? collection(firestore, 'quoteRequests') : null),
+    [firestore]
+  );
+  const { data: requests } = useCollection(requestsQuery);
+
+  const pendingQuotes = useMemo(() => (quotes ?? []).filter((q: any) => q.status === 'Envoyé'), [quotes]);
+  const unpaidInvoices = useMemo(() => (invoices ?? []).filter((f: any) => f.status === 'Envoyée'), [invoices]);
+
+  // Invoiced amount per month over the last six months, from the factures collection.
+  const monthlyRevenue = useMemo(() => {
+    const now = new Date();
+    const months = Array.from({ length: 6 }, (_, i) => {
+      const d = new Date(now.getFullYear(), now.getMonth() - 5 + i, 1);
+      return { key: `${d.getFullYear()}-${d.getMonth()}`, month: d.toLocaleDateString('fr-FR', { month: 'short' }), ca: 0 };
+    });
+    for (const invoice of invoices ?? []) {
+      const date = toDateSafe((invoice as any).date);
+      const bucket = date && months.find((m) => m.key === `${date.getFullYear()}-${date.getMonth()}`);
+      if (bucket) bucket.ca += Number((invoice as any).total) || 0;
+    }
+    return months;
+  }, [invoices]);
+
+  const pipelineDistribution = useMemo(
+    () => PIPELINE_STAGES
+      .map((stage) => ({ ...stage, value: (requests ?? []).filter((r: any) => requestStage(r) === stage.id).length }))
+      .filter((stage) => stage.value > 0),
+    [requests]
+  );
 
   const stats = useMemo(
     () => [
       {
         title: 'Clients Actifs',
-        value: clients?.length ?? 18,
+        value: clients?.length ?? 0,
         sub: 'Répertoire à jour',
         icon: Users,
         color: 'text-blue-600 bg-blue-500/10',
       },
       {
         title: 'Chantiers en Cours',
-        value: recentProjects?.filter((p) => p.status === 'En cours').length ?? 7,
+        value: projects?.filter((p: any) => p.status === 'En cours').length ?? 0,
         sub: 'Paris & Petite Couronne',
         icon: HardHat,
         color: 'text-amber-600 bg-amber-500/10',
       },
       {
         title: 'Devis en Négociation',
-        value: pendingQuotes?.length ?? 4,
-        sub: 'Valeur : ~ 197 000 €',
+        value: pendingQuotes.length,
+        sub: `Valeur : ${euro(pendingQuotes.reduce((sum: number, q: any) => sum + (Number(q.total ?? q.totalTTC) || 0), 0))}`,
         icon: FileText,
         color: 'text-purple-600 bg-purple-500/10',
       },
       {
         title: 'Factures Impayées',
-        value: unpaidInvoices?.length ?? 2,
-        sub: '34 500 € en attente',
+        value: unpaidInvoices.length,
+        sub: `${euro(unpaidInvoices.reduce((sum: number, f: any) => sum + (Number(f.restant ?? f.total) || 0), 0))} en attente`,
         icon: Receipt,
         color: 'text-rose-600 bg-rose-500/10',
       },
     ],
-    [clients, recentProjects, pendingQuotes, unpaidInvoices]
+    [clients, projects, pendingQuotes, unpaidInvoices]
   );
 
   if (isUserLoading || !user) {
@@ -224,24 +261,20 @@ export default function DashboardPage() {
             <div>
               <CardTitle className="text-lg font-bold flex items-center gap-2">
                 <TrendingUp className="h-5 w-5 text-amber-600" />
-                Chiffre d'Affaires Mensuel (vs Objectif)
+                Chiffre d'affaires facturé
               </CardTitle>
-              <CardDescription className="text-xs">Chantiers livrés et facturés sur les 6 derniers mois (€)</CardDescription>
+              <CardDescription className="text-xs">Total des factures émises sur les 6 derniers mois (€)</CardDescription>
             </div>
-            <Badge variant="outline" className="text-xs font-bold text-amber-700 bg-amber-500/10 border-amber-500/20">
-              Objectif Annuel 1.2M€
-            </Badge>
           </CardHeader>
           <CardContent>
             {isClient && (
               <div className="h-72 w-full pt-4">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={MONTHLY_PERFORMANCE} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+                  <BarChart data={monthlyRevenue} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
                     <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} tickLine={false} />
                     <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} tickFormatter={(val) => `${val / 1000}k€`} />
                     <RechartsTooltip formatter={(val: number) => [`${val.toLocaleString('fr-FR')} €`, 'Montant']} />
-                    <Bar dataKey="ca" name="CA Réalisé (€)" fill="#b87333" radius={[6, 6, 0, 0]} />
-                    <Bar dataKey="objectif" name="Objectif (€)" fill="#94a3b8" opacity={0.3} radius={[6, 6, 0, 0]} />
+                    <Bar dataKey="ca" name="Facturé (€)" fill="#b87333" radius={[6, 6, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -256,15 +289,18 @@ export default function DashboardPage() {
               <Kanban className="h-5 w-5 text-amber-600" />
               Répartition du Pipeline Commercial
             </CardTitle>
-            <CardDescription className="text-xs">Valeur totale cumulée par étape de vente (€)</CardDescription>
+            <CardDescription className="text-xs">Nombre de demandes par étape (hors classées)</CardDescription>
           </CardHeader>
           <CardContent>
-            {isClient && (
+            {isClient && pipelineDistribution.length === 0 && (
+              <div className="h-72 flex items-center justify-center text-sm text-slate-500">Aucune demande en cours.</div>
+            )}
+            {isClient && pipelineDistribution.length > 0 && (
               <div className="h-72 w-full flex flex-col items-center justify-center">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
-                      data={PIPELINE_DISTRIBUTION}
+                      data={pipelineDistribution}
                       cx="50%"
                       cy="50%"
                       innerRadius={60}
@@ -272,11 +308,11 @@ export default function DashboardPage() {
                       paddingAngle={4}
                       dataKey="value"
                     >
-                      {PIPELINE_DISTRIBUTION.map((entry, index) => (
+                      {pipelineDistribution.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
-                    <RechartsTooltip formatter={(val: number) => [`${val.toLocaleString('fr-FR')} €`, 'Valeur']} />
+                    <RechartsTooltip formatter={(val: number) => [val, 'Demandes']} />
                     <Legend iconSize={8} layout="horizontal" verticalAlign="bottom" />
                   </PieChart>
                 </ResponsiveContainer>
@@ -354,38 +390,9 @@ export default function DashboardPage() {
                   </TableRow>
                 ))
               ) : (
-                /* Fallback mock display if DB empty */
-                [
-                  { id: 'm1', title: 'Rénovation Haussmannien 110m²', client: 'A. de Saint-Germain', status: 'En cours', progress: 65 },
-                  { id: 'm2', title: 'Extension & Verrière Boulogne', client: 'F. & M. Morel', status: 'En cours', progress: 40 },
-                  { id: 'm3', title: 'Loft 85m² Bas-Montreuil', client: 'J. Roche', status: 'Planification', progress: 15 },
-                  { id: 'm4', title: 'Appartement Bourgeois Neuilly', client: 'E. Vasseur', status: 'En cours', progress: 85 },
-                  { id: 'm5', title: 'Suite Parentale & SDB Vincennes', client: 'M. Lambert', status: 'Terminé', progress: 100 },
-                ].map((project) => (
-                  <TableRow key={project.id} className="border-slate-100 dark:border-slate-800">
-                    <TableCell>
-                      <div className="font-bold text-slate-900 dark:text-white">{project.title}</div>
-                      <div className="text-xs text-slate-500 sm:hidden">{project.client}</div>
-                    </TableCell>
-                    <TableCell className="hidden sm:table-cell text-slate-600 dark:text-slate-300 font-medium">{project.client}</TableCell>
-                    <TableCell className="hidden sm:table-cell">
-                      <Badge variant={getStatusBadgeVariant(project.status)}>
-                        {project.status}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      <div className="flex items-center gap-2 max-w-xs">
-                        <Progress value={project.progress} className="h-2" />
-                        <span className="text-xs font-bold text-slate-700 dark:text-slate-300">{project.progress}%</span>
-                      </div>
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <Button variant="ghost" size="sm" onClick={() => router.push('/dashboard/chantiers')} className="text-xs text-amber-700 font-bold">
-                        Gérer →
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))
+                <TableRow>
+                  <TableCell colSpan={5} className="h-24 text-center text-slate-500">Aucun chantier enregistré pour le moment.</TableCell>
+                </TableRow>
               )}
             </TableBody>
           </Table>
