@@ -67,8 +67,11 @@ export default function MentionsLegalesPage() {
                   <p><strong>Dénomination sociale :</strong> {COMPANY.legalName} (ERG)</p>
                   <p><strong>Nom commercial :</strong> {COMPANY.name}</p>
                   <p><strong>Forme juridique :</strong> {COMPANY.legalForm}</p>
+                  {COMPANY.shareCapital && <p><strong>Capital social :</strong> {COMPANY.shareCapital}</p>}
+                  <p><strong>Immatriculation :</strong> {COMPANY.rcs}</p>
                   <p><strong>SIREN :</strong> {COMPANY.siren}</p>
                   <p><strong>SIRET du siège :</strong> {COMPANY.siret}</p>
+                  {COMPANY.vatNumber && <p><strong>N° de TVA intracommunautaire :</strong> {COMPANY.vatNumber}</p>}
                   <p><strong>Siège social :</strong> {COMPANY.address}, France</p>
                   <p><a href={COMPANY.registryUrl} className="text-amber-700 hover:underline">Consulter la fiche officielle dans l’Annuaire des entreprises</a></p>
                   <p><strong>Téléphone direct :</strong> <a href="tel:+33699961375" className="text-amber-700 font-bold hover:underline">06 99 96 13 75</a></p>

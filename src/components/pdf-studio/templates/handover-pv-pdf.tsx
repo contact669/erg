@@ -5,6 +5,7 @@ import { HandoverPVData } from "../pdf-types";
 import { Button } from "@/components/ui/button";
 import { Printer, ShieldCheck, CheckCircle2, AlertCircle, FileCheck, Download } from "lucide-react";
 import { downloadElementAsPdf } from "@/lib/generate-pdf";
+import { COMPANY, companyLegalLine } from "@/lib/company";
 
 interface HandoverPvPdfProps {
   data: HandoverPVData;
@@ -231,7 +232,7 @@ export function HandoverPvPdf({ data, onEditRequested }: HandoverPvPdfProps) {
 
         {/* FOOTER */}
         <div className="text-center text-[10px] text-slate-500 border-t border-slate-200 pt-3 font-medium">
-          ERG Rénovation — RCS PARIS 818 676 652 — 1 sentier de la Pointe 75020 PARIS — Procès-Verbal Officiel de Réception
+          {COMPANY.name} — {companyLegalLine()} — {COMPANY.address} — Procès-Verbal Officiel de Réception
         </div>
       </div>
     </div>

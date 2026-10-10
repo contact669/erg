@@ -20,8 +20,21 @@ export const COMPANY = {
   iban: null as string | null,
   bic: null as string | null,
   certifications: [] as string[], // e.g. ["RGE Qualibat n° …"], only if currently valid
-  vatNumber: null as string | null, // n° de TVA intracommunautaire (FR.. ..), shown on invoices once filled
+  // Checked on 10 October 2026: VAT number valid in the EU VIES database; capital as published in the registry.
+  rcs: "RCS Paris 818 676 652",
+  shareCapital: "1 500 €" as string | null,
+  vatNumber: "FR56818676652" as string | null,
   // Payment conditions printed on every invoice.
   paymentDays: 30,
   latePenalty: "trois fois le taux d'intérêt légal en vigueur",
 } as const;
+
+/** One-line legal identity required on quotes, invoices and other business documents. */
+export function companyLegalLine(): string {
+  return [
+    COMPANY.shareCapital ? `SAS au capital de ${COMPANY.shareCapital}` : "SAS",
+    COMPANY.rcs,
+    `SIRET ${COMPANY.siret}`,
+    COMPANY.vatNumber ? `TVA ${COMPANY.vatNumber}` : null,
+  ].filter(Boolean).join(" — ");
+}

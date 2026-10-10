@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
-import { COMPANY } from "@/lib/company";
+import { COMPANY, companyLegalLine } from "@/lib/company";
 import { escapeHtml } from "@/lib/escape-html";
 import { isAdminRequest } from "@/lib/server/require-admin";
 
@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
   const attachmentName = `${(pdfFileName || `${documentType}_${documentNumber}`).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w.-]+/g, "_").replace(/_+/g, "_")}.pdf`;
   const legalLine = [
     `${COMPANY.name} (${COMPANY.legalName}) — ${COMPANY.address}`,
-    `SIRET ${COMPANY.siret}`,
+    companyLegalLine(),
     COMPANY.decennale ? `Assurance décennale : ${COMPANY.decennale}` : null,
   ].filter(Boolean).map(line => escapeHtml(line as string)).join("<br/>");
 

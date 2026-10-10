@@ -1,6 +1,6 @@
 "use client";
 
-import { COMPANY } from "@/lib/company";
+import { COMPANY, companyLegalLine } from "@/lib/company";
 import { INVOICE_KIND_LABELS, type InvoiceData } from "@/lib/crm/invoices";
 import type { TvaRate } from "@/components/quote-editor/quote-types";
 
@@ -40,8 +40,7 @@ export function InvoicePreview({ invoice }: { invoice: InvoiceData }) {
             <br />
             Tél : {COMPANY.phoneLabel} — {COMPANY.email}
             <br />
-            SIREN {COMPANY.siren} — SIRET {COMPANY.siret}
-            {COMPANY.vatNumber && <> — TVA intracom. {COMPANY.vatNumber}</>}
+            {companyLegalLine()}
           </p>
         </div>
         <div className="text-right space-y-2 shrink-0">
@@ -250,7 +249,7 @@ export function InvoicePreview({ invoice }: { invoice: InvoiceData }) {
       )}
 
       <div className="text-center text-[10px] text-slate-500 border-t border-slate-200 pt-3">
-        {COMPANY.name} — {COMPANY.legalName} — {COMPANY.legalForm} — SIRET {COMPANY.siret} — {COMPANY.address} — {COMPANY.siteUrl.replace("https://", "")}
+        {COMPANY.name} — {COMPANY.legalName} — {companyLegalLine()} — {COMPANY.address} — {COMPANY.siteUrl.replace("https://", "")}
       </div>
     </div>
   );

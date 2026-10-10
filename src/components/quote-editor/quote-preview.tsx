@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Printer, ShieldCheck, Download, Award, FileText, CheckCircle2, Building } from "lucide-react";
 
 import { downloadElementAsPdf } from "@/lib/generate-pdf";
-import { COMPANY } from "@/lib/company";
+import { COMPANY, companyLegalLine } from "@/lib/company";
 
 interface QuotePreviewProps {
   quote: QuoteData;
@@ -105,7 +105,7 @@ export function QuotePreview({ quote, onEditRequested }: QuotePreviewProps) {
               <strong className="text-slate-900 font-bold">ERG Rénovation</strong> — Entreprise Générale de Rénovation<br />
               1 sentier de la Pointe, 75020 PARIS<br />
               Tél : 06 99 96 13 75 / 09 80 93 84 18 — Email : contact@erg-renovation.fr<br />
-              RCS PARIS 818 676 652 — SIRET : 818 676 652 00014 — Site : www.erg-renovation.fr
+              {companyLegalLine()} — Site : www.erg-renovation.fr
             </p>
 
             {/* Quality Badges */}
@@ -332,7 +332,7 @@ export function QuotePreview({ quote, onEditRequested }: QuotePreviewProps) {
 
         {/* FOOTER */}
         <div className="text-center text-[10px] text-slate-500 border-t border-slate-200 pt-3 font-medium">
-          ERG Rénovation — RCS PARIS 818 676 652 — 1 sentier de la Pointe 75020 PARIS — Tél: 06 99 96 13 75 — www.erg-renovation.fr
+          {COMPANY.name} ({COMPANY.legalName}) — {companyLegalLine()} — {COMPANY.address} — Tél : {COMPANY.phoneLabel}
         </div>
       </div>
     </div>
