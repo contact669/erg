@@ -162,11 +162,36 @@ const { findOrCreateClient } = mod.exports;
   assert.match(reminderEmail(base, 3, '2026-10-11').message, /40 €[\s\S]*pénalités|pénalités[\s\S]*40 €/);
   assert.match(reminderEmail(base, 2, '2026-10-11').message, /10 jours/);
 
+  // Accountant export.
+  const exportFile = path.resolve('src/lib/crm/accounting-export.ts');
+  const exportMod = new Module(exportFile, module);
+  exportMod.filename = exportFile;
+  exportMod._compile(ts.transpileModule(fs.readFileSync(exportFile, 'utf8'), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
+  }).outputText, exportFile);
+  const { invoicesCsv, paymentsCsv } = exportMod.exports;
+  const docs2 = [
+    { number: 'F00308', kind: 'solde', date: '2026-10-20', dueDate: '2026-11-19', clientName: 'SCI "Wagner"; Trav', totalHT: 100, totalTVA55: 0, totalTVA10: 10, totalTVA20: 0, totalTTC: 110, paid: 0, restant: 110, payments: [] },
+    { number: 'F00307', kind: 'acompte', date: '2026-10-05', dueDate: '2026-11-04', clientName: 'Cabinet Citya', totalHT: 1000.5, totalTVA55: 0, totalTVA10: 100.05, totalTVA20: 0, totalTTC: 1100.55, paid: 1100.55, restant: 0, payments: [{ date: '2026-10-12', amount: 600 }, { date: '2026-11-02', amount: 500.55 }] },
+    { number: 'AV-2026-00001', kind: 'avoir', date: '2026-10-25', invoiceNumber: 'F00308', clientName: 'SCI Wagner', totalHT: -50, totalTVA55: 0, totalTVA10: -5, totalTVA20: 0, totalTTC: -55, paid: 0, restant: 0 },
+    { number: 'F00306', kind: 'totale', date: '2026-09-30', clientName: 'Hors période', totalHT: 1, totalTVA55: 0, totalTVA10: 0.1, totalTVA20: 0, totalTTC: 1.1 },
+  ];
+  const csv = invoicesCsv(docs2, '2026-10-01', '2026-10-31');
+  assert.ok(csv.startsWith('\uFEFF'), 'BOM so Excel reads accents');
+  const lines = csv.trim().split('\r\n');
+  assert.equal(lines.length, 5, 'Header, 3 documents in the period, totals');
+  assert.match(lines[1], /^05\/10\/2026;F00307;Facture d'acompte;Cabinet Citya;/);
+  assert.match(lines[2], /"SCI ""Wagner""; Trav"/, 'Quotes and semicolons are escaped');
+  assert.match(lines[3], /AV-2026-00001;Avoir;.*;F00308;-50,00;0,00;-5,00;0,00;-55,00/);
+  assert.match(lines[4], /^TOTAL;3 document\(s\);;;;;1050,50;0,00;105,05;0,00;1155,55;/);
+  const pay = paymentsCsv(docs2, '2026-10-01', '2026-10-31').trim().split('\r\n');
+  assert.deepEqual(pay.slice(1), ['12/10/2026;F00307;05/10/2026;Cabinet Citya;600,00', 'TOTAL;1 paiement(s);;;600,00'], 'Payments filtered by payment date');
+
   // firestore.rules must allow every field the CRM changes on an issued invoice, and nothing else.
   const rules = fs.readFileSync(path.resolve('firestore.rules'), 'utf8');
   const allowed = JSON.parse(rules.match(/match \/factures\/\{id\}[\s\S]*?hasOnly\((\[[^\]]*\])/)[1].replace(/'/g, '"'));
   const written = ['payments', 'paid', 'credited', 'creditNoteIds', 'reminders', 'updatedAt', ...Object.keys(invoiceBalance(1, 0, 0))];
   assert.deepEqual([...new Set(written)].sort(), [...allowed].sort());
   assert.match(rules, /match \/factures\/\{id\}[\s\S]*?allow delete: if false;/);
-  console.log('CRM client checks passed: email normalised, duplicates merged, existing details kept, quote, invoice and credit note numbers sequential, invoices add up to the quote, credit notes reduce what is left to pay, reminders escalate from courteous to formal notice, invoice rules match the CRM writes.');
+  console.log('CRM client checks passed: email normalised, duplicates merged, existing details kept, quote, invoice and credit note numbers sequential, invoices add up to the quote, credit notes reduce what is left to pay, reminders escalate from courteous to formal notice, accountant export totals and escaping, invoice rules match the CRM writes.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

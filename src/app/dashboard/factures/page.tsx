@@ -14,6 +14,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { displayStatus } from '@/lib/crm/invoices';
+import { AccountingExportDialog } from '@/components/invoice/accounting-export-dialog';
 
 function getStatusBadgeVariant(status: string) {
     switch (status) {
@@ -78,6 +79,7 @@ export default function FacturesPage() {
                     </p>
                 </div>
                 <div className="flex items-center space-x-2">
+                    <AccountingExportDialog invoices={factures} />
                     <Button onClick={() => router.push('/dashboard/devis?status=Accepté')} className="bg-amber-600 hover:bg-amber-500 font-bold" title="Une facture se crée depuis un devis : menu Actions > Émettre une facture">
                         <PlusCircle className="mr-2 h-4 w-4" />
                         Facturer un devis
