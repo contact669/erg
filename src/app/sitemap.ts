@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { services, allProjects, blogPosts, localLandingPages, AREAS } from '@/lib/data';
 import { SUBURBS_DATA } from '@/lib/seo/suburbs-data';
+import { PARIS_ARRONDISSEMENTS } from '@/lib/seo/paris-arrondissements';
 
 const SITE_URL = 'https://erg-renovation.fr';
 
@@ -63,7 +64,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Combine and remove duplicates just in case
   const allUrls = [
       ...Object.values(SUBURBS_DATA).map(city => ({ url: `${SITE_URL}/renovation-${city.slug}`, priority: 0.7 })),
-      ...Array.from({ length: 20 }, (_, index) => ({ url: `${SITE_URL}/renovation-paris/paris-${index + 1}`, priority: 0.7 })),
+      ...Object.keys(PARIS_ARRONDISSEMENTS).map((slug) => ({ url: `${SITE_URL}/renovation-paris/${slug}`, priority: 0.7 })),
       ...staticPages,
       ...servicePages,
       ...projectPages,
