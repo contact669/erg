@@ -192,6 +192,11 @@ export default function SiteFooter() {
                   Peinture & Finitions
                 </FooterLink>
               </li>
+              <li>
+                <FooterLink href="/travaux-copropriete-syndic">
+                  Syndics & Copropriétés
+                </FooterLink>
+              </li>
               <li className="pt-1">
                 <Link
                   href="/services"

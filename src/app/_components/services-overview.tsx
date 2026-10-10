@@ -147,6 +147,12 @@ export default function ServicesOverview() {
           <p className="text-xs font-medium text-slate-500">
             Devis détaillé gratuit • Visite sur site gratuite à Paris & Île-de-France (92, 93, 94)
           </p>
+          <p className="text-sm text-slate-600">
+            Syndic, gestionnaire ou SCI ?{" "}
+            <Link href="/travaux-copropriete-syndic" className="font-semibold text-amber-700 hover:underline">
+              Nos travaux de parties communes
+            </Link>
+          </p>
         </div>
       </div>
     </section>

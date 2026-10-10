@@ -38,6 +38,7 @@ const MANUAL_LABELS: Record<string, string> = {
   "mentions-legales": "Mentions légales",
   connexion: "Connexion",
   "plan-du-site": "Plan du site",
+  "travaux-copropriete-syndic": "Travaux de copropriété",
   "renovation-appartement": "Rénovation appartement",
   "renovation-maison": "Rénovation maison",
   "renovation-salle-de-bain": "Rénovation salle de bain",

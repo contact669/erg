@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/blog',
     '/contact',
     '/devis',
+    '/travaux-copropriete-syndic',
     '/mentions-legales',
     '/confidentialite',
     '/cookies',

@@ -403,6 +403,12 @@ export default function ServicesPage() {
                     <p className="mt-4 text-xs text-muted-foreground">
                       Conseil : indiquez votre ville + le type de rénovation (appartement, SDB, cuisine) pour une réponse plus rapide.
                     </p>
+                    <p className="mt-2 text-xs text-muted-foreground">
+                      Syndics et copropriétés :{" "}
+                      <Link href="/travaux-copropriete-syndic" className="font-semibold text-amber-700 hover:underline">
+                        travaux de parties communes
+                      </Link>
+                    </p>
                   </CardContent>
                 </Card>
               </div>
