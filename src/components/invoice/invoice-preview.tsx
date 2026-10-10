@@ -13,7 +13,8 @@ const tvaKey = { 5.5: "totalTVA55", 10: "totalTVA10", 20: "totalTVA20" } as cons
 
 /** A4 rendering of an issued invoice, read-only. */
 export function InvoicePreview({ invoice }: { invoice: InvoiceData }) {
-  const reducedVat = invoice.totalTVA55 > 0 || invoice.totalTVA10 > 0;
+  const isCreditNote = invoice.kind === "avoir";
+  const reducedVat = invoice.totalTVA55 !== 0 || invoice.totalTVA10 !== 0;
   const alreadyPaid = invoice.paid ?? 0;
 
   // HT per VAT rate on the quote, used to show the base of a deposit for each rate.
@@ -50,7 +51,13 @@ export function InvoicePreview({ invoice }: { invoice: InvoiceData }) {
           <p className="font-mono font-bold text-sm">N° {invoice.number}</p>
           <div className="text-slate-600 space-y-0.5">
             <p>Date d'émission : <strong className="text-slate-900">{frDate(invoice.date)}</strong></p>
-            <p>Date d'échéance : <strong className="text-slate-900">{frDate(invoice.dueDate)}</strong></p>
+            {isCreditNote ? (
+              <p>
+                Facture d'origine : <strong className="text-slate-900">{invoice.invoiceNumber}</strong> du {frDate(invoice.invoiceDate ?? "")}
+              </p>
+            ) : (
+              <p>Date d'échéance : <strong className="text-slate-900">{frDate(invoice.dueDate)}</strong></p>
+            )}
             <p>Devis de référence : <strong className="text-slate-900">{invoice.quoteNumber}</strong></p>
           </div>
         </div>
@@ -73,7 +80,26 @@ export function InvoicePreview({ invoice }: { invoice: InvoiceData }) {
       </div>
 
       {/* LINES */}
-      {invoice.kind === "acompte" ? (
+      {isCreditNote ? (
+        <table className="w-full border border-slate-200 rounded-xl overflow-hidden mb-6">
+          <thead>
+            <tr className="bg-slate-100 text-slate-600 uppercase text-[10px] tracking-wider text-left">
+              <th className="py-2.5 px-3">Désignation</th>
+              <th className="py-2.5 px-3 text-right">Montant TTC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="align-top">
+              <td className="py-2.5 px-3">
+                {invoice.creditType === "total" ? "Annulation" : "Annulation partielle"} de la facture N° {invoice.invoiceNumber} du{" "}
+                {frDate(invoice.invoiceDate ?? "")} (devis N° {invoice.quoteNumber})
+                {invoice.reason && <span className="block text-slate-600 whitespace-pre-wrap">Motif : {invoice.reason}</span>}
+              </td>
+              <td className="py-2.5 px-3 text-right font-mono font-bold">{euro(invoice.totalTTC)}</td>
+            </tr>
+          </tbody>
+        </table>
+      ) : invoice.kind === "acompte" ? (
         <table className="w-full border border-slate-200 rounded-xl overflow-hidden mb-6">
           <thead>
             <tr className="bg-slate-100 text-slate-600 uppercase text-[10px] tracking-wider text-left">
@@ -138,8 +164,10 @@ export function InvoicePreview({ invoice }: { invoice: InvoiceData }) {
               </div>
               {invoice.previous.map((previous) => (
                 <div key={previous.number} className="flex justify-between text-slate-600">
-                  <span>À déduire : facture d'acompte N° {previous.number} du {frDate(previous.date)}</span>
-                  <span className="font-mono">− {euro(previous.totalTTC)} TTC</span>
+                  <span>
+                    {previous.totalTTC < 0 ? "Avoir" : "À déduire : facture"} N° {previous.number} du {frDate(previous.date)}
+                  </span>
+                  <span className="font-mono">{euro(-previous.totalTTC)} TTC</span>
                 </div>
               ))}
             </div>
@@ -149,6 +177,15 @@ export function InvoicePreview({ invoice }: { invoice: InvoiceData }) {
 
       {/* TOTALS & CONDITIONS */}
       <div className="grid grid-cols-2 gap-6 my-6 break-inside-avoid">
+        {isCreditNote ? (
+          <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-1.5 text-[11px] text-slate-700 leading-relaxed">
+            <h4 className="font-extrabold text-amber-900 uppercase tracking-wider text-[10px]">Imputation de l'avoir</h4>
+            <p>
+              Cet avoir vient en déduction de la facture N° {invoice.invoiceNumber}. Toute somme déjà réglée au-delà du montant restant
+              dû sera remboursée au client ou imputée sur une prochaine facture.
+            </p>
+          </div>
+        ) : (
         <div className="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-1.5 text-[11px] text-slate-700 leading-relaxed">
           <h4 className="font-extrabold text-amber-900 uppercase tracking-wider text-[10px]">Conditions de règlement</h4>
           <p>Paiement à régler au plus tard le <strong>{frDate(invoice.dueDate)}</strong>, par virement ou chèque.</p>
@@ -162,6 +199,7 @@ export function InvoicePreview({ invoice }: { invoice: InvoiceData }) {
             </p>
           )}
         </div>
+        )}
 
         <div className="p-4 rounded-xl border border-slate-300 bg-white space-y-2">
           <div className="flex justify-between font-bold">
@@ -180,15 +218,21 @@ export function InvoicePreview({ invoice }: { invoice: InvoiceData }) {
             <span className="uppercase tracking-wider">Total TTC</span>
             <span className="font-mono">{euro(invoice.totalTTC)}</span>
           </div>
-          {alreadyPaid > 0 && (
+          {!isCreditNote && alreadyPaid > 0 && (
             <div className="flex justify-between text-slate-600">
               <span>Déjà réglé</span>
               <span className="font-mono">− {euro(alreadyPaid)}</span>
             </div>
           )}
+          {!isCreditNote && (invoice.credited ?? 0) > 0 && (
+            <div className="flex justify-between text-slate-600">
+              <span>Avoirs émis</span>
+              <span className="font-mono">− {euro(invoice.credited ?? 0)}</span>
+            </div>
+          )}
           <div className="p-3 bg-amber-50 rounded-lg border border-amber-300 flex justify-between items-center">
-            <span className="font-black uppercase tracking-wider">Net à payer</span>
-            <span className="font-mono text-xl font-black text-amber-900">{euro(invoice.restant)}</span>
+            <span className="font-black uppercase tracking-wider">{isCreditNote ? "Montant de l'avoir" : "Net à payer"}</span>
+            <span className="font-mono text-xl font-black text-amber-900">{euro(isCreditNote ? invoice.totalTTC : invoice.restant)}</span>
           </div>
         </div>
       </div>

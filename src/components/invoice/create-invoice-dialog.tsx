@@ -49,7 +49,9 @@ export function CreateInvoiceDialog({ quote, onClose }: CreateInvoiceDialogProps
     [quote],
   );
   const totals = fullQuote ? quoteAmounts(fullQuote) : null;
+  // Credit notes are stored with negative amounts, so this is the net amount invoiced.
   const invoicedTTC = previous.reduce((sum, invoice) => sum + (invoice.totalTTC || 0), 0);
+  const hasInvoiced = invoicedTTC > 0.005;
 
   const [kind, setKind] = useState<InvoiceKind>("acompte");
   const [percent, setPercent] = useState(30);
@@ -61,7 +63,7 @@ export function CreateInvoiceDialog({ quote, onClose }: CreateInvoiceDialogProps
   // Sensible default once the quote and its previous invoices are known.
   useEffect(() => {
     if (!quote || isLoading) return;
-    setKind(previous.length > 0 ? "solde" : "acompte");
+    setKind(hasInvoiced ? "solde" : "acompte");
     setPercent(quote.paymentTerms?.downPaymentPercent || 30);
     setDate(today());
     setDueDate(addDays(today(), COMPANY.paymentDays));
@@ -90,7 +92,7 @@ export function CreateInvoiceDialog({ quote, onClose }: CreateInvoiceDialogProps
     }
   };
 
-  const kinds: InvoiceKind[] = previous.length > 0 ? ["acompte", "solde"] : ["acompte", "totale"];
+  const kinds: InvoiceKind[] = hasInvoiced ? ["acompte", "solde"] : ["acompte", "totale"];
 
   return (
     <Dialog open={!!quote} onOpenChange={(open) => !open && onClose()}>
@@ -101,7 +103,7 @@ export function CreateInvoiceDialog({ quote, onClose }: CreateInvoiceDialogProps
           </DialogTitle>
           <DialogDescription className="text-xs">
             {fullQuote.clientName || "Client"} — devis de {euro(totals.totalTTC)} TTC
-            {previous.length > 0 && <>, déjà facturé : {euro(invoicedTTC)} TTC ({previous.map((p) => p.number).join(", ")})</>}
+            {previous.length > 0 && <>, déjà facturé (avoirs déduits) : {euro(invoicedTTC)} TTC ({previous.map((p) => p.number).join(", ")})</>}
           </DialogDescription>
         </DialogHeader>
 

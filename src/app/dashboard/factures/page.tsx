@@ -20,6 +20,8 @@ function getStatusBadgeVariant(status: string) {
         case 'Payée': return 'default';
         case 'Partiellement payée': return 'secondary';
         case 'Émise': return 'outline';
+        case 'Avoir': return 'outline';
+        case 'Annulée': return 'secondary';
         case 'En retard': return 'destructive';
         default: return 'default';
     }

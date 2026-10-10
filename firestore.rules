@@ -21,7 +21,15 @@ service cloud.firestore {
     match /clients/{document=**} { allow read, write: if isAdmin(); }
     match /projects/{document=**} { allow read, write: if isAdmin(); }
     match /quotes/{document=**} { allow read, write: if isAdmin(); }
-    match /factures/{document=**} { allow read, write: if isAdmin(); }
+    // Invoices and credit notes: amounts are frozen once issued and nothing is ever deleted
+    // (unbroken numbering). Only payments and credit-note totals change afterwards.
+    match /factures/{id} {
+      allow read, create: if isAdmin();
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(['payments', 'paid', 'restant', 'status', 'credited', 'creditNoteIds', 'updatedAt']);
+      allow delete: if false;
+    }
     
     // Anyone can create a mail document
     match /mail/{id} { allow create: if true; allow read, write: if false; }

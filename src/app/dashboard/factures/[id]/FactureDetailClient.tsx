@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { doc } from "firebase/firestore";
-import { ArrowLeft, Download, Euro, Loader2, Printer, Receipt, Send } from "lucide-react";
+import { ArrowLeft, Download, Euro, FileMinus, Loader2, Printer, Receipt, Send } from "lucide-react";
 
 import { useDoc, useFirestore, useMemoFirebase, useUser } from "@/firebase";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SendDocumentModal } from "@/components/pdf-studio/send-document-modal";
 import { INVOICE_PDF_CONTAINER_ID, InvoicePreview } from "@/components/invoice/invoice-preview";
+import { CreditNoteDialog } from "@/components/invoice/credit-note-dialog";
 import { INVOICE_KIND_LABELS, displayStatus, recordPayment, type InvoiceData } from "@/lib/crm/invoices";
 import { downloadElementAsPdf } from "@/lib/generate-pdf";
 
@@ -34,6 +35,7 @@ export default function FactureDetailClient() {
   const [paymentDate, setPaymentDate] = useState(today);
   const [isRecording, setIsRecording] = useState(false);
   const [paymentError, setPaymentError] = useState("");
+  const [isCreditOpen, setIsCreditOpen] = useState(false);
 
   useEffect(() => {
     if (!isUserLoading && !user) router.push("/connexion");
@@ -67,10 +69,12 @@ export default function FactureDetailClient() {
   }
 
   const status = displayStatus(invoice);
+  const isCreditNote = invoice.kind === "avoir";
+  const pdfName = `${isCreditNote ? "Avoir" : "Facture"}_ERG_${invoice.number}`;
 
   const handleDownload = async () => {
     setIsDownloading(true);
-    await downloadElementAsPdf(INVOICE_PDF_CONTAINER_ID, `Facture_ERG_${invoice.number}`);
+    await downloadElementAsPdf(INVOICE_PDF_CONTAINER_ID, pdfName);
     setIsDownloading(false);
   };
 
@@ -115,13 +119,27 @@ export default function FactureDetailClient() {
               <button className="underline" onClick={() => router.push(`/dashboard/devis/${invoice.quoteId}?mode=preview`)}>
                 {invoice.quoteNumber}
               </button>
+              {isCreditNote && invoice.invoiceId && (
+                <>
+                  {" "}— facture{" "}
+                  <button className="underline" onClick={() => router.push(`/dashboard/factures/${invoice.invoiceId}`)}>
+                    {invoice.invoiceNumber}
+                  </button>
+                </>
+              )}
+              {(invoice.creditNoteIds ?? []).length > 0 && <> — {invoice.creditNoteIds!.length} avoir(s) émis</>}
             </p>
           </div>
           <Badge variant={status === "Payée" ? "default" : status === "En retard" ? "destructive" : "outline"}>{status}</Badge>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          {invoice.restant > 0.005 && (
+          {!isCreditNote && status !== "Annulée" && (
+            <Button onClick={() => setIsCreditOpen(true)} size="sm" variant="outline" className="gap-1.5 font-semibold">
+              <FileMinus className="h-4 w-4" /> Émettre un avoir
+            </Button>
+          )}
+          {!isCreditNote && invoice.restant > 0.005 && (
             <Button onClick={openPayment} size="sm" variant="outline" className="gap-1.5 font-semibold">
               <Euro className="h-4 w-4" /> Enregistrer un paiement
             </Button>
@@ -159,6 +177,8 @@ export default function FactureDetailClient() {
       )}
 
       <InvoicePreview invoice={invoice} />
+
+      {!isCreditNote && <CreditNoteDialog invoice={invoice} isOpen={isCreditOpen} onClose={() => setIsCreditOpen(false)} />}
 
       <SendDocumentModal
         isOpen={isSendOpen}
