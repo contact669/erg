@@ -27,7 +27,7 @@ service cloud.firestore {
       allow read, create: if isAdmin();
       allow update: if isAdmin()
         && request.resource.data.diff(resource.data).affectedKeys()
-             .hasOnly(['payments', 'paid', 'restant', 'status', 'credited', 'creditNoteIds', 'updatedAt']);
+             .hasOnly(['payments', 'paid', 'restant', 'status', 'credited', 'creditNoteIds', 'reminders', 'updatedAt']);
       allow delete: if false;
     }
     

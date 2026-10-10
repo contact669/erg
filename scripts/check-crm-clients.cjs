@@ -135,11 +135,38 @@ const { findOrCreateClient } = mod.exports;
   assert.equal(invoiceError(quote, 'totale', 0, [deposit, cancelled]), null);
   assert.deepEqual(invoiceAmounts(quote, 'solde', 0, [deposit, partial]).totalTTC, 11400 - 3420 + 1000);
 
+  // Payment reminders.
+  const remindersFile = path.resolve('src/lib/crm/reminders.ts');
+  const remindersMod = new Module(remindersFile, module);
+  remindersMod.filename = remindersFile;
+  remindersMod.require = id => (id === 'firebase/firestore' ? firestoreStub : id === '@/lib/company' ? company.exports : originalRequire(id));
+  remindersMod._compile(ts.transpileModule(fs.readFileSync(remindersFile, 'utf8'), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
+  }).outputText, remindersFile);
+  const { isOverdue, overdueInvoices, nextReminderLevel, reminderEmail, daysBetween } = remindersMod.exports;
+  const base = { id: 'i1', number: 'F00307', date: '2026-09-01', dueDate: '2026-10-01', totalTTC: 1000, restant: 1000, status: 'Émise', clientName: 'SCI Test', clientEmail: 'a@b.fr' };
+  assert.equal(isOverdue(base, '2026-10-02'), true);
+  assert.equal(isOverdue(base, '2026-10-01'), false, 'Due date itself is not late');
+  assert.equal(isOverdue({ ...base, restant: 0, status: 'Payée' }, '2026-11-01'), false);
+  assert.equal(isOverdue({ ...base, status: 'Annulée', restant: 0 }, '2026-11-01'), false);
+  assert.equal(isOverdue({ ...base, kind: 'avoir', restant: 0 }, '2026-11-01'), false);
+  const list = overdueInvoices([base, { ...base, id: 'i2', dueDate: '2026-08-01' }, { ...base, id: 'i3', restant: 0, status: 'Payée' }], '2026-10-11');
+  assert.deepEqual(list.map(i => [i.id, i.daysLate]), [['i2', 71], ['i1', 10]], 'Oldest first');
+  assert.equal(daysBetween('2026-10-01', '2026-10-11'), 10);
+  assert.equal(nextReminderLevel(base), 1);
+  assert.equal(nextReminderLevel({ ...base, reminders: [{ date: '2026-10-05', level: 1, to: 'a@b.fr' }] }), 2);
+  assert.equal(nextReminderLevel({ ...base, reminders: [{ level: 1 }, { level: 2 }, { level: 3 }] }), 3, 'Stays at formal notice');
+  assert.match(reminderEmail(base, 1, '2026-10-11').message, /F00307/);
+  assert.doesNotMatch(reminderEmail(base, 1, '2026-10-11').message, /40 €/, 'First reminder stays courteous');
+  assert.match(reminderEmail(base, 3, '2026-10-11').subject, /Mise en demeure/);
+  assert.match(reminderEmail(base, 3, '2026-10-11').message, /40 €[\s\S]*pénalités|pénalités[\s\S]*40 €/);
+  assert.match(reminderEmail(base, 2, '2026-10-11').message, /10 jours/);
+
   // firestore.rules must allow every field the CRM changes on an issued invoice, and nothing else.
   const rules = fs.readFileSync(path.resolve('firestore.rules'), 'utf8');
   const allowed = JSON.parse(rules.match(/match \/factures\/\{id\}[\s\S]*?hasOnly\((\[[^\]]*\])/)[1].replace(/'/g, '"'));
-  const written = ['payments', 'paid', 'credited', 'creditNoteIds', 'updatedAt', ...Object.keys(invoiceBalance(1, 0, 0))];
+  const written = ['payments', 'paid', 'credited', 'creditNoteIds', 'reminders', 'updatedAt', ...Object.keys(invoiceBalance(1, 0, 0))];
   assert.deepEqual([...new Set(written)].sort(), [...allowed].sort());
   assert.match(rules, /match \/factures\/\{id\}[\s\S]*?allow delete: if false;/);
-  console.log('CRM client checks passed: email normalised, duplicates merged, existing details kept, quote, invoice and credit note numbers sequential, invoices add up to the quote, credit notes reduce what is left to pay, invoice rules match the CRM writes.');
+  console.log('CRM client checks passed: email normalised, duplicates merged, existing details kept, quote, invoice and credit note numbers sequential, invoices add up to the quote, credit notes reduce what is left to pay, reminders escalate from courteous to formal notice, invoice rules match the CRM writes.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

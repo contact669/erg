@@ -28,6 +28,11 @@ interface SendDocumentModalProps {
   defaultClientEmail?: string;
   /** Id of the rendered document on the page; when set, the PDF can be attached. */
   pdfElementId?: string;
+  /** Prefilled subject and message, e.g. for a payment reminder. */
+  defaultSubject?: string;
+  defaultMessage?: string;
+  /** Called once the email has been sent, with the recipient address. */
+  onSent?: (clientEmail: string) => void;
 }
 
 export function SendDocumentModal({
@@ -38,6 +43,9 @@ export function SendDocumentModal({
   defaultClientName = "",
   defaultClientEmail = "",
   pdfElementId,
+  defaultSubject,
+  defaultMessage,
+  onSent,
 }: SendDocumentModalProps) {
   const { user } = useUser();
   const [clientName, setClientName] = useState(defaultClientName);
@@ -55,14 +63,15 @@ export function SendDocumentModal({
   useEffect(() => {
     setClientName(defaultClientName);
     setClientEmail(defaultClientEmail);
-    setSubject(`[ERG Rénovation] Votre ${documentType} N° ${documentNumber}`);
+    setSubject(defaultSubject ?? `[ERG Rénovation] Votre ${documentType} N° ${documentNumber}`);
     setMessage(
+      defaultMessage ??
       `Bonjour ${defaultClientName || "Madame, Monsieur"},\n\nVeuillez trouver votre document ${documentType} N° ${documentNumber} édité par ERG Rénovation.\n\nRestant à votre entière disposition pour tout renseignement complémentaire.\n\nCordialement,\nL'équipe ERG Rénovation`
     );
     setAttachPdf(!!pdfElementId);
     setSendSuccess(false);
     setErrorMessage("");
-  }, [pdfElementId, documentType, documentNumber, defaultClientName, defaultClientEmail, isOpen]);
+  }, [pdfElementId, documentType, documentNumber, defaultClientName, defaultClientEmail, defaultSubject, defaultMessage, isOpen]);
 
   const handleSend = async () => {
     if (!clientEmail.trim()) {
@@ -109,6 +118,7 @@ export function SendDocumentModal({
 
       if (res.ok && data.success) {
         setSendSuccess(true);
+        onSent?.(clientEmail);
         setTimeout(() => {
           setSendSuccess(false);
           onClose();

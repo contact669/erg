@@ -32,7 +32,9 @@ import {
   ArrowUpRight,
   Clock,
   CheckCircle2,
+  BellRing,
 } from 'lucide-react';
+import { REMINDER_LABELS, lastReminder, nextReminderLevel, overdueInvoices } from '@/lib/crm/reminders';
 
 import {
   ResponsiveContainer,
@@ -130,6 +132,11 @@ export default function DashboardPage() {
     [firestore]
   );
   const { data: requests } = useCollection(requestsQuery);
+
+  const overdue = useMemo(
+    () => overdueInvoices((invoices ?? []) as any[], new Date().toISOString().split('T')[0]),
+    [invoices]
+  );
 
   const pendingQuotes = useMemo(() => (quotes ?? []).filter((q: any) => q.status === 'Envoyé'), [quotes]);
   const unpaidInvoices = useMemo(() => (invoices ?? []).filter((f: any) => f.status !== 'Payée' && (Number(f.restant ?? f.total) || 0) > 0), [invoices]);
@@ -252,6 +259,55 @@ export default function DashboardPage() {
           </Card>
         ))}
       </div>
+
+      {/* OVERDUE INVOICES: reminders are sent by hand, never automatically */}
+      {isClient && overdue.length > 0 && (
+        <Card className="rounded-2xl border-rose-200 dark:border-rose-900 shadow-xs bg-white dark:bg-slate-900">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base font-bold flex items-center gap-2">
+              <BellRing className="h-4 w-4 text-rose-600" /> Factures en retard ({overdue.length})
+            </CardTitle>
+            <CardDescription className="text-xs">
+              {euro(overdue.reduce((sum, invoice) => sum + (Number(invoice.restant) || 0), 0))} à encaisser, échéance dépassée.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Facture</TableHead>
+                  <TableHead>Client</TableHead>
+                  <TableHead className="text-right">Reste dû</TableHead>
+                  <TableHead className="hidden sm:table-cell text-right">Retard</TableHead>
+                  <TableHead className="hidden md:table-cell">Dernière relance</TableHead>
+                  <TableHead className="text-right">Action</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {overdue.slice(0, 8).map((invoice) => {
+                  const last = lastReminder(invoice);
+                  return (
+                    <TableRow key={invoice.id}>
+                      <TableCell className="font-mono font-medium">{invoice.number}</TableCell>
+                      <TableCell>{invoice.clientName}</TableCell>
+                      <TableCell className="text-right font-mono">{euro(invoice.restant)}</TableCell>
+                      <TableCell className="hidden sm:table-cell text-right">{invoice.daysLate} j</TableCell>
+                      <TableCell className="hidden md:table-cell text-xs text-slate-500">
+                        {last ? `${REMINDER_LABELS[last.level]} le ${new Date(`${last.date}T12:00:00`).toLocaleDateString('fr-FR')}` : 'Aucune'}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <Button size="sm" onClick={() => router.push(`/dashboard/factures/${invoice.id}?relance=1`)} className="bg-rose-600 hover:bg-rose-500 text-white font-semibold">
+                          Relancer ({nextReminderLevel(invoice)})
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      )}
 
       {/* FINANCIAL & PIPELINE CHARTS SECTION */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">

@@ -2,6 +2,7 @@ import { arrayUnion, collection, doc, getDocs, serverTimestamp, updateDoc, write
 import type { QuoteData, QuoteLot } from '@/components/quote-editor/quote-types';
 import { nextNumberFrom, nextRunningNumber } from '@/lib/crm/numbering';
 import { COMPANY } from '@/lib/company';
+import type { InvoiceReminder } from '@/lib/crm/reminders';
 
 export type InvoiceKind = 'acompte' | 'solde' | 'totale' | 'avoir';
 export type InvoiceStatus = 'Émise' | 'Partiellement payée' | 'Payée' | 'Annulée' | 'Émis';
@@ -64,6 +65,8 @@ export interface InvoiceData extends InvoiceAmounts {
   invoiceDate?: string;
   creditType?: CreditType;
   reason?: string;
+  /** Payment reminders sent from the CRM. */
+  reminders?: InvoiceReminder[];
 }
 
 export const INVOICE_KIND_LABELS: Record<InvoiceKind, string> = {
