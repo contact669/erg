@@ -132,7 +132,7 @@ export default function DashboardPage() {
   const { data: requests } = useCollection(requestsQuery);
 
   const pendingQuotes = useMemo(() => (quotes ?? []).filter((q: any) => q.status === 'Envoyé'), [quotes]);
-  const unpaidInvoices = useMemo(() => (invoices ?? []).filter((f: any) => f.status === 'Envoyée'), [invoices]);
+  const unpaidInvoices = useMemo(() => (invoices ?? []).filter((f: any) => f.status !== 'Payée' && (Number(f.restant ?? f.total) || 0) > 0), [invoices]);
 
   // Invoiced amount per month over the last six months, from the factures collection.
   const monthlyRevenue = useMemo(() => {

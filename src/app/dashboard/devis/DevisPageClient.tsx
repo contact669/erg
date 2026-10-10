@@ -43,6 +43,7 @@ import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 
 import { SendDocumentModal } from "@/components/pdf-studio/send-document-modal";
+import { CreateInvoiceDialog } from "@/components/invoice/create-invoice-dialog";
 
 function getStatusBadgeVariant(status: string) {
   switch (status) {
@@ -82,7 +83,8 @@ export default function DevisPageClient() {
   const [isClientMounted, setIsClientMounted] = useState(false);
   const [viewMode, setViewMode] = useState<"table" | "grid">("table");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState<string>("TOUS");
+  const [selectedStatus, setSelectedStatus] = useState<string>(() => searchParams?.get("status") || "TOUS");
+  const [invoiceQuote, setInvoiceQuote] = useState<any>(null);
 
   const [sendModalDoc, setSendModalDoc] = useState<{
     isOpen: boolean;
@@ -425,8 +427,8 @@ export default function DevisPageClient() {
                                 <DropdownMenuItem onClick={() => handleStatusChange(item.id, "Accepté")}>
                                   Passer en "Accepté"
                                 </DropdownMenuItem>
-                                <DropdownMenuItem onClick={() => handleStatusChange(item.id, "Facturé")}>
-                                  Passer en "Facturé"
+                                <DropdownMenuItem onClick={() => setInvoiceQuote(item)}>
+                                  <Euro className="mr-2 h-4 w-4 text-amber-600" /> Émettre une facture
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem
@@ -499,6 +501,8 @@ export default function DevisPageClient() {
           ))}
         </div>
       )}
+
+      <CreateInvoiceDialog quote={invoiceQuote} onClose={() => setInvoiceQuote(null)} />
 
       {/* EMAIL TRANSMISSION MODAL */}
       <SendDocumentModal

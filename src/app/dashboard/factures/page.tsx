@@ -13,12 +13,13 @@ import { PlusCircle, MoreHorizontal, ArrowUpDown } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuLabel } from '@/components/ui/dropdown-menu';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
+import { displayStatus } from '@/lib/crm/invoices';
 
 function getStatusBadgeVariant(status: string) {
     switch (status) {
         case 'Payée': return 'default';
-        case 'Partiellement Payée': return 'secondary';
-        case 'Envoyée': return 'outline';
+        case 'Partiellement payée': return 'secondary';
+        case 'Émise': return 'outline';
         case 'En retard': return 'destructive';
         default: return 'default';
     }
@@ -75,9 +76,9 @@ export default function FacturesPage() {
                     </p>
                 </div>
                 <div className="flex items-center space-x-2">
-                    <Button onClick={() => router.push('/dashboard/documents?type=facture')} className="bg-amber-600 hover:bg-amber-500 font-bold">
+                    <Button onClick={() => router.push('/dashboard/devis?status=Accepté')} className="bg-amber-600 hover:bg-amber-500 font-bold" title="Une facture se crée depuis un devis : menu Actions > Émettre une facture">
                         <PlusCircle className="mr-2 h-4 w-4" />
-                        Générer Facture PDF
+                        Facturer un devis
                     </Button>
                 </div>
             </div>
@@ -86,7 +87,7 @@ export default function FacturesPage() {
                  <CardHeader>
                     <CardTitle>Liste des factures</CardTitle>
                     <CardDescription>
-                        Retrouvez ici toutes vos factures, des acomptes aux soldes.
+                        Toutes vos factures, des acomptes aux soldes. Une facture se crée depuis un devis et ne se modifie plus une fois émise.
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -117,10 +118,11 @@ export default function FacturesPage() {
                             )}
                             {isClient && factures.map((item: any) => {
                               const date = toDateSafe(item.date);
+                              const status = displayStatus(item);
                               return (
-                                <TableRow key={item.id}>
+                                <TableRow key={item.id} className="cursor-pointer" onClick={() => router.push(`/dashboard/factures/${item.id}`)}>
                                     <TableCell>
-                                        <div className="font-medium">{item.id}</div>
+                                        <div className="font-mono font-medium">{item.number || item.id}</div>
                                         <div className="text-sm text-muted-foreground sm:hidden">{item.clientName}</div>
                                     </TableCell>
                                     <TableCell>
@@ -137,11 +139,11 @@ export default function FacturesPage() {
                                         {new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(item.restant)}
                                     </TableCell>
                                      <TableCell className="hidden sm:table-cell">
-                                        <Badge variant={getStatusBadgeVariant(item.status)}>
-                                            {item.status}
+                                        <Badge variant={getStatusBadgeVariant(status)}>
+                                            {status}
                                         </Badge>
                                     </TableCell>
-                                    <TableCell className="text-right">
+                                    <TableCell className="text-right" onClick={(e) => e.stopPropagation()}>
                                         <DropdownMenu>
                                             <DropdownMenuTrigger asChild>
                                                 <Button aria-haspopup="true" size="icon" variant="ghost">
@@ -151,11 +153,11 @@ export default function FacturesPage() {
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end">
                                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                                <DropdownMenuItem onClick={() => router.push('/dashboard/documents?type=facture')}>
-                                                    Voir / Télécharger PDF A4
+                                                <DropdownMenuItem onClick={() => router.push(`/dashboard/factures/${item.id}`)}>
+                                                    Voir, télécharger ou envoyer
                                                 </DropdownMenuItem>
-                                                <DropdownMenuItem onClick={() => router.push('/dashboard/documents?type=facture')}>
-                                                    Enregistrer un paiement
+                                                <DropdownMenuItem onClick={() => router.push(`/dashboard/devis/${item.quoteId}?mode=preview`)} disabled={!item.quoteId}>
+                                                    Voir le devis
                                                 </DropdownMenuItem>
                                             </DropdownMenuContent>
                                         </DropdownMenu>

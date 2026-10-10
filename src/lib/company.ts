@@ -20,4 +20,8 @@ export const COMPANY = {
   iban: null as string | null,
   bic: null as string | null,
   certifications: [] as string[], // e.g. ["RGE Qualibat n° …"], only if currently valid
+  vatNumber: null as string | null, // n° de TVA intracommunautaire (FR.. ..), shown on invoices once filled
+  // Payment conditions printed on every invoice.
+  paymentDays: 30,
+  latePenalty: "trois fois le taux d'intérêt légal en vigueur",
 } as const;

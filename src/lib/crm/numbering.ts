@@ -20,3 +20,9 @@ export async function nextQuoteNumber(firestore: Firestore, date = new Date()): 
   const snapshot = await getDocs(collection(firestore, 'quotes'));
   return nextNumberFrom(snapshot.docs.map((d) => d.get('number')), 'DEV', date.getFullYear());
 }
+
+// Invoices share one unbroken yearly series (deposits included), as required for French invoices.
+export async function nextInvoiceNumber(firestore: Firestore, date = new Date()): Promise<string> {
+  const snapshot = await getDocs(collection(firestore, 'factures'));
+  return nextNumberFrom(snapshot.docs.map((d) => d.get('number')), 'FAC', date.getFullYear());
+}

@@ -58,5 +58,42 @@ const { findOrCreateClient } = mod.exports;
   assert.equal(nextNumberFrom([], 'DEV', 2026), 'DEV-2026-00001');
   assert.equal(nextNumberFrom(['DEV-2026-00007', 'DEV-2026-4821', undefined, 'DEV-2025-00090', 'DEV-2026-00003'], 'DEV', 2026), 'DEV-2026-00008',
     'Old random numbers and other years are ignored');
-  console.log('CRM client checks passed: email normalised, duplicates merged, existing details kept, quote numbers sequential.');
+  assert.equal(nextNumberFrom(['FAC-2026-00001', 'FAC-2026-00002'], 'FAC', 2026), 'FAC-2026-00003', 'Deposits and balances share one series');
+
+  const invoicesFile = path.resolve('src/lib/crm/invoices.ts');
+  const invoicesMod = new Module(invoicesFile, module);
+  invoicesMod.filename = invoicesFile;
+  invoicesMod.paths = Module._nodeModulePaths(path.dirname(invoicesFile));
+  invoicesMod.require = id => (id === 'firebase/firestore' ? firestoreStub : id === '@/lib/crm/numbering' ? numbering.exports : originalRequire(id));
+  invoicesMod._compile(ts.transpileModule(fs.readFileSync(invoicesFile, 'utf8'), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
+  }).outputText, invoicesFile);
+  const { invoiceAmounts, invoiceError, quoteAmounts, paymentStatus, displayStatus, addDays } = invoicesMod.exports;
+
+  // Quote: 10 000 € HT at 10 % and 333,33 € HT at 20 %.
+  const quote = quoteAmounts({ totalHT: 10333.33, totalTVA55: 0, totalTVA10: 1000, totalTVA20: 66.67 });
+  assert.equal(quote.totalTTC, 11400);
+  const deposit = invoiceAmounts(quote, 'acompte', 30, []);
+  assert.deepEqual(deposit, { totalHT: 3100, totalTVA55: 0, totalTVA10: 300, totalTVA20: 20, totalTTC: 3420 });
+  const second = invoiceAmounts(quote, 'acompte', 40, [deposit]);
+  const balance = invoiceAmounts(quote, 'solde', 0, [deposit, second]);
+  const sum = key => Math.round((deposit[key] + second[key] + balance[key]) * 100) / 100;
+  for (const key of ['totalHT', 'totalTVA10', 'totalTVA20', 'totalTTC']) assert.equal(sum(key), quote[key], `Invoices add up to the quote (${key})`);
+  assert.equal(balance.totalTTC, 3420);
+  assert.deepEqual(invoiceAmounts(quote, 'totale', 0, []), quote);
+
+  assert.equal(invoiceError(quote, 'acompte', 30, []), null);
+  assert.match(invoiceError(quote, 'acompte', 0, []), /pourcentage/);
+  assert.match(invoiceError(quote, 'acompte', 80, [deposit]), /solde/, 'A deposit cannot exceed what is left');
+  assert.match(invoiceError(quote, 'solde', 0, []), /totale/);
+  assert.match(invoiceError(quote, 'totale', 0, [deposit]), /solde/);
+  assert.match(invoiceError(quote, 'solde', 0, [quote]), /entièrement/);
+
+  assert.equal(paymentStatus(3420, 0), 'Émise');
+  assert.equal(paymentStatus(3420, 1000), 'Partiellement payée');
+  assert.equal(paymentStatus(3420, 3420), 'Payée');
+  assert.equal(displayStatus({ status: 'Émise', restant: 3420, dueDate: '2026-01-31' }, '2026-02-01'), 'En retard');
+  assert.equal(displayStatus({ status: 'Payée', restant: 0, dueDate: '2026-01-31' }, '2026-02-01'), 'Payée');
+  assert.equal(addDays('2026-01-31', 30), '2026-03-02');
+  console.log('CRM client checks passed: email normalised, duplicates merged, existing details kept, quote and invoice numbers sequential, invoices add up to the quote.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

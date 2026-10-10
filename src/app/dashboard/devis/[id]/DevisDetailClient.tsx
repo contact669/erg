@@ -12,7 +12,8 @@ import { QuoteBuilder } from "@/components/quote-editor/quote-builder";
 import { QuotePreview } from "@/components/quote-editor/quote-preview";
 import { QuoteData } from "@/components/quote-editor/quote-types";
 import { createEmptyQuote, recalculateQuote } from "@/components/quote-editor/quote-helpers";
-import { ArrowLeft, Save, Eye, Edit3, CheckCircle, FileText } from "lucide-react";
+import { ArrowLeft, Save, Eye, Edit3, CheckCircle, FileText, Receipt } from "lucide-react";
+import { CreateInvoiceDialog } from "@/components/invoice/create-invoice-dialog";
 
 export default function DevisDetailClient() {
   const router = useRouter();
@@ -28,6 +29,7 @@ export default function DevisDetailClient() {
   const [localQuote, setLocalQuote] = useState<QuoteData | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const [isInvoiceOpen, setIsInvoiceOpen] = useState(false);
 
   useEffect(() => {
     if (!isUserLoading && !user) router.push("/connexion");
@@ -174,6 +176,12 @@ export default function DevisDetailClient() {
             </button>
           </div>
 
+          {quoteDoc && (
+            <Button variant="outline" onClick={() => setIsInvoiceOpen(true)} className="gap-2 font-semibold">
+              <Receipt className="h-4 w-4 text-amber-600" /> Facturer
+            </Button>
+          )}
+
           {/* SAVE BUTTON */}
           <Button
             onClick={handleSave}
@@ -199,6 +207,12 @@ export default function DevisDetailClient() {
       ) : (
         <QuotePreview quote={currentQuote} onEditRequested={() => setActiveTab("edit")} />
       )}
+
+      <CreateInvoiceDialog
+        // The saved version is invoiced, not unsaved edits.
+        quote={isInvoiceOpen && quoteDoc ? { ...quoteDoc, id: quoteDoc.id } : null}
+        onClose={() => setIsInvoiceOpen(false)}
+      />
     </div>
   );
 }

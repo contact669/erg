@@ -33,6 +33,7 @@ import {
 } from "lucide-react";
 
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 import { SendDocumentModal } from "./send-document-modal";
 import { Send, Download } from "lucide-react";
@@ -84,9 +85,6 @@ export function PdfDocumentCenter() {
     if (docType === "DEVIS") {
       targetId = "quote-pdf-container";
       filename = `Devis_ERG_${quoteData.number || "DEV-2026-004"}`;
-    } else if (docType === "FACTURE") {
-      targetId = "quote-pdf-container";
-      filename = `Facture_ERG_${quoteData.number || "FAC-2026-001"}`;
     } else if (docType === "SUIVI_CHANTIER") {
       targetId = "site-report-pdf-container";
       filename = `Suivi_Chantier_ERG_${siteReportData.reportNumber || "RAP-2026-003"}`;
@@ -101,7 +99,6 @@ export function PdfDocumentCenter() {
 
   const sendInfo = (() => {
     if (docType === "DEVIS") return { typeLabel: "Devis Officiel BTP", docNum: quoteData.number || "DEV-2026-004", clientName: quoteData.clientName, clientEmail: quoteData.clientEmail };
-    if (docType === "FACTURE") return { typeLabel: "Facture d'Acompte / Travaux", docNum: quoteData.number || "FAC-2026-001", clientName: quoteData.clientName, clientEmail: quoteData.clientEmail };
     if (docType === "SUIVI_CHANTIER") return { typeLabel: "Rapport de Suivi de Chantier", docNum: siteReportData.reportNumber || "RAP-2026-003", clientName: siteReportData.clientName, clientEmail: "" };
     return { typeLabel: "Procès-Verbal de Réception", docNum: pvData.pvNumber || "PV-2026-001", clientName: pvData.clientName, clientEmail: "" };
   })();
@@ -212,11 +209,11 @@ export function PdfDocumentCenter() {
             </button>
           </div>
 
-          <Button onClick={handleDownloadPdf} disabled={isDownloading} size="sm" className="gap-1.5 font-bold bg-amber-600 hover:bg-amber-500 text-white shadow-sm">
+          <Button onClick={handleDownloadPdf} disabled={isDownloading || docType === "FACTURE"} size="sm" className="gap-1.5 font-bold bg-amber-600 hover:bg-amber-500 text-white shadow-sm">
             <Download className="h-4 w-4" /> {isDownloading ? "Génération PDF..." : "Télécharger PDF Direct (1-Clic)"}
           </Button>
 
-          <Button onClick={() => setIsSendModalOpen(true)} size="sm" className="gap-1.5 font-bold bg-amber-600 hover:bg-amber-500 text-white">
+          <Button onClick={() => setIsSendModalOpen(true)} disabled={docType === "FACTURE"} size="sm" className="gap-1.5 font-bold bg-amber-600 hover:bg-amber-500 text-white">
             <Send className="h-4 w-4" /> Envoyer par Email
           </Button>
 
@@ -227,7 +224,25 @@ export function PdfDocumentCenter() {
       </div>
 
       {/* DYNAMIC CONTENT SWITCHER */}
-      {docType === "DEVIS" || docType === "FACTURE" ? (
+      {docType === "FACTURE" ? (
+        // Invoices need an unbroken FAC numbering and stay unchanged once issued: they are created from a quote.
+        <Card className="border-border shadow-sm">
+          <CardHeader>
+            <CardTitle className="text-lg font-bold flex items-center gap-2">
+              <Receipt className="h-5 w-5 text-amber-600" /> Les factures se créent depuis un devis
+            </CardTitle>
+            <CardDescription>
+              Ouvrez un devis accepté puis « Émettre une facture » (acompte, solde ou totalité). La facture reçoit le numéro
+              suivant de la série FAC et se retrouve dans l'onglet Factures, où vous pouvez la télécharger, l'envoyer et
+              enregistrer les paiements.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex gap-2">
+            <Button asChild className="bg-amber-600 hover:bg-amber-500 font-bold"><Link href="/dashboard/devis">Voir les devis</Link></Button>
+            <Button asChild variant="outline"><Link href="/dashboard/factures">Voir les factures</Link></Button>
+          </CardContent>
+        </Card>
+      ) : docType === "DEVIS" ? (
         activeTab === "edit" ? (
           <QuoteBuilder quote={quoteData} onChange={(updated) => setQuoteData(updated)} />
         ) : (

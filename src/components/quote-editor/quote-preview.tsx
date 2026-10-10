@@ -15,7 +15,6 @@ interface QuotePreviewProps {
 }
 
 export function QuotePreview({ quote, onEditRequested }: QuotePreviewProps) {
-  const [docType, setDocType] = useState<"DEVIS" | "FACTURE" | "ACOMPTE">("DEVIS");
   const [isDownloading, setIsDownloading] = useState(false);
 
   const formatEuro = (val: number) =>
@@ -23,7 +22,7 @@ export function QuotePreview({ quote, onEditRequested }: QuotePreviewProps) {
 
   const handlePrint = () => {
     const originalTitle = document.title;
-    document.title = `${docType === "DEVIS" ? "Devis" : "Facture"}_ERG_${getDocRefPrefix()}`;
+    document.title = `Devis_ERG_${getDocRefPrefix()}`;
     window.print();
     setTimeout(() => {
       document.title = originalTitle;
@@ -32,32 +31,14 @@ export function QuotePreview({ quote, onEditRequested }: QuotePreviewProps) {
 
   const handleDirectDownload = async () => {
     setIsDownloading(true);
-    const fileName = `${docType === "DEVIS" ? "Devis" : "Facture"}_ERG_${getDocRefPrefix()}.pdf`;
+    const fileName = `Devis_ERG_${getDocRefPrefix()}.pdf`;
     await downloadElementAsPdf("quote-pdf-container", fileName);
     setIsDownloading(false);
   };
 
-  const getDocTitle = () => {
-    switch (docType) {
-      case "FACTURE":
-        return "FACTURE DE TRAVAUX";
-      case "ACOMPTE":
-        return "FACTURE D'ACOMPTE (30%)";
-      default:
-        return "DEVIS DES TRAVAUX";
-    }
-  };
-
-  const getDocRefPrefix = () => {
-    switch (docType) {
-      case "FACTURE":
-        return quote.number.replace("DEV-", "FAC-");
-      case "ACOMPTE":
-        return quote.number.replace("DEV-", "FAC-AC-");
-      default:
-        return quote.number;
-    }
-  };
+  // Invoices are issued from the quote (Émettre une facture) with their own FAC number.
+  const getDocTitle = () => "DEVIS DES TRAVAUX";
+  const getDocRefPrefix = () => quote.number;
 
   return (
     <div className="space-y-6">
@@ -74,34 +55,6 @@ export function QuotePreview({ quote, onEditRequested }: QuotePreviewProps) {
         </div>
 
         <div className="flex flex-wrap items-center gap-3">
-          {/* Document Type Switcher */}
-          <div className="bg-slate-800 p-1 rounded-lg flex items-center gap-1 text-xs border border-slate-700">
-            <button
-              onClick={() => setDocType("DEVIS")}
-              className={`px-3 py-1.5 rounded-md font-semibold transition-all ${
-                docType === "DEVIS" ? "bg-amber-600 text-white shadow" : "text-slate-300 hover:text-white"
-              }`}
-            >
-              Devis Officiel
-            </button>
-            <button
-              onClick={() => setDocType("ACOMPTE")}
-              className={`px-3 py-1.5 rounded-md font-semibold transition-all ${
-                docType === "ACOMPTE" ? "bg-amber-600 text-white shadow" : "text-slate-300 hover:text-white"
-              }`}
-            >
-              Facture Acompte
-            </button>
-            <button
-              onClick={() => setDocType("FACTURE")}
-              className={`px-3 py-1.5 rounded-md font-semibold transition-all ${
-                docType === "FACTURE" ? "bg-amber-600 text-white shadow" : "text-slate-300 hover:text-white"
-              }`}
-            >
-              Facture Solde
-            </button>
-          </div>
-
           {onEditRequested && (
             <Button
               variant="outline"
@@ -188,9 +141,7 @@ export function QuotePreview({ quote, onEditRequested }: QuotePreviewProps) {
 
             <div className="text-xs text-slate-600 space-y-0.5 font-medium">
               <p>Date d'émission : <span className="font-bold text-slate-900">{quote.date}</span></p>
-              {docType === "DEVIS" && (
-                <p>Validité de l'offre : <span className="font-bold text-slate-900">{quote.validityDays} jours</span></p>
-              )}
+              <p>Validité de l'offre : <span className="font-bold text-slate-900">{quote.validityDays} jours</span></p>
               <p>Statut : <span className="font-bold uppercase text-amber-800">{quote.status}</span></p>
             </div>
           </div>
