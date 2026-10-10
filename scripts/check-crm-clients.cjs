@@ -46,5 +46,17 @@ const { findOrCreateClient } = mod.exports;
   const noEmail = await findOrCreateClient({}, { name: 'Sans email' });
   assert.notEqual(noEmail, first);
   assert.equal(docs.size, 2);
-  console.log('CRM client checks passed: email normalised, duplicates merged, existing details kept.');
+  const numberingFile = path.resolve('src/lib/crm/numbering.ts');
+  const numbering = new Module(numberingFile, module);
+  numbering.filename = numberingFile;
+  numbering.paths = Module._nodeModulePaths(path.dirname(numberingFile));
+  numbering.require = id => (id === 'firebase/firestore' ? firestoreStub : originalRequire(id));
+  numbering._compile(ts.transpileModule(fs.readFileSync(numberingFile, 'utf8'), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
+  }).outputText, numberingFile);
+  const { nextNumberFrom } = numbering.exports;
+  assert.equal(nextNumberFrom([], 'DEV', 2026), 'DEV-2026-00001');
+  assert.equal(nextNumberFrom(['DEV-2026-00007', 'DEV-2026-4821', undefined, 'DEV-2025-00090', 'DEV-2026-00003'], 'DEV', 2026), 'DEV-2026-00008',
+    'Old random numbers and other years are ignored');
+  console.log('CRM client checks passed: email normalised, duplicates merged, existing details kept, quote numbers sequential.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

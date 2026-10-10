@@ -9,6 +9,7 @@ import { QuotePreview } from "@/components/quote-editor/quote-preview";
 import { QuoteData } from "@/components/quote-editor/quote-types";
 import { createEmptyQuote } from "@/components/quote-editor/quote-helpers";
 import { findOrCreateClient } from "@/lib/crm/clients";
+import { nextQuoteNumber } from "@/lib/crm/numbering";
 import { useToast } from "@/hooks/use-toast";
 
 import { Button } from "@/components/ui/button";
@@ -35,6 +36,18 @@ function NouveauDevis() {
   const [activeTab, setActiveTab] = useState<"edit" | "preview">("edit");
   const [isSaving, setIsSaving] = useState(false);
   const [clientId, setClientId] = useState<string | null>(fromClient);
+  const [autoNumber, setAutoNumber] = useState<string | null>(null);
+
+  // Propose the next number of the yearly sequence; it is confirmed again when saving.
+  useEffect(() => {
+    if (!firestore || !user) return;
+    nextQuoteNumber(firestore)
+      .then((number) => {
+        setAutoNumber(number);
+        setQuote((current) => ({ ...current, number }));
+      })
+      .catch((error) => console.error("Numérotation du devis impossible:", error));
+  }, [firestore, user]);
 
   // Pre-fill the quote from a website request or an existing client.
   useEffect(() => {
@@ -46,7 +59,8 @@ function NouveauDevis() {
         if (!snapshot.exists()) return;
         const data = snapshot.data();
         const address = [data.address, [data.postalCode, data.city].filter(Boolean).join(" ")].filter(Boolean).join(", ");
-        setQuote(createEmptyQuote({
+        setQuote((current) => createEmptyQuote({
+          number: current.number,
           clientName: data.clientName ?? data.name ?? "",
           clientEmail: data.clientEmail ?? data.email ?? "",
           clientPhone: data.clientPhone ?? data.phone ?? "",
@@ -78,8 +92,11 @@ function NouveauDevis() {
       const quotesCol = collection(firestore, "quotes");
       const newDocRef = doc(quotesCol);
 
+      // Keep a number typed by hand; otherwise take the latest free number in the sequence.
+      const number = !autoNumber || quote.number === autoNumber ? await nextQuoteNumber(firestore) : quote.number;
       const finalQuote: QuoteData = {
         ...quote,
+        number,
         id: newDocRef.id,
       };
 

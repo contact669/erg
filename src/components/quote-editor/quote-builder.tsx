@@ -37,7 +37,9 @@ import {
   FileCheck,
   Zap,
   BookOpen,
+  AlertTriangle,
 } from "lucide-react";
+import { COMPANY } from "@/lib/company";
 
 interface QuoteBuilderProps {
   quote: QuoteData;
@@ -257,6 +259,15 @@ export function QuoteBuilder({ quote, onChange }: QuoteBuilderProps) {
           </div>
         </CardHeader>
         <CardContent className="pt-6 space-y-6">
+          {!COMPANY.decennale && (
+            <div className="flex items-start gap-2 rounded-lg border border-amber-300 bg-amber-50 p-3 text-xs text-amber-900 print:hidden">
+              <AlertTriangle className="h-4 w-4 shrink-0 text-amber-600" />
+              <p>
+                <strong>Assurance décennale non renseignée.</strong> Sa mention (assureur, numéro de police, zone couverte) est
+                obligatoire sur les devis du bâtiment. Ajoutez-la dans <code>src/lib/company.ts</code> avant d&apos;envoyer ce devis.
+              </p>
+            </div>
+          )}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <Label className="text-xs font-semibold text-muted-foreground uppercase">
