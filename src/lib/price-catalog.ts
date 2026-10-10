@@ -8,6 +8,8 @@ export interface CatalogItem {
   tvaRate: 5.5 | 10 | 20;
   brandRef?: string;
   sourceDevis?: string;
+  /** Warning shown in the catalog, e.g. a trade not yet covered by the insurance. */
+  note?: string;
 }
 
 export interface CatalogCategory {
@@ -421,6 +423,113 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
         unitPriceHT: 9800.0,
         tvaRate: 10,
         sourceDevis: "Devis D0192",
+      },
+    ],
+  },
+  {
+    // Lines from the Excel quotes and invoices sent to syndics and SCI (2026).
+    name: "PARTIES COMMUNES & COPROPRIÉTÉS",
+    items: [
+      {
+        id: "cop-01",
+        category: "PARTIES COMMUNES & COPROPRIÉTÉS",
+        designation: "Protection de la zone d'intervention avec nettoyage quotidien de la zone d'intervention et des parties communes",
+        unit: "Forfait",
+        unitPriceHT: 150.0,
+        tvaRate: 10,
+        sourceDevis: "Devis D00240 / D00274 / D000301 (100 à 350 € selon l'ampleur)",
+      },
+      {
+        id: "cop-02",
+        category: "PARTIES COMMUNES & COPROPRIÉTÉS",
+        designation: "Application de deux couches de peinture sur mur de parties communes, préparation des supports comprise",
+        unit: "Forfait",
+        unitPriceHT: 350.0,
+        tvaRate: 10,
+        sourceDevis: "Devis D00240",
+      },
+      {
+        id: "cop-03",
+        category: "PARTIES COMMUNES & COPROPRIÉTÉS",
+        designation: "Application de deux couches de peinture satinée glycéro sur tuyaux d'évacuation apparents",
+        unit: "Forfait",
+        unitPriceHT: 230.0,
+        tvaRate: 10,
+        sourceDevis: "Devis D00240",
+      },
+      {
+        id: "cop-04",
+        category: "PARTIES COMMUNES & COPROPRIÉTÉS",
+        designation: "Fourniture et pose d'un plafonnier et câblage sous goulotte depuis le point lumineux existant",
+        unit: "Forfait",
+        unitPriceHT: 310.0,
+        tvaRate: 10,
+        sourceDevis: "Devis D00240",
+      },
+      {
+        id: "cop-05",
+        category: "PARTIES COMMUNES & COPROPRIÉTÉS",
+        designation: "Fourniture et pose de goulotte en remplacement de l'existante",
+        unit: "Forfait",
+        unitPriceHT: 90.0,
+        tvaRate: 10,
+        sourceDevis: "Devis D00274",
+      },
+      {
+        id: "cop-06",
+        category: "PARTIES COMMUNES & COPROPRIÉTÉS",
+        designation: "Fourniture et pose d'un chauffe-eau électrique stéatite 75 litres vertical (Ø 470 mm, classe C) avec groupe de sécurité et raccordements",
+        unit: "Forfait",
+        unitPriceHT: 780.0,
+        tvaRate: 10,
+        sourceDevis: "Devis D00274",
+      },
+      {
+        id: "cop-07",
+        category: "PARTIES COMMUNES & COPROPRIÉTÉS",
+        designation: "Fourniture et pose d'un robinet dans la cour commune",
+        unit: "Forfait",
+        unitPriceHT: 125.0,
+        tvaRate: 10,
+        sourceDevis: "Facture F00306",
+      },
+      {
+        id: "cop-08",
+        category: "PARTIES COMMUNES & COPROPRIÉTÉS",
+        designation: "Fourniture et pose d'un mitigeur de type Grohe",
+        unit: "Forfait",
+        unitPriceHT: 150.0,
+        tvaRate: 10,
+        sourceDevis: "Facture F00305",
+      },
+      {
+        id: "cop-09",
+        category: "PARTIES COMMUNES & COPROPRIÉTÉS",
+        designation: "Nettoyage et évacuation des gravats en décharge agréée",
+        unit: "Forfait",
+        unitPriceHT: 870.0,
+        tvaRate: 10,
+        sourceDevis: "Devis D000301",
+      },
+      {
+        id: "cop-10",
+        category: "PARTIES COMMUNES & COPROPRIÉTÉS",
+        designation: "Dépose du carrelage existant, chape comprise",
+        unit: "m²",
+        unitPriceHT: 104.0,
+        tvaRate: 10,
+        sourceDevis: "Devis D000301 (13 m² pour 1 350 €)",
+        note: "Activité à faire couvrir par la décennale avant de la proposer",
+      },
+      {
+        id: "cop-11",
+        category: "PARTIES COMMUNES & COPROPRIÉTÉS",
+        designation: "Fourniture et pose de carrelage au sol moyenne gamme, joints de finition et plinthes compris",
+        unit: "m²",
+        unitPriceHT: 125.0,
+        tvaRate: 10,
+        sourceDevis: "Devis D000301",
+        note: "Activité à faire couvrir par la décennale avant de la proposer",
       },
     ],
   },

@@ -129,6 +129,9 @@ export function CatalogModal({ isOpen, onClose, onSelectItem }: CatalogModalProp
                           ({item.sourceDevis})
                         </span>
                       )}
+                      {item.note && (
+                        <span className="block text-[10px] font-semibold text-rose-600">⚠ {item.note}</span>
+                      )}
                     </div>
                     <p className="text-xs font-semibold text-foreground leading-relaxed">
                       {item.designation}
