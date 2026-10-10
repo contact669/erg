@@ -2,8 +2,9 @@ import { arrayUnion, collection, doc, getDocs, serverTimestamp, updateDoc, write
 import type { QuoteData, QuoteLot } from '@/components/quote-editor/quote-types';
 import { nextNumberFrom } from '@/lib/crm/numbering';
 
-export type InvoiceKind = 'acompte' | 'solde' | 'totale';
-export type InvoiceStatus = 'Émise' | 'Partiellement payée' | 'Payée';
+export type InvoiceKind = 'acompte' | 'solde' | 'totale' | 'avoir';
+export type InvoiceStatus = 'Émise' | 'Partiellement payée' | 'Payée' | 'Annulée' | 'Émis';
+export type CreditType = 'total' | 'partiel';
 
 export interface InvoiceAmounts {
   totalHT: number;
@@ -21,9 +22,13 @@ export interface InvoicePayment {
 export interface PreviousInvoice extends InvoiceAmounts {
   number: string;
   date: string;
+  kind?: InvoiceKind;
 }
 
-/** An issued invoice. It is never edited afterwards: only payments are added. */
+/**
+ * An issued invoice or credit note (kind "avoir", negative amounts). Amounts never change once
+ * issued: only payments and the credited total are added (enforced by firestore.rules).
+ */
 export interface InvoiceData extends InvoiceAmounts {
   id: string;
   number: string;
@@ -49,12 +54,22 @@ export interface InvoiceData extends InvoiceAmounts {
   restant: number;
   status: InvoiceStatus;
   payments: InvoicePayment[];
+  /** Invoices: TTC total of the credit notes issued against it (positive). */
+  credited?: number;
+  creditNoteIds?: string[];
+  /** Credit notes: the invoice it corrects. */
+  invoiceId?: string;
+  invoiceNumber?: string;
+  invoiceDate?: string;
+  creditType?: CreditType;
+  reason?: string;
 }
 
 export const INVOICE_KIND_LABELS: Record<InvoiceKind, string> = {
   acompte: "Facture d'acompte",
   solde: 'Facture de solde',
   totale: 'Facture',
+  avoir: 'Avoir',
 };
 
 const round2 = (value: number) => Math.round(value * 100) / 100;
@@ -99,8 +114,10 @@ export function invoiceAmounts(quote: InvoiceAmounts, kind: InvoiceKind, percent
 export function invoiceError(quote: InvoiceAmounts, kind: InvoiceKind, percent: number, previous: InvoiceAmounts[]): string | null {
   if (quote.totalTTC <= 0) return 'Le devis n’a pas de montant à facturer.';
   const alreadyInvoiced = round2(previous.reduce((total, invoice) => total + (Number(invoice.totalTTC) || 0), 0));
-  if (kind === 'totale' && previous.length > 0) return 'Des factures existent déjà pour ce devis : émettez une facture de solde.';
-  if (kind === 'solde' && previous.length === 0) return 'Aucun acompte n’a été facturé : émettez une facture totale.';
+  // Credit notes are part of "previous" with negative amounts, so a cancelled invoice no longer counts.
+  if (kind === 'avoir') return 'Un avoir s’émet depuis la facture à corriger.';
+  if (kind === 'totale' && alreadyInvoiced > 0.005) return 'Des factures existent déjà pour ce devis : émettez une facture de solde.';
+  if (kind === 'solde' && alreadyInvoiced <= 0.005) return 'Aucun acompte n’a été facturé : émettez une facture totale.';
   if (kind === 'acompte') {
     if (!(percent > 0 && percent < 100)) return 'Le pourcentage d’acompte doit être compris entre 1 et 99 %.';
     const amount = invoiceAmounts(quote, kind, percent, previous).totalTTC;
@@ -121,10 +138,67 @@ export function paymentStatus(total: number, paid: number): InvoiceStatus {
   return total - paid <= 0.005 ? 'Payée' : 'Partiellement payée';
 }
 
+/** Amount left to pay and status of an invoice, once payments and credit notes are counted. */
+export function invoiceBalance(totalTTC: number, paid: number, credited: number): { restant: number; status: InvoiceStatus } {
+  if (credited >= totalTTC - 0.005) return { restant: 0, status: 'Annulée' };
+  const due = round2(totalTTC - credited);
+  return { restant: round2(Math.max(0, due - paid)), status: paymentStatus(due, paid) };
+}
+
 /** Status shown in the CRM: an unpaid invoice past its due date is late. */
-export function displayStatus(invoice: Pick<InvoiceData, 'status' | 'restant' | 'dueDate'>, today = new Date().toISOString().split('T')[0]): string {
+export function displayStatus(
+  invoice: Pick<InvoiceData, 'status' | 'restant' | 'dueDate'> & { kind?: InvoiceKind },
+  today = new Date().toISOString().split('T')[0],
+): string {
+  if (invoice.kind === 'avoir') return 'Avoir';
+  if (invoice.status === 'Annulée') return 'Annulée';
   if (invoice.status !== 'Payée' && (invoice.restant ?? 0) > 0.005 && invoice.dueDate && invoice.dueDate < today) return 'En retard';
   return invoice.status ?? 'Émise';
+}
+
+const AMOUNT_KEYS = ['totalHT', 'totalTVA55', 'totalTVA10', 'totalTVA20'] as const;
+
+/** Part of an invoice not yet cancelled by credit notes (credit notes carry negative amounts). */
+export function remainingToCredit(invoice: InvoiceAmounts, creditNotes: InvoiceAmounts[]): InvoiceAmounts {
+  const remaining = { totalHT: 0, totalTVA55: 0, totalTVA10: 0, totalTVA20: 0 };
+  for (const key of AMOUNT_KEYS) remaining[key] = invoice[key] + creditNotes.reduce((sum, note) => sum + (Number(note[key]) || 0), 0);
+  return withTTC(remaining);
+}
+
+/**
+ * Negative amounts of a credit note. A full one cancels whatever is left of the invoice; a partial
+ * one takes the TTC amount entered and splits it across VAT rates like the invoice.
+ */
+export function creditNoteAmounts(remaining: InvoiceAmounts, type: CreditType, amountTTC: number): InvoiceAmounts {
+  const share = type === 'total' || remaining.totalTTC <= 0 ? 1 : amountTTC / remaining.totalTTC;
+  const note = withTTC({
+    totalHT: -remaining.totalHT * share,
+    totalTVA55: -remaining.totalTVA55 * share,
+    totalTVA10: -remaining.totalTVA10 * share,
+    totalTVA20: -remaining.totalTVA20 * share,
+  });
+  if (type === 'partiel') {
+    // Keep the TTC exactly as entered: a rounding cent goes on the HT amount.
+    const gap = round2(-amountTTC - note.totalTTC);
+    return { ...note, totalHT: round2(note.totalHT + gap), totalTTC: round2(-amountTTC) };
+  }
+  return note;
+}
+
+export function creditNoteError(
+  invoice: { kind?: InvoiceKind },
+  remaining: InvoiceAmounts,
+  type: CreditType,
+  amountTTC: number,
+  reason: string,
+): string | null {
+  if (invoice.kind === 'avoir') return 'Un avoir ne peut pas être annulé par un autre avoir.';
+  if (remaining.totalTTC <= 0.005) return 'Cette facture est déjà entièrement annulée.';
+  if (!reason.trim()) return 'Indiquez le motif de l’avoir.';
+  if (type === 'partiel' && !(amountTTC > 0 && amountTTC < remaining.totalTTC)) {
+    return `Le montant d’un avoir partiel doit être compris entre 0,01 € et ${remaining.totalTTC.toFixed(2).replace('.', ',')} € (sinon, avoir total).`;
+  }
+  return null;
 }
 
 /** Issues the invoice: takes the next number of the FAC series and links it to the quote. */
@@ -141,6 +215,7 @@ export async function createInvoice(
     .map((invoice) => ({
       number: invoice.number ?? '',
       date: invoice.date ?? '',
+      kind: invoice.kind,
       totalHT: invoice.totalHT ?? 0,
       totalTVA55: invoice.totalTVA55 ?? 0,
       totalTVA10: invoice.totalTVA10 ?? 0,
@@ -200,8 +275,77 @@ export async function recordPayment(firestore: Firestore, invoice: InvoiceData, 
     // Full array rather than arrayUnion, which would drop a second identical payment.
     payments: [...(invoice.payments ?? []), payment],
     paid,
-    restant: round2(Math.max(0, invoice.totalTTC - paid)),
-    status: paymentStatus(invoice.totalTTC, paid),
+    ...invoiceBalance(invoice.totalTTC, paid, invoice.credited ?? 0),
     updatedAt: serverTimestamp(),
   });
+}
+
+/** Issues a credit note (AV series) against an invoice and updates what is left to pay on it. */
+export async function createCreditNote(
+  firestore: Firestore,
+  invoice: InvoiceData,
+  options: { type: CreditType; amountTTC: number; date: string; reason: string },
+): Promise<string> {
+  const snapshot = await getDocs(collection(firestore, 'factures'));
+  const all = snapshot.docs.map((d) => ({ id: d.id, ...(d.data() as Partial<InvoiceData>) }));
+  const existingNotes = all.filter((note) => note.kind === 'avoir' && note.invoiceId === invoice.id) as InvoiceAmounts[];
+  const remaining = remainingToCredit(invoice, existingNotes);
+  const error = creditNoteError(invoice, remaining, options.type, options.amountTTC, options.reason);
+  if (error) throw new Error(error);
+
+  const amounts = creditNoteAmounts(remaining, options.type, options.amountTTC);
+  const number = nextNumberFrom(all.map((note) => note.number), 'AV', new Date(`${options.date}T12:00:00`).getFullYear());
+  const ref = doc(collection(firestore, 'factures'));
+  const note: InvoiceData = {
+    id: ref.id,
+    number,
+    kind: 'avoir',
+    percent: null,
+    date: options.date,
+    dueDate: options.date,
+    quoteId: invoice.quoteId,
+    quoteNumber: invoice.quoteNumber,
+    clientId: invoice.clientId ?? null,
+    clientName: invoice.clientName,
+    clientEmail: invoice.clientEmail,
+    clientPhone: invoice.clientPhone,
+    clientAddress: invoice.clientAddress,
+    siteAddress: invoice.siteAddress,
+    projectTitle: invoice.projectTitle,
+    projectName: invoice.projectName ?? invoice.projectTitle,
+    lots: [],
+    quoteTotals: invoice.quoteTotals,
+    previous: [],
+    ...amounts,
+    total: amounts.totalTTC,
+    paid: 0,
+    restant: 0,
+    status: 'Émis',
+    payments: [],
+    invoiceId: invoice.id,
+    invoiceNumber: invoice.number,
+    invoiceDate: invoice.date,
+    creditType: options.type,
+    reason: options.reason.trim(),
+  };
+
+  const credited = round2((invoice.credited ?? 0) - amounts.totalTTC);
+  const batch = writeBatch(firestore);
+  batch.set(ref, { ...note, createdAt: serverTimestamp() });
+  batch.update(doc(firestore, 'factures', invoice.id), {
+    credited,
+    creditNoteIds: arrayUnion(ref.id),
+    ...invoiceBalance(invoice.totalTTC, invoice.paid ?? 0, credited),
+    updatedAt: serverTimestamp(),
+  });
+  if (invoice.quoteId) {
+    // The cancelled part of the quote can be invoiced again.
+    batch.update(doc(firestore, 'quotes', invoice.quoteId), {
+      invoiceIds: arrayUnion(ref.id),
+      status: 'Accepté',
+      updatedAt: serverTimestamp(),
+    });
+  }
+  await batch.commit();
+  return ref.id;
 }
