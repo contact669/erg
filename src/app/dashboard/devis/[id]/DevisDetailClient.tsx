@@ -12,8 +12,9 @@ import { QuoteBuilder } from "@/components/quote-editor/quote-builder";
 import { QuotePreview } from "@/components/quote-editor/quote-preview";
 import { QuoteData } from "@/components/quote-editor/quote-types";
 import { createEmptyQuote, recalculateQuote } from "@/components/quote-editor/quote-helpers";
-import { ArrowLeft, Save, Eye, Edit3, CheckCircle, FileText, Receipt } from "lucide-react";
+import { ArrowLeft, Save, Eye, Edit3, CheckCircle, FileText, Receipt, HardHat } from "lucide-react";
 import { CreateInvoiceDialog } from "@/components/invoice/create-invoice-dialog";
+import { openProjectForQuote } from "@/lib/crm/projects";
 
 export default function DevisDetailClient() {
   const router = useRouter();
@@ -30,6 +31,7 @@ export default function DevisDetailClient() {
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [isInvoiceOpen, setIsInvoiceOpen] = useState(false);
+  const [isOpeningProject, setIsOpeningProject] = useState(false);
 
   useEffect(() => {
     if (!isUserLoading && !user) router.push("/connexion");
@@ -176,6 +178,27 @@ export default function DevisDetailClient() {
               <Eye className="h-3.5 w-3.5 text-amber-600" /> Aperçu PDF Officiel
             </button>
           </div>
+
+          {quoteDoc && (
+            <Button
+              variant="outline"
+              disabled={isOpeningProject}
+              onClick={async () => {
+                if (!firestore) return;
+                setIsOpeningProject(true);
+                try {
+                  const projectId = await openProjectForQuote(firestore, { ...currentQuote, id: quoteDoc.id, clientId: quoteDoc.clientId ?? null });
+                  router.push(`/dashboard/chantiers/${projectId}`);
+                } catch (err) {
+                  console.error("Ouverture du chantier impossible:", err);
+                  setIsOpeningProject(false);
+                }
+              }}
+              className="gap-2 font-semibold"
+            >
+              <HardHat className="h-4 w-4 text-amber-600" /> {quoteDoc.projectId ? "Voir le chantier" : "Ouvrir le chantier"}
+            </Button>
+          )}
 
           {quoteDoc && (
             <Button variant="outline" onClick={() => setIsInvoiceOpen(true)} className="gap-2 font-semibold">

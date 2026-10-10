@@ -224,11 +224,53 @@ const { findOrCreateClient } = mod.exports;
   assert.equal(nextStepInvoice(steps, [{ ...issued[0], status: 'Annulée' }], 0).index, 0);
   assert.equal(nextStepInvoice([{ id: 'x', label: 'À la commande', percent: 100 }], [], 0).kind, 'totale');
 
+  // Job sites.
+  const projectsFile = path.resolve('src/lib/crm/projects.ts');
+  const projectsMod = new Module(projectsFile, module);
+  projectsMod.filename = projectsFile;
+  const projectDocs = new Map();
+  const projectStub = {
+    ...firestoreStub,
+    getDocs: async ({ filter }) => {
+      const found = [...projectDocs.entries()].filter(([, d]) => d[filter.field] === filter.value);
+      return { empty: found.length === 0, docs: found.map(([id]) => ({ id })) };
+    },
+    doc: (col, id) => ({ col: col?.name ?? col, id: id ?? `p${projectDocs.size + 1}` }),
+    writeBatch: () => {
+      const ops = [];
+      return {
+        set: (ref, data) => ops.push(() => projectDocs.set(ref.id, data)),
+        update: () => {},
+        commit: async () => ops.forEach(op => op()),
+      };
+    },
+  };
+  projectsMod.require = id => (id === 'firebase/firestore' ? projectStub : originalRequire(id));
+  projectsMod._compile(ts.transpileModule(fs.readFileSync(projectsFile, 'utf8'), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
+  }).outputText, projectsFile);
+  const { statusForProgress, clampProgress, billingSummary, openProjectForQuote } = projectsMod.exports;
+  assert.equal(statusForProgress(0, 'En cours'), 'Planification');
+  assert.equal(statusForProgress(40, 'Planification'), 'En cours');
+  assert.equal(statusForProgress(100, 'En cours'), 'Terminé');
+  assert.equal(statusForProgress(50, 'Réceptionné'), 'Réceptionné', 'A handover is never undone by the slider');
+  assert.equal(clampProgress(140), 100);
+  assert.deepEqual(
+    billingSummary(1000, [{ totalTTC: 300, paid: 300, kind: 'acompte' }, { totalTTC: 300, paid: 0, kind: 'acompte' }, { totalTTC: -300, kind: 'avoir' }]),
+    { billed: 300, paid: 300, toBill: 700, billedPercent: 30 },
+    'Credit notes reduce what is billed',
+  );
+  const firstOpen = await openProjectForQuote({}, { id: 'q1', number: 'D000301', projectTitle: 'Entrée immeuble', clientName: 'Cabinet Citya' });
+  const secondOpen = await openProjectForQuote({}, { id: 'q1', number: 'D000301' });
+  assert.equal(secondOpen, firstOpen, 'One job site per quote');
+  assert.equal(projectDocs.get(firstOpen).status, 'Planification');
+  assert.equal(projectDocs.get(firstOpen).title, 'Entrée immeuble');
+
   // firestore.rules must allow every field the CRM changes on an issued invoice, and nothing else.
   const rules = fs.readFileSync(path.resolve('firestore.rules'), 'utf8');
   const allowed = JSON.parse(rules.match(/match \/factures\/\{id\}[\s\S]*?hasOnly\((\[[^\]]*\])/)[1].replace(/'/g, '"'));
   const written = ['payments', 'paid', 'credited', 'creditNoteIds', 'reminders', 'updatedAt', ...Object.keys(invoiceBalance(1, 0, 0))];
   assert.deepEqual([...new Set(written)].sort(), [...allowed].sort());
   assert.match(rules, /match \/factures\/\{id\}[\s\S]*?allow delete: if false;/);
-  console.log('CRM client checks passed: email normalised, duplicates merged, existing details kept, quote, invoice and credit note numbers sequential, invoices add up to the quote, credit notes reduce what is left to pay, reminders escalate from courteous to formal notice, accountant export totals and escaping, payment schedules add up to the quote, invoice rules match the CRM writes.');
+  console.log('CRM client checks passed: email normalised, duplicates merged, existing details kept, quote, invoice and credit note numbers sequential, invoices add up to the quote, credit notes reduce what is left to pay, reminders escalate from courteous to formal notice, accountant export totals and escaping, payment schedules add up to the quote, one job site per quote, invoice rules match the CRM writes.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

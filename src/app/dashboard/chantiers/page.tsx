@@ -1,7 +1,7 @@
 'use client';
 
 import { useUser, useCollection, useFirestore, useMemoFirebase } from '@/firebase';
-import { collection, query, orderBy } from 'firebase/firestore';
+import { collection } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -16,8 +16,8 @@ function getStatusBadgeVariant(status: string) {
     switch (status) {
         case 'En cours': return 'default';
         case 'Terminé': return 'secondary';
-        case 'Facturé': return 'outline';
-        case 'Planification': return 'destructive';
+        case 'Réceptionné': return 'outline';
+        case 'Planification': return 'outline';
         default: return 'default';
     }
 }
@@ -42,11 +42,14 @@ export default function ChantiersPage() {
     }, [user, isUserLoading, router]);
 
     const projectsQuery = useMemoFirebase(() => 
-        firestore ? query(collection(firestore, 'projects'), orderBy('title', 'desc')) : null
-    , [firestore]);
+        firestore && user ? collection(firestore, 'projects') : null
+    , [firestore, user]);
     const { data: dbChantiers, isLoading } = useCollection<any>(projectsQuery);
 
-    const chantiers = dbChantiers ?? [];
+    // Active job sites first, then by start date (most recent first).
+    const order = ['En cours', 'Planification', 'Terminé', 'Réceptionné'];
+    const chantiers = [...(dbChantiers ?? [])].sort((a: any, b: any) =>
+        (order.indexOf(a.status) - order.indexOf(b.status)) || String(b.startDate ?? '').localeCompare(String(a.startDate ?? '')));
 
     if (isUserLoading || !user) {
         return (
@@ -66,9 +69,9 @@ export default function ChantiersPage() {
                     </p>
                 </div>
                 <div className="flex items-center space-x-2">
-                    <Button onClick={() => router.push('/dashboard/documents?type=suivi')} className="bg-amber-600 hover:bg-amber-500 font-bold">
+                    <Button onClick={() => router.push('/dashboard/devis?status=Accepté')} className="bg-amber-600 hover:bg-amber-500 font-bold" title="Un chantier s'ouvre depuis un devis accepté">
                         <PlusCircle className="mr-2 h-4 w-4" />
-                        Générer Rapport de Chantier PDF
+                        Ouvrir un chantier depuis un devis
                     </Button>
                 </div>
             </div>
@@ -77,7 +80,7 @@ export default function ChantiersPage() {
                  <CardHeader>
                     <CardTitle>Liste des chantiers</CardTitle>
                     <CardDescription>
-                        Retrouvez ici tous vos chantiers, de la planification à la réception.
+                        Chaque chantier est créé depuis un devis accepté : avancement, dates, journal, factures et PV de réception.
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -105,9 +108,10 @@ export default function ChantiersPage() {
                                 </TableRow>
                             )}
                             {isClient && chantiers.map((chantier: any) => (
-                                <TableRow key={chantier.id}>
+                                <TableRow key={chantier.id} className="cursor-pointer" onClick={() => router.push(`/dashboard/chantiers/${chantier.id}`)}>
                                     <TableCell>
                                         <div className="font-medium">{chantier.title}</div>
+                                        {chantier.quoteNumber && <div className="text-xs text-muted-foreground">Devis {chantier.quoteNumber}</div>}
                                         <div className="text-sm text-muted-foreground sm:hidden">{chantier.clientName}</div>
                                     </TableCell>
                                     <TableCell className="hidden sm:table-cell">{chantier.clientName}</TableCell>
@@ -118,11 +122,11 @@ export default function ChantiersPage() {
                                     </TableCell>
                                     <TableCell className="hidden md:table-cell">
                                         <div className="flex items-center gap-2">
-                                            <Progress value={chantier.progress} className="h-2 w-[80px]" />
-                                            <span className="text-xs text-muted-foreground">{chantier.progress}%</span>
+                                            <Progress value={chantier.progress ?? 0} className="h-2 w-[80px]" />
+                                            <span className="text-xs text-muted-foreground">{chantier.progress ?? 0}%</span>
                                         </div>
                                     </TableCell>
-                                    <TableCell className="text-right">
+                                    <TableCell className="text-right" onClick={(e) => e.stopPropagation()}>
                                         <DropdownMenu>
                                             <DropdownMenuTrigger asChild>
                                                 <Button aria-haspopup="true" size="icon" variant="ghost">
@@ -132,15 +136,20 @@ export default function ChantiersPage() {
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end">
                                                 <DropdownMenuLabel>Actions & Documents</DropdownMenuLabel>
+                                                <DropdownMenuItem onClick={() => router.push(`/dashboard/chantiers/${chantier.id}`)}>
+                                                    Suivi du chantier
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem onClick={() => router.push(`/dashboard/documents?type=pv&projectId=${chantier.id}`)}>
+                                                    PV de réception
+                                                </DropdownMenuItem>
                                                 <DropdownMenuItem onClick={() => router.push('/dashboard/documents?type=suivi')}>
-                                                    Imprimer Rapport de Chantier PDF
+                                                    Rapport de chantier PDF
                                                 </DropdownMenuItem>
-                                                <DropdownMenuItem onClick={() => router.push('/dashboard/documents?type=pv')}>
-                                                    Imprimer le PV de réception
-                                                </DropdownMenuItem>
-                                                <DropdownMenuItem onClick={() => router.push('/dashboard/documents?type=devis')}>
-                                                    Générer Devis Avenant
-                                                </DropdownMenuItem>
+                                                {chantier.quoteId && (
+                                                    <DropdownMenuItem onClick={() => router.push(`/dashboard/devis/${chantier.quoteId}?mode=preview`)}>
+                                                        Voir le devis
+                                                    </DropdownMenuItem>
+                                                )}
                                             </DropdownMenuContent>
                                         </DropdownMenu>
                                     </TableCell>

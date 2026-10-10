@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { useFirestore } from "@/firebase";
 import { DocumentType, SiteReportData, HandoverPVData } from "./pdf-types";
 import { QuoteData } from "../quote-editor/quote-types";
 import { createEmptyQuote } from "../quote-editor/quote-helpers";
@@ -67,6 +69,34 @@ export function PdfDocumentCenter() {
   const [quoteData, setQuoteData] = useState<QuoteData>(() => createEmptyQuote());
   const [siteReportData, setSiteReportData] = useState<SiteReportData>(() => createDefaultSiteReport());
   const [pvData, setPvData] = useState<HandoverPVData>(() => createDefaultHandoverPV());
+
+  // Opened from a job site: prefill the handover report with its client, address and quote.
+  const firestore = useFirestore();
+  const projectId = searchParams?.get("projectId");
+  useEffect(() => {
+    if (!firestore || !projectId) return;
+    getDoc(doc(firestore, "projects", projectId))
+      .then((snapshot) => {
+        if (!snapshot.exists()) return;
+        const project = snapshot.data();
+        setPvData((current) => ({
+          ...current,
+          id: projectId,
+          pvNumber: `PV-${project.quoteNumber ?? projectId}`,
+          date: project.receptionDate || current.date,
+          guaranteeStartDate: project.receptionDate || current.guaranteeStartDate,
+          clientName: project.clientName ?? "",
+          clientAddress: project.clientAddress ?? "",
+          siteAddress: project.siteAddress ?? "",
+          projectTitle: `${project.title ?? ""}${project.quoteNumber ? ` — devis ${project.quoteNumber}` : ""}`,
+          reservesCount: 0,
+          reservesList: [],
+          acceptanceType: "SANS_RESERVES",
+          notes: "",
+        }));
+      })
+      .catch((error) => console.error("Chargement du chantier impossible:", error));
+  }, [firestore, projectId]);
 
   const [isSaved, setIsSaved] = useState(false);
   const [isSendModalOpen, setIsSendModalOpen] = useState(false);
