@@ -40,6 +40,8 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { COMPANY } from "@/lib/company";
+import { PaymentScheduleEditor } from "./payment-schedule-editor";
+import { quoteSchedule } from "@/lib/crm/payment-schedule";
 
 interface QuoteBuilderProps {
   quote: QuoteData;
@@ -620,57 +622,13 @@ export function QuoteBuilder({ quote, onChange }: QuoteBuilderProps) {
           <CardContent className="space-y-6 pt-4">
             <div className="space-y-3">
               <Label className="text-xs font-semibold uppercase text-muted-foreground">
-                Échéancier de Règlement (% Acomptes)
+                Échéancier de règlement
               </Label>
-              <div className="grid grid-cols-3 gap-3">
-                <div className="p-3 rounded-lg border bg-muted/20 space-y-1">
-                  <span className="text-xs font-medium text-muted-foreground block">1. Acompte Commande</span>
-                  <div className="flex items-center gap-1">
-                    <Input
-                      type="number"
-                      value={quote.paymentTerms.downPaymentPercent}
-                      onChange={(e) => handlePaymentTermChange("downPaymentPercent", parseInt(e.target.value) || 0)}
-                      className="h-8 text-xs font-bold"
-                    />
-                    <span className="text-xs font-bold">%</span>
-                  </div>
-                  <span className="text-xs font-mono font-semibold text-amber-700 dark:text-amber-400 block pt-1">
-                    {formatEuro((quote.totalTTC * quote.paymentTerms.downPaymentPercent) / 100)}
-                  </span>
-                </div>
-
-                <div className="p-3 rounded-lg border bg-muted/20 space-y-1">
-                  <span className="text-xs font-medium text-muted-foreground block">2. Avancement Chantier</span>
-                  <div className="flex items-center gap-1">
-                    <Input
-                      type="number"
-                      value={quote.paymentTerms.midTermPercent}
-                      onChange={(e) => handlePaymentTermChange("midTermPercent", parseInt(e.target.value) || 0)}
-                      className="h-8 text-xs font-bold"
-                    />
-                    <span className="text-xs font-bold">%</span>
-                  </div>
-                  <span className="text-xs font-mono font-semibold text-amber-700 dark:text-amber-400 block pt-1">
-                    {formatEuro((quote.totalTTC * quote.paymentTerms.midTermPercent) / 100)}
-                  </span>
-                </div>
-
-                <div className="p-3 rounded-lg border bg-muted/20 space-y-1">
-                  <span className="text-xs font-medium text-muted-foreground block">3. Solde à la Réception</span>
-                  <div className="flex items-center gap-1">
-                    <Input
-                      type="number"
-                      value={quote.paymentTerms.completionPercent}
-                      onChange={(e) => handlePaymentTermChange("completionPercent", parseInt(e.target.value) || 0)}
-                      className="h-8 text-xs font-bold"
-                    />
-                    <span className="text-xs font-bold">%</span>
-                  </div>
-                  <span className="text-xs font-mono font-semibold text-amber-700 dark:text-amber-400 block pt-1">
-                    {formatEuro((quote.totalTTC * quote.paymentTerms.completionPercent) / 100)}
-                  </span>
-                </div>
-              </div>
+              <PaymentScheduleEditor
+                steps={quoteSchedule(quote)}
+                totalTTC={quote.totalTTC}
+                onChange={(schedule) => handleQuoteFieldChange("schedule", schedule)}
+              />
             </div>
 
             <div>

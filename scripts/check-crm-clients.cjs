@@ -187,11 +187,48 @@ const { findOrCreateClient } = mod.exports;
   const pay = paymentsCsv(docs2, '2026-10-01', '2026-10-31').trim().split('\r\n');
   assert.deepEqual(pay.slice(1), ['12/10/2026;F00307;05/10/2026;Cabinet Citya;600,00', 'TOTAL;1 paiement(s);;;600,00'], 'Payments filtered by payment date');
 
+  // Free payment schedule.
+  const scheduleFile = path.resolve('src/lib/crm/payment-schedule.ts');
+  const scheduleMod = new Module(scheduleFile, module);
+  scheduleMod.filename = scheduleFile;
+  scheduleMod._compile(ts.transpileModule(fs.readFileSync(scheduleFile, 'utf8'), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
+  }).outputText, scheduleFile);
+  const { SCHEDULE_PRESETS, presetSteps, quoteSchedule, scheduleError, nextStepInvoice } = scheduleMod.exports;
+  for (const preset of SCHEDULE_PRESETS) {
+    assert.equal(preset.steps.reduce((t, step) => t + step.percent, 0), 100, `Preset ${preset.label} totals 100 %`);
+  }
+  const steps = presetSteps('30-30-30-10');
+  assert.deepEqual(steps.map(step => step.percent), [30, 30, 30, 10]);
+  assert.equal(scheduleError(steps), null);
+  assert.match(scheduleError([{ id: 'a', label: 'Début', percent: 60 }, { id: 'b', label: 'Fin', percent: 30 }]), /90 %/);
+  assert.match(scheduleError([{ id: 'a', label: ' ', percent: 100 }]), /libellé/);
+  assert.deepEqual(quoteSchedule({ paymentTerms: { downPaymentPercent: 50, midTermPercent: 0, completionPercent: 50 } }).map(s => s.percent), [50, 50], 'Old quotes keep their 3-step terms');
+
+  // Bill the 30/30/30/10 schedule step by step on an awkward quote: the total matches to the cent.
+  const awkward = quoteAmounts({ totalHT: 1234.57, totalTVA55: 13.33, totalTVA10: 98.77, totalTVA20: 11.11 });
+  const issued = [];
+  for (let i = 0; i < steps.length; i++) {
+    const net = issued.reduce((t, inv) => t + inv.totalTTC, 0);
+    const next = nextStepInvoice(steps, issued, net);
+    assert.equal(next.index, i);
+    assert.equal(next.kind, i === steps.length - 1 ? 'solde' : 'acompte');
+    assert.equal(invoiceError(awkward, next.kind, next.percent, issued), null, `Step ${i + 1} can be issued`);
+    issued.push({ ...invoiceAmounts(awkward, next.kind, next.percent, issued), number: `F0030${7 + i}`, kind: next.kind, stepIndex: i });
+  }
+  assert.equal(nextStepInvoice(steps, issued, 0), null, 'Every step billed');
+  for (const key of ['totalHT', 'totalTVA55', 'totalTVA10', 'totalTVA20', 'totalTTC']) {
+    assert.equal(Math.round(issued.reduce((t, inv) => t + inv[key], 0) * 100) / 100, awkward[key], `Schedule adds up to the quote (${key})`);
+  }
+  // A cancelled step can be billed again; a single-step schedule is a full invoice.
+  assert.equal(nextStepInvoice(steps, [{ ...issued[0], status: 'Annulée' }], 0).index, 0);
+  assert.equal(nextStepInvoice([{ id: 'x', label: 'À la commande', percent: 100 }], [], 0).kind, 'totale');
+
   // firestore.rules must allow every field the CRM changes on an issued invoice, and nothing else.
   const rules = fs.readFileSync(path.resolve('firestore.rules'), 'utf8');
   const allowed = JSON.parse(rules.match(/match \/factures\/\{id\}[\s\S]*?hasOnly\((\[[^\]]*\])/)[1].replace(/'/g, '"'));
   const written = ['payments', 'paid', 'credited', 'creditNoteIds', 'reminders', 'updatedAt', ...Object.keys(invoiceBalance(1, 0, 0))];
   assert.deepEqual([...new Set(written)].sort(), [...allowed].sort());
   assert.match(rules, /match \/factures\/\{id\}[\s\S]*?allow delete: if false;/);
-  console.log('CRM client checks passed: email normalised, duplicates merged, existing details kept, quote, invoice and credit note numbers sequential, invoices add up to the quote, credit notes reduce what is left to pay, reminders escalate from courteous to formal notice, accountant export totals and escaping, invoice rules match the CRM writes.');
+  console.log('CRM client checks passed: email normalised, duplicates merged, existing details kept, quote, invoice and credit note numbers sequential, invoices add up to the quote, credit notes reduce what is left to pay, reminders escalate from courteous to formal notice, accountant export totals and escaping, payment schedules add up to the quote, invoice rules match the CRM writes.');
 })().catch(error => { console.error(error); process.exitCode = 1; });

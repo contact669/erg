@@ -111,7 +111,9 @@ export function InvoicePreview({ invoice }: { invoice: InvoiceData }) {
             {TVA_RATES.filter((rate) => invoice[tvaKey[rate]] > 0).map((rate) => (
               <tr key={rate}>
                 <td className="py-2.5 px-3">
-                  Acompte de {invoice.percent} % sur le devis N° {invoice.quoteNumber} — travaux au taux de {String(rate).replace(".", ",")} %
+                  Acompte de {invoice.percent} % sur le devis N° {invoice.quoteNumber}
+                  {invoice.stepLabel && <> ({invoice.stepLabel.charAt(0).toLowerCase() + invoice.stepLabel.slice(1)})</>} — travaux au taux de{" "}
+                  {String(rate).replace(".", ",")} %
                   <span className="block text-slate-500">Base devis : {euro(quoteHTByRate(rate))} HT</span>
                 </td>
                 <td className="py-2.5 px-2 text-center font-mono">{String(rate).replace(".", ",")} %</td>
@@ -154,6 +156,10 @@ export function InvoicePreview({ invoice }: { invoice: InvoiceData }) {
               </table>
             </div>
           ))}
+
+          {invoice.stepLabel && (
+            <p className="text-slate-600">Échéance : {invoice.stepLabel}</p>
+          )}
 
           {invoice.kind === "solde" && invoice.previous.length > 0 && (
             <div className="border border-slate-200 rounded-xl p-4 space-y-1 break-inside-avoid">

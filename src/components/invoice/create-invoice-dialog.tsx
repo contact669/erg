@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label";
 import type { QuoteData } from "@/components/quote-editor/quote-types";
 import { createEmptyQuote, recalculateQuote } from "@/components/quote-editor/quote-helpers";
 import { COMPANY } from "@/lib/company";
+import { nextStepInvoice, quoteSchedule, scheduleProgress } from "@/lib/crm/payment-schedule";
 import {
   INVOICE_KIND_LABELS,
   addDays,
@@ -52,9 +53,14 @@ export function CreateInvoiceDialog({ quote, onClose }: CreateInvoiceDialogProps
   // Credit notes are stored with negative amounts, so this is the net amount invoiced.
   const invoicedTTC = previous.reduce((sum, invoice) => sum + (invoice.totalTTC || 0), 0);
   const hasInvoiced = invoicedTTC > 0.005;
+  const steps = fullQuote ? quoteSchedule(fullQuote) : [];
+  const progress = scheduleProgress(steps, previous);
+  const nextStep = nextStepInvoice(steps, previous, invoicedTTC);
 
   const [kind, setKind] = useState<InvoiceKind>("acompte");
   const [percent, setPercent] = useState(30);
+  // Schedule step billed, or null for a free amount.
+  const [stepIndex, setStepIndex] = useState<number | null>(null);
   const [date, setDate] = useState(today);
   const [dueDate, setDueDate] = useState(() => addDays(today(), COMPANY.paymentDays));
   const [isSaving, setIsSaving] = useState(false);
@@ -63,8 +69,15 @@ export function CreateInvoiceDialog({ quote, onClose }: CreateInvoiceDialogProps
   // Sensible default once the quote and its previous invoices are known.
   useEffect(() => {
     if (!quote || isLoading) return;
-    setKind(hasInvoiced ? "solde" : "acompte");
-    setPercent(quote.paymentTerms?.downPaymentPercent || 30);
+    if (nextStep) {
+      setKind(nextStep.kind);
+      setPercent(nextStep.percent);
+      setStepIndex(nextStep.index);
+    } else {
+      setKind(hasInvoiced ? "solde" : "acompte");
+      setPercent(30);
+      setStepIndex(null);
+    }
     setDate(today());
     setDueDate(addDays(today(), COMPANY.paymentDays));
     setSaveError("");
@@ -81,7 +94,12 @@ export function CreateInvoiceDialog({ quote, onClose }: CreateInvoiceDialogProps
     setIsSaving(true);
     setSaveError("");
     try {
-      const id = await createInvoice(firestore, { ...fullQuote, id: quote.id, clientId: quote.clientId ?? null }, { kind, percent, date, dueDate });
+      const stepLabel = stepIndex !== null ? steps[stepIndex]?.label ?? null : null;
+      const id = await createInvoice(
+        firestore,
+        { ...fullQuote, id: quote.id, clientId: quote.clientId ?? null },
+        { kind, percent, date, dueDate, stepIndex, stepLabel },
+      );
       onClose();
       router.push(`/dashboard/factures/${id}`);
     } catch (error) {
@@ -108,12 +126,45 @@ export function CreateInvoiceDialog({ quote, onClose }: CreateInvoiceDialogProps
         </DialogHeader>
 
         <div className="space-y-4 py-2 text-sm">
+          {steps.length > 0 && (
+            <div className="rounded-xl border p-3 space-y-1.5 text-xs">
+              <p className="font-semibold">Échéancier du devis</p>
+              {progress.map(({ step, index, invoice }) => (
+                <div key={step.id} className="flex items-center justify-between gap-2">
+                  <span className={stepIndex === index ? "font-semibold text-amber-900" : ""}>
+                    {index + 1}. {step.label} — {String(step.percent).replace(".", ",")} %
+                  </span>
+                  {invoice ? (
+                    <span className="font-mono text-emerald-700">facturée {invoice.number}</span>
+                  ) : nextStep?.index === index ? (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setKind(nextStep.kind);
+                        setPercent(nextStep.percent);
+                        setStepIndex(nextStep.index);
+                      }}
+                      className={`rounded-md px-2 py-0.5 font-semibold ${stepIndex === index ? "bg-amber-600 text-white" : "border hover:bg-muted"}`}
+                    >
+                      {stepIndex === index ? "étape suivante ✓" : "facturer cette étape"}
+                    </button>
+                  ) : (
+                    <span className="text-muted-foreground">à facturer</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
           <div className="grid grid-cols-2 gap-2">
             {kinds.map((option) => (
               <button
                 key={option}
                 type="button"
-                onClick={() => setKind(option)}
+                onClick={() => {
+                  setKind(option);
+                  setStepIndex(null);
+                }}
                 className={`rounded-xl border px-3 py-2 text-left text-xs font-semibold transition-colors ${
                   kind === option ? "border-amber-600 bg-amber-50 text-amber-900" : "hover:bg-muted"
                 }`}
@@ -129,7 +180,17 @@ export function CreateInvoiceDialog({ quote, onClose }: CreateInvoiceDialogProps
           {kind === "acompte" && (
             <div className="space-y-1.5">
               <Label className="text-xs font-semibold">Pourcentage du devis (%)</Label>
-              <Input type="number" min={1} max={99} value={percent} onChange={(e) => setPercent(Number(e.target.value))} className="h-9" />
+              <Input
+                type="number"
+                min={1}
+                max={99}
+                value={percent}
+                onChange={(e) => {
+                  setPercent(Number(e.target.value));
+                  setStepIndex(null);
+                }}
+                className="h-9"
+              />
             </div>
           )}
 

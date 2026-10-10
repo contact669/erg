@@ -20,6 +20,13 @@ export interface QuoteLot {
   subtotalHT: number;
 }
 
+/** One step of a free payment schedule, e.g. "Au début des travaux" 30 %. */
+export interface PaymentStep {
+  id: string;
+  label: string;
+  percent: number;
+}
+
 export interface PaymentTerms {
   downPaymentPercent: number; // e.g. 30
   midTermPercent: number; // e.g. 40
@@ -53,6 +60,8 @@ export interface QuoteData {
   // Conditions
   notes: string;
   paymentTerms: PaymentTerms;
+  /** Free schedule; quotes without one use paymentTerms. */
+  schedule?: PaymentStep[];
   
   // Totals
   totalHT: number;

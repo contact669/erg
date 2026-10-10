@@ -8,6 +8,7 @@ import { Printer, ShieldCheck, Download, Award, FileText, CheckCircle2, Building
 
 import { downloadElementAsPdf } from "@/lib/generate-pdf";
 import { COMPANY, companyLegalLine } from "@/lib/company";
+import { quoteSchedule } from "@/lib/crm/payment-schedule";
 
 interface QuotePreviewProps {
   quote: QuoteData;
@@ -229,27 +230,15 @@ export function QuotePreview({ quote, onEditRequested }: QuotePreviewProps) {
           {/* Payment Schedule Breakdown */}
           <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/80 space-y-2.5">
             <h4 className="font-extrabold text-amber-900 uppercase tracking-wider text-[10px] flex items-center gap-1.5">
-              <CheckCircle2 className="h-3.5 w-3.5 text-amber-700" /> ÉCHÉANCIER DE RÈGLEMENT
+              <CheckCircle2 className="h-3.5 w-3.5 text-amber-700" /> CONDITIONS DE RÈGLEMENT
             </h4>
             <div className="space-y-1.5 text-slate-700 text-xs">
-              <div className="flex justify-between items-center pb-1 border-b border-slate-200">
-                <span>1. Acompte à la commande ({quote.paymentTerms.downPaymentPercent}%) :</span>
-                <span className="font-mono font-bold text-slate-900">
-                  {formatEuro((quote.totalTTC * quote.paymentTerms.downPaymentPercent) / 100)}
-                </span>
-              </div>
-              <div className="flex justify-between items-center pb-1 border-b border-slate-200">
-                <span>2. Avancement du chantier ({quote.paymentTerms.midTermPercent}%) :</span>
-                <span className="font-mono font-bold text-slate-900">
-                  {formatEuro((quote.totalTTC * quote.paymentTerms.midTermPercent) / 100)}
-                </span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span>3. Solde à la réception ({quote.paymentTerms.completionPercent}%) :</span>
-                <span className="font-mono font-bold text-slate-900">
-                  {formatEuro((quote.totalTTC * quote.paymentTerms.completionPercent) / 100)}
-                </span>
-              </div>
+              {quoteSchedule(quote).map((step, index, steps) => (
+                <div key={step.id} className={`flex justify-between items-center gap-3 ${index < steps.length - 1 ? "pb-1 border-b border-slate-200" : ""}`}>
+                  <span>{index + 1}. {step.label} ({String(step.percent).replace(".", ",")} %) :</span>
+                  <span className="font-mono font-bold text-slate-900 shrink-0">{formatEuro((quote.totalTTC * step.percent) / 100)}</span>
+                </div>
+              ))}
             </div>
 
             {/* IBAN details */}

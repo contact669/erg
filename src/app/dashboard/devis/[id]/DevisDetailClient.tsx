@@ -71,6 +71,7 @@ export default function DevisDetailClient() {
         lots: Array.isArray(quoteDoc.lots) ? quoteDoc.lots : [],
         notes: quoteDoc.notes || "Devis conforme aux normes DTU en vigueur.",
         paymentTerms: quoteDoc.paymentTerms || { downPaymentPercent: 30, midTermPercent: 40, completionPercent: 30 },
+        schedule: Array.isArray(quoteDoc.schedule) ? quoteDoc.schedule : undefined,
         totalHT: quoteDoc.totalHT || 0,
         totalTVA55: quoteDoc.totalTVA55 || 0,
         totalTVA10: quoteDoc.totalTVA10 || 0,

@@ -1,5 +1,6 @@
 import { QuoteData, QuoteLot, QuoteLineItem } from './quote-types';
 import { COMPANY } from '@/lib/company';
+import { presetSteps } from '@/lib/crm/payment-schedule';
 
 export function sanitizeProjectDescription(desc?: string | null): string {
   if (!desc) return '';
@@ -112,6 +113,7 @@ export function createEmptyQuote(prefill: Partial<QuoteData> = {}): QuoteData {
     totalTVA10: 0,
     totalTVA20: 0,
     totalTTC: 0,
+    schedule: presetSteps('30-30-30-10'),
     ...prefill,
   };
 

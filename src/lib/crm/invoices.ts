@@ -65,6 +65,9 @@ export interface InvoiceData extends InvoiceAmounts {
   invoiceDate?: string;
   creditType?: CreditType;
   reason?: string;
+  /** Schedule step billed by this invoice (index in the quote schedule) and its label. */
+  stepIndex?: number | null;
+  stepLabel?: string | null;
   /** Payment reminders sent from the CRM. */
   reminders?: InvoiceReminder[];
 }
@@ -209,7 +212,7 @@ export function creditNoteError(
 export async function createInvoice(
   firestore: Firestore,
   quote: QuoteData & { clientId?: string | null },
-  options: { kind: InvoiceKind; percent: number; date: string; dueDate: string },
+  options: { kind: InvoiceKind; percent: number; date: string; dueDate: string; stepIndex?: number | null; stepLabel?: string | null },
 ): Promise<string> {
   const snapshot = await getDocs(collection(firestore, 'factures'));
   const all = snapshot.docs.map((d) => ({ id: d.id, ...(d.data() as Partial<InvoiceData>) }));
@@ -260,6 +263,8 @@ export async function createInvoice(
     restant: amounts.totalTTC,
     status: 'Émise',
     payments: [],
+    stepIndex: options.stepIndex ?? null,
+    stepLabel: options.stepLabel ?? null,
   };
 
   const batch = writeBatch(firestore);
