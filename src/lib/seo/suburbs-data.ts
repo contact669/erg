@@ -236,12 +236,12 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-hauts-de-seine",
     heroTitle: "Rénovation Maison & Appartement à Rueil-Malmaison (92500)",
     metaTitle: "Rénovation Maison & Appartement Rueil-Malmaison (92500) | ERG",
-    metaDescription: "Entreprise de rénovation à Rueil-Malmaison. Rénovation d'appartements et maisons familiales, isolation, cuisine et salle de bain sur-mesure.",
+    metaDescription: "Rénovation intérieure à Rueil-Malmaison (92500) : électricité, plomberie et peinture. Préparez vos travaux et demandez un devis détaillé à ERG.",
     neighborhoods: ["Plaine-Gare", "Buzenval", "Richelieu-Châtaigneraie", "Centre-Ville", "Mont-Valérien"],
     architecturalStyle: "Belles demeures familiales, pavillons meulières et appartements modernes",
-    description: "Rénovation globale de maisons et appartements à Rueil-Malmaison.",
-    specifics: "Rénovation énergétique globale, aménagement de suites parentales et réhabilitation de cuisines d'exception.",
-    avgPricePerSqm: "850 € à 1 450 € / m²",
+    description: "Travaux de rénovation intérieure dans les logements de Rueil-Malmaison.",
+    specifics: "Électricité, plomberie et peinture intérieure, selon l'état du logement et le périmètre retenu dans le devis.",
+    avgPricePerSqm: "Devis détaillé après examen du projet",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-complete-appartement-avant.webp",
       afterImage: "/images/realisations/renovation-complete-appartement-apres.webp",
@@ -250,7 +250,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation maison & appartement Buzenval",
     },
     faqs: [
-      { q: "Proposez-vous des solutions d'isolation thermique pour maisons à Rueil ?", a: "Oui, nous installons des isolations par l'intérieur (ITI) et par l'extérieur (ITE) avec changement de menuiseries." },
+      { q: "Quels travaux intérieurs proposez-vous à Rueil-Malmaison ?", a: "ERG propose des travaux d'électricité, de plomberie et de peinture intérieure. Précisez les pièces concernées, les équipements conservés et les défauts visibles pour préparer la visite. L'isolation extérieure et le remplacement des menuiseries ne font pas partie de l'offre publiée." },
     ],
   },
   "issy-les-moulineaux": {

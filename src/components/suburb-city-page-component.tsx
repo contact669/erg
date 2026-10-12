@@ -317,7 +317,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                   Nos Prestations de Rénovation à {data.name}
                 </h2>
                 <p className="text-slate-600 text-base">
-                  Une prise en charge complète de vos travaux, des réseaux aux finitions.
+                  Électricité, plomberie et peinture intérieure : des interventions définies selon votre projet.
                 </p>
               </div>
 
@@ -327,9 +327,9 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                     <div className="h-12 w-12 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-2">
                       <Building2 className="h-6 w-6" />
                     </div>
-                    <CardTitle className="text-xl font-bold">Rénovation Appartement & Maison</CardTitle>
+                    <CardTitle className="text-xl font-bold">Rénovation intérieure du logement</CardTitle>
                     <CardDescription>
-                      Redistribution des pièces, électricité NF C 15-100, plomberie, parquets et peintures de précision.
+                      Travaux électriques, reprise de plomberie et peinture intérieure, après examen des installations et des supports.
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -348,7 +348,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                     </div>
                     <CardTitle className="text-xl font-bold">Rénovation Salle de Bain</CardTitle>
                     <CardDescription>
-                      Douches à l'italienne étanches, meubles vasques sur-mesure, carrelages grand format et robinetterie encastrée.
+                      Interventions de plomberie et d'électricité dans la salle de bain, selon les raccordements existants et les équipements retenus.
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -365,9 +365,9 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                     <div className="h-12 w-12 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-2">
                       <UtensilsCrossed className="h-6 w-6" />
                     </div>
-                    <CardTitle className="text-xl font-bold">Rénovation Cuisine Sur-Mesure</CardTitle>
+                    <CardTitle className="text-xl font-bold">Travaux dans la cuisine</CardTitle>
                     <CardDescription>
-                      Ouverture sur séjour, verrières atelier, îlots centraux, plans de travail quartz/granit et réseaux techniques.
+                      Adaptation des points d'eau, des alimentations électriques et des peintures pour votre projet de cuisine.
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
