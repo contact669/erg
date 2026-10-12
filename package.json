@@ -9,6 +9,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "check:seo": "node scripts/check-seo.cjs",
+    "check:seo:live": "node scripts/check-live-seo.cjs",
     "check:quotes": "node scripts/check-quote-submission.cjs",
     "check:documents": "node scripts/check-document-email.cjs",
     "check:crm": "node scripts/check-crm-clients.cjs"
