@@ -24,6 +24,7 @@ import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
 import Breadcrumbs from "@/components/breadcrumbs";
 import LocalProjectPreparation from "@/components/local-project-preparation";
+import CourbevoieProjectPreparation from "@/components/courbevoie-project-preparation";
 import AnimatedSection from "@/components/animated-section";
 import CtaBanner from "@/app/_components/cta-banner";
 import BeforeAfterSlider from "@/components/ui/before-after-slider";
@@ -266,7 +267,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                     <span className="text-sm font-semibold text-slate-900 block">{data.architecturalStyle}</span>
                   </div>
                   <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">{data.slug === "montreuil" ? "Budget du projet" : "Fourchette indicative de travaux"}</span>
+                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">{["montreuil", "courbevoie"].includes(data.slug) ? "Budget du projet" : "Fourchette indicative de travaux"}</span>
                     <span className="text-sm font-bold text-amber-700 block">{data.avgPricePerSqm}</span>
                   </div>
                 </div>
@@ -433,6 +434,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
         )}
 
         {data.slug === "montreuil" && <LocalProjectPreparation location="montreuil" />}
+        {data.slug === "courbevoie" && <CourbevoieProjectPreparation />}
         <CtaBanner />
       </main>
 

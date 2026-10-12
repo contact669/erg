@@ -878,6 +878,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             <ul className="mt-4 flex flex-wrap gap-6">
               <li><Link href="/renovation-paris" className="font-semibold underline">Rénovation à Paris : arrondissements et préparation</Link></li>
               <li><Link href="/renovation-montreuil" className="font-semibold underline">Rénovation à Montreuil (93100)</Link></li>
+              <li><Link href="/renovation-courbevoie" className="font-semibold underline">Rénovation à Courbevoie (92400)</Link></li>
             </ul>
           </section>
         )}

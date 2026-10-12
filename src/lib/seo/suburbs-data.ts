@@ -88,13 +88,13 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentName: "Hauts-de-Seine",
     departmentSlug: "renovation-hauts-de-seine",
     heroTitle: "Rénovation d'Appartement à Courbevoie (92400)",
-    metaTitle: "Rénovation Appartement Courbevoie (92400)",
+    metaTitle: "Rénovation appartement Courbevoie (92400) : devis gratuit",
     metaDescription: "Spécialiste de la rénovation d'appartement à Courbevoie (Bécon, Faubourg de l'Arche, Mairie). Devis détaillé poste par poste et garantie décennale.",
     neighborhoods: ["Bécon-les-Bruyères", "Faubourg de l'Arche", "Cœur de Ville", "Gambetta"],
     architecturalStyle: "Immeubles 1900 à Bécon, résidences récentes près de La Défense",
-    description: "Entreprise de rénovation TCE à Courbevoie : réagencement, isolation et finitions haut de gamme.",
-    specifics: "Renforcement d'isolation phonique contre les nuisances extérieures, pose de douches à l'italienne et parquets flottants/massifs.",
-    avgPricePerSqm: "900 € à 1 550 € / m²",
+    description: "Rénovation intérieure à Courbevoie : plomberie, électricité, cuisine, salle de bain et peinture.",
+    specifics: "Préparation des supports, reprise des réseaux et choix des équipements selon l’état de votre logement.",
+    avgPricePerSqm: "Chiffrage après visite et définition des travaux",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-cuisine-avant.webp",
       afterImage: "/images/realisations/renovation-cuisine-apres.webp",
@@ -103,7 +103,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation cuisine & séjour Bécon",
     },
     faqs: [
-      { q: "Quelles sont les solutions d'isolation phonique recommandées à Courbevoie ?", a: "La mise en place d'une sous-couche phonique sous parquet et le doublage acoustique des cloisons mitoyennes sont particulièrement efficaces." },
+      { q: "Quels éléments transmettre pour préparer mon devis à Courbevoie ?", a: "Indiquez les pièces à rénover, la surface approximative, l’état actuel, l’étage et les conditions d’accès. Des photos, un plan et les références des équipements envisagés facilitent l’étude avant une visite." },
     ],
   },
   "asnieres-sur-seine": {
