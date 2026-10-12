@@ -99,7 +99,7 @@ const allServices: Service[] = [
         { question: "Gérez-vous les autorisations de travaux (copropriété, mairie) ?", answer: "Oui, absolument. Nous vous accompagnons dans toutes les démarches administratives. Que ce soit la déclaration de travaux en mairie ou la présentation du projet en assemblée générale de copropriété, nous préparons les dossiers pour vous garantir une tranquillité totale." },
         { question: "Possédez-vous la garantie décennale ?", answer: "Oui, c'est une obligation légale et notre plus grand gage de sérieux. Nous sommes assurés en responsabilité décennale (Allianz) pour l'électricité, la plomberie et la peinture intérieure : cette garantie couvre les dommages pouvant survenir dans les 10 ans suivant la réception. L'attestation est jointe au devis sur demande." }
     ],
-    relatedProjectSlugs: ['appartement-haussmannien-paris-16', 'studio-optimise-marais', 'renovation-appartement-cloisons-vincennes']
+    relatedProjectSlugs: ['appartement-haussmannien-paris-16', 'studio-optimise-marais', 'renovation-appartement-cloisons-vincennes', 'renovation-integrale-appartement-parisien']
   },
   {
     title: 'Rénovation de maison',

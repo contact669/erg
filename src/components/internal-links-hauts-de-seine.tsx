@@ -19,6 +19,8 @@ const CITIES_92_PRIMARY = [
   { name: "Suresnes", code: "92150", href: "/renovation-suresnes" },
   { name: "Clichy", code: "92110", href: "/renovation-clichy" },
   { name: "Nanterre", code: "92000", href: "/renovation-nanterre" },
+  { name: "Saint-Cloud", code: "92210", href: "/renovation-appartement/saint-cloud" },
+  { name: "Garches", code: "92380", href: "/renovation-appartement/garches" },
 ];
 
 export function InternalLinksHautsDeSeine() {
