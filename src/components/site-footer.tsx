@@ -14,7 +14,7 @@ const ADDRESS = COMPANY.address
 function DynamicLogo() {
   return (
     <Image
-      src="/images/logo-erg-small.webp"
+      src="/images/logo-erg-320.webp"
       alt="ERG Rénovation Logo"
       width={240}
       height={80}

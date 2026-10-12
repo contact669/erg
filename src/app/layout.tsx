@@ -10,8 +10,8 @@ import { TooltipProvider } from "@/components/ui/tooltip"
 import { ThemeProvider } from "@/components/theme-provider"
 import { buildLocalBusinessJsonLd, buildWebSiteJsonLd } from "@/lib/seo/jsonld";
 
-const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' })
-const outfit = Outfit({ subsets: ['latin'], display: 'swap', variable: '--font-outfit' })
+const inter = Inter({ subsets: ['latin'], display: 'optional', variable: '--font-inter' })
+const outfit = Outfit({ subsets: ['latin'], display: 'optional', variable: '--font-outfit' })
 
 const SITE_NAME = COMPANY.name
 const SITE_URL = COMPANY.siteUrl

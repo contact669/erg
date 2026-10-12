@@ -61,7 +61,6 @@ export default function FeaturedProjects() {
               <Link
                 key={project.slug}
                 href={`/realisations/${project.slug}`}
-                aria-label={`Voir la réalisation : ${project.title}`}
                 className="group block"
               >
                 <article className="h-full overflow-hidden rounded-3xl border border-stone-200/90 bg-white shadow-xl shadow-stone-200/60 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:border-amber-600/40 flex flex-col justify-between">
@@ -75,7 +74,7 @@ export default function FeaturedProjects() {
                           fill
                           className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          priority={idx === 0}
+                          loading="lazy"
                         />
                       )}
 

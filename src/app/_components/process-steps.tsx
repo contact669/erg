@@ -32,8 +32,8 @@ export default function ProcessSteps() {
       <div className="container relative z-10">
         {/* Header Section */}
         <header className="mx-auto max-w-4xl text-center space-y-5">
-          <div className="inline-flex items-center gap-2.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-5 py-2 text-xs font-bold uppercase tracking-wider text-amber-700 shadow-sm backdrop-blur-md">
-            <Sparkles className="h-4 w-4 text-amber-600 animate-pulse" />
+          <div className="inline-flex items-center gap-2.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-5 py-2 text-xs font-bold uppercase tracking-wider text-amber-800 shadow-sm backdrop-blur-md">
+            <Sparkles className="h-4 w-4 text-amber-800 animate-pulse" />
             <span>Méthodologie & Pilotage de Chantier</span>
           </div>
 
@@ -53,13 +53,13 @@ export default function ProcessSteps() {
 
           <div className="pt-2 flex flex-wrap justify-center items-center gap-6 text-xs text-slate-600 font-semibold">
             <span className="flex items-center gap-2">
-              <Clock className="h-4 w-4 text-amber-600" /> Planning Respecté à la Lettre
+              <Clock className="h-4 w-4 text-amber-800" /> Planning Respecté à la Lettre
             </span>
             <span className="flex items-center gap-2">
-              <UserCheck className="h-4 w-4 text-amber-600" /> Interlocuteur Unique Dédié
+              <UserCheck className="h-4 w-4 text-amber-800" /> Interlocuteur Unique Dédié
             </span>
             <span className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-amber-600" /> Réception Sans Surprise
+              <CheckCircle2 className="h-4 w-4 text-amber-800" /> Réception Sans Surprise
             </span>
           </div>
         </header>
@@ -89,17 +89,17 @@ export default function ProcessSteps() {
                     <div>
                       {/* Step Header Badge & Icon */}
                       <div className="flex items-center justify-between mb-6">
-                        <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-600 border border-amber-500/30 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all duration-500 shadow-md">
+                        <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-800 border border-amber-500/30 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all duration-500 shadow-md">
                           <Icon className="h-7 w-7" aria-hidden="true" />
                         </div>
 
-                        <span className="font-headline text-3xl font-black text-slate-300 group-hover:text-amber-500/80 transition-colors">
+                        <span className="font-headline text-3xl font-black text-slate-500 group-hover:text-amber-800 transition-colors">
                           0{step.step}
                         </span>
                       </div>
 
                       {/* Step Content */}
-                      <h3 className="font-headline text-xl font-bold tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors">
+                      <h3 className="font-headline text-xl font-bold tracking-tight text-slate-900 group-hover:text-amber-800 transition-colors">
                         {step.title}
                       </h3>
 
@@ -112,7 +112,7 @@ export default function ProcessSteps() {
                     <div className="mt-8 pt-4 border-t border-slate-200/60">
                       <div className="flex items-center justify-between text-xs font-semibold text-slate-400 mb-2">
                         <span>Étape {step.step} / 4</span>
-                        <span className="text-amber-600 font-bold">{((idx + 1) / 4) * 100}%</span>
+                        <span className="text-amber-800 font-bold">{((idx + 1) / 4) * 100}%</span>
                       </div>
                       <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200">
                         <div

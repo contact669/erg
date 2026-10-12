@@ -39,7 +39,7 @@ import { cn } from "@/lib/utils"
 function DynamicLogo() {
   return (
     <Image
-      src="/images/logo-erg-small.webp"
+      src="/images/logo-erg-320.webp"
       alt="ERG Rénovation Logo"
       width={280}
       height={100}

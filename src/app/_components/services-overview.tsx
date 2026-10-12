@@ -22,11 +22,11 @@ export default function ServicesOverview() {
         {/* Header High-End Light */}
         <header className="mx-auto max-w-4xl text-center space-y-6">
           {/* Badge Lumineux */}
-          <div className="inline-flex items-center gap-2.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-5 py-2 text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 shadow-sm backdrop-blur-md">
-            <Sparkles className="h-4 w-4 text-amber-600 animate-pulse" />
+          <div className="inline-flex items-center gap-2.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-5 py-2 text-xs font-bold uppercase tracking-wider text-amber-800 dark:text-amber-400 shadow-sm backdrop-blur-md">
+            <Sparkles className="h-4 w-4 text-amber-800 animate-pulse" />
             <span>Rénovation intérieure à Paris</span>
             <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
-            <span className="text-slate-700 dark:text-slate-300 font-normal">Excellence Artisanale</span>
+            <span className="text-slate-700 dark:text-slate-500 font-normal">Excellence Artisanale</span>
           </div>
 
           {/* Headline Titre Lumineux */}
@@ -47,10 +47,10 @@ export default function ServicesOverview() {
           {/* Quality Metrics */}
           <div className="pt-2 flex flex-wrap justify-center items-center gap-6 text-xs text-slate-600 font-medium">
             <span className="flex items-center gap-2">
-              <Award className="h-4 w-4 text-amber-600" /> Matériaux Nobles & Durables
+              <Award className="h-4 w-4 text-amber-800" /> Matériaux Nobles & Durables
             </span>
             <span className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-amber-600" /> Garantie Décennale 10 Ans
+              <ShieldCheck className="h-4 w-4 text-amber-800" /> Garantie Décennale 10 Ans
             </span>
             <span className="flex items-center gap-2">
               <Star className="h-4 w-4 text-amber-500 fill-amber-500" /> Conducteur de Travaux Dédié
@@ -78,17 +78,17 @@ export default function ServicesOverview() {
               <CardHeader className="p-8 space-y-6">
                 {/* Header Icon + Number Badge */}
                 <div className="flex items-center justify-between">
-                  <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-600 border border-amber-500/20 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all duration-500 shadow-md">
+                  <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-800 border border-amber-500/20 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all duration-500 shadow-md">
                     <service.icon className="h-8 w-8" aria-hidden="true" />
                   </div>
 
-                  <span className="font-headline text-2xl font-extrabold text-slate-300 group-hover:text-amber-500/60 transition-colors">
+                  <span className="font-headline text-2xl font-extrabold text-slate-500 group-hover:text-amber-500/60 transition-colors">
                     0{idx + 1}
                   </span>
                 </div>
 
                 <div className="space-y-3">
-                  <CardTitle className="font-headline text-2xl font-bold tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors">
+                  <CardTitle className="font-headline text-2xl font-bold tracking-tight text-slate-900 group-hover:text-amber-800 transition-colors">
                     {service.title}
                   </CardTitle>
 
@@ -101,14 +101,14 @@ export default function ServicesOverview() {
               {/* Card Footer Action */}
               <div className="px-8 pb-8 pt-4 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
                 <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500">
-                  <CheckCircle2 className="h-3.5 w-3.5 text-amber-600" /> Suivi personnalisé
+                  <CheckCircle2 className="h-3.5 w-3.5 text-amber-800" /> Suivi personnalisé
                 </span>
 
                 <Button
                   asChild
                   variant="ghost"
                   size="sm"
-                  className="h-10 px-4 text-xs font-bold text-amber-600 hover:text-amber-700 hover:bg-amber-500/10 rounded-xl group/btn transition-all"
+                  className="h-10 px-4 text-xs font-bold text-amber-800 hover:text-amber-800 hover:bg-amber-500/10 rounded-xl group/btn transition-all"
                 >
                   <Link href={`/services/${service.slug}`}>
                     Découvrir <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
@@ -149,7 +149,7 @@ export default function ServicesOverview() {
           </p>
           <p className="text-sm text-slate-600">
             Syndic, gestionnaire ou SCI ?{" "}
-            <Link href="/travaux-copropriete-syndic" className="font-semibold text-amber-700 hover:underline">
+            <Link href="/travaux-copropriete-syndic" className="font-semibold text-amber-800 hover:underline">
               Nos travaux de parties communes
             </Link>
           </p>
