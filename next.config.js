@@ -9,6 +9,7 @@ const nextConfig = {
       { source: `/${slug}/:path*`, destination: insuranceScope.redirectTo, permanent: true },
     ]);
     return [
+      { source: '/renovation-appartement/val-de-marne-94', destination: '/renovation-val-de-marne', permanent: true },
       { source: '/:path*', has: [{ type: 'host', value: 'www.erg-renovation.fr' }], destination: 'https://erg-renovation.fr/:path*', permanent: true },
       ...unpublished,
     ];

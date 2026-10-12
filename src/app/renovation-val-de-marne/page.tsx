@@ -148,7 +148,7 @@ const faqItems = [
   {
     q: "Quel est le prix d’une rénovation dans le 94 ?",
     a:
-      "Le prix dépend de la surface, de l’état initial et du niveau de prestation. À titre indicatif : dès 700 €/m² pour une rénovation partielle et 1 000 à 1 600 €/m² pour une rénovation complète. Une visite sur site est indispensable pour un chiffrage précis.",
+      "Le budget dépend des supports à préparer, des réseaux à reprendre, des équipements et des finitions. La visite permet de définir les travaux inclus et les options avant de confirmer un devis détaillé. La surface seule ne suffit pas à chiffrer le projet.",
   },
   {
     q: "Quels sont les délais moyens ?",
@@ -437,6 +437,19 @@ export default function RenovationValDeMarnePage() {
           </section>
         </AnimatedSection>
 
+        <section className="container py-12 md:py-16" aria-labelledby="preparer-appartement-94">
+          <div className="mx-auto max-w-4xl space-y-5">
+            <h2 id="preparer-appartement-94" className="font-headline text-2xl font-bold md:text-3xl">Préparer une rénovation d’appartement dans le Val-de-Marne</h2>
+            <p className="leading-relaxed text-muted-foreground">Votre projet peut concerner une remise en peinture, une cuisine, une salle de bain ou plusieurs pièces. Distinguez les équipements à conserver de ceux à remplacer et les changements indispensables des options de finition. Des photos, les dimensions et un plan simple permettent de préparer les vérifications lors de la visite.</p>
+            <p className="leading-relaxed text-muted-foreground">Dans un logement familial, examinez les circulations et les besoins quotidiens avant de décider de l’agencement. Si l’appartement reste occupé, les interventions sur l’électricité et la plomberie doivent être coordonnées avec l’accès aux sanitaires et à la cuisine. Les conditions d’accès à l’immeuble, les protections et les livraisons sont à préciser pour votre adresse.</p>
+            <p className="leading-relaxed text-muted-foreground">Le devis doit expliquer la préparation des supports, les interventions sur les réseaux, les fournitures et les travaux exclus. Les caractéristiques du logement et le périmètre retenu déterminent le budget et le planning. Une estimation générale ne remplace pas cette étude.</p>
+            <ul className="flex flex-wrap gap-x-6 gap-y-3 font-medium">
+              <li><Link href="/services/renovation-appartement" className="underline">Prestations de rénovation d’appartement</Link></li>
+              <li><Link href="/blog/comparer-devis-renovation" className="underline">Comparer des devis à périmètre égal</Link></li>
+              <li><Link href="/blog/renovation-petite-salle-de-bain-budget" className="underline">Préparer le budget d’une petite salle de bain</Link></li>
+            </ul>
+          </div>
+        </section>
         <CtaBanner />
       </main>
       <SiteFooter />

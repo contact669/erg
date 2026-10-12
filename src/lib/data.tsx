@@ -408,68 +408,6 @@ const renovationAppartementPages: LocalLandingPage[] = [
     },
   },
   {
-    slug: 'val-de-marne-94',
-    type: 'department',
-    title: "Rénovation d'Appartement Haut de Gamme dans le Val-de-Marne (94)",
-    metaTitle: "Rénovation Appartement Val-de-Marne (94) | Vincennes, Saint-Maur | ERG",
-    metaDescription: "Expert en rénovation d'appartements de qualité dans le 94 (Vincennes, Nogent-sur-Marne). Optimisation d'espace et finitions haut de gamme pour votre confort. Devis.",
-    parentService: allServices.find(s => s.slug === 'renovation-appartement')!,
-    introduction: "Le Val-de-Marne offre un cadre de vie prisé, alliant espaces verts et excellente connexion à Paris. La rénovation d'un appartement dans le 94 nécessite de créer des intérieurs qui valorisent cette qualité de vie : lumineux, fonctionnels et durables. ERG Rénovation apporte son expertise de la rénovation de luxe dans des villes comme Vincennes, Nogent-sur-Marne ou Saint-Maur-des-Fossés, assurant un projet mené avec la même rigueur que dans la capitale.",
-    cta: {
-      primary: 'Demander une étude personnalisée dans le 94',
-      secondary: 'Voir nos réalisations à Vincennes',
-    },
-    reassurancePoints: [
-      'Maîtrise des projets familiaux (Suites parentales, chambres multiples).',
-      'Expertise en isolation acoustique et thermique (Confort durable).',
-      'Gestion de projet de A à Z par un interlocuteur unique.',
-    ],
-    mainContent: (
-      <>
-        <h2 id="savoir-faire-94">Notre Savoir-Faire : Optimisation et Esthétique dans le 94</h2>
-        <p>Dans le Val-de-Marne, nos projets sont souvent axés sur la création de pièces à vivre harmonieuses et l'augmentation du confort.</p>
-        <div className="mt-8 space-y-6">
-            <div className="flex items-start gap-4">
-                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
-                <div>
-                    <h3 className="font-headline font-semibold text-lg">Création d'Espaces de Vie Ouverts et Lumineux</h3>
-                    <p className="text-muted-foreground">De la cuisine ouverte à l'abattage de cloisons non-porteuses, nous transformons l'agencement pour maximiser la lumière naturelle, un atout majeur du 94.</p>
-                </div>
-            </div>
-            <div className="flex items-start gap-4">
-                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
-                <div>
-                    <h3 className="font-headline font-semibold text-lg">Rénovation Complète des Chambres et Suites Parentales</h3>
-                    <p className="text-muted-foreground">Intégration de dressings sur mesure, création de salles d'eau privatives et isolation des murs pour un confort phonique optimal.</p>
-                </div>
-            </div>
-             <div className="flex items-start gap-4">
-                <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
-                <div>
-                    <h3 className="font-headline font-semibold text-lg">Rénovation de Balcons et Terrasses Privatives</h3>
-                    <p className="text-muted-foreground">Dans les résidences modernes du 94, nous apportons le même soin aux finitions intérieures : peintures, électricité et plomberie.</p>
-                </div>
-            </div>
-        </div>
-        <h2 id="villes-94">Les Villes du Val-de-Marne où Nous Intervenons</h2>
-        <p className="mt-4">Nous sommes le partenaire privilégié des propriétaires exigeants dans les communes du 94, particulièrement :</p>
-      </>
-    ),
-    testimonial: {
-      quote: "La rénovation de notre 4 pièces à Saint-Maur-des-Fossés s'est faite sans stress, avec une qualité de finitions exceptionnelle.",
-      author: "Famille Martin, Saint-Maur-des-Fossés (94)",
-    },
-    relatedLocations: [
-      { name: 'Vincennes', slug: 'vincennes' },
-      { name: 'Saint-Mandé', slug: 'saint-mande' },
-      { name: 'Nogent-sur-Marne', slug: 'nogent-sur-marne' },
-      { name: 'Le Perreux-sur-Marne', slug: 'le-perreux-sur-marne' },
-      { name: 'Saint-Maur-des-Fossés', slug: 'saint-maur-des-fosses' },
-      { name: 'Créteil', slug: 'creteil' },
-      { name: 'Maisons-Alfort', slug: 'maisons-alfort' },
-    ]
-  },
-  {
     slug: 'seine-saint-denis-93',
     type: 'department',
     title: "Rénovation d'Appartement et de Lofts à Fort Potentiel dans le 93",
