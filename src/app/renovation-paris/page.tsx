@@ -23,6 +23,7 @@ import {
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
 import Breadcrumbs from "@/components/breadcrumbs";
+import LocalProjectPreparation from "@/components/local-project-preparation";
 import AnimatedSection from "@/components/animated-section";
 import CtaBanner from "@/app/_components/cta-banner";
 
@@ -214,7 +215,7 @@ const whyUs = [
 const faqs = [
   {
     q: "Quel budget prévoir pour une rénovation à Paris ?",
-    a: "Selon la surface, l’état initial et le niveau de finition : dès 600 €/m² pour une rénovation partielle et environ 1 000 à 1 600 €/m² pour une rénovation complète. Une visite sur site permet un devis précis.",
+    a: "Le budget dépend de l’état des supports, des réseaux à reprendre, des équipements et des finitions. Une visite permet de préciser ces postes et de préparer un devis détaillé. Une surface en mètres carrés ne suffit pas à confirmer le coût.",
   },
   {
     q: "Quels délais pour des travaux à Paris ?",
@@ -512,6 +513,7 @@ export default function RenovationParisPage() {
           </section>
         </AnimatedSection>
 
+        <LocalProjectPreparation location="paris" />
         <CtaBanner />
       </main>
 

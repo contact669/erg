@@ -326,13 +326,13 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentName: "Seine-Saint-Denis",
     departmentSlug: "renovation-seine-saint-denis",
     heroTitle: "Rénovation d'Appartement & Loft à Montreuil (93100)",
-    metaTitle: "Rénovation Appartement & Loft Montreuil (93100)",
+    metaTitle: "Rénovation appartement Montreuil (93100) : devis gratuit",
     metaDescription: "Spécialiste de la rénovation d'appartements et lofts à Montreuil (Bas-Montreuil, Mairie, Signac). Devis gratuit et finitions haut de gamme.",
     neighborhoods: ["Bas-Montreuil", "Mairie de Montreuil", "Signac - Saint-Antoine", "Ruffins", "Boissière"],
     architecturalStyle: "Anciens ateliers d'artistes, lofts industriels, faubouriens et résidences neuves",
     description: "Transformation et rénovation de lofts, ateliers et appartements à Montreuil.",
     specifics: "Remise à neuf des réseaux électriques et de plomberie, peintures et finitions intérieures.",
-    avgPricePerSqm: "850 € à 1 450 € / m²",
+    avgPricePerSqm: "Devis après étude des travaux et de l’existant",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-complete-appartement-avant.webp",
       afterImage: "/images/realisations/renovation-complete-appartement-apres.webp",
@@ -341,7 +341,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Transformation atelier en loft Bas-Montreuil",
     },
     faqs: [
-      { q: "Comment réussir la rénovation d'un ancien atelier en loft à Montreuil ?", a: "Il faut soigner l'isolation de la toiture/verrière et valider le changement d'usage auprès de la mairie si nécessaire." },
+      { q: "Comment préparer un devis de rénovation à Montreuil ?", a: "Précisez la surface, les pièces concernées, les équipements à remplacer, les accès et si le logement reste occupé. La visite permet de vérifier les supports et les réseaux avant de confirmer le chiffrage." },
     ],
   },
   "pantin": {

@@ -871,6 +871,16 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
           </AnimatedSection>
         ) : null}
 
+        {service.slug === "renovation-appartement" && (
+          <section className="container py-8">
+            <h2 className="font-headline text-2xl font-semibold">Préparer les travaux dans votre secteur</h2>
+            <p className="mt-3 text-muted-foreground">Retrouvez les points à préparer avant la visite et le devis.</p>
+            <ul className="mt-4 flex flex-wrap gap-6">
+              <li><Link href="/renovation-paris" className="font-semibold underline">Rénovation à Paris : arrondissements et préparation</Link></li>
+              <li><Link href="/renovation-montreuil" className="font-semibold underline">Rénovation à Montreuil (93100)</Link></li>
+            </ul>
+          </section>
+        )}
         {service.slug === "renovation-salle-de-bain" && (
           <section className="container py-8">
             <h2 className="font-headline text-2xl font-semibold">Préparer votre projet à Paris 16</h2>
