@@ -267,7 +267,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                     <span className="text-sm font-semibold text-slate-900 block">{data.architecturalStyle}</span>
                   </div>
                   <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">{["montreuil", "courbevoie"].includes(data.slug) ? "Budget du projet" : "Fourchette indicative de travaux"}</span>
+                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">{data.avgPricePerSqm.includes("€") ? "Fourchette indicative de travaux" : "Budget du projet"}</span>
                     <span className="text-sm font-bold text-amber-700 block">{data.avgPricePerSqm}</span>
                   </div>
                 </div>
@@ -435,6 +435,19 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
 
         {data.slug === "montreuil" && <LocalProjectPreparation location="montreuil" />}
         {data.slug === "courbevoie" && <CourbevoieProjectPreparation />}
+        {data.projectPreparation && (
+          <section className="container py-12 md:py-16" aria-labelledby={`preparation-${data.slug}`}>
+            <div className="mx-auto max-w-4xl space-y-5">
+              <h2 id={`preparation-${data.slug}`} className="font-headline text-2xl font-bold md:text-3xl">{data.projectPreparation.title}</h2>
+              {data.projectPreparation.paragraphs.map(paragraph => <p key={paragraph} className="leading-relaxed text-slate-700">{paragraph}</p>)}
+              <ul className="flex flex-wrap gap-x-6 gap-y-3 font-medium">
+                <li><Link href="/services/renovation-appartement" className="underline">Prestations de rénovation d’appartement</Link></li>
+                <li><Link href="/blog/comparer-devis-renovation" className="underline">Comparer les devis de rénovation</Link></li>
+                <li><Link href="/renovation-val-de-marne" className="underline">Préparer votre projet dans le Val-de-Marne</Link></li>
+              </ul>
+            </div>
+          </section>
+        )}
         <CtaBanner />
       </main>
 

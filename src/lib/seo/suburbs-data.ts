@@ -13,6 +13,7 @@ export interface SuburbCityData {
   description: string;
   specifics: string;
   avgPricePerSqm: string;
+  projectPreparation?: { title: string; paragraphs: string[] };
   beforeAfterProject: {
     beforeImage: string;
     afterImage: string;
@@ -647,8 +648,16 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     neighborhoods: ["Le Lac", "L'Échat", "Mont-Mesly", "Bords de Marne", "Université"],
     architecturalStyle: "Résidences récentes modernistes, appartements du Lac et immeubles collectifs",
     description: "Rénovation d'appartements et modernisation intérieure à Créteil.",
-    specifics: "Création de cuisines ouvertes, réfection électrique NF C 15-100 et douches italiennes.",
-    avgPricePerSqm: "750 € à 1 250 € / m²",
+    specifics: "Peinture intérieure, rénovation des équipements et étude des réseaux de votre appartement avant chiffrage.",
+    avgPricePerSqm: "Devis après visite et définition des travaux",
+    projectPreparation: {
+      title: "Préparer la rénovation de votre appartement à Créteil",
+      paragraphs: [
+        "Avant la visite, précisez les pièces à rénover, les équipements à conserver et les changements prioritaires. À Créteil, votre adresse, l’étage et les accès à l’immeuble permettent d’anticiper les livraisons et les protections. La surface seule ne décrit pas l’état des murs, des sols ou des raccordements : des photos et un plan simple facilitent le premier échange.",
+        "Pour la cuisine et la salle de bain, vérifiez avec l’équipe les dimensions disponibles et les réseaux existants. Déplacer un équipement et le remplacer à son emplacement actuel peuvent demander des travaux différents. Les références des fournitures envisagées aident à examiner ces choix avant de confirmer le devis.",
+        "Le chiffrage doit distinguer la préparation des supports, les interventions électriques et de plomberie, les équipements, la peinture et les exclusions. Si le logement reste occupé, discutez de l’accès aux sanitaires et à la cuisine pendant les travaux. Le calendrier est défini en fonction du périmètre retenu et de la disponibilité des fournitures.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-salle-de-bain-3m2-avant.webp",
       afterImage: "/images/realisations/renovation-salle-de-bain-3m2-apres.webp",
@@ -657,7 +666,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation 4 pièces Créteil Lac",
     },
     faqs: [
-      { q: "Combien coûte la réfection complète de l'électricité dans un 4 pièces à Créteil ?", a: "Comptez entre 4 500 € et 7 500 € selon le nombre de points lumineux, prises et tableau d'abonnée." },
+      { q: "Comment obtenir un devis d’électricité pour mon appartement à Créteil ?", a: "La visite permet d’examiner l’installation existante, les équipements et les modifications souhaitées. Le devis précise les interventions retenues ; le nombre de pièces ne suffit pas à confirmer le prix." },
     ],
   },
   "maisons-alfort": {
@@ -668,13 +677,21 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentName: "Val-de-Marne",
     departmentSlug: "renovation-val-de-marne",
     heroTitle: "Rénovation Appartement & Maison à Maisons-Alfort (94700)",
-    metaTitle: "Rénovation Maison & Appartement Maisons-Alfort (94700) | ERG",
+    metaTitle: "Rénovation intérieure Maisons-Alfort (94700) : devis gratuit",
     metaDescription: "Rénovation complète d'appartement et maison à Maisons-Alfort (Charentonneau, Alfort, Mairie). Devis clair, finitions soignées et suivi personnalisé.",
     neighborhoods: ["Charentonneau", "Alfort", "Mairie", "Juilliottes", "Bustière"],
     architecturalStyle: "Pavillons de charme Charentonneau, immeubles 1930 et résidences calmes",
     description: "Rénovation d'appartements et pavillons familiaux à Maisons-Alfort.",
     specifics: "Optimisation de l'espace, rénovation de parquets et création de salles d'eau modernes.",
-    avgPricePerSqm: "800 € à 1 350 € / m²",
+    avgPricePerSqm: "Devis après étude de votre logement",
+    projectPreparation: {
+      title: "Définir vos travaux intérieurs à Maisons-Alfort",
+      paragraphs: [
+        "Votre projet à Maisons-Alfort peut concerner un appartement ou les pièces intérieures d’une maison. Précisez les éléments à moderniser, les réseaux à vérifier et les équipements à remplacer. Les travaux de structure ou d’extension ne sont pas inclus dans cette présentation. La visite permet de délimiter le périmètre réellement proposé pour votre bien.",
+        "Dans une salle de bain, le choix d’une douche dépend des évacuations et des dimensions disponibles. Dans une cuisine, l’emplacement des arrivées d’eau et des prises compte autant que le mobilier envisagé. Préparez les références des équipements et signalez ce qui doit rester utilisable pendant le chantier si vous habitez le logement.",
+        "L’accès, le stockage, les protections et l’enchaînement des interventions sont à préciser avant le démarrage. Demandez un devis qui distingue les fournitures, la préparation des supports, les travaux et les options. Le planning tient compte des temps de séchage et des équipements disponibles ; une estimation générale ne remplace pas l’étude de l’existant.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-studio-avant.webp",
       afterImage: "/images/realisations/renovation-studio-apres.webp",
