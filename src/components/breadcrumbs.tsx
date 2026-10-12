@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Fragment, useMemo, useState, useEffect } from "react"
+import { Fragment, useMemo } from "react"
 import { ChevronRight, Home } from "lucide-react"
 
 import { services, allProjects, blogPosts, localLandingPages } from "@/lib/data"
@@ -11,6 +11,13 @@ import { cn } from "@/lib/utils"
 type Crumb = { href: string; label: string; isLast: boolean }
 
 const HIDE_ON: string[] = ["/", "/dashboard"]
+
+// Local landing routes have no index page at /renovation-appartement, etc.
+const PARENT_ROUTES: Record<string, string> = {
+  "/renovation-appartement": "/services/renovation-appartement",
+  "/renovation-maison": "/services/renovation-maison",
+  "/renovation-salle-de-bain": "/services/renovation-salle-de-bain",
+}
 
 const CENTERED_ROUTES: string[] = [
   "/a-propos",
@@ -99,11 +106,6 @@ export default function Breadcrumbs({
   variant?: "light" | "dark"
 }) {
   const pathname = usePathname() ?? "/"
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   const crumbs = useMemo<Crumb[]>(() => {
     if (!pathname) return []
@@ -113,14 +115,14 @@ export default function Breadcrumbs({
       const isLast = index === segments.length - 1
       const label = resolveLabel(segment, pathname)
       return {
-        href,
+        href: !isLast ? PARENT_ROUTES[href] ?? href : href,
         isLast,
         label: isLast ? truncateSmart(label) : label,
       }
     })
   }, [pathname])
 
-  if (!mounted || HIDE_ON.includes(pathname)) return null
+  if (HIDE_ON.includes(pathname)) return null
 
   const centered = shouldCenter(pathname)
   const isDark = variant === "dark"

@@ -22,6 +22,11 @@ function walk(dir) {
         if (!/<meta name="robots" content="[^"]*noindex/.test(html)) failures.push(`${route}: missing noindex`);
         continue;
       }
+      if (/^\/(blog|realisations|services|renovation-appartement|renovation-maison|renovation-salle-de-bain)\//.test(route)) {
+        if (!/<nav\b[^>]*aria-label="Fil d’Ariane"/i.test(html) || !/aria-current="page"/.test(html)) {
+          failures.push(`${route}: breadcrumb missing from initial HTML`);
+        }
+      }
       const canonical = html.match(/<link rel="canonical" href="([^"]+)"/ )?.[1];
       if (canonical?.replace(/\/$/, '') !== (origin + route).replace(/\/$/, '')) failures.push(`${route}: canonical ${canonical ?? 'missing'}`);
       const title = html.match(/<title>(.*?)<\/title>/s)?.[1] ?? '';
