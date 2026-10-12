@@ -18,7 +18,7 @@ If you run into issues, ensure `firebase.json` contains a valid `apphosting` blo
 DO NOT use `firebase apphosting:backends:create` or `firebase apphosting:rollouts:create`.
 DO NOT try to deploy to Firebase Hosting.
 
-- When asked to add AI features, use Genkit (as already configured in `src/ai/`).
+- Genkit and `src/ai/` were removed in October 2026 (unused by the site). Add AI features back deliberately if needed.
 
 # Understanding backend.json
 
