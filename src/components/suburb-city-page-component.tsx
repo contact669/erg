@@ -443,7 +443,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
               <ul className="flex flex-wrap gap-x-6 gap-y-3 font-medium">
                 <li><Link href="/services/renovation-appartement" className="underline">Prestations de rénovation d’appartement</Link></li>
                 <li><Link href="/blog/comparer-devis-renovation" className="underline">Comparer les devis de rénovation</Link></li>
-                <li><Link href="/renovation-val-de-marne" className="underline">Préparer votre projet dans le Val-de-Marne</Link></li>
+                <li><Link href={`/${data.departmentSlug}`} className="underline">Rénovation dans les {data.departmentName}</Link></li>
               </ul>
             </div>
           </section>

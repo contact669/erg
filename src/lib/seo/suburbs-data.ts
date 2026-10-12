@@ -116,12 +116,20 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-hauts-de-seine",
     heroTitle: "Rénovation Appartement & Maison à Asnières-sur-Seine (92600)",
     metaTitle: "Rénovation Appartement Asnières-sur-Seine (92600)",
-    metaDescription: "Entreprise de rénovation à Asnières-sur-Seine. Électricité, plomberie et peinture pour appartements et maisons : cuisine, salle de bain, peinture, électricité.",
+    metaDescription: "Rénovation intérieure à Asnières-sur-Seine (92600) : électricité, plomberie et peinture. Préparez vos travaux et demandez un devis détaillé à ERG.",
     neighborhoods: ["Bécon-Flachat", "Mairie", "Baco-Comète", "Grésillons", "Voltaire"],
     architecturalStyle: "Maisons 1930, meulières et appartements bourgeois en pierre de taille",
     description: "Rénovation d'appartements et maisons familiales à Asnières-sur-Seine.",
     specifics: "Réhabilitation intérieure complète : électricité, plomberie et peintures.",
-    avgPricePerSqm: "850 € à 1 450 € / m²",
+    avgPricePerSqm: "Devis après visite et définition des travaux",
+    projectPreparation: {
+      title: "Préparer une rénovation intérieure à Asnières-sur-Seine",
+      paragraphs: [
+        "Dans un appartement à Bécon-Flachat ou près de la mairie, commencez par préciser les pièces concernées et l'état des installations. Une peinture intérieure, une reprise des points d'eau et une rénovation électrique ne mobilisent pas les mêmes moyens. Photos, plan et liste des équipements conservés permettent de préparer la visite sans présumer de l'état du logement.",
+        "Pour un chantier en copropriété, demandez au syndic les modalités d'accès, les horaires autorisés et les protections attendues dans les parties communes. Précisez également si vous restez sur place pendant les travaux : le maintien de l'eau, des sanitaires et de certains circuits électriques doit être discuté avant de fixer le planning.",
+        "Le devis doit distinguer les interventions d'électricité, de plomberie et de peinture, leurs fournitures et leurs limites. Les travaux sur la structure nécessitent un intervenant spécialisé et ne font pas partie de l'offre d'ERG. Comparez les devis sur un périmètre identique plutôt que sur un tarif global au mètre carré.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-complete-appartement-avant.webp",
       afterImage: "/images/realisations/renovation-complete-appartement-apres.webp",
@@ -142,7 +150,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-hauts-de-seine",
     heroTitle: "Rénovation d'Appartement & Maison à Colombes (92700)",
     metaTitle: "Rénovation Appartement & Maison Colombes (92700)",
-    metaDescription: "Confiez votre projet de rénovation à Colombes à ERG Rénovation. Appartements, pavillons, réfection énergétique et finitions soignées. Devis gratuit.",
+    metaDescription: "Travaux de rénovation intérieure à Colombes : électricité, plomberie et peinture pour votre logement. Demandez un devis détaillé à ERG Rénovation.",
     neighborhoods: ["Petite Garenne", "Centre-Ville", "Agent Sarre", "Fossés-Jean", "Wiener"],
     architecturalStyle: "Pavillons 1930, meulières et résidences collectives contemporaines",
     description: "Rénovation globale de maisons et d'appartements familiaux à Colombes.",
@@ -156,7 +164,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Transformation Petite Garenne",
     },
     faqs: [
-      { q: "Réalisez-vous l'aménagement de combles dans les pavillons de Colombes ?", a: "Oui, nous prenons en charge le renforcement de plancher, l'isolation thermique et la création de lucarnes/Velux." },
+      { q: "Quels travaux proposez-vous pour un logement à Colombes ?", a: "ERG propose des travaux d'électricité, de plomberie et de peinture intérieure, définis après examen du projet. L'aménagement de combles, les interventions sur la structure et la toiture ne font pas partie de l'offre publiée." },
     ],
   },
   "nanterre": {
@@ -168,12 +176,20 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-hauts-de-seine",
     heroTitle: "Rénovation d'Appartement à Nanterre (92000)",
     metaTitle: "Rénovation Appartement Nanterre (92000)",
-    metaDescription: "Entreprise de rénovation à Nanterre (Mont-Valérien, Université, Centre). Travaux de rénovation énergétique, cuisine, salle de bain, peinture.",
+    metaDescription: "Rénovation intérieure à Nanterre (92000) : électricité, plomberie et peinture. Définissez votre projet et demandez un devis détaillé à ERG Rénovation.",
     neighborhoods: ["Mont-Valérien", "Vieux-Pont", "Centre-Ville", "Parc-Nord", "Université"],
     architecturalStyle: "Résidences récentes, maisons du Mont-Valérien et immeubles collectifs",
     description: "Rénovation d'appartements et maisons à Nanterre avec optimisation budgétaire.",
-    specifics: "Remise aux normes NF C 15-100, création de cloisons isolantes et aménagement de pièces d'eau.",
-    avgPricePerSqm: "750 € à 1 300 € / m²",
+    specifics: "Travaux d'électricité, de plomberie et de peinture intérieure selon les besoins du logement.",
+    avgPricePerSqm: "Budget établi sur le périmètre du devis",
+    projectPreparation: {
+      title: "Définir les travaux et leur budget à Nanterre",
+      paragraphs: [
+        "Dans une résidence du quartier Université, du Parc-Nord ou du centre de Nanterre, précisez les accès au logement avant la visite : étage, ascenseur utilisable pour les livraisons et possibilités de stationnement. Ces contraintes doivent être connues pour organiser les approvisionnements et les protections, sans supposer que tous les immeubles d'un quartier présentent les mêmes caractéristiques.",
+        "Séparez les besoins techniques des choix de finition. Pour l'électricité, listez les équipements à alimenter et les prises souhaitées ; pour la plomberie, les points d'eau concernés ; pour la peinture, les surfaces et l'état des supports. Signalez les défauts visibles sans les transformer en diagnostic : les interventions nécessaires se précisent lors de l'examen du logement.",
+        "Un devis exploitable indique les travaux retenus, les fournitures, la préparation des supports et les exclusions. Dans un logement occupé, convenez aussi du déroulement des interventions et des coupures éventuelles. Ce périmètre permet de comparer des propositions et de hiérarchiser les travaux si le budget impose plusieurs étapes.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-studio-avant.webp",
       afterImage: "/images/realisations/renovation-studio-apres.webp",
@@ -182,7 +198,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation appartement Mont-Valérien",
     },
     faqs: [
-      { q: "Quel est le tarif moyen au m² pour rénover un appartement à Nanterre ?", a: "Le coût se situe entre 800 € et 1 400 € / m² selon le niveau de finitions et la complexité technique." },
+      { q: "Comment obtenir un budget de rénovation à Nanterre ?", a: "Préparez la surface des pièces, des photos, la liste des travaux et vos contraintes d'occupation. Le devis se construit après examen du logement et détaille les interventions retenues. Un prix au mètre carré seul ne décrit pas l'état des réseaux, les fournitures ni la préparation des supports." },
     ],
   },
   "neuilly-sur-seine": {
