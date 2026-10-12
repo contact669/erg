@@ -106,7 +106,7 @@ function JsonLd({ faqs }: { faqs: { q: string; a: string }[] }) {
         "Rénovation d’appartement",
         "Rénovation de salle de bain",
         "Rénovation de cuisine",
-        "Travaux tous corps d’état",
+        "Électricité, plomberie et peinture",
       ],
       description:
         "ERG Rénovation, entreprise spécialisée en rénovation intérieure d'appartements, cuisines et salles de bain à Paris. Devis gratuit, garantie décennale.",
@@ -207,7 +207,7 @@ const whyUs = [
     icon: ShieldCheck,
     title: "Clarté, qualité, garantie",
     description:
-      "Devis détaillé, étapes claires, contrôle qualité continu. Travaux couverts par la garantie décennale.",
+      "Devis détaillé, étapes claires, contrôle qualité continu. Électricité, plomberie et peinture couvertes par notre assurance décennale.",
   },
 ];
 

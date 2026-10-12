@@ -95,7 +95,7 @@ function JsonLdScript({ data }: { data: SuburbCityData }) {
         "Rénovation de maison",
         "Rénovation de salle de bain",
         "Rénovation de cuisine",
-        "Travaux tous corps d'état",
+        "Électricité, plomberie et peinture",
       ],
     },
     {
@@ -224,7 +224,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                     </li>
                     <li className="flex items-start gap-2.5">
                       <CheckCircle2 className="h-4 w-4 text-amber-400 mt-0.5 flex-shrink-0" />
-                      <span><strong>Tous Corps d'État (TCE) :</strong> Électricité NF C 15-100, plomberie, menuiserie, parquets et peintures.</span>
+                      <span><strong>Nos métiers :</strong> Électricité NF C 15-100, plomberie et sanitaires, peintures et finitions intérieures.</span>
                     </li>
                     <li className="flex items-start gap-2.5">
                       <CheckCircle2 className="h-4 w-4 text-amber-400 mt-0.5 flex-shrink-0" />
@@ -315,7 +315,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                   Nos Prestations de Rénovation à {data.name}
                 </h2>
                 <p className="text-slate-600 text-base">
-                  Une prise en charge complète de vos travaux, du gros œuvre aux finitions sur-mesure.
+                  Une prise en charge complète de vos travaux, des réseaux aux finitions.
                 </p>
               </div>
 

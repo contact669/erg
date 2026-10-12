@@ -82,8 +82,8 @@ const SCOPE_OPTIONS = [
   },
   {
     id: "lourde" as ScopeType,
-    title: "Rénovation Lourde / Structurelle",
-    desc: "Ouverture de mur porteur, isolation thermique, modification complète des espaces",
+    title: "Rénovation Complète",
+    desc: "Électricité, plomberie et peintures de tout le logement",
   },
 ]
 

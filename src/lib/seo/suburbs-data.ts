@@ -115,11 +115,11 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-hauts-de-seine",
     heroTitle: "Rénovation Appartement & Maison à Asnières-sur-Seine (92600)",
     metaTitle: "Rénovation Appartement Asnières-sur-Seine (92600)",
-    metaDescription: "Entreprise de rénovation à Asnières-sur-Seine. Travaux tous corps d'état pour appartements et maisons : cuisine, salle de bain, peinture, électricité.",
+    metaDescription: "Entreprise de rénovation à Asnières-sur-Seine. Électricité, plomberie et peinture pour appartements et maisons : cuisine, salle de bain, peinture, électricité.",
     neighborhoods: ["Bécon-Flachat", "Mairie", "Baco-Comète", "Grésillons", "Voltaire"],
     architecturalStyle: "Maisons 1930, meulières et appartements bourgeois en pierre de taille",
     description: "Rénovation d'appartements et maisons familiales à Asnières-sur-Seine.",
-    specifics: "Réhabilitation complète, ravalement thermique et ouverture de murs porteurs (IPN) sous contrôle BET.",
+    specifics: "Réhabilitation intérieure complète : électricité, plomberie et peintures.",
     avgPricePerSqm: "850 € à 1 450 € / m²",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-complete-appartement-avant.webp",
@@ -129,7 +129,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation complète maison & appartement Flachat",
     },
     faqs: [
-      { q: "Faut-il un bureau d'études pour ouvrir un mur porteur à Asnières ?", a: "Absolument. Toute ouverture de mur porteur nécessite une étude de structure BET et la pose de fers IPN conformément à la garantie décennale." },
+      { q: "Faut-il un bureau d'études pour ouvrir un mur porteur à Asnières ?", a: "Oui. Toute ouverture de mur porteur nécessite une étude de structure par un bureau d'études et une entreprise de gros œuvre assurée pour ces travaux ; ERG Rénovation n'intervient pas sur la structure." },
     ],
   },
   "colombes": {
@@ -145,7 +145,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     neighborhoods: ["Petite Garenne", "Centre-Ville", "Agent Sarre", "Fossés-Jean", "Wiener"],
     architecturalStyle: "Pavillons 1930, meulières et résidences collectives contemporaines",
     description: "Rénovation globale de maisons et d'appartements familiaux à Colombes.",
-    specifics: "Aménagement de combles, réfection de toitures et rénovation complète d'installations électriques/plomberie.",
+    specifics: "Rénovation complète d'installations électriques et de plomberie, peintures intérieures.",
     avgPricePerSqm: "800 € à 1 350 € / m²",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-salle-de-bain-3m2-avant.webp",
@@ -207,7 +207,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation appartement 140m² Sablons",
     },
     faqs: [
-      { q: "Quelles garanties offrez-vous pour les rénovations de prestige à Neuilly ?", a: "Tous nos travaux sont couverts par notre garantie décennale et assurance RC Pro. Un chef de projet unique assure le suivi hebdomadaire." },
+      { q: "Quelles garanties offrez-vous pour les rénovations de prestige à Neuilly ?", a: "Nos travaux d'électricité, de plomberie et de peinture intérieure sont couverts par notre assurance décennale. Un chef de projet unique assure le suivi hebdomadaire." },
     ],
   },
   "rueil-malmaison": {
@@ -331,7 +331,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     neighborhoods: ["Bas-Montreuil", "Mairie de Montreuil", "Signac - Saint-Antoine", "Ruffins", "Boissière"],
     architecturalStyle: "Anciens ateliers d'artistes, lofts industriels, faubouriens et résidences neuves",
     description: "Transformation et rénovation de lofts, ateliers et appartements à Montreuil.",
-    specifics: "Création de structures métalliques (verrières, mezzanines), rénovation d'isolation thermique et parquets massif.",
+    specifics: "Remise à neuf des réseaux électriques et de plomberie, peintures et finitions intérieures.",
     avgPricePerSqm: "850 € à 1 450 € / m²",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-complete-appartement-avant.webp",
@@ -579,7 +579,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation maison & appartement Nogent",
     },
     faqs: [
-      { q: "Quelles sont vos compétences pour la rénovation de maisons à Nogent ?", a: "Nous gérons le gros œuvre, l'isolation, la plomberie, l'électricité, la maçonnerie et toutes les finitions." },
+      { q: "Quelles sont vos compétences pour la rénovation de maisons à Nogent ?", a: "Nous intervenons en électricité, en plomberie et en peinture intérieure, les métiers couverts par notre assurance décennale." },
     ],
   },
   "le-perreux-sur-marne": {
@@ -631,7 +631,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation maison La Varenne St-Hilaire",
     },
     faqs: [
-      { q: "Intervenez-vous sur La Varenne Saint-Hilaire pour des rénovations lourdes ?", a: "Oui, nous réalisons des rénovations lourdes avec reprise de structure et redistribution complète." },
+      { q: "Intervenez-vous sur La Varenne Saint-Hilaire pour des rénovations lourdes ?", a: "Nous y réalisons des rénovations intérieures : électricité, plomberie et peintures. Nous n'intervenons pas sur la structure." },
     ],
   },
   "creteil": {

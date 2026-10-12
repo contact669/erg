@@ -284,7 +284,7 @@ function SeoContentFallback({
       d: "Protection sols/murs, sécurisation des zones, plan de circulation sur chantier.",
     },
     {
-      t: "Travaux tous corps d’état",
+      t: "Électricité, plomberie et peinture",
       d: "Dépose, cloisons, sols, peinture, plomberie, électricité, cuisine & SDB.",
     },
     {
@@ -583,7 +583,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-md bg-primary-foreground/10 px-3 py-2">
                   <Wrench className="h-4 w-4 text-accent" />
-                  Tous corps d’état
+                  Électricité · Plomberie · Peinture
                 </span>
               </div>
             </div>

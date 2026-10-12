@@ -1,7 +1,17 @@
+const insuranceScope = require('./src/lib/insurance-scope.json');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async redirects() {
-    return [{ source: '/:path*', has: [{ type: 'host', value: 'www.erg-renovation.fr' }], destination: 'https://erg-renovation.fr/:path*', permanent: true }];
+    // Services whose trades are not covered by the décennale are not published (see insurance-scope.json).
+    const unpublished = insuranceScope.unpublishedServiceSlugs.flatMap((slug) => [
+      { source: `/services/${slug}`, destination: insuranceScope.redirectTo, permanent: true },
+      { source: `/${slug}/:path*`, destination: insuranceScope.redirectTo, permanent: true },
+    ]);
+    return [
+      { source: '/:path*', has: [{ type: 'host', value: 'www.erg-renovation.fr' }], destination: 'https://erg-renovation.fr/:path*', permanent: true },
+      ...unpublished,
+    ];
   },
   async headers() {
     return ['/dashboard/:path*', '/crm/:path*', '/connexion/:path*', '/api/:path*'].map(source => ({

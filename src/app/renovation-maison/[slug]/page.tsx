@@ -553,7 +553,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-md bg-primary-foreground/10 px-3 py-2">
                   <Wrench className="h-4 w-4 text-accent" />
-                  Tous corps d’état
+                  Électricité · Plomberie · Peinture
                 </span>
               </div>
             </div>

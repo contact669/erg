@@ -1,6 +1,7 @@
 
 
 import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage, Area } from './types';
+import { isPublishedService } from '@/lib/insurance-scope';
 import {
   Home,
   Bath,
@@ -42,7 +43,8 @@ export const navItems: NavItem[] = [
   { title: 'Contact', href: '/contact' },
 ];
 
-export const services: Service[] = [
+// Every service, including those not published while their trades are not insured.
+const allServices: Service[] = [
   {
     title: 'Rénovation d’appartement',
     slug: 'renovation-appartement',
@@ -66,21 +68,21 @@ export const services: Service[] = [
         description: "Améliorez votre confort et la valeur de votre bien : isolation des murs, remplacement de fenêtres, installation de systèmes de chauffage performants."
       },
       {
-        title: "Agencement et Menuiserie sur Mesure",
-        description: "Création de dressings, bibliothèques, et solutions de rangement intégrées qui s'adaptent parfaitement à l'architecture de votre appartement."
+        title: "Rangements et Finitions Intérieures",
+        description: "Préparation des murs, peintures, éclairage et électricité des rangements : nous coordonnons les finitions pour qu'elles s'intègrent à l'architecture de votre appartement."
       }
     ],
     process: [
         { step: 1, title: 'Consultation et Devis', description: 'Visite sur site (Paris, 92, 93, 94, 78), écoute de vos besoins, analyse technique et remise d\'un devis détaillé et transparent.' },
         { step: 2, title: 'Conception et Planification', description: 'Validation des plans (si nécessaire avec architecte), choix des matériaux, établissement d\'un planning précis.' },
-        { step: 3, title: 'Réalisation des Travaux', description: 'Pilotage de nos équipes qualifiées (tous corps d\'état), réunions de chantier régulières, et un interlocuteur unique dédié à votre projet.' },
+        { step: 3, title: 'Réalisation des Travaux', description: 'Pilotage de nos équipes qualifiées, réunions de chantier régulières, et un interlocuteur unique dédié à votre projet.' },
         { step: 4, title: 'Livraison et Garanties', description: 'Réception des travaux sans réserve, remise des documents (dont la garantie décennale) et service après-vente réactif.' }
     ],
     whyUs: [
         { title: "Une Expertise Reconnue à Paris et en Île-de-France", description: "Notre connaissance des spécificités de l'immobilier francilien (immeubles anciens, contraintes de copropriété, normes) est votre meilleure garantie. Nous intervenons quotidiennement dans le 75, 92, 93, 94 et 78.", icon: Award },
         { title: "La Garantie d'un Interlocuteur Unique", description: "Fini le stress de la coordination. Votre chef de projet dédié est votre seul point de contact. Il pilote les artisans, gère le planning et assure le contrôle qualité permanent.", icon: Users },
         { title: 'Des Finitions "Haut de Gamme"', description: "Le 'très très haut niveau' se voit dans les détails. Nous travaillons avec des matériaux nobles et nos artisans sont sélectionnés pour leur excellence (peintures soignées, pose de parquet, marbrerie...).", icon: Sparkles },
-        { title: 'Transparence et Garanties', description: "Tous nos travaux sont couverts par une assurance décennale et une assurance responsabilité civile. Nos devis sont clairs et nos délais, tenus.", icon: ClipboardList }
+        { title: 'Transparence et Garanties', description: "Nos travaux d'électricité, de plomberie et de peinture intérieure sont couverts par notre assurance décennale Allianz ; l'attestation est jointe au devis sur demande. Nos devis sont clairs et nos délais, tenus.", icon: ClipboardList }
     ],
     zones: {
         description: "Basée au cœur de la région, ERG Rénovation déploie ses équipes pour tous projets de rénovation d'appartement à Paris (75) et en Île-de-France. Cliquez sur votre département pour découvrir notre expertise locale :",
@@ -95,7 +97,7 @@ export const services: Service[] = [
         { question: "Quel est le prix moyen d'une rénovation d'appartement au m² à Paris ?", answer: "Le coût d'une rénovation haut de gamme à Paris varie généralement entre 1 500 € et 2 500 € par mètre carré, selon la complexité, les matériaux choisis et l'état initial du bien. Chez ERG Rénovation, nous nous engageons à fournir un devis détaillé et transparent, sans frais cachés, pour que vous maîtrisiez parfaitement votre budget." },
         { question: "Combien de temps dure une rénovation complète ?", answer: "Pour un appartement de 50m², une rénovation complète dure en moyenne entre 2 et 4 mois. Pour 100m², il faut compter entre 4 et 6 mois. Ces délais dépendent de l'ampleur des travaux. Nous établissons un planning précis et nous nous y tenons." },
         { question: "Gérez-vous les autorisations de travaux (copropriété, mairie) ?", answer: "Oui, absolument. Nous vous accompagnons dans toutes les démarches administratives. Que ce soit la déclaration de travaux en mairie ou la présentation du projet en assemblée générale de copropriété, nous préparons les dossiers pour vous garantir une tranquillité totale." },
-        { question: "Possédez-vous la garantie décennale ?", answer: "Oui, c'est une obligation légale et notre plus grand gage de sérieux. Tous nos travaux sont couverts par notre garantie décennale, qui assure la réparation des dommages pouvant survenir dans les 10 ans suivant la réception du chantier. Votre investissement est ainsi protégé." }
+        { question: "Possédez-vous la garantie décennale ?", answer: "Oui, c'est une obligation légale et notre plus grand gage de sérieux. Nous sommes assurés en responsabilité décennale (Allianz) pour l'électricité, la plomberie et la peinture intérieure : cette garantie couvre les dommages pouvant survenir dans les 10 ans suivant la réception. L'attestation est jointe au devis sur demande." }
     ],
     relatedProjectSlugs: ['appartement-haussmannien-paris-16', 'studio-optimise-marais', 'renovation-appartement-cloisons-vincennes']
   },
@@ -136,7 +138,7 @@ export const services: Service[] = [
         { title: "La Maîtrise des Projets Complexes", description: "Une extension, une ouverture de mur porteur ou une réhabilitation complète ne s'improvisent pas. Nous disposons des assurances (décennale) et des compétences techniques (bureau d'études structure) pour sécuriser ces interventions majeures.", icon: Layers },
         { title: "Votre Interlocuteur Unique, du Plan à la Finition", description: "Nous internalisons ou pilotons l'ensemble des métiers : maçons, couvreurs, menuisiers... Vous n'avez qu'un seul responsable : ERG Rénovation.", icon: Users },
         { title: 'Des Finitions "Sur Mesure"', description: "Votre maison est unique. Nous ne proposons pas de solutions standards, mais un projet entièrement sur mesure, des plans d'agencement aux menuiseries intégrées.", icon: Sparkles },
-        { title: 'Transparence et Garanties', description: "Tous nos travaux sont couverts par une assurance décennale et une assurance responsabilité civile. Nos devis sont clairs et nos délais, tenus.", icon: ClipboardList }
+        { title: 'Transparence et Garanties', description: "Nos travaux d'électricité, de plomberie et de peinture intérieure sont couverts par notre assurance décennale Allianz ; l'attestation est jointe au devis sur demande. Nos devis sont clairs et nos délais, tenus.", icon: ClipboardList }
     ],
     zones: {
         description: "ERG Rénovation est le spécialiste des projets résidentiels haut de gamme en Île-de-France. Nos équipes interviennent pour la rénovation de maisons dans les Yvelines (78) (Versailles, Saint-Germain-en-Laye...) et les Hauts-de-Seine (92) (Meudon, Saint-Cloud, Sceaux...), où se concentrent de nombreux pavillons et demeures de caractère.",
@@ -174,8 +176,8 @@ export const services: Service[] = [
         description: "Notre cœur de métier. Étanchéité parfaite (système S.E.L.), pose de receveur extra-plat ou maçonné, parois de verre sur mesure et robinetterie de luxe (encastrée ou non)."
       },
       {
-        title: "Pose de Matériaux Nobles (Marbre, Carrelage Grand Format, Mosaïque)",
-        description: "La finition \"haut de gamme\" réside dans la pose. Nos artisans maîtrisent la pose de marbre, de faïence, de mosaïque et de carrelage grand format avec une précision millimétrique."
+        title: "Plomberie, Sanitaires et Faïence",
+        description: "Remplacement des réseaux d'eau, pose des sanitaires, de la robinetterie et de la faïence murale, avec des finitions soignées."
       },
       {
         title: "Agencement et Mobilier sur Mesure",
@@ -185,8 +187,8 @@ export const services: Service[] = [
     process: [
         { step: 1, title: 'Rendez-vous Conseil & Conception', description: "Visite sur site (Paris et IDF), écoute de vos envies (style \"spa\", \"design\", \"classique\"), prise de cotes et proposition de plans 3D pour visualiser votre futur espace." },
         { step: 2, title: 'Choix des Matériaux & Devis', description: "Nous vous guidons dans le choix des robinetteries, sanitaires, carrelages et éclairages. Remise d'un devis transparent et détaillé." },
-        { step: 3, title: 'Réalisation Pilotée', description: "Un interlocuteur unique gère le planning, coordonne les plombiers, électriciens et carreleurs, et protège vos espaces de vie pendant les travaux." },
-        { step: 4, title: 'Réception et Garantie', description: "Nettoyage final, réception de chantier sans réserve, et activation de votre garantie décennale sur l'ensemble des travaux." }
+        { step: 3, title: 'Réalisation Pilotée', description: "Un interlocuteur unique gère le planning, coordonne les plombiers, les électriciens et les peintres, et protège vos espaces de vie pendant les travaux." },
+        { step: 4, title: 'Réception et Garantie', description: "Nettoyage final, réception de chantier et procès-verbal signé, point de départ de la garantie décennale sur les travaux couverts." }
     ],
     whyUs: [
         { title: "Étanchéité Infalible", description: "Nous appliquons des systèmes d'étanchéité liquide (S.E.L.) sous carrelage et des bandes de renfort dans tous les angles, dépassant les normes DTU pour une sécurité maximale.", icon: ShieldCheck },
@@ -203,7 +205,7 @@ export const services: Service[] = [
     faq: [
         { question: "Quel est le prix d'une rénovation complète de salle de bain haut de gamme ?", answer: "Le prix dépend des matériaux (marbre vs. carrelage) et de la robinetterie, mais une prestation ERG Rénovation se situe généralement à partir de 2 000 €/m². Nous fournissons un devis détaillé pour une transparence totale." },
         { question: "Combien de temps faut-il pour refaire une salle de bain ?", answer: "Entre 2 et 4 semaines en moyenne pour une rénovation complète. Nous nous engageons fermement à respecter le planning que nous établissons avec vous." },
-        { question: "Comment garantissez-vous l'étanchéité d'une douche à l'italienne ?", answer: "C'est notre priorité absolue. Nous utilisons des systèmes d'étanchéité liquide (S.E.L) sous carrelage, effectuons des tests de mise en eau et l'ensemble est couvert par notre garantie décennale." },
+        { question: "Comment garantissez-vous l'étanchéité d'une douche à l'italienne ?", answer: "C'est notre priorité absolue. Nous utilisons des systèmes d'étanchéité liquide (S.E.L) sous carrelage, effectuons des tests de mise en eau ; la plomberie et les sanitaires sont couverts par notre garantie décennale." },
         { question: "Faut-il une autorisation pour refaire sa salle de bain à Paris ?", answer: "Généralement non, une déclaration de travaux n'est pas nécessaire sauf si vous modifiez un mur porteur ou la colonne d'évacuation de l'immeuble. Si c'est le cas, nous nous occupons de toutes les démarches." }
     ],
     relatedProjectSlugs: ['suite-parentale-spa-neuilly', 'salle-eau-combles-versailles']
@@ -223,12 +225,12 @@ export const services: Service[] = [
         description: "Optimisation de l'ergonomie (triangle d'activité), conception de plans 3D, et création de mobilier sur mesure (îlot central, rangements intégrés, verrières)."
       },
       {
-        title: "Travaux Tous Corps d'État (TCE)",
-        description: "La clé d'une cuisine réussie. Modification des réseaux (plomberie, électricité), gestion de l'extraction (hotte), pose de crédence et de revêtements de sol (parquet, carrelage)."
+        title: "Plomberie, Électricité et Peinture",
+        description: "La clé d'une cuisine réussie. Modification des réseaux (plomberie, électricité), gestion de l'extraction (hotte), préparation des supports et peinture."
       },
       {
-        title: "Ouverture de Cuisine (Projet Structurel)",
-        description: "Spécialistes de la création de cuisines ouvertes. Nous gérons l'abattage de murs porteurs (avec étude de bureau d'ingénierie et pose d'IPN) en toute sécurité."
+        title: "Réseaux de la Cuisine Ouverte",
+        description: "Lorsque la cuisine s'ouvre sur le séjour, nous reprenons l'électricité, la plomberie et les peintures de l'ensemble de l'espace."
       },
       {
         title: "Pose et Finitions Haut de Gamme",
@@ -367,7 +369,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     title: "Rénovation d'Appartement à Neuilly-sur-Seine (92200)",
     metaTitle: 'Rénovation Appartement Neuilly-sur-Seine (92)',
     metaDescription: "Expert en rénovation d'appartements haut de gamme à Neuilly-sur-Seine. ERG Rénovation gère votre projet de A à Z : plans, travaux, finitions de luxe.",
-    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    parentService: allServices.find(s => s.slug === 'renovation-appartement')!,
     introduction: "La rénovation d'un appartement à Neuilly-sur-Seine exige une compréhension fine de son patrimoine architectural unique et un niveau de finition irréprochable. ERG Rénovation est votre partenaire de confiance, spécialisé dans la transformation d'appartements de standing, des hôtels particuliers aux résidences modernes.",
     cta: {
       primary: 'Demander un devis pour mon projet à Neuilly',
@@ -411,7 +413,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     title: "Rénovation d'Appartement Haut de Gamme dans le Val-de-Marne (94)",
     metaTitle: "Rénovation Appartement Val-de-Marne (94) | Vincennes, Saint-Maur | ERG",
     metaDescription: "Expert en rénovation d'appartements de qualité dans le 94 (Vincennes, Nogent-sur-Marne). Optimisation d'espace et finitions haut de gamme pour votre confort. Devis.",
-    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    parentService: allServices.find(s => s.slug === 'renovation-appartement')!,
     introduction: "Le Val-de-Marne offre un cadre de vie prisé, alliant espaces verts et excellente connexion à Paris. La rénovation d'un appartement dans le 94 nécessite de créer des intérieurs qui valorisent cette qualité de vie : lumineux, fonctionnels et durables. ERG Rénovation apporte son expertise de la rénovation de luxe dans des villes comme Vincennes, Nogent-sur-Marne ou Saint-Maur-des-Fossés, assurant un projet mené avec la même rigueur que dans la capitale.",
     cta: {
       primary: 'Demander une étude personnalisée dans le 94',
@@ -445,7 +447,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
                 <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
                 <div>
                     <h3 className="font-headline font-semibold text-lg">Rénovation de Balcons et Terrasses Privatives</h3>
-                    <p className="text-muted-foreground">Dans les résidences modernes du 94, nous étendons la qualité des finitions aux espaces extérieurs (dalles sur plots, étanchéité, garde-corps design) pour une véritable extension de l'appartement.</p>
+                    <p className="text-muted-foreground">Dans les résidences modernes du 94, nous apportons le même soin aux finitions intérieures : peintures, électricité et plomberie.</p>
                 </div>
             </div>
         </div>
@@ -473,7 +475,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     title: "Rénovation d'Appartement et de Lofts à Fort Potentiel dans le 93",
     metaTitle: 'Rénovation Appartement & Loft Seine-Saint-Denis (93) | Expertise Luxe | ERG',
     metaDescription: 'Spécialiste de la rénovation d\'appartements et lofts à fort potentiel dans le 93 (Saint-Ouen, Montreuil). Création d\'espaces modernes et finitions haut de gamme.',
-    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    parentService: allServices.find(s => s.slug === 'renovation-appartement')!,
     introduction: 'La Seine-Saint-Denis est un territoire de transformation, offrant des opportunités uniques de créer des espaces de vie modernes, des lofts spacieux et des appartements au standing élevé. ERG Rénovation est votre expert pour capitaliser sur ce potentiel immobilier en gérant les projets les plus ambitieux. Nous excellons dans la rénovation complète et la réhabilitation, apportant la rigueur et les finitions du luxe parisien dans le 93.',
     cta: {
       primary: 'Valoriser mon bien immobilier dans le 93',
@@ -481,7 +483,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     },
     reassurancePoints: [
       'Expertise en transformation d\'espaces (Lofts, ateliers).',
-      'Maîtrise des projets d\'ouverture structurelle.',
+      'Remise aux normes de l\'électricité et de la plomberie.',
       'Finitions haut de gamme pour une plus-value garantie.',
     ],
     mainContent: (
@@ -493,7 +495,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
                 <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
                 <div>
                     <h3 className="font-headline font-semibold text-lg">Aménagement et Création de Lofts</h3>
-                    <p className="text-muted-foreground">Spécialiste de la transformation d'anciennes surfaces industrielles en lofts. Gestion des volumes, création de mezzanines, traitement des murs bruts et gestion des réseaux complexes.</p>
+                    <p className="text-muted-foreground">Spécialiste de la transformation d'anciennes surfaces industrielles en lofts. Traitement des murs bruts, peintures et gestion des réseaux électriques et de plomberie.</p>
                 </div>
             </div>
             <div className="flex items-start gap-4">
@@ -533,7 +535,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     title: "Rénovation d'Appartement de Prestige dans les Yvelines (78)",
     metaTitle: "Rénovation Appartement Prestige Yvelines (78) | Versailles, Saint-Germain | ERG",
     metaDescription: "Expert en rénovation d'appartements et de grands volumes dans le 78. Restauration, confort moderne et finitions de prestige. Devis Yvelines.",
-    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    parentService: allServices.find(s => s.slug === 'renovation-appartement')!,
     introduction: "Le département des Yvelines abrite un patrimoine immobilier d'une richesse exceptionnelle, des grands appartements de standing à Versailles aux résidences élégantes de Saint-Germain-en-Laye. La rénovation dans le 78 est un projet d'envergure qui exige de moderniser l'espace et le confort, tout en préservant l'âme des lieux. ERG Rénovation est votre partenaire de confiance pour orchestrer la réhabilitation complète de votre appartement dans les Yvelines, avec des finitions et une rigueur technique au plus haut niveau.",
     cta: {
       primary: 'Demander une étude pour mon bien dans le 78',
@@ -594,7 +596,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     title: "Rénovation d'Appartement à Boulogne-Billancourt : Du 1930 au Design Contemporain",
     metaTitle: "Rénovation Appartement Boulogne-Billancourt (92) | 1930 & Luxe | ERG",
     metaDescription: "Expert en rénovation d'appartements de standing à Boulogne-Billancourt. Maîtrise des projets 1930, finitions sur mesure. Devis 92100.",
-    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    parentService: allServices.find(s => s.slug === 'renovation-appartement')!,
     introduction: "Boulogne-Billancourt se distingue par son riche patrimoine architectural, notamment ses immeubles emblématiques des années 1930 et ses résidences contemporaines près du Trapèze. La rénovation dans cette ville exige une double compétence : la préservation du cachet (parquets, moulures) et la modernisation des volumes (isolation, réseaux, lumière). ERG Rénovation est votre partenaire privilégié, connaissant parfaitement les spécificités structurelles des appartements boulonnais.",
     cta: {
       primary: 'Demander un diagnostic pour mon appartement à Boulogne',
@@ -628,7 +630,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
               <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
               <div>
                   <h3 className="font-headline font-semibold text-lg">Conception d'Espaces Réception et de Cuisines Ouvertes</h3>
-                  <p className="text-muted-foreground">Création d'espaces de vie fluides et lumineux, avec gestion des ouvertures structurelles (murs porteurs) et l'intégration de cuisines haut de gamme adaptées à la vie moderne.</p>
+                  <p className="text-muted-foreground">Création d'espaces de vie fluides et lumineux, avec la reprise de l'électricité, de la plomberie et des peintures autour de cuisines haut de gamme adaptées à la vie moderne.</p>
               </div>
           </div>
         </div>
@@ -647,7 +649,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     title: "Rénovation d'Appartement à Saint-Cloud : Élégance et Vue sur Grand Paysage",
     metaTitle: "Rénovation Appartement Saint-Cloud (92) | Luxe & Vue",
     metaDescription: "Expert en rénovation d'appartements de prestige à Saint-Cloud. Optimisation des vues, matériaux nobles et gestion de chantier discrète. Devis 92210.",
-    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    parentService: allServices.find(s => s.slug === 'renovation-appartement')!,
     introduction: "Saint-Cloud offre un cadre de vie exceptionnel, souvent caractérisé par la proximité du Parc et une architecture résidentielle de qualité. La rénovation y est synonyme d'ouverture sur l'extérieur et d'utilisation de matériaux qui captent la lumière naturelle. ERG Rénovation excelle à transformer votre appartement de Saint-Cloud en un lieu de vie baigné de lumière, avec une gestion de projet qui respecte la quiétude de ce quartier privilégié.",
     cta: {
       primary: 'Planifier une visite conseil à Saint-Cloud',
@@ -700,7 +702,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     title: "Rénovation d'Appartement à Garches : Le Luxe du Calme et de l'Espace",
     metaTitle: "Rénovation Appartement Garches (92) | Calme & Standing",
     metaDescription: "Expert en rénovation d'appartements familiaux et de standing à Garches. Confort acoustique, design élégant et gestion de projet clé en main (92380).",
-    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    parentService: allServices.find(s => s.slug === 'renovation-appartement')!,
     introduction: "Garches est reconnue pour sa tranquillité et ses résidences de qualité, offrant un cadre de vie idéal aux familles. La rénovation dans cette ville doit amplifier le sentiment de bien-être, en intégrant des solutions d'isolation de pointe et des agencements qui fluidifient la vie quotidienne. ERG Rénovation est votre expert pour transformer votre appartement de Garches en un havre de paix fonctionnel et élégant, avec une attention particulière aux détails qui garantissent la pérennité de votre confort.",
     cta: {
       primary: 'Organiser un diagnostic de confort à Garches',
@@ -753,7 +755,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     title: "Rénovation d'Appartement à Vincennes (94300)",
     metaTitle: "Rénovation Appartement Vincennes (94) | Qualité & Devis | ERG",
     metaDescription: "Expert en rénovation d'appartements à Vincennes (94300). Optimisation d'espace, finitions de qualité et gestion de projet de A à Z. Devis gratuit.",
-    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    parentService: allServices.find(s => s.slug === 'renovation-appartement')!,
     introduction: "Rénover un appartement à Vincennes, c'est valoriser un bien au cœur d'une ville royale, alliant charme de l'ancien et dynamisme. ERG Rénovation est votre spécialiste pour les projets vincennois, de l'appartement familial proche du bois à l'optimisation de surfaces plus modestes en centre-ville. Nous maîtrisons les enjeux de la rénovation dans des immeubles de caractère.",
     cta: {
       primary: 'Mon devis de rénovation à Vincennes',
@@ -797,7 +799,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     title: "Rénovation d'Appartement de Standing à Saint-Mandé (94160)",
     metaTitle: "Rénovation Appartement Saint-Mandé (94) | Haut de Gamme | ERG",
     metaDescription: "Spécialiste de la rénovation d'appartements de standing à Saint-Mandé. Finitions de luxe, respect des copropriétés et gestion de projet rigoureuse. Devis.",
-    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    parentService: allServices.find(s => s.slug === 'renovation-appartement')!,
     introduction: "À Saint-Mandé, aux portes de Paris, la rénovation d'appartement rime avec élégance et finitions haut de gamme. ERG Rénovation vous accompagne pour transformer votre bien en un espace de vie qui reflète le prestige de la ville. Nous sommes experts dans la gestion de projets au sein des belles copropriétés de Saint-Mandé, en alliant savoir-faire artisanal et matériaux nobles.",
     cta: {
       primary: 'Mon projet haut de gamme à Saint-Mandé',
@@ -841,7 +843,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     title: "Rénovation Appartement et Maison à Nogent-sur-Marne (94130)",
     metaTitle: "Rénovation Maison & Appartement Nogent-sur-Marne (94) | ERG",
     metaDescription: "ERG Rénovation, votre expert pour la rénovation d'appartements et maisons à Nogent-sur-Marne. Projets clé en main, de la conception aux finitions. Devis.",
-    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    parentService: allServices.find(s => s.slug === 'renovation-appartement')!,
     introduction: "Nogent-sur-Marne, avec son cadre de vie privilégié en bord de Marne, offre une grande diversité de biens, des appartements de standing aux maisons de caractère. ERG Rénovation met son expertise au service de vos projets nogentais, qu'il s'agisse de moderniser un appartement familial ou de rénover une maison pour l'adapter aux standards de confort actuels.",
     cta: {
       primary: 'Discuter de mon projet à Nogent',
@@ -885,7 +887,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     title: "Rénovation d'Appartement au Perreux-sur-Marne (94170)",
     metaTitle: "Rénovation Appartement Le Perreux-sur-Marne (94)",
     metaDescription: "Expert en rénovation d'appartements au Perreux-sur-Marne. Agencement, finitions de qualité et respect des délais pour votre projet dans le 94170. Devis.",
-    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    parentService: allServices.find(s => s.slug === 'renovation-appartement')!,
     introduction: "Au Perreux-sur-Marne, la qualité de vie est une priorité. La rénovation de votre appartement doit refléter cet art de vivre, en créant des espaces confortables, lumineux et parfaitement finis. ERG Rénovation vous apporte son expertise pour tous vos projets au Perreux, de la rénovation complète à la modernisation de votre cuisine ou de votre salle de bain, avec un interlocuteur unique pour votre tranquillité.",
     cta: {
       primary: 'Obtenir mon devis au Perreux',
@@ -929,7 +931,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     title: "Rénovation Appartement & Maison à Saint-Maur-des-Fossés (94)",
     metaTitle: "Rénovation Maison & Appartement Saint-Maur (94)",
     metaDescription: "Votre expert en rénovation de maisons et appartements à Saint-Maur-des-Fossés. Gestion de projets A à Z pour un résultat haut de gamme. Devis sur mesure.",
-    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    parentService: allServices.find(s => s.slug === 'renovation-appartement')!,
     introduction: "Saint-Maur-des-Fossés, avec son cadre de vie exceptionnel et son parc immobilier de grande qualité, est un lieu où la rénovation prend tout son sens. ERG Rénovation est le spécialiste des projets d'envergure à Saint-Maur, qu'il s'agisse de la rénovation d'une maison de maître, de la modernisation d'un appartement de standing ou de l'agrandissement d'un pavillon. Nous apportons une expertise technique et un sens du détail irréprochables.",
     cta: {
       primary: 'Mon projet de rénovation à Saint-Maur',
@@ -937,7 +939,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     },
     reassurancePoints: [
       'Expertise des maisons et grands volumes.',
-      'Gestion des projets d\'extension.',
+      'Électricité, plomberie et peinture intérieure.',
       'Finitions haut de gamme garanties.',
     ],
     mainContent: (
@@ -973,7 +975,7 @@ const renovationAppartementPages: LocalLandingPage[] = [
     title: "Rénovation d'Appartement à Créteil (94000)",
     metaTitle: "Rénovation Appartement Créteil (94) | Moderne & Fonctionnel | ERG",
     metaDescription: "ERG Rénovation modernise votre appartement à Créteil. Projets clé en main pour un intérieur fonctionnel et esthétique. Devis gratuit pour votre projet dans le 94000.",
-    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    parentService: allServices.find(s => s.slug === 'renovation-appartement')!,
     introduction: "À Créteil, ville dynamique du Val-de-Marne, la rénovation d'appartement vise à créer des espaces de vie modernes, lumineux et parfaitement fonctionnels. ERG Rénovation est votre partenaire pour tous vos projets à Créteil, de la rénovation complète d'un appartement familial à la modernisation d'une cuisine ou d'une salle de bain. Nous vous garantissons un projet géré avec rigueur, de la conception à la livraison.",
     cta: {
       primary: 'Moderniser mon appartement à Créteil',
@@ -1016,15 +1018,15 @@ const renovationAppartementPages: LocalLandingPage[] = [
     type: 'city',
     title: "Rénovation Appartement et Maison à Maisons-Alfort (94700)",
     metaTitle: "Rénovation Maison & Appartement Maisons-Alfort (94) | ERG",
-    metaDescription: "Votre entreprise de rénovation pour appartements et maisons à Maisons-Alfort. Projets tous corps d'état gérés de A à Z par une équipe d'experts. Devis.",
-    parentService: services.find(s => s.slug === 'renovation-appartement')!,
+    metaDescription: "Votre entreprise de rénovation pour appartements et maisons à Maisons-Alfort. Projets d'électricité, de plomberie et de peinture gérés de A à Z. Devis.",
+    parentService: allServices.find(s => s.slug === 'renovation-appartement')!,
     introduction: "À Maisons-Alfort, ville appréciée pour son cadre de vie et sa proximité de Paris, la rénovation permet de moderniser des appartements et des maisons de caractère. ERG Rénovation est votre spécialiste pour tous types de projets à Maisons-Alfort, de la rénovation d'un appartement familial à la réhabilitation d'une maison. Nous vous garantissons une gestion de projet experte et des finitions de grande qualité.",
     cta: {
       primary: 'Mon projet de rénovation à Maisons-Alfort',
       secondary: 'Voir nos projets d\'aménagement',
     },
     reassurancePoints: [
-      'Expertise tous corps d\'état.',
+      'Électricité, plomberie et peinture intérieure.',
       'Projets de rénovation complets.',
       'Qualité et respect des délais.',
     ],
@@ -1066,7 +1068,7 @@ const renovationMaisonPages: LocalLandingPage[] = [
         title: 'Rénovation de Maison à Versailles (78000) - ERG Rénovation',
         metaTitle: 'Rénovation Maison Versailles (78) | Expert Patrimoine | ERG',
         metaDescription: "Spécialiste de la rénovation de maisons de caractère à Versailles. ERG Rénovation allie respect du patrimoine et confort moderne. Devis pour votre projet.",
-        parentService: services.find(s => s.slug === 'renovation-maison')!,
+        parentService: allServices.find(s => s.slug === 'renovation-maison')!,
         introduction: "Rénover une maison à Versailles, c'est toucher à l'histoire. ERG Rénovation est votre partenaire pour valoriser ce patrimoine unique, qu'il s'agisse d'une maison de ville, d'une demeure bourgeoise ou d'un pavillon. Nous maîtrisons les contraintes des secteurs sauvegardés et travaillons en respectant l'âme de votre bien.",
         cta: {
             primary: 'Mon projet de rénovation à Versailles',
@@ -1075,7 +1077,7 @@ const renovationMaisonPages: LocalLandingPage[] = [
         reassurancePoints: [
             'Expertise des bâtisses anciennes.',
             'Respect du patrimoine architectural.',
-            'Gestion des projets d\'extension.',
+            'Électricité, plomberie et peinture intérieure.',
         ],
         mainContent: (
             <>
@@ -1115,7 +1117,7 @@ const renovationSalleDeBainPages: LocalLandingPage[] = [
         title: 'Rénovation Salle de Bain de Luxe à Paris 16e - ERG Rénovation',
         metaTitle: 'Rénovation Salle de Bain Paris 16 (75016) | Luxe & Marbre | ERG',
         metaDescription: "Expert en création de salle de bain de luxe à Paris 16. Douche à l'italienne, marbre, robinetterie haut de gamme. Devis pour votre projet dans le 75016.",
-        parentService: services.find(s => s.slug === 'renovation-salle-de-bain')!,
+        parentService: allServices.find(s => s.slug === 'renovation-salle-de-bain')!,
         introduction: "Dans le 16ème arrondissement de Paris, la salle de bain est une pièce de luxe et de bien-être. ERG Rénovation est le spécialiste de la conception et de la réalisation de salles de bain haut de gamme, alliant matériaux nobles, agencement sur mesure et une expertise technique irréprochable pour une étanchéité parfaite.",
         cta: {
             primary: 'Concevoir ma salle de bain dans le 16e',
@@ -1155,11 +1157,14 @@ const renovationSalleDeBainPages: LocalLandingPage[] = [
     },
 ];
 
+/** Published services: those whose trades are covered by the décennale (see src/lib/insurance-scope.json). */
+export const services: Service[] = allServices.filter((service) => isPublishedService(service.slug));
+
 export const localLandingPages: LocalLandingPage[] = [
     ...renovationAppartementPages,
     ...renovationMaisonPages,
     ...renovationSalleDeBainPages,
-];
+].filter((page) => isPublishedService(page.parentService.slug));
 
 export const projectCategories = [
   "Appartement",
@@ -1260,7 +1265,7 @@ export const allProjects: Project[] = [
           <p>Un suivi de chantier rigoureux et une communication constante ont permis de garantir un résultat final à la hauteur des attentes du client.</p>
       </>,
       keyPoints: [
-        { title: "Rénovation Tous Corps d'État", icon: Layers },
+        { title: "Rénovation intérieure", icon: Layers },
         { title: "Cuisine et Salle de Bain", icon: UtensilsCrossed },
         { title: "Mise aux normes électrique", icon: Wrench },
         { title: "Suivi de chantier rigoureux", icon: ClipboardList }
@@ -1316,7 +1321,7 @@ export const allProjects: Project[] = [
           <p>Nous avons accompagné le client à chaque étape, en étant force de proposition sur les agencements et le choix des matériaux. Notre intervention a compris :</p>
           <ul>
               <li><strong>Conseil en amont :</strong> Suggestions pour optimiser les plans et les fonctionnalités de l'appartement.</li>
-              <li><strong>Gestion Tous Corps d'État :</strong> Coordination de l'ensemble des travaux (plomberie, électricité, peinture, sols) pour une exécution fluide.</li>
+              <li><strong>Coordination du chantier :</strong> Plomberie, électricité et peinture pour une exécution fluide.</li>
               <li><strong>Suivi de chantier :</strong> Des points réguliers ont été organisés pour tenir le client informé de l'avancement et valider les étapes clés.</li>
           </ul>
           <p>Cette approche a permis de livrer un appartement entièrement rénové, conforme aux attentes du client, avec des finitions de qualité et une gestion de projet sans stress.</p>
@@ -1463,7 +1468,7 @@ export const allProjects: Project[] = [
       keyPoints: [
         { title: "Cuisine et Salle de Bain", icon: UtensilsCrossed },
         { title: "Suppression de cloisons", icon: Scaling },
-        { title: "Rénovation Tous Corps d'État", icon: Layers },
+        { title: "Rénovation intérieure", icon: Layers },
         { title: "Conseils en aménagement", icon: Lightbulb }
       ]
     }
@@ -1485,8 +1490,8 @@ export const allProjects: Project[] = [
       solution: <>
           <p>Notre équipe a pris en charge l'intégralité de la rénovation, en s'assurant de maintenir une communication constante avec la cliente. Nos actions ont inclus :</p>
           <ul>
-              <li><strong>Gestion de projet complète :</strong> Coordination de tous les aspects du chantier, du gros œuvre aux finitions.</li>
-              <li><strong>Rénovation Tous Corps d'État :</strong> Intervention sur l'électricité, la plomberie, les sols, les murs et les plafonds.</li>
+              <li><strong>Gestion de projet complète :</strong> Coordination du chantier, des réseaux aux finitions.</li>
+              <li><strong>Rénovation intérieure :</strong> Intervention sur l'électricité, la plomberie, les murs et les plafonds.</li>
               <li><strong>Équipe professionnelle :</strong> Mise à disposition d'une équipe sympathique et sérieuse, à l'écoute des besoins de la cliente.</li>
           </ul>
           <p>La satisfaction de la cliente et le résultat final témoignent de notre engagement à fournir un travail de qualité, mené par des professionnels fiables.</p>
@@ -1590,7 +1595,7 @@ export const processSteps: ProcessStep[] = [
     {
         step: 4,
         title: 'Livraison & Garantie',
-        description: 'Nous vous livrons un chantier impeccable et vous bénéficiez de toutes nos garanties décennales.'
+        description: 'Nous vous livrons un chantier impeccable et la garantie décennale s\'applique aux travaux couverts par notre assurance.'
     }
 ];
 
@@ -1852,7 +1857,7 @@ export const blogPosts: BlogPost[] = [
           <p>Une entrée bien pensée avec des rangements, un miroir et un éclairage chaleureux crée une transition fluide et améliore le quotidien.</p>
 
           <h2 id="interlocuteur-unique">9. Confiez votre projet à un interlocuteur unique</h2>
-          <p>Faire appel à une entreprise tous corps d’état comme ERG Rénovation vous assure un chef de projet dédié, un planning maîtrisé et une responsabilité claire. C’est la clé d’une rénovation sereine.</p>
+          <p>Confier la coordination de votre chantier à une entreprise comme ERG Rénovation vous assure un chef de projet dédié, un planning maîtrisé et une responsabilité claire. C’est la clé d’une rénovation sereine.</p>
 
           {finitionImage && (
             <div className="my-8 overflow-hidden rounded-lg">
@@ -1885,7 +1890,7 @@ export const blogPosts: BlogPost[] = [
       { id: 'voir-realisations-concretes', title: '3. Demandez à voir des réalisations', level: 'h2' },
       { id: 'reputation-avis', title: '4. Appuyez-vous sur la réputation', level: 'h2' },
       { id: 'evaluer-communication', title: '5. Évaluez la communication', level: 'h2' },
-      { id: 'entreprise-tous-corps-etat', title: 'Pourquoi choisir une entreprise tous corps d’état', level: 'h2' },
+      { id: 'entreprise-tous-corps-etat', title: 'Pourquoi confier la coordination à une seule entreprise', level: 'h2' },
     ],
     content: (() => {
       const artisanImage = PlaceHolderImages.find(p => p.id === 'about-hero');
@@ -1943,8 +1948,8 @@ export const blogPosts: BlogPost[] = [
           <h2 id="evaluer-communication">5. Évaluez la communication et le relationnel (clé d’un chantier serein)</h2>
           <p>Un bon artisan est à l'écoute, propose des solutions adaptées et explique clairement les contraintes techniques. La confiance et la communication sont aussi importantes que la technique. Un bon professionnel sait conseiller sans imposer, alerter sans inquiéter, et trouver des solutions en cas d’imprévu.</p>
 
-          <h2 id="entreprise-tous-corps-etat">Pourquoi choisir une entreprise tous corps d’état change tout</h2>
-          <p>Coordonner plusieurs artisans indépendants peut vite devenir un casse-tête. Faire appel à une entreprise tous corps d’état comme ERG Rénovation offre un interlocuteur unique, une coordination fluide, un planning maîtrisé et une responsabilité centralisée. Résultat : un chantier plus rapide, plus sûr et plus serein.</p>
+          <h2 id="entreprise-tous-corps-etat">Pourquoi confier la coordination à une seule entreprise change tout</h2>
+          <p>Coordonner plusieurs artisans indépendants peut vite devenir un casse-tête. Confier la coordination de votre chantier à une seule entreprise offre un interlocuteur unique, une coordination fluide, un planning maîtrisé et une responsabilité centralisée. Résultat : un chantier plus rapide, plus sûr et plus serein.</p>
           
           <h3>Les erreurs fréquentes à éviter absolument</h3>
           <ul>

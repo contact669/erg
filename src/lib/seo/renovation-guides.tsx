@@ -88,7 +88,7 @@ export const renovationGuides: BlogPost[] = [
     description: 'Une méthode pour comparer vos devis de travaux : périmètre, quantités, fournitures, préparation, exclusions, options et organisation du chantier.',
     date: '2026-10-07', author: 'Équipe ERG Rénovation', featuredImageId: 'blog-post-2',
     tags: ['Devis', 'Budget', 'Conseils'],
-    relatedServiceSlugs: ['renovation-appartement', 'renovation-salle-de-bain', 'renovation-cuisine', 'renovation-maison', 'peinture-finitions', 'amenagement-combles'],
+    relatedServiceSlugs: ['renovation-appartement', 'renovation-salle-de-bain', 'renovation-cuisine', 'peinture-finitions'],
     relatedProjectSlugs: [],
     toc: [
       { id: 'meme-perimetre', title: 'Comparer le même périmètre', level: 'h2' },

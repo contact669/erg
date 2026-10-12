@@ -35,7 +35,7 @@ const PHONE_TEL = "tel:+33699961375"
 export const metadata: Metadata = {
   title: `Prestations de rénovation | Appartement, salle de bain, cuisine`,
   description:
-    "Découvrez toutes nos prestations de rénovation intérieure à Paris et en Île-de-France : rénovation d’appartement, salle de bain, cuisine, finitions, coordination tous corps d’état. Devis gratuit.",
+    "Découvrez toutes nos prestations de rénovation intérieure à Paris et en Île-de-France : rénovation d’appartement, salle de bain, cuisine, finitions, coordination de chantier. Devis gratuit.",
   alternates: { canonical: PAGE_URL },
   robots: {
     index: true,
@@ -82,7 +82,7 @@ function JsonLdServicesPage() {
         url: PAGE_URL,
         name: `Prestations de rénovation | ${SITE_NAME}`,
         description:
-          "Toutes nos prestations de rénovation intérieure à Paris et en Île-de-France : appartement, salle de bain, cuisine, finitions, coordination tous corps d’état.",
+          "Toutes nos prestations de rénovation intérieure à Paris et en Île-de-France : appartement, salle de bain, cuisine, finitions, coordination de chantier.",
         isPartOf: { "@id": `${SITE_URL}/#website` },
         inLanguage: "fr-FR",
       },
@@ -183,7 +183,7 @@ export default function ServicesPage() {
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="mt-0.5 h-4 w-4 text-accent" />
-                  <span>Interlocuteur unique, coordination tous corps d’état</span>
+                  <span>Interlocuteur unique, coordination de chantier</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle className="mt-0.5 h-4 w-4 text-accent" />

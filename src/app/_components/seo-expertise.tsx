@@ -64,7 +64,7 @@ export default function SeoExpertise() {
                 <p>
                   Pour une rénovation d’appartement, de salle de bain ou de cuisine, vous bénéficiez d’un{" "}
                   <strong className="text-slate-900 font-semibold">interlocuteur unique</strong>, d’une{" "}
-                  <strong className="text-slate-900 font-semibold">coordination tous corps d’état</strong>, et d’un{" "}
+                  <strong className="text-slate-900 font-semibold">coordination de chantier</strong>, et d’un{" "}
                   <strong className="text-slate-900 font-semibold">devis détaillé (poste par poste)</strong> pour arbitrer sereinement les options de finitions et de matériaux.
                 </p>
               </div>
@@ -133,7 +133,7 @@ export default function SeoExpertise() {
                 </CardContent>
               </Card>
 
-              {/* Card 2: Coordination tous corps d'état */}
+              {/* Card 2: Coordination de chantier */}
               <Card className="group overflow-hidden rounded-3xl border border-slate-200/90 bg-white p-6 shadow-lg shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/40 hover:shadow-xl">
                 <CardContent className="p-0 flex items-start gap-4">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-700 font-extrabold text-lg border border-amber-500/20 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
@@ -141,7 +141,7 @@ export default function SeoExpertise() {
                   </div>
                   <div className="space-y-1.5">
                     <h3 className="font-headline text-lg font-bold text-slate-900 group-hover:text-amber-700 transition-colors flex items-center gap-2">
-                      Coordination tous corps d’état
+                      Coordination de chantier
                     </h3>
                     <p className="text-sm font-normal leading-relaxed text-slate-600">
                       Une organisation claire : planification, enchaînement des étapes, et contrôles réguliers.

@@ -140,7 +140,7 @@ const whyChooseUs = [
     {
         icon: ClipboardList,
         title: "Une transparence totale",
-        description: "Devis clairs et détaillés, délais contractualisés, budget maîtrisé. Travaux couverts par la garantie décennale.",
+        description: "Devis clairs et détaillés, délais contractualisés, budget maîtrisé. Électricité, plomberie et peinture couvertes par notre assurance décennale.",
     }
 ];
 

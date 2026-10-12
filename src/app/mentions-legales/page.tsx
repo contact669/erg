@@ -76,7 +76,7 @@ export default function MentionsLegalesPage() {
                   <p><a href={COMPANY.registryUrl} className="text-amber-700 hover:underline">Consulter la fiche officielle dans l’Annuaire des entreprises</a></p>
                   <p><strong>Téléphone direct :</strong> <a href="tel:+33699961375" className="text-amber-700 font-bold hover:underline">06 99 96 13 75</a></p>
                   <p><strong>Email :</strong> <a href="mailto:contact@erg-renovation.fr" className="text-amber-700 font-bold hover:underline">contact@erg-renovation.fr</a></p>
-                  <p><strong>Activité :</strong> Rénovation intérieure et tous travaux de bâtiment (maçonnerie, plomberie, électricité, menuiserie, peinture).</p>
+                  <p><strong>Activité :</strong> Rénovation intérieure : électricité, plomberie et sanitaires, peinture et décoration intérieure.</p>
                 </div>
               </div>
 

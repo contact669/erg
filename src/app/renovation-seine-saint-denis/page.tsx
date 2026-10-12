@@ -90,7 +90,7 @@ function JsonLd() {
         "Rénovation d’appartement",
         "Rénovation de salle de bain",
         "Rénovation de cuisine",
-        "Travaux tous corps d’état",
+        "Électricité, plomberie et peinture",
       ],
       description:
         "ERG Rénovation est spécialisée en rénovation intérieure d'appartements, cuisines et salles de bain en Seine-Saint-Denis (93).",
@@ -182,7 +182,7 @@ const whyChooseUs = [
     icon: ShieldCheck,
     title: "Clarté et maîtrise",
     description:
-      "Devis détaillé, étapes claires, budget suivi. Travaux couverts par la garantie décennale.",
+      "Devis détaillé, étapes claires, budget suivi. Électricité, plomberie et peinture couvertes par notre assurance décennale.",
   },
 ];
 
@@ -319,7 +319,7 @@ export default function RenovationSeineSaintDenisPage() {
                 </h2>
                 <p className="mt-4 text-muted-foreground">
                   Du rafraîchissement à la rénovation complète : une exécution propre, des matériaux adaptés,
-                  et une coordination tous corps d’état.
+                  et une coordination de chantier.
                 </p>
               </div>
 

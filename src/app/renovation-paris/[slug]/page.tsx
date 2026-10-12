@@ -115,7 +115,7 @@ function JsonLd({ data }: { data: ParisArrondissementData }) {
         "Rénovation d'appartement",
         "Rénovation de salle de bain",
         "Rénovation de cuisine",
-        "Travaux tous corps d'état",
+        "Électricité, plomberie et peinture",
       ],
     },
     {

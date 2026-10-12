@@ -464,7 +464,7 @@ export default function ContactPage() {
                 Entreprise de Rénovation à Paris & Île-de-France
               </h2>
               <p className="text-slate-600 text-sm leading-relaxed">
-                ERG Rénovation est une entreprise générale du bâtiment basée à Paris 20e. Nous réalisons des travaux tous corps d'état (démolition, maçonnerie, plomberie, électricité, menuiserie, peinture) avec garantie décennale et suivi quotidien.
+                ERG Rénovation est une entreprise de rénovation intérieure basée à Paris 20e. Nous réalisons des travaux d'électricité, de plomberie et de peinture, couverts par notre assurance décennale, avec un suivi quotidien.
               </p>
             </div>
           </div>

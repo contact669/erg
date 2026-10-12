@@ -175,7 +175,7 @@ export default function AboutPage() {
                   <CheckCircle2 className="h-4 w-4 text-amber-600" /> Interlocuteur Unique
                 </span>
                 <span className="inline-flex items-center gap-2 bg-white/80 border border-slate-200/80 px-3.5 py-1.5 rounded-full shadow-xs">
-                  <CheckCircle2 className="h-4 w-4 text-amber-600" /> Coordination Tous Corps d'État
+                  <CheckCircle2 className="h-4 w-4 text-amber-600" /> Coordination de chantier
                 </span>
                 <span className="inline-flex items-center gap-2 bg-white/80 border border-slate-200/80 px-3.5 py-1.5 rounded-full shadow-xs">
                   <ShieldCheck className="h-4 w-4 text-amber-600" /> Garantie Décennale 10 Ans
@@ -235,7 +235,7 @@ export default function AboutPage() {
                       ERG Rénovation est née d’une vision simple : offrir aux particuliers et investisseurs parisiens une rénovation intérieure de haute précision, où la rigueur du suivi et la propreté du chantier comptent tout autant que la beauté des finitions.
                     </p>
                     <p>
-                      Nous avons bâti notre réputation sur trois engagements indéfectibles : un <strong className="text-slate-900 font-semibold">diagnostic initial gratuit et sans zones floues</strong>, une <strong className="text-slate-900 font-semibold">coordination tous corps d'état maîtrisée</strong> et un <strong className="text-slate-900 font-semibold">contrôle qualité systématique</strong> avant chaque réception.
+                      Nous avons bâti notre réputation sur trois engagements indéfectibles : un <strong className="text-slate-900 font-semibold">diagnostic initial gratuit et sans zones floues</strong>, une <strong className="text-slate-900 font-semibold">coordination de chantier maîtrisée</strong> et un <strong className="text-slate-900 font-semibold">contrôle qualité systématique</strong> avant chaque réception.
                     </p>
                     <p>
                       Basés à Paris, nous intervenons également dans les Hauts-de-Seine (92), la Seine-Saint-Denis (93) et le Val-de-Marne (94) avec une équipe d'artisans fidèles et passionnés.

@@ -1,0 +1,5 @@
+{
+  "_comment": "Services not covered by the décennale (Allianz contract n° 62929418 covers electrical work, interior painting and plumbing). Their pages are unpublished and redirected; remove a slug here once the contract covers it.",
+  "unpublishedServiceSlugs": ["renovation-maison", "amenagement-combles"],
+  "redirectTo": "/services"
+}

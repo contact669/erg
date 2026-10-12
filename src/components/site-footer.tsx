@@ -178,16 +178,6 @@ export default function SiteFooter() {
                 </FooterLink>
               </li>
               <li>
-                <FooterLink href="/services/renovation-maison">
-                  Rénovation de Maison
-                </FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services/amenagement-combles">
-                  Aménagement de Combles
-                </FooterLink>
-              </li>
-              <li>
                 <FooterLink href="/services/peinture-finitions">
                   Peinture & Finitions
                 </FooterLink>
@@ -257,7 +247,7 @@ export default function SiteFooter() {
         {/* Bottom Footer Section */}
         <div className="mt-16 flex flex-col gap-4 border-t border-stone-200/80 pt-8 md:flex-row md:items-center md:justify-between">
           <p className="text-center text-xs font-medium text-slate-500 md:text-left">
-            © {new Date().getFullYear()} {SITE_NAME}. Tous droits réservés. Entreprise de rénovation tous corps d’état à Paris.
+            © {new Date().getFullYear()} {SITE_NAME}. Tous droits réservés. Entreprise de rénovation intérieure à Paris.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs font-medium text-slate-600">

@@ -121,7 +121,7 @@ const whyChooseUs = [
     {
         icon: ClipboardList,
         title: "Une transparence totale",
-        description: "Nos devis sont détaillés, nos plannings clairs et votre budget est maîtrisé. Tous nos travaux sont couverts par la garantie décennale."
+        description: "Nos devis sont détaillés, nos plannings clairs et votre budget est maîtrisé. Nos travaux d'électricité, de plomberie et de peinture sont couverts par notre assurance décennale."
     }
 ];
 

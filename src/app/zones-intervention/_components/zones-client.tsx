@@ -35,7 +35,7 @@ const PHONE_DISPLAY = "06 99 96 13 75";
 const heroBullets = [
   { label: "Visite sur site offerte", desc: "Diagnostic gratuit & conseil personnalisé" },
   { label: "Devis détaillé sous 24h", desc: "Chiffrage lisible poste par poste" },
-  { label: "Interlocuteur unique", desc: "Suivi rigoureux tous corps d'état" },
+  { label: "Interlocuteur unique", desc: "Suivi rigoureux du chantier" },
   { label: "Garantie Décennale", desc: "Conformité et normes de sécurité" },
 ];
 
@@ -359,7 +359,7 @@ export default function ZonesInterventionClient() {
                     </h2>
 
                     <p className="text-slate-600 text-sm md:text-base leading-relaxed">
-                      Nos équipes d'artisans tous corps d'état interviennent sur l'ensemble de la région parisienne. Que votre projet concerne un appartement, un studio ou un pavillon, nous organisons une visite d'estimation offerte sous 48h.
+                      Nos équipes interviennent sur l'ensemble de la région parisienne. Que votre projet concerne un appartement, un studio ou un pavillon, nous organisons une visite d'estimation offerte sous 48h.
                     </p>
 
                     <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-700 pt-2">

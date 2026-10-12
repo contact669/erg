@@ -168,7 +168,7 @@ export default function SiteHeader() {
                             <div className="mb-3 flex items-center justify-between border-b border-slate-100 pb-3">
                               <span className="text-xs font-extrabold uppercase tracking-widest text-slate-900 flex items-center gap-2">
                                 <Sparkles className="h-4 w-4 text-amber-600" />
-                                Nos Prestations Tous Corps d'État
+                                Nos prestations de rénovation intérieure
                               </span>
                               <span className="text-xs font-semibold text-amber-700">
                                 Accompagnement de A à Z

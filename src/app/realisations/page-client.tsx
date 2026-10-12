@@ -141,7 +141,7 @@ export default function RealisationsPage() {
 
               <p className="mx-auto max-w-2xl text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
                 Découvrez nos transformations complètes d'appartements, studios et salles de bain à Paris et en Île-de-France.
-                Chaque projet illustre notre rigueur tous corps d'état, le respect des délais et une transparence totale poste par poste.
+                Chaque projet illustre notre rigueur d'exécution, le respect des délais et une transparence totale poste par poste.
               </p>
 
               {/* Trust Badges Bar */}
@@ -393,7 +393,7 @@ export default function RealisationsPage() {
                       </h2>
 
                       <p className="text-slate-600 text-sm md:text-base leading-relaxed">
-                        Chez ERG Rénovation, nous nous engageons sur un résultat impeccable. Du diagnostic initial au suivi de chantier hebdomadaire jusqu'au nettoyage final, tous nos corps de métier (plomberie, électricité, maçonnerie, menuiserie, peinture) interviennent en synergie sous la conduite d'un <strong className="text-slate-900">interlocuteur unique</strong>.
+                        Chez ERG Rénovation, nous nous engageons sur un résultat impeccable. Du diagnostic initial au suivi de chantier hebdomadaire jusqu'au nettoyage final, nos équipes (plomberie, électricité, peinture) interviennent en synergie sous la conduite d'un <strong className="text-slate-900">interlocuteur unique</strong>.
                       </p>
 
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">

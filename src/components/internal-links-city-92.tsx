@@ -6,7 +6,6 @@ const SERVICES = [
   { name: "Rénovation d’appartement", href: "/services/renovation-appartement" },
   { name: "Rénovation de salle de bain", href: "/services/renovation-salle-de-bain" },
   { name: "Rénovation de cuisine", href: "/services/renovation-cuisine" },
-  { name: "Rénovation de maison", href: "/services/renovation-maison" },
 ];
 
 const CITIES_92_PRIMARY = [
@@ -106,8 +105,8 @@ export function InternalLinksHautsDeSeine() {
             </Link>
           </Button>
           <Button asChild variant="outline">
-            <Link href="/services/renovation-maison">
-              Voir la rénovation de maison
+            <Link href="/services/renovation-appartement">
+              Voir la rénovation d'appartement
             </Link>
           </Button>
         </div>

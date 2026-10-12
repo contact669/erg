@@ -24,7 +24,7 @@ export default function ServicesOverview() {
           {/* Badge Lumineux */}
           <div className="inline-flex items-center gap-2.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-5 py-2 text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 shadow-sm backdrop-blur-md">
             <Sparkles className="h-4 w-4 text-amber-600 animate-pulse" />
-            <span>Prestations Tous Corps d'État à Paris</span>
+            <span>Rénovation intérieure à Paris</span>
             <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
             <span className="text-slate-700 dark:text-slate-300 font-normal">Excellence Artisanale</span>
           </div>

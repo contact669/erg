@@ -5,7 +5,6 @@ const SERVICES = [
   { name: "Rénovation d’appartement", href: "/services/renovation-appartement" },
   { name: "Rénovation de salle de bain", href: "/services/renovation-salle-de-bain" },
   { name: "Rénovation de cuisine", href: "/services/renovation-cuisine" },
-  { name: "Rénovation de maison", href: "/services/renovation-maison" },
 ];
 
 const CITIES_92_PRIMARY = [
