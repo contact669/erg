@@ -39,7 +39,7 @@ import { cn } from "@/lib/utils"
 function DynamicLogo() {
   return (
     <Image
-      src="/images/logo-erg.webp"
+      src="/images/logo-erg-small.webp"
       alt="ERG Rénovation Logo"
       width={280}
       height={100}
@@ -244,7 +244,7 @@ export default function SiteHeader() {
             <a
               href="tel:+33699961375"
               className="hidden md:inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-bold text-slate-900 hover:bg-slate-100 transition-all shadow-2xs"
-              aria-label="Appeler ERG Rénovation"
+              aria-label="Appeler ERG Rénovation au 06 99 96 13 75"
             >
               <Phone className="h-3.5 w-3.5 text-amber-600" />
               <span>06 99 96 13 75</span>

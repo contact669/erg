@@ -85,7 +85,7 @@ export default function GoogleReviews() {
               className="inline-flex items-center gap-2 rounded-2xl bg-white border border-slate-300 text-slate-900 hover:bg-amber-500 hover:text-slate-950 hover:border-amber-500 px-5 py-3 text-xs font-bold transition-all shadow-sm"
               aria-label="Rechercher ERG Rénovation sur Google Maps"
             >
-              Consulter Google Maps <ArrowRight className="h-4 w-4 text-amber-600" />
+              Consulter Google Maps <ArrowRight className="h-4 w-4 text-amber-700" />
             </Link>
           </div>
         </header>
@@ -132,6 +132,7 @@ export default function GoogleReviews() {
 
                           {/* Stars */}
                           <div
+                            role="img"
                             className="mt-4 flex items-center gap-1"
                             aria-label={`${rating} étoiles sur 5`}
                           >
@@ -158,7 +159,7 @@ export default function GoogleReviews() {
                         {/* Footer card */}
                         <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500">
                           <span>Paris & Île-de-France</span>
-                          <span className="text-amber-600 font-bold">{testimonial.date}</span>
+                          <span className="text-amber-700 font-bold">{testimonial.date}</span>
                         </div>
                       </CardContent>
                     </Card>

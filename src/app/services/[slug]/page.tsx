@@ -871,6 +871,13 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
           </AnimatedSection>
         ) : null}
 
+        {service.slug === "renovation-salle-de-bain" && (
+          <section className="container py-8">
+            <h2 className="font-headline text-2xl font-semibold">Préparer votre projet à Paris 16</h2>
+            <p className="mt-3 text-muted-foreground">Agencement, réseaux existants et préparation du devis : retrouvez les points à examiner pour votre logement dans le 75016.</p>
+            <Link href="/renovation-salle-de-bain/paris-16" className="mt-4 inline-block font-semibold underline">Rénovation de salle de bain à Paris 16</Link>
+          </section>
+        )}
         <RelatedGuides serviceSlug={service.slug} />
         <CtaBanner />
       </main>

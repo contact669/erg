@@ -18,7 +18,7 @@ function GoogleReviewBadge() {
       className="group inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white/90 backdrop-blur-md px-4 py-2 text-xs sm:text-sm text-slate-900 transition hover:bg-white shadow-md"
     >
       <GoogleIcon className="h-5 w-5" />
-      <span className="font-bold text-amber-600">Avis clients</span>
+      <span className="font-bold text-amber-700">Avis clients</span>
 
       <span className="hidden sm:inline text-slate-600">• Témoignages clients</span>
     </a>
@@ -93,13 +93,13 @@ export default function Hero() {
             <div className="flex flex-wrap items-center gap-3">
               <GoogleReviewBadge />
               <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-3 py-1 text-xs font-semibold text-amber-700">
-                <Sparkles className="h-3.5 w-3.5 text-amber-600" /> Rénovation Clé en Main à Paris & 92/93/94
+                <Sparkles className="h-3.5 w-3.5 text-amber-700" /> Rénovation Clé en Main à Paris & 92/93/94
               </span>
             </div>
 
             <h1 className="font-headline text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
               Rénovation intérieure <br />
-              <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">
+              <span className="text-amber-700">
                 à Paris et en Île-de-France.
               </span>
             </h1>
@@ -111,7 +111,7 @@ export default function Hero() {
             {/* Proof Chips */}
             <div className="hidden sm:grid sm:grid-cols-3 gap-3 pt-2 order-1">
               <div className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white/90 p-3 text-slate-800 shadow-sm backdrop-blur-md">
-                <ShieldCheck className="h-5 w-5 text-amber-600 shrink-0" />
+                <ShieldCheck className="h-5 w-5 text-amber-700 shrink-0" />
                 <div className="text-xs font-medium">
                   <span className="block font-bold text-slate-900">Garantie Décennale</span>
                   Couverture complète
@@ -119,7 +119,7 @@ export default function Hero() {
               </div>
 
               <div className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white/90 p-3 text-slate-800 shadow-sm backdrop-blur-md">
-                <Clock className="h-5 w-5 text-amber-600 shrink-0" />
+                <Clock className="h-5 w-5 text-amber-700 shrink-0" />
                 <div className="text-xs font-medium">
                   <span className="block font-bold text-slate-900">Délais Engagés</span>
                   Planning respecté
@@ -127,7 +127,7 @@ export default function Hero() {
               </div>
 
               <div className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white/90 p-3 text-slate-800 shadow-sm backdrop-blur-md">
-                <CheckCircle2 className="h-5 w-5 text-amber-600 shrink-0" />
+                <CheckCircle2 className="h-5 w-5 text-amber-700 shrink-0" />
                 <div className="text-xs font-medium">
                   <span className="block font-bold text-slate-900">Devis gratuit</span>
                   Poste par poste
@@ -154,7 +154,7 @@ export default function Hero() {
                 className="h-14 px-6 border-slate-300 bg-white text-slate-900 hover:bg-slate-100 text-base rounded-xl shadow-sm"
               >
                 <a href="tel:+33699961375">
-                  <Phone className="mr-2 h-5 w-5 text-amber-600" />
+                  <Phone className="mr-2 h-5 w-5 text-amber-700" />
                   06 99 96 13 75
                 </a>
               </Button>
@@ -189,7 +189,7 @@ export default function Hero() {
                     <div className="flex items-center gap-2">
                       <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
                       <span className="text-xs sm:text-sm font-bold text-slate-900">
-                        {activeProject.title} — <span className="text-amber-600 font-medium">{activeProject.subtitle}</span>
+                        {activeProject.title} — <span className="text-amber-700 font-medium">{activeProject.subtitle}</span>
                       </span>
                     </div>
                     <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">

@@ -51,7 +51,7 @@ export default function ServiceAreas() {
         {/* Header */}
         <header className="mx-auto max-w-4xl text-center space-y-5">
           <div className="inline-flex items-center gap-2.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-5 py-2 text-xs font-bold uppercase tracking-wider text-amber-700 shadow-sm backdrop-blur-md">
-            <Navigation className="h-4 w-4 text-amber-600 animate-pulse" />
+            <Navigation className="h-4 w-4 text-amber-700 animate-pulse" />
             <span>Périmètre d'Intervention Régionale</span>
           </div>
 
@@ -71,13 +71,13 @@ export default function ServiceAreas() {
 
           <div className="pt-2 flex flex-wrap justify-center items-center gap-6 text-xs text-slate-600 font-semibold">
             <span className="flex items-center gap-2">
-              <MapPin className="h-4 w-4 text-amber-600" /> Déplacement & Visite sur Site Offerts
+              <MapPin className="h-4 w-4 text-amber-700" /> Déplacement & Visite sur Site Offerts
             </span>
             <span className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-amber-600" /> Garantie Décennale 10 Ans
+              <ShieldCheck className="h-4 w-4 text-amber-700" /> Garantie Décennale 10 Ans
             </span>
             <span className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-amber-600" /> Interlocuteur Unique
+              <CheckCircle2 className="h-4 w-4 text-amber-700" /> Interlocuteur Unique
             </span>
           </div>
         </header>
@@ -102,21 +102,21 @@ export default function ServiceAreas() {
               <div className="space-y-5">
                 {/* Header Icon + Department Code */}
                 <div className="flex items-center justify-between">
-                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-600 border border-amber-500/30 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all duration-500 shadow-md">
+                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-700 border border-amber-500/30 group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all duration-500 shadow-md">
                     <MapPin className="h-7 w-7" aria-hidden="true" />
                   </div>
 
-                  <span className="font-headline text-2xl font-black text-slate-300 group-hover:text-amber-500/80 transition-colors">
+                  <span className="font-headline text-2xl font-black text-slate-500 group-hover:text-amber-500/80 transition-colors">
                     {area.code}
                   </span>
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="font-headline text-xl font-bold tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors">
+                  <h3 className="font-headline text-xl font-bold tracking-tight text-slate-900 group-hover:text-amber-700 transition-colors">
                     {area.title}
                   </h3>
 
-                  <p className="text-xs font-semibold text-amber-600 dark:text-amber-500">
+                  <p className="text-xs font-semibold text-amber-700 dark:text-amber-500">
                     {area.highlight}
                   </p>
 
@@ -131,11 +131,11 @@ export default function ServiceAreas() {
                 <Button
                   asChild
                   variant="ghost"
-                  className="w-full justify-between h-11 px-4 text-xs font-bold text-slate-900 group-hover:text-amber-600 hover:bg-amber-500/10 rounded-xl transition-all"
+                  className="w-full justify-between h-11 px-4 text-xs font-bold text-slate-900 group-hover:text-amber-700 hover:bg-amber-500/10 rounded-xl transition-all"
                 >
                   <Link href={area.href} aria-label={`Voir la zone ${area.title}`}>
                     <span>Voir la zone</span>
-                    <ArrowRight className="h-4 w-4 text-amber-600 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="h-4 w-4 text-amber-700 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </Button>
               </div>

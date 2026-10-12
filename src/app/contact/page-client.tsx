@@ -17,7 +17,7 @@ import { GoogleIcon } from "@/components/icons"
 
 import { useToast } from "@/hooks/use-toast"
 import { cn } from "@/lib/utils"
-import { firestore } from "@/firebase/init"
+import { firestore } from "@/firebase/firestore-client"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { submitQuoteRequest } from "@/lib/submit-quote-request"
 

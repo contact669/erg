@@ -1114,46 +1114,37 @@ const renovationSalleDeBainPages: LocalLandingPage[] = [
     {
         slug: 'paris-16',
         type: 'district',
-        title: 'Rénovation Salle de Bain de Luxe à Paris 16e - ERG Rénovation',
-        metaTitle: 'Rénovation Salle de Bain Paris 16 (75016) | Luxe & Marbre | ERG',
-        metaDescription: "Expert en création de salle de bain de luxe à Paris 16. Douche à l'italienne, marbre, robinetterie haut de gamme. Devis pour votre projet dans le 75016.",
+        title: 'Rénovation de salle de bain à Paris 16 (75016)',
+        metaTitle: 'Rénovation salle de bain Paris 16 (75016) : devis gratuit',
+        metaDescription: "Rénovez votre salle de bain à Paris 16 : douche, plomberie, étanchéité, ventilation et finitions. ERG Rénovation prépare un devis détaillé après étude du projet.",
         parentService: allServices.find(s => s.slug === 'renovation-salle-de-bain')!,
-        introduction: "Dans le 16ème arrondissement de Paris, la salle de bain est une pièce de luxe et de bien-être. ERG Rénovation est le spécialiste de la conception et de la réalisation de salles de bain haut de gamme, alliant matériaux nobles, agencement sur mesure et une expertise technique irréprochable pour une étanchéité parfaite.",
-        cta: {
-            primary: 'Concevoir ma salle de bain dans le 16e',
-            secondary: 'Découvrir nos finitions en marbre',
-        },
-        reassurancePoints: [
-            "Expert en douche à l'italienne.",
-            'Maîtrise de la pose de marbre.',
-            'Étanchéité garantie 10 ans.',
-        ],
+        introduction: "Une salle de bain à rénover dans le 75016 ? ERG Rénovation vous accompagne pour définir l’agencement, vérifier les réseaux existants et choisir des finitions adaptées à votre usage. Le devis distingue les travaux, les équipements et les options retenues après étude de votre pièce.",
+        cta: { primary: 'Demander mon devis à Paris 16', secondary: 'Voir les prestations salle de bain' },
+        reassurancePoints: ['Devis détaillé poste par poste.', 'Étude des réseaux et de la ventilation.', 'Choix des équipements selon votre pièce.'],
         mainContent: (
-            <>
-                <h2 id="prestations-luxe-paris-16">Des prestations haut de gamme pour votre salle de bain à Paris 16</h2>
-                <p>Nous transformons votre salle de bain en un espace d'exception, digne des plus grands hôtels.</p>
-                <div className="mt-8 space-y-4">
-                    <div className="flex items-start gap-4">
-                        <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
-                        <div>
-                            <h3 className="font-headline font-semibold text-lg">Utilisation de matériaux nobles</h3>
-                            <p className="text-muted-foreground">Marbre, pierre naturelle, robinetterie de luxe... Nous sélectionnons les meilleurs matériaux pour une salle de bain d'exception.</p>
-                        </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                        <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
-                        <div>
-                            <h3 className="font-headline font-semibold text-lg">Agencement et mobilier sur mesure</h3>
-                            <p className="text-muted-foreground">Nous concevons des meubles vasques, des rangements et des éclairages sur mesure pour un espace unique et fonctionnel.</p>
-                        </div>
-                    </div>
-                </div>
-            </>
+            <div className="space-y-8">
+                <section className="space-y-3">
+                    <h2 className="font-headline text-2xl font-semibold">Préparer une rénovation de salle de bain dans le 75016</h2>
+                    <p>Avant de choisir une douche ou un meuble vasque, il faut relever les dimensions, les arrivées d’eau, les évacuations et le système de ventilation. À Paris 16, comme dans les autres arrondissements, les contraintes dépendent du bâtiment et de la pièce. Une visite permet de vérifier ce qui peut être conservé et ce qui doit être repris.</p>
+                    <p>Si votre logement est en copropriété, les interventions sur les parties communes, les colonnes ou les planchers doivent être examinées avec le syndic avant les travaux concernés. Les horaires, la protection des circulations et l’accès au logement sont également à prévoir dans l’organisation du chantier.</p>
+                </section>
+                <section className="space-y-3">
+                    <h2 className="font-headline text-2xl font-semibold">Douche, baignoire et rangement : choisir selon l’existant</h2>
+                    <p>Remplacer une baignoire par une douche ne consiste pas seulement à changer un équipement. La hauteur disponible pour l’évacuation, l’accès aux raccordements et le traitement de l’étanchéité déterminent les solutions possibles. Une douche de plain-pied doit être étudiée sur place avant d’être promise.</p>
+                    <p>Dans une petite salle de bain, la profondeur du meuble, le débattement de la porte et les passages comptent autant que le choix du carrelage. Nous examinons les priorités avec vous : facilité d’entretien, rangements, accès à la douche et confort quotidien.</p>
+                </section>
+                <section className="space-y-3">
+                    <h2 className="font-headline text-2xl font-semibold">Que doit préciser votre devis de salle de bain ?</h2>
+                    <p>Le chiffrage doit distinguer la dépose, la préparation des supports, la plomberie, l’électricité, la ventilation, l’étanchéité et les revêtements. Les équipements fournis, leurs références lorsqu’elles sont arrêtées, les options et les exclusions doivent être lisibles. Le calendrier est établi selon les travaux retenus et la disponibilité des fournitures.</p>
+                    <p>Pour préparer le premier échange, indiquez la surface approximative, les équipements à remplacer, l’état actuel de la pièce et si le logement sera occupé pendant le chantier. Des photos et un plan, même simple, facilitent la compréhension du projet. Une estimation à distance reste à confirmer après vérification de l’existant.</p>
+                </section>
+                <section className="space-y-3">
+                    <h2 className="font-headline text-2xl font-semibold">Des exemples et des guides pour préparer votre projet</h2>
+                    <p>Découvrez notre <Link className="underline" href="/realisations/optimisation-salle-de-bain-3m2">réalisation de salle de bain de 3 m²</Link> pour examiner les possibilités d’agencement. Cet exemple illustre notre travail sans être présenté comme un chantier situé dans le 16e.</p>
+                    <p>Nos guides expliquent <Link className="underline" href="/blog/renovation-petite-salle-de-bain-budget">comment préparer le budget d’une petite salle de bain</Link> et <Link className="underline" href="/blog/comparer-devis-renovation">comment comparer des devis de rénovation</Link>. Pour l’ensemble des prestations, consultez notre <Link className="underline" href="/services/renovation-salle-de-bain">service de rénovation de salle de bain</Link>.</p>
+                </section>
+            </div>
         ),
-        testimonial: {
-            quote: "Le travail réalisé par ERG Rénovation dans notre salle de bain est tout simplement parfait. Le souci du détail et la qualité des finitions sont impressionnants.",
-            author: "M. et Mme Dubois, Paris 16e",
-        },
     },
 ];
 

@@ -56,7 +56,7 @@ export interface LocalLandingPage {
   };
   reassurancePoints: string[];
   mainContent: ReactNode;
-  testimonial: {
+  testimonial?: {
     quote: string;
     author: string;
   };

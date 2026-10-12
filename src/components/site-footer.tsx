@@ -14,7 +14,7 @@ const ADDRESS = COMPANY.address
 function DynamicLogo() {
   return (
     <Image
-      src="/images/logo-erg.webp"
+      src="/images/logo-erg-small.webp"
       alt="ERG Rénovation Logo"
       width={240}
       height={80}
@@ -36,9 +36,9 @@ function FooterTitle({
   className?: string
 }) {
   return (
-    <h4 className={cn("font-headline text-xs font-bold uppercase tracking-widest text-slate-900", className)}>
+    <h2 className={cn("font-headline text-xs font-bold uppercase tracking-widest text-slate-900", className)}>
       {children}
-    </h4>
+    </h2>
   )
 }
 
@@ -46,14 +46,17 @@ function FooterLink({
   href,
   children,
   className,
+  prefetch,
 }: {
   href: string
   children: React.ReactNode
   className?: string
+  prefetch?: boolean
 }) {
   return (
     <Link
       href={href}
+      prefetch={prefetch}
       className={cn(
         "text-sm font-normal text-slate-600 transition-colors hover:text-amber-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-sm inline-flex items-center gap-1.5",
         className
@@ -246,7 +249,7 @@ export default function SiteFooter() {
 
         {/* Bottom Footer Section */}
         <div className="mt-16 flex flex-col gap-4 border-t border-stone-200/80 pt-8 md:flex-row md:items-center md:justify-between">
-          <p className="text-center text-xs font-medium text-slate-500 md:text-left">
+          <p className="text-center text-xs font-medium text-slate-600 md:text-left">
             © {new Date().getFullYear()} {SITE_NAME}. Tous droits réservés. Entreprise de rénovation intérieure à Paris.
           </p>
 
@@ -256,7 +259,7 @@ export default function SiteFooter() {
                 {l.title}
               </FooterLink>
             ))}
-            <FooterLink href="/connexion" className="text-xs font-bold text-slate-800">
+            <FooterLink href="/connexion" prefetch={false} className="text-xs font-bold text-slate-800">
               CRM
             </FooterLink>
           </div>

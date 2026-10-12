@@ -30,7 +30,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Slider } from "@/components/ui/slider"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
-import { firestore } from "@/firebase/init"
+import { firestore } from "@/firebase/firestore-client"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { submitQuoteRequest } from "@/lib/submit-quote-request"
 
