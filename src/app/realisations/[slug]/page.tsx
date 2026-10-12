@@ -19,7 +19,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-import { ArrowRight, Sparkles, Star, Quote, Award, ShieldCheck, Clock } from "lucide-react"
+import { ArrowRight, Sparkles, Quote, Award, ShieldCheck, Clock } from "lucide-react"
 
 // ✅ SSG params
 export async function generateStaticParams() {
@@ -38,7 +38,10 @@ export async function generateMetadata({
     return { title: "Projet non trouvé" }
   }
 
-  const description = `Avant / Après : ${project.title}. ${project.description}`.slice(0, 155)
+  const imagesAreIllustrative = [project.images.before, project.images.after].some(id =>
+    PlaceHolderImages.find(image => image.id === id)?.imageUrl.startsWith("https://images.unsplash.com/"),
+  )
+  const description = `${imagesAreIllustrative ? "" : "Avant / Après : "}${project.title}. ${project.description}`.slice(0, 155)
 
   return {
     title: `${project.title}`,
@@ -61,6 +64,9 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
 
   const beforeImage = PlaceHolderImages.find((p) => p.id === project.images.before)
   const afterImage = PlaceHolderImages.find((p) => p.id === project.images.after)
+  const imagesAreIllustrative = [beforeImage, afterImage].some(image =>
+    image?.imageUrl.startsWith("https://images.unsplash.com/"),
+  )
 
   const relatedProjects = allProjects
     .filter((p) => p.category === project.category && p.slug !== project.slug)
@@ -123,18 +129,20 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
                     <div className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
                       <div>
                         <h2 className="font-headline text-2xl font-semibold tracking-tight">
-                          Avant / Après
+                          {imagesAreIllustrative ? "Illustrations du projet" : "Avant / Après"}
                         </h2>
                         <p className="mt-1 text-sm text-muted-foreground">
-                          Comparez le rendu final : volumes, matériaux, lumière et finitions.
+                          {imagesAreIllustrative
+                            ? "Photos d’illustration issues d’Unsplash : elles ne représentent pas le chantier décrit."
+                            : "Comparez le rendu final : volumes, matériaux, lumière et finitions."}
                         </p>
                       </div>
 
                       <TabsList className="bg-secondary/60">
-                        <TabsTrigger value="before">Avant</TabsTrigger>
+                        <TabsTrigger value="before">{imagesAreIllustrative ? "Illustration 1" : "Avant"}</TabsTrigger>
                         <TabsTrigger value="after">
                           <Sparkles className="mr-2 h-4 w-4 text-amber-300" />
-                          Après
+                          {imagesAreIllustrative ? "Illustration 2" : "Après"}
                         </TabsTrigger>
                       </TabsList>
                     </div>
@@ -148,7 +156,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
                           {beforeImage && (
                             <Image
                               src={beforeImage.imageUrl}
-                              alt={`Avant - ${project.title}`}
+                              alt={imagesAreIllustrative ? `Photo d’illustration 1 — ${project.title}` : `Avant - ${project.title}`}
                               fill
                               className="object-cover"
                               data-ai-hint={beforeImage.imageHint}
@@ -164,7 +172,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
                           {afterImage && (
                             <Image
                               src={afterImage.imageUrl}
-                              alt={`Après - ${project.title}`}
+                              alt={imagesAreIllustrative ? `Photo d’illustration 2 — ${project.title}` : `Après - ${project.title}`}
                               fill
                               className="object-cover"
                               data-ai-hint={afterImage.imageHint}
@@ -181,7 +189,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
                           {project.category}
                         </span>
                         <span className="rounded-full bg-black/35 px-3 py-1 text-xs text-white/90 backdrop-blur">
-                          Projet livré
+                          {imagesAreIllustrative ? "Photos d’illustration" : "Projet livré"}
                         </span>
                       </div>
                     </div>
@@ -224,12 +232,6 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
                       <Card className="mt-6 overflow-hidden border bg-secondary/30">
                         <CardContent className="relative p-7 md:p-8">
                           <Quote className="absolute right-6 top-6 h-6 w-6 text-primary/30" />
-
-                          <div className="mb-3 flex items-center gap-1">
-                            {Array.from({ length: 5 }).map((_, i) => (
-                              <Star key={i} className="h-5 w-5 fill-amber-400 text-amber-400" />
-                            ))}
-                          </div>
 
                           <p className="text-base italic leading-relaxed md:text-lg">
                             &ldquo;{project.testimonial.quote}&rdquo;

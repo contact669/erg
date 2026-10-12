@@ -1159,11 +1159,11 @@ export const allProjects: Project[] = [
     }
   },
   {
-    title: 'Studio optimisé pour investisseur',
+    title: 'Rénovation de studio pour un projet locatif',
     slug: 'studio-optimise-marais',
     category: 'Studio',
     images: { before: 'project-studio-1-before', after: 'project-studio-1' },
-    description: 'Rénovation complète d\'un studio destiné à la location. Un travail de qualité, respect des délais et des conseils pertinents pour un investissement réussi.',
+    description: 'Rénovation intérieure d\'un studio destiné à la location : électricité, plomberie, kitchenette, salle d\'eau et peinture.',
     testimonial: {
       quote: "Studio entièrement rénové. Beau travail réalisé par l'entreprise ERG. M. AIT donne de bons conseils. Les délais sont respectés. Travaux de qualité. Je recommande sans hésiter la société ERG.",
       author: "t planchard"
@@ -1173,14 +1173,14 @@ export const allProjects: Project[] = [
           <p>L'objectif était de réaliser la rénovation complète d'un studio destiné à un investissement locatif. Le projet exigeait de maximiser l'attrait et la fonctionnalité du bien pour de futurs locataires, tout en maîtrisant le budget et en respectant des délais stricts pour limiter la vacance locative.</p>
       </>,
       solution: <>
-          <p>Nous avons accompagné l'investisseur avec une approche axée sur la rentabilité et la durabilité :</p>
+          <p>Le projet associe la reprise des installations et les finitions intérieures :</p>
           <ul>
               <li><strong>Conseils stratégiques :</strong> Propositions d'aménagements et de matériaux optimisant le rapport qualité/prix et facilitant l'entretien.</li>
               <li><strong>Rénovation intégrale :</strong> Remise à neuf de l'électricité, de la plomberie, de la salle d'eau et de la kitchenette pour garantir la sécurité et le confort.</li>
-              <li><strong>Finitions soignées :</strong> Application de peintures neutres et pose de sols résistants pour créer un espace lumineux et accueillant, facile à s'approprier.</li>
+              <li><strong>Peinture intérieure :</strong> Application de peintures neutres pour créer un espace lumineux et accueillant.</li>
               <li><strong>Respect du planning :</strong> La coordination efficace de nos équipes a permis de livrer le chantier dans les délais impartis.</li>
           </ul>
-          <p>Le résultat est un studio clé en main, prêt à être loué, représentant un investissement sûr et valorisé.</p>
+          <p>Pour préparer un projet similaire, consultez notre <a href="/blog/budget-renovation-appartement-paris">guide du budget de rénovation d'appartement</a> et les prestations de <a href="/services/renovation-appartement">rénovation d'appartement</a>. Le devis de votre logement dépend de son état et du périmètre des travaux retenus.</p>
       </>,
       keyPoints: [
         { title: "Projet d'investissement locatif", icon: Wallet },

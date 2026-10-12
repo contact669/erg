@@ -506,12 +506,15 @@ function EmptyState({ onReset }: { onReset: () => void }) {
 function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
   const beforeImage = PlaceHolderImages.find((img) => img.id === project.images.before)
   const afterImage = PlaceHolderImages.find((img) => img.id === project.images.after)
+  const imagesAreIllustrative = [beforeImage, afterImage].some(image =>
+    image?.imageUrl.startsWith("https://images.unsplash.com/"),
+  )
 
   const [mode, setMode] = useState<"after" | "before">("after")
 
   const currentImg = mode === "after" ? afterImage : beforeImage
   const imageUrl = currentImg?.imageUrl || (mode === "after" ? "/images/realisations/renovation-studio-apres.webp" : "/images/realisations/renovation-studio-avant.webp")
-  const altText = mode === "after" ? project.title : `Avant travaux — ${project.title}`
+  const altText = imagesAreIllustrative ? `Photo d’illustration — ${project.title}` : mode === "after" ? project.title : `Avant travaux — ${project.title}`
 
   return (
     <Card className="group flex flex-col justify-between h-full overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm hover:shadow-xl hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1">
@@ -550,7 +553,7 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
                     : "text-slate-300 hover:text-white hover:bg-white/10",
                 ].join(" ")}
               >
-                Avant
+                {imagesAreIllustrative ? "Illustration 1" : "Avant"}
               </button>
               <button
                 type="button"
@@ -565,7 +568,7 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
                     : "text-slate-300 hover:text-white hover:bg-white/10",
                 ].join(" ")}
               >
-                Après
+                {imagesAreIllustrative ? "Illustration 2" : "Après"}
               </button>
             </div>
           </div>
@@ -581,6 +584,7 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
             <p className="line-clamp-3 text-xs sm:text-sm leading-relaxed text-slate-600 font-normal">
               {project.description}
             </p>
+            {imagesAreIllustrative && <p className="text-xs text-slate-600">Photos d’illustration Unsplash, sans lien avec le chantier décrit.</p>}
           </div>
 
           {project.testimonial && (
