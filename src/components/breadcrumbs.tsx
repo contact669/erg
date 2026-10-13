@@ -135,7 +135,7 @@ export default function Breadcrumbs({
       <ol
         className={cn(
           "flex flex-wrap items-center gap-x-2 gap-y-1 py-3 text-sm",
-          isDark ? "text-primary-foreground/80" : "text-muted-foreground",
+          isDark ? "text-primary-foreground/80" : "text-slate-600",
           centered && "justify-center"
         )}
       >

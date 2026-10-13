@@ -257,7 +257,7 @@ export default function RenovationParisPage() {
                 Rénovation d’appartement à Paris (75)
               </h1>
 
-              <p className="mt-5 mx-auto max-w-3xl text-lg text-muted-foreground">
+              <p className="mt-5 mx-auto max-w-3xl text-lg text-slate-600">
                 Rénovation complète, salle de bain, cuisine : un chantier cadré, une communication claire,
                 et des finitions soignées — du devis à la livraison.
               </p>
@@ -289,9 +289,9 @@ export default function RenovationParisPage() {
                 </Button>
               </div>
 
-              <div className="mt-6 inline-flex items-center gap-2 text-xs text-muted-foreground">
+              <div className="mt-6 inline-flex items-center gap-2 text-xs text-slate-600">
                 <Clock3 className="h-4 w-4" />
-                <span>Réponse rapide • Visite sur site offerte • Devis sous 24–48h (selon projet)</span>
+                <span>Visite sur site offerte • Devis détaillé selon votre projet</span>
               </div>
             </div>
           </div>
@@ -304,7 +304,7 @@ export default function RenovationParisPage() {
                 <h2 className="font-headline text-3xl font-bold">
                   Rénover à Paris : un projet exigeant, une méthode indispensable
                 </h2>
-                <p className="mt-4 text-muted-foreground">
+                <p className="mt-4 text-slate-600">
                   Bâti ancien, copropriété, optimisation des mètres carrés : l’anticipation technique et
                   la qualité d’exécution font toute la différence.
                 </p>
@@ -320,7 +320,7 @@ export default function RenovationParisPage() {
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-muted-foreground text-sm">{item.description}</p>
+                        <p className="text-slate-600 text-sm">{item.description}</p>
                       </CardContent>
                     </Card>
                 ))}
@@ -334,7 +334,7 @@ export default function RenovationParisPage() {
             <div className="container">
               <div className="mx-auto max-w-2xl text-center">
                 <h2 className="font-headline text-3xl font-bold">Nos services de rénovation à Paris</h2>
-                <p className="mt-4 text-muted-foreground">
+                <p className="mt-4 text-slate-600">
                   Une rénovation sur mesure, adaptée aux appartements parisiens : exécution propre, coordination TCE,
                   finitions soignées.
                 </p>
@@ -354,7 +354,7 @@ export default function RenovationParisPage() {
                     </CardHeader>
 
                     <CardContent className="flex-grow flex items-end">
-                      <Button variant="link" asChild className="p-0 text-accent">
+                      <Button variant="link" asChild className="p-0 text-amber-800">
                         <Link href={s.link}>
                           En savoir plus <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
@@ -388,7 +388,7 @@ export default function RenovationParisPage() {
                   <h2 className="font-headline text-3xl font-bold">
                     Une rénovation maîtrisée, du devis aux finitions
                   </h2>
-                  <p className="mt-4 text-muted-foreground">
+                  <p className="mt-4 text-slate-600">
                     Un chef de projet dédié, un planning clair, un contrôle qualité continu : vous avancez
                     sereinement, le chantier reste sous contrôle.
                   </p>
@@ -401,7 +401,7 @@ export default function RenovationParisPage() {
                         </div>
                         <div>
                           <h3 className="font-semibold text-lg">{item.title}</h3>
-                          <p className="text-muted-foreground mt-1">{item.description}</p>
+                          <p className="text-slate-600 mt-1">{item.description}</p>
                         </div>
                       </div>
                     ))}
@@ -416,7 +416,7 @@ export default function RenovationParisPage() {
                     </Button>
                   </div>
 
-                  <div className="mt-4 text-xs text-muted-foreground">
+                  <div className="mt-4 text-xs text-slate-600">
                     <span className="inline-flex items-center gap-2">
                       <ShieldCheck className="h-4 w-4" />
                       Garantie décennale • Devis détaillé • Suivi de chantier
@@ -433,7 +433,7 @@ export default function RenovationParisPage() {
             <div className="container">
               <div className="mx-auto max-w-2xl text-center">
                 <h2 className="font-headline text-3xl font-bold">Paris : tous les arrondissements (75)</h2>
-                <p className="mt-4 text-muted-foreground">
+                <p className="mt-4 text-slate-600">
                   Nous intervenons dans tout Paris. Des pages dédiées par arrondissement seront publiées progressivement.
                 </p>
               </div>
@@ -474,7 +474,7 @@ export default function RenovationParisPage() {
             <div className="container max-w-3xl mx-auto">
               <div className="text-center">
                 <h2 className="font-headline text-3xl font-bold">FAQ – Rénovation d’appartement à Paris</h2>
-                <p className="mt-4 text-muted-foreground">
+                <p className="mt-4 text-slate-600">
                   L’essentiel à savoir avant de lancer des travaux dans un appartement parisien.
                 </p>
               </div>
@@ -485,7 +485,7 @@ export default function RenovationParisPage() {
                     <AccordionTrigger className="text-left font-semibold text-lg">
                       {f.q}
                     </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
+                    <AccordionContent className="text-slate-600">
                       {f.a}
                     </AccordionContent>
                   </AccordionItem>
@@ -506,7 +506,7 @@ export default function RenovationParisPage() {
                 </Button>
               </div>
 
-              <p className="mt-4 text-center text-xs text-muted-foreground">
+              <p className="mt-4 text-center text-xs text-slate-600">
                 Astuce : pour accélérer le devis, indiquez la surface, l’adresse (arrondissement) et vos priorités (budget / délais / niveau de finition).
               </p>
             </div>
@@ -515,7 +515,7 @@ export default function RenovationParisPage() {
 
         <section className="container py-12 md:py-16" aria-labelledby="exemples-paris">
           <h2 id="exemples-paris" className="font-headline text-3xl font-bold">Des réalisations pour préparer votre projet</h2>
-          <p className="mt-4 max-w-3xl text-muted-foreground">Consultez les photos et le détail des interventions pour discuter des travaux adaptés à votre logement.</p>
+          <p className="mt-4 max-w-3xl text-slate-600">Consultez les photos et le détail des interventions pour discuter des travaux adaptés à votre logement.</p>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {[
               { href: "/realisations/renovation-studio-paris-11", title: "Rénovation de studio à Paris 11", image: "/images/realisations/renovation-studio-apres.webp", description: "Voir les photos et la présentation de cette rénovation de studio." },
@@ -527,14 +527,14 @@ export default function RenovationParisPage() {
                 </div>
                 <div className="space-y-3 p-6">
                   <h3 className="font-headline text-xl font-semibold">{project.title}</h3>
-                  <p className="text-muted-foreground">{project.description}</p>
+                  <p className="text-slate-600">{project.description}</p>
                   <span className="inline-flex items-center gap-2 font-semibold underline">Consulter la réalisation <ArrowRight className="h-4 w-4" aria-hidden="true" /></span>
                 </div>
               </Link>
             ))}
           </div>
           <div className="mt-8 space-y-4">
-            <p className="max-w-3xl text-muted-foreground">Pour votre devis, préparez la surface, l’arrondissement, les pièces concernées et les éléments que vous souhaitez conserver. Le chiffrage dépendra de votre logement et des travaux retenus.</p>
+            <p className="max-w-3xl text-slate-600">Pour votre devis, préparez la surface, l’arrondissement, les pièces concernées et les éléments que vous souhaitez conserver. Le chiffrage dépendra de votre logement et des travaux retenus.</p>
             <Button asChild size="lg"><Link href="/devis">Décrire mon projet de rénovation à Paris</Link></Button>
           </div>
         </section>
