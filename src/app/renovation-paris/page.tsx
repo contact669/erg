@@ -513,6 +513,31 @@ export default function RenovationParisPage() {
           </section>
         </AnimatedSection>
 
+        <section className="container py-12 md:py-16" aria-labelledby="exemples-paris">
+          <h2 id="exemples-paris" className="font-headline text-3xl font-bold">Des réalisations pour préparer votre projet</h2>
+          <p className="mt-4 max-w-3xl text-muted-foreground">Consultez les photos et le détail des interventions pour discuter des travaux adaptés à votre logement.</p>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {[
+              { href: "/realisations/renovation-studio-paris-11", title: "Rénovation de studio à Paris 11", image: "/images/realisations/renovation-studio-apres.webp", description: "Voir les photos et la présentation de cette rénovation de studio." },
+              { href: "/realisations/optimisation-salle-de-bain-3m2", title: "Rénovation d’une salle de bain de 3 m²", image: "/images/realisations/renovation-salle-de-bain-3m2-apres.webp", description: "Consulter un exemple de travaux dans une petite salle de bain." },
+            ].map(project => (
+              <Link key={project.href} href={project.href} className="overflow-hidden rounded-2xl border bg-background hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+                <div className="relative aspect-[4/3]">
+                  <Image src={project.image} alt={project.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" loading="lazy" />
+                </div>
+                <div className="space-y-3 p-6">
+                  <h3 className="font-headline text-xl font-semibold">{project.title}</h3>
+                  <p className="text-muted-foreground">{project.description}</p>
+                  <span className="inline-flex items-center gap-2 font-semibold underline">Consulter la réalisation <ArrowRight className="h-4 w-4" aria-hidden="true" /></span>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-8 space-y-4">
+            <p className="max-w-3xl text-muted-foreground">Pour votre devis, préparez la surface, l’arrondissement, les pièces concernées et les éléments que vous souhaitez conserver. Le chiffrage dépendra de votre logement et des travaux retenus.</p>
+            <Button asChild size="lg"><Link href="/devis">Décrire mon projet de rénovation à Paris</Link></Button>
+          </div>
+        </section>
         <LocalProjectPreparation location="paris" />
         <CtaBanner />
       </main>
