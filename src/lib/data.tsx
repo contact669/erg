@@ -2,6 +2,7 @@
 
 import type { Service, Project, Testimonial, ProcessStep, NavItem, BlogPost, LocalLandingPage, Area } from './types';
 import { isPublishedService } from '@/lib/insurance-scope';
+import localRedirects from '@/lib/seo/local-redirects.json';
 import {
   Home,
   Bath,
@@ -988,7 +989,8 @@ export const localLandingPages: LocalLandingPage[] = [
     ...renovationAppartementPages,
     ...renovationMaisonPages,
     ...renovationSalleDeBainPages,
-].filter((page) => isPublishedService(page.parentService.slug));
+].filter((page) => isPublishedService(page.parentService.slug) &&
+    !Object.prototype.hasOwnProperty.call(localRedirects, `/${page.parentService.slug}/${page.slug}`));
 
 export const projectCategories = [
   "Appartement",

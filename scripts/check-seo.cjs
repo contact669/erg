@@ -58,6 +58,15 @@ function walk(dir) {
   }
 }
 walk(root);
+const localRedirects = require('../src/lib/seo/local-redirects.json');
+const compiledRedirects = JSON.parse(fs.readFileSync('.next/routes-manifest.json', 'utf8')).redirects;
+for (const [source, destination] of Object.entries(localRedirects)) {
+  if (pages.has(source)) failures.push(`Consolidated page still published: ${source}`);
+  if (!pages.has(destination)) failures.push(`Missing consolidation target: ${destination}`);
+  if (!compiledRedirects.some(rule => rule.source === source && rule.destination === destination && rule.statusCode === 308)) {
+    failures.push(`Missing permanent consolidation redirect: ${source}`);
+  }
+}
 const legalHtml = fs.readFileSync(path.join(root, 'mentions-legales.html'), 'utf8');
 for (const value of ['ENTREPRISE DE RENOVATION GENERALE', '818 676 652 00014', 'annuaire-entreprises.data.gouv.fr/entreprise/818676652']) {
   if (!legalHtml.includes(value)) failures.push(`Legal page missing verified company identity: ${value}`);

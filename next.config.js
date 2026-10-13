@@ -1,4 +1,5 @@
 const insuranceScope = require('./src/lib/insurance-scope.json');
+const localRedirects = require('./src/lib/seo/local-redirects.json');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -9,9 +10,7 @@ const nextConfig = {
       { source: `/${slug}/:path*`, destination: insuranceScope.redirectTo, permanent: true },
     ]);
     return [
-      { source: '/renovation-appartement/val-de-marne-94', destination: '/renovation-val-de-marne', permanent: true },
-      { source: '/renovation-appartement/creteil', destination: '/renovation-creteil', permanent: true },
-      { source: '/renovation-appartement/maisons-alfort', destination: '/renovation-maisons-alfort', permanent: true },
+      ...Object.entries(localRedirects).map(([source, destination]) => ({ source, destination, permanent: true })),
       { source: '/:path*', has: [{ type: 'host', value: 'www.erg-renovation.fr' }], destination: 'https://erg-renovation.fr/:path*', permanent: true },
       ...unpublished,
     ];
