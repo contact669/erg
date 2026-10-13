@@ -42,7 +42,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Immeubles 1930 Art Déco, résidences contemporaines HQE et haussmanniens élégants",
     description: "Rénovation complète d'appartements de standing et lofts à Boulogne-Billancourt.",
     specifics: "Restauration des parquets et moulures d'époque 1930, mise aux normes électriques et optimisation des volumes de réception.",
-    avgPricePerSqm: "950 € à 1 650 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-appartement-65m2-avant.webp",
       afterImage: "/images/realisations/renovation-appartement-65m2-apres.webp",
@@ -69,7 +69,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Appartements haussmanniens récents, immeubles pierre de taille et résidences modernes",
     description: "Rénovation intérieure clé en main pour appartements familiaux et studios à Levallois-Perret.",
     specifics: "Création de cuisines semi-ouvertes avec verrière, agencement sur-mesure de dressings et suites parentales.",
-    avgPricePerSqm: "1 000 € à 1 700 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-2-pieces-avant.webp",
       afterImage: "/images/realisations/renovation-2-pieces-apres.webp",
@@ -155,7 +155,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Pavillons 1930, meulières et résidences collectives contemporaines",
     description: "Rénovation globale de maisons et d'appartements familiaux à Colombes.",
     specifics: "Rénovation complète d'installations électriques et de plomberie, peintures intérieures.",
-    avgPricePerSqm: "800 € à 1 350 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-salle-de-bain-3m2-avant.webp",
       afterImage: "/images/realisations/renovation-salle-de-bain-3m2-apres.webp",
@@ -215,7 +215,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Hôtels particuliers, grands haussmanniens et résidences de très haut standing",
     description: "Rénovation d'exception et aménagement sur-mesure d'appartements à Neuilly-sur-Seine.",
     specifics: "Mise en œuvre de matériaux nobles (marbre, bois précieux, laiton), domotique intégrée et acoustique reinforced.",
-    avgPricePerSqm: "1 300 € à 2 200 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-appartement-65m2-avant.webp",
       afterImage: "/images/realisations/renovation-appartement-65m2-apres.webp",
@@ -267,7 +267,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Éco-quartiers modernes, immeubles 1970/1980 et résidences récentes",
     description: "Rénovation d'appartement et optimisation d'espace à Issy-les-Moulineaux.",
     specifics: "Modernisation de cuisines équipées, rénovation de salles de bain et réagencement complet 2 et 3 pièces.",
-    avgPricePerSqm: "900 € à 1 500 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-cuisine-avant.webp",
       afterImage: "/images/realisations/renovation-cuisine-apres.webp",
@@ -293,7 +293,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Architecture Cité-Jardins 1930, meulières et résidences récentes",
     description: "Rénovation d'appartements et maisons avec vue à Suresnes.",
     specifics: "Optimisation de lumière naturelle, réfection de parquets et modernisation de réseaux sanitaires.",
-    avgPricePerSqm: "850 € à 1 400 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-2-pieces-avant.webp",
       afterImage: "/images/realisations/renovation-2-pieces-apres.webp",
@@ -319,7 +319,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Immeubles faubouriens, brique/pierre 1930 et résidences neuves",
     description: "Rénovation complète d'appartements pour résidents et investisseurs à Clichy.",
     specifics: "Démolition de cloisons, création de cuisines ouvertes et réfection complète de l'électricité.",
-    avgPricePerSqm: "800 € à 1 350 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-studio-avant.webp",
       afterImage: "/images/realisations/renovation-studio-apres.webp",
@@ -375,7 +375,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Bâtiments industriels réhabilités, lofts du Canal et immeubles faubouriens",
     description: "Rénovation d'appartements et lofts contemporains le long du Canal de l'Ourcq à Pantin.",
     specifics: "Aménagement d'espaces ouverts type loft, pose de béton ciré et parquets chêne.",
-    avgPricePerSqm: "800 € à 1 400 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-2-pieces-avant.webp",
       afterImage: "/images/realisations/renovation-2-pieces-apres.webp",
@@ -401,7 +401,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Immeubles anciens du centre historique, résidences Pleyel et logements récents",
     description: "Rénovation clé en main et remise aux normes d'appartements à Saint-Denis.",
     specifics: "Réfection complète de plomberie/électricité, traitement d'humidité et isolation acoustique.",
-    avgPricePerSqm: "700 € à 1 250 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-studio-avant.webp",
       afterImage: "/images/realisations/renovation-studio-apres.webp",
@@ -427,7 +427,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Éco-quartier des Docks, immeubles faubouriens et lofts d'artistes",
     description: "Rénovation d'appartements et espaces atypiques à Saint-Ouen.",
     specifics: "Agencement contemporain, intégration de verrières d'atelier et cuisines sur-mesure.",
-    avgPricePerSqm: "800 € à 1 400 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-cuisine-avant.webp",
       afterImage: "/images/realisations/renovation-cuisine-apres.webp",
@@ -453,7 +453,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Petits immeubles 1930, maisons de ville et copropriétés récentes",
     description: "Rénovation chaleureuse et soignée d'appartements aux Lilas.",
     specifics: "Rénovation de parquets, agencement sur-mesure et réfection de salles d'eau.",
-    avgPricePerSqm: "850 € à 1 450 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-salle-de-bain-3m2-avant.webp",
       afterImage: "/images/realisations/renovation-salle-de-bain-3m2-apres.webp",
@@ -479,7 +479,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Immeubles faubouriens, résidences récentes Front Populaire et anciens ateliers",
     description: "Rénovation et optimisation budgétaire d'appartements à Aubervilliers.",
     specifics: "Remise à neuf complète, isolation phonique et rénovation de cuisines.",
-    avgPricePerSqm: "700 € à 1 200 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-studio-avant.webp",
       afterImage: "/images/realisations/renovation-studio-apres.webp",
@@ -488,7 +488,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation appartement Front Populaire",
     },
     faqs: [
-      { q: "Proposez-vous des devis détaillés gratuits à Aubervilliers ?", a: "Oui, nous réalisons une visite technique sur place et remettons un devis chiffré poste par poste sous 48h." },
+      { q: "Proposez-vous des devis détaillés gratuits à Aubervilliers ?", a: "Oui. La visite permet de préciser les interventions et les fournitures avant de préparer un devis détaillé. Le délai de remise est convenu selon le périmètre du projet." },
     ],
   },
   "le-raincy": {
@@ -505,7 +505,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Villas XIXe, immeubles bourgeois pierre de taille et appartements de standing",
     description: "Rénovation de standing d'appartements bourgeois et maisons au Raincy.",
     specifics: "Restauration de staff, moulures, cheminées et parquets en chêne massif.",
-    avgPricePerSqm: "850 € à 1 400 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-appartement-65m2-avant.webp",
       afterImage: "/images/realisations/renovation-appartement-65m2-apres.webp",
@@ -535,7 +535,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Immeubles haussmanniens élégants, pierre de taille bord de Bois et résidences 1930",
     description: "Rénovation haut de gamme d'appartements familiaux à Vincennes.",
     specifics: "Décloisonnement pour pièces de vie lumineuses, rénovation de parquets Point de Hongrie et douches italiennes.",
-    avgPricePerSqm: "1 000 € à 1 750 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-complete-appartement-avant.webp",
       afterImage: "/images/realisations/renovation-complete-appartement-apres.webp",
@@ -561,7 +561,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Immeubles bourgeois, copropriétés de grand standing bordant le Bois de Vincennes",
     description: "Rénovation d'exception et finitions de luxe à Saint-Mandé.",
     specifics: "Intégration de boiseries sur-mesure, salles de bain en marbre et éclairages architecturaux.",
-    avgPricePerSqm: "1 100 € à 1 850 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-appartement-65m2-avant.webp",
       afterImage: "/images/realisations/renovation-appartement-65m2-apres.webp",
@@ -587,7 +587,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Maisons Bords de Marne, immeubles 1930 et résidences familiales",
     description: "Rénovation d'appartements et réhabilitation de maisons à Nogent-sur-Marne.",
     specifics: "Rénovation énergétique, création de cuisines ouvertes et vérandas intégrées.",
-    avgPricePerSqm: "850 € à 1 500 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-2-pieces-avant.webp",
       afterImage: "/images/realisations/renovation-2-pieces-apres.webp",
@@ -613,7 +613,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Belles demeures familiales, pavillons de charme et appartements de standing",
     description: "Rénovation d'intérieurs et aménagement sur-mesure au Perreux-sur-Marne.",
     specifics: "Aménagement de suites parentales, rénovation de parquets et mise aux normes thermiques.",
-    avgPricePerSqm: "850 € à 1 450 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-cuisine-avant.webp",
       afterImage: "/images/realisations/renovation-cuisine-apres.webp",
@@ -639,7 +639,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Villas d'exception à La Varenne, meulières et appartements familiaux",
     description: "Rénovation globale de standing pour maisons et appartements à Saint-Maur.",
     specifics: "Rénovation de pièces de réception, suites parentales et isolation globale.",
-    avgPricePerSqm: "900 € à 1 550 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-complete-appartement-avant.webp",
       afterImage: "/images/realisations/renovation-complete-appartement-apres.webp",
@@ -733,7 +733,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     architecturalStyle: "Anciens bâtiments industriels réhabilités, lofts et ensembles récents",
     description: "Rénovation d'appartements et lofts contemporains à Ivry-sur-Seine.",
     specifics: "Aménagement d'ateliers en lofts, isolation phonique/thermique et finitions tendances.",
-    avgPricePerSqm: "750 € à 1 300 € / m²",
+    avgPricePerSqm: "Devis selon les travaux et l’état du logement",
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-2-pieces-avant.webp",
       afterImage: "/images/realisations/renovation-2-pieces-apres.webp",

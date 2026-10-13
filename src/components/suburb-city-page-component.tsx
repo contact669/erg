@@ -192,7 +192,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                   </div>
                   <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
                     <ClipboardCheck className="h-4 w-4 text-amber-400 flex-shrink-0" />
-                    <span>Devis Gratuit sous 48h</span>
+                    <span>Devis gratuit et détaillé</span>
                   </div>
                 </div>
 
