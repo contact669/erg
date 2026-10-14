@@ -113,7 +113,7 @@ export default function DevisPage() {
                   <CheckCircle2 className="h-4 w-4 text-amber-600" /> Paris & Petite Couronne (75, 92, 93, 94)
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-4 w-4 text-amber-600" /> Lun-Sam • 9h–19h
+                  <CheckCircle2 className="h-4 w-4 text-amber-600" /> Lun-Sam • 9h–20h, fermé le dimanche
                 </span>
               </div>
             </div>

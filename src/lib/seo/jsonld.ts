@@ -61,7 +61,7 @@ export function buildLocalBusinessJsonLd(input: LocalBusinessInput) {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
         opens: "09:00",
-        closes: "19:00",
+        closes: "20:00",
       },
     ],
     areaServed: (input.areaServed ?? []).map((name) => ({

@@ -44,7 +44,7 @@ const PHONE = COMPANY.phone
 const PHONE_DISPLAY = COMPANY.phoneLabel
 const EMAIL = COMPANY.email
 const ADDRESS = COMPANY.address
-const HOURS = "Lun–Sam • 9h–19h"
+const HOURS = "Lun–Sam • 9h–20h — fermé le dimanche"
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Le nom doit contenir au moins 2 caractères." }),
