@@ -41,7 +41,7 @@ export async function generateMetadata({
   const imagesAreIllustrative = [project.images.before, project.images.after].some(id =>
     PlaceHolderImages.find(image => image.id === id)?.imageUrl.startsWith("https://images.unsplash.com/"),
   )
-  const description = `${imagesAreIllustrative ? "" : "Avant / Après : "}${project.title}. ${project.description}`.slice(0, 155)
+  const description = `${imagesAreIllustrative ? "" : project.images.beforeLabel ? "Pendant / Après : " : "Avant / Après : "}${project.title}. ${project.description}`.slice(0, 155)
 
   return {
     title: `${project.title}`,
@@ -129,7 +129,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
                     <div className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
                       <div>
                         <h2 className="font-headline text-2xl font-semibold tracking-tight">
-                          {imagesAreIllustrative ? "Illustrations du projet" : "Avant / Après"}
+                          {imagesAreIllustrative ? "Illustrations du projet" : project.images.beforeLabel ? "Pendant les travaux / Après" : "Avant / Après"}
                         </h2>
                         <p className="mt-1 text-sm text-muted-foreground">
                           {imagesAreIllustrative
@@ -139,7 +139,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
                       </div>
 
                       <TabsList className="bg-secondary/60">
-                        <TabsTrigger value="before">{imagesAreIllustrative ? "Illustration 1" : "Avant"}</TabsTrigger>
+                        <TabsTrigger value="before">{imagesAreIllustrative ? "Illustration 1" : project.images.beforeLabel || "Avant"}</TabsTrigger>
                         <TabsTrigger value="after">
                           <Sparkles className="mr-2 h-4 w-4 text-amber-300" />
                           {imagesAreIllustrative ? "Illustration 2" : "Après"}
@@ -156,9 +156,9 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
                           {beforeImage && (
                             <Image
                               src={beforeImage.imageUrl}
-                              alt={imagesAreIllustrative ? `Photo d’illustration 1 — ${project.title}` : `Avant - ${project.title}`}
+                              alt={beforeImage.description}
                               fill
-                              className="object-cover"
+                              className={project.photoCredit ? "object-contain" : "object-cover"}
                               data-ai-hint={beforeImage.imageHint}
                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 1200px"
                               priority
@@ -172,9 +172,9 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
                           {afterImage && (
                             <Image
                               src={afterImage.imageUrl}
-                              alt={imagesAreIllustrative ? `Photo d’illustration 2 — ${project.title}` : `Après - ${project.title}`}
+                              alt={afterImage.description}
                               fill
-                              className="object-cover"
+                              className={project.photoCredit ? "object-contain" : "object-cover"}
                               data-ai-hint={afterImage.imageHint}
                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 1200px"
                               priority
@@ -194,6 +194,11 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
                       </div>
                     </div>
                   </Tabs>
+                  {project.photoCredit && (
+                    <p className="p-5 text-sm text-muted-foreground">
+                      <a className="underline" href={project.photoCredit.url} target="_blank" rel="noopener noreferrer">{project.photoCredit.label}</a>
+                    </p>
+                  )}
                 </div>
               </div>
             </div>

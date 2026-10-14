@@ -254,14 +254,14 @@
     },
     {
       "id": "project-small-bathroom-before",
-      "description": "Petite salle de bain démodée avant les travaux de rénovation.",
-      "imageUrl": "/images/realisations/renovation-salle-de-bain-3m2-avant.webp",
+      "description": "Salle de bain de Nina G. pendant les travaux : murs dégarnis et fenêtre existante.",
+      "imageUrl": "/images/realisations/salle-de-bain-nina-travaux.webp",
       "imageHint": "old bathroom"
     },
     {
       "id": "project-small-bathroom-after",
-      "description": "Petite salle de bain moderne et lumineuse après rénovation complète.",
-      "imageUrl": "/images/realisations/renovation-salle-de-bain-3m2-apres.webp",
+      "description": "Salle de bain de Nina G. rénovée : douche vitrée, carrelage clair et meuble vasque.",
+      "imageUrl": "/images/realisations/salle-de-bain-nina-apres.webp",
       "imageHint": "modern bathroom"
     },
     {

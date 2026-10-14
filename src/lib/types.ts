@@ -74,7 +74,9 @@ export interface Project {
   images: {
     before: string;
     after: string;
+    beforeLabel?: string;
   };
+  photoCredit?: { label: string; url: string };
   description: string;
   testimonial?: {
     quote: string;

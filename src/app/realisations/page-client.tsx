@@ -514,7 +514,7 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
 
   const currentImg = mode === "after" ? afterImage : beforeImage
   const imageUrl = currentImg?.imageUrl || (mode === "after" ? "/images/realisations/renovation-studio-apres.webp" : "/images/realisations/renovation-studio-avant.webp")
-  const altText = imagesAreIllustrative ? `Photo d’illustration — ${project.title}` : mode === "after" ? project.title : `Avant travaux — ${project.title}`
+  const altText = imagesAreIllustrative ? `Photo d’illustration — ${project.title}` : mode === "after" ? project.title : `${project.images.beforeLabel || "Avant travaux"} — ${project.title}`
 
   return (
     <Card className="group flex flex-col justify-between h-full overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm hover:shadow-xl hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1">
@@ -553,7 +553,7 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
                     : "text-slate-300 hover:text-white hover:bg-white/10",
                 ].join(" ")}
               >
-                {imagesAreIllustrative ? "Illustration 1" : "Avant"}
+                {imagesAreIllustrative ? "Illustration 1" : project.images.beforeLabel || "Avant"}
               </button>
               <button
                 type="button"

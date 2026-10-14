@@ -974,7 +974,7 @@ const renovationSalleDeBainPages: LocalLandingPage[] = [
                 </section>
                 <section className="space-y-3">
                     <h2 className="font-headline text-2xl font-semibold">Des exemples et des guides pour préparer votre projet</h2>
-                    <p>Découvrez notre <Link className="underline" href="/realisations/optimisation-salle-de-bain-3m2">réalisation de salle de bain de 3 m²</Link> pour examiner les possibilités d’agencement. Cet exemple illustre notre travail sans être présenté comme un chantier situé dans le 16e.</p>
+                    <p>Découvrez notre <Link className="underline" href="/realisations/optimisation-salle-de-bain-3m2">réalisation d’une petite salle de bain parisienne</Link> pour examiner les possibilités d’agencement. Cet exemple illustre notre travail sans être présenté comme un chantier situé dans le 16e.</p>
                     <p>Nos guides expliquent <Link className="underline" href="/blog/renovation-petite-salle-de-bain-budget">comment préparer le budget d’une petite salle de bain</Link> et <Link className="underline" href="/blog/comparer-devis-renovation">comment comparer des devis de rénovation</Link>. Pour l’ensemble des prestations, consultez notre <Link className="underline" href="/services/renovation-salle-de-bain">service de rénovation de salle de bain</Link>.</p>
                     <p>Si votre projet concerne aussi d’autres pièces, consultez la <Link className="underline" href="/renovation-paris/paris-16">rénovation d’appartement à Paris 16</Link> pour préparer une demande portant sur l’ensemble du logement.</p>
                 </section>
@@ -1020,10 +1020,11 @@ export const featuredProjects: Project[] = [
     description: 'Refonte totale d\'un appartement de 65m², incluant cuisine, salle de bain, électricité et peinture. Un résultat de grande qualité salué par le client.'
   },
   {
-    title: 'Optimisation d\'une salle de bain 3m²',
+    title: 'Rénovation d’une petite salle de bain à Paris',
     slug: 'optimisation-salle-de-bain-3m2',
     category: 'Salle de bain',
-    images: { before: 'project-small-bathroom-before', after: 'project-small-bathroom-after' },
+    images: { before: 'project-small-bathroom-before', after: 'project-small-bathroom-after', beforeLabel: 'Pendant les travaux' },
+    photoCredit: { label: 'Photos publiées par Nina G. dans son avis Google — visite en août 2023', url: 'https://www.google.com/maps/contrib/116585932930128271372/reviews' },
     description: 'Transformation complète d\'une petite salle de bain parisienne. Le déplacement d\'une cloison a permis d\'optimiser l\'espace pour un résultat spacieux et moderne.'
   },
   {
@@ -1100,10 +1101,11 @@ export const allProjects: Project[] = [
     }
   },
   {
-    title: 'Optimisation d\'une salle de bain 3m²',
+    title: 'Rénovation d’une petite salle de bain à Paris',
     slug: 'optimisation-salle-de-bain-3m2',
     category: 'Salle de bain',
-    images: { before: 'project-small-bathroom-before', after: 'project-small-bathroom-after' },
+    images: { before: 'project-small-bathroom-before', after: 'project-small-bathroom-after', beforeLabel: 'Pendant les travaux' },
+    photoCredit: { label: 'Photos publiées par Nina G. dans son avis Google — visite en août 2023', url: 'https://www.google.com/maps/contrib/116585932930128271372/reviews' },
     description: 'Transformation complète d\'une petite salle de bain parisienne. Le déplacement d\'une cloison a permis d\'optimiser l\'espace pour un résultat spacieux et moderne.',
     testimonial: {
       quote: "L'entreprise a été réactive, totalement à notre écoute et aussi force de proposition avec d’excellents conseils. Ces derniers nous ont permis d’optimiser notre espace et de bénéficier d’une salle de bain spacieuse et agréable.",
@@ -1111,22 +1113,18 @@ export const allProjects: Project[] = [
     },
     details: {
       challenge: <>
-          <p>Le principal défi était de transformer une salle de bain parisienne exiguë d'à peine 3m². L'agencement initial était peu fonctionnel, avec un espace mal exploité qui donnait une sensation d'étroitesse. La cliente souhaitait non seulement moderniser l'esthétique mais surtout gagner en confort et en praticité au quotidien, ce qui passait par un réagencement complet, incluant le déplacement de la douche et de la machine à laver.</p>
+          <p>Nina G. souhaitait rénover sa petite salle de bain parisienne et optimiser son espace. Son avis Google décrit une rénovation complète avec le déplacement d’une cloison. Les photos qu’elle a publiées montrent la pièce pendant les travaux puis après la rénovation.</p>
       </>,
       solution: <>
-          <p>Notre approche a été de repenser entièrement les volumes. En déplaçant une cloison non-porteuse, nous avons redéfini la géométrie de la pièce pour y intégrer une douche plus confortable et un emplacement optimisé pour la machine à laver. Cette modification structurelle a été le point de départ d'une rénovation totale :</p>
-          <ul>
-              <li><strong>Plomberie & Électricité :</strong> L'ensemble des réseaux a été repensé et mis aux normes pour s'adapter au nouvel agencement.</li>
-              <li><strong>Revêtements :</strong> Le choix d'un carrelage clair et de grand format, tant au sol que sur les murs, a permis d'agrandir visuellement l'espace.</li>
-              <li><strong>Agencement sur mesure :</strong> Des étagères et des niches ont été créées pour offrir du rangement sans encombrer la pièce.</li>
-          </ul>
-          <p>Le résultat est une salle de bain qui, malgré sa petite surface, paraît plus spacieuse, lumineuse et est infiniment plus fonctionnelle.</p>
+          <p>La cliente confirme des travaux d’électricité, de peinture et de sol, ainsi que des conseils pour améliorer l’agencement. Elle souligne la qualité du travail, le soin apporté aux finitions et le respect des délais.</p>
+          <p>Sur la photo du résultat, on distingue une douche avec paroi vitrée, des revêtements clairs à effet marbre, un meuble vasque et un miroir éclairé. La fenêtre apporte de la lumière naturelle à la pièce.</p>
+          <p>Pour votre projet, consultez notre <Link className="underline" href="/services/renovation-salle-de-bain">service de rénovation de salle de bain</Link> ou <Link className="underline" href="/devis">demandez un devis après étude de votre logement</Link>.</p>
       </>,
       keyPoints: [
-        { title: "Réagencement des volumes", icon: Scaling },
-        { title: "Plomberie et électricité neuves", icon: Wrench },
-        { title: "Optimisation de l'espace", icon: Lightbulb },
-        { title: "Finitions soignées", icon: Sparkles }
+        { title: "Optimisation de l’agencement", icon: Scaling },
+        { title: "Électricité, peinture et sol", icon: Wrench },
+        { title: "Conseils et écoute", icon: Lightbulb },
+        { title: "Photos partagées par la cliente", icon: Sparkles }
       ]
     }
   },

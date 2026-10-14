@@ -519,7 +519,7 @@ export default function RenovationParisPage() {
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {[
               { href: "/realisations/renovation-studio-paris-11", title: "Rénovation de studio à Paris 11", image: "/images/realisations/renovation-studio-apres.webp", description: "Voir les photos et la présentation de cette rénovation de studio." },
-              { href: "/realisations/optimisation-salle-de-bain-3m2", title: "Rénovation d’une salle de bain de 3 m²", image: "/images/realisations/renovation-salle-de-bain-3m2-apres.webp", description: "Consulter un exemple de travaux dans une petite salle de bain." },
+              { href: "/realisations/optimisation-salle-de-bain-3m2", title: "Rénovation d’une petite salle de bain parisienne", image: "/images/realisations/salle-de-bain-nina-apres.webp", description: "Consulter un exemple de travaux dans une petite salle de bain." },
             ].map(project => (
               <Link key={project.href} href={project.href} className="overflow-hidden rounded-2xl border bg-background hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
                 <div className="relative aspect-[4/3]">
