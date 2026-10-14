@@ -222,7 +222,7 @@ export default function Hero() {
                         >
                           <div className="relative w-full h-16 sm:h-20 rounded-lg overflow-hidden mb-1.5 bg-slate-900">
                             <Image
-                              src={proj.afterImage.replace(".webp", "-thumb.webp")}
+                              src={proj.id === "salle-de-bain" ? proj.afterImage : proj.afterImage.replace(".webp", "-thumb.webp")}
                               alt={proj.title}
                               fill
                               sizes="(max-width: 640px) 25vw, 15vw"
