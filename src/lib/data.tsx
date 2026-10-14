@@ -976,6 +976,7 @@ const renovationSalleDeBainPages: LocalLandingPage[] = [
                     <h2 className="font-headline text-2xl font-semibold">Des exemples et des guides pour préparer votre projet</h2>
                     <p>Découvrez notre <Link className="underline" href="/realisations/optimisation-salle-de-bain-3m2">réalisation de salle de bain de 3 m²</Link> pour examiner les possibilités d’agencement. Cet exemple illustre notre travail sans être présenté comme un chantier situé dans le 16e.</p>
                     <p>Nos guides expliquent <Link className="underline" href="/blog/renovation-petite-salle-de-bain-budget">comment préparer le budget d’une petite salle de bain</Link> et <Link className="underline" href="/blog/comparer-devis-renovation">comment comparer des devis de rénovation</Link>. Pour l’ensemble des prestations, consultez notre <Link className="underline" href="/services/renovation-salle-de-bain">service de rénovation de salle de bain</Link>.</p>
+                    <p>Si votre projet concerne aussi d’autres pièces, consultez la <Link className="underline" href="/renovation-paris/paris-16">rénovation d’appartement à Paris 16</Link> pour préparer une demande portant sur l’ensemble du logement.</p>
                 </section>
             </div>
         ),

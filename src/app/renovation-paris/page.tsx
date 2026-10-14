@@ -538,6 +538,10 @@ export default function RenovationParisPage() {
             <Button asChild size="lg"><Link href="/devis">Décrire mon projet de rénovation à Paris</Link></Button>
           </div>
         </section>
+        <section className="container pb-12" aria-labelledby="projet-salle-de-bain-75016">
+          <h2 id="projet-salle-de-bain-75016" className="font-headline text-2xl font-bold">Préparer une rénovation de salle de bain dans le 16e</h2>
+          <p className="mt-4 max-w-3xl text-slate-600">Votre projet se situe dans le 75016 ? Notre page <Link href="/renovation-salle-de-bain/paris-16" className="font-semibold underline">salle de bain à Paris 16</Link> détaille les informations à préparer, les points techniques à examiner et le contenu du devis. Pour les autres arrondissements, retrouvez nos <Link href="/services/renovation-salle-de-bain" className="font-semibold underline">prestations de rénovation de salle de bain</Link>.</p>
+        </section>
         <LocalProjectPreparation location="paris" />
         <CtaBanner />
       </main>

@@ -423,6 +423,12 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
           </div>
         </section>
 
+        {data.number === 16 && (
+          <section className="container py-12" aria-labelledby="salle-de-bain-paris-16">
+            <h2 id="salle-de-bain-paris-16" className="font-headline text-2xl font-bold">Un projet de salle de bain dans le 75016 ?</h2>
+            <p className="mt-4 max-w-3xl text-slate-700">Pour une intervention limitée à cette pièce, consultez notre page de <Link href="/renovation-salle-de-bain/paris-16" className="font-semibold underline">rénovation de salle de bain à Paris 16</Link> : préparation du projet, réseaux, équipements et éléments à préciser dans votre devis.</p>
+          </section>
+        )}
         <CtaBanner />
       </main>
 
