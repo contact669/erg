@@ -109,7 +109,7 @@ export default function AboutPage() {
               />
             ) : null}
             <div className="absolute inset-0 bg-gradient-to-b from-slate-50/80 via-slate-50/95 to-slate-50" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-transparent via-transparent to-transparent" />
           </div>
 
           <div className="container relative z-10">
@@ -119,8 +119,8 @@ export default function AboutPage() {
               </div>
 
               <div className="flex flex-wrap items-center justify-center gap-3">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 text-xs sm:text-sm font-semibold text-amber-700 shadow-sm">
-                  <Sparkles className="h-4 w-4 text-amber-600" /> Entreprise Familiale • Paris & Île-de-France
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-300 px-4 py-1.5 text-xs sm:text-sm font-semibold text-slate-600 shadow-sm">
+                  <Sparkles className="h-4 w-4 text-slate-600" /> Entreprise Familiale • Paris & Île-de-France
                 </span>
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=ERG-Entreprise+de+R%C3%A9novation+Appartement+%26+Salle+de+Bains+%C3%A0+Paris+et+%C3%8Ele-de-France"
@@ -129,14 +129,14 @@ export default function AboutPage() {
                   className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-3.5 py-1 text-xs text-slate-800 shadow-sm hover:bg-white"
                 >
                   <GoogleIcon className="h-4 w-4" />
-                  <span className="font-bold text-amber-600">Avis clients</span>
+                  <span className="font-bold text-slate-600">Avis clients</span>
                   <span className="text-slate-500">• Témoignages clients</span>
                 </a>
               </div>
 
               <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
                 Bâtir sur la Confiance, <br />
-                <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">
+                <span className="text-slate-900">
                   Rénover avec Exigence.
                 </span>
               </h1>
@@ -151,7 +151,7 @@ export default function AboutPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="h-13 px-8 bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 text-base shadow-lg shadow-amber-500/20 rounded-xl"
+                  className="h-13 px-8 bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 text-base shadow-lg rounded-xl"
                 >
                   <Link href="/devis">
                     Estimer mon projet gratuitement <ArrowRight className="ml-2 h-5 w-5" />
@@ -172,13 +172,13 @@ export default function AboutPage() {
               {/* Trust Features Bar */}
               <div className="pt-4 flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-xs sm:text-sm font-semibold text-slate-700">
                 <span className="inline-flex items-center gap-2 bg-white/80 border border-slate-200/80 px-3.5 py-1.5 rounded-full shadow-xs">
-                  <CheckCircle2 className="h-4 w-4 text-amber-600" /> Interlocuteur Unique
+                  <CheckCircle2 className="h-4 w-4 text-slate-600" /> Interlocuteur Unique
                 </span>
                 <span className="inline-flex items-center gap-2 bg-white/80 border border-slate-200/80 px-3.5 py-1.5 rounded-full shadow-xs">
-                  <CheckCircle2 className="h-4 w-4 text-amber-600" /> Coordination de chantier
+                  <CheckCircle2 className="h-4 w-4 text-slate-600" /> Coordination de chantier
                 </span>
                 <span className="inline-flex items-center gap-2 bg-white/80 border border-slate-200/80 px-3.5 py-1.5 rounded-full shadow-xs">
-                  <ShieldCheck className="h-4 w-4 text-amber-600" /> Garantie Décennale 10 Ans
+                  <ShieldCheck className="h-4 w-4 text-slate-600" /> Garantie Décennale 10 Ans
                 </span>
               </div>
             </div>
@@ -209,7 +209,7 @@ export default function AboutPage() {
                   </div>
                   <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-2xl p-4 border border-slate-200 shadow-lg">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500 text-slate-950 font-bold shrink-0">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-700 text-white font-bold shrink-0">
                         <Award className="h-5 w-5" />
                       </div>
                       <div>
@@ -222,7 +222,7 @@ export default function AboutPage() {
 
                 {/* Right Column Text */}
                 <div className="space-y-6">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 border border-amber-200/80 px-3.5 py-1.5 rounded-full">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-600 bg-slate-700 border border-slate-300 px-3.5 py-1.5 rounded-full">
                     Notre Histoire & Philosophie
                   </span>
 
@@ -248,7 +248,7 @@ export default function AboutPage() {
                     </Button>
                     <Button asChild size="lg" variant="outline" className="border-slate-300 text-slate-900 hover:bg-slate-100 rounded-xl">
                       <Link href="/services">
-                        Nos prestations <ArrowRight className="ml-2 h-4 w-4 text-amber-600" />
+                        Nos prestations <ArrowRight className="ml-2 h-4 w-4 text-slate-600" />
                       </Link>
                     </Button>
                   </div>
@@ -257,11 +257,11 @@ export default function AboutPage() {
 
               {/* METHODOLOGY 3 STEPS CARDS */}
               <div className="mx-auto mt-16 grid max-w-6xl gap-6 md:grid-cols-3">
-                <Card className="rounded-2xl border border-slate-200 bg-slate-50/80 p-6 shadow-xs hover:shadow-md hover:border-amber-500/40 transition-all">
+                <Card className="rounded-2xl border border-slate-200 bg-slate-50/80 p-6 shadow-xs hover:shadow-md hover:border-slate-300 transition-all">
                   <CardContent className="p-0 space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold uppercase tracking-widest text-amber-600 bg-amber-100/80 px-2.5 py-1 rounded-md">Étape 01</span>
-                      <Building2 className="h-5 w-5 text-amber-600" />
+                      <span className="text-xs font-bold uppercase tracking-widest text-slate-600 bg-slate-100 px-2.5 py-1 rounded-md">Étape 01</span>
+                      <Building2 className="h-5 w-5 text-slate-600" />
                     </div>
                     <h3 className="font-headline text-lg font-bold text-slate-900">01. Cadrage & Diagnostic</h3>
                     <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -270,11 +270,11 @@ export default function AboutPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="rounded-2xl border border-slate-200 bg-slate-50/80 p-6 shadow-xs hover:shadow-md hover:border-amber-500/40 transition-all">
+                <Card className="rounded-2xl border border-slate-200 bg-slate-50/80 p-6 shadow-xs hover:shadow-md hover:border-slate-300 transition-all">
                   <CardContent className="p-0 space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold uppercase tracking-widest text-amber-600 bg-amber-100/80 px-2.5 py-1 rounded-md">Étape 02</span>
-                      <Clock className="h-5 w-5 text-amber-600" />
+                      <span className="text-xs font-bold uppercase tracking-widest text-slate-600 bg-slate-100 px-2.5 py-1 rounded-md">Étape 02</span>
+                      <Clock className="h-5 w-5 text-slate-600" />
                     </div>
                     <h3 className="font-headline text-lg font-bold text-slate-900">02. Exécution & Pilotage</h3>
                     <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -283,11 +283,11 @@ export default function AboutPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="rounded-2xl border border-slate-200 bg-slate-50/80 p-6 shadow-xs hover:shadow-md hover:border-amber-500/40 transition-all">
+                <Card className="rounded-2xl border border-slate-200 bg-slate-50/80 p-6 shadow-xs hover:shadow-md hover:border-slate-300 transition-all">
                   <CardContent className="p-0 space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold uppercase tracking-widest text-amber-600 bg-amber-100/80 px-2.5 py-1 rounded-md">Étape 03</span>
-                      <ShieldCheck className="h-5 w-5 text-amber-600" />
+                      <span className="text-xs font-bold uppercase tracking-widest text-slate-600 bg-slate-100 px-2.5 py-1 rounded-md">Étape 03</span>
+                      <ShieldCheck className="h-5 w-5 text-slate-600" />
                     </div>
                     <h3 className="font-headline text-lg font-bold text-slate-900">03. Contrôle & Finitions</h3>
                     <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -305,8 +305,8 @@ export default function AboutPage() {
           <section className="bg-slate-50 py-16 md:py-24 border-b border-slate-200/60">
             <div className="container">
               <div className="mx-auto mb-12 max-w-2xl text-center space-y-3">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-3.5 py-1 text-xs font-semibold text-amber-700">
-                  <Heart className="h-3.5 w-3.5 text-amber-600" /> Nos Piliers de Confiance
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-300 px-3.5 py-1 text-xs font-semibold text-slate-600">
+                  <Heart className="h-3.5 w-3.5 text-slate-600" /> Nos Piliers de Confiance
                 </span>
                 <h2 className="font-headline text-3xl sm:text-4xl font-extrabold text-slate-900">
                   Des Valeurs Visibles Dans Chaque Détail
@@ -320,13 +320,13 @@ export default function AboutPage() {
                 {values.map((v) => (
                   <Card
                     key={v.title}
-                    className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-xl hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1"
+                    className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 hover:-translate-y-1"
                   >
                     <CardContent className="p-0 space-y-4">
                       <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-600 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
                         <v.icon className="h-6 w-6" />
                       </div>
-                      <h3 className="font-headline text-xl font-bold text-slate-900 group-hover:text-amber-600 transition-colors">
+                      <h3 className="font-headline text-xl font-bold text-slate-900 group-hover:text-slate-600 transition-colors">
                         {v.title}
                       </h3>
                       <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -345,8 +345,8 @@ export default function AboutPage() {
           <section className="py-16 md:py-24 bg-white">
             <div className="container">
               <div className="mx-auto mb-12 max-w-2xl text-center space-y-3">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-3.5 py-1 text-xs font-semibold text-amber-700">
-                  <Users className="h-3.5 w-3.5 text-amber-600" /> Direction & Coordination
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-300 px-3.5 py-1 text-xs font-semibold text-slate-600">
+                  <Users className="h-3.5 w-3.5 text-slate-600" /> Direction & Coordination
                 </span>
                 <h2 className="font-headline text-3xl sm:text-4xl font-extrabold text-slate-900">
                   À la Direction : Un Pilotage Clair & Une Exigence Constante
@@ -358,9 +358,9 @@ export default function AboutPage() {
 
               <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-2">
                 {/* Founder 1 */}
-                <Card className="rounded-3xl border border-slate-200 bg-white p-8 shadow-lg hover:shadow-xl hover:border-amber-500/40 transition-all duration-300">
+                <Card className="rounded-3xl border border-slate-200 bg-white p-8 shadow-lg hover:shadow-xl hover:border-slate-300 transition-all duration-300">
                   <CardContent className="p-0 flex flex-col items-center text-center">
-                    <Avatar className="h-28 w-28 ring-4 ring-amber-500/30 shadow-md">
+                    <Avatar className="h-28 w-28 ring-4 ring-slate-500 shadow-md">
                       {founder1Image ? (
                         <AvatarImage
                           src={founder1Image.imageUrl}
@@ -368,11 +368,11 @@ export default function AboutPage() {
                           data-ai-hint={founder1Image.imageHint}
                         />
                       ) : null}
-                      <AvatarFallback className="bg-slate-900 text-amber-400 font-extrabold text-xl">K.A</AvatarFallback>
+                      <AvatarFallback className="bg-slate-900 text-slate-300 font-extrabold text-xl">K.A</AvatarFallback>
                     </Avatar>
 
                     <h3 className="mt-5 font-headline text-2xl font-extrabold text-slate-900">K. AIT</h3>
-                    <p className="mt-1 text-sm font-bold text-amber-700 bg-amber-100/70 px-3 py-1 rounded-full">
+                    <p className="mt-1 text-sm font-bold text-slate-600 bg-slate-100 px-3 py-1 rounded-full">
                       Co-fondateur • Maître d’œuvre
                     </p>
 
@@ -395,9 +395,9 @@ export default function AboutPage() {
                 </Card>
 
                 {/* Founder 2 */}
-                <Card className="rounded-3xl border border-slate-200 bg-white p-8 shadow-lg hover:shadow-xl hover:border-amber-500/40 transition-all duration-300">
+                <Card className="rounded-3xl border border-slate-200 bg-white p-8 shadow-lg hover:shadow-xl hover:border-slate-300 transition-all duration-300">
                   <CardContent className="p-0 flex flex-col items-center text-center">
-                    <Avatar className="h-28 w-28 ring-4 ring-amber-500/30 shadow-md">
+                    <Avatar className="h-28 w-28 ring-4 ring-slate-500 shadow-md">
                       {founder2Image ? (
                         <AvatarImage
                           src={founder2Image.imageUrl}
@@ -405,11 +405,11 @@ export default function AboutPage() {
                           data-ai-hint={founder2Image.imageHint}
                         />
                       ) : null}
-                      <AvatarFallback className="bg-slate-900 text-amber-400 font-extrabold text-xl">A.A</AvatarFallback>
+                      <AvatarFallback className="bg-slate-900 text-slate-300 font-extrabold text-xl">A.A</AvatarFallback>
                     </Avatar>
 
                     <h3 className="mt-5 font-headline text-2xl font-extrabold text-slate-900">A. AIT</h3>
-                    <p className="mt-1 text-sm font-bold text-amber-700 bg-amber-100/70 px-3 py-1 rounded-full">
+                    <p className="mt-1 text-sm font-bold text-slate-600 bg-slate-100 px-3 py-1 rounded-full">
                       Co-fondateur • Chargé de Projet Client
                     </p>
 
@@ -446,7 +446,7 @@ export default function AboutPage() {
                   </Button>
                   <Button asChild size="lg" variant="outline" className="border-slate-300 text-slate-900 hover:bg-slate-100 rounded-xl h-12 px-6">
                     <a href="tel:+33699961375">
-                      <Phone className="mr-2 h-4 w-4 text-amber-600" />
+                      <Phone className="mr-2 h-4 w-4 text-slate-600" />
                       06 99 96 13 75
                     </a>
                   </Button>

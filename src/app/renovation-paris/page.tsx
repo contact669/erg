@@ -268,7 +268,7 @@ export default function RenovationParisPage() {
                     key={b.text}
                     className="flex items-center gap-2 rounded-lg border bg-background px-4 py-3"
                   >
-                    <b.icon className="h-5 w-5 text-accent" />
+                    <b.icon className="h-5 w-5 text-slate-600" />
                     <span className="font-medium">{b.text}</span>
                   </div>
                 ))}
@@ -315,7 +315,7 @@ export default function RenovationParisPage() {
                     <Card key={item.title} className="overflow-hidden">
                       <CardHeader>
                         <CardTitle className="flex items-center gap-3">
-                          <item.icon className="h-6 w-6 text-accent" />
+                          <item.icon className="h-6 w-6 text-slate-600" />
                           {item.title}
                         </CardTitle>
                       </CardHeader>
@@ -354,7 +354,7 @@ export default function RenovationParisPage() {
                     </CardHeader>
 
                     <CardContent className="flex-grow flex items-end">
-                      <Button variant="link" asChild className="p-0 text-amber-800">
+                      <Button variant="link" asChild className="p-0 text-slate-600">
                         <Link href={s.link}>
                           En savoir plus <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>

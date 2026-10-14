@@ -35,15 +35,15 @@ export default function PlanDuSitePage() {
         {/* HERO SECTION */}
         <section className="relative isolate overflow-hidden bg-slate-50 border-b border-slate-200/80 py-12 md:py-16">
           <div className="absolute inset-0 z-0 pointer-events-none">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-slate-50/80 to-slate-50" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-transparent via-slate-50/80 to-slate-50" />
           </div>
 
           <div className="container relative z-10">
             <div className="mx-auto max-w-3xl text-center space-y-4">
               <Breadcrumbs />
 
-              <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/30 px-3.5 py-1 text-xs font-semibold text-amber-700">
-                <Layers className="h-3.5 w-3.5 text-amber-600" /> Navigation Intégrale ERG Rénovation
+              <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 border border-slate-300 px-3.5 py-1 text-xs font-semibold text-slate-600">
+                <Layers className="h-3.5 w-3.5 text-slate-600" /> Navigation Intégrale ERG Rénovation
               </div>
 
               <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900">
@@ -77,7 +77,7 @@ export default function PlanDuSitePage() {
                     {service.title}
                   </SitemapLink>
                 ))}
-                <SitemapLink href="/services" className="font-bold text-amber-700 pt-1">
+                <SitemapLink href="/services" className="font-bold text-slate-600 pt-1">
                   Voir tous les services →
                 </SitemapLink>
               </SitemapSection>
@@ -89,7 +89,7 @@ export default function PlanDuSitePage() {
                     {area.label} ({area.code})
                   </SitemapLink>
                 ))}
-                <SitemapLink href="/zones-intervention" className="font-bold text-amber-700 pt-1">
+                <SitemapLink href="/zones-intervention" className="font-bold text-slate-600 pt-1">
                   Voir toutes les zones →
                 </SitemapLink>
               </SitemapSection>
@@ -110,7 +110,7 @@ export default function PlanDuSitePage() {
                     {project.title}
                   </SitemapLink>
                 ))}
-                <SitemapLink href="/realisations" className="font-bold text-amber-700 pt-1">
+                <SitemapLink href="/realisations" className="font-bold text-slate-600 pt-1">
                   Voir toutes les réalisations →
                 </SitemapLink>
               </SitemapSection>
@@ -122,7 +122,7 @@ export default function PlanDuSitePage() {
                     {post.title}
                   </SitemapLink>
                 ))}
-                <SitemapLink href="/blog" className="font-bold text-amber-700 pt-1">
+                <SitemapLink href="/blog" className="font-bold text-slate-600 pt-1">
                   Voir tout le blog →
                 </SitemapLink>
               </SitemapSection>
@@ -151,7 +151,7 @@ function SitemapSection({
     <Card className="rounded-3xl border border-slate-200 bg-white p-6 shadow-md hover:shadow-lg transition-shadow">
       <CardHeader className="p-0 pb-4 border-b border-slate-100 flex items-center gap-3">
         {Icon && (
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-600">
             <Icon className="h-5 w-5" />
           </div>
         )}
@@ -178,12 +178,12 @@ function SitemapLink({
       <Link
         href={href}
         className={cn(
-          "flex items-center justify-between font-semibold text-slate-600 hover:text-amber-700 transition-colors py-1 group",
+          "flex items-center justify-between font-semibold text-slate-600 hover:text-slate-600 transition-colors py-1 group",
           className
         )}
       >
         <span className="truncate pr-2">{children}</span>
-        <ArrowRight className="h-3.5 w-3.5 text-slate-400 group-hover:text-amber-600 group-hover:translate-x-1 transition-all shrink-0" />
+        <ArrowRight className="h-3.5 w-3.5 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition-all shrink-0" />
       </Link>
     </li>
   )

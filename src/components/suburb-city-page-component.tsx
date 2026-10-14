@@ -161,14 +161,14 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
       <main className="flex-grow">
         {/* HERO SECTION */}
         <section className="relative overflow-hidden bg-slate-950 text-white pt-24 pb-16 md:pt-32 md:pb-24 border-b border-slate-800">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(184,115,51,0.15),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(148,163,184,0.08),transparent_60%)]" />
           
           <div className="container relative z-10">
-            <Breadcrumbs />
+            <Breadcrumbs variant="dark" />
 
             <div className="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-7 space-y-6">
-                <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/20 px-3.5 py-1.5 text-xs font-semibold text-amber-400">
+                <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 border border-slate-300 px-3.5 py-1.5 text-xs font-semibold text-slate-600">
                   <MapPin className="h-3.5 w-3.5" />
                   <span>Entreprise de Rénovation à {data.name} ({data.postalCode})</span>
                 </div>
@@ -183,21 +183,21 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
                   <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
-                    <ShieldCheck className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                    <ShieldCheck className="h-4 w-4 text-slate-300 flex-shrink-0" />
                     <span>Garantie Décennale 10 ans</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
-                    <Clock3 className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                    <Clock3 className="h-4 w-4 text-slate-300 flex-shrink-0" />
                     <span>Respect des Délais</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
-                    <ClipboardCheck className="h-4 w-4 text-amber-400 flex-shrink-0" />
+                    <ClipboardCheck className="h-4 w-4 text-slate-300 flex-shrink-0" />
                     <span>Devis gratuit et détaillé</span>
                   </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <Button asChild size="lg" className="bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-xl shadow-lg shadow-amber-600/20">
+                  <Button asChild size="lg" className="bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-xl shadow-lg">
                     <Link href="/devis">
                       Demander mon devis à {data.name} <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
@@ -205,7 +205,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
 
                   <Button asChild variant="outline" size="lg" className="border-slate-700 text-white hover:bg-slate-800 rounded-xl">
                     <a href={`tel:${PHONE_E164}`}>
-                      <Phone className="mr-2 h-4 w-4 text-amber-400" />
+                      <Phone className="mr-2 h-4 w-4 text-slate-300" />
                       {PHONE_DISPLAY}
                     </a>
                   </Button>
@@ -216,27 +216,27 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
               <div className="lg:col-span-5">
                 <div className="rounded-3xl bg-slate-900/90 border border-slate-800 p-6 shadow-2xl backdrop-blur-md space-y-4">
                   <h3 className="text-lg font-bold text-white flex items-center gap-2">
-                    <Sparkles className="h-5 w-5 text-amber-400" />
+                    <Sparkles className="h-5 w-5 text-slate-300" />
                     Pourquoi choisir ERG à {data.name} ?
                   </h3>
                   <ul className="space-y-3 text-sm text-slate-300">
                     <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="h-4 w-4 text-amber-400 mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 className="h-4 w-4 text-slate-300 mt-0.5 flex-shrink-0" />
                       <span><strong>Interlocuteur Unique :</strong> Un conducteur de travaux dédié de la conception à la réception.</span>
                     </li>
                     <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="h-4 w-4 text-amber-400 mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 className="h-4 w-4 text-slate-300 mt-0.5 flex-shrink-0" />
                       <span><strong>Nos métiers :</strong> Électricité NF C 15-100, plomberie et sanitaires, peintures et finitions intérieures.</span>
                     </li>
                     <li className="flex items-start gap-2.5">
-                      <CheckCircle2 className="h-4 w-4 text-amber-400 mt-0.5 flex-shrink-0" />
+                      <CheckCircle2 className="h-4 w-4 text-slate-300 mt-0.5 flex-shrink-0" />
                       <span><strong>Spécificités {data.postalCode} :</strong> Maîtrise des règlements de copropriété et du bâti local.</span>
                     </li>
                   </ul>
 
                   <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
                     <span>Retours de nos clients</span>
-                    <span className="font-bold text-amber-400">Témoignages clients</span>
+                    <span className="font-bold text-slate-300">Témoignages clients</span>
                   </div>
                 </div>
               </div>
@@ -249,7 +249,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
           <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               <div className="lg:col-span-7 space-y-6">
-                <div className="inline-flex items-center gap-2 rounded-lg bg-amber-500/10 px-3 py-1 text-xs font-bold text-amber-700 uppercase tracking-wider">
+                <div className="inline-flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600 uppercase tracking-wider">
                   Expertise Locale {data.postalCode}
                 </div>
 
@@ -268,7 +268,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                   </div>
                   <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
                     <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">{data.avgPricePerSqm.includes("€") ? "Fourchette indicative de travaux" : "Budget du projet"}</span>
-                    <span className="text-sm font-bold text-amber-700 block">{data.avgPricePerSqm}</span>
+                    <span className="text-sm font-bold text-slate-600 block">{data.avgPricePerSqm}</span>
                   </div>
                 </div>
 
@@ -287,7 +287,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
               {/* Before/After Card */}
               <div className="lg:col-span-5">
                 <div className="rounded-3xl bg-white p-4 shadow-2xl border border-slate-200 space-y-3">
-                  <span className="text-xs font-bold uppercase tracking-wider text-amber-700 block">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-600 block">
                     Exemple de transformation ERG
                   </span>
                   <BeforeAfterSlider
@@ -324,7 +324,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
               <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
                 <Card className="rounded-2xl border border-slate-200 shadow-md hover:shadow-xl transition-all">
                   <CardHeader>
-                    <div className="h-12 w-12 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-2">
+                    <div className="h-12 w-12 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center mb-2">
                       <Building2 className="h-6 w-6" />
                     </div>
                     <CardTitle className="text-xl font-bold">Rénovation intérieure du logement</CardTitle>
@@ -333,7 +333,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button variant="link" asChild className="p-0 text-amber-700 font-bold">
+                    <Button variant="link" asChild className="p-0 text-slate-600 font-bold">
                       <Link href="/services/renovation-appartement">
                         En savoir plus <ArrowRight className="ml-1 h-4 w-4" />
                       </Link>
@@ -343,7 +343,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
 
                 <Card className="rounded-2xl border border-slate-200 shadow-md hover:shadow-xl transition-all">
                   <CardHeader>
-                    <div className="h-12 w-12 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-2">
+                    <div className="h-12 w-12 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center mb-2">
                       <Bath className="h-6 w-6" />
                     </div>
                     <CardTitle className="text-xl font-bold">Rénovation Salle de Bain</CardTitle>
@@ -352,7 +352,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button variant="link" asChild className="p-0 text-amber-700 font-bold">
+                    <Button variant="link" asChild className="p-0 text-slate-600 font-bold">
                       <Link href="/services/renovation-salle-de-bain">
                         En savoir plus <ArrowRight className="ml-1 h-4 w-4" />
                       </Link>
@@ -362,7 +362,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
 
                 <Card className="rounded-2xl border border-slate-200 shadow-md hover:shadow-xl transition-all">
                   <CardHeader>
-                    <div className="h-12 w-12 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-2">
+                    <div className="h-12 w-12 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center mb-2">
                       <UtensilsCrossed className="h-6 w-6" />
                     </div>
                     <CardTitle className="text-xl font-bold">Travaux dans la cuisine</CardTitle>
@@ -371,7 +371,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button variant="link" asChild className="p-0 text-amber-700 font-bold">
+                    <Button variant="link" asChild className="p-0 text-slate-600 font-bold">
                       <Link href="/services/renovation-cuisine">
                         En savoir plus <ArrowRight className="ml-1 h-4 w-4" />
                       </Link>
@@ -422,7 +422,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
 
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 max-w-5xl mx-auto">
                 {nearbyCities.map((city) => (
-                  <Button key={city.slug} asChild variant="outline" className="h-11 rounded-xl text-xs font-bold border-slate-200 hover:border-amber-500 hover:bg-amber-500/10 hover:text-amber-700 transition-all">
+                  <Button key={city.slug} asChild variant="outline" className="h-11 rounded-xl text-xs font-bold border-slate-200 hover:border-slate-300 hover:bg-slate-100 hover:text-slate-600 transition-all">
                     <Link href={`/renovation-${city.slug}`}>
                       {city.name} ({city.postalCode})
                     </Link>

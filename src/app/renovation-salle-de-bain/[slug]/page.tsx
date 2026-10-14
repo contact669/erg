@@ -289,7 +289,7 @@ function SeoContentFallback({ page, areaServed }: { page: any; areaServed: strin
   ]
 
   return (
-    <div className="prose max-w-none text-foreground prose-headings:font-headline prose-headings:text-primary prose-p:text-muted-foreground prose-strong:text-foreground prose-a:text-accent">
+    <div className="prose max-w-none text-foreground prose-headings:font-headline prose-headings:text-primary prose-p:text-muted-foreground prose-strong:text-foreground prose-a:text-slate-600">
       <h2>{`Rénovation de salle de bain à ${locationLabel} : étanchéité, confort et finitions`}</h2>
 
       <p>
@@ -485,7 +485,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
 
             <div className="mt-6 max-w-4xl">
               <p className="inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 text-sm text-primary-foreground/90">
-                <ShieldCheck className="h-4 w-4 text-accent" />
+                <ShieldCheck className="h-4 w-4 text-slate-600" />
                 Salle de bain • Étanchéité • Devis détaillé • Garantie décennale
               </p>
 
@@ -518,7 +518,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                 <div className="mt-8 grid grid-cols-1 gap-2 text-sm text-primary-foreground/80 sm:grid-cols-2 sm:gap-x-6">
                   {reassurance.map((point: string) => (
                     <div key={point} className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-accent" />
+                      <CheckCircle className="h-4 w-4 text-slate-600" />
                       <span>{point}</span>
                     </div>
                   ))}
@@ -527,15 +527,15 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
 
               <div className="mt-8 flex flex-wrap gap-3 text-xs text-primary-foreground/70">
                 <span className="inline-flex items-center gap-2 rounded-md bg-primary-foreground/10 px-3 py-2">
-                  <Clock className="h-4 w-4 text-accent" />
+                  <Clock className="h-4 w-4 text-slate-600" />
                   Réponse rapide
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-md bg-primary-foreground/10 px-3 py-2">
-                  <Sparkles className="h-4 w-4 text-accent" />
+                  <Sparkles className="h-4 w-4 text-slate-600" />
                   Finitions soignées
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-md bg-primary-foreground/10 px-3 py-2">
-                  <Wrench className="h-4 w-4 text-accent" />
+                  <Wrench className="h-4 w-4 text-slate-600" />
                   Électricité · Plomberie · Peinture
                 </span>
               </div>
@@ -561,7 +561,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
 
                   <div className="mt-10">
                     {page.mainContent ? (
-                      <div className="prose max-w-none text-foreground prose-headings:font-headline prose-p:text-muted-foreground prose-headings:text-primary prose-a:text-accent prose-strong:text-foreground">
+                      <div className="prose max-w-none text-foreground prose-headings:font-headline prose-p:text-muted-foreground prose-headings:text-primary prose-a:text-slate-600 prose-strong:text-foreground">
                         {page.mainContent}
                       </div>
                     ) : (
@@ -654,7 +654,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                 <Card className="bg-secondary">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3 font-headline">
-                      <Award className="h-6 w-6 text-accent" />
+                      <Award className="h-6 w-6 text-slate-600" />
                       Engagement qualité
                     </CardTitle>
                     <CardDescription>Une méthode claire, un suivi structuré, une livraison propre.</CardDescription>

@@ -150,7 +150,7 @@ export default function ServicesPage() {
             <div className="mx-auto max-w-4xl text-center">
                <Breadcrumbs />
               <p className="inline-flex items-center gap-2 rounded-full bg-background px-4 py-2 text-sm text-muted-foreground mt-4">
-                <ShieldCheck className="h-4 w-4 text-accent" />
+                <ShieldCheck className="h-4 w-4 text-slate-600" />
                 Paris & Île-de-France • Devis détaillé • Garantie décennale
               </p>
 
@@ -178,15 +178,15 @@ export default function ServicesPage() {
 
               <div className="mt-8 grid grid-cols-1 gap-3 text-left text-sm text-muted-foreground sm:grid-cols-3">
                 <div className="flex items-start gap-2">
-                  <CheckCircle className="mt-0.5 h-4 w-4 text-accent" />
+                  <CheckCircle className="mt-0.5 h-4 w-4 text-slate-600" />
                   <span>Devis poste par poste, options de finition</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle className="mt-0.5 h-4 w-4 text-accent" />
+                  <CheckCircle className="mt-0.5 h-4 w-4 text-slate-600" />
                   <span>Interlocuteur unique, coordination de chantier</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <CheckCircle className="mt-0.5 h-4 w-4 text-accent" />
+                  <CheckCircle className="mt-0.5 h-4 w-4 text-slate-600" />
                   <span>Chantiers propres, protections et réception soignée</span>
                 </div>
               </div>
@@ -232,7 +232,7 @@ export default function ServicesPage() {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
                           <div className="absolute bottom-4 left-4 right-4 flex items-center gap-3">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/90 text-white">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-slate-700">
                               <service.icon className="h-6 w-6" />
                             </div>
                             <h3 className="font-headline text-xl font-bold text-white">{service.title}</h3>
@@ -242,7 +242,7 @@ export default function ServicesPage() {
                         <CardContent className="p-6">
                           <p className="text-sm text-muted-foreground">{service.description}</p>
 
-                          <div className="mt-4 inline-flex items-center font-semibold text-accent group-hover:underline">
+                          <div className="mt-4 inline-flex items-center font-semibold text-slate-600 group-hover:underline">
                             Découvrir{" "}
                             <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                           </div>
@@ -274,7 +274,7 @@ export default function ServicesPage() {
                     <Card className="border-0 bg-background/60">
                       <CardHeader className="p-5">
                         <CardTitle className="flex items-center gap-3 text-base">
-                          <ClipboardList className="h-5 w-5 text-accent" />
+                          <ClipboardList className="h-5 w-5 text-slate-600" />
                           Devis détaillé et gratuit
                         </CardTitle>
                         <CardDescription className="mt-1">
@@ -286,7 +286,7 @@ export default function ServicesPage() {
                     <Card className="border-0 bg-background/60">
                       <CardHeader className="p-5">
                         <CardTitle className="flex items-center gap-3 text-base">
-                          <Wrench className="h-5 w-5 text-accent" />
+                          <Wrench className="h-5 w-5 text-slate-600" />
                           Interlocuteur unique
                         </CardTitle>
                         <CardDescription className="mt-1">
@@ -298,7 +298,7 @@ export default function ServicesPage() {
                     <Card className="border-0 bg-background/60">
                       <CardHeader className="p-5">
                         <CardTitle className="flex items-center gap-3 text-base">
-                          <BadgeCheck className="h-5 w-5 text-accent" />
+                          <BadgeCheck className="h-5 w-5 text-slate-600" />
                           Garantie décennale
                         </CardTitle>
                         <CardDescription className="mt-1">
@@ -336,7 +336,7 @@ export default function ServicesPage() {
 
                   <div className="absolute bottom-4 left-4 right-4 rounded-lg bg-background/80 p-4 backdrop-blur">
                     <p className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                      <Clock className="h-4 w-4 text-accent" />
+                      <Clock className="h-4 w-4 text-slate-600" />
                       Planning réaliste • Protections • Réception soignée
                     </p>
                     <p className="mt-1 text-xs text-muted-foreground">
@@ -366,19 +366,19 @@ export default function ServicesPage() {
 
                   <div className="mt-6 grid grid-cols-1 gap-3 text-sm text-muted-foreground sm:grid-cols-2">
                     <div className="flex items-start gap-2">
-                      <CheckCircle className="mt-0.5 h-4 w-4 text-accent" />
+                      <CheckCircle className="mt-0.5 h-4 w-4 text-slate-600" />
                       <span>Électricité, plomberie, cloisons, sols, peinture</span>
                     </div>
                     <div className="flex items-start gap-2">
-                      <CheckCircle className="mt-0.5 h-4 w-4 text-accent" />
+                      <CheckCircle className="mt-0.5 h-4 w-4 text-slate-600" />
                       <span>Cuisine & salle de bain : technique + finitions</span>
                     </div>
                     <div className="flex items-start gap-2">
-                      <CheckCircle className="mt-0.5 h-4 w-4 text-accent" />
+                      <CheckCircle className="mt-0.5 h-4 w-4 text-slate-600" />
                       <span>Organisation de chantier + validations par étapes</span>
                     </div>
                     <div className="flex items-start gap-2">
-                      <CheckCircle className="mt-0.5 h-4 w-4 text-accent" />
+                      <CheckCircle className="mt-0.5 h-4 w-4 text-slate-600" />
                       <span>Zone : Paris, 92, 93, 94 et Île-de-France</span>
                     </div>
                   </div>
@@ -405,7 +405,7 @@ export default function ServicesPage() {
                     </p>
                     <p className="mt-2 text-xs text-muted-foreground">
                       Syndics et copropriétés :{" "}
-                      <Link href="/travaux-copropriete-syndic" className="font-semibold text-amber-700 hover:underline">
+                      <Link href="/travaux-copropriete-syndic" className="font-semibold text-slate-600 hover:underline">
                         travaux de parties communes
                       </Link>
                     </p>

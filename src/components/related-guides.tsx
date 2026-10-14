@@ -16,7 +16,7 @@ export default function RelatedGuides({ serviceSlug, projectSlug }: { serviceSlu
         <ul className="mt-6 grid gap-4 md:grid-cols-3">
           {guides.map(guide => (
             <li key={guide.slug} className="rounded-2xl border border-slate-200 bg-white p-6">
-              <Link href={`/blog/${guide.slug}`} className="font-semibold text-slate-900 underline decoration-amber-500 underline-offset-4 hover:text-amber-700">{guide.title}</Link>
+              <Link href={`/blog/${guide.slug}`} className="font-semibold text-slate-900 underline decoration-slate-300 underline-offset-4 hover:text-slate-600">{guide.title}</Link>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">{guide.description}</p>
             </li>
           ))}

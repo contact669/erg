@@ -24,15 +24,15 @@ export default function CookiesPage() {
         {/* HERO SECTION */}
         <section className="relative isolate overflow-hidden bg-slate-50 border-b border-slate-200/80 py-12 md:py-16">
           <div className="absolute inset-0 z-0 pointer-events-none">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-slate-50/80 to-slate-50" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-transparent via-slate-50/80 to-slate-50" />
           </div>
 
           <div className="container relative z-10">
             <div className="mx-auto max-w-3xl text-center space-y-4">
               <Breadcrumbs />
               
-              <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/30 px-3.5 py-1 text-xs font-semibold text-amber-700">
-                <Cookie className="h-3.5 w-3.5 text-amber-600" /> Respect de Votre Vie Privée
+              <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 border border-slate-300 px-3.5 py-1 text-xs font-semibold text-slate-600">
+                <Cookie className="h-3.5 w-3.5 text-slate-600" /> Respect de Votre Vie Privée
               </div>
 
               <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900">
@@ -65,7 +65,7 @@ export default function CookiesPage() {
                   <div className="space-y-4">
                     <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
                       <div className="flex items-center gap-2 font-bold text-slate-900 mb-1">
-                        <CheckCircle2 className="h-4 w-4 text-amber-600" />
+                        <CheckCircle2 className="h-4 w-4 text-slate-600" />
                         <span>Cookies Essentiels (Fonctionnement)</span>
                       </div>
                       <p className="text-xs text-slate-600">
@@ -75,7 +75,7 @@ export default function CookiesPage() {
 
                     <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
                       <div className="flex items-center gap-2 font-bold text-slate-900 mb-1">
-                        <CheckCircle2 className="h-4 w-4 text-amber-600" />
+                        <CheckCircle2 className="h-4 w-4 text-slate-600" />
                         <span>Cookies d'Audience Anonymisés (Analytics)</span>
                       </div>
                       <p className="text-xs text-slate-600">
@@ -113,7 +113,7 @@ export default function CookiesPage() {
                       href="https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 font-bold text-amber-700 hover:underline"
+                      className="inline-flex items-center gap-1 font-bold text-slate-600 hover:underline"
                     >
                       Conseils de la CNIL →
                     </a>

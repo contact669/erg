@@ -321,7 +321,7 @@ function SeoContentFallback({
   ]
 
   return (
-    <div className="prose max-w-none text-foreground prose-headings:font-headline prose-headings:text-primary prose-p:text-muted-foreground prose-strong:text-foreground prose-a:text-accent">
+    <div className="prose max-w-none text-foreground prose-headings:font-headline prose-headings:text-primary prose-p:text-muted-foreground prose-strong:text-foreground prose-a:text-slate-600">
       <h2>{`Rénovation d’appartement à ${locationLabel} : méthode premium, résultat durable`}</h2>
       <p>
         Vous cherchez une <strong>rénovation d’appartement</strong> sérieuse,
@@ -532,7 +532,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
 
             <div className="mt-6 max-w-4xl">
               <p className="inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-4 py-2 text-sm text-primary-foreground/90">
-                <ShieldCheck className="h-4 w-4 text-accent" />
+                <ShieldCheck className="h-4 w-4 text-slate-600" />
                 Rénovation intérieure • Devis détaillé • Garantie décennale
               </p>
 
@@ -565,7 +565,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                 <div className="mt-8 grid grid-cols-1 gap-2 text-sm text-primary-foreground/80 sm:grid-cols-2 sm:gap-x-6">
                   {reassurance.map((point: string) => (
                     <div key={point} className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-accent" />
+                      <CheckCircle className="h-4 w-4 text-slate-600" />
                       <span>{point}</span>
                     </div>
                   ))}
@@ -574,15 +574,15 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
 
               <div className="mt-8 flex flex-wrap gap-3 text-xs text-primary-foreground/70">
                 <span className="inline-flex items-center gap-2 rounded-md bg-primary-foreground/10 px-3 py-2">
-                  <Clock className="h-4 w-4 text-accent" />
+                  <Clock className="h-4 w-4 text-slate-600" />
                   Réponse rapide
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-md bg-primary-foreground/10 px-3 py-2">
-                  <Paintbrush className="h-4 w-4 text-accent" />
+                  <Paintbrush className="h-4 w-4 text-slate-600" />
                   Finitions soignées
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-md bg-primary-foreground/10 px-3 py-2">
-                  <Wrench className="h-4 w-4 text-accent" />
+                  <Wrench className="h-4 w-4 text-slate-600" />
                   Électricité · Plomberie · Peinture
                 </span>
               </div>
@@ -608,7 +608,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
 
                   <div className="mt-10">
                     {page.mainContent ? (
-                      <div className="prose max-w-none text-foreground prose-headings:font-headline prose-headings:text-primary prose-p:text-muted-foreground prose-strong:text-foreground prose-a:text-accent">
+                      <div className="prose max-w-none text-foreground prose-headings:font-headline prose-headings:text-primary prose-p:text-muted-foreground prose-strong:text-foreground prose-a:text-slate-600">
                         {page.mainContent}
                       </div>
                     ) : (
@@ -703,7 +703,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                 <Card className="bg-secondary">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3 font-headline">
-                      <Award className="h-6 w-6 text-accent" />
+                      <Award className="h-6 w-6 text-slate-600" />
                       Engagement qualité
                     </CardTitle>
                     <CardDescription>
@@ -713,19 +713,19 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
 
                   <CardContent className="space-y-3 text-sm text-muted-foreground">
                     <p className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-accent" /> Devis détaillé et transparent
+                      <CheckCircle className="h-4 w-4 text-slate-600" /> Devis détaillé et transparent
                     </p>
                     <p className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-accent" /> Interlocuteur unique
+                      <CheckCircle className="h-4 w-4 text-slate-600" /> Interlocuteur unique
                     </p>
                     <p className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-accent" /> Artisans qualifiés
+                      <CheckCircle className="h-4 w-4 text-slate-600" /> Artisans qualifiés
                     </p>
                     <p className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-accent" /> Respect des délais
+                      <CheckCircle className="h-4 w-4 text-slate-600" /> Respect des délais
                     </p>
                     <p className="flex items-center gap-2">
-                      <CheckCircle className="h-4 w-4 text-accent" /> Garantie décennale
+                      <CheckCircle className="h-4 w-4 text-slate-600" /> Garantie décennale
                     </p>
 
                     <div className="pt-2 space-y-2">
@@ -746,20 +746,20 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3 font-headline">
-                      <ShieldCheck className="h-6 w-6 text-accent" />
+                      <ShieldCheck className="h-6 w-6 text-slate-600" />
                       Chantier cadré
                     </CardTitle>
                     <CardDescription>Moins d’imprévus, plus de contrôle.</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-3 text-sm text-muted-foreground">
                     <p className="flex items-center gap-2">
-                      <ClipboardList className="h-4 w-4 text-accent" /> Validation par étapes
+                      <ClipboardList className="h-4 w-4 text-slate-600" /> Validation par étapes
                     </p>
                     <p className="flex items-center gap-2">
-                      <Hammer className="h-4 w-4 text-accent" /> Exécution propre & organisée
+                      <Hammer className="h-4 w-4 text-slate-600" /> Exécution propre & organisée
                     </p>
                     <p className="flex items-center gap-2">
-                      <Sparkles className="h-4 w-4 text-accent" /> Finitions contrôlées
+                      <Sparkles className="h-4 w-4 text-slate-600" /> Finitions contrôlées
                     </p>
                   </CardContent>
                 </Card>

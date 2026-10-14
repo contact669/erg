@@ -29,15 +29,15 @@ export default function ConfidentialitePage() {
         {/* HERO SECTION */}
         <section className="relative isolate overflow-hidden bg-slate-50 border-b border-slate-200/80 py-12 md:py-16">
           <div className="absolute inset-0 z-0 pointer-events-none">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-slate-50/80 to-slate-50" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-transparent via-slate-50/80 to-slate-50" />
           </div>
 
           <div className="container relative z-10">
             <div className="mx-auto max-w-3xl text-center space-y-4">
               <Breadcrumbs />
               
-              <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/30 px-3.5 py-1 text-xs font-semibold text-amber-700">
-                <Lock className="h-3.5 w-3.5 text-amber-600" /> Protection des Données & Conforme RGPD
+              <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 border border-slate-300 px-3.5 py-1 text-xs font-semibold text-slate-600">
+                <Lock className="h-3.5 w-3.5 text-slate-600" /> Protection des Données & Conforme RGPD
               </div>
 
               <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900">
@@ -61,13 +61,13 @@ export default function ConfidentialitePage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-                  <ShieldCheck className="h-5 w-5 text-amber-600 mb-1" />
+                  <ShieldCheck className="h-5 w-5 text-slate-600 mb-1" />
                   <h4 className="font-bold text-sm text-slate-900">Pas de Revente de Données</h4>
                   <p className="text-xs text-slate-600 mt-0.5">Vos coordonnées servent uniquement au traitement de votre projet de rénovation.</p>
                 </div>
 
                 <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-                  <UserCheck className="h-5 w-5 text-amber-600 mb-1" />
+                  <UserCheck className="h-5 w-5 text-slate-600 mb-1" />
                   <h4 className="font-bold text-sm text-slate-900">Droits RGPD Garantis</h4>
                   <p className="text-xs text-slate-600 mt-0.5">Accès, modification et suppression sur simple demande par email.</p>
                 </div>
@@ -77,7 +77,7 @@ export default function ConfidentialitePage() {
                 <div>
                   <h3 className="font-headline text-lg font-bold text-slate-900 mb-2">1. Responsable du traitement</h3>
                   <p className="text-slate-600">
-                    Le responsable du traitement des données est la société <strong>ERG Rénovation</strong> (1 Sentier de la Pointe, 75020 Paris • <a href="mailto:contact@erg-renovation.fr" className="text-amber-700 font-bold hover:underline">contact@erg-renovation.fr</a>).
+                    Le responsable du traitement des données est la société <strong>ERG Rénovation</strong> (1 Sentier de la Pointe, 75020 Paris • <a href="mailto:contact@erg-renovation.fr" className="text-slate-600 font-bold hover:underline">contact@erg-renovation.fr</a>).
                   </p>
                 </div>
 
@@ -101,7 +101,7 @@ export default function ConfidentialitePage() {
                 <div>
                   <h3 className="font-headline text-lg font-bold text-slate-900 mb-2">4. Exercer vos droits</h3>
                   <p className="text-slate-600">
-                    Pour exercer vos droits d'accès, de rectification ou de suppression de vos données, écrivez-nous à <a href="mailto:contact@erg-renovation.fr" className="text-amber-700 font-bold hover:underline">contact@erg-renovation.fr</a>. Vous pouvez également consulter notre <Link href="/cookies" className="font-bold text-slate-900 underline hover:text-amber-700">Politique de gestion des cookies</Link>.
+                    Pour exercer vos droits d'accès, de rectification ou de suppression de vos données, écrivez-nous à <a href="mailto:contact@erg-renovation.fr" className="text-slate-600 font-bold hover:underline">contact@erg-renovation.fr</a>. Vous pouvez également consulter notre <Link href="/cookies" className="font-bold text-slate-900 underline hover:text-slate-600">Politique de gestion des cookies</Link>.
                   </p>
                 </div>
               </div>

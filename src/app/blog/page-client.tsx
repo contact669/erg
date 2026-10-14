@@ -60,8 +60,8 @@ export default function BlogPage() {
         <section className="relative isolate overflow-hidden bg-slate-50 border-b border-slate-200/80 py-12 md:py-18 lg:py-20">
           {/* Subtle Ambient Glow */}
           <div className="absolute inset-0 z-0 pointer-events-none">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-slate-50/80 to-slate-50" />
-            <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-amber-400/10 blur-3xl" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-transparent via-slate-50/80 to-slate-50" />
+            <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-slate-100 blur-3xl" />
             <div className="absolute bottom-0 left-1/4 h-96 w-96 rounded-full bg-slate-200/40 blur-3xl" />
           </div>
 
@@ -72,8 +72,8 @@ export default function BlogPage() {
               </div>
 
               <div className="flex flex-wrap items-center justify-center gap-3">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 text-xs sm:text-sm font-semibold text-amber-700 shadow-sm">
-                  <BookOpen className="h-4 w-4 text-amber-600" /> Le Journal & Guides ERG Rénovation
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-300 px-4 py-1.5 text-xs sm:text-sm font-semibold text-slate-600 shadow-sm">
+                  <BookOpen className="h-4 w-4 text-slate-600" /> Le Journal & Guides ERG Rénovation
                 </span>
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=ERG-Entreprise+de+R%C3%A9novation+Appartement+%26+Salle+de+Bains+%C3%A0+Paris+et+%C3%8Ele-de-France"
@@ -82,14 +82,14 @@ export default function BlogPage() {
                   className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-3.5 py-1 text-xs text-slate-800 shadow-sm hover:bg-white"
                 >
                   <GoogleIcon className="h-4 w-4" />
-                  <span className="font-bold text-amber-600">Avis clients</span>
+                  <span className="font-bold text-slate-600">Avis clients</span>
                   <span className="text-slate-500">• Expertise BTP Paris</span>
                 </a>
               </div>
 
               <h1 className="font-headline text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
                 Conseils, Guides & Inspiration : <br />
-                <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">
+                <span className="text-slate-900">
                   Réussir Votre Rénovation à Paris
                 </span>
               </h1>
@@ -128,7 +128,7 @@ export default function BlogPage() {
                 {/* FEATURED ARTICLE CARD */}
                 {featuredPost && featuredPostImage && (
                   <Link href={`/blog/${featuredPost.slug}`} className="group block">
-                    <Card className="rounded-3xl border border-slate-200 bg-white shadow-xl hover:shadow-2xl hover:border-amber-500/40 transition-all duration-300 overflow-hidden">
+                    <Card className="rounded-3xl border border-slate-200 bg-white shadow-xl hover:shadow-2xl hover:border-slate-300 transition-all duration-300 overflow-hidden">
                       <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
                         {/* Image */}
                         <div className="relative h-72 sm:h-96 lg:h-full lg:col-span-7 overflow-hidden bg-slate-100">
@@ -142,7 +142,7 @@ export default function BlogPage() {
                             priority
                           />
                           <div className="absolute top-4 left-4 z-20">
-                            <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500 text-slate-950 px-3.5 py-1 text-xs font-bold shadow-md">
+                            <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-700 text-white px-3.5 py-1 text-xs font-bold shadow-md">
                               <Sparkles className="h-3.5 w-3.5" /> À la Une
                             </span>
                           </div>
@@ -164,7 +164,7 @@ export default function BlogPage() {
                               </div>
                             )}
 
-                            <h2 className="font-headline text-2xl sm:text-3xl font-extrabold text-slate-900 group-hover:text-amber-600 transition-colors leading-snug">
+                            <h2 className="font-headline text-2xl sm:text-3xl font-extrabold text-slate-900 group-hover:text-slate-600 transition-colors leading-snug">
                               {featuredPost.title}
                             </h2>
 
@@ -176,7 +176,7 @@ export default function BlogPage() {
                           <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                             <div className="flex items-center gap-3 text-xs font-semibold text-slate-600">
                               <span className="flex items-center gap-1.5">
-                                <User className="h-4 w-4 text-amber-600" />
+                                <User className="h-4 w-4 text-slate-600" />
                                 {featuredPost.author}
                               </span>
                               <span>•</span>
@@ -188,7 +188,7 @@ export default function BlogPage() {
                               </span>
                             </div>
 
-                            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 group-hover:text-amber-800">
+                            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 group-hover:text-slate-600">
                               Lire l'article <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                             </span>
                           </div>
@@ -215,7 +215,7 @@ export default function BlogPage() {
                         const postImage = PlaceHolderImages.find((p) => p.id === post.featuredImageId)
                         return (
                           <Link key={post.slug} href={`/blog/${post.slug}`} className="group block h-full">
-                            <Card className="flex flex-col justify-between h-full overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm hover:shadow-xl hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1.5">
+                            <Card className="flex flex-col justify-between h-full overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 hover:-translate-y-1.5">
                               <CardContent className="p-0 flex flex-col h-full">
                                 {/* Image Container */}
                                 <div className="relative h-56 w-full overflow-hidden bg-slate-100">
@@ -242,7 +242,7 @@ export default function BlogPage() {
                                 {/* Content Details */}
                                 <div className="p-6 flex flex-col justify-between flex-grow space-y-4">
                                   <div className="space-y-2">
-                                    <h3 className="font-headline text-xl font-bold tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors line-clamp-2">
+                                    <h3 className="font-headline text-xl font-bold tracking-tight text-slate-900 group-hover:text-slate-600 transition-colors line-clamp-2">
                                       {post.title}
                                     </h3>
                                     <p className="line-clamp-3 text-xs sm:text-sm leading-relaxed text-slate-600">
@@ -252,7 +252,7 @@ export default function BlogPage() {
 
                                   <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                                     <div className="flex items-center gap-1.5 font-semibold text-slate-700">
-                                      <User className="h-3.5 w-3.5 text-amber-600" />
+                                      <User className="h-3.5 w-3.5 text-slate-600" />
                                       <span>{post.author}</span>
                                     </div>
                                     <div className="flex items-center gap-1.5">
@@ -276,8 +276,8 @@ export default function BlogPage() {
                 <div className="rounded-3xl border border-slate-200 bg-white p-8 md:p-10 shadow-lg relative overflow-hidden">
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                     <div className="lg:col-span-8 space-y-3">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/30 px-3.5 py-1 text-xs font-semibold text-amber-700">
-                        <Sparkles className="h-4 w-4 text-amber-600" /> Vous avez un projet de rénovation à Paris ?
+                      <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 border border-slate-300 px-3.5 py-1 text-xs font-semibold text-slate-600">
+                        <Sparkles className="h-4 w-4 text-slate-600" /> Vous avez un projet de rénovation à Paris ?
                       </span>
                       <h3 className="font-headline text-2xl md:text-3xl font-extrabold text-slate-900">
                         Bénéficiez des Conseils d'un Maître d'Œuvre Dédié
@@ -303,7 +303,7 @@ export default function BlogPage() {
                         className="h-12 border-slate-300 text-slate-900 hover:bg-slate-100 rounded-xl"
                       >
                         <a href="tel:+33699961375">
-                          <Phone className="mr-2 h-4 w-4 text-amber-600" />
+                          <Phone className="mr-2 h-4 w-4 text-slate-600" />
                           06 99 96 13 75
                         </a>
                       </Button>

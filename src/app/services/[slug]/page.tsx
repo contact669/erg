@@ -214,7 +214,7 @@ function SeoFallbackBlock({
 }) {
   const zone = joinHuman(areaServed)
   return (
-    <div className="prose max-w-none text-foreground prose-headings:font-headline prose-headings:text-primary prose-p:text-muted-foreground prose-a:text-accent prose-strong:text-foreground">
+    <div className="prose max-w-none text-foreground prose-headings:font-headline prose-headings:text-primary prose-p:text-muted-foreground prose-a:text-slate-600 prose-strong:text-foreground">
       <h2>{`Un service ${serviceTitle.toLowerCase()} cadré, propre et durable`}</h2>
       <p>
         Une rénovation réussie, c’est un chantier <strong>maîtrisé</strong> : un devis clair, un planning réaliste,
@@ -547,7 +547,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                           {b.name}
                         </span>
                       ) : (
-                        <Link href={toRelPath(b.item)} className="hover:underline hover:text-amber-700">
+                        <Link href={toRelPath(b.item)} className="hover:underline hover:text-slate-600">
                           {b.name}
                         </Link>
                       )}
@@ -559,8 +559,8 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             </nav>
 
             <div className="mt-6 max-w-4xl">
-              <p className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-amber-700 shadow-xs">
-                <MapPin className="h-4 w-4 text-amber-600" />
+              <p className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-slate-100 px-4 py-2 text-xs font-bold uppercase tracking-wider text-slate-600 shadow-xs">
+                <MapPin className="h-4 w-4 text-slate-600" />
                 Paris & Île-de-France • Devis détaillé • Garantie décennale
               </p>
 
@@ -584,7 +584,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                   className="border-slate-300 bg-white text-slate-900 hover:bg-slate-100 h-12 px-7 rounded-xl shadow-xs"
                 >
                   <a href={PHONE_TEL} aria-label="Appeler ERG Rénovation">
-                    <Phone className="mr-2 h-4 w-4 text-amber-600" />
+                    <Phone className="mr-2 h-4 w-4 text-slate-600" />
                     Appeler maintenant
                   </a>
                 </Button>
@@ -593,7 +593,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
               <div className="mt-8 flex flex-col gap-2 text-sm font-semibold text-slate-700 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-2">
                 {heroBadges.map((b) => (
                   <div key={b.text} className="flex items-center gap-2">
-                    <b.icon className="h-4 w-4 text-amber-600" />
+                    <b.icon className="h-4 w-4 text-slate-600" />
                     <span>{b.text}</span>
                   </div>
                 ))}
@@ -621,7 +621,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                     <div className="space-y-6">
                       {service.benefits?.slice(0, 2).map((benefit) => (
                         <div key={benefit.title} className="flex items-start gap-4">
-                          <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                          <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-slate-600" />
                           <div>
                             <h3 className="font-headline text-lg font-semibold">{benefit.title}</h3>
                             <p className="text-muted-foreground md:leading-relaxed">{benefit.description}</p>
@@ -646,7 +646,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                     <div className="space-y-6 md:col-span-2 grid gap-8 md:grid-cols-2">
                       {service.benefits?.slice(2).map((benefit) => (
                         <div key={benefit.title} className="flex items-start gap-4">
-                          <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-accent" />
+                          <CheckCircle className="mt-1 h-6 w-6 flex-shrink-0 text-slate-600" />
                           <div>
                             <h3 className="font-headline text-lg font-semibold">{benefit.title}</h3>
                             <p className="text-muted-foreground md:leading-relaxed">{benefit.description}</p>
@@ -680,7 +680,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                     <div className="mt-8 space-y-8">
                       {service.process.map((step) => (
                         <div key={step.step} className="flex items-start gap-6">
-                          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-accent font-bold font-headline text-xl">
+                          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary text-slate-600 font-bold font-headline text-xl">
                             {`0${step.step}`}
                           </div>
                           <div>
@@ -786,7 +786,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                 <Card className="bg-secondary">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3 font-headline">
-                      <Award className="h-6 w-6 text-accent" />
+                      <Award className="h-6 w-6 text-slate-600" />
                       Engagement qualité
                     </CardTitle>
                     <CardDescription>Une méthode claire, un suivi structuré, une livraison propre.</CardDescription>
@@ -943,7 +943,7 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
               Avant
             </TabsTrigger>
             <TabsTrigger value="after" className="text-white/80 data-[state=active]:text-white">
-              <Sparkles className="mr-2 h-4 w-4 text-amber-300" />
+              <Sparkles className="mr-2 h-4 w-4 text-slate-300" />
               Après
             </TabsTrigger>
           </TabsList>
@@ -959,7 +959,7 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
       </div>
 
       <CardFooter className="p-6 pt-0">
-        <Button variant="link" asChild className="p-0 text-accent hover:text-accent">
+        <Button variant="link" asChild className="p-0 text-slate-600 hover:text-slate-600">
           <Link href={`/realisations/${project.slug}`}>
             Voir les détails <ArrowRight className="ml-2 h-4 w-4" />
           </Link>

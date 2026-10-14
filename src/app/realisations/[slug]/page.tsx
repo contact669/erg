@@ -141,7 +141,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
                       <TabsList className="bg-secondary/60">
                         <TabsTrigger value="before">{imagesAreIllustrative ? "Illustration 1" : project.images.beforeLabel || "Avant"}</TabsTrigger>
                         <TabsTrigger value="after">
-                          <Sparkles className="mr-2 h-4 w-4 text-amber-300" />
+                          <Sparkles className="mr-2 h-4 w-4 text-slate-300" />
                           {imagesAreIllustrative ? "Illustration 2" : "Après"}
                         </TabsTrigger>
                       </TabsList>
@@ -281,15 +281,15 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
                     </CardHeader>
                     <CardContent className="space-y-3 text-sm text-muted-foreground">
                       <div className="flex items-center gap-2">
-                        <Award className="h-4 w-4 text-amber-600" />
+                        <Award className="h-4 w-4 text-slate-600" />
                         <span>Finitions soignées & contrôle qualité</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <ShieldCheck className="h-4 w-4 text-amber-600" />
+                        <ShieldCheck className="h-4 w-4 text-slate-600" />
                         <span>Électricité, plomberie, peinture : garantie décennale</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4 text-amber-600" />
+                        <Clock className="h-4 w-4 text-slate-600" />
                         <span>Organisation & coordination des étapes</span>
                       </div>
 
@@ -344,7 +344,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
           <h2 className="font-headline text-2xl font-semibold">Les prestations pour un projet similaire</h2>
           <ul className="mt-4 flex flex-wrap gap-4">
             {services.filter(service => service.relatedProjectSlugs.includes(project.slug)).map(service => (
-              <li key={service.slug}><Link href={`/services/${service.slug}`} className="text-amber-700 underline underline-offset-4">{service.title}</Link></li>
+              <li key={service.slug}><Link href={`/services/${service.slug}`} className="text-slate-600 underline underline-offset-4">{service.title}</Link></li>
             ))}
             <li><Link href="/services" className="underline underline-offset-4">Toutes nos prestations</Link></li>
           </ul>
@@ -387,7 +387,7 @@ function RelatedProjectCard({ project }: { project: (typeof allProjects)[0] }) {
         </div>
 
         <CardContent className="p-6">
-          <h3 className="font-headline text-xl font-semibold tracking-tight group-hover:text-amber-600">
+          <h3 className="font-headline text-xl font-semibold tracking-tight group-hover:text-slate-600">
             {project.title}
           </h3>
           <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
@@ -396,7 +396,7 @@ function RelatedProjectCard({ project }: { project: (typeof allProjects)[0] }) {
         </CardContent>
 
         <CardFooter className="px-6 pb-6 pt-0">
-          <span className="inline-flex items-center gap-2 text-sm font-semibold text-amber-600 group-hover:underline">
+          <span className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 group-hover:underline">
             Voir le projet
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </span>

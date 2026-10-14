@@ -223,7 +223,7 @@ export default function RenovationValDeMarnePage() {
               <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-3">
                 {heroPoints.map((point) => (
                   <span key={point.text} className="flex items-center gap-2 font-medium">
-                    <CheckCircle className="h-5 w-5 text-accent" />
+                    <CheckCircle className="h-5 w-5 text-slate-600" />
                     {point.text}
                   </span>
                 ))}
@@ -270,7 +270,7 @@ export default function RenovationValDeMarnePage() {
                     <Card key={item.title} className="overflow-hidden">
                       <CardHeader>
                         <CardTitle className="flex items-center gap-3">
-                          <item.icon className="h-6 w-6 text-accent" />
+                          <item.icon className="h-6 w-6 text-slate-600" />
                           {item.title}
                         </CardTitle>
                       </CardHeader>
@@ -312,7 +312,7 @@ export default function RenovationValDeMarnePage() {
                     </CardHeader>
 
                     <CardContent className="flex-grow flex items-end">
-                      <Button variant="link" asChild className="p-0 text-accent">
+                      <Button variant="link" asChild className="p-0 text-slate-600">
                         <Link href={service.link}>
                           En savoir plus <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>

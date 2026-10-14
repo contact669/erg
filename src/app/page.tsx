@@ -110,7 +110,7 @@ export default function Home() {
               <Card className="border-muted/60">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-base font-semibold">
-                    <ShieldCheck className="h-4 w-4 text-accent" />
+                    <ShieldCheck className="h-4 w-4 text-slate-600" />
                     Garantie décennale
                   </CardTitle>
                   <CardDescription>Travaux durables, couverts et conformes.</CardDescription>
@@ -120,7 +120,7 @@ export default function Home() {
               <Card className="border-muted/60">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-base font-semibold">
-                    <ClipboardList className="h-4 w-4 text-accent" />
+                    <ClipboardList className="h-4 w-4 text-slate-600" />
                     Devis détaillé gratuit
                   </CardTitle>
                   <CardDescription>Poste par poste, options de finitions.</CardDescription>
@@ -130,7 +130,7 @@ export default function Home() {
               <Card className="border-muted/60">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-base font-semibold">
-                    <Clock className="h-4 w-4 text-accent" />
+                    <Clock className="h-4 w-4 text-slate-600" />
                     Suivi structuré
                   </CardTitle>
                   <CardDescription>Planning clair, points réguliers.</CardDescription>

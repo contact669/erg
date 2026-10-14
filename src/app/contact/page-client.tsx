@@ -126,8 +126,8 @@ export default function ContactPage() {
         <section className="relative isolate overflow-hidden bg-slate-50 border-b border-slate-200/80 py-12 md:py-18 lg:py-20">
           {/* Subtle Ambient Gradients */}
           <div className="absolute inset-0 z-0 pointer-events-none">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-slate-50/80 to-slate-50" />
-            <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-amber-400/10 blur-3xl" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-transparent via-slate-50/80 to-slate-50" />
+            <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-slate-100 blur-3xl" />
             <div className="absolute bottom-0 left-1/4 h-96 w-96 rounded-full bg-slate-200/40 blur-3xl" />
           </div>
 
@@ -138,8 +138,8 @@ export default function ContactPage() {
               </div>
 
               <div className="flex flex-wrap items-center justify-center gap-3">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 text-xs sm:text-sm font-semibold text-amber-700 shadow-sm">
-                  <ShieldCheck className="h-4 w-4 text-amber-600" /> Visite sur Site Offerte & Devis Rapide
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-300 px-4 py-1.5 text-xs sm:text-sm font-semibold text-slate-600 shadow-sm">
+                  <ShieldCheck className="h-4 w-4 text-slate-600" /> Visite sur Site Offerte & Devis Rapide
                 </span>
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=ERG-Entreprise+de+R%C3%A9novation+Appartement+%26+Salle+de+Bains+%C3%A0+Paris+et+%C3%8Ele-de-France"
@@ -148,14 +148,14 @@ export default function ContactPage() {
                   className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-3.5 py-1 text-xs text-slate-800 shadow-sm hover:bg-white"
                 >
                   <GoogleIcon className="h-4 w-4" />
-                  <span className="font-bold text-amber-600">Avis clients</span>
+                  <span className="font-bold text-slate-600">Avis clients</span>
                   <span className="text-slate-500">• Réponse sous 24h</span>
                 </a>
               </div>
 
               <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
                 Parlons de Votre Projet : <br />
-                <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">
+                <span className="text-slate-900">
                   Une Réponse Rapide & Un Chiffrage Clair.
                 </span>
               </h1>
@@ -169,7 +169,7 @@ export default function ContactPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="h-13 px-8 bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 text-base shadow-lg shadow-amber-500/20 rounded-xl"
+                  className="h-13 px-8 bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 text-base shadow-lg rounded-xl"
                 >
                   <a href={`tel:${PHONE}`}>
                     <Phone className="mr-2 h-5 w-5 text-slate-950" />
@@ -183,7 +183,7 @@ export default function ContactPage() {
                   className="h-13 px-6 border-slate-300 bg-white text-slate-900 hover:bg-slate-100 text-base rounded-xl shadow-sm"
                 >
                   <Link href="/devis">
-                    Simuler un devis complet <ArrowRight className="ml-2 h-4 w-4 text-amber-600" />
+                    Simuler un devis complet <ArrowRight className="ml-2 h-4 w-4 text-slate-600" />
                   </Link>
                 </Button>
               </div>
@@ -214,7 +214,7 @@ export default function ContactPage() {
                     <div className="space-y-5">
                       {/* Phone */}
                       <div className="flex items-start gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 shrink-0">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 border border-slate-300 text-slate-600 shrink-0">
                           <Phone className="h-6 w-6" />
                         </div>
                         <div className="min-w-0">
@@ -222,7 +222,7 @@ export default function ContactPage() {
                           <p className="text-xs text-slate-500">Pour un échange immédiat avec un artisan.</p>
                           <a
                             href={`tel:${PHONE}`}
-                            className="mt-1 inline-flex items-center font-extrabold text-amber-700 text-base hover:text-amber-800 transition"
+                            className="mt-1 inline-flex items-center font-extrabold text-slate-600 text-base hover:text-slate-600 transition"
                           >
                             {PHONE_DISPLAY}
                           </a>
@@ -231,7 +231,7 @@ export default function ContactPage() {
 
                       {/* Email */}
                       <div className="flex items-start gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 shrink-0">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 border border-slate-300 text-slate-600 shrink-0">
                           <Mail className="h-6 w-6" />
                         </div>
                         <div className="min-w-0">
@@ -239,7 +239,7 @@ export default function ContactPage() {
                           <p className="text-xs text-slate-500">Réponse sous 24h ouvrées.</p>
                           <a
                             href={`mailto:${EMAIL}`}
-                            className="mt-1 inline-flex items-center font-bold text-amber-700 text-sm hover:underline"
+                            className="mt-1 inline-flex items-center font-bold text-slate-600 text-sm hover:underline"
                           >
                             {EMAIL}
                           </a>
@@ -248,7 +248,7 @@ export default function ContactPage() {
 
                       {/* Address */}
                       <div className="flex items-start gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 shrink-0">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 border border-slate-300 text-slate-600 shrink-0">
                           <MapPin className="h-6 w-6" />
                         </div>
                         <div className="min-w-0">
@@ -260,7 +260,7 @@ export default function ContactPage() {
 
                       {/* Hours */}
                       <div className="flex items-start gap-4">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-600 shrink-0">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 border border-slate-300 text-slate-600 shrink-0">
                           <Clock className="h-6 w-6" />
                         </div>
                         <div className="min-w-0">
@@ -279,15 +279,15 @@ export default function ContactPage() {
                       </p>
                       <ul className="space-y-1.5 text-xs text-slate-600">
                         <li className="flex items-center gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-amber-600 shrink-0" />
+                          <CheckCircle2 className="h-4 w-4 text-slate-600 shrink-0" />
                           <span>Mentionnez la surface approximative (m²) & la ville</span>
                         </li>
                         <li className="flex items-center gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-amber-600 shrink-0" />
+                          <CheckCircle2 className="h-4 w-4 text-slate-600 shrink-0" />
                           <span>Indiquez les pièces concernées (Cuisine, SDB, Rénovation totale)</span>
                         </li>
                         <li className="flex items-center gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-amber-600 shrink-0" />
+                          <CheckCircle2 className="h-4 w-4 text-slate-600 shrink-0" />
                           <span>Précisez les éventuelles contraintes d'accès ou de délai</span>
                         </li>
                       </ul>
@@ -331,7 +331,7 @@ export default function ContactPage() {
                       <div className="space-y-1.5">
                         <label className="text-xs font-bold uppercase tracking-wider text-slate-700">Nom Complet</label>
                         <Input
-                          className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-amber-500 focus:ring-amber-500/20 text-sm"
+                          className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-slate-300 focus:ring-slate-500 text-sm"
                           placeholder="Votre nom & prénom"
                           autoComplete="name"
                           disabled={isSubmitting}
@@ -345,7 +345,7 @@ export default function ContactPage() {
                       <div className="space-y-1.5">
                         <label className="text-xs font-bold uppercase tracking-wider text-slate-700">Adresse Email</label>
                         <Input
-                          className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-amber-500 focus:ring-amber-500/20 text-sm"
+                          className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-slate-300 focus:ring-slate-500 text-sm"
                           placeholder="votre.email@exemple.fr"
                           autoComplete="email"
                           inputMode="email"
@@ -362,7 +362,7 @@ export default function ContactPage() {
                       <div className="space-y-1.5">
                         <label className="text-xs font-bold uppercase tracking-wider text-slate-700">Téléphone (Optionnel)</label>
                         <Input
-                          className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-amber-500 focus:ring-amber-500/20 text-sm"
+                          className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-slate-300 focus:ring-slate-500 text-sm"
                           placeholder="06 12 34 56 78"
                           autoComplete="tel"
                           inputMode="tel"
@@ -377,7 +377,7 @@ export default function ContactPage() {
                       <div className="space-y-1.5">
                         <label className="text-xs font-bold uppercase tracking-wider text-slate-700">Sujet Du Projet</label>
                         <Input
-                          className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-amber-500 focus:ring-amber-500/20 text-sm"
+                          className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-slate-300 focus:ring-slate-500 text-sm"
                           placeholder="Ex : Rénovation studio 11e"
                           disabled={isSubmitting}
                           {...form.register("subject")}
@@ -391,7 +391,7 @@ export default function ContactPage() {
                     <div className="space-y-1.5">
                       <label className="text-xs font-bold uppercase tracking-wider text-slate-700">Votre Message / Détails</label>
                       <Textarea
-                        className="min-h-[130px] rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-amber-500 focus:ring-amber-500/20 text-sm p-3.5"
+                        className="min-h-[130px] rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-slate-300 focus:ring-slate-500 text-sm p-3.5"
                         placeholder="Surface, état actuel, pièces concernées, contraintes d'accès ou délais souhaités..."
                         disabled={isSubmitting}
                         {...form.register("message")}
@@ -413,14 +413,14 @@ export default function ContactPage() {
                         <input
                           type="checkbox"
                           id="consent"
-                          className="mt-0.5 h-4 w-4 rounded-md border-slate-300 text-amber-600 focus:ring-amber-500"
+                          className="mt-0.5 h-4 w-4 rounded-md border-slate-300 text-slate-600 focus:ring-slate-500"
                           disabled={isSubmitting}
                           defaultChecked
                           {...form.register("consent")}
                         />
                         <label htmlFor="consent" className="text-xs text-slate-600 leading-snug cursor-pointer">
                           J’accepte la{" "}
-                          <Link href="/confidentialite" className="font-semibold text-slate-900 underline hover:text-amber-700">
+                          <Link href="/confidentialite" className="font-semibold text-slate-900 underline hover:text-slate-600">
                             politique de confidentialité
                           </Link>{" "}
                           et j’autorise ERG Rénovation à me recontacter pour mon projet.
@@ -436,7 +436,7 @@ export default function ContactPage() {
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full h-13 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl shadow-lg shadow-amber-500/20 text-base"
+                      className="w-full h-13 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl shadow-lg text-base"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Transmission..." : "Envoyer ma demande de devis"}
@@ -445,7 +445,7 @@ export default function ContactPage() {
 
                     <p className="text-center text-xs text-slate-500 pt-1">
                       Besoin d'une réponse immédiate ?{" "}
-                      <a href={`tel:${PHONE}`} className="font-bold text-slate-900 underline hover:text-amber-700">
+                      <a href={`tel:${PHONE}`} className="font-bold text-slate-900 underline hover:text-slate-600">
                         Appelez-nous au {PHONE_DISPLAY}
                       </a>
                     </p>

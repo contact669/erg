@@ -21,7 +21,7 @@ export default function ServicesOverview() {
         {/* Header High-End Light */}
         <header className="mx-auto max-w-4xl text-center space-y-6">
           {/* Badge Lumineux */}
-          <div className="inline-flex items-center gap-2.5 rounded-full bg-slate-100 border border-slate-200 px-5 py-2 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300 shadow-sm backdrop-blur-md">
+          <div className="inline-flex items-center gap-2.5 rounded-full bg-slate-100 border border-slate-200 px-5 py-2 text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-600 shadow-sm backdrop-blur-md">
             <Sparkles className="h-4 w-4 text-slate-600" />
             <span>Rénovation intérieure à Paris</span>
             <span className="h-1.5 w-1.5 rounded-full bg-slate-100" />

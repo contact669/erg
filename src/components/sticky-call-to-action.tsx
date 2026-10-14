@@ -86,7 +86,7 @@ export default function StickyCallToAction({
 
           <Button asChild variant="outline" size="lg" className="h-12 rounded-xl border-slate-300 bg-white text-slate-900 hover:bg-slate-100 shadow-sm">
             <a href={`tel:${PHONE}`} className="inline-flex items-center justify-center gap-2">
-              <Phone className="h-4 w-4 text-amber-600" />
+              <Phone className="h-4 w-4 text-slate-600" />
               <span className="font-semibold">Appeler</span>
             </a>
           </Button>

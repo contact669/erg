@@ -91,7 +91,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             
             <div className="flex flex-wrap items-center justify-center gap-2">
               {post.tags && post.tags.map(tag => (
-                <span key={tag} className="rounded-full bg-amber-500/20 border border-amber-400/40 px-3.5 py-1 text-xs font-bold text-amber-300">
+                <span key={tag} className="rounded-full bg-slate-100 border border-slate-300 px-3.5 py-1 text-xs font-bold text-slate-600">
                   {tag}
                 </span>
               ))}
@@ -103,7 +103,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
             <div className="flex items-center gap-6 text-xs sm:text-sm font-medium text-slate-300">
               <div className="flex items-center gap-2">
-                <User className="h-4 w-4 text-amber-400" />
+                <User className="h-4 w-4 text-slate-300" />
                 <span>{post.author}</span>
               </div>
               <span>•</span>
@@ -120,15 +120,15 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-4 lg:gap-16">
             {/* Main Article Content */}
             <div className="lg:col-span-3">
-              <article className="prose prose-slate max-w-none text-slate-700 text-base leading-relaxed [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:scroll-mt-40 [&_h2]:font-headline [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h3]:mt-6 [&_h3]:font-semibold [&_p]:my-4 [&_ul]:my-4 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:my-2 [&_a]:text-amber-700 [&_a]:underline [&_a]:underline-offset-4 [&_table]:w-full [&_table]:border-collapse [&_th]:border [&_th]:border-slate-200 [&_th]:bg-slate-100 [&_th]:p-3 [&_th]:text-left [&_td]:border [&_td]:border-slate-200 [&_td]:p-3 [&_td]:align-top">
+              <article className="prose prose-slate max-w-none text-slate-700 text-base leading-relaxed [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:scroll-mt-40 [&_h2]:font-headline [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-slate-900 [&_h3]:mt-6 [&_h3]:font-semibold [&_p]:my-4 [&_ul]:my-4 [&_ul]:list-disc [&_ul]:pl-6 [&_li]:my-2 [&_a]:text-slate-600 [&_a]:underline [&_a]:underline-offset-4 [&_table]:w-full [&_table]:border-collapse [&_th]:border [&_th]:border-slate-200 [&_th]:bg-slate-100 [&_th]:p-3 [&_th]:text-left [&_td]:border [&_td]:border-slate-200 [&_td]:p-3 [&_td]:align-top">
                 {post.content}
               </article>
 
               {/* Author Reassurance Footer Box */}
               <div className="mt-12 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-md flex flex-col sm:flex-row items-center gap-6">
-                <Avatar className="h-20 w-20 ring-4 ring-amber-500/30 shrink-0">
+                <Avatar className="h-20 w-20 ring-4 ring-slate-500 shrink-0">
                   {authorImage && <AvatarImage src={authorImage.imageUrl} alt={`Portrait de ${post.author}`} data-ai-hint={authorImage.imageHint} />}
-                  <AvatarFallback className="bg-slate-900 text-amber-400 font-extrabold">{post.author.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                  <AvatarFallback className="bg-slate-900 text-slate-300 font-extrabold">{post.author.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                 </Avatar>
                 <div className="space-y-2 text-center sm:text-left">
                   <h4 className="font-headline text-lg font-bold text-slate-900">À propos de l'auteur : {post.author}</h4>
@@ -153,9 +153,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <Card className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
                 <CardHeader className="p-0 space-y-3">
                   <div className="flex justify-center">
-                    <Avatar className="h-20 w-20 ring-4 ring-amber-500/30">
+                    <Avatar className="h-20 w-20 ring-4 ring-slate-500">
                       {authorImage && <AvatarImage src={authorImage.imageUrl} alt={`Portrait de ${post.author}`} data-ai-hint={authorImage.imageHint} />}
-                      <AvatarFallback className="bg-slate-900 text-amber-400 font-extrabold">{post.author.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                      <AvatarFallback className="bg-slate-900 text-slate-300 font-extrabold">{post.author.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                     </Avatar>
                   </div>
                   <CardTitle className="font-headline text-lg font-bold text-slate-900">
@@ -186,10 +186,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                           <Link
                             href={`/services/${service.slug}`}
                             className={cn(
-                              "flex items-center gap-2.5 rounded-xl p-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-100 hover:text-amber-700 transition-colors"
+                              "flex items-center gap-2.5 rounded-xl p-2.5 text-xs font-semibold text-slate-700 hover:bg-slate-100 hover:text-slate-600 transition-colors"
                             )}
                           >
-                            <service.icon className="h-4 w-4 shrink-0 text-amber-600" />
+                            <service.icon className="h-4 w-4 shrink-0 text-slate-600" />
                             <span className="truncate">{service.title}</span>
                           </Link>
                         </li>
@@ -224,7 +224,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
                             )}
                           </div>
                           <div>
-                            <h4 className="font-bold text-xs text-slate-900 group-hover:text-amber-600 transition-colors line-clamp-2 leading-tight">
+                            <h4 className="font-bold text-xs text-slate-900 group-hover:text-slate-600 transition-colors line-clamp-2 leading-tight">
                               {otherPost.title}
                             </h4>
                             <p className="text-[11px] text-slate-500 mt-1">

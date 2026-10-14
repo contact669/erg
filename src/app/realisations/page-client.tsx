@@ -105,8 +105,8 @@ export default function RealisationsPage() {
         <section className="relative isolate overflow-hidden bg-slate-50 border-b border-slate-200/80 py-12 md:py-16 lg:py-20">
           {/* Subtle Ambient Light Gradients */}
           <div className="absolute inset-0 z-0 pointer-events-none">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-slate-50/80 to-slate-50" />
-            <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-amber-400/10 blur-3xl" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-transparent via-slate-50/80 to-slate-50" />
+            <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-slate-100 blur-3xl" />
             <div className="absolute bottom-0 left-1/4 h-96 w-96 rounded-full bg-slate-200/40 blur-3xl" />
           </div>
 
@@ -117,8 +117,8 @@ export default function RealisationsPage() {
               </div>
 
               <div className="flex flex-wrap items-center justify-center gap-3">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 text-xs sm:text-sm font-semibold text-amber-700 shadow-sm">
-                  <Sparkles className="h-4 w-4 text-amber-600" /> Galerie Projets & Avant / Après
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-300 px-4 py-1.5 text-xs sm:text-sm font-semibold text-slate-600 shadow-sm">
+                  <Sparkles className="h-4 w-4 text-slate-600" /> Galerie Projets & Avant / Après
                 </span>
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=ERG-Entreprise+de+R%C3%A9novation+Appartement+%26+Salle+de+Bains+%C3%A0+Paris+et+%C3%8Ele-de-France"
@@ -127,14 +127,14 @@ export default function RealisationsPage() {
                   className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-3.5 py-1 text-xs text-slate-800 shadow-sm hover:bg-white"
                 >
                   <GoogleIcon className="h-4 w-4" />
-                  <span className="font-bold text-amber-600">Avis clients</span>
+                  <span className="font-bold text-slate-600">Avis clients</span>
                   <span className="text-slate-500">• Témoignages clients</span>
                 </a>
               </div>
 
               <h1 className="font-headline text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
                 Nos Réalisations de Rénovation à Paris : <br />
-                <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">
+                <span className="text-slate-900">
                   Des Finitions Nettes & Un Chantier Maîtrisé.
                 </span>
               </h1>
@@ -147,19 +147,19 @@ export default function RealisationsPage() {
               {/* Trust Badges Bar */}
               <div className="flex flex-wrap items-center justify-center gap-4 pt-2 text-xs sm:text-sm font-medium text-slate-700">
                 <div className="flex items-center gap-1.5 bg-white/80 border border-slate-200/80 rounded-full px-3.5 py-1.5 shadow-sm">
-                  <ShieldCheck className="h-4 w-4 text-amber-600" />
+                  <ShieldCheck className="h-4 w-4 text-slate-600" />
                   <span>Garantie Décennale</span>
                 </div>
                 <div className="flex items-center gap-1.5 bg-white/80 border border-slate-200/80 rounded-full px-3.5 py-1.5 shadow-sm">
-                  <Clock className="h-4 w-4 text-amber-600" />
+                  <Clock className="h-4 w-4 text-slate-600" />
                   <span>Planning Respecté</span>
                 </div>
                 <div className="flex items-center gap-1.5 bg-white/80 border border-slate-200/80 rounded-full px-3.5 py-1.5 shadow-sm">
-                  <CheckCircle2 className="h-4 w-4 text-amber-600" />
+                  <CheckCircle2 className="h-4 w-4 text-slate-600" />
                   <span>Interlocuteur Unique</span>
                 </div>
                 <div className="flex items-center gap-1.5 bg-white/80 border border-slate-200/80 rounded-full px-3.5 py-1.5 shadow-sm">
-                  <MapPin className="h-4 w-4 text-amber-600" />
+                  <MapPin className="h-4 w-4 text-slate-600" />
                   <span>Paris • 92 • 93 • 94</span>
                 </div>
               </div>
@@ -169,7 +169,7 @@ export default function RealisationsPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="h-13 px-7 bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 text-base shadow-lg shadow-amber-500/20 rounded-xl"
+                  className="h-13 px-7 bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 text-base shadow-lg rounded-xl"
                 >
                   <Link href="/devis">
                     Estimer mon projet de rénovation <ArrowRight className="ml-2 h-5 w-5" />
@@ -182,7 +182,7 @@ export default function RealisationsPage() {
                   className="h-13 px-6 border-slate-300 bg-white text-slate-900 hover:bg-slate-100 text-base rounded-xl shadow-sm"
                 >
                   <a href="tel:+33699961375">
-                    <Phone className="mr-2 h-4 w-4 text-amber-600" />
+                    <Phone className="mr-2 h-4 w-4 text-slate-600" />
                     06 99 96 13 75
                   </a>
                 </Button>
@@ -197,13 +197,13 @@ export default function RealisationsPage() {
             <div className="mx-auto max-w-6xl">
               <div className="rounded-3xl border border-slate-200 bg-white p-6 md:p-8 lg:p-10 shadow-xl relative overflow-hidden">
                 {/* Background glow */}
-                <div className="absolute top-0 right-0 -mt-12 -mr-12 h-64 w-64 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
+                <div className="absolute top-0 right-0 -mt-12 -mr-12 h-64 w-64 rounded-full bg-slate-100 blur-3xl pointer-events-none" />
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                   {/* Left Column: Featured Description */}
                   <div className="lg:col-span-6 space-y-5">
-                    <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/30 px-3.5 py-1 text-xs font-semibold text-amber-700">
-                      <Sparkles className="h-3.5 w-3.5 text-amber-600" /> Projet à la Une • Avant / Après
+                    <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 border border-slate-300 px-3.5 py-1 text-xs font-semibold text-slate-600">
+                      <Sparkles className="h-3.5 w-3.5 text-slate-600" /> Projet à la Une • Avant / Après
                     </div>
 
                     <h2 className="font-headline text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
@@ -215,12 +215,12 @@ export default function RealisationsPage() {
                     </p>
 
                     {featuredProject.testimonial && (
-                      <div className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-4 sm:p-5 relative">
-                        <Quote className="h-6 w-6 text-amber-500/40 absolute top-4 left-4" />
+                      <div className="rounded-2xl border border-slate-300 bg-slate-100 p-4 sm:p-5 relative">
+                        <Quote className="h-6 w-6 text-slate-600 absolute top-4 left-4" />
                         <p className="pl-6 text-xs sm:text-sm text-slate-700 italic font-medium leading-relaxed">
                           "{featuredProject.testimonial.quote}"
                         </p>
-                        <p className="pl-6 mt-2 text-xs font-bold text-amber-700">
+                        <p className="pl-6 mt-2 text-xs font-bold text-slate-600">
                           — {featuredProject.testimonial.author}
                         </p>
                       </div>
@@ -276,7 +276,7 @@ export default function RealisationsPage() {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Rechercher un mot-clé (ex: studio, douche, parquet, 11e)..."
-                    className="pl-10 pr-10 h-11 rounded-xl border-slate-200 bg-slate-50/80 text-sm text-slate-900 focus:bg-white focus:border-amber-500 focus:ring-amber-500/20 shadow-inner"
+                    className="pl-10 pr-10 h-11 rounded-xl border-slate-200 bg-slate-50/80 text-sm text-slate-900 focus:bg-white focus:border-slate-300 focus:ring-slate-500 shadow-inner"
                     aria-label="Rechercher une réalisation"
                   />
                   {query && (
@@ -294,7 +294,7 @@ export default function RealisationsPage() {
                 {/* Counter & Reset */}
                 <div className="flex items-center justify-between md:justify-end gap-3 text-xs sm:text-sm font-medium text-slate-600">
                   <div className="flex items-center gap-2 bg-slate-100 px-3.5 py-2 rounded-xl border border-slate-200">
-                    <SlidersHorizontal className="h-4 w-4 text-amber-600" />
+                    <SlidersHorizontal className="h-4 w-4 text-slate-600" />
                     <span>
                       <strong className="text-slate-900 font-bold">{filteredProjects.length}</strong>{" "}
                       {filteredProjects.length > 1 ? "réalisations trouvées" : "réalisation trouvée"}
@@ -306,7 +306,7 @@ export default function RealisationsPage() {
                       variant="ghost"
                       size="sm"
                       onClick={resetFilters}
-                      className="h-9 px-3 text-amber-700 hover:text-amber-800 hover:bg-amber-50 font-semibold text-xs rounded-lg"
+                      className="h-9 px-3 text-slate-600 hover:text-slate-600 hover:bg-slate-700 font-semibold text-xs rounded-lg"
                     >
                       Réinitialiser les filtres
                     </Button>
@@ -384,8 +384,8 @@ export default function RealisationsPage() {
                   {/* SEO & METHODOLOGY CARD */}
                   <div className="mt-20 rounded-3xl border border-slate-200 bg-white p-8 md:p-10 shadow-lg relative overflow-hidden">
                     <div className="max-w-3xl space-y-4">
-                      <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/30 px-3.5 py-1 text-xs font-semibold text-amber-700">
-                        <ShieldCheck className="h-4 w-4 text-amber-600" /> Savoir-Faire & Exigence ERG
+                      <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 border border-slate-300 px-3.5 py-1 text-xs font-semibold text-slate-600">
+                        <ShieldCheck className="h-4 w-4 text-slate-600" /> Savoir-Faire & Exigence ERG
                       </div>
 
                       <h2 className="font-headline text-2xl md:text-3xl font-extrabold text-slate-900">
@@ -398,19 +398,19 @@ export default function RealisationsPage() {
 
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
                         <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-                          <CheckCircle2 className="h-5 w-5 text-amber-600 mb-2" />
+                          <CheckCircle2 className="h-5 w-5 text-slate-600 mb-2" />
                           <h4 className="font-bold text-sm text-slate-900">Devis Transparent</h4>
                           <p className="text-xs text-slate-600 mt-1">Chiffrage clair poste par poste sans mauvaises surprises.</p>
                         </div>
 
                         <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-                          <Clock className="h-5 w-5 text-amber-600 mb-2" />
+                          <Clock className="h-5 w-5 text-slate-600 mb-2" />
                           <h4 className="font-bold text-sm text-slate-900">Délais Garantis</h4>
                           <p className="text-xs text-slate-600 mt-1">Planning d'exécution validé et scrupuleusement tenu.</p>
                         </div>
 
                         <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
-                          <ShieldCheck className="h-5 w-5 text-amber-600 mb-2" />
+                          <ShieldCheck className="h-5 w-5 text-slate-600 mb-2" />
                           <h4 className="font-bold text-sm text-slate-900">Garantie Décennale</h4>
                           <p className="text-xs text-slate-600 mt-1">Tous vos travaux sous assurance et normes en vigueur.</p>
                         </div>
@@ -470,7 +470,7 @@ function Chip({
         <span
           className={[
             "rounded-full px-2 py-0.5 text-[11px] font-bold",
-            active ? "bg-amber-500 text-slate-950" : "bg-slate-100 text-slate-600",
+            active ? "bg-slate-700 text-white" : "bg-slate-100 text-slate-600",
           ].join(" ")}
         >
           {count}
@@ -483,7 +483,7 @@ function Chip({
 function EmptyState({ onReset }: { onReset: () => void }) {
   return (
     <div className="rounded-3xl border border-slate-200 bg-white p-12 text-center shadow-sm max-w-xl mx-auto my-12">
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-amber-50 border border-amber-200 mb-4 text-amber-600">
+      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-slate-700 border border-slate-300 mb-4 text-slate-600">
         <Search className="h-6 w-6" />
       </div>
       <h3 className="text-xl font-bold text-slate-900">Aucune réalisation ne correspond à votre recherche</h3>
@@ -517,7 +517,7 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
   const altText = imagesAreIllustrative ? `Photo d’illustration — ${project.title}` : mode === "after" ? project.title : `${project.images.beforeLabel || "Avant travaux"} — ${project.title}`
 
   return (
-    <Card className="group flex flex-col justify-between h-full overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm hover:shadow-xl hover:border-amber-500/40 transition-all duration-300 hover:-translate-y-1">
+    <Card className="group flex flex-col justify-between h-full overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 hover:-translate-y-1">
       <CardContent className="p-0 flex flex-col h-full">
         {/* IMAGE CONTAINER */}
         <div className="relative h-64 w-full overflow-hidden bg-slate-100">
@@ -549,7 +549,7 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
                 className={[
                   "px-3.5 py-1.5 text-xs font-bold rounded-full transition-all duration-200",
                   mode === "before"
-                    ? "bg-amber-500 text-slate-950 shadow-sm"
+                    ? "bg-slate-700 text-white shadow-sm"
                     : "text-slate-300 hover:text-white hover:bg-white/10",
                 ].join(" ")}
               >
@@ -564,7 +564,7 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
                 className={[
                   "px-3.5 py-1.5 text-xs font-bold rounded-full transition-all duration-200",
                   mode === "after"
-                    ? "bg-amber-500 text-slate-950 shadow-sm"
+                    ? "bg-slate-700 text-white shadow-sm"
                     : "text-slate-300 hover:text-white hover:bg-white/10",
                 ].join(" ")}
               >
@@ -577,7 +577,7 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
         {/* CARD DETAILS */}
         <div className="p-6 flex flex-col justify-between flex-grow space-y-4">
           <div className="space-y-2">
-            <h3 className="font-headline text-xl font-bold tracking-tight text-slate-900 group-hover:text-amber-600 transition-colors">
+            <h3 className="font-headline text-xl font-bold tracking-tight text-slate-900 group-hover:text-slate-600 transition-colors">
               {project.title}
             </h3>
 
@@ -592,7 +592,7 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
               <p className="text-xs text-slate-700 italic line-clamp-2">
                 "{project.testimonial.quote}"
               </p>
-              <p className="mt-1 text-[11px] font-bold text-amber-700">
+              <p className="mt-1 text-[11px] font-bold text-slate-600">
                 — {project.testimonial.author}
               </p>
             </div>
@@ -601,10 +601,10 @@ function ProjectCard({ project }: { project: (typeof allProjects)[0] }) {
           <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
             <Link
               href={`/realisations/${project.slug}`}
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 group-hover:text-amber-600 transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-900 group-hover:text-slate-600 transition-colors"
             >
               <span>Voir la réalisation</span>
-              <ArrowRight className="h-4 w-4 text-amber-600 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="h-4 w-4 text-slate-600 transition-transform group-hover:translate-x-1" />
             </Link>
             <span className="text-[11px] font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">
               Paris & IDF

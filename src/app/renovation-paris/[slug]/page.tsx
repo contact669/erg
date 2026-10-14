@@ -170,7 +170,7 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
           
           <div className="container relative z-10">
             <div className="mx-auto max-w-4xl text-center space-y-4">
-              <div className="flex items-center justify-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-amber-400">
+              <div className="flex items-center justify-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-300">
                 <Link href="/" className="hover:underline">Accueil</Link>
                 <ChevronRight className="h-3.5 w-3.5 text-slate-500" />
                 <Link href="/renovation-paris" className="hover:underline">Paris</Link>
@@ -178,14 +178,14 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
                 <span className="text-white">{data.postalCode}</span>
               </div>
 
-              <span className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-xs font-semibold text-amber-400">
+              <span className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-slate-100 px-4 py-1.5 text-xs font-semibold text-slate-600">
                 <MapPin className="h-4 w-4" />
                 {data.name} • Tous Quartiers
               </span>
 
               <h1 className="font-headline text-4xl font-extrabold sm:text-5xl lg:text-6xl tracking-tight leading-tight">
                 Rénovation d’Appartement à <br />
-                <span className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 bg-clip-text text-transparent">
+                <span className="text-slate-900">
                   {data.name}
                 </span>
               </h1>
@@ -197,22 +197,22 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
               {/* Badges */}
               <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
                 <div className="rounded-xl border border-slate-800 bg-slate-800/60 p-3 backdrop-blur-md">
-                  <ShieldCheck className="h-5 w-5 text-amber-400 mb-1" />
+                  <ShieldCheck className="h-5 w-5 text-slate-300 mb-1" />
                   <span className="block text-xs font-bold text-white">Garantie 10 Ans</span>
                   <span className="text-[11px] text-slate-400">Décennale vérifiée</span>
                 </div>
                 <div className="rounded-xl border border-slate-800 bg-slate-800/60 p-3 backdrop-blur-md">
-                  <Clock3 className="h-5 w-5 text-amber-400 mb-1" />
+                  <Clock3 className="h-5 w-5 text-slate-300 mb-1" />
                   <span className="block text-xs font-bold text-white">Devis sous 24h</span>
                   <span className="text-[11px] text-slate-400">Visite offerte</span>
                 </div>
                 <div className="rounded-xl border border-slate-800 bg-slate-800/60 p-3 backdrop-blur-md">
-                  <Users className="h-5 w-5 text-amber-400 mb-1" />
+                  <Users className="h-5 w-5 text-slate-300 mb-1" />
                   <span className="block text-xs font-bold text-white">Interlocuteur Unique</span>
                   <span className="text-[11px] text-slate-400">Chef de projet dédié</span>
                 </div>
                 <div className="rounded-xl border border-slate-800 bg-slate-800/60 p-3 backdrop-blur-md">
-                  <CheckCircle2 className="h-5 w-5 text-amber-400 mb-1" />
+                  <CheckCircle2 className="h-5 w-5 text-slate-300 mb-1" />
                   <span className="block text-xs font-bold text-white">Clé en Main</span>
                   <span className="text-[11px] text-slate-400">Conception & Travaux</span>
                 </div>
@@ -227,7 +227,7 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
                 </Button>
                 <Button asChild size="lg" variant="outline" className="h-14 px-6 border-slate-700 bg-slate-800/80 text-white hover:bg-slate-800 text-base rounded-xl w-full sm:w-auto">
                   <a href={`tel:${PHONE_E164}`}>
-                    <Phone className="mr-2 h-5 w-5 text-amber-400" />
+                    <Phone className="mr-2 h-5 w-5 text-slate-300" />
                     {PHONE_DISPLAY}
                   </a>
                 </Button>
@@ -241,12 +241,12 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
           <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               <div className="lg:col-span-7 space-y-6">
-                <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/30 px-3 py-1 text-xs font-semibold text-amber-700">
-                  <Sparkles className="h-3.5 w-3.5 text-amber-600" /> Expertise Locale & Architecture
+                <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-600">
+                  <Sparkles className="h-3.5 w-3.5 text-slate-600" /> Expertise Locale & Architecture
                 </div>
 
                 <h2 className="font-headline text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
-                  Spécificités de Rénovation dans le <span className="text-amber-600">{data.postalCode}</span>
+                  Spécificités de Rénovation dans le <span className="text-slate-600">{data.postalCode}</span>
                 </h2>
 
                 <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
@@ -260,7 +260,7 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
                   </div>
                   <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
                     <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">Fourchette indicative de travaux</span>
-                    <span className="text-sm font-bold text-amber-700 block">{data.avgPricePerSqm}</span>
+                    <span className="text-sm font-bold text-slate-600 block">{data.avgPricePerSqm}</span>
                   </div>
                 </div>
 
@@ -279,7 +279,7 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
               {/* Interactive Before/After Card */}
               <div className="lg:col-span-5">
                 <div className="rounded-3xl bg-white p-4 shadow-2xl border border-slate-200 space-y-3">
-                  <span className="text-xs font-bold uppercase tracking-wider text-amber-700 block">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-600 block">
                     Exemple de transformation ERG
                   </span>
                   <BeforeAfterSlider
@@ -316,7 +316,7 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
               <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
                 <Card className="rounded-2xl border border-slate-200 shadow-md hover:shadow-xl transition-all">
                   <CardHeader>
-                    <div className="h-12 w-12 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-2">
+                    <div className="h-12 w-12 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center mb-2">
                       <Building2 className="h-6 w-6" />
                     </div>
                     <CardTitle className="text-xl font-bold">Rénovation Appartement Clé en Main</CardTitle>
@@ -325,7 +325,7 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button variant="link" asChild className="p-0 text-amber-700 font-bold">
+                    <Button variant="link" asChild className="p-0 text-slate-600 font-bold">
                       <Link href="/services/renovation-appartement">
                         En savoir plus <ArrowRight className="ml-1 h-4 w-4" />
                       </Link>
@@ -335,7 +335,7 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
 
                 <Card className="rounded-2xl border border-slate-200 shadow-md hover:shadow-xl transition-all">
                   <CardHeader>
-                    <div className="h-12 w-12 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-2">
+                    <div className="h-12 w-12 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center mb-2">
                       <Bath className="h-6 w-6" />
                     </div>
                     <CardTitle className="text-xl font-bold">Rénovation Salle de Bain</CardTitle>
@@ -344,7 +344,7 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button variant="link" asChild className="p-0 text-amber-700 font-bold">
+                    <Button variant="link" asChild className="p-0 text-slate-600 font-bold">
                       <Link href="/services/renovation-salle-de-bain">
                         En savoir plus <ArrowRight className="ml-1 h-4 w-4" />
                       </Link>
@@ -354,7 +354,7 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
 
                 <Card className="rounded-2xl border border-slate-200 shadow-md hover:shadow-xl transition-all">
                   <CardHeader>
-                    <div className="h-12 w-12 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-2">
+                    <div className="h-12 w-12 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center mb-2">
                       <UtensilsCrossed className="h-6 w-6" />
                     </div>
                     <CardTitle className="text-xl font-bold">Rénovation Cuisine Sur-Mesure</CardTitle>
@@ -363,7 +363,7 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button variant="link" asChild className="p-0 text-amber-700 font-bold">
+                    <Button variant="link" asChild className="p-0 text-slate-600 font-bold">
                       <Link href="/services/renovation-cuisine">
                         En savoir plus <ArrowRight className="ml-1 h-4 w-4" />
                       </Link>
@@ -413,7 +413,7 @@ export default function ParisArrondissementPage({ params }: { params: { slug: st
 
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3 max-w-5xl mx-auto">
               {otherArrondissements.map((arr) => (
-                <Button key={arr.slug} asChild variant="outline" className="h-11 rounded-xl text-xs font-bold border-slate-200 hover:border-amber-500 hover:bg-amber-500/10 hover:text-amber-700 transition-all">
+                <Button key={arr.slug} asChild variant="outline" className="h-11 rounded-xl text-xs font-bold border-slate-200 hover:border-slate-300 hover:bg-slate-100 hover:text-slate-600 transition-all">
                   <Link href={`/renovation-paris/${arr.slug}`}>
                     {arr.name.split(" ")[0]} {arr.name.split(" ")[1]} ({arr.postalCode})
                   </Link>

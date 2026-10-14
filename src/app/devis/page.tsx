@@ -22,8 +22,8 @@ export default function DevisPage() {
         <section className="relative isolate overflow-hidden bg-slate-50 border-b border-slate-200/80 py-12 md:py-18 lg:py-20">
           {/* Ambient Warm Glow */}
           <div className="absolute inset-0 z-0 pointer-events-none">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-slate-50/80 to-slate-50" />
-            <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-amber-400/10 blur-3xl" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-transparent via-slate-50/80 to-slate-50" />
+            <div className="absolute top-0 right-1/4 h-96 w-96 rounded-full bg-slate-100 blur-3xl" />
             <div className="absolute bottom-0 left-1/4 h-96 w-96 rounded-full bg-slate-200/40 blur-3xl" />
           </div>
 
@@ -34,11 +34,11 @@ export default function DevisPage() {
               </div>
 
               <div className="flex flex-wrap items-center justify-center gap-3">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-4 py-1.5 text-xs sm:text-sm font-semibold text-amber-700 shadow-sm">
-                  <Sparkles className="h-4 w-4 text-amber-600" /> Visite sur site offerte & devis gratuit
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-300 px-4 py-1.5 text-xs sm:text-sm font-semibold text-slate-600 shadow-sm">
+                  <Sparkles className="h-4 w-4 text-slate-600" /> Visite sur site offerte & devis gratuit
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/90 px-3.5 py-1 text-xs text-slate-800 shadow-sm">
-                  <FileText className="h-4 w-4 text-amber-600" />
+                  <FileText className="h-4 w-4 text-slate-600" />
                   <span className="font-bold text-slate-900">Poste par Poste</span>
                   <span className="text-slate-500">• Sans mauvaises surprises</span>
                 </span>
@@ -46,7 +46,7 @@ export default function DevisPage() {
 
               <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
                 Demande de Devis Rénovation : <br />
-                <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">
+                <span className="text-slate-900">
                   Étude Personnalisée & Diagnostic Gratuit
                 </span>
               </h1>
@@ -58,13 +58,13 @@ export default function DevisPage() {
               {/* Trust Features Bar */}
               <div className="pt-2 flex flex-wrap justify-center gap-3 text-xs sm:text-sm font-semibold text-slate-700">
                 <span className="flex items-center gap-1.5 rounded-full border border-slate-200/90 bg-white/90 px-4 py-1.5 shadow-xs backdrop-blur-md">
-                  <ShieldCheck className="h-4 w-4 text-amber-600" /> Garantie Décennale 10 Ans
+                  <ShieldCheck className="h-4 w-4 text-slate-600" /> Garantie Décennale 10 Ans
                 </span>
                 <span className="flex items-center gap-1.5 rounded-full border border-slate-200/90 bg-white/90 px-4 py-1.5 shadow-xs backdrop-blur-md">
-                  <Clock className="h-4 w-4 text-amber-600" /> Réponse sous 24h ouvrées
+                  <Clock className="h-4 w-4 text-slate-600" /> Réponse sous 24h ouvrées
                 </span>
                 <span className="flex items-center gap-1.5 rounded-full border border-slate-200/90 bg-white/90 px-4 py-1.5 shadow-xs backdrop-blur-md">
-                  <User className="h-4 w-4 text-amber-600" /> Interlocuteur Unique Dédié
+                  <User className="h-4 w-4 text-slate-600" /> Interlocuteur Unique Dédié
                 </span>
               </div>
             </div>
@@ -80,8 +80,8 @@ export default function DevisPage() {
         <section className="border-t border-slate-200/80 bg-white py-12 md:py-16">
           <div className="container">
             <div className="mx-auto max-w-4xl text-center space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/30 px-3.5 py-1 text-xs font-semibold text-amber-700">
-                <Phone className="h-3.5 w-3.5 text-amber-600" /> Échange Direct par Téléphone
+              <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 border border-slate-300 px-3.5 py-1 text-xs font-semibold text-slate-600">
+                <Phone className="h-3.5 w-3.5 text-slate-600" /> Échange Direct par Téléphone
               </div>
               
               <h2 className="font-headline text-2xl sm:text-3xl font-extrabold text-slate-900">
@@ -107,13 +107,13 @@ export default function DevisPage() {
 
               <div className="pt-4 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500 font-semibold">
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-4 w-4 text-amber-600" /> Visite sans engagement
+                  <CheckCircle2 className="h-4 w-4 text-slate-600" /> Visite sans engagement
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-4 w-4 text-amber-600" /> Paris & Petite Couronne (75, 92, 93, 94)
+                  <CheckCircle2 className="h-4 w-4 text-slate-600" /> Paris & Petite Couronne (75, 92, 93, 94)
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="h-4 w-4 text-amber-600" /> Lun-Sam • 9h–20h, fermé le dimanche
+                  <CheckCircle2 className="h-4 w-4 text-slate-600" /> Lun-Sam • 9h–20h, fermé le dimanche
                 </span>
               </div>
             </div>

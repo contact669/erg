@@ -174,7 +174,7 @@ export default function InteractiveQuoteWizard() {
       <div className="bg-slate-900 px-6 py-6 text-white border-b border-slate-800">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500 text-slate-950 font-bold shadow-lg">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-700 text-white font-bold shadow-lg">
               <Calculator className="h-5 w-5" />
             </div>
             <div>
@@ -182,7 +182,7 @@ export default function InteractiveQuoteWizard() {
               <p className="text-xs text-slate-400">Étude technique personnalisée & devis gratuit sans engagement</p>
             </div>
           </div>
-          <span className="rounded-full bg-slate-800 px-3.5 py-1 text-xs font-semibold text-amber-400 border border-slate-700">
+          <span className="rounded-full bg-slate-800 px-3.5 py-1 text-xs font-semibold text-slate-300 border border-slate-700">
             Étape {step} / 4
           </span>
         </div>
@@ -190,7 +190,7 @@ export default function InteractiveQuoteWizard() {
         {/* Progress Bar */}
         <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
           <motion.div
-            className="h-full bg-gradient-to-r from-amber-500 to-amber-400"
+            className="h-full bg-slate-400"
             initial={{ width: "25%" }}
             animate={{ width: `${(step / 4) * 100}%` }}
             transition={{ duration: 0.3 }}
@@ -228,14 +228,14 @@ export default function InteractiveQuoteWizard() {
                       onClick={() => setProjectType(item.id)}
                       className={`relative cursor-pointer rounded-2xl border p-5 transition-all duration-200 ${
                         isSelected
-                          ? "border-amber-500 bg-amber-500/10 shadow-md ring-2 ring-amber-500/50"
+                          ? "border-slate-300 bg-slate-100 shadow-md ring-2 ring-slate-500"
                           : "border-slate-200 bg-slate-50/50 hover:border-slate-300"
                       }`}
                     >
                       <div className="flex items-start gap-4">
                         <div
                           className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${
-                            isSelected ? "bg-amber-500 text-slate-950" : "bg-slate-200 text-slate-700"
+                            isSelected ? "bg-slate-700 text-white" : "bg-slate-200 text-slate-700"
                           }`}
                         >
                           <Icon className="h-6 w-6" />
@@ -246,7 +246,7 @@ export default function InteractiveQuoteWizard() {
                         </div>
                       </div>
                       {isSelected && (
-                        <CheckCircle2 className="absolute top-4 right-4 h-5 w-5 text-amber-500" />
+                        <CheckCircle2 className="absolute top-4 right-4 h-5 w-5 text-slate-600" />
                       )}
                     </div>
                   )
@@ -289,7 +289,7 @@ export default function InteractiveQuoteWizard() {
                   <Label className="text-base font-semibold text-slate-900">
                     Superficie à rénover :
                   </Label>
-                  <span className="rounded-xl bg-amber-500/20 px-4 py-1.5 text-lg font-bold text-amber-800 border border-amber-500/30">
+                  <span className="rounded-xl bg-slate-100 px-4 py-1.5 text-lg font-bold text-slate-600 border border-slate-300">
                     {surface} m²
                   </span>
                 </div>
@@ -322,7 +322,7 @@ export default function InteractiveQuoteWizard() {
                         onClick={() => setScope(item.id)}
                         className={`cursor-pointer rounded-xl border p-4 transition-all ${
                           isSelected
-                            ? "border-amber-500 bg-amber-500/10 ring-2 ring-amber-500/50"
+                            ? "border-slate-300 bg-slate-100 ring-2 ring-slate-500"
                             : "border-slate-200 hover:border-slate-300"
                         }`}
                       >
@@ -376,12 +376,12 @@ export default function InteractiveQuoteWizard() {
                       onClick={() => setFinish(item.id)}
                       className={`relative cursor-pointer rounded-2xl border p-6 transition-all ${
                         isSelected
-                          ? "border-amber-500 bg-amber-500/10 shadow-lg ring-2 ring-amber-500/50"
+                          ? "border-slate-300 bg-slate-100 shadow-lg ring-2 ring-slate-500"
                           : "border-slate-200 hover:border-slate-300"
                       }`}
                     >
                       <Sparkles
-                        className={`h-6 w-6 mb-3 ${isSelected ? "text-amber-600" : "text-slate-400"}`}
+                        className={`h-6 w-6 mb-3 ${isSelected ? "text-slate-600" : "text-slate-400"}`}
                       />
                       <h5 className="font-bold text-base text-slate-900 mb-2">{item.title}</h5>
                       <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
@@ -394,7 +394,7 @@ export default function InteractiveQuoteWizard() {
               <div className="rounded-2xl bg-slate-900 p-6 text-white border border-slate-800 shadow-xl space-y-4">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
                   <div>
-                    <span className="inline-flex items-center gap-1.5 text-xs text-amber-400 font-bold uppercase tracking-wider">
+                    <span className="inline-flex items-center gap-1.5 text-xs text-slate-300 font-bold uppercase tracking-wider">
                       <Sparkles className="h-3.5 w-3.5" /> Synthèse de Votre Demande
                     </span>
                     <h5 className="text-xl font-bold text-white mt-1">
@@ -405,23 +405,23 @@ export default function InteractiveQuoteWizard() {
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-2 bg-slate-800 px-3.5 py-2 rounded-xl border border-slate-700 text-xs font-semibold text-amber-300">
-                    <Clock className="h-4 w-4 text-amber-400 shrink-0" />
+                  <div className="flex items-center gap-2 bg-slate-800 px-3.5 py-2 rounded-xl border border-slate-700 text-xs font-semibold text-slate-300">
+                    <Clock className="h-4 w-4 text-slate-300 shrink-0" />
                     <span>Durée estimée : {selectedProj.estimatedDuration}</span>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-300 pt-1">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-amber-400 shrink-0" />
+                    <CheckCircle2 className="h-4 w-4 text-slate-300 shrink-0" />
                     <span>Visite sur site offerte sous 48h</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-amber-400 shrink-0" />
+                    <CheckCircle2 className="h-4 w-4 text-slate-300 shrink-0" />
                     <span>Devis poste par poste sans surprise</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-amber-400 shrink-0" />
+                    <CheckCircle2 className="h-4 w-4 text-slate-300 shrink-0" />
                     <span>Garantie Décennale 10 Ans</span>
                   </div>
                 </div>
@@ -466,10 +466,10 @@ export default function InteractiveQuoteWizard() {
                   </div>
 
                   {/* Summary card */}
-                  <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4 flex flex-wrap items-center justify-between gap-2">
+                  <div className="rounded-2xl border border-slate-300 bg-slate-100 p-4 flex flex-wrap items-center justify-between gap-2">
                     <div className="text-xs sm:text-sm">
                       <span className="font-semibold text-slate-900">Projet sélectionné : </span>
-                      <span className="font-bold text-amber-800">
+                      <span className="font-bold text-slate-600">
                         {selectedProj.title} ({surface} m²) — {selectedScope.title}
                       </span>
                     </div>
@@ -481,11 +481,11 @@ export default function InteractiveQuoteWizard() {
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div className="space-y-2">
                       <Label htmlFor="fullName" className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-700">
-                        <User className="h-4 w-4 text-amber-600" /> Nom & Prénom *
+                        <User className="h-4 w-4 text-slate-600" /> Nom & Prénom *
                       </Label>
                       <Input
                         id="fullName"
-                        className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-amber-500 text-sm"
+                        className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-slate-300 text-sm"
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
                         placeholder="Jean Dupont"
@@ -495,12 +495,12 @@ export default function InteractiveQuoteWizard() {
 
                     <div className="space-y-2">
                       <Label htmlFor="phone" className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-700">
-                        <Phone className="h-4 w-4 text-amber-600" /> Téléphone *
+                        <Phone className="h-4 w-4 text-slate-600" /> Téléphone *
                       </Label>
                       <Input
                         id="phone"
                         type="tel"
-                        className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-amber-500 text-sm"
+                        className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-slate-300 text-sm"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="06 12 34 56 78"
@@ -510,12 +510,12 @@ export default function InteractiveQuoteWizard() {
 
                     <div className="space-y-2">
                       <Label htmlFor="email" className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-700">
-                        <Mail className="h-4 w-4 text-amber-600" /> Adresse Email *
+                        <Mail className="h-4 w-4 text-slate-600" /> Adresse Email *
                       </Label>
                       <Input
                         id="email"
                         type="email"
-                        className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-amber-500 text-sm"
+                        className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-slate-300 text-sm"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="jean.dupont@email.com"
@@ -525,11 +525,11 @@ export default function InteractiveQuoteWizard() {
 
                     <div className="space-y-2">
                       <Label htmlFor="postalCode" className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-700">
-                        <MapPin className="h-4 w-4 text-amber-600" /> Ville ou Code Postal
+                        <MapPin className="h-4 w-4 text-slate-600" /> Ville ou Code Postal
                       </Label>
                       <Input
                         id="postalCode"
-                        className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-amber-500 text-sm"
+                        className="h-11 rounded-xl border-slate-200 bg-slate-50/70 focus:bg-white focus:border-slate-300 text-sm"
                         value={postalCode}
                         onChange={(e) => setPostalCode(e.target.value)}
                         placeholder="Paris 11e, 92100, 94000..."
@@ -552,13 +552,13 @@ export default function InteractiveQuoteWizard() {
 
                   <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600 pt-2 border-t border-slate-100">
                     <span className="flex items-center gap-1.5 font-medium">
-                      <ShieldCheck className="h-4 w-4 text-amber-600" /> Garantie Décennale
+                      <ShieldCheck className="h-4 w-4 text-slate-600" /> Garantie Décennale
                     </span>
                     <span className="flex items-center gap-1.5 font-medium">
-                      <Clock className="h-4 w-4 text-amber-600" /> Réponse sous 24h
+                      <Clock className="h-4 w-4 text-slate-600" /> Réponse sous 24h
                     </span>
                     <span className="flex items-center gap-1.5 font-medium">
-                      <CheckCircle2 className="h-4 w-4 text-amber-600" /> Visite offerte
+                      <CheckCircle2 className="h-4 w-4 text-slate-600" /> Visite offerte
                     </span>
                   </div>
 

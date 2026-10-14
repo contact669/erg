@@ -71,7 +71,7 @@ export default function CookieConsent({ className }: { className?: string }) {
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
             <div className="flex items-start gap-3">
               <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent/10">
-                <Cookie className="h-5 w-5 text-accent" />
+                <Cookie className="h-5 w-5 text-slate-600" />
               </div>
 
               <div className="space-y-1.5">

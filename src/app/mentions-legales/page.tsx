@@ -25,15 +25,15 @@ export default function MentionsLegalesPage() {
         {/* HERO SECTION */}
         <section className="relative isolate overflow-hidden bg-slate-50 border-b border-slate-200/80 py-12 md:py-16">
           <div className="absolute inset-0 z-0 pointer-events-none">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-500/10 via-slate-50/80 to-slate-50" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-transparent via-slate-50/80 to-slate-50" />
           </div>
 
           <div className="container relative z-10">
             <div className="mx-auto max-w-3xl text-center space-y-4">
               <Breadcrumbs />
               
-              <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/10 border border-amber-500/30 px-3.5 py-1 text-xs font-semibold text-amber-700">
-                <Scale className="h-3.5 w-3.5 text-amber-600" /> Cadre Juridique & Transparence
+              <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 border border-slate-300 px-3.5 py-1 text-xs font-semibold text-slate-600">
+                <Scale className="h-3.5 w-3.5 text-slate-600" /> Cadre Juridique & Transparence
               </div>
 
               <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900">
@@ -58,7 +58,7 @@ export default function MentionsLegalesPage() {
               {/* 1. Éditeur */}
               <div className="space-y-3 pt-4 border-t border-slate-100">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 font-bold">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-slate-600 font-bold">
                     1
                   </div>
                   <h2 className="font-headline text-xl font-bold text-slate-900">Éditeur du site</h2>
@@ -73,9 +73,9 @@ export default function MentionsLegalesPage() {
                   <p><strong>SIRET du siège :</strong> {COMPANY.siret}</p>
                   {COMPANY.vatNumber && <p><strong>N° de TVA intracommunautaire :</strong> {COMPANY.vatNumber}</p>}
                   <p><strong>Siège social :</strong> {COMPANY.address}, France</p>
-                  <p><a href={COMPANY.registryUrl} className="text-amber-700 hover:underline">Consulter la fiche officielle dans l’Annuaire des entreprises</a></p>
-                  <p><strong>Téléphone direct :</strong> <a href="tel:+33699961375" className="text-amber-700 font-bold hover:underline">06 99 96 13 75</a></p>
-                  <p><strong>Email :</strong> <a href="mailto:contact@erg-renovation.fr" className="text-amber-700 font-bold hover:underline">contact@erg-renovation.fr</a></p>
+                  <p><a href={COMPANY.registryUrl} className="text-slate-600 hover:underline">Consulter la fiche officielle dans l’Annuaire des entreprises</a></p>
+                  <p><strong>Téléphone direct :</strong> <a href="tel:+33699961375" className="text-slate-600 font-bold hover:underline">06 99 96 13 75</a></p>
+                  <p><strong>Email :</strong> <a href="mailto:contact@erg-renovation.fr" className="text-slate-600 font-bold hover:underline">contact@erg-renovation.fr</a></p>
                   <p><strong>Activité :</strong> Rénovation intérieure : électricité, plomberie et sanitaires, peinture et décoration intérieure.</p>
                 </div>
               </div>
@@ -83,7 +83,7 @@ export default function MentionsLegalesPage() {
               {/* 2. Directeur de la publication */}
               <div className="space-y-3 pt-4 border-t border-slate-100">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 font-bold">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-slate-600 font-bold">
                     2
                   </div>
                   <h2 className="font-headline text-xl font-bold text-slate-900">Directeur de la publication</h2>
@@ -96,7 +96,7 @@ export default function MentionsLegalesPage() {
               {/* 3. Hébergement */}
               <div className="space-y-3 pt-4 border-t border-slate-100">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 font-bold">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-slate-600 font-bold">
                     3
                   </div>
                   <h2 className="font-headline text-xl font-bold text-slate-900">Hébergement</h2>
@@ -109,7 +109,7 @@ export default function MentionsLegalesPage() {
               {/* 4. Propriété intellectuelle */}
               <div className="space-y-3 pt-4 border-t border-slate-100">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 font-bold">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-slate-600 font-bold">
                     4
                   </div>
                   <h2 className="font-headline text-xl font-bold text-slate-900">Propriété intellectuelle</h2>
@@ -122,7 +122,7 @@ export default function MentionsLegalesPage() {
               {/* 5. Données personnelles & Cookies */}
               <div className="space-y-3 pt-4 border-t border-slate-100">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 font-bold">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-slate-600 font-bold">
                     5
                   </div>
                   <h2 className="font-headline text-xl font-bold text-slate-900">Données personnelles & Cookies</h2>
@@ -133,11 +133,11 @@ export default function MentionsLegalesPage() {
                   </p>
                   <p>
                     Pour en savoir plus sur la gestion de vos données et exercer vos droits RGPD, consultez notre{" "}
-                    <Link href="/confidentialite" className="font-bold text-slate-900 underline hover:text-amber-700">
+                    <Link href="/confidentialite" className="font-bold text-slate-900 underline hover:text-slate-600">
                       Politique de confidentialité
                     </Link>{" "}
                     ainsi que notre{" "}
-                    <Link href="/cookies" className="font-bold text-slate-900 underline hover:text-amber-700">
+                    <Link href="/cookies" className="font-bold text-slate-900 underline hover:text-slate-600">
                       Politique des cookies
                     </Link>.
                   </p>

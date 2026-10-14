@@ -121,7 +121,7 @@ export default function TravauxCoproprieteSyndicPage() {
         <section className="bg-slate-50 border-b border-slate-200">
           <div className="container mx-auto max-w-6xl px-4 py-12 md:py-16">
             <Breadcrumbs />
-            <p className="mt-6 text-xs font-bold uppercase tracking-wider text-amber-700">Syndics · Gestionnaires · Conseils syndicaux · SCI</p>
+            <p className="mt-6 text-xs font-bold uppercase tracking-wider text-slate-600">Syndics · Gestionnaires · Conseils syndicaux · SCI</p>
             <h1 className="mt-2 text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900">
               Travaux de parties communes pour syndics et copropriétés à Paris
             </h1>
@@ -151,7 +151,7 @@ export default function TravauxCoproprieteSyndicPage() {
             {interventions.map((block) => (
               <div key={block.title} className="rounded-2xl border border-slate-200 p-6">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/10 text-amber-700">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-600">
                     <block.icon className="h-5 w-5" />
                   </span>
                   <h3 className="text-lg font-bold text-slate-900">{block.title}</h3>
@@ -159,7 +159,7 @@ export default function TravauxCoproprieteSyndicPage() {
                 <ul className="mt-4 space-y-2 text-sm text-slate-700">
                   {block.items.map((item) => (
                     <li key={item} className="flex gap-2">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" /> {item}
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-slate-600" /> {item}
                     </li>
                   ))}
                 </ul>
@@ -168,8 +168,8 @@ export default function TravauxCoproprieteSyndicPage() {
           </div>
           <p className="mt-6 text-sm text-slate-600">
             Pour les travaux privatifs dans les appartements, voir aussi nos pages{" "}
-            <Link href="/services/peinture-finitions" className="text-amber-700 underline">peinture et finitions</Link> et{" "}
-            <Link href="/renovation-paris" className="text-amber-700 underline">rénovation à Paris</Link>.
+            <Link href="/services/peinture-finitions" className="text-slate-600 underline">peinture et finitions</Link> et{" "}
+            <Link href="/renovation-paris" className="text-slate-600 underline">rénovation à Paris</Link>.
           </p>
         </section>
 
@@ -179,7 +179,7 @@ export default function TravauxCoproprieteSyndicPage() {
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {method.map((step) => (
                 <div key={step.title} className="rounded-2xl bg-white border border-slate-200 p-5">
-                  <step.icon className="h-6 w-6 text-amber-600" />
+                  <step.icon className="h-6 w-6 text-slate-600" />
                   <h3 className="mt-3 font-bold text-slate-900">{step.title}</h3>
                   <p className="mt-2 text-sm text-slate-600 leading-relaxed">{step.text}</p>
                 </div>
@@ -192,9 +192,9 @@ export default function TravauxCoproprieteSyndicPage() {
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900">Zone d'intervention</h2>
           <p className="mt-4 text-slate-700 leading-relaxed">
             Paris, tous arrondissements, et la petite couronne :{" "}
-            <Link href="/renovation-hauts-de-seine" className="text-amber-700 underline">Hauts-de-Seine (92)</Link>,{" "}
-            <Link href="/renovation-seine-saint-denis" className="text-amber-700 underline">Seine-Saint-Denis (93)</Link> et{" "}
-            <Link href="/renovation-val-de-marne" className="text-amber-700 underline">Val-de-Marne (94)</Link>. Siège : {COMPANY.address}.
+            <Link href="/renovation-hauts-de-seine" className="text-slate-600 underline">Hauts-de-Seine (92)</Link>,{" "}
+            <Link href="/renovation-seine-saint-denis" className="text-slate-600 underline">Seine-Saint-Denis (93)</Link> et{" "}
+            <Link href="/renovation-val-de-marne" className="text-slate-600 underline">Val-de-Marne (94)</Link>. Siège : {COMPANY.address}.
           </p>
         </section>
 
@@ -205,7 +205,7 @@ export default function TravauxCoproprieteSyndicPage() {
               <details key={item.q} className="group p-5">
                 <summary className="cursor-pointer list-none font-semibold text-slate-900 flex justify-between gap-4">
                   {item.q}
-                  <span className="text-amber-600 group-open:rotate-45 transition-transform">+</span>
+                  <span className="text-slate-600 group-open:rotate-45 transition-transform">+</span>
                 </summary>
                 <p className="mt-3 text-sm text-slate-600 leading-relaxed">{item.a}</p>
               </details>

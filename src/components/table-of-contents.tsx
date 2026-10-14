@@ -51,7 +51,7 @@ export default function TableOfContents({ sections }: TableOfContentsProps) {
                 href={`#${section.id}`}
                 className={cn(
                   "block text-muted-foreground transition-colors hover:text-primary",
-                  activeId === section.id && "font-semibold text-accent",
+                  activeId === section.id && "font-semibold text-slate-600",
                   section.level === 'h3' && "pl-4"
                 )}
               >
