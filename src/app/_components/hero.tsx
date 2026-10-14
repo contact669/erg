@@ -46,12 +46,12 @@ const HERO_PROJECTS = [
   },
   {
     id: "salle-de-bain",
-    title: "Salle de Bain 3m²",
-    subtitle: "Optimisation & Luxe",
-    beforeImage: "/images/realisations/renovation-salle-de-bain-3m2-avant.webp",
-    afterImage: "/images/realisations/renovation-salle-de-bain-3m2-apres.webp",
-    beforeLabel: "Ancienne SDB",
-    afterLabel: "SDB Moderne ERG",
+    title: "Petite salle de bain",
+    subtitle: "Rénovation à Paris",
+    beforeImage: "/images/realisations/salle-de-bain-nina-travaux.webp",
+    afterImage: "/images/realisations/salle-de-bain-nina-apres.webp",
+    beforeLabel: "Pendant les travaux",
+    afterLabel: "Salle de bain rénovée",
   },
   {
     id: "cuisine",
