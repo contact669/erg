@@ -24,7 +24,6 @@ export default function SeoExpertise() {
       className="relative overflow-hidden bg-gradient-to-b from-slate-50/50 via-white to-slate-50/70 py-24 md:py-32 border-t border-slate-200/80"
     >
       {/* Subtle Background Glows */}
-      <div className="pointer-events-none absolute top-0 left-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 right-1/4 w-96 h-96 bg-slate-900/5 rounded-full blur-3xl" />
 
       <div className="container relative z-10">
@@ -35,8 +34,8 @@ export default function SeoExpertise() {
             <div className="lg:col-span-7 space-y-8">
               
               {/* Badge Tag */}
-              <div className="inline-flex items-center gap-2.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-5 py-2 text-xs font-bold uppercase tracking-wider text-amber-700 shadow-xs">
-                <Sparkles className="h-4 w-4 text-amber-600 animate-pulse" />
+              <div className="inline-flex items-center gap-2.5 rounded-full bg-slate-100 border border-slate-200 px-5 py-2 text-xs font-bold uppercase tracking-wider text-slate-600 shadow-xs">
+                <Sparkles className="h-4 w-4 text-slate-600" />
                 <span>Savoir-Faire & Exigence Parisienne</span>
               </div>
 
@@ -46,18 +45,18 @@ export default function SeoExpertise() {
                 className="font-headline text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.18]"
               >
                 Entreprise de Rénovation à Paris :{" "}
-                <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">
+                <span className="text-slate-900">
                   Un Chantier Maîtrisé, Du 1er RDV Aux Finitions
                 </span>
               </h2>
 
               {/* Story Paragraphs */}
               <div className="space-y-5 text-base sm:text-lg leading-relaxed text-slate-600 font-normal">
-                <p className="border-l-4 border-amber-500 pl-4 py-1.5 bg-amber-500/5 rounded-r-xl">
+                <p className="border-l-4 border-slate-200 pl-4 py-1.5 bg-slate-100 rounded-r-xl">
                   Chez <strong className="text-slate-900 font-semibold">ERG Rénovation</strong>, nous rénovons des intérieurs à Paris et en Île-de-France avec une exigence simple :{" "}
-                  <span className="font-bold text-slate-900 underline decoration-amber-500/40 underline-offset-4">livrer propre</span>,{" "}
-                  <span className="font-bold text-slate-900 underline decoration-amber-500/40 underline-offset-4">dans les règles</span>, et{" "}
-                  <span className="font-bold text-slate-900 underline decoration-amber-500/40 underline-offset-4">sans zones floues</span>.{" "}
+                  <span className="font-bold text-slate-900 underline decoration-slate-300 underline-offset-4">livrer propre</span>,{" "}
+                  <span className="font-bold text-slate-900 underline decoration-slate-300 underline-offset-4">dans les règles</span>, et{" "}
+                  <span className="font-bold text-slate-900 underline decoration-slate-300 underline-offset-4">sans zones floues</span>.{" "}
                   L’objectif n’est pas seulement “beau” : c’est <strong className="text-slate-900 font-bold">durable</strong>, <strong className="text-slate-900 font-bold">précis</strong>, et <strong className="text-slate-900 font-bold">bien suivi</strong>.
                 </p>
 
@@ -74,7 +73,7 @@ export default function SeoExpertise() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-amber-500 text-slate-950 font-extrabold hover:bg-amber-400 shadow-xl shadow-amber-500/20 px-8 h-14 rounded-2xl text-base"
+                  className="bg-amber-500 text-slate-950 font-extrabold hover:bg-amber-400 shadow-xl px-8 h-14 rounded-2xl text-base"
                 >
                   <Link href="/devis" aria-label="Décrire mon projet de rénovation">
                     Décrire mon projet <ArrowRight className="ml-2 h-5 w-5" />
@@ -88,7 +87,7 @@ export default function SeoExpertise() {
                   className="border-slate-300 bg-white text-slate-900 hover:bg-slate-100 px-7 h-14 rounded-2xl text-base shadow-sm"
                 >
                   <a href={`tel:${PHONE}`} aria-label={`Appeler ERG Rénovation au ${PHONE_DISPLAY}`}>
-                    <Phone className="mr-2 h-5 w-5 text-amber-600" />
+                    <Phone className="mr-2 h-5 w-5 text-slate-600" />
                     Appeler maintenant
                   </a>
                 </Button>
@@ -97,17 +96,17 @@ export default function SeoExpertise() {
               {/* Reassurance Chips */}
               <div className="pt-4 flex flex-wrap gap-2.5 text-xs font-semibold text-slate-700">
                 <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2 shadow-xs">
-                  <MapPin className="h-4 w-4 text-amber-600 shrink-0" />
+                  <MapPin className="h-4 w-4 text-slate-600 shrink-0" />
                   <span>{SERVICE_AREAS.join(" • ")}</span>
                 </span>
                 
                 <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2 shadow-xs">
-                  <CheckCircle2 className="h-4 w-4 text-amber-600 shrink-0" />
+                  <CheckCircle2 className="h-4 w-4 text-slate-600 shrink-0" />
                   <span>Visite sur site & estimation claire</span>
                 </span>
 
                 <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2 shadow-xs">
-                  <ShieldCheck className="h-4 w-4 text-amber-600 shrink-0" />
+                  <ShieldCheck className="h-4 w-4 text-slate-600 shrink-0" />
                   <span>Protection & propreté du chantier</span>
                 </span>
               </div>
@@ -117,13 +116,13 @@ export default function SeoExpertise() {
             <div className="lg:col-span-5 space-y-6">
               
               {/* Card 1: Devis clair & arbitrages */}
-              <Card className="group overflow-hidden rounded-3xl border border-slate-200/90 bg-white p-6 shadow-lg shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/40 hover:shadow-xl">
+              <Card className="group overflow-hidden rounded-3xl border border-slate-200/90 bg-white p-6 shadow-lg shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:border-slate-200 hover:shadow-xl">
                 <CardContent className="p-0 flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-700 font-extrabold text-lg border border-amber-500/20 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-slate-100 text-slate-600 font-extrabold text-lg border border-slate-200 group-hover:bg-slate-100 group-hover:text-slate-950 transition-colors">
                     01
                   </div>
                   <div className="space-y-1.5">
-                    <h3 className="font-headline text-lg font-bold text-slate-900 group-hover:text-amber-700 transition-colors flex items-center gap-2">
+                    <h3 className="font-headline text-lg font-bold text-slate-900 group-hover:text-slate-600 transition-colors flex items-center gap-2">
                       Devis clair & arbitrages facilités
                     </h3>
                     <p className="text-sm font-normal leading-relaxed text-slate-600">
@@ -134,13 +133,13 @@ export default function SeoExpertise() {
               </Card>
 
               {/* Card 2: Coordination de chantier */}
-              <Card className="group overflow-hidden rounded-3xl border border-slate-200/90 bg-white p-6 shadow-lg shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/40 hover:shadow-xl">
+              <Card className="group overflow-hidden rounded-3xl border border-slate-200/90 bg-white p-6 shadow-lg shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:border-slate-200 hover:shadow-xl">
                 <CardContent className="p-0 flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-700 font-extrabold text-lg border border-amber-500/20 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-slate-100 text-slate-600 font-extrabold text-lg border border-slate-200 group-hover:bg-slate-100 group-hover:text-slate-950 transition-colors">
                     02
                   </div>
                   <div className="space-y-1.5">
-                    <h3 className="font-headline text-lg font-bold text-slate-900 group-hover:text-amber-700 transition-colors flex items-center gap-2">
+                    <h3 className="font-headline text-lg font-bold text-slate-900 group-hover:text-slate-600 transition-colors flex items-center gap-2">
                       Coordination de chantier
                     </h3>
                     <p className="text-sm font-normal leading-relaxed text-slate-600">
@@ -151,13 +150,13 @@ export default function SeoExpertise() {
               </Card>
 
               {/* Card 3: Finitions & propreté */}
-              <Card className="group overflow-hidden rounded-3xl border border-slate-200/90 bg-white p-6 shadow-lg shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/40 hover:shadow-xl">
+              <Card className="group overflow-hidden rounded-3xl border border-slate-200/90 bg-white p-6 shadow-lg shadow-slate-200/60 transition-all duration-300 hover:-translate-y-1 hover:border-slate-200 hover:shadow-xl">
                 <CardContent className="p-0 flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-700 font-extrabold text-lg border border-amber-500/20 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-slate-100 text-slate-600 font-extrabold text-lg border border-slate-200 group-hover:bg-slate-100 group-hover:text-slate-950 transition-colors">
                     03
                   </div>
                   <div className="space-y-1.5">
-                    <h3 className="font-headline text-lg font-bold text-slate-900 group-hover:text-amber-700 transition-colors flex items-center gap-2">
+                    <h3 className="font-headline text-lg font-bold text-slate-900 group-hover:text-slate-600 transition-colors flex items-center gap-2">
                       Finitions & propreté : la différence
                     </h3>
                     <p className="text-sm font-normal leading-relaxed text-slate-600">
@@ -171,12 +170,12 @@ export default function SeoExpertise() {
               <div className="rounded-3xl border border-slate-200/90 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 p-6 text-white shadow-xl space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Layers className="h-5 w-5 text-amber-400" />
+                    <Layers className="h-5 w-5 text-slate-300" />
                     <span className="font-headline font-extrabold text-base tracking-wide text-white">
                       Explorer nos services clés
                     </span>
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400 bg-amber-400/10 px-2.5 py-1 rounded-full border border-amber-400/20">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-300 bg-white/10 px-2.5 py-1 rounded-full border border-slate-200">
                     Paris & IDF
                   </span>
                 </div>
@@ -184,34 +183,34 @@ export default function SeoExpertise() {
                 <ul className="grid gap-2.5 pt-1 text-sm font-medium">
                   <li>
                     <Link
-                      className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-slate-200 transition hover:bg-white/10 hover:text-amber-400"
+                      className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-slate-200 transition hover:bg-white/10 hover:text-slate-300"
                       href="/services/renovation-appartement"
                     >
                       <span>Rénovation d’appartement</span>
-                      <ChevronRight className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-amber-400" />
+                      <ChevronRight className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-slate-300" />
                     </Link>
                   </li>
                   <li>
                     <Link
-                      className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-slate-200 transition hover:bg-white/10 hover:text-amber-400"
+                      className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-slate-200 transition hover:bg-white/10 hover:text-slate-300"
                       href="/services/renovation-salle-de-bain"
                     >
                       <span>Rénovation salle de bain</span>
-                      <ChevronRight className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-amber-400" />
+                      <ChevronRight className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-slate-300" />
                     </Link>
                   </li>
                   <li>
                     <Link
-                      className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-slate-200 transition hover:bg-white/10 hover:text-amber-400"
+                      className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-slate-200 transition hover:bg-white/10 hover:text-slate-300"
                       href="/services/renovation-cuisine"
                     >
                       <span>Rénovation cuisine</span>
-                      <ChevronRight className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-amber-400" />
+                      <ChevronRight className="h-4 w-4 text-slate-400 transition-transform group-hover:translate-x-1 group-hover:text-slate-300" />
                     </Link>
                   </li>
                   <li className="pt-1">
                     <Link
-                      className="inline-flex items-center text-xs font-bold text-amber-400 hover:text-amber-300 transition-colors"
+                      className="inline-flex items-center text-xs font-bold text-slate-300 hover:text-slate-300 transition-colors"
                       href="/services"
                     >
                       Voir toutes les prestations <ArrowRight className="ml-1.5 h-3.5 w-3.5" />

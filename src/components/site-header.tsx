@@ -105,26 +105,26 @@ export default function SiteHeader() {
         <div className="container flex items-center justify-between">
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-1.5 text-slate-900 font-bold">
-              <Sparkles className="h-3.5 w-3.5 text-amber-600" />
+              <Sparkles className="h-3.5 w-3.5 text-slate-600" />
               <span>Rénovation Haute Précision • Paris & Île-de-France</span>
             </span>
             <span className="hidden md:inline-flex items-center gap-1 text-slate-500">
-              <MapPin className="h-3 w-3 text-amber-600" /> 75 • 92 • 93 • 94
+              <MapPin className="h-3 w-3 text-slate-600" /> 75 • 92 • 93 • 94
             </span>
           </div>
 
           <div className="flex items-center gap-5">
             <span className="inline-flex items-center gap-1 text-slate-800">
-              <ShieldCheck className="h-3.5 w-3.5 text-amber-600" />
+              <ShieldCheck className="h-3.5 w-3.5 text-slate-600" />
               Garantie Décennale 10 Ans
             </span>
             <a
               href="https://www.google.com/maps/search/?api=1&query=ERG-Entreprise+de+R%C3%A9novation+Appartement+%26+Salle+de+Bains+%C3%A0+Paris+et+%C3%8Ele-de-France"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-slate-900 hover:text-amber-600 transition-colors font-bold"
+              className="inline-flex items-center gap-1 text-slate-900 hover:text-slate-600 transition-colors font-bold"
             >
-              <Star className="h-3.5 w-3.5 fill-amber-500 text-amber-500" />
+              <Star className="h-3.5 w-3.5 fill-slate-500 text-slate-600" />
               <span>Consulter les avis Google</span>
             </a>
           </div>
@@ -157,7 +157,7 @@ export default function SiteHeader() {
                           className={cn(
                             "bg-transparent text-sm font-semibold h-10 px-4 rounded-xl transition-all",
                             "hover:bg-slate-100/80 focus:bg-transparent data-[state=open]:bg-slate-100",
-                            item.active ? "text-amber-700 font-extrabold" : "text-slate-800 hover:text-amber-700"
+                            item.active ? "text-slate-600 font-extrabold" : "text-slate-800 hover:text-slate-600"
                           )}
                         >
                           Services
@@ -167,10 +167,10 @@ export default function SiteHeader() {
                           <div className="w-[720px] p-5 lg:w-[840px] bg-white rounded-3xl border border-slate-200 shadow-2xl">
                             <div className="mb-3 flex items-center justify-between border-b border-slate-100 pb-3">
                               <span className="text-xs font-extrabold uppercase tracking-widest text-slate-900 flex items-center gap-2">
-                                <Sparkles className="h-4 w-4 text-amber-600" />
+                                <Sparkles className="h-4 w-4 text-slate-600" />
                                 Nos prestations de rénovation intérieure
                               </span>
-                              <span className="text-xs font-semibold text-amber-700">
+                              <span className="text-xs font-semibold text-slate-600">
                                 Accompagnement de A à Z
                               </span>
                             </div>
@@ -190,7 +190,7 @@ export default function SiteHeader() {
                             {/* Footer inside mega menu */}
                             <div className="mt-4 flex items-center justify-between rounded-2xl border border-slate-200/90 bg-slate-50 p-4">
                               <div className="flex items-center gap-3">
-                                <UserCheck className="h-5 w-5 text-amber-600" />
+                                <UserCheck className="h-5 w-5 text-slate-600" />
                                 <span className="text-xs font-semibold text-slate-800">
                                   Interlocuteur unique & devis poste par poste
                                 </span>
@@ -199,7 +199,7 @@ export default function SiteHeader() {
                               <div className="flex items-center gap-3">
                                 <Link
                                   href="/services"
-                                  className="text-xs font-bold text-slate-900 hover:text-amber-700 transition-colors"
+                                  className="text-xs font-bold text-slate-900 hover:text-slate-600 transition-colors"
                                 >
                                   Toutes les prestations →
                                 </Link>
@@ -224,8 +224,8 @@ export default function SiteHeader() {
                             "bg-transparent text-sm font-semibold h-10 px-4 rounded-xl transition-all",
                             "hover:bg-slate-100/80 focus:bg-transparent data-[active]:bg-transparent",
                             item.active
-                              ? "text-amber-700 font-extrabold bg-amber-500/10 border border-amber-500/20"
-                              : "text-slate-800 hover:text-amber-700"
+                              ? "text-slate-600 font-extrabold bg-slate-100 border border-slate-200"
+                              : "text-slate-800 hover:text-slate-600"
                           )}
                           aria-current={item.active ? "page" : undefined}
                         >
@@ -246,13 +246,13 @@ export default function SiteHeader() {
               className="hidden md:inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-bold text-slate-900 hover:bg-slate-100 transition-all shadow-2xs"
               aria-label="Appeler ERG Rénovation au 06 99 96 13 75"
             >
-              <Phone className="h-3.5 w-3.5 text-amber-600" />
+              <Phone className="h-3.5 w-3.5 text-slate-600" />
               <span>06 99 96 13 75</span>
             </a>
 
             <Button
               asChild
-              className="hidden sm:inline-flex bg-amber-500 text-slate-950 font-extrabold hover:bg-amber-400 shadow-md shadow-amber-500/20 rounded-xl px-5 h-10 text-xs sm:text-sm"
+              className="hidden sm:inline-flex bg-amber-500 text-slate-950 font-extrabold hover:bg-amber-400 shadow-md rounded-xl px-5 h-10 text-xs sm:text-sm"
             >
               <Link href="/devis" aria-label="Demander un devis gratuit">
                 Devis Gratuit <ArrowRight className="ml-1.5 h-4 w-4" />
@@ -284,18 +284,18 @@ const MegaMenuItem = React.forwardRef<
         ref={ref}
         className={cn(
           "group flex items-start gap-3.5 rounded-2xl border border-slate-200/80 bg-white p-3.5",
-          "transition-all duration-300 hover:-translate-y-0.5 hover:border-amber-500/40 hover:shadow-md",
+          "transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-200 hover:shadow-md",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500",
           className
         )}
         {...props}
       >
-        <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-amber-700 font-bold border border-amber-500/20 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+        <span className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-600 font-bold border border-slate-200 group-hover:bg-slate-100 group-hover:text-slate-950 transition-colors">
           <Icon className="h-5 w-5" aria-hidden="true" />
         </span>
 
         <span className="min-w-0 space-y-0.5">
-          <span className="block text-sm font-bold text-slate-900 group-hover:text-amber-700 transition-colors">
+          <span className="block text-sm font-bold text-slate-900 group-hover:text-slate-600 transition-colors">
             {title}
           </span>
           <span className="block line-clamp-2 text-xs font-normal leading-relaxed text-slate-600">
@@ -398,7 +398,7 @@ function MobileNav({
                 <Link
                   href="/services"
                   onClick={() => setOpen(false)}
-                  className="mt-2 inline-flex items-center gap-2 text-xs font-bold text-amber-700 hover:underline pt-1"
+                  className="mt-2 inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:underline pt-1"
                 >
                   Voir tous les services <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
@@ -408,11 +408,11 @@ function MobileNav({
             {/* Direct Call Box */}
             <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 space-y-2">
               <span className="text-xs font-bold text-slate-900 block flex items-center gap-2">
-                <Phone className="h-4 w-4 text-amber-600" /> Contact direct
+                <Phone className="h-4 w-4 text-slate-600" /> Contact direct
               </span>
               <a
                 href="tel:+33699961375"
-                className="text-base font-extrabold text-slate-900 hover:text-amber-600 transition-colors block"
+                className="text-base font-extrabold text-slate-900 hover:text-slate-600 transition-colors block"
               >
                 06 99 96 13 75
               </a>
@@ -451,7 +451,7 @@ function MobileLink({
       aria-current={active ? "page" : undefined}
       className={cn(
         "flex items-center justify-between rounded-xl px-3 py-2.5 text-base font-semibold transition-colors",
-        active ? "bg-amber-500/10 text-amber-700 font-extrabold" : "text-slate-800 hover:bg-slate-100"
+        active ? "bg-slate-100 text-slate-600 font-extrabold" : "text-slate-800 hover:bg-slate-100"
       )}
     >
       <span>{children}</span>

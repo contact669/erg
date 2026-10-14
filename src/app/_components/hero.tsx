@@ -18,7 +18,7 @@ function GoogleReviewBadge() {
       className="group inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white/90 backdrop-blur-md px-4 py-2 text-xs sm:text-sm text-slate-900 transition hover:bg-white shadow-md"
     >
       <GoogleIcon className="h-5 w-5" />
-      <span className="font-bold text-amber-800">Avis clients</span>
+      <span className="font-bold text-slate-600">Avis clients</span>
 
       <span className="hidden sm:inline text-slate-600">• Témoignages clients</span>
     </a>
@@ -83,7 +83,6 @@ export default function Hero() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-50/95 via-slate-50/90 to-slate-50/70" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-500/15 via-transparent to-transparent" />
       </div>
 
       <div className="container relative z-10">
@@ -92,14 +91,14 @@ export default function Hero() {
           <div className="lg:col-span-6 space-y-5 text-left flex flex-col">
             <div className="flex flex-wrap items-center gap-3">
               <GoogleReviewBadge />
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 px-3 py-1 text-xs font-semibold text-amber-800">
-                <Sparkles className="h-3.5 w-3.5 text-amber-800" /> Rénovation Clé en Main à Paris & 92/93/94
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-600">
+                <Sparkles className="h-3.5 w-3.5 text-slate-600" /> Rénovation Clé en Main à Paris & 92/93/94
               </span>
             </div>
 
             <h1 className="font-headline text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
               Rénovation intérieure <br />
-              <span className="text-amber-800">
+              <span className="text-slate-900">
                 à Paris et en Île-de-France.
               </span>
             </h1>
@@ -111,7 +110,7 @@ export default function Hero() {
             {/* Proof Chips */}
             <div className="hidden sm:grid sm:grid-cols-3 gap-3 pt-2 order-1">
               <div className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white/90 p-3 text-slate-800 shadow-sm backdrop-blur-md">
-                <ShieldCheck className="h-5 w-5 text-amber-800 shrink-0" />
+                <ShieldCheck className="h-5 w-5 text-slate-600 shrink-0" />
                 <div className="text-xs font-medium">
                   <span className="block font-bold text-slate-900">Garantie Décennale</span>
                   Couverture complète
@@ -119,7 +118,7 @@ export default function Hero() {
               </div>
 
               <div className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white/90 p-3 text-slate-800 shadow-sm backdrop-blur-md">
-                <Clock className="h-5 w-5 text-amber-800 shrink-0" />
+                <Clock className="h-5 w-5 text-slate-600 shrink-0" />
                 <div className="text-xs font-medium">
                   <span className="block font-bold text-slate-900">Délais Engagés</span>
                   Planning respecté
@@ -127,7 +126,7 @@ export default function Hero() {
               </div>
 
               <div className="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white/90 p-3 text-slate-800 shadow-sm backdrop-blur-md">
-                <CheckCircle2 className="h-5 w-5 text-amber-800 shrink-0" />
+                <CheckCircle2 className="h-5 w-5 text-slate-600 shrink-0" />
                 <div className="text-xs font-medium">
                   <span className="block font-bold text-slate-900">Devis gratuit</span>
                   Poste par poste
@@ -140,7 +139,7 @@ export default function Hero() {
               <Button
                 asChild
                 size="lg"
-                className="h-14 px-8 bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 text-base shadow-xl shadow-amber-500/20 rounded-xl"
+                className="h-14 px-8 bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 text-base shadow-xl rounded-xl"
               >
                 <Link href="/devis">
                   Préparer mon devis gratuit <ArrowRight className="ml-2 h-5 w-5" />
@@ -154,7 +153,7 @@ export default function Hero() {
                 className="h-14 px-6 border-slate-300 bg-white text-slate-900 hover:bg-slate-100 text-base rounded-xl shadow-sm"
               >
                 <a href="tel:+33699961375">
-                  <Phone className="mr-2 h-5 w-5 text-amber-800" />
+                  <Phone className="mr-2 h-5 w-5 text-slate-600" />
                   06 99 96 13 75
                 </a>
               </Button>
@@ -166,7 +165,6 @@ export default function Hero() {
           <div className="lg:col-span-6 relative w-full">
             <div className="relative mx-auto w-full max-w-2xl lg:max-w-none">
               {/* Decorative Glow */}
-              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-amber-500/30 via-amber-400/20 to-amber-600/30 blur-2xl opacity-85" />
 
               {/* Unified White Card Container encompassing Main Image & Project Selector */}
               <div className="relative rounded-3xl bg-white p-4 sm:p-5 shadow-2xl border border-slate-200/90 backdrop-blur-xl space-y-4 overflow-hidden w-full">
@@ -187,9 +185,9 @@ export default function Hero() {
                   {/* Floating caption badge */}
                   <div className="mt-3 flex flex-wrap items-center justify-between gap-2 px-1">
                     <div className="flex items-center gap-2">
-                      <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                      <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500  shrink-0" />
                       <span className="text-xs sm:text-sm font-bold text-slate-900">
-                        {activeProject.title} — <span className="text-amber-800 font-medium">{activeProject.subtitle}</span>
+                        {activeProject.title} — <span className="text-slate-600 font-medium">{activeProject.subtitle}</span>
                       </span>
                     </div>
                     <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
@@ -218,7 +216,7 @@ export default function Hero() {
                           type="button"
                           className={`group relative flex flex-col items-start p-2 rounded-xl text-left border transition-all duration-200 ${
                             isActive
-                              ? "bg-amber-500/10 border-amber-500 ring-2 ring-amber-500/40 shadow-sm scale-[1.02]"
+                              ? "bg-slate-100 border-slate-200 ring-2 ring-slate-600/40 shadow-sm scale-[1.02]"
                               : "bg-slate-50/80 border-slate-200/80 hover:bg-slate-100/80 hover:border-slate-300"
                           }`}
                         >
@@ -235,7 +233,7 @@ export default function Hero() {
                               {proj.title}
                             </span>
                           </div>
-                          <span className={`text-[11px] font-bold truncate w-full ${isActive ? "text-amber-800" : "text-slate-800"}`}>
+                          <span className={`text-[11px] font-bold truncate w-full ${isActive ? "text-slate-600" : "text-slate-800"}`}>
                             {proj.title}
                           </span>
                           <span className="text-[10px] text-slate-600 truncate w-full">

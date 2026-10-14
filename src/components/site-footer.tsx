@@ -58,7 +58,7 @@ function FooterLink({
       href={href}
       prefetch={prefetch}
       className={cn(
-        "text-sm font-normal text-slate-600 transition-colors hover:text-amber-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-sm inline-flex items-center gap-1.5",
+        "text-sm font-normal text-slate-600 transition-colors hover:text-slate-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 rounded-sm inline-flex items-center gap-1.5",
         className
       )}
     >
@@ -84,7 +84,7 @@ export default function SiteFooter() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 p-2">
-              <ShieldCheck className="h-5 w-5 text-amber-600 shrink-0" />
+              <ShieldCheck className="h-5 w-5 text-slate-600 shrink-0" />
               <div className="text-left text-xs font-semibold text-slate-800">
                 <span className="block font-bold text-slate-900">Garantie Décennale</span>
                 Couverture 10 ans
@@ -92,7 +92,7 @@ export default function SiteFooter() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 p-2">
-              <Award className="h-5 w-5 text-amber-600 shrink-0" />
+              <Award className="h-5 w-5 text-slate-600 shrink-0" />
               <div className="text-left text-xs font-semibold text-slate-800">
                 <span className="block font-bold text-slate-900">Devis Poste par Poste</span>
                 Clair & transparent
@@ -100,7 +100,7 @@ export default function SiteFooter() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 p-2">
-              <Clock className="h-5 w-5 text-amber-600 shrink-0" />
+              <Clock className="h-5 w-5 text-slate-600 shrink-0" />
               <div className="text-left text-xs font-semibold text-slate-800">
                 <span className="block font-bold text-slate-900">Interlocuteur Unique</span>
                 Suivi de A à Z
@@ -108,7 +108,7 @@ export default function SiteFooter() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 p-2">
-              <Star className="h-5 w-5 text-amber-600 fill-amber-500 shrink-0" />
+              <Star className="h-5 w-5 text-slate-600 fill-slate-500 shrink-0" />
               <div className="text-left text-xs font-semibold text-slate-800">
                 <span className="block font-bold text-slate-900">Devis détaillé</span>
                 Sans engagement
@@ -136,14 +136,14 @@ export default function SiteFooter() {
             {/* Direct Contact Cards */}
             <div className="space-y-2.5 text-xs font-medium text-slate-700 pt-2">
               <div className="flex items-center gap-3 rounded-xl border border-stone-200/90 bg-white p-3 shadow-2xs">
-                <MapPin className="h-4 w-4 text-amber-600 shrink-0" />
+                <MapPin className="h-4 w-4 text-slate-600 shrink-0" />
                 <span>{ADDRESS}</span>
               </div>
 
               <div className="flex items-center justify-between rounded-xl border border-stone-200/90 bg-white p-3 shadow-2xs">
                 <div className="flex items-center gap-3">
-                  <Phone className="h-4 w-4 text-amber-600 shrink-0" />
-                  <a href={`tel:${PHONE_RAW}`} className="font-bold text-slate-900 hover:text-amber-600 transition-colors">
+                  <Phone className="h-4 w-4 text-slate-600 shrink-0" />
+                  <a href={`tel:${PHONE_RAW}`} className="font-bold text-slate-900 hover:text-slate-600 transition-colors">
                     {PHONE_LABEL}
                   </a>
                 </div>
@@ -153,8 +153,8 @@ export default function SiteFooter() {
               </div>
 
               <div className="flex items-center gap-3 rounded-xl border border-stone-200/90 bg-white p-3 shadow-2xs">
-                <Mail className="h-4 w-4 text-amber-600 shrink-0" />
-                <a href={`mailto:${EMAIL}`} className="hover:text-amber-600 transition-colors truncate">
+                <Mail className="h-4 w-4 text-slate-600 shrink-0" />
+                <a href={`mailto:${EMAIL}`} className="hover:text-slate-600 transition-colors truncate">
                   {EMAIL}
                 </a>
               </div>
@@ -193,7 +193,7 @@ export default function SiteFooter() {
               <li className="pt-1">
                 <Link
                   href="/services"
-                  className="inline-flex items-center text-xs font-bold text-amber-700 hover:text-amber-800"
+                  className="inline-flex items-center text-xs font-bold text-slate-600 hover:text-slate-600"
                 >
                   Voir tous les services <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                 </Link>
@@ -230,7 +230,7 @@ export default function SiteFooter() {
             {/* Micro Quote Banner Card */}
             <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-4 shadow-sm space-y-2">
               <span className="text-xs font-bold text-slate-900 block flex items-center gap-1.5">
-                <Sparkles className="h-3.5 w-3.5 text-amber-600" />
+                <Sparkles className="h-3.5 w-3.5 text-slate-600" />
                 Estimation Gratuite
               </span>
               <p className="text-xs text-slate-600 font-normal">

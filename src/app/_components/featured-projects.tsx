@@ -15,13 +15,12 @@ export default function FeaturedProjects() {
     >
       {/* Editorial Decorative Background Elements */}
       <div className="pointer-events-none absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-stone-300 to-transparent" />
-      <div className="pointer-events-none absolute bottom-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
 
       <div className="container relative z-10">
         {/* Header Architectural Monograph Style */}
         <header className="mx-auto max-w-4xl text-center space-y-4">
           <div className="inline-flex items-center gap-2 rounded-full border border-stone-300 bg-stone-100/90 px-4 py-1.5 text-xs font-mono font-bold tracking-widest text-stone-700 uppercase shadow-xs">
-            <Layers className="h-3.5 w-3.5 text-amber-700" />
+            <Layers className="h-3.5 w-3.5 text-slate-600" />
             <span>Portfolios & Études de Cas</span>
           </div>
 
@@ -30,7 +29,7 @@ export default function FeaturedProjects() {
             className="font-headline text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]"
           >
             Des Réalisations Qui Prouvent{" "}
-            <span className="bg-gradient-to-r from-amber-700 via-amber-600 to-amber-800 bg-clip-text text-transparent">
+            <span className="text-slate-900">
               Notre Exigence
             </span>
           </h2>
@@ -41,13 +40,13 @@ export default function FeaturedProjects() {
 
           <div className="pt-2 flex flex-wrap justify-center items-center gap-6 text-xs text-slate-600 font-semibold">
             <span className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-amber-700" /> Garantie Décennale 10 Ans
+              <CheckCircle2 className="h-4 w-4 text-slate-600" /> Garantie Décennale 10 Ans
             </span>
             <span className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-amber-700" /> Interlocuteur Unique
+              <CheckCircle2 className="h-4 w-4 text-slate-600" /> Interlocuteur Unique
             </span>
             <span className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 text-amber-700" /> Finitions Haut de Gamme
+              <CheckCircle2 className="h-4 w-4 text-slate-600" /> Finitions Haut de Gamme
             </span>
           </div>
         </header>
@@ -63,7 +62,7 @@ export default function FeaturedProjects() {
                 href={`/realisations/${project.slug}`}
                 className="group block"
               >
-                <article className="h-full overflow-hidden rounded-3xl border border-stone-200/90 bg-white shadow-xl shadow-stone-200/60 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:border-amber-600/40 flex flex-col justify-between">
+                <article className="h-full overflow-hidden rounded-3xl border border-stone-200/90 bg-white shadow-xl shadow-stone-200/60 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:border-slate-200 flex flex-col justify-between">
                   <div>
                     {/* Image Box */}
                     <div className="relative aspect-[4/3] w-full overflow-hidden bg-stone-200">
@@ -83,7 +82,7 @@ export default function FeaturedProjects() {
                         <span className="rounded-full bg-white/95 border border-slate-200 backdrop-blur-md px-3 py-1 text-[11px] font-bold text-slate-900 shadow-md">
                           {project.category}
                         </span>
-                        <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/90 backdrop-blur-md px-3 py-1 text-[11px] font-bold text-slate-950 shadow-md">
+                        <span className="inline-flex items-center gap-1 rounded-full bg-slate-100 backdrop-blur-md px-3 py-1 text-[11px] font-bold text-slate-950 shadow-md">
                           <Sparkles className="h-3 w-3" />
                           Avant / Après
                         </span>
@@ -92,7 +91,7 @@ export default function FeaturedProjects() {
 
                     {/* Content Section */}
                     <div className="p-6 space-y-3">
-                      <h3 className="font-headline text-lg font-bold leading-snug text-slate-900 group-hover:text-amber-700 transition-colors">
+                      <h3 className="font-headline text-lg font-bold leading-snug text-slate-900 group-hover:text-slate-600 transition-colors">
                         {project.title}
                       </h3>
 
@@ -105,10 +104,10 @@ export default function FeaturedProjects() {
                   {/* Card Footer Bar */}
                   <div className="px-6 pb-6 pt-3 border-t border-stone-100 flex items-center justify-between text-xs">
                     <span className="inline-flex items-center gap-1.5 font-semibold text-stone-600">
-                      <MapPin className="h-3.5 w-3.5 text-amber-700" /> Paris & Île-de-France
+                      <MapPin className="h-3.5 w-3.5 text-slate-600" /> Paris & Île-de-France
                     </span>
 
-                    <span className="inline-flex items-center font-bold text-amber-700 group-hover:text-amber-800">
+                    <span className="inline-flex items-center font-bold text-slate-600 group-hover:text-slate-600">
                       Voir le projet <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                     </span>
                   </div>
@@ -124,7 +123,7 @@ export default function FeaturedProjects() {
             <Button
               asChild
               size="lg"
-              className="bg-amber-500 text-slate-950 font-extrabold hover:bg-amber-400 shadow-xl shadow-amber-500/20 px-9 h-14 rounded-2xl text-base"
+              className="bg-amber-500 text-slate-950 font-extrabold hover:bg-amber-400 shadow-xl px-9 h-14 rounded-2xl text-base"
             >
               <Link href="/realisations">
                 Voir toutes nos réalisations <ArrowRight className="ml-2 h-5 w-5" />

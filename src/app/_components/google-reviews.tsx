@@ -52,7 +52,6 @@ export default function GoogleReviews() {
       className="relative overflow-hidden bg-slate-50/70 py-24 md:py-32 border-b border-slate-200/80"
     >
       {/* Background Subtle Glows */}
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-amber-500/5 rounded-full blur-3xl" />
 
       <div className="container relative z-10">
         {/* Header */}
@@ -67,7 +66,7 @@ export default function GoogleReviews() {
             className="font-headline text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]"
           >
             Ils Parlent de Nous,{" "}
-            <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">
+            <span className="text-slate-900">
               En Toute Transparence
             </span>
           </h2>
@@ -82,10 +81,10 @@ export default function GoogleReviews() {
               href={getGoogleReviewsUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-2xl bg-white border border-slate-300 text-slate-900 hover:bg-amber-500 hover:text-slate-950 hover:border-amber-500 px-5 py-3 text-xs font-bold transition-all shadow-sm"
+              className="inline-flex items-center gap-2 rounded-2xl bg-white border border-slate-300 text-slate-900 hover:bg-slate-100 hover:text-slate-950 hover:border-slate-200 px-5 py-3 text-xs font-bold transition-all shadow-sm"
               aria-label="Rechercher ERG Rénovation sur Google Maps"
             >
-              Consulter Google Maps <ArrowRight className="h-4 w-4 text-amber-700" />
+              Consulter Google Maps <ArrowRight className="h-4 w-4 text-slate-600" />
             </Link>
           </div>
         </header>
@@ -107,14 +106,14 @@ export default function GoogleReviews() {
                     key={key}
                     className="pl-3 md:pl-6 md:basis-1/2 lg:basis-1/3"
                   >
-                    <Card className="h-full overflow-hidden rounded-3xl border border-slate-200/90 bg-white p-7 shadow-xl shadow-slate-200/50 transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/40 hover:shadow-2xl flex flex-col justify-between">
+                    <Card className="h-full overflow-hidden rounded-3xl border border-slate-200/90 bg-white p-7 shadow-xl shadow-slate-200/50 transition-all duration-300 hover:-translate-y-1 hover:border-slate-200 hover:shadow-2xl flex flex-col justify-between">
                       <CardContent className="p-0 flex h-full flex-col justify-between space-y-6">
                         <div>
                           {/* Header card */}
                           <div className="flex items-start justify-between gap-4">
                             <div className="flex items-center gap-3">
-                              <Avatar className="h-12 w-12 border-2 border-amber-500/30 shadow-sm">
-                                <AvatarFallback className="bg-amber-500/10 text-amber-700 font-bold text-sm">
+                              <Avatar className="h-12 w-12 border-2 border-slate-200 shadow-sm">
+                                <AvatarFallback className="bg-slate-100 text-slate-600 font-bold text-sm">
                                   {initials(testimonial.name)}
                                 </AvatarFallback>
                               </Avatar>
@@ -127,7 +126,7 @@ export default function GoogleReviews() {
                               </div>
                             </div>
 
-                            <Quote className="h-6 w-6 text-amber-500/30 shrink-0" aria-hidden />
+                            <Quote className="h-6 w-6 text-slate-600 shrink-0" aria-hidden />
                           </div>
 
                           {/* Stars */}
@@ -142,7 +141,7 @@ export default function GoogleReviews() {
                                 className={cn(
                                   "h-4 w-4",
                                   i < rating
-                                    ? "fill-amber-500 text-amber-500"
+                                    ? "fill-slate-500 text-slate-600"
                                     : "fill-transparent text-slate-300"
                                 )}
                                 aria-hidden
@@ -159,7 +158,7 @@ export default function GoogleReviews() {
                         {/* Footer card */}
                         <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500">
                           <span>Paris & Île-de-France</span>
-                          <span className="text-amber-700 font-bold">{testimonial.date}</span>
+                          <span className="text-slate-600 font-bold">{testimonial.date}</span>
                         </div>
                       </CardContent>
                     </Card>

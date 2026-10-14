@@ -94,7 +94,7 @@ export default function BeforeAfterSlider({
           className="object-cover"
           priority={priority}
         />
-        <span className="absolute top-4 right-4 z-10 rounded-full bg-amber-500/90 backdrop-blur-md px-3 py-1 text-xs font-semibold text-slate-950 shadow-md">
+        <span className="absolute top-4 right-4 z-10 rounded-full bg-slate-900/85 backdrop-blur-md px-3 py-1 text-xs font-semibold text-white shadow-md">
           {afterLabel}
         </span>
       </div>
@@ -142,9 +142,9 @@ export default function BeforeAfterSlider({
               setSliderPosition(Math.max(0, Math.min(100, positions[event.key])))
             }
           }}
-          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white text-slate-900 shadow-2xl border-2 border-amber-500 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-400 hover:scale-110 transition-transform"
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white text-slate-900 shadow-2xl border-2 border-slate-500 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-slate-400 hover:scale-110 transition-transform"
         >
-          <MoveHorizontal className="h-5 w-5 text-amber-600" />
+          <MoveHorizontal className="h-5 w-5 text-slate-700" />
         </div>
       </div>
     </div>
