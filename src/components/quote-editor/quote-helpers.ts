@@ -119,3 +119,13 @@ export function createEmptyQuote(prefill: Partial<QuoteData> = {}): QuoteData {
 
   return recalculateQuote(initialQuote);
 }
+
+/** True when a line uses a reduced VAT rate (10 % or 5,5 %), which requires the client's attestation. */
+export function usesReducedVat(quote: Pick<QuoteData, 'lots'>): boolean {
+  return quote.lots.some((lot) => lot.items.some((item) => item.tvaRate === 10 || item.tvaRate === 5.5));
+}
+
+export const REDUCED_VAT_NOTICE =
+  "TVA à taux réduit (10 % ou 5,5 %) applicable aux travaux sur des locaux d'habitation achevés depuis plus de deux ans " +
+  "(art. 279-0 bis et 278-0 bis A du CGI), sous réserve de la remise par le client de l'attestation simplifiée signée. " +
+  "Pour les parties communes d'une copropriété, l'attestation est signée par le syndic. À défaut, la TVA à 20 % s'applique.";

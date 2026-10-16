@@ -7,7 +7,7 @@ import {
   LineUnit,
   PRESET_LOTS_TEMPLATES,
 } from "./quote-types";
-import { recalculateQuote } from "./quote-helpers";
+import { recalculateQuote, usesReducedVat } from "./quote-helpers";
 import { CatalogModal } from "./catalog-modal";
 import { CatalogItem } from "@/lib/price-catalog";
 
@@ -176,9 +176,10 @@ export function QuoteBuilder({ quote, onChange }: QuoteBuilderProps) {
       designation: catalogItem.designation,
       unit: catalogItem.unit,
       quantity: 1,
-      unitPriceHT: catalogItem.unitPriceHT,
+      // Lines without a known price are inserted at 0 € for the user to fill in.
+      unitPriceHT: catalogItem.unitPriceHT ?? 0,
       tvaRate: catalogItem.tvaRate,
-      totalHT: catalogItem.unitPriceHT,
+      totalHT: catalogItem.unitPriceHT ?? 0,
     };
 
     let targetId = targetLotIdForCatalog;
@@ -267,6 +268,16 @@ export function QuoteBuilder({ quote, onChange }: QuoteBuilderProps) {
               <p>
                 <strong>Assurance décennale non renseignée.</strong> Sa mention (assureur, numéro de police, zone couverte) est
                 obligatoire sur les devis du bâtiment. Ajoutez-la dans <code>src/lib/company.ts</code> avant d&apos;envoyer ce devis.
+              </p>
+            </div>
+          )}
+          {usesReducedVat(quote) && (
+            <div className="flex items-start gap-2 rounded-lg border border-amber-300 bg-amber-50 p-3 text-xs text-amber-900 print:hidden">
+              <AlertTriangle className="h-4 w-4 shrink-0 text-amber-600" />
+              <p>
+                <strong>TVA réduite : attestation du client à obtenir.</strong> Faites signer l&apos;attestation simplifiée au client
+                (au syndic pour les parties communes d&apos;une copropriété) avant de facturer, sinon la TVA à 20 % s&apos;applique.
+                La mention correspondante est ajoutée automatiquement au devis.
               </p>
             </div>
           )}

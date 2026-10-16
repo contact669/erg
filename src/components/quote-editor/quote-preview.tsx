@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { QuoteData } from "./quote-types";
-import { sanitizeProjectDescription } from "./quote-helpers";
+import { REDUCED_VAT_NOTICE, sanitizeProjectDescription, usesReducedVat } from "./quote-helpers";
 import { Button } from "@/components/ui/button";
 import { Printer, ShieldCheck, Download, Award, FileText, CheckCircle2, Building } from "lucide-react";
 
@@ -287,6 +287,12 @@ export function QuotePreview({ quote, onEditRequested }: QuotePreviewProps) {
             </div>
           </div>
         </div>
+
+        {usesReducedVat(quote) && (
+          <div className="mb-6 p-3 rounded-xl border border-slate-200 text-[11px] text-slate-600 leading-relaxed break-inside-avoid">
+            {REDUCED_VAT_NOTICE}
+          </div>
+        )}
 
         {/* NOTES & LEGAL CLAUSES */}
         {quote.notes && (

@@ -115,7 +115,7 @@ export function CatalogModal({ isOpen, onClose, onSelectItem }: CatalogModalProp
                   className="p-4 rounded-xl border bg-card hover:bg-muted/30 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs"
                 >
                   <div className="space-y-1.5 flex-1">
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                       <Badge variant="outline" className="text-[10px] uppercase font-bold text-amber-900 border-amber-300 bg-amber-50">
                         {item.category}
                       </Badge>
@@ -129,6 +129,11 @@ export function CatalogModal({ isOpen, onClose, onSelectItem }: CatalogModalProp
                           ({item.sourceDevis})
                         </span>
                       )}
+                      {item.outsideDecennale && (
+                        <Badge variant="outline" className="text-[10px] font-bold text-rose-700 border-rose-300 bg-rose-50">
+                          Hors décennale
+                        </Badge>
+                      )}
                       {item.note && (
                         <span className="block text-[10px] font-semibold text-rose-600">⚠ {item.note}</span>
                       )}
@@ -136,6 +141,11 @@ export function CatalogModal({ isOpen, onClose, onSelectItem }: CatalogModalProp
                     <p className="text-xs font-semibold text-foreground leading-relaxed">
                       {item.designation}
                     </p>
+                    {item.outsideDecennale && (
+                      <p className="text-[10px] text-rose-700">
+                        Non couvert par la décennale (électricité, peinture intérieure, plomberie uniquement) : à ne proposer qu&apos;une fois l&apos;activité assurée.
+                      </p>
+                    )}
                   </div>
 
                   <div className="flex items-center justify-between sm:justify-end gap-4 shrink-0 border-t sm:border-t-0 pt-2 sm:pt-0">
@@ -144,7 +154,7 @@ export function CatalogModal({ isOpen, onClose, onSelectItem }: CatalogModalProp
                         Prix U.HT / {item.unit}
                       </span>
                       <span className="font-mono text-base font-black text-amber-700 dark:text-amber-400">
-                        {formatEuro(item.unitPriceHT)}
+                        {item.unitPriceHT === null ? "À chiffrer" : formatEuro(item.unitPriceHT)}
                       </span>
                     </div>
 

@@ -4,11 +4,14 @@ export interface CatalogItem {
   category: string;
   designation: string;
   unit: 'm²' | 'm.l.' | 'U' | 'Ens.' | 'Forfait' | 'h' | 'kg' | 'm³';
-  unitPriceHT: number;
+  /** null when no quote gives a reliable price: the line is inserted at 0 € to be filled in. */
+  unitPriceHT: number | null;
   tvaRate: 5.5 | 10 | 20;
   brandRef?: string;
   sourceDevis?: string;
-  /** Warning shown in the catalog, e.g. a trade not yet covered by the insurance. */
+  /** Trade not covered by the décennale (which covers only électricité, peinture intérieure, plomberie). */
+  outsideDecennale?: boolean;
+  /** Other warning shown in the catalog. */
   note?: string;
 }
 
@@ -56,7 +59,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "dem-02",
         category: "DÉMOLITION & PRÉPARATION CHANTIER",
-        designation: "Dépose de toute la plomberie à partir des arrivées d'eau et de la salle de bain et cuisine",
+        designation: "Dépose de toute la plomberie à partir des arrivées d'eau (salle de bain et cuisine)",
         unit: "Ens.",
         unitPriceHT: 90.0,
         tvaRate: 10,
@@ -79,6 +82,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
         unitPriceHT: 250.0,
         tvaRate: 10,
         sourceDevis: "Devis D00207",
+        outsideDecennale: true,
       },
       {
         id: "dem-05",
@@ -88,6 +92,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
         unitPriceHT: 250.0,
         tvaRate: 10,
         sourceDevis: "Devis D00207",
+        outsideDecennale: true,
       },
       {
         id: "dem-06",
@@ -97,6 +102,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
         unitPriceHT: 950.0,
         tvaRate: 10,
         sourceDevis: "Devis D0192",
+        outsideDecennale: true,
       },
       {
         id: "dem-07",
@@ -124,21 +130,23 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "pla-01",
         category: "GROS ŒUVRE, PLÂTRERIE & CHAPE",
-        designation: "Réalisation d'une chape allégée avec Film de protection sous-dalle polyéthylène T 150 Tet ferraillage compris Ragréage auto-lissant Weber P3 (surface sol salle de bain et entrée : 9,88m²)",
+        designation: "Réalisation d'une chape allégée avec Film de protection sous-dalle polyéthylène T150 et ferraillage compris, ragréage autolissant Weber P3 (surface sol salle de bain et entrée : 9,88m²)",
         unit: "Forfait",
         unitPriceHT: 980.0,
         tvaRate: 10,
         brandRef: "Weber P3",
         sourceDevis: "Devis D00207",
+        outsideDecennale: true,
       },
       {
         id: "pla-02",
         category: "GROS ŒUVRE, PLÂTRERIE & CHAPE",
-        designation: "Fourniture et mise en œuvre deux murs plaque de BA 13 monté sur une ossature métallique fixé de chaque côté, inclus bande de finition (salle de bain L130cm x L200cm x 250cm)",
+        designation: "Fourniture et mise en œuvre de deux murs en plaques de BA13 montées sur ossature métallique, fixées de chaque côté, bandes de finition incluses (salle de bain L130cm x L200cm x 250cm)",
         unit: "Forfait",
         unitPriceHT: 980.0,
         tvaRate: 10,
         sourceDevis: "Devis D00207",
+        outsideDecennale: true,
       },
       {
         id: "pla-03",
@@ -148,6 +156,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
         unitPriceHT: 340.0,
         tvaRate: 10,
         sourceDevis: "Devis D00207",
+        outsideDecennale: true,
       },
       {
         id: "pla-04",
@@ -158,6 +167,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
         tvaRate: 5.5,
         brandRef: "Placo Doublissimo",
         sourceDevis: "Devis D00207",
+        outsideDecennale: true,
       },
     ],
   },
@@ -186,7 +196,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "elec-03",
         category: "ÉLECTRICITÉ & SÉCURITÉ",
-        designation: "Fourniture et pose 5 Prises 16A 2P+T inclus deux appliques en douille normalisée commandées par deux va-et-vient (séjour)",
+        designation: "Fourniture et pose de 5 prises 16A 2P+T, deux appliques en douille normalisée incluses, commandées par deux va-et-vient (séjour)",
         unit: "Ens.",
         unitPriceHT: 750.0,
         tvaRate: 10,
@@ -195,7 +205,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "elec-04",
         category: "ÉLECTRICITÉ & SÉCURITÉ",
-        designation: "Fourniture et pose 4 prises 16A 2P+T, fourniture et pose une douille normalisée commandée par un inter simple allumage (chambre)",
+        designation: "Fourniture et pose de 4 prises 16A 2P+T et d'une douille normalisée commandée par un interrupteur simple allumage (chambre)",
         unit: "Ens.",
         unitPriceHT: 680.0,
         tvaRate: 10,
@@ -204,7 +214,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "elec-05",
         category: "ÉLECTRICITÉ & SÉCURITÉ",
-        designation: "Fourniture et pose une prise 16A 2P+T inclus sortie de câble meuble SDB + prise 20A+T pour machine à laver",
+        designation: "Fourniture et pose d'une prise 16A 2P+T, sortie de câble meuble SDB incluse, + prise 20A+T pour machine à laver",
         unit: "Ens.",
         unitPriceHT: 450.0,
         tvaRate: 10,
@@ -213,7 +223,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "elec-06",
         category: "ÉLECTRICITÉ & SÉCURITÉ",
-        designation: "Fourniture et pose spots IP65 et spots IP44 SDB commandé par interrupteur + spot IP44 entrée (Pack 6 spots cuisine SYLDUO 3x270LM 3000K Blanc)",
+        designation: "Fourniture et pose de spots IP65 et spots IP44 SDB commandés par interrupteur + spot IP44 entrée (Pack 6 spots cuisine SYLDUO 3x270LM 3000K Blanc)",
         unit: "Ens.",
         unitPriceHT: 350.0,
         tvaRate: 10,
@@ -223,7 +233,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "elec-07",
         category: "ÉLECTRICITÉ & SÉCURITÉ",
-        designation: "Fourniture et pose Kit extra plat VMC simple flux autoréglable détection d'humidité SAUTER Agalina pour cuisine et salle de bain",
+        designation: "Fourniture et pose d'un kit extra-plat VMC simple flux autoréglable détection d'humidité SAUTER Agalina pour cuisine et salle de bain",
         unit: "U",
         unitPriceHT: 480.0,
         tvaRate: 10,
@@ -233,7 +243,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "elec-08",
         category: "ÉLECTRICITÉ & SÉCURITÉ",
-        designation: "Fourniture et pose Chauffe-eau électrique plat horizontal/vertical SAUTER Guelma connecté 65l blanc (Réf 82973791 Leroy Merlin)",
+        designation: "Fourniture et pose d'un chauffe-eau électrique plat horizontal/vertical SAUTER Guelma connecté 65l blanc (Réf 82973791 Leroy Merlin)",
         unit: "U",
         unitPriceHT: 980.0,
         tvaRate: 10,
@@ -243,7 +253,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "elec-09",
         category: "ÉLECTRICITÉ & SÉCURITÉ",
-        designation: "Fourniture et pose une prise 20A 2P+T pour alimentation chauffe-eau",
+        designation: "Fourniture et pose d'une prise 20A 2P+T pour alimentation chauffe-eau",
         unit: "U",
         unitPriceHT: 140.0,
         tvaRate: 10,
@@ -263,11 +273,12 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
         tvaRate: 10,
         brandRef: "Weber.sys protect",
         sourceDevis: "Devis D00207",
+        outsideDecennale: true,
       },
       {
         id: "plo-02",
         category: "PLOMBERIE & SANITAIRES",
-        designation: "Fourniture et pose des réseaux eau chaude eau froide en cuivre Ø14mm-16mm au départ de la gaine technique pour alimentation (douche, lavabo, évier, lave-linge, WC)",
+        designation: "Fourniture et pose des réseaux eau chaude et eau froide en cuivre Ø14mm-16mm au départ de la gaine technique pour alimentation (douche, lavabo, évier, lave-linge, WC)",
         unit: "Ens.",
         unitPriceHT: 980.0,
         tvaRate: 10,
@@ -285,7 +296,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "plo-04",
         category: "PLOMBERIE & SANITAIRES",
-        designation: "Fourniture et pose receveur en céramique blanc inclus siphon de vidange L.90cm x L.90cm x P.6cm (Réf Plateforme du Bâtiment 81907)",
+        designation: "Fourniture et pose d'un receveur en céramique blanc inclus siphon de vidange L.90cm x L.90cm x P.6cm (Réf Plateforme du Bâtiment 81907)",
         unit: "U",
         unitPriceHT: 290.0,
         tvaRate: 10,
@@ -295,7 +306,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "plo-05",
         category: "PLOMBERIE & SANITAIRES",
-        designation: "Fourniture et pose Meuble simple vasque 2 tiroirs L.45 x H.58 x P.33 cm effet chêne naturel Remix (Réf 80125985 Leroy Merlin)",
+        designation: "Fourniture et pose d'un meuble simple vasque 2 tiroirs L.45 x H.58 x P.33 cm effet chêne naturel Remix (Réf 80125985 Leroy Merlin)",
         unit: "U",
         unitPriceHT: 480.0,
         tvaRate: 10,
@@ -305,7 +316,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "plo-06",
         category: "PLOMBERIE & SANITAIRES",
-        designation: "Fourniture et pose mitigeur avec la barre et pomme de douche Grohe (ensemble robinet douche et barre - Réf 101926 Plateforme du Bâtiment)",
+        designation: "Fourniture et pose d'un mitigeur avec barre et pomme de douche Grohe (ensemble robinet douche et barre - Réf 101926 Plateforme du Bâtiment)",
         unit: "Ens.",
         unitPriceHT: 120.0,
         tvaRate: 10,
@@ -315,7 +326,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "plo-07",
         category: "PLOMBERIE & SANITAIRES",
-        designation: "Fourniture et pose mitigeur lavabo Grohe EUROSMART (Réf Fabricant : 32154002)",
+        designation: "Fourniture et pose d'un mitigeur lavabo Grohe EUROSMART (Réf Fabricant : 32154002)",
         unit: "U",
         unitPriceHT: 150.0,
         tvaRate: 10,
@@ -325,7 +336,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "plo-08",
         category: "PLOMBERIE & SANITAIRES",
-        designation: "Fourniture et pose toilette Pack WC à poser sortie double sans bride Compacta Sensea (Réf 70323106 Leroy Merlin)",
+        designation: "Fourniture et pose d'un pack WC à poser sortie double sans bride Compacta Sensea (Réf 70323106 Leroy Merlin)",
         unit: "U",
         unitPriceHT: 280.0,
         tvaRate: 10,
@@ -340,66 +351,73 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "sol-01",
         category: "REVÊTEMENTS DE SOLS & CARRELAGE",
-        designation: "Fourniture et pose faïence moyenne gamme (20€TTC/m²) joints inclus sur 4 murs salle de bain (Surface : 15m², format > 20x20cm et < 80x80cm)",
+        designation: "Fourniture et pose de faïence moyenne gamme (20€TTC/m²) joints inclus sur 4 murs salle de bain (Surface : 15m², format > 20x20cm et < 80x80cm)",
         unit: "Forfait",
         unitPriceHT: 1750.0,
         tvaRate: 10,
         sourceDevis: "Devis D00207",
+        outsideDecennale: true,
       },
       {
         id: "sol-02",
         category: "REVÊTEMENTS DE SOLS & CARRELAGE",
-        designation: "Fourniture et pose carrelage au sol moyenne gamme (20€TTC/m²) joints de finition inclus (salle de bain et cuisine Surface : 2,31m²)",
+        designation: "Fourniture et pose de carrelage au sol moyenne gamme (20€TTC/m²) joints de finition inclus (salle de bain et cuisine Surface : 2,31m²)",
         unit: "Forfait",
         unitPriceHT: 1250.0,
         tvaRate: 10,
         sourceDevis: "Devis D00207",
+        outsideDecennale: true,
       },
       {
         id: "sol-03",
         category: "REVÊTEMENTS DE SOLS & CARRELAGE",
-        designation: "Fourniture et pose faïence crédence cuisine moyenne gamme (20€TTC/m²) joints inclus (Surface : 3,90m²)",
+        designation: "Fourniture et pose de faïence crédence cuisine moyenne gamme (20€TTC/m²) joints inclus (Surface : 3,90m²)",
         unit: "Forfait",
         unitPriceHT: 1650.0,
         tvaRate: 10,
         sourceDevis: "Devis D00207",
+        outsideDecennale: true,
       },
       {
         id: "sol-04",
         category: "REVÊTEMENTS DE SOLS & CARRELAGE",
-        designation: "Application ponçage parquet avec une couche de fond dur et deux couches de vernis mat compris renforcement (couloir, séjour, chambre : 25,40m²)",
+        designation: "Ponçage du parquet, application d'une couche de fond dur et deux couches de vernis mat compris renforcement (couloir, séjour, chambre : 25,40m²)",
         unit: "Forfait",
         unitPriceHT: 1490.0,
         tvaRate: 10,
         sourceDevis: "Devis D00207",
+        outsideDecennale: true,
       },
       {
         id: "sol-05",
         category: "REVÊTEMENTS DE SOLS & CARRELAGE",
-        designation: "Fourniture et pose parquet contrecollé. Lames de largeur 11-20 cm sur isolant phonique confort (20 dB). Pose à l'anglaise ou coupe pierre",
+        designation: "Fourniture et pose de parquet contrecollé. Lames de largeur 11-20 cm sur isolant phonique confort (20 dB). Pose à l'anglaise ou coupe pierre",
         unit: "m²",
         unitPriceHT: 100.0,
         tvaRate: 10,
         sourceDevis: "Devis D0192",
+        outsideDecennale: true,
       },
       {
         id: "sol-06",
         category: "REVÊTEMENTS DE SOLS & CARRELAGE",
-        designation: "Fourniture et pose plinthe au périphérique de l'appartement",
+        designation: "Fourniture et pose de plinthess en périphérie de l'appartement",
         unit: "m.l.",
         unitPriceHT: 8.0,
         tvaRate: 10,
         sourceDevis: "Devis D0192",
+        outsideDecennale: true,
       },
       {
         id: "men-01",
         category: "REVÊTEMENTS DE SOLS & CARRELAGE",
-        designation: "Fourniture et pose deux blocs-portes postformés traverse droite huisserie 88mm H.204 x L.73cm / H.204 x L.63cm (Réf 63691705 Leroy Merlin)",
+        designation: "Fourniture et pose de deux blocs-portes postformés traverse droite huisserie 88mm H.204 x L.73cm / H.204 x L.63cm (Réf 63691705 Leroy Merlin)",
         unit: "U",
         unitPriceHT: 480.0,
         tvaRate: 10,
         brandRef: "Leroy Merlin",
         sourceDevis: "Devis D00207",
+        outsideDecennale: true,
       },
     ],
   },
@@ -409,7 +427,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "pei-01",
         category: "PEINTURE & FINITIONS DE SURFACE",
-        designation: "PEINTURE COMPLÈTE APPARTEMENT F2 (37m² au sol) : Peinture plafond blanc mat 78, Guitte satin acrylique sur murs, blanc satin Glycéro portes/murs/plafonds SDB & cuisine. Lessivage, ouverture fissures, impression accrocheur, toile de verre, 2 couches enduit + ponçage, 2 couches peinture",
+        designation: "PEINTURE COMPLÈTE APPARTEMENT F2 (37m² au sol) : Peinture plafond blanc mat 78, Guittet satin acrylique sur murs, blanc satin Glycéro portes/murs/plafonds SDB & cuisine. Lessivage, ouverture fissures, impression accrocheur, toile de verre, 2 couches enduit + ponçage, 2 couches peinture",
         unit: "Forfait",
         unitPriceHT: 5950.0,
         tvaRate: 10,
@@ -418,7 +436,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
       {
         id: "pei-02",
         category: "PEINTURE & FINITIONS DE SURFACE",
-        designation: "PEINTURE COMPLÈTE APPARTEMENT F3 67m² : Peinture plafond blanc mat 78, Guitte satin acrylique sur murs, blanc satin Glycéro SDB/Cuisine (67,8m² au sol). Lessivage, grattage, ouverture fissures, impression, ponçage/lissage, 2 couches peinture murs/plafonds, 2-3 couches boiseries",
+        designation: "PEINTURE COMPLÈTE APPARTEMENT F3 67m² : Peinture plafond blanc mat 78, Guittet satin acrylique sur murs, blanc satin Glycéro SDB/Cuisine (67,8m² au sol). Lessivage, grattage, ouverture fissures, impression, ponçage/lissage, 2 couches peinture murs/plafonds, 2-3 couches boiseries",
         unit: "Forfait",
         unitPriceHT: 9800.0,
         tvaRate: 10,
@@ -519,7 +537,7 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
         unitPriceHT: 104.0,
         tvaRate: 10,
         sourceDevis: "Devis D000301 (13 m² pour 1 350 €)",
-        note: "Activité à faire couvrir par la décennale avant de la proposer",
+        outsideDecennale: true,
       },
       {
         id: "cop-11",
@@ -529,7 +547,39 @@ export const ERG_PRICE_CATALOG: CatalogCategory[] = [
         unitPriceHT: 125.0,
         tvaRate: 10,
         sourceDevis: "Devis D000301",
-        note: "Activité à faire couvrir par la décennale avant de la proposer",
+        outsideDecennale: true,
+      },
+    ],
+  },
+  {
+    // Reusable lines priced per unit; no quote gives a reliable unit price yet, so it is filled in on each quote.
+    name: "LIGNES À CHIFFRER",
+    items: [
+      {
+        id: "gen-01",
+        category: "LIGNES À CHIFFRER",
+        designation: "Application de deux couches de peinture acrylique sur murs et plafonds, préparation des supports comprise",
+        unit: "m²",
+        unitPriceHT: null,
+        tvaRate: 10,
+      },
+      {
+        id: "gen-02",
+        category: "LIGNES À CHIFFRER",
+        designation: "Réalisation d'une chape allégée, film de protection polyéthylène et ferraillage compris",
+        unit: "m²",
+        unitPriceHT: null,
+        tvaRate: 10,
+        outsideDecennale: true,
+      },
+      {
+        id: "gen-03",
+        category: "LIGNES À CHIFFRER",
+        designation: "Dépose du carrelage existant (sol ou murs) et évacuation des gravats",
+        unit: "m²",
+        unitPriceHT: null,
+        tvaRate: 10,
+        outsideDecennale: true,
       },
     ],
   },
