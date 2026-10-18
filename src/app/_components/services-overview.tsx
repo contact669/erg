@@ -1,5 +1,3 @@
-"use client"
-
 import Link from "next/link"
 import { services } from "@/lib/data"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
