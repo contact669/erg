@@ -15,6 +15,7 @@ import CtaBanner from "@/app/_components/cta-banner"
 import AnimatedSection from "@/components/animated-section"
 import InternalLinksService from "@/components/InternalLinksService"
 import RelatedGuides from "@/components/related-guides"
+import ServiceProjectPreparation from "@/components/service-project-preparation"
 
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -264,9 +265,9 @@ const pageTitles: Record<
   }
 > = {
   "renovation-appartement": {
-    h1: "Rénovation d’Appartement à Paris & Île-de-France : l’excellence, du devis aux finitions",
+    h1: "Rénovation d’appartement à Paris : des travaux définis avec vous",
     intro:
-      "Transformer un appartement parisien ou francilien en un lieu de vie exceptionnel exige une expertise technique, une gestion de projet rigoureuse et une obsession du détail. ERG Rénovation pilote votre chantier de A à Z à Paris, dans les Hauts-de-Seine (92), la Seine-Saint-Denis (93), le Val-de-Marne (94) et les Yvelines (78).",
+      "Vous souhaitez rénover tout votre appartement ou reprendre certaines pièces ? ERG Rénovation vous accompagne pour les travaux d’électricité, de plomberie et de peinture intérieure, ainsi que la rénovation de votre cuisine ou salle de bain. Nous précisons le périmètre et l’organisation du chantier après visite de votre logement à Paris ou dans les départements 92, 93 et 94.",
     cta: "Obtenir mon devis personnalisé",
     benefitsTitle: "Nos prestations de rénovation sur mesure",
     benefitsIntro:
@@ -292,9 +293,9 @@ const pageTitles: Record<
     faqTitle: "Vos questions sur la rénovation de maison",
   },
   "renovation-salle-de-bain": {
-    h1: "Rénovation de Salle de Bain à Paris & IDF : technique irréprochable, rendu premium",
+    h1: "Rénovation de salle de bain à Paris : agencement, plomberie et finitions",
     intro:
-      "Votre salle de bain doit être belle, confortable… et surtout durable. Étanchéité, réseaux, ventilation, finitions : ERG Rénovation conçoit et rénove des salles de bain haut de gamme à Paris et en Île-de-France (75, 92, 93, 94, 78).",
+      "Une douche plus pratique, des équipements à remplacer ou une petite pièce à réorganiser : chaque salle de bain demande d’examiner les installations existantes avant de choisir les travaux. ERG Rénovation étudie votre projet à Paris et dans les départements 92, 93 et 94, puis prépare un devis détaillé selon l’état de la pièce et vos besoins.",
     cta: "Obtenir mon devis salle de bain",
     benefitsTitle: "Nos prestations pour une salle de bain haut de gamme",
     benefitsIntro:
@@ -372,9 +373,9 @@ export async function generateMetadata(
   const computed = (() => {
     if (service.slug === "renovation-appartement") {
       return {
-        title: "Rénovation Appartement Paris & IDF (92, 93, 94, 78)",
+        title: "Rénovation appartement Paris | Travaux et devis détaillé",
         description:
-          "Confiez votre projet de rénovation d'appartement à Paris et IDF à ERG Rénovation. Expertise haut de gamme, gestion de A à Z, devis sur-mesure.",
+          "Rénovation complète ou partielle d’appartement à Paris : électricité, plomberie, peinture, cuisine et salle de bain. Visite et devis détaillé avec ERG Rénovation.",
       }
     }
     if (service.slug === "renovation-maison") {
@@ -386,9 +387,9 @@ export async function generateMetadata(
     }
     if (service.slug === "renovation-salle-de-bain") {
       return {
-        title: "Rénovation Salle de Bain Paris & IDF (92, 93, 94, 78)",
+        title: "Rénovation salle de bain Paris | Devis détaillé",
         description:
-          "Transformez votre salle de bain en un espace bien-être. ERG Rénovation, expert en rénovation haut de gamme à Paris et IDF. Devis pour votre douche à l'italienne.",
+          "Rénovez votre salle de bain à Paris : agencement, plomberie, électricité et finitions. Découvrez un chantier réel et préparez votre devis avec ERG Rénovation.",
       }
     }
     if (service.slug === "renovation-cuisine") {
@@ -889,6 +890,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             <Link href="/renovation-salle-de-bain/paris-16" className="mt-4 inline-block font-semibold underline">Rénovation de salle de bain à Paris 16</Link>
           </section>
         )}
+        <ServiceProjectPreparation slug={service.slug} />
         <RelatedGuides serviceSlug={service.slug} />
         <CtaBanner />
       </main>

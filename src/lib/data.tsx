@@ -95,12 +95,12 @@ const allServices: Service[] = [
         ]
     },
     faq: [
-        { question: "Quel est le prix moyen d'une rénovation d'appartement au m² à Paris ?", answer: "Le coût d'une rénovation haut de gamme à Paris varie généralement entre 1 500 € et 2 500 € par mètre carré, selon la complexité, les matériaux choisis et l'état initial du bien. Chez ERG Rénovation, nous nous engageons à fournir un devis détaillé et transparent, sans frais cachés, pour que vous maîtrisiez parfaitement votre budget." },
+        { question: "Quel est le prix moyen d'une rénovation d'appartement au m² à Paris ?", answer: "La surface ne suffit pas à chiffrer une rénovation. Le nombre de pièces concernées, les réseaux existants, l’état des supports, les fournitures et les accès font varier le montant. Lors de la visite, nous précisons les travaux souhaités pour établir un devis poste par poste, avec les options et les exclusions." },
         { question: "Combien de temps dure une rénovation complète ?", answer: "Pour un appartement de 50m², une rénovation complète dure en moyenne entre 2 et 4 mois. Pour 100m², il faut compter entre 4 et 6 mois. Ces délais dépendent de l'ampleur des travaux. Nous établissons un planning précis et nous nous y tenons." },
         { question: "Gérez-vous les autorisations de travaux (copropriété, mairie) ?", answer: "Oui, absolument. Nous vous accompagnons dans toutes les démarches administratives. Que ce soit la déclaration de travaux en mairie ou la présentation du projet en assemblée générale de copropriété, nous préparons les dossiers pour vous garantir une tranquillité totale." },
         { question: "Possédez-vous la garantie décennale ?", answer: "Oui, c'est une obligation légale et notre plus grand gage de sérieux. Nous sommes assurés en responsabilité décennale (Allianz) pour l'électricité, la plomberie et la peinture intérieure : cette garantie couvre les dommages pouvant survenir dans les 10 ans suivant la réception. L'attestation est jointe au devis sur demande." }
     ],
-    relatedProjectSlugs: ['appartement-haussmannien-paris-16', 'studio-optimise-marais', 'renovation-appartement-cloisons-vincennes', 'renovation-integrale-appartement-parisien']
+    relatedProjectSlugs: ['renovation-appartement-65m2-paris', 'renovation-studio-paris-11']
   },
   {
     title: 'Rénovation de maison',
@@ -204,12 +204,12 @@ const allServices: Service[] = [
       ]
     },
     faq: [
-        { question: "Quel est le prix d'une rénovation complète de salle de bain haut de gamme ?", answer: "Le prix dépend des matériaux (marbre vs. carrelage) et de la robinetterie, mais une prestation ERG Rénovation se situe généralement à partir de 2 000 €/m². Nous fournissons un devis détaillé pour une transparence totale." },
+        { question: "Quel est le prix d'une rénovation complète de salle de bain haut de gamme ?", answer: "Le chiffrage dépend de la dépose, de l’état des supports, des réseaux à reprendre et des équipements choisis. Une petite surface ne supprime pas les postes techniques. Après visite, le devis distingue les prestations et fournitures retenues ainsi que les options." },
         { question: "Combien de temps faut-il pour refaire une salle de bain ?", answer: "Entre 2 et 4 semaines en moyenne pour une rénovation complète. Nous nous engageons fermement à respecter le planning que nous établissons avec vous." },
         { question: "Comment garantissez-vous l'étanchéité d'une douche à l'italienne ?", answer: "C'est notre priorité absolue. Nous utilisons des systèmes d'étanchéité liquide (S.E.L) sous carrelage, effectuons des tests de mise en eau ; la plomberie et les sanitaires sont couverts par notre garantie décennale." },
         { question: "Faut-il une autorisation pour refaire sa salle de bain à Paris ?", answer: "Généralement non, une déclaration de travaux n'est pas nécessaire sauf si vous modifiez un mur porteur ou la colonne d'évacuation de l'immeuble. Si c'est le cas, nous nous occupons de toutes les démarches." }
     ],
-    relatedProjectSlugs: ['suite-parentale-spa-neuilly', 'salle-eau-combles-versailles']
+    relatedProjectSlugs: ['optimisation-salle-de-bain-3m2']
   },
   {
     title: 'Rénovation de cuisine',
