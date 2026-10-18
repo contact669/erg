@@ -108,7 +108,7 @@ export default function ProcessSteps() {
 
                     {/* Progress Indicator */}
                     <div className="mt-8 pt-4 border-t border-slate-200/60">
-                      <div className="flex items-center justify-between text-xs font-semibold text-slate-400 mb-2">
+                      <div className="flex items-center justify-between text-xs font-semibold text-slate-600 mb-2">
                         <span>Étape {step.step} / 4</span>
                         <span className="text-slate-600 font-bold">{((idx + 1) / 4) * 100}%</span>
                       </div>
