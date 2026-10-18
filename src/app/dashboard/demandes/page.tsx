@@ -30,6 +30,7 @@ import {
 import { formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { COMPANY } from "@/lib/company";
+import { leadSourceLabel } from "@/lib/lead-source";
 
 const ADMIN_UID = COMPANY.adminUid;
 
@@ -39,6 +40,8 @@ type QuoteRequest = {
   clientEmail?: string;
   clientPhone?: string | null;
   projectDescription?: string;
+  leadSource?: string | null;
+  leadSourceMethod?: string | null;
   status?: string;
   createdAt?: any;
 };
@@ -220,6 +223,7 @@ export default function DemandesPage() {
 
                     <TableCell className="align-top">
                       <p className="font-medium">{truncate(request.projectDescription, 140) || '—'}</p>
+                      <p className="mt-1 text-xs text-muted-foreground">Origine déclarée : {leadSourceLabel(request.leadSourceMethod === "self-reported" ? request.leadSource : null)}</p>
                     </TableCell>
 
                     <TableCell className="hidden sm:table-cell align-top">

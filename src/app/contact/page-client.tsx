@@ -20,6 +20,8 @@ import { cn } from "@/lib/utils"
 import { firestore } from "@/firebase/firestore-client"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { submitQuoteRequest } from "@/lib/submit-quote-request"
+import LeadSourceField from "@/components/lead-source-field"
+import { type LeadSource } from "@/lib/lead-source"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -69,6 +71,7 @@ type FormValues = z.infer<typeof formSchema>
 export default function ContactPage() {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [leadSource, setLeadSource] = useState<LeadSource>("")
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -96,6 +99,7 @@ export default function ContactPage() {
         clientName: values.name, clientEmail: values.email, clientPhone: values.phone || "",
         projectDescription: `[Sujet : ${values.subject}]\n\n${values.message}`,
       }, payload => addDoc(collection(firestore, "quoteRequests"), {
+        leadSource: leadSource || null, leadSourceMethod: leadSource ? "self-reported" : null,
         ...payload, department: "", projectType: "Contact Direct",
         status: "Nouvelle Demande", createdAt: serverTimestamp(),
       }))
@@ -407,6 +411,8 @@ export default function ContactPage() {
                         </span>
                       </div>
                     </div>
+
+                    <LeadSourceField id="contact-lead-source" value={leadSource} onChange={setLeadSource} disabled={isSubmitting} />
 
                     <div className="rounded-xl border border-slate-200/80 bg-slate-50 p-4">
                       <div className="flex items-start gap-2.5">

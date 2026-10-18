@@ -32,6 +32,8 @@ import { useToast } from "@/hooks/use-toast"
 import { firestore } from "@/firebase/firestore-client"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { submitQuoteRequest } from "@/lib/submit-quote-request"
+import LeadSourceField from "@/components/lead-source-field"
+import { type LeadSource } from "@/lib/lead-source"
 
 import { readQuoteProject, type QuoteProject as ProjectType } from "@/lib/quote-project"
 type ScopeType = "rafraichissement" | "complete" | "lourde"
@@ -124,6 +126,7 @@ export default function InteractiveQuoteWizard() {
   const [postalCode, setPostalCode] = useState("")
   const [details, setDetails] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [leadSource, setLeadSource] = useState<LeadSource>("")
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [notificationSent, setNotificationSent] = useState(true)
 
@@ -158,6 +161,7 @@ export default function InteractiveQuoteWizard() {
         clientName: fullName, clientEmail: email, clientPhone: phone,
         projectDescription: formattedDescription,
       }, payload => addDoc(collection(firestore, "quoteRequests"), {
+        leadSource: leadSource || null, leadSourceMethod: leadSource ? "self-reported" : null,
         ...payload, postalCode: postalCode.trim(),
         department: postalCode.trim().substring(0, 2), projectType: selectedProj.title,
         surface: `${surface} m²`, status: "Nouvelle Demande", createdAt: serverTimestamp(),
@@ -539,6 +543,8 @@ export default function InteractiveQuoteWizard() {
                       placeholder="Ex : ouverture cuisine sur séjour, réfection complète de la salle d'eau, appartement haussmannien..."
                     />
                   </div>
+
+                  <LeadSourceField id="quote-lead-source" value={leadSource} onChange={setLeadSource} disabled={isSubmitting} />
 
                   <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600 pt-2 border-t border-slate-100">
                     <span className="flex items-center gap-1.5 font-medium">
