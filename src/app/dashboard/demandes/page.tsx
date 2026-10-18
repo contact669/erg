@@ -30,7 +30,7 @@ import {
 import { formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { COMPANY } from "@/lib/company";
-import { leadSourceLabel } from "@/lib/lead-source";
+import { leadSourceLabel, summarizeLeadSources } from "@/lib/lead-source";
 
 const ADMIN_UID = COMPANY.adminUid;
 
@@ -148,6 +148,7 @@ export default function DemandesPage() {
   }
 
   const list = requests ?? [];
+  const summary = summarizeLeadSources(list);
 
   return (
     <div className="space-y-8">
@@ -163,6 +164,32 @@ export default function DemandesPage() {
           <Badge variant="outline">{list.length} demande{list.length > 1 ? 's' : ''}</Badge>
         </div>
       </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Origine des demandes reçues</CardTitle>
+          <CardDescription>
+            Toutes les demandes chargées, toutes périodes confondues, hors demandes archivées.
+            Les origines sont déclarées par les visiteurs : elles ne constituent pas une attribution SEO mesurée.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {isLoading ? <p className="text-muted-foreground">Chargement du récapitulatif…</p> : <>
+            <p className="mb-5 text-sm">
+              <strong>{summary.total}</strong> demande{summary.total > 1 ? 's' : ''} reçue{summary.total > 1 ? 's' : ''},
+              dont <strong>{summary.pending}</strong> à traiter.
+              Le statut « Traité » ne confirme pas la signature d’un chantier.
+            </p>
+            <dl className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {summary.sources.map(source => <div key={source.value} className="rounded-lg border p-4">
+                <dt className="text-sm text-muted-foreground">{source.label}</dt>
+                <dd className="mt-2 text-2xl font-semibold tabular-nums">{source.count}</dd>
+              </div>)}
+            </dl>
+            <p className="mt-4 text-xs text-muted-foreground">Les anciennes demandes et les réponses absentes ou non reconnues sont classées « Non renseignée ».</p>
+          </>}
+        </CardContent>
+      </Card>
 
       <Card className="overflow-hidden">
         <CardHeader className="border-b">
