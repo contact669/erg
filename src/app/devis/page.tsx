@@ -52,7 +52,7 @@ export default function DevisPage() {
               </h1>
 
               <p className="mx-auto max-w-2xl text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-                Configurez votre projet en 4 étapes simples. Un maître d'œuvre ERG Rénovation analyse votre besoin et organise une visite gratuite sur site sous 48h.
+                Décrivez votre logement, les pièces concernées et les travaux envisagés. L’équipe ERG Rénovation étudie votre demande avec vous et convient d’une visite pour préparer un devis détaillé.
               </p>
 
               {/* Trust Features Bar */}
@@ -61,7 +61,7 @@ export default function DevisPage() {
                   <ShieldCheck className="h-4 w-4 text-slate-600" /> Garantie Décennale 10 Ans
                 </span>
                 <span className="flex items-center gap-1.5 rounded-full border border-slate-200/90 bg-white/90 px-4 py-1.5 shadow-xs backdrop-blur-md">
-                  <Clock className="h-4 w-4 text-slate-600" /> Réponse sous 24h ouvrées
+                  <Clock className="h-4 w-4 text-slate-600" /> Échange sur votre projet
                 </span>
                 <span className="flex items-center gap-1.5 rounded-full border border-slate-200/90 bg-white/90 px-4 py-1.5 shadow-xs backdrop-blur-md">
                   <User className="h-4 w-4 text-slate-600" /> Interlocuteur Unique Dédié
@@ -89,7 +89,7 @@ export default function DevisPage() {
               </h2>
 
               <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-                Nos conducteurs de travaux vous conseillent immédiatement sur la faisabilité technique, les arbitrages de matériaux et planifient une visite gratuite sur site.
+                Lors de notre échange, nous précisons les travaux souhaités, les contraintes du logement et les accès. La visite permet ensuite de vérifier les installations existantes et de préparer le chiffrage.
               </p>
 
               <div className="pt-2">

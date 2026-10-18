@@ -1405,12 +1405,12 @@ export const processSteps: ProcessStep[] = [
     {
         step: 1,
         title: 'Premier Contact & Devis',
-        description: 'Discutons de votre projet. Nous vous fournissons une estimation détaillée et transparente sous 48h.'
+        description: 'Présentez-nous les pièces à rénover, vos priorités et les contraintes du logement. Nous convenons ensemble des informations et de la visite nécessaires au chiffrage.'
     },
     {
         step: 2,
         title: 'Conception & Planification',
-        description: 'Nos architectes d’intérieur conçoivent les plans 3D et nous planifions chaque étape du chantier.'
+        description: 'Nous précisons les prestations, les fournitures et les options dans le devis, puis organisons les étapes des travaux avec vous.'
     },
     {
         step: 3,
