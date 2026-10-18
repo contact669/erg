@@ -27,22 +27,21 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent } from "@/components/ui/card"
-import { Slider } from "@/components/ui/slider"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { firestore } from "@/firebase/firestore-client"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { submitQuoteRequest } from "@/lib/submit-quote-request"
 
-type ProjectType = "appartement" | "salle-de-bain" | "cuisine" | "maison"
+type ProjectType = "appartement" | "salle-de-bain" | "cuisine" | "travaux-cibles"
 type ScopeType = "rafraichissement" | "complete" | "lourde"
 type FinishType = "standard" | "premium" | "luxe"
 
 const PROJECT_TYPES = [
   {
     id: "appartement" as ProjectType,
-    title: "Appartement complet",
-    desc: "Rénovation générale, distribution, peinture, sols, électricité aux normes",
+    title: "Appartement",
+    desc: "Rénovation complète ou partielle de votre logement",
     icon: Home,
     estimatedDuration: "3 à 6 semaines",
   },
@@ -61,9 +60,9 @@ const PROJECT_TYPES = [
     estimatedDuration: "2 à 4 semaines",
   },
   {
-    id: "maison" as ProjectType,
-    title: "Maison & Haussmannien",
-    desc: "Moulures, parquet point de Hongrie, isolation, rénovation globale",
+    id: "travaux-cibles" as ProjectType,
+    title: "Peinture, plomberie ou électricité",
+    desc: "Travaux intérieurs ciblés dans une ou plusieurs pièces",
     icon: Building2,
     estimatedDuration: "6 à 12 semaines",
   },
@@ -82,8 +81,8 @@ const SCOPE_OPTIONS = [
   },
   {
     id: "lourde" as ScopeType,
-    title: "Rénovation Complète",
-    desc: "Électricité, plomberie et peintures de tout le logement",
+    title: "Travaux ciblés",
+    desc: "Une intervention précise : peinture, plomberie ou électricité",
   },
 ]
 
@@ -101,7 +100,7 @@ const FINISH_OPTIONS = [
   {
     id: "luxe" as FinishType,
     title: "Gamme Sur-Mesure / Luxe",
-    desc: "Marbre, agencement d'ébénisterie sur-mesure, domotique et finitions d'exception",
+    desc: "Équipements et finitions spécifiques à préciser ensemble",
   },
 ]
 
@@ -109,7 +108,8 @@ export default function InteractiveQuoteWizard() {
   const { toast } = useToast()
   const [step, setStep] = useState<number>(1)
   const [projectType, setProjectType] = useState<ProjectType>("appartement")
-  const [surface, setSurface] = useState<number>(45)
+  const [surface, setSurface] = useState("")
+  const validSurface = surface.trim() !== "" && Number.isFinite(Number(surface)) && Number(surface) >= 0.5 && Number(surface) <= 2000
   const [scope, setScope] = useState<ScopeType>("complete")
   const [finish, setFinish] = useState<FinishType>("premium")
 
@@ -138,10 +138,10 @@ export default function InteractiveQuoteWizard() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!fullName || !phone || !email) {
+    if (!fullName || !phone || !email || !validSurface) {
       toast({
         title: "Champs requis manquants",
-        description: "Veuillez renseigner votre nom, téléphone et adresse email.",
+        description: "Veuillez vérifier votre nom, téléphone, adresse email et la surface approximative.",
         variant: "destructive",
       })
       return
@@ -218,13 +218,17 @@ export default function InteractiveQuoteWizard() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div role="group" aria-label="Type de projet" className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {PROJECT_TYPES.map((item) => {
                   const Icon = item.icon
                   const isSelected = projectType === item.id
                   return (
                     <div
                       key={item.id}
+                      role="button"
+                      aria-pressed={isSelected}
+                      tabIndex={0}
+                      onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setProjectType(item.id) } }}
                       onClick={() => setProjectType(item.id)}
                       className={`relative cursor-pointer rounded-2xl border p-5 transition-all duration-200 ${
                         isSelected
@@ -283,29 +287,10 @@ export default function InteractiveQuoteWizard() {
                 </p>
               </div>
 
-              {/* Surface Slider */}
-              <div className="rounded-2xl border border-slate-200 p-6 bg-slate-50/80 space-y-4">
-                <div className="flex items-center justify-between">
-                  <Label className="text-base font-semibold text-slate-900">
-                    Superficie à rénover :
-                  </Label>
-                  <span className="rounded-xl bg-slate-100 px-4 py-1.5 text-lg font-bold text-slate-600 border border-slate-300">
-                    {surface} m²
-                  </span>
-                </div>
-                <Slider
-                  value={[surface]}
-                  onValueChange={(val) => setSurface(val[0])}
-                  min={projectType === "salle-de-bain" || projectType === "cuisine" ? 1 : 10}
-                  max={200}
-                  step={1}
-                  className="py-4"
-                />
-                <div className="flex justify-between text-xs text-slate-500 font-medium">
-                  <span>{projectType === "salle-de-bain" || projectType === "cuisine" ? "1 m²" : "10 m²"}</span>
-                  <span>75 m² (T3 / T4)</span>
-                  <span>200+ m² (Maison / Grand bien)</span>
-                </div>
+              <div className="rounded-2xl border border-slate-200 p-6 bg-slate-50/80 space-y-3">
+                <Label htmlFor="project-surface" className="text-base font-semibold text-slate-900">Surface approximative concernée, en m²</Label>
+                <Input id="project-surface" type="number" min="0.5" max="2000" step="0.5" inputMode="decimal" value={surface} onChange={(event) => setSurface(event.target.value)} placeholder="Ex. 4,5 pour une salle de bain" aria-describedby="project-surface-help" className="max-w-xs bg-white" />
+                <p id="project-surface-help" className="text-sm text-slate-600">Indiquez la surface des pièces concernées. Une approximation suffit ; les dimensions seront vérifiées lors de la visite.</p>
               </div>
 
               {/* Scope Options */}
@@ -340,6 +325,7 @@ export default function InteractiveQuoteWizard() {
                 </Button>
                 <Button
                   onClick={() => setStep(3)}
+                  disabled={!validSurface}
                   size="lg"
                   className="bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 shadow-lg h-12 px-7 rounded-xl"
                 >
@@ -407,14 +393,14 @@ export default function InteractiveQuoteWizard() {
 
                   <div className="flex items-center gap-2 bg-slate-800 px-3.5 py-2 rounded-xl border border-slate-700 text-xs font-semibold text-slate-300">
                     <Clock className="h-4 w-4 text-slate-300 shrink-0" />
-                    <span>Durée estimée : {selectedProj.estimatedDuration}</span>
+                    <span>Planning à convenir après étude du projet</span>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-300 pt-1">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-slate-300 shrink-0" />
-                    <span>Visite sur site offerte sous 48h</span>
+                    <span>Visite sur site à convenir ensemble</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-slate-300 shrink-0" />
@@ -461,7 +447,7 @@ export default function InteractiveQuoteWizard() {
                       Recevez votre étude & devis détaillé
                     </h4>
                     <p className="text-sm text-slate-500">
-                      Un conducteur de travaux ERG Rénovation étudiera votre projet et vous recontactera sous 24h ouvrées.
+                      L’équipe ERG Rénovation étudiera votre demande et vous recontactera pour préciser les travaux envisagés.
                     </p>
                   </div>
 
@@ -555,7 +541,7 @@ export default function InteractiveQuoteWizard() {
                       <ShieldCheck className="h-4 w-4 text-slate-600" /> Garantie Décennale
                     </span>
                     <span className="flex items-center gap-1.5 font-medium">
-                      <Clock className="h-4 w-4 text-slate-600" /> Réponse sous 24h
+                      <Clock className="h-4 w-4 text-slate-600" /> Échange sur votre projet
                     </span>
                     <span className="flex items-center gap-1.5 font-medium">
                       <CheckCircle2 className="h-4 w-4 text-slate-600" /> Visite offerte
@@ -563,7 +549,8 @@ export default function InteractiveQuoteWizard() {
                   </div>
 
                   <div className="flex justify-between pt-2">
-                    <Button type="button" variant="outline" onClick={() => setStep(3)} className="rounded-xl">
+                    <Button type="button" variant="outline" onClick={() => setStep(3)}
+                  disabled={!validSurface} className="rounded-xl">
                       <ArrowLeft className="mr-2 h-4 w-4" /> Retour
                     </Button>
                     <Button
@@ -586,7 +573,7 @@ export default function InteractiveQuoteWizard() {
                     Votre demande de devis est enregistrée !
                   </h4>
                   <p className="max-w-md mx-auto text-sm text-slate-600 leading-relaxed">
-                    Merci <strong>{fullName}</strong>. Notre maître d'œuvre étudie votre projet ({surface} m², {selectedProj.title}) et vous rappellera au <strong>{phone}</strong> sous 24h ouvrées.
+                    Merci <strong>{fullName}</strong>. Notre équipe étudiera votre demande ({surface} m², {selectedProj.title}) et vous recontactera au <strong>{phone}</strong> pour préciser votre projet.
                   </p>
                   {!notificationSent && <p className="text-sm text-slate-600">La notification par email n’a pas pu être confirmée. Votre demande reste bien enregistrée ; vous pouvez nous joindre au 06 99 96 13 75.</p>}
                   <Button
