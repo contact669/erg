@@ -52,13 +52,13 @@ const PHONE_E164 = "+33699961375";
 const PHONE_DISPLAY = "06 99 96 13 75";
 
 export const metadata: Metadata = {
-  title: `Travaux de rénovation à Paris : nos arrondissements`,
+  title: `Rénovation à Paris (75) : appartement et salle de bain`,
   description:
     "Entreprise de rénovation à Paris (75). Appartement, salle de bain, cuisine. Visite sur site, devis détaillé et suivi complet. Tous arrondissements.",
   alternates: { canonical: PAGE_URL },
   robots: { index: true, follow: true },
   openGraph: {
-    title: `Rénovation appartement Paris (75)`,
+    title: `Rénovation à Paris (75) : appartement et salle de bain`,
     description:
       "Rénovation intérieure à Paris : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions soignées.",
     url: PAGE_URL,
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `Rénovation appartement Paris (75)`,
+    title: `Rénovation à Paris (75) : appartement et salle de bain`,
     description:
       "Entreprise de rénovation à Paris (75) : appartement, salle de bain, cuisine. Devis détaillé, suivi de chantier, finitions soignées.",
   },
@@ -79,7 +79,7 @@ function JsonLd({ faqs }: { faqs: { q: string; a: string }[] }) {
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      name: "Rénovation appartement Paris (75)",
+      name: "Rénovation à Paris (75) : appartement et salle de bain",
       url: PAGE_URL,
       isPartOf: { "@type": "WebSite", name: BRAND, url: SITE_URL },
       about: {
@@ -165,28 +165,28 @@ const services = [
     icon: Building2,
     title: "Rénovation complète d’appartement",
     description:
-      "Idéale pour un achat avec travaux, votre résidence principale ou un investissement locatif. Nos prestations incluent démolition, redistribution des espaces, électricité, plomberie, isolation et finitions haut de gamme. Un projet clé en main, de la conception à la livraison.",
+      "Électricité, plomberie, peinture, cuisine ou salle de bain : définissons les pièces concernées et les prestations à coordonner. Le logement occupé et les accès sont pris en compte dans l’organisation.",
     link: "/services/renovation-appartement",
   },
   {
     icon: Bath,
     title: "Rénovation de salle de bain à Paris",
     description:
-      "Spécialistes des petites surfaces parisiennes, nous concevons des salles de bain fonctionnelles, durables et esthétiques : douche à l’italienne, meubles sur mesure, étanchéité renforcée, ventilation performante.",
+      "Remplacer les équipements ou revoir l’agencement commence par vérifier les arrivées d’eau, les évacuations et la ventilation. Les solutions de douche et de rangement sont étudiées selon votre pièce.",
     link: "/services/renovation-salle-de-bain",
   },
   {
     icon: UtensilsCrossed,
     title: "Rénovation de cuisine",
     description:
-      "Cuisine ouverte, semi-ouverte ou fermée. Nous optimisons les circulations, créons des rangements intelligents et coordonnons menuiserie, plomberie et électricité pour un résultat cohérent et durable.",
+      "Avant la pose des équipements, nous précisons les travaux de plomberie, d’électricité et de préparation des supports. Le devis distingue les travaux retenus et les fournitures à prévoir.",
     link: "/services/renovation-cuisine",
   },
   {
     icon: Hammer,
-    title: "Rénovation partielle & aménagement intérieur",
+    title: "Peinture et travaux intérieurs ciblés",
     description:
-      "Pour un simple rafraîchissement, une redistribution de pièces, la création de rangements sur mesure ou l'optimisation de petits espaces, nous mettons notre expertise à votre service.",
+      "Vous souhaitez reprendre les peintures ou intervenir sur la plomberie ou l’électricité sans rénover tout le logement ? Indiquez les pièces concernées et les équipements à conserver ou à remplacer.",
     link: "/services",
   },
 ];
@@ -254,12 +254,12 @@ export default function RenovationParisPage() {
               </p>
 
               <h1 className="mt-4 font-headline text-4xl font-bold md:text-5xl lg:text-6xl tracking-tight">
-                Rénovation d’appartement à Paris (75)
+                Travaux de rénovation à Paris (75)
               </h1>
 
               <p className="mt-5 mx-auto max-w-3xl text-lg text-slate-600">
-                Rénovation complète, salle de bain, cuisine : un chantier cadré, une communication claire,
-                et des finitions soignées — du devis à la livraison.
+                Vous rénovez un appartement, une salle de bain ou une cuisine ? Nous étudions les installations existantes,
+                les pièces concernées et les accès pour préparer les travaux et un devis détaillé.
               </p>
 
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl mx-auto text-left">
@@ -335,8 +335,7 @@ export default function RenovationParisPage() {
               <div className="mx-auto max-w-2xl text-center">
                 <h2 className="font-headline text-3xl font-bold">Nos services de rénovation à Paris</h2>
                 <p className="mt-4 text-slate-600">
-                  Une rénovation sur mesure, adaptée aux appartements parisiens : exécution propre, coordination TCE,
-                  finitions soignées.
+                  Choisissez la prestation qui correspond à votre projet pour connaître les points à examiner avant la visite.
                 </p>
               </div>
 
@@ -356,7 +355,7 @@ export default function RenovationParisPage() {
                     <CardContent className="flex-grow flex items-end">
                       <Button variant="link" asChild className="p-0 text-slate-600">
                         <Link href={s.link}>
-                          En savoir plus <ArrowRight className="ml-2 h-4 w-4" />
+                          Découvrir : {s.title.toLowerCase()} <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                       </Button>
                     </CardContent>
@@ -434,7 +433,7 @@ export default function RenovationParisPage() {
               <div className="mx-auto max-w-2xl text-center">
                 <h2 className="font-headline text-3xl font-bold">Paris : tous les arrondissements (75)</h2>
                 <p className="mt-4 text-slate-600">
-                  Nous intervenons dans tout Paris. Des pages dédiées par arrondissement seront publiées progressivement.
+                  Retrouvez les informations de préparation des travaux pour votre arrondissement.
                 </p>
               </div>
 
