@@ -411,7 +411,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
 
   const heroImage = PlaceHolderImages.find((p) => p.id === parentService.heroImageId)
   const testimonialAvatar = PlaceHolderImages.find((p) => p.id === "testimonial-avatar-2")
-  const departmentImage = PlaceHolderImages.find((p) => p.id === "project-bathroom-1")
+  const departmentImage = PlaceHolderImages.find((p) => p.id === "project-small-bathroom-after")
 
   const reassurance = (page.reassurancePoints ?? []).slice(0, 6)
 
@@ -682,18 +682,16 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                   <Card>
                     <CardHeader>
                       <CardTitle className="font-headline">
-                        {page.type === "department"
-                          ? `Nos réalisations dans le ${safeDeptFromSlug(page.slug) || "secteur"}`
-                          : `Nos réalisations à ${safeLocationLabel(page.title)}`}
+                        Une petite salle de bain rénovée à Paris
                       </CardTitle>
-                      <CardDescription>Avant / après, finitions, détails.</CardDescription>
+                      <CardDescription>Photos partagées par Nina G. : un exemple parisien, sans localisation confirmée dans le 16e.</CardDescription>
                     </CardHeader>
 
                     <CardContent>
                       <div className="relative h-48 w-full overflow-hidden rounded-md">
                         <Image
                           src={departmentImage.imageUrl}
-                          alt={`Réalisation - ${page.title}`}
+                          alt={departmentImage.description}
                           fill
                           className="object-cover"
                           data-ai-hint={departmentImage.imageHint}
@@ -702,7 +700,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                       </div>
 
                       <Button variant="outline" asChild className="mt-4 w-full">
-                        <Link href="/realisations">{page.cta?.secondary ?? "Voir nos réalisations"}</Link>
+                        <Link href="/realisations/optimisation-salle-de-bain-3m2">Voir les photos et le témoignage</Link>
                       </Button>
                     </CardContent>
                   </Card>
