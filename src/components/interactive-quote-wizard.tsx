@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useMemo } from "react"
+import React, { useState, useMemo, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import {
   Home,
@@ -33,7 +33,7 @@ import { firestore } from "@/firebase/firestore-client"
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"
 import { submitQuoteRequest } from "@/lib/submit-quote-request"
 
-type ProjectType = "appartement" | "salle-de-bain" | "cuisine" | "travaux-cibles"
+import { readQuoteProject, type QuoteProject as ProjectType } from "@/lib/quote-project"
 type ScopeType = "rafraichissement" | "complete" | "lourde"
 type FinishType = "standard" | "premium" | "luxe"
 
@@ -108,6 +108,10 @@ export default function InteractiveQuoteWizard() {
   const { toast } = useToast()
   const [step, setStep] = useState<number>(1)
   const [projectType, setProjectType] = useState<ProjectType>("appartement")
+  useEffect(() => {
+    const requestedProject = readQuoteProject(new URLSearchParams(window.location.search).get("projet"))
+    if (requestedProject) setProjectType(requestedProject)
+  }, [])
   const [surface, setSurface] = useState("")
   const validSurface = surface.trim() !== "" && Number.isFinite(Number(surface)) && Number(surface) >= 0.5 && Number(surface) <= 2000
   const [scope, setScope] = useState<ScopeType>("complete")

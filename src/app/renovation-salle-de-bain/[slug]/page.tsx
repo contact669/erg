@@ -10,6 +10,7 @@ import CtaBanner from "@/app/_components/cta-banner"
 import AnimatedSection from "@/components/animated-section"
 
 import { localLandingPages } from "@/lib/data"
+import { quoteHrefForService } from "@/lib/quote-project"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
 
 import { Button } from "@/components/ui/button"
@@ -499,7 +500,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                  <Link href="/devis">{page.cta?.primary ?? "Demander un devis"}</Link>
+                  <Link href={quoteHrefForService(parentService.slug)}>{page.cta?.primary ?? "Demander un devis"}</Link>
                 </Button>
 
                 <Button
@@ -669,7 +670,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
 
                     <div className="pt-2 space-y-2">
                       <Button asChild className="w-full">
-                        <Link href="/devis">Obtenir mon devis</Link>
+                        <Link href={quoteHrefForService(parentService.slug)}>Obtenir mon devis</Link>
                       </Button>
                       <Button asChild variant="outline" className="w-full">
                         <a href={`tel:${PHONE}`}>Appeler</a>

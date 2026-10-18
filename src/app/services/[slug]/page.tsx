@@ -7,6 +7,7 @@ import Link from "next/link"
 import Image from "next/image"
 
 import { services, allProjects } from "@/lib/data"
+import { quoteHrefForService } from "@/lib/quote-project"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
 
 import SiteHeader from "@/components/site-header"
@@ -575,7 +576,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg" className="bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 shadow-md h-12 px-7 rounded-xl">
-                  <Link href="/devis">{content ? content.cta : "Obtenir un devis"}</Link>
+                  <Link href={quoteHrefForService(service.slug)}>{content ? content.cta : "Obtenir un devis"}</Link>
                 </Button>
 
                 <Button
@@ -697,7 +698,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                         <Link href="/realisations">Découvrir nos réalisations (Avant/Après)</Link>
                       </Button>
                       <Button asChild size="lg">
-                        <Link href="/devis">Demander un devis</Link>
+                        <Link href={quoteHrefForService(service.slug)}>Demander un devis</Link>
                       </Button>
                     </div>
                   </section>
@@ -800,7 +801,7 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
                     <p>✓ Garantie décennale</p>
                     <div className="pt-2 space-y-2">
                       <Button asChild className="w-full">
-                        <Link href="/devis">Obtenir mon devis</Link>
+                        <Link href={quoteHrefForService(service.slug)}>Obtenir mon devis</Link>
                       </Button>
                       <Button asChild variant="outline" className="w-full">
                         <a href={PHONE_TEL}>Appeler</a>

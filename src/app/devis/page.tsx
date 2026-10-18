@@ -72,7 +72,7 @@ export default function DevisPage() {
         </section>
 
         {/* WIZARD CONTAINER */}
-        <section className="container py-12 md:py-20">
+        <section id="demande-devis" className="container scroll-mt-40 py-12 md:py-20">
           <InteractiveQuoteWizard />
         </section>
 

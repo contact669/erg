@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { quoteHrefForService } from "@/lib/quote-project"
 
 export default function ServiceProjectPreparation({ slug }: { slug: string }) {
   if (slug !== "renovation-salle-de-bain" && slug !== "renovation-appartement") return null
@@ -36,7 +37,7 @@ export default function ServiceProjectPreparation({ slug }: { slug: string }) {
             <p>Consultez notre <Link className="underline" href="/blog/comparer-devis-renovation">méthode pour comparer deux devis</Link> et les <Link className="font-semibold text-slate-900 underline" href="/realisations/renovation-appartement-65m2-paris">travaux de l’appartement de 65 m² décrits par notre client</Link>. Si votre priorité concerne une pièce d’eau, retrouvez notre <Link className="underline" href="/services/renovation-salle-de-bain">prestation de rénovation de salle de bain</Link>.</p>
           </>
         )}
-        <Link href="/devis" className="inline-flex rounded-xl bg-amber-500 px-6 py-3 font-bold text-slate-950 hover:bg-amber-400">
+        <Link href={quoteHrefForService(slug)} className="inline-flex rounded-xl bg-amber-500 px-6 py-3 font-bold text-slate-950 hover:bg-amber-400">
           {bathroom ? "Décrire mon projet de salle de bain" : "Décrire les travaux de mon appartement"}
         </Link>
       </div>
