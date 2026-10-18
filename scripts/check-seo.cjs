@@ -4,6 +4,10 @@ const path = require('node:path');
 const root = path.resolve('.next/server/app');
 const origin = 'https://erg-renovation.fr';
 const failures = [];
+// Firebase's adapter disables image optimization unless this setting is explicit.
+if (require('../next.config.js').images?.unoptimized !== false) {
+  failures.push('App Hosting requires images.unoptimized=false to preserve responsive images');
+}
 const pages = new Map();
 const internalLinks = [];
 function walk(dir) {

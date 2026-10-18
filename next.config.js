@@ -21,6 +21,8 @@ const nextConfig = {
     }));
   },
   images: {
+      // App Hosting otherwise disables the Next.js optimizer during deployment.
+      unoptimized: false,
       remotePatterns: [
           {
               protocol: 'https',

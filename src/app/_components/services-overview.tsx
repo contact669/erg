@@ -143,7 +143,7 @@ export default function ServicesOverview() {
             </Button>
           </div>
 
-          <p className="text-xs font-medium text-slate-500">
+          <p className="text-xs font-medium text-slate-600">
             Devis détaillé gratuit • Visite sur site gratuite à Paris & Île-de-France (92, 93, 94)
           </p>
           <p className="text-sm text-slate-600">

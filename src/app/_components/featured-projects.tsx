@@ -142,7 +142,7 @@ export default function FeaturedProjects() {
             </Button>
           </div>
 
-          <p className="text-xs font-medium text-slate-500">
+          <p className="text-xs font-medium text-slate-600">
             Rénovation d'appartement à Paris • Salle de bain clé en main • Devis gratuit • Garantie décennale
           </p>
         </div>
