@@ -429,7 +429,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
   ]
 
   const locationLabel = safeLocationLabel(safeText(page.title))
-  const h2Title = `Rénovation de salle de bain à ${locationLabel} : une pièce humide sécurisée, un rendu premium`
+  const h2Title = `Aménager votre salle de bain à ${locationLabel} : les points à vérifier`
   const leadText =
     "Étanchéité, réseaux, ventilation et finitions : une rénovation cadrée, propre et durable, du devis à la réception."
 
@@ -514,6 +514,13 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
                   </a>
                 </Button>
               </div>
+
+              {page.slug === "paris-16" ? (
+                <nav aria-label="Préparer votre projet de salle de bain" className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm text-primary-foreground/90">
+                  <a href="#budget-salle-de-bain" className="underline underline-offset-4">Préparer le budget</a>
+                  <a href="#questions-salle-de-bain" className="underline underline-offset-4">Questions avant les travaux</a>
+                </nav>
+              ) : null}
 
               {reassurance.length > 0 ? (
                 <div className="mt-8 grid grid-cols-1 gap-2 text-sm text-primary-foreground/80 sm:grid-cols-2 sm:gap-x-6">

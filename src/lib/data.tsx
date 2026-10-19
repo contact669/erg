@@ -950,7 +950,7 @@ const renovationSalleDeBainPages: LocalLandingPage[] = [
         type: 'district',
         title: 'Rénovation de salle de bain à Paris 16 (75016)',
         metaTitle: 'Rénovation salle de bain Paris 16 (75016) : devis gratuit',
-        metaDescription: "Rénovez votre salle de bain à Paris 16 : douche, plomberie, étanchéité, ventilation et finitions. ERG Rénovation prépare un devis détaillé après étude du projet.",
+        metaDescription: "Salle de bain à rénover à Paris 16 (75016) ? Douche, agencement, plomberie et finitions : ERG Rénovation établit un devis détaillé après étude de votre pièce.",
         parentService: allServices.find(s => s.slug === 'renovation-salle-de-bain')!,
         introduction: "Une salle de bain à rénover dans le 75016 ? ERG Rénovation vous accompagne pour définir l’agencement, vérifier les réseaux existants et choisir des finitions adaptées à votre usage. Le devis distingue les travaux, les équipements et les options retenues après étude de votre pièce.",
         cta: { primary: 'Demander mon devis à Paris 16', secondary: 'Voir les prestations salle de bain' },
@@ -971,6 +971,37 @@ const renovationSalleDeBainPages: LocalLandingPage[] = [
                     <h2 className="font-headline text-2xl font-semibold">Que doit préciser votre devis de salle de bain ?</h2>
                     <p>Le chiffrage doit distinguer la dépose, la préparation des supports, la plomberie, l’électricité, la ventilation, l’étanchéité et les revêtements. Les équipements fournis, leurs références lorsqu’elles sont arrêtées, les options et les exclusions doivent être lisibles. Le calendrier est établi selon les travaux retenus et la disponibilité des fournitures.</p>
                     <p>Pour préparer le premier échange, indiquez la surface approximative, les équipements à remplacer, l’état actuel de la pièce et si le logement sera occupé pendant le chantier. Des photos et un plan, même simple, facilitent la compréhension du projet. Une estimation à distance reste à confirmer après vérification de l’existant.</p>
+                </section>
+                <section id="budget-salle-de-bain" className="scroll-mt-32 space-y-3">
+                    <h2 className="font-headline text-2xl font-semibold">Quel budget prévoir pour votre salle de bain à Paris 16 ?</h2>
+                    <p>Deux pièces de même surface peuvent demander des travaux très différents. Conserver la douche et les arrivées d’eau à leur place n’a pas le même coût que déplacer les équipements et reprendre les réseaux. L’état des supports après dépose, le système de ventilation et le choix des fournitures pèsent aussi dans le devis.</p>
+                    <ul>
+                        <li><strong>L’existant :</strong> revêtements à retirer, supports à réparer, raccordements à conserver ou à reprendre.</li>
+                        <li><strong>L’aménagement :</strong> douche ou baignoire, emplacement du WC, rangements et circulation dans la pièce.</li>
+                        <li><strong>Les équipements :</strong> références de robinetterie, meuble vasque, paroi et formats de carrelage.</li>
+                        <li><strong>L’organisation :</strong> accès à l’étage, manutention, évacuation des déchets et maintien de l’usage du logement.</li>
+                    </ul>
+                    <p>Pour comparer les offres, demandez le même périmètre de travaux à chaque entreprise. Une ligne « rénovation complète » sans détail ne permet pas de savoir si la dépose, l’étanchéité ou les fournitures sont comprises. Nous préparons le chiffrage à partir de votre projet, sans tarif forfaitaire déduit de la seule surface.</p>
+                </section>
+                <section id="questions-salle-de-bain" className="scroll-mt-32 space-y-3">
+                    <h2 className="font-headline text-2xl font-semibold">Vos questions avant de lancer les travaux</h2>
+                    <details className="rounded-lg border px-4">
+                        <summary className="cursor-pointer py-4 font-semibold">Peut-on rester dans l’appartement pendant la rénovation ?</summary>
+                        <p className="pb-4">Cela dépend notamment de la présence d’un autre point d’eau et d’un autre WC. Si votre salle de bain est la seule du logement, il faut anticiper sa période d’indisponibilité. Indiquez dès le premier échange si vous habitez sur place : l’accès à la pièce, les coupures d’eau et la protection des espaces de passage devront être organisés avec vous.</p>
+                    </details>
+                    <details className="rounded-lg border px-4">
+                        <summary className="cursor-pointer py-4 font-semibold">Combien de temps faut-il prévoir pour le chantier ?</summary>
+                        <p className="pb-4">Le planning dépend de la dépose, des reprises de plomberie et d’électricité, de la préparation des supports et des temps de séchage. Les fournitures doivent également être disponibles au bon moment. Nous précisons le calendrier après étude des travaux retenus ; une date de fin ne peut pas être déduite uniquement du nombre de mètres carrés.</p>
+                    </details>
+                    <details className="rounded-lg border px-4">
+                        <summary className="cursor-pointer py-4 font-semibold">Une douche de plain-pied est-elle toujours possible ?</summary>
+                        <p className="pb-4">Non. Il faut vérifier la hauteur disponible, la pente d’évacuation et les possibilités de raccordement. Une solution avec receveur peut être plus adaptée lorsque l’existant ne permet pas d’encastrer l’évacuation. Le choix se fait après examen de la pièce, avant de commander les équipements.</p>
+                    </details>
+                    <details className="rounded-lg border px-4">
+                        <summary className="cursor-pointer py-4 font-semibold">Quelles informations transmettre pour demander un devis ?</summary>
+                        <p className="pb-4">Indiquez le code postal 75016, la surface approximative, les équipements à conserver ou à remplacer et si le logement sera occupé. Précisez aussi l’étage, l’accès par ascenseur et vos disponibilités. Au premier échange, nous pourrons vous indiquer les photos ou mesures utiles pour compléter l’étude.</p>
+                    </details>
+                    <p><Link className="underline" href="/devis?projet=salle-de-bain#demande-devis">Décrire ma salle de bain et demander un devis</Link></p>
                 </section>
                 <section className="space-y-3">
                     <h2 className="font-headline text-2xl font-semibold">Des exemples et des guides pour préparer votre projet</h2>

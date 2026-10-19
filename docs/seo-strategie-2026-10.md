@@ -65,6 +65,16 @@ J90 : analyser demandes qualifiées, devis et signatures pour décider des proch
 
 Compiler et exécuter les contrôles SEO avant le push, vérifier le rendu des modèles concernés, puis contrôler déploiement et pages publiques. Les exports Search Console, les nouveaux contenus et la mesure des conversions restent à réaliser. Ce plan ne constitue pas une surveillance automatique.
 
+## Intervention Paris 16 — 19 octobre 2026
+
+Page suivie : `/renovation-salle-de-bain/paris-16`. Search Console, recherche Web, période du 19 septembre au 16 octobre 2026 : 244 impressions, 0 clic, CTR 0 %, position moyenne 12,2. Requêtes principales : « renovation salle de bain paris 16 » (83 impressions) et « rénovation salle de bain paris 16 » (81 impressions). Ces chiffres constituent une référence, pas un résultat des modifications du 19 octobre.
+
+Inspection : URL indexée, récupération réussie, exploration et indexation autorisées, canonical Google correspondant à l’URL inspectée. Dernière exploration affichée : 13 octobre 2026 à 21:17:24. Le champ Sitemaps affiche une erreur de traitement temporaire ; ce signal isolé ne signifie pas que la page est désindexée.
+
+Travail éditorial : titre conservé, description affinée, explication des facteurs de budget, réponses sur la durée, le logement occupé et les possibilités de douche, accès directs aux sections et demande de devis préselectionnée « salle de bain ». Aucun prix, délai de chantier ou chantier dans le 16e inventé. Pas de nouvelle page locale ni de duplication des guides.
+
+Après déploiement : vérifier la version publique, puis comparer 28 jours complets de données disponibles à une période de même durée, avec les mêmes filtres. Suivre les clics et impressions par requête, puis les demandes et les devis réellement liés. L’origine déclarée dans le formulaire ne permet pas d’attribuer une demande à cette page. Aucun suivi automatique n’est configuré.
+
 ## Références
 
 - [Contenus utiles selon Google](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)
