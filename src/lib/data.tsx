@@ -54,19 +54,19 @@ const allServices: Service[] = [
     heroImageId: 'service-apartment',
     benefitImageId: 'service-pillar-kitchen',
     whyUsImageId: 'service-pillar-finish',
-    longDescription: "Transformer un appartement parisien ou francilien en un lieu de vie exceptionnel exige une expertise de la structure, une gestion de projet rigoureuse et une passion pour les finitions parfaites. Nous gérons chaque détail de votre projet à Paris, dans les Hauts-de-Seine (92), la Seine-Saint-Denis (93), le Val-de-Marne (94) et les Yvelines (78).",
+    longDescription: "Rénover un appartement commence par définir les pièces concernées, les installations à reprendre et les équipements à conserver. ERG Rénovation étudie avec vous les travaux d’électricité, de plomberie et de peinture intérieure, ainsi que la rénovation de la cuisine et de la salle de bain, à Paris et dans les départements 92, 93 et 94.",
     benefits: [
       {
         title: "Rénovation Complète d'Appartement",
-        description: "Démolition, redistribution des espaces, refonte des réseaux (plomberie, électricité), isolation (phonique et thermique), jusqu'aux finitions."
+        description: "Électricité, plomberie, peinture intérieure, cuisine et salle de bain : nous définissons les interventions nécessaires dans chaque pièce et leur ordre de réalisation."
       },
       {
         title: "Rénovation par Pièce",
         description: "Spécialistes des pièces techniques : conception de cuisines sur-mesure, création de salles de bain, optimisation de l'espace et de la lumière."
       },
       {
-        title: "Rénovation Énergétique",
-        description: "Améliorez votre confort et la valeur de votre bien : isolation des murs, remplacement de fenêtres, installation de systèmes de chauffage performants."
+        title: "Reprise des Installations Existantes",
+        description: "Examen des points d’eau, des évacuations, des prises et des éclairages pour adapter la plomberie et l’électricité aux usages prévus dans le logement."
       },
       {
         title: "Rangements et Finitions Intérieures",
@@ -74,15 +74,15 @@ const allServices: Service[] = [
       }
     ],
     process: [
-        { step: 1, title: 'Consultation et Devis', description: 'Visite sur site (Paris, 92, 93, 94, 78), écoute de vos besoins, analyse technique et remise d\'un devis détaillé et transparent.' },
+        { step: 1, title: 'Consultation et Devis', description: 'Visite du logement à Paris, dans le 92, le 93 ou le 94, relevé des besoins et préparation d’un devis détaillé selon les travaux retenus.' },
         { step: 2, title: 'Conception et Planification', description: 'Validation des plans (si nécessaire avec architecte), choix des matériaux, établissement d\'un planning précis.' },
         { step: 3, title: 'Réalisation des Travaux', description: 'Pilotage de nos équipes qualifiées, réunions de chantier régulières, et un interlocuteur unique dédié à votre projet.' },
-        { step: 4, title: 'Livraison et Garanties', description: 'Réception des travaux sans réserve, remise des documents (dont la garantie décennale) et service après-vente réactif.' }
+        { step: 4, title: 'Réception des Travaux', description: 'Vérification des travaux avec vous, consignation des éventuelles réserves et organisation de leur traitement.' }
     ],
     whyUs: [
-        { title: "Une Expertise Reconnue à Paris et en Île-de-France", description: "Notre connaissance des spécificités de l'immobilier francilien (immeubles anciens, contraintes de copropriété, normes) est votre meilleure garantie. Nous intervenons quotidiennement dans le 75, 92, 93, 94 et 78.", icon: Award },
+        { title: "Un Projet Adapté à Votre Logement", description: "État des installations, pièces occupées, accès à l’étage et équipements conservés : ces informations sont examinées pour préparer les travaux et le devis.", icon: Award },
         { title: "La Garantie d'un Interlocuteur Unique", description: "Fini le stress de la coordination. Votre chef de projet dédié est votre seul point de contact. Il pilote les artisans, gère le planning et assure le contrôle qualité permanent.", icon: Users },
-        { title: 'Des Finitions "Haut de Gamme"', description: "Le 'très très haut niveau' se voit dans les détails. Nous travaillons avec des matériaux nobles et nos artisans sont sélectionnés pour leur excellence (peintures soignées, pose de parquet, marbrerie...).", icon: Sparkles },
+        { title: 'Des Finitions Définies Ensemble', description: "Préparation des murs, teintes de peinture, appareillages et équipements : nous précisons les choix retenus et les fournitures comprises dans le devis.", icon: Sparkles },
         { title: 'Transparence et Garanties', description: "Nos travaux d'électricité, de plomberie et de peinture intérieure sont couverts par notre assurance décennale Allianz ; l'attestation est jointe au devis sur demande. Nos devis sont clairs et nos délais, tenus.", icon: ClipboardList }
     ],
     zones: {
@@ -90,14 +90,14 @@ const allServices: Service[] = [
         list: [
             { name: 'Hauts-de-Seine (92)', slug: 'renovation-hauts-de-seine' },
             { name: 'Val-de-Marne (94)', slug: 'renovation-val-de-marne' },
-            { name: 'Yvelines (78)', slug: 'yvelines-78' },
             { name: 'Seine-Saint-Denis (93)', slug: 'renovation-seine-saint-denis' }
         ]
     },
     faq: [
         { question: "Quel est le prix moyen d'une rénovation d'appartement au m² à Paris ?", answer: "La surface ne suffit pas à chiffrer une rénovation. Le nombre de pièces concernées, les réseaux existants, l’état des supports, les fournitures et les accès font varier le montant. Lors de la visite, nous précisons les travaux souhaités pour établir un devis poste par poste, avec les options et les exclusions." },
-        { question: "Combien de temps dure une rénovation complète ?", answer: "Pour un appartement de 50m², une rénovation complète dure en moyenne entre 2 et 4 mois. Pour 100m², il faut compter entre 4 et 6 mois. Ces délais dépendent de l'ampleur des travaux. Nous établissons un planning précis et nous nous y tenons." },
-        { question: "Gérez-vous les autorisations de travaux (copropriété, mairie) ?", answer: "Oui, absolument. Nous vous accompagnons dans toutes les démarches administratives. Que ce soit la déclaration de travaux en mairie ou la présentation du projet en assemblée générale de copropriété, nous préparons les dossiers pour vous garantir une tranquillité totale." },
+        { question: "Combien de temps dure une rénovation complète ?", answer: "Le calendrier dépend des pièces concernées, des installations à reprendre, des temps de préparation et de séchage, ainsi que de la disponibilité des équipements. Nous précisons l’enchaînement des interventions après étude du logement et des travaux retenus. La surface seule ne permet pas de promettre une date de fin." },
+        { question: "Peut-on rester dans l’appartement pendant les travaux ?", answer: "Des travaux dans quelques pièces peuvent parfois être organisés par zones. Une reprise générale des réseaux ou l’indisponibilité de la seule salle de bain rend le maintien dans le logement plus contraignant. Signalez dès le premier échange les pièces à garder accessibles et les périodes où vous pouvez libérer le logement." },
+        { question: "Comment préparer un chantier en copropriété ?", answer: "Indiquez les règles de l’immeuble, les horaires d’intervention, les accès et les possibilités de livraison. Avant de valider un projet qui touche des éléments communs, précisez les démarches à examiner avec votre syndic. Ces contraintes doivent être connues avant d’arrêter le périmètre et le calendrier du chantier." },
         { question: "Possédez-vous la garantie décennale ?", answer: "Oui, c'est une obligation légale et notre plus grand gage de sérieux. Nous sommes assurés en responsabilité décennale (Allianz) pour l'électricité, la plomberie et la peinture intérieure : cette garantie couvre les dommages pouvant survenir dans les 10 ans suivant la réception. L'attestation est jointe au devis sur demande." }
     ],
     relatedProjectSlugs: ['renovation-appartement-65m2-paris', 'renovation-studio-paris-11']

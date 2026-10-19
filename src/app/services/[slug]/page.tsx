@@ -272,10 +272,10 @@ const pageTitles: Record<
     cta: "Obtenir mon devis personnalisé",
     benefitsTitle: "Nos prestations de rénovation sur mesure",
     benefitsIntro:
-      "Rénovation complète, modernisation d’un appartement ancien, redistribution des espaces, reprise des réseaux : nous coordonnons tous les corps d’état pour un résultat impeccable.",
+      "Définissez les pièces à rénover et les installations à reprendre : électricité, plomberie, peinture, cuisine et salle de bain. Le devis distingue les travaux retenus des options.",
     processTitle: "Votre projet en 4 étapes : une méthode claire, un résultat maîtrisé",
     processIntro:
-      "La réussite d’une rénovation haut de gamme repose sur une méthodologie éprouvée : cadrage, planification, exécution contrôlée et réception soignée.",
+      "Visite du logement, validation des prestations, organisation des interventions et vérification des travaux avec vous : chaque étape prépare la suivante.",
     whyUsTitle: "Pourquoi confier votre appartement à ERG Rénovation ?",
     faqTitle: "Questions fréquentes sur la rénovation d’appartement",
   },
@@ -850,16 +850,28 @@ export default function ServiceDetailPage({ params }: { params: { slug: string }
             <section className="bg-secondary py-16 md:py-24">
               <div className="container">
                 <h2 className="text-center font-headline text-3xl font-bold">
-                  Nos réalisations en {service.title.toLowerCase()}
+                  {service.slug === "renovation-appartement" ? "Des projets d’appartement décrits par nos clients" : `Nos réalisations en ${service.title.toLowerCase()}`}
                 </h2>
 
                 <p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">
-                  Avant / après, détails, finitions : explorez des chantiers représentatifs et projetez-vous.
+                  {service.slug === "renovation-appartement" ? "Retrouvez les travaux évoqués dans les témoignages et consultez le contexte de chaque projet." : "Avant / après, détails, finitions : explorez des chantiers représentatifs et projetez-vous."}
                 </p>
 
                 <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {relatedProjects.map((project) => (
-                    <ProjectCard key={project.slug} project={project} />
+                    service.slug === "renovation-appartement" ? (
+                      <Card key={project.slug} className="flex flex-col">
+                        <CardHeader><CardTitle className="font-headline text-xl">{project.title}</CardTitle></CardHeader>
+                        <CardContent className="flex-1 space-y-4">
+                          <p className="text-sm text-muted-foreground">{project.description}</p>
+                          {project.testimonial && <blockquote className="border-l-2 border-slate-300 pl-4 text-sm">
+                            <p>« {project.testimonial.quote} »</p>
+                            <footer className="mt-2 text-muted-foreground">{project.testimonial.author}</footer>
+                          </blockquote>}
+                        </CardContent>
+                        <CardFooter><Link className="text-sm font-semibold underline underline-offset-4" href={`/realisations/${project.slug}`}>Consulter ce projet</Link></CardFooter>
+                      </Card>
+                    ) : <ProjectCard key={project.slug} project={project} />
                   ))}
                 </div>
 

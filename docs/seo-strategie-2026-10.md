@@ -81,6 +81,14 @@ Les boutons propres aux quatre pages de services et à la page salle de bain Par
 
 Le détail d’une demande affiche ce contexte et le pipeline peut filtrer les demandes selon cette valeur pour examiner leurs devis liés. Le paramètre est modifiable par le visiteur : il ne prouve ni une provenance Google ni une conversion SEO, et ne sert à aucune autorisation. Les statuts commerciaux continuent de provenir exclusivement des devis privés liés par `requestId`.
 
+## Prestation appartement — 19 octobre 2026
+
+URL de référence : `/services/renovation-appartement`, conservée distincte du portail géographique `/renovation-paris`. Search Console Web, du 20 septembre au 17 octobre 2026 : 0 clic et 0 impression. Aucune position exploitable dans ce contexte. L’inspection indique « Google ne reconnaît pas cette URL », sans exploration ni sitemap référent détectés. Le test actif du 19 octobre à 09:28 indique « Google a accès à cette URL » et « La page peut être indexée » ; cela ne constitue pas une indexation.
+
+Intervention : préciser les prestations d’électricité, plomberie, peinture intérieure, cuisine et salle de bain ; retirer les promesses de structure, de rénovation énergétique globale et de délais forfaitaires ; expliquer rénovation partielle, logement occupé et facteurs de budget. Les projets liés sont présentés par leurs textes et témoignages existants, sans présenter ici des photos dont la provenance n’a pas été établie comme preuves avant/après. Le titre et l’URL restent stables. Contrôler les liens, le sitemap et la canonical avant publication, puis demander une indexation ciblée de cette URL.
+
+Contrôle public : page et sitemap répondent en HTTP 200, URL présente dans le sitemap et canonical correspondant à la page. Demande d’indexation ciblée acceptée dans Search Console le 19 octobre : URL ajoutée à la file d’exploration prioritaire. Cette confirmation n’est pas une indexation effective. Ne pas répéter la demande pour la même URL ; vérifier ultérieurement son état et les premières impressions.
+
 ## Références
 
 - [Contenus utiles selon Google](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)
