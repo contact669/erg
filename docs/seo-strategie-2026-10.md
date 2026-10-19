@@ -95,6 +95,14 @@ URL : `/blog/budget-renovation-appartement-paris`. Search Console Web, période 
 
 Travail : conserver le titre et l’URL ; ajouter un accès au devis dès l’introduction, une grille des postes à chiffrer et un lien contextualisé avec le projet appartement présélectionné. Ajouter une date de mise à jour visible et les métadonnées correspondantes pour cette révision réelle, tout en conservant la publication initiale du 7 octobre. Aucun tarif d’entreprise ni montant de chantier n’est inventé. Le contexte du lien du guide est désormais disponible dans le filtre CRM ; il ne prouve pas une acquisition Google.
 
+## Exemples de travaux documentés — 19 octobre 2026
+
+Les pièces transmises par ERG ont permis de préparer trois exemples anonymisés : rénovation intérieure F2 et peinture/sols décrites dans deux devis de mars 2025, ainsi qu’une intervention sur un chauffe-eau de 75 litres décrite dans une facture de mai 2026. Conformément à la consigne d’ERG, aucun montant n’est publié dans ces exemples ni dans leur documentation au dépôt.
+
+Les deux premiers sont présentés comme des travaux prévus dans des devis, pas comme des chantiers terminés. La facture ne prouve pas un encaissement. Les surfaces par lot ne sont pas assimilées à une surface globale vérifiée. Les exemples restent distincts des réalisations illustrées du site.
+
+Les PDF originaux, leurs extractions, références, adresses et identités clients restent en dehors du dépôt et du site. Les doublons ne deviennent pas des exemples supplémentaires. La paire de documents rectifiés à périmètres différents reste exclue. Les devis de combles, plancher OSB et reprise de structure ne servent pas à promouvoir des prestations hors périmètre publié.
+
 ## Références
 
 - [Contenus utiles selon Google](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { quoteHrefForService } from '@/lib/quote-project';
+import DocumentedWorkExamples from '@/components/documented-work-examples';
 import type { BlogPost } from '@/lib/types';
 
 export const renovationGuides: BlogPost[] = [
@@ -16,6 +17,7 @@ export const renovationGuides: BlogPost[] = [
       { id: 'definir-travaux', title: 'Définir le périmètre des travaux', level: 'h2' },
       { id: 'facteurs-budget', title: 'Ce qui fait varier le budget', level: 'h2' },
       { id: 'grille-chiffrage', title: 'Les postes à faire chiffrer', level: 'h2' },
+      { id: 'exemples-travaux', title: 'Exemples de travaux ERG', level: 'h2' },
       { id: 'preparer-visite', title: 'Préparer la visite de chiffrage', level: 'h2' },
       { id: 'comparer-budget', title: 'Comparer les devis à périmètre égal', level: 'h2' },
     ],
@@ -55,6 +57,7 @@ export const renovationGuides: BlogPost[] = [
         </table>
       </div>
       <p>Une ligne sans montant peut correspondre à un poste exclu ou encore à étudier : demandez une précision avant de comparer les totaux. Si un équipement reste à choisir, faites distinguer sa fourniture et sa pose afin de repérer ce qui fera évoluer le budget.</p>
+      <DocumentedWorkExamples />
       <h2 id="preparer-visite">Préparer la visite de chiffrage</h2>
       <ul>
         <li>Un plan ou les dimensions des pièces et quelques photos de l’état actuel.</li>
