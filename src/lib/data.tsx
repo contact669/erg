@@ -62,7 +62,7 @@ const allServices: Service[] = [
       },
       {
         title: "Rénovation par Pièce",
-        description: "Spécialistes des pièces techniques : conception de cuisines sur-mesure, création de salles de bain, optimisation de l'espace et de la lumière."
+        description: "Rénover une cuisine ou une salle de bain en conservant les autres pièces : nous examinons les raccordements, les équipements à remplacer et les finitions nécessaires autour de la zone de travaux."
       },
       {
         title: "Reprise des Installations Existantes",
@@ -81,7 +81,7 @@ const allServices: Service[] = [
     ],
     whyUs: [
         { title: "Un Projet Adapté à Votre Logement", description: "État des installations, pièces occupées, accès à l’étage et équipements conservés : ces informations sont examinées pour préparer les travaux et le devis.", icon: Award },
-        { title: "La Garantie d'un Interlocuteur Unique", description: "Fini le stress de la coordination. Votre chef de projet dédié est votre seul point de contact. Il pilote les artisans, gère le planning et assure le contrôle qualité permanent.", icon: Users },
+        { title: "Un Interlocuteur pour Organiser les Travaux", description: "Les interventions de plomberie, d’électricité et de peinture doivent s’enchaîner. Votre interlocuteur précise avec vous les étapes, les décisions à prendre et les changements éventuels de périmètre.", icon: Users },
         { title: 'Des Finitions Définies Ensemble', description: "Préparation des murs, teintes de peinture, appareillages et équipements : nous précisons les choix retenus et les fournitures comprises dans le devis.", icon: Sparkles },
         { title: 'Transparence et Garanties', description: "Nos travaux d'électricité, de plomberie et de peinture intérieure sont couverts par notre assurance décennale Allianz ; l'attestation est jointe au devis sur demande. Nos devis sont clairs et nos délais, tenus.", icon: ClipboardList }
     ],
@@ -166,98 +166,98 @@ const allServices: Service[] = [
     heroImageId: 'service-bathroom',
     benefitImageId: 'project-bathroom-1',
     whyUsImageId: 'project-small-bathroom-after',
-    longDescription: "Plus qu'une simple pièce d'eau, votre salle de bain est un sanctuaire. La transformer en un espace de détente digne d'un spa, tout en optimisant chaque mètre carré, est un art qui exige une précision technique absolue. ERG Rénovation est le spécialiste de la conception et de la rénovation de salles de bain haut de gamme à Paris et en Île-de-France (75, 92, 93, 94, 78), garantissant des finitions parfaites et une étanchéité irréprochable.",
+    longDescription: "Une salle de bain difficile à utiliser, une baignoire à remplacer ou des équipements vieillissants : partez de ce que vous souhaitez améliorer. ERG Rénovation étudie la rénovation de votre salle de bain à Paris, dans les Hauts-de-Seine, en Seine-Saint-Denis et dans le Val-de-Marne. L’agencement, la plomberie, l’électricité, la ventilation et les supports sont examinés avant de définir les travaux et les fournitures du devis.",
     benefits: [
       {
         title: "Rénovation Complète (Plomberie, Électricité, Revêtements)",
-        description: "Dépose complète, refonte des réseaux de plomberie et d'électricité (norme NF C 15-100), gestion de la ventilation (VMC) et pose de tous revêtements."
+        description: "Dépose, adaptation des réseaux, préparation des supports, revêtements et pose des équipements : le devis précise les postes retenus après examen de la pièce, ainsi que les éléments conservés."
       },
       {
-        title: "Conception et Installation de Douche à l'Italienne",
-        description: "Notre cœur de métier. Étanchéité parfaite (système S.E.L.), pose de receveur extra-plat ou maçonné, parois de verre sur mesure et robinetterie de luxe (encastrée ou non)."
+        title: "Remplacement de Baignoire par une Douche",
+        description: "La hauteur d’évacuation, la place disponible et l’état du sol déterminent les solutions possibles. Nous comparons avec vous l’implantation et le type de receveur avant de retenir un équipement."
       },
       {
         title: "Plomberie, Sanitaires et Faïence",
         description: "Remplacement des réseaux d'eau, pose des sanitaires, de la robinetterie et de la faïence murale, avec des finitions soignées."
       },
       {
-        title: "Agencement et Mobilier sur Mesure",
-        description: "Optimisation de l'espace avec des meubles-vasques sur mesure, création de niches murales éclairées, et intégration de rangements invisibles pour une esthétique épurée."
+        title: "Agencement d’une Petite Salle de Bain",
+        description: "Dimensions du meuble vasque, ouverture de la douche, rangements et accès au lave-linge : chaque équipement doit trouver sa place sans gêner la circulation ni l’entretien."
       }
     ],
     process: [
-        { step: 1, title: 'Rendez-vous Conseil & Conception', description: "Visite sur site (Paris et IDF), écoute de vos envies (style \"spa\", \"design\", \"classique\"), prise de cotes et proposition de plans 3D pour visualiser votre futur espace." },
+        { step: 1, title: 'Visite et Étude de la Pièce', description: "Relevé des dimensions, échange sur les usages et examen des installations visibles. Les points qui restent à vérifier après dépose sont identifiés avant d’arrêter les travaux." },
         { step: 2, title: 'Choix des Matériaux & Devis', description: "Nous vous guidons dans le choix des robinetteries, sanitaires, carrelages et éclairages. Remise d'un devis transparent et détaillé." },
         { step: 3, title: 'Réalisation Pilotée', description: "Un interlocuteur unique gère le planning, coordonne les plombiers, les électriciens et les peintres, et protège vos espaces de vie pendant les travaux." },
         { step: 4, title: 'Réception et Garantie', description: "Nettoyage final, réception de chantier et procès-verbal signé, point de départ de la garantie décennale sur les travaux couverts." }
     ],
     whyUs: [
-        { title: "Étanchéité Infalible", description: "Nous appliquons des systèmes d'étanchéité liquide (S.E.L.) sous carrelage et des bandes de renfort dans tous les angles, dépassant les normes DTU pour une sécurité maximale.", icon: ShieldCheck },
-        { title: "Plomberie et Électricité aux Normes", description: "Tous nos réseaux sont neufs, testés sous pression (plomberie) et conformes aux volumes de sécurité électrique (NF C 15-100).", icon: Wrench },
-        { title: "Gestion de la Pente (Douche Italienne)", description: "Nous garantissons une pente parfaite pour l'évacuation, un détail technique crucial que seuls les experts maîtrisent.", icon: Milestone }
+        { title: "Des Supports et Raccords Examinés", description: "Le choix des revêtements vient après l’examen des supports et du traitement des zones exposées à l’eau. Les préparations nécessaires doivent être identifiées dans le devis.", icon: ShieldCheck },
+        { title: "Des Réseaux Adaptés au Projet", description: "Nous distinguons les installations conservées et celles à reprendre. Le nouvel agencement est étudié avec les arrivées d’eau, les évacuations, les équipements électriques et la ventilation.", icon: Wrench },
+        { title: "Un Projet Étudié Avant la Pose", description: "Une douche de plain-pied ne convient pas à tous les sols. La solution retenue dépend notamment de la hauteur disponible et du raccordement à l’évacuation existante.", icon: Milestone }
     ],
     zones: {
-      description: "Notre expertise en rénovation de salle de bain s'exerce dans les appartements haussmanniens de Paris (75), où l'optimisation est reine, comme dans les maisons des Hauts-de-Seine (92) et des Yvelines (78) (création de suites parentales).",
+      description: "Nous étudions les projets de salle de bain à Paris (75), dans les Hauts-de-Seine (92), en Seine-Saint-Denis (93) et dans le Val-de-Marne (94). Indiquez votre commune et les contraintes d’accès pour préparer la visite.",
       list: [
         { name: 'Paris 16e', slug: 'renovation-salle-de-bain/paris-16' },
         { name: 'Hauts-de-Seine (92)', slug: 'renovation-hauts-de-seine' }
       ]
     },
     faq: [
-        { question: "Quel est le prix d'une rénovation complète de salle de bain haut de gamme ?", answer: "Le chiffrage dépend de la dépose, de l’état des supports, des réseaux à reprendre et des équipements choisis. Une petite surface ne supprime pas les postes techniques. Après visite, le devis distingue les prestations et fournitures retenues ainsi que les options." },
-        { question: "Combien de temps faut-il pour refaire une salle de bain ?", answer: "Entre 2 et 4 semaines en moyenne pour une rénovation complète. Nous nous engageons fermement à respecter le planning que nous établissons avec vous." },
-        { question: "Comment garantissez-vous l'étanchéité d'une douche à l'italienne ?", answer: "C'est notre priorité absolue. Nous utilisons des systèmes d'étanchéité liquide (S.E.L) sous carrelage, effectuons des tests de mise en eau ; la plomberie et les sanitaires sont couverts par notre garantie décennale." },
-        { question: "Faut-il une autorisation pour refaire sa salle de bain à Paris ?", answer: "Généralement non, une déclaration de travaux n'est pas nécessaire sauf si vous modifiez un mur porteur ou la colonne d'évacuation de l'immeuble. Si c'est le cas, nous nous occupons de toutes les démarches." }
+        { question: "Que faut-il préciser pour demander un devis de salle de bain ?", answer: "Indiquez les dimensions approximatives, les équipements à remplacer ou à conserver et vos priorités. Quelques photos et la position des points d’eau préparent l’échange. La visite permet de préciser la dépose, les supports, les réseaux, les fournitures et les exclusions du devis." },
+        { question: "Combien de temps faut-il pour refaire une salle de bain ?", answer: "Le calendrier dépend de la dépose, des reprises de réseaux, de la préparation des supports, des temps de séchage et de la disponibilité des équipements. Si c’est votre seule salle de bain, signalez-le avant la planification afin d’examiner les périodes d’indisponibilité." },
+        { question: "Peut-on remplacer une baignoire par une douche ?", answer: "C’est une possibilité à étudier sur place. La position de l’évacuation, la hauteur disponible, l’état du support et les dimensions utiles orientent le choix du receveur et des travaux. Une douche sans ressaut ne peut pas être confirmée sur une photo seule." },
+        { question: "Comment rénover une petite salle de bain de 3 à 5 m² ?", answer: "Commencez par un relevé des dimensions et des ouvertures. Comparez ensuite la place des équipements, la circulation et les rangements. Conserver certains points d’eau peut limiter les modifications, mais le choix dépend aussi des évacuations et de la ventilation existantes." }
     ],
     relatedProjectSlugs: ['optimisation-salle-de-bain-3m2']
   },
   {
     title: 'Rénovation de cuisine',
     slug: 'renovation-cuisine',
-    description: 'Conception et installation de cuisines sur mesure.',
+    description: 'Rénovation de cuisine, adaptation des réseaux et finitions.',
     icon: UtensilsCrossed,
     heroImageId: 'service-kitchen',
     benefitImageId: 'project-kitchen-1',
     whyUsImageId: 'service-pillar-kitchen',
-    longDescription: "La cuisine n'est plus seulement un lieu de préparation, c'est le cœur battant de votre intérieur. Sa rénovation est un projet complexe qui touche à tous les corps de métier : plomberie, électricité, plâtrerie, et agencement de précision. ERG Rénovation orchestre votre projet de A à Z, de la conception de votre cuisine sur mesure à l'installation impeccable, à Paris et en Île-de-France (75, 92, 93, 94, 78).",
+    longDescription: "Votre cuisine manque de rangements, les équipements vieillissent ou l’implantation ne convient plus à vos habitudes ? ERG Rénovation étudie les travaux à Paris et dans les départements 92, 93 et 94. Nous définissons les éléments à conserver ou à remplacer, les adaptations de plomberie et d’électricité et les finitions nécessaires. Le devis distingue les travaux, les fournitures et les équipements que vous apportez.",
     benefits: [
       {
-        title: "Conception et Aménagement sur Mesure",
-        description: "Optimisation de l'ergonomie (triangle d'activité), conception de plans 3D, et création de mobilier sur mesure (îlot central, rangements intégrés, verrières)."
+        title: "Implantation et Équipements",
+        description: "Dimensions des meubles, ouverture des portes et accès aux appareils : l’implantation est examinée avec les arrivées d’eau, les évacuations et les alimentations électriques existantes."
       },
       {
         title: "Plomberie, Électricité et Peinture",
-        description: "La clé d'une cuisine réussie. Modification des réseaux (plomberie, électricité), gestion de l'extraction (hotte), préparation des supports et peinture."
+        description: "Définir les raccordements à conserver ou à adapter, les besoins des appareils et les supports à reprendre avant la pose des meubles et la mise en peinture."
       },
       {
         title: "Réseaux de la Cuisine Ouverte",
-        description: "Lorsque la cuisine s'ouvre sur le séjour, nous reprenons l'électricité, la plomberie et les peintures de l'ensemble de l'espace."
+        description: "Pour une cuisine déjà ouverte sur le séjour, les raccordements et les finitions sont étudiés avec l’usage de l’espace. Une modification de cloison ne fait pas partie d’une simple adaptation des réseaux."
       },
       {
-        title: "Pose et Finitions Haut de Gamme",
-        description: "Installation millimétrique de vos meubles, pose de plans de travail nobles (marbre, granit, quartz, Dekton), raccordement de l'électroménager et intégration des éclairages (LED sous meubles, spots)."
+        title: "Pose, Raccordements et Finitions",
+        description: "Le périmètre de pose dépend des équipements retenus. Le devis précise les meubles, les raccordements, les reprises autour de la crédence et les fournitures comprises ou laissées à votre charge."
       }
     ],
     process: [
-      { step: 1, title: 'Atelier de Conception', description: "Visite à domicile pour analyser vos besoins, votre style de vie et les contraintes techniques de votre logement (Paris, 92, 93, 94, 78)." },
-      { step: 2, title: 'Chiffrage et Plans', description: "Proposition de plans 3D et d'un devis détaillé poste par poste (travaux préparatoires, mobilier, électroménager, pose)." },
-      { step: 3, title: 'Phase Travaux', description: "Notre conducteur de travaux dédié pilote la démolition, la mise aux normes des réseaux et la préparation des supports (murs, sols)." },
-      { step: 4, title: 'Pose et Réception', description: "Installation de la cuisine par nos menuisiers-poseurs, finitions et réception de chantier. Votre cuisine est prête à l'emploi." }
+      { step: 1, title: 'Visite et Relevé des Besoins', description: "Dimensions, installations visibles, équipements conservés et usages souhaités : nous réunissons les éléments nécessaires à l’étude de votre cuisine." },
+      { step: 2, title: 'Périmètre et Devis', description: "Définition des travaux préparatoires, des fournitures et des équipements, avec les options et les exclusions." },
+      { step: 3, title: 'Préparation et Réseaux', description: "Dépose prévue au devis, adaptations de plomberie et d’électricité, puis préparation des supports selon les interventions retenues." },
+      { step: 4, title: 'Pose et Réception', description: "Pose des équipements retenus, raccordements et finitions, puis vérification des travaux avec vous." }
     ],
     whyUs: [
-        { title: "Plans de Travail", description: "Quartz (Silestone, Caesarstone), matériaux ultra-compacts (Dekton), pierre naturelle (marbre, granit) ou bois massif.", icon: Milestone },
-        { title: "Façades", description: "Laques mates ou brillantes, finitions bois nobles (chêne, noyer), Fénix (mat anti-traces), ou façades techniques (Inox).", icon: Layers },
-        { title: "Crédences & Robinetterie", description: "Solutions design et fonctionnelles (Zellige, verre, inox, robinetterie avec douchette, eau filtrante...).", icon: Sparkles }
+        { title: "Des Choix Compatibles avec les Réseaux", description: "L’emplacement de l’évier et des appareils est étudié avant de confirmer les raccordements et les travaux nécessaires.", icon: Milestone },
+        { title: "Des Fournitures Identifiées", description: "Les références, dimensions et responsabilités de fourniture doivent être connues avant la pose.", icon: Layers },
+        { title: "Des Finitions Prévues dès le Devis", description: "Les reprises de murs, les raccords autour des meubles et la peinture sont à examiner avec les équipements remplacés.", icon: Sparkles }
     ],
     zones: {
-        description: "Nous intervenons pour la rénovation de cuisines dans les appartements parisiens (Paris 75), où l'optimisation de l'espace est cruciale. Notre expertise est également reconnue dans les Hauts-de-Seine (92) et les Yvelines (78) pour des projets d'envergure (cuisines ouvertes sur réception dans des maisons).",
-        list: "Nous couvrons aussi le Val-de-Marne (94) et la Seine-Saint-Denis (93)."
+        description: "Nous étudions la rénovation de cuisines à Paris (75), dans les Hauts-de-Seine (92), en Seine-Saint-Denis (93) et dans le Val-de-Marne (94).",
+        list: "Précisez votre commune, l’étage et les contraintes de livraison lors de votre demande."
     },
     faq: [
-      { question: "Quel budget pour une rénovation complète de cuisine haut de gamme ?", answer: "Le budget varie grandement selon la taille, les matériaux et l'électroménager. Une prestation complète fournie-posée par ERG Rénovation commence généralement autour de 15 000€ et peut dépasser 50 000€ pour des projets de luxe. Nous fournissons un devis transparent pour chaque projet." },
-      { question: "Combien de temps faut-il pour rénover une cuisine ?", answer: "En moyenne, il faut compter entre 3 et 5 semaines pour une rénovation complète, incluant les travaux préparatoires (plomberie, électricité) et la pose. Notre pilotage intégral garantit le respect de ce planning." },
-      { question: "Faut-il un permis pour abattre la cloison entre la cuisine et le salon ?", answer: "Si le mur n'est pas porteur, une simple déclaration préalable de travaux peut suffire. S'il est porteur, une étude structurelle par un ingénieur et un permis de construire sont obligatoires. Nous nous occupons de gérer ces démarches pour vous." },
-      { question: "Gérez-vous la commande et la livraison de l'électroménager ?", answer: "Oui, nous offrons un service clé en main. Nous pouvons intégrer une offre complète incluant l'électroménager négocié auprès de nos partenaires, ou assurer la pose parfaite de l'équipement que vous avez choisi vous-même." }
+      { question: "Peut-on rénover la cuisine en conservant certains meubles ?", answer: "Présentez les éléments à garder et leur état. Il faut examiner leur compatibilité avec les équipements remplacés, les raccordements et les reprises de finition. Une intervention partielle peut être étudiée sans prévoir automatiquement une cuisine entièrement neuve." },
+      { question: "Combien de temps la cuisine restera-t-elle inutilisable ?", answer: "Cela dépend de la dépose, des réseaux à adapter, des supports et de la disponibilité des équipements. Les périodes sans évier ou sans appareils doivent être discutées avant de fixer les étapes, surtout si vous restez dans le logement." },
+      { question: "Peut-on déplacer l’évier ou le lave-vaisselle ?", answer: "Le nouvel emplacement doit être étudié avec les alimentations et les évacuations existantes. Préparez un plan et les références des appareils ; la visite permettra de préciser les adaptations possibles." },
+      { question: "Puis-je fournir mes meubles et mes appareils ?", answer: "Signalez-le dès la demande. Les dimensions, références et consignes d’installation permettent de définir la pose et les raccordements. Le devis précise les fournitures à votre charge, les prestations retenues et les éventuelles exclusions." }
     ],
     relatedProjectSlugs: ['cuisine-ouverte-design-vincennes']
   },
@@ -314,49 +314,49 @@ const allServices: Service[] = [
   {
     title: 'Peinture et finitions',
     slug: 'peinture-finitions',
-    description: 'La touche finale qui sublime vos murs et vos espaces.',
+    description: 'Préparation des supports et peinture intérieure de votre logement.',
     icon: Paintbrush,
     heroImageId: 'service-painting',
     benefitImageId: 'service-painting',
     whyUsImageId: 'service-pillar-finish',
-    longDescription: "Le succès d'une rénovation se juge à la perfection de ses finitions. Une peinture ou un revêtement mural impeccablement posé est la touche finale qui confère à votre intérieur son caractère \"très très haut de gamme\". Chez ERG Rénovation, nos peintres décorateurs sont des compagnons, garants d'une préparation minutieuse des supports et d'un résultat sans défaut à Paris, dans les Hauts-de-Seine, les Yvelines, et toute l'Île-de-France.",
+    longDescription: "Murs marqués, plafonds à reprendre ou pièces à rafraîchir : ERG Rénovation étudie vos travaux de peinture intérieure à Paris et dans les départements 92, 93 et 94. L’état des supports, les surfaces concernées et l’occupation du logement déterminent les préparations et l’organisation. Le choix des teintes et des finitions vient compléter ce travail, avec un devis qui précise les prestations retenues.",
     benefits: [
       {
-        title: "Préparation Minutieuse des Supports (Le Fondement)",
-        description: "C'est notre engagement \"haut de gamme\". Lessivage, traitement des fissures, application d'enduit de lissage, ponçage fin, et application de sous-couches techniques uniformes. Un support parfait est non-négociable."
+        title: "Préparation des Murs et Plafonds",
+        description: "Examen des anciens revêtements et des défauts visibles pour définir nettoyage, reprises, enduits, ponçage et impression selon le support."
       },
       {
-        title: "Peinture Décorative et Technique",
-        description: "Application de peintures de haute qualité (mat velouté pour les plafonds, satin pour les murs, laque tendue pour les boiseries). Maîtrise des techniques de rechampi et des finitions sans trace."
+        title: "Peinture des Pièces de Vie",
+        description: "Murs, plafonds et teintes sont définis ensemble. Les produits et finitions sont choisis selon le support, l’usage de la pièce et les conditions d’entretien."
       },
       {
-        title: "Revêtements Muraux et Papiers Peints",
-        description: "Pose de tous types de revêtements : papiers peints haut de gamme (vinyle, intissé, panoramique), toiles à peindre, et enduits décoratifs (stucs, Tadelakt si pertinent)."
+        title: "Reprises après Travaux",
+        description: "Après une intervention de plomberie ou d’électricité, les zones à reprendre et les raccords de finition sont identifiés pour définir les surfaces à traiter."
       },
       {
-        title: "Finitions des Boiseries et Moulures",
-        description: "Restauration, décapage et mise en peinture (laque) des portes, plinthes, moulures et cimaises. Rénovation des parquets (ponçage et vitrification)."
+        title: "Portes, Plinthes et Moulures",
+        description: "Les éléments concernés sont relevés séparément des murs et plafonds, avec les préparations et la finition prévues pour chaque support."
       }
     ],
     process: [
         { step: 1, title: 'Diagnostic et Conseil Couleur', description: "Analyse de la lumière, de l'état des supports et propositions de palettes de couleurs (ou de textures) adaptées à l'ambiance désirée." },
-        { step: 2, title: 'Protection Totale du Chantier', description: "Démontage, bâchage soigné des sols et masquage précis de toutes les zones (interrupteurs, prises, menuiseries). Le chantier doit rester impeccable." },
-        { step: 3, title: 'Préparation du Support', description: "Application des enduits et ponçages fins nécessaires. C'est le secret d'une finition parfaite." },
-        { step: 4, title: 'Application Multicouche et Contrôle', description: "Respect des temps de séchage, application des couches successives, contrôle qualité et nettoyage minutieux pour une livraison parfaite." }
+        { step: 2, title: 'Protection des Espaces', description: "Préparation des protections des sols, des meubles conservés et des éléments qui ne seront pas peints, selon le périmètre retenu." },
+        { step: 3, title: 'Préparation du Support', description: "Réalisation des reprises, enduits et ponçages prévus après examen des supports." },
+        { step: 4, title: 'Application et Réception', description: "Application des produits selon leurs conditions de mise en œuvre, respect des temps de séchage, puis vérification des travaux et nettoyage prévu." }
     ],
     whyUs: [
-        { title: "Le Savoir-Faire de Nos Compagnons Peintres", description: "Nos artisans sont sélectionnés pour leur expertise dans les finitions tendues (sans effet \"peau d'orange\") et leur minutie, essentiels pour le luxe.", icon: Award },
-        { title: "Des Matériaux qui Font la Différence", description: "Nous travaillons avec des peintures et revêtements reconnus pour leur qualité, leur tenue dans le temps et leur rendu esthétique (Ressource, Little Greene...).", icon: Sparkles },
-        { title: "Un Chantier Propre, une Prestation Sans Souci", description: "La propreté est partie intégrante de notre service haut de gamme. Protection, nettoyage quotidien et respect de votre domicile sont assurés.", icon: ClipboardList }
+        { title: "Des Préparations Identifiées", description: "Les défauts visibles et les anciens revêtements sont examinés avant de définir les reprises nécessaires.", icon: Award },
+        { title: "Des Finitions Définies Ensemble", description: "Teintes, aspect et conditions d’entretien sont discutés selon les pièces et les produits retenus.", icon: Sparkles },
+        { title: "Une Organisation Adaptée au Logement", description: "Protections, déplacement des affaires et accès aux pièces sont précisés avec vous avant le démarrage.", icon: ClipboardList }
     ],
     zones: {
-        description: "Qu'il s'agisse de restaurer les moulures d'un Haussmannien à Paris (75) ou d'apporter des finitions contemporaines à une maison des Yvelines (78) ou des Hauts-de-Seine (92), nos équipes sont à votre disposition.",
-        list: "Nous intervenons sur tous projets exigeants dans les départements 93 et 94."
+        description: "Nous étudions les travaux de peinture intérieure à Paris (75), dans les Hauts-de-Seine (92), en Seine-Saint-Denis (93) et dans le Val-de-Marne (94).",
+        list: "Indiquez les pièces concernées et si le logement reste occupé pour préparer la visite."
     },
     faq: [
-      { question: "Qu'est-ce qui justifie le prix d'une peinture haut de gamme ?", answer: "Environ 80% du coût réside dans la préparation minutieuse du support (enduits, ponçages multiples) et dans la main d'œuvre qualifiée, bien plus que dans le prix du pot de peinture lui-même. C'est ce qui garantit une finition parfaite et durable." },
+      { question: "Que doit préciser un devis de peinture intérieure ?", answer: "Les pièces, les surfaces, la préparation des supports, les produits et les finitions doivent être identifiés. Faites aussi préciser la protection des sols et des meubles, les exclusions et le nettoyage prévu." },
       { question: "Quelle finition choisir (Mat, Satin, Velours) ?", answer: "Le Mat Velouté, très tendance, offre un rendu poudré et chic, idéal pour les pièces à vivre. Le Satin est plus résistant et lessivable, parfait pour les cuisines, salles de bain et couloirs. Nous vous conseillons selon l'usage et la lumière de chaque pièce." },
-      { question: "Combien de temps faut-il prévoir pour une peinture complète ?", answer: "Pour un appartement de type T3 (environ 70m²), il faut compter entre 1 et 2 semaines. Ce délai inclut le temps de séchage incompressible entre les couches, qui est un gage de qualité." },
+      { question: "Peut-on rester dans le logement pendant les peintures ?", answer: "Une organisation par pièces peut être étudiée selon les surfaces et les préparations nécessaires. Précisez les espaces qui doivent rester accessibles et les meubles à déplacer. Les conditions de ventilation, de séchage et de remise en usage dépendent aussi des produits retenus." },
       { question: "Proposez-vous des conseils en colorimétrie ?", answer: "Oui, nos chefs de projet vous accompagnent dans le choix des teintes et des harmonies pour qu'elles correspondent parfaitement à l'ambiance que vous souhaitez créer et à la luminosité de votre intérieur." }
     ],
     relatedProjectSlugs: ['appartement-haussmannien-paris-16']

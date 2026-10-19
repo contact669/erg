@@ -13,6 +13,10 @@ export const quoteOriginPages = [
   { path: "/services/peinture-finitions", label: "Peinture et finitions" },
   { path: "/renovation-salle-de-bain/paris-16", label: "Salle de bain à Paris 16" },
   { path: "/blog/budget-renovation-appartement-paris", label: "Guide du budget d’un appartement" },
+  { path: "/blog/renovation-petite-salle-de-bain-budget", label: "Guide des petites salles de bain" },
+  { path: "/blog/remplacer-baignoire-par-douche-appartement", label: "Guide du remplacement baignoire-douche" },
+  { path: "/blog/renovation-appartement-habite-organisation", label: "Guide de l’appartement habité" },
+  { path: "/renovation-montreuil", label: "Rénovation à Montreuil" },
 ] as const
 
 // Only known public paths are stored; never arbitrary URLs, queries or referrers.

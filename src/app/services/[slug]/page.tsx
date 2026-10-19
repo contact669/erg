@@ -92,7 +92,7 @@ function toRelPath(absOrRel: string) {
 function inferAreaServed(slug: string) {
   // Tu peux affiner selon ton business réel
   if (slug === "renovation-appartement" || slug === "renovation-salle-de-bain" || slug === "renovation-cuisine") {
-    return ["Paris (75)", "Hauts-de-Seine (92)", "Seine-Saint-Denis (93)", "Val-de-Marne (94)", "Yvelines (78)"]
+    return ["Paris (75)", "Hauts-de-Seine (92)", "Seine-Saint-Denis (93)", "Val-de-Marne (94)"]
   }
   if (slug === "renovation-maison" || slug === "amenagement-combles") {
     return ["Paris (75)", "Yvelines (78)", "Hauts-de-Seine (92)", "Seine-Saint-Denis (93)", "Val-de-Marne (94)"]
@@ -395,9 +395,9 @@ export async function generateMetadata(
     }
     if (service.slug === "renovation-cuisine") {
       return {
-        title: "Rénovation Cuisine Paris & IDF (92, 93, 94, 78)",
+        title: "Rénovation cuisine Paris | Travaux et devis détaillé",
         description:
-          "ERG Rénovation gère la rénovation complète de votre cuisine à Paris et IDF. Conception sur mesure, îlot central, finitions haut de gamme. Devis A à Z.",
+          "Rénovation de cuisine à Paris : implantation, plomberie, électricité, pose et finitions selon votre projet. Préparez une visite et un devis avec ERG Rénovation.",
       }
     }
     if (service.slug === "amenagement-combles") {
@@ -409,9 +409,9 @@ export async function generateMetadata(
     }
     if (service.slug === "peinture-finitions") {
       return {
-        title: "Peinture & Finitions Haut de Gamme Paris & IDF",
+        title: "Peinture intérieure Paris | Appartement et finitions",
         description:
-          "Finitions impeccables pour vos murs et plafonds à Paris et IDF. Préparation minutieuse, matériaux d'exception. Demandez votre diagnostic finition.",
+          "Peinture intérieure à Paris : préparation des murs et plafonds, finitions et organisation en logement occupé. Présentez votre projet à ERG Rénovation.",
       }
     }
     return {
