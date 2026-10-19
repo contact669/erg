@@ -300,6 +300,23 @@ export default function AboutPage() {
           </section>
         </AnimatedSection>
 
+        <section id="renovizo" aria-labelledby="renovizo-title" className="container scroll-mt-40 py-10 md:py-12">
+          <div className="mx-auto max-w-4xl border-t border-slate-200 pt-8">
+            <h2 id="renovizo-title" className="font-headline text-xl font-semibold text-slate-900 md:text-2xl">
+              Retrouvez ERG Rénovation sur Rénovizo
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-slate-600">
+              Vous préparez des travaux de rénovation intérieure ? Retrouvez la présentation d’ERG Rénovation sur Rénovizo, plateforme de mise en relation entre particuliers et entreprises de rénovation à Paris et dans l’ouest francilien. Consultez notre fiche pour découvrir nos prestations et nos secteurs d’intervention.
+            </p>
+            <a
+              href="https://renovizo.fr/partenaires/erg-renovation-paris-20"
+              className="mt-3 inline-block min-h-11 max-w-full rounded-sm py-2 text-sm font-semibold leading-relaxed text-slate-900 underline decoration-slate-400 underline-offset-4 transition-colors hover:text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-600 focus-visible:ring-offset-4"
+            >
+              Découvrir ERG Rénovation sur Rénovizo
+            </a>
+          </div>
+        </section>
+
         {/* VALUES SECTION */}
         <AnimatedSection>
           <section className="bg-slate-50 py-16 md:py-24 border-b border-slate-200/60">
