@@ -8,11 +8,13 @@ new Function('exports', ts.transpileModule(fs.readFileSync('src/lib/quote-projec
 }).outputText)(output);
 const { quoteOriginPages, quoteHrefForService, readQuoteOrigin, quoteOriginFromRequest, readQuoteProject } = output;
 for (const page of quoteOriginPages) {
-  const slug = page.path.includes('/services/') ? page.path.split('/').pop() : 'renovation-salle-de-bain';
+  const slug = page.path.includes('/services/') ? page.path.split('/').pop()
+    : page.path.startsWith('/blog/') ? 'renovation-appartement' : 'renovation-salle-de-bain';
   const url = new URL(quoteHrefForService(slug, page.path), 'https://erg-renovation.fr');
   assert.equal(url.pathname, '/devis');
   assert.equal(url.hash, '#demande-devis');
   assert.ok(readQuoteProject(url.searchParams.get('projet')));
+  if (page.path.startsWith('/blog/')) assert.equal(url.searchParams.get('projet'), 'appartement');
   assert.equal(readQuoteOrigin(url.searchParams.get('page')), page.path);
   assert.equal(quoteOriginFromRequest({quoteOriginPage: page.path, quoteOriginMethod: 'link-parameter'}), page.path);
 }

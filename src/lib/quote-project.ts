@@ -12,6 +12,7 @@ export const quoteOriginPages = [
   { path: "/services/renovation-cuisine", label: "Rénovation de cuisine" },
   { path: "/services/peinture-finitions", label: "Peinture et finitions" },
   { path: "/renovation-salle-de-bain/paris-16", label: "Salle de bain à Paris 16" },
+  { path: "/blog/budget-renovation-appartement-paris", label: "Guide du budget d’un appartement" },
 ] as const
 
 // Only known public paths are stored; never arbitrary URLs, queries or referrers.

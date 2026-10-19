@@ -114,6 +114,7 @@ export interface TocSection {
 }
 
 export interface BlogPost {
+  updatedDate?: string;
   relatedServiceSlugs?: string[];
   relatedProjectSlugs?: string[];
   slug: string;

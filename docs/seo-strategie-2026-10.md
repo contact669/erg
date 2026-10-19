@@ -77,7 +77,7 @@ Après déploiement : vérifier la version publique, puis comparer 28 jours comp
 
 ## Contexte des liens vers le devis — 19 octobre 2026
 
-Les boutons propres aux quatre pages de services et à la page salle de bain Paris 16 transmettent désormais leur chemin public dans le paramètre `page` du lien vers `/devis`. À la soumission, seules les cinq valeurs prédéfinies sont acceptées et enregistrées avec la méthode `link-parameter`. Ni referrer, ni historique de navigation, ni URL arbitraire ne sont collectés par ce mécanisme. Les accès directs, les boutons génériques, le formulaire Contact et les anciennes demandes restent sans contexte de page.
+Les boutons propres aux quatre pages de services, à la page salle de bain Paris 16 et au guide du budget d’appartement transmettent leur chemin public dans le paramètre `page` du lien vers `/devis`. À la soumission, seules ces six valeurs prédéfinies sont acceptées et enregistrées avec la méthode `link-parameter`. Ni referrer, ni historique de navigation, ni URL arbitraire ne sont collectés par ce mécanisme. Les accès directs, les boutons génériques, le formulaire Contact et les anciennes demandes restent sans contexte de page.
 
 Le détail d’une demande affiche ce contexte et le pipeline peut filtrer les demandes selon cette valeur pour examiner leurs devis liés. Le paramètre est modifiable par le visiteur : il ne prouve ni une provenance Google ni une conversion SEO, et ne sert à aucune autorisation. Les statuts commerciaux continuent de provenir exclusivement des devis privés liés par `requestId`.
 
@@ -88,6 +88,12 @@ URL de référence : `/services/renovation-appartement`, conservée distincte du
 Intervention : préciser les prestations d’électricité, plomberie, peinture intérieure, cuisine et salle de bain ; retirer les promesses de structure, de rénovation énergétique globale et de délais forfaitaires ; expliquer rénovation partielle, logement occupé et facteurs de budget. Les projets liés sont présentés par leurs textes et témoignages existants, sans présenter ici des photos dont la provenance n’a pas été établie comme preuves avant/après. Le titre et l’URL restent stables. Contrôler les liens, le sitemap et la canonical avant publication, puis demander une indexation ciblée de cette URL.
 
 Contrôle public : page et sitemap répondent en HTTP 200, URL présente dans le sitemap et canonical correspondant à la page. Demande d’indexation ciblée acceptée dans Search Console le 19 octobre : URL ajoutée à la file d’exploration prioritaire. Cette confirmation n’est pas une indexation effective. Ne pas répéter la demande pour la même URL ; vérifier ultérieurement son état et les premières impressions.
+
+## Guide du budget d’appartement — 19 octobre 2026
+
+URL : `/blog/budget-renovation-appartement-paris`. Search Console Web, période du 20 septembre au 17 octobre 2026 : 240 impressions, 0 clic, position moyenne 39,1. Parmi les requêtes visibles : « devis rénovation appartement paris devis en ligne » (23 impressions), « cout travaux renovation appartement paris » (15), « prix rénovation appartement paris » (13) et « devis renovation appartement paris » (11). Aucun gain n’est déduit de ces chiffres de référence.
+
+Travail : conserver le titre et l’URL ; ajouter un accès au devis dès l’introduction, une grille des postes à chiffrer et un lien contextualisé avec le projet appartement présélectionné. Ajouter une date de mise à jour visible et les métadonnées correspondantes pour cette révision réelle, tout en conservant la publication initiale du 7 octobre. Aucun tarif d’entreprise ni montant de chantier n’est inventé. Le contexte du lien du guide est désormais disponible dans le filtre CRM ; il ne prouve pas une acquisition Google.
 
 ## Références
 

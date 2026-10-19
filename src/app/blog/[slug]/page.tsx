@@ -29,6 +29,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     ...metadata,
     openGraph: {
       ...metadata.openGraph, type: 'article', publishedTime: post.date, authors: [post.author],
+      ...(post.updatedDate ? { modifiedTime: post.updatedDate } : {}),
       ...(image ? { images: [{ url: new URL(image.imageUrl, SITE_URL).toString(), alt: post.title }] } : {}),
     },
   };
@@ -65,6 +66,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <JsonLd id="jsonld-article" data={{
         '@context': 'https://schema.org', '@type': 'BlogPosting', '@id': `${pageUrl}#article`,
         headline: post.title, description: post.description, datePublished: post.date,
+        ...(post.updatedDate ? { dateModified: post.updatedDate } : {}),
         mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
         author: { '@type': isEditorialTeam ? 'Organization' : 'Person', name: post.author, url: `${SITE_URL}/a-propos` },
         publisher: { '@id': `${SITE_URL}/#business` }, inLanguage: 'fr-FR',
@@ -101,7 +103,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               {post.title}
             </h1>
 
-            <div className="flex items-center gap-6 text-xs sm:text-sm font-medium text-slate-300">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs sm:text-sm font-medium text-slate-300">
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4 text-slate-300" />
                 <span>{post.author}</span>
@@ -110,6 +112,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               <div className="flex items-center gap-2">
                 <Calendar className="h-4 w-4 text-slate-400" />
                 <time dateTime={post.date}>{format(new Date(post.date), "d MMMM yyyy", { locale: fr })}</time>
+                {post.updatedDate && <span>· Mis à jour le <time dateTime={post.updatedDate}>{format(new Date(post.updatedDate), "d MMMM yyyy", { locale: fr })}</time></span>}
               </div>
             </div>
           </div>

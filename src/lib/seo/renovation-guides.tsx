@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { quoteHrefForService } from '@/lib/quote-project';
 import type { BlogPost } from '@/lib/types';
 
 export const renovationGuides: BlogPost[] = [
@@ -7,18 +8,26 @@ export const renovationGuides: BlogPost[] = [
     title: 'Budget rénovation appartement à Paris : préparer un chiffrage fiable',
     description: 'Surface, état du logement, réseaux, matériaux et accès : les éléments à préciser pour obtenir un devis de rénovation d’appartement à Paris.',
     date: '2026-10-07', author: 'Équipe ERG Rénovation', featuredImageId: 'service-apartment',
+    updatedDate: '2026-10-19',
     tags: ['Budget', 'Appartement', 'Paris'],
     relatedServiceSlugs: ['renovation-appartement', 'peinture-finitions'],
     relatedProjectSlugs: ['renovation-studio-paris-11', 'renovation-appartement-65m2-paris'],
     toc: [
       { id: 'definir-travaux', title: 'Définir le périmètre des travaux', level: 'h2' },
       { id: 'facteurs-budget', title: 'Ce qui fait varier le budget', level: 'h2' },
+      { id: 'grille-chiffrage', title: 'Les postes à faire chiffrer', level: 'h2' },
       { id: 'preparer-visite', title: 'Préparer la visite de chiffrage', level: 'h2' },
       { id: 'comparer-budget', title: 'Comparer les devis à périmètre égal', level: 'h2' },
     ],
     content: <>
       <p>Le coût d’une rénovation d’appartement à Paris dépend des travaux réellement nécessaires. Une surface de 45 m² peut correspondre à une remise en peinture, à une réfection des pièces techniques ou à une redistribution complète. Un prix au mètre carré ne permet pas, à lui seul, de comparer ces projets.</p>
       <p>Pour construire un budget utile, commencez par distinguer ce que vous conservez, ce que vous remplacez et ce qui doit être vérifié sur place. Le devis peut ensuite détailler chaque poste et les options de finition.</p>
+      <aside className="my-6 rounded-2xl border border-slate-200 bg-white p-6" aria-label="Faire chiffrer votre appartement">
+        <p className="font-semibold text-slate-900">Vous cherchez un devis pour votre appartement ?</p>
+        <p>Indiquez les pièces concernées, la surface approximative et vos priorités. La demande en ligne prépare l’échange ; le chiffrage détaillé est établi après étude du logement.</p>
+        <Link href={quoteHrefForService('renovation-appartement', '/blog/budget-renovation-appartement-paris')} className="font-semibold">Décrire mon appartement pour préparer un devis</Link>
+        <p className="text-sm">Vous souhaitez d’abord connaître notre intervention ? Consultez les <Link href="/services/renovation-appartement">prestations de rénovation d’appartement</Link>.</p>
+      </aside>
       <h2 id="definir-travaux">Définir le périmètre des travaux</h2>
       <ul>
         <li><strong>Rafraîchissement :</strong> préparation des supports, peintures, revêtements de sol et finitions, en conservant l’organisation des pièces.</li>
@@ -30,6 +39,22 @@ export const renovationGuides: BlogPost[] = [
       <p>L’état des murs et des sols, la conservation ou le remplacement des réseaux et le niveau d’équipement modifient le chiffrage. Une cuisine ou une salle de bain concentre davantage de postes techniques qu’une chambre de même surface.</p>
       <p>À Paris, l’étage, l’ascenseur, les possibilités de livraison et l’évacuation des gravats comptent aussi. Précisez si le logement restera occupé : la protection, le phasage et le maintien d’accès aux pièces peuvent changer l’organisation du chantier.</p>
       <p>Demandez de distinguer les fournitures, leur pose et les travaux préparatoires. Un parquet, par exemple, ne se résume pas au prix de ses lames : le support, les raccords, les plinthes et les finitions doivent être décrits.</p>
+      <h2 id="grille-chiffrage">Les postes à faire chiffrer dans votre appartement</h2>
+      <p>Cette grille sert à préparer la visite. Pour chaque poste, notez les pièces concernées et ce que vous souhaitez garder. L’entreprise pourra ensuite préciser les quantités, les fournitures et les interventions nécessaires.</p>
+      <div className="overflow-x-auto">
+        <table>
+          <caption className="mb-3 text-left text-sm">Informations à réunir avant de comparer des montants</caption>
+          <thead><tr><th scope="col">Poste</th><th scope="col">À préciser dans votre demande</th><th scope="col">À retrouver dans le devis</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Peinture</th><td>Pièces, plafonds et murs concernés ; fissures ou anciens revêtements visibles.</td><td>Préparation des supports, surfaces traitées et finitions retenues.</td></tr>
+            <tr><th scope="row">Électricité</th><td>Prises et éclairages à déplacer ou à ajouter ; usages prévus.</td><td>Équipements concernés, circuits à reprendre et fournitures prévues après examen.</td></tr>
+            <tr><th scope="row">Plomberie</th><td>Points d’eau conservés ou déplacés et équipements à remplacer.</td><td>Raccordements, évacuations et interventions sur les réseaux existants.</td></tr>
+            <tr><th scope="row">Cuisine et salle de bain</th><td>Éléments conservés, équipements fournis par vous et choix restant à faire.</td><td>Dépose, préparation, pose, raccordements, fournitures et exclusions.</td></tr>
+            <tr><th scope="row">Organisation</th><td>Étage, ascenseur, logement occupé, meubles à protéger et accès.</td><td>Protections, manutention, évacuation et nettoyage prévus.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Une ligne sans montant peut correspondre à un poste exclu ou encore à étudier : demandez une précision avant de comparer les totaux. Si un équipement reste à choisir, faites distinguer sa fourniture et sa pose afin de repérer ce qui fera évoluer le budget.</p>
       <h2 id="preparer-visite">Préparer la visite de chiffrage</h2>
       <ul>
         <li>Un plan ou les dimensions des pièces et quelques photos de l’état actuel.</li>
@@ -41,7 +66,7 @@ export const renovationGuides: BlogPost[] = [
       <p>Les points impossibles à vérifier lors de la visite doivent apparaître comme des hypothèses ou des réserves dans le devis. Prévoyez une marge adaptée aux incertitudes identifiées, plutôt qu’un pourcentage présenté comme universel.</p>
       <h2 id="comparer-budget">Comparer les devis à périmètre égal</h2>
       <p>Vérifiez les quantités, la préparation des supports, les références d’équipements, la protection et le nettoyage. Distinguez les postes inclus, les options et les exclusions. Notre guide pour <Link href="/blog/comparer-devis-renovation">comparer deux devis de rénovation</Link> vous aide à organiser cette lecture.</p>
-      <p>Découvrez une <Link href="/realisations/renovation-studio-paris-11">rénovation de studio à Paris 11e</Link> et notre prestation de <Link href="/services/renovation-appartement">rénovation d’appartement</Link>. Pour votre propre logement, <Link href="/devis">préparez une demande de devis</Link> avec la surface, l’état actuel et vos priorités.</p>
+      <p>Découvrez une <Link href="/realisations/renovation-studio-paris-11">rénovation de studio à Paris 11e</Link> et notre prestation de <Link href="/services/renovation-appartement">rénovation d’appartement</Link>. Pour votre propre logement, <Link href={quoteHrefForService('renovation-appartement', '/blog/budget-renovation-appartement-paris')}>préparez une demande de devis</Link> avec la surface, l’état actuel et vos priorités.</p>
     </>,
   },
   {
