@@ -500,7 +500,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
 
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-                  <Link href={quoteHrefForService(parentService.slug)}>{page.cta?.primary ?? "Demander un devis"}</Link>
+                  <Link href={quoteHrefForService(parentService.slug, `/${parentService.slug}/${page.slug}`)}>{page.cta?.primary ?? "Demander un devis"}</Link>
                 </Button>
 
                 <Button
@@ -677,7 +677,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
 
                     <div className="pt-2 space-y-2">
                       <Button asChild className="w-full">
-                        <Link href={quoteHrefForService(parentService.slug)}>Obtenir mon devis</Link>
+                        <Link href={quoteHrefForService(parentService.slug, `/${parentService.slug}/${page.slug}`)}>Obtenir mon devis</Link>
                       </Button>
                       <Button asChild variant="outline" className="w-full">
                         <a href={`tel:${PHONE}`}>Appeler</a>

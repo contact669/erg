@@ -35,7 +35,7 @@ import { submitQuoteRequest } from "@/lib/submit-quote-request"
 import LeadSourceField from "@/components/lead-source-field"
 import { type LeadSource } from "@/lib/lead-source"
 
-import { readQuoteProject, type QuoteProject as ProjectType } from "@/lib/quote-project"
+import { readQuoteProject, readQuoteOrigin, type QuoteProject as ProjectType } from "@/lib/quote-project"
 type ScopeType = "rafraichissement" | "complete" | "lourde"
 type FinishType = "standard" | "premium" | "luxe"
 
@@ -110,9 +110,11 @@ export default function InteractiveQuoteWizard() {
   const { toast } = useToast()
   const [step, setStep] = useState<number>(1)
   const [projectType, setProjectType] = useState<ProjectType>("appartement")
+  const [quoteOriginPage, setQuoteOriginPage] = useState<string | null>(null)
   useEffect(() => {
     const requestedProject = readQuoteProject(new URLSearchParams(window.location.search).get("projet"))
     if (requestedProject) setProjectType(requestedProject)
+    setQuoteOriginPage(readQuoteOrigin(new URLSearchParams(window.location.search).get("page")))
   }, [])
   const [surface, setSurface] = useState("")
   const validSurface = surface.trim() !== "" && Number.isFinite(Number(surface)) && Number(surface) >= 0.5 && Number(surface) <= 2000
@@ -162,6 +164,7 @@ export default function InteractiveQuoteWizard() {
         projectDescription: formattedDescription,
       }, payload => addDoc(collection(firestore, "quoteRequests"), {
         leadSource: leadSource || null, leadSourceMethod: leadSource ? "self-reported" : null,
+        quoteOriginPage, quoteOriginMethod: quoteOriginPage ? "link-parameter" : null,
         ...payload, postalCode: postalCode.trim(),
         department: postalCode.trim().substring(0, 2), projectType: selectedProj.title,
         surface: `${surface} m²`, status: "Nouvelle Demande", createdAt: serverTimestamp(),

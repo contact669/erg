@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { ArrowLeft, FilePlus2, FileText } from "lucide-react";
 import { COMPANY } from "@/lib/company";
+import { quoteOriginFromRequest, quoteOriginLabel } from "@/lib/quote-project";
 
 const ADMIN_UID = COMPANY.adminUid;
 
@@ -106,6 +107,13 @@ export default function DemandeDetailPage() {
           <div>
             <p className="text-sm text-muted-foreground">Description</p>
             <p className="whitespace-pre-wrap">{request.projectDescription ?? "—"}</p>
+          </div>
+
+          <div>
+            <p className="text-sm text-muted-foreground">Page associée au lien de demande</p>
+            <p>{quoteOriginLabel(quoteOriginFromRequest(request))}</p>
+            <p className="text-xs text-muted-foreground">Contexte transmis par le lien vers le formulaire, sans preuve d’une visite issue de Google. Les anciennes demandes restent non renseignées.</p>
+            {quoteOriginFromRequest(request) && <a className="mt-2 inline-block text-sm underline" href={quoteOriginFromRequest(request)!}>Consulter la page associée</a>}
           </div>
 
           {(request.projectType || request.surface || request.postalCode) && (

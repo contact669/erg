@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { COMPANY } from '@/lib/company';
 import { leadSourceLabel } from '@/lib/lead-source';
+import { quoteOriginPages, quoteOriginFromRequest, quoteOriginLabel } from '@/lib/quote-project';
 import { requestPipelineStages, type PipelineQuote } from '@/lib/crm/request-pipeline';
 
 const STAGES = [
@@ -26,6 +27,8 @@ type Request = {
   status?: string;
   leadSource?: string | null;
   leadSourceMethod?: string | null;
+  quoteOriginPage?: string | null;
+  quoteOriginMethod?: string | null;
 };
 
 export default function PipelinePage() {
@@ -34,6 +37,7 @@ export default function PipelinePage() {
   const router = useRouter();
   const isAdmin = user?.uid === COMPANY.adminUid;
   const [search, setSearch] = useState('');
+  const [originFilter, setOriginFilter] = useState('all');
   useEffect(() => {
     if (!isUserLoading && !user) router.push('/connexion');
   }, [user, isUserLoading, router]);
@@ -46,9 +50,10 @@ export default function PipelinePage() {
   const quotes = useCollection<PipelineQuote>(quotesQuery);
   const rows = useMemo(() => (requests.data ?? []).filter(request =>
     request.status !== 'Supprimée' &&
+    (originFilter === 'all' || (quoteOriginFromRequest(request) ?? 'unknown') === originFilter) &&
     [request.clientName, request.projectDescription, request.postalCode].some(value =>
       (value ?? '').toLocaleLowerCase('fr').includes(search.trim().toLocaleLowerCase('fr')))),
-  [requests.data, search]);
+  [requests.data, search, originFilter]);
   const stages = useMemo(() => requestPipelineStages(rows.map(row => row.id), quotes.data ?? []), [rows, quotes.data]);
 
   if (isUserLoading || !user) return <p>Chargement…</p>;
@@ -69,7 +74,7 @@ export default function PipelinePage() {
     </div>
     <Card><CardHeader>
       <CardTitle>Périmètre du suivi</CardTitle>
-      <CardDescription>Toutes périodes confondues, hors demandes archivées, selon la recherche ci-dessous. Un devis accepté ou facturé est un statut CRM ; ce tableau ne vérifie pas les signatures et ne mesure pas les encaissements. Une demande « traitée » ne devient jamais automatiquement gagnée.</CardDescription>
+      <CardDescription>Toutes périodes confondues, hors demandes archivées, selon les filtres ci-dessous. Un devis accepté ou facturé est un statut CRM ; ce tableau ne vérifie pas les signatures et ne mesure pas les encaissements. Une demande « traitée » ne devient jamais automatiquement gagnée.</CardDescription>
     </CardHeader><CardContent>
       <dl className="grid gap-4 sm:grid-cols-3">
         {[
@@ -86,6 +91,13 @@ export default function PipelinePage() {
     <div className="max-w-xl">
       <label htmlFor="pipeline-search" className="mb-2 block text-sm font-medium">Rechercher un client, un projet ou un code postal</label>
       <Input id="pipeline-search" value={search} onChange={event => setSearch(event.target.value)} />
+      <label htmlFor="pipeline-origin" className="mb-2 mt-4 block text-sm font-medium">Page associée au lien de demande</label>
+      <select id="pipeline-origin" value={originFilter} onChange={event => setOriginFilter(event.target.value)} className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm">
+        <option value="all">Toutes les pages et demandes</option>
+        {quoteOriginPages.map(page => <option key={page.path} value={page.path}>{page.label}</option>)}
+        <option value="unknown">Page non renseignée</option>
+      </select>
+      <p className="mt-2 text-xs text-muted-foreground">Contexte transmis par certains liens du site, sans suivi de navigation. Une demande directe ou ancienne peut rester non renseignée.</p>
     </div>
     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
       {STAGES.map(stage => {
@@ -99,6 +111,7 @@ export default function PipelinePage() {
               <p className="line-clamp-3 text-sm">{request.projectDescription || 'Projet à préciser'}</p>
               {request.postalCode && <p className="text-sm text-muted-foreground">{request.postalCode}</p>}
               <p className="text-xs text-muted-foreground">Origine déclarée : {leadSourceLabel(request.leadSourceMethod === 'self-reported' ? request.leadSource : null)}</p>
+              <p className="text-xs text-muted-foreground">Page du lien : {quoteOriginLabel(quoteOriginFromRequest(request))}</p>
               {stages.get(request.id)?.quotes.map(quote => <Link key={quote.id} href={`/dashboard/devis/${quote.id}`} className="block text-sm underline underline-offset-4">Devis : {quote.status || 'Statut à préciser'}</Link>)}
               {!stages.get(request.id)?.quotes.length && <p className="text-xs text-muted-foreground">Aucun devis lié. Qualification à effectuer par l’équipe.</p>}
             </CardContent></Card>)}

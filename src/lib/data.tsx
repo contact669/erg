@@ -1001,7 +1001,7 @@ const renovationSalleDeBainPages: LocalLandingPage[] = [
                         <summary className="cursor-pointer py-4 font-semibold">Quelles informations transmettre pour demander un devis ?</summary>
                         <p className="pb-4">Indiquez le code postal 75016, la surface approximative, les équipements à conserver ou à remplacer et si le logement sera occupé. Précisez aussi l’étage, l’accès par ascenseur et vos disponibilités. Au premier échange, nous pourrons vous indiquer les photos ou mesures utiles pour compléter l’étude.</p>
                     </details>
-                    <p><Link className="underline" href="/devis?projet=salle-de-bain#demande-devis">Décrire ma salle de bain et demander un devis</Link></p>
+                    <p><Link className="underline" href="/devis?projet=salle-de-bain&page=%2Frenovation-salle-de-bain%2Fparis-16#demande-devis">Décrire ma salle de bain et demander un devis</Link></p>
                 </section>
                 <section className="space-y-3">
                     <h2 className="font-headline text-2xl font-semibold">Des exemples et des guides pour préparer votre projet</h2>
