@@ -10,6 +10,7 @@ import {
   serverTimestamp,
 } from 'firebase/firestore';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -187,6 +188,7 @@ export default function DemandesPage() {
               </div>)}
             </dl>
             <p className="mt-4 text-xs text-muted-foreground">Les anciennes demandes et les réponses absentes ou non reconnues sont classées « Non renseignée ».</p>
+            <Link href="/dashboard/pipeline" className="mt-4 inline-block text-sm font-medium underline underline-offset-4">Suivre les devis liés aux demandes</Link>
           </>}
         </CardContent>
       </Card>
