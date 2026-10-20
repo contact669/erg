@@ -310,7 +310,7 @@ const pageTitles: Record<
     faqTitle: "Questions fréquentes sur la rénovation de salle de bain",
   },
   "renovation-cuisine": {
-    h1: "Rénovation de Cuisine à Paris & IDF : design, fonctionnalité, exécution parfaite",
+    h1: "Rénovation de cuisine à Paris : équipements, réseaux et finitions",
     intro:
       "La cuisine est le cœur de votre intérieur. Sa rénovation touche à tous les corps de métier : plomberie, électricité, plâtrerie, pose, finitions. ERG Rénovation orchestre votre projet de A à Z à Paris et en Île-de-France (75, 92, 93, 94, 78).",
     cta: "Concevoir ma future cuisine",
@@ -342,7 +342,7 @@ const pageTitles: Record<
     faqTitle: "Vos questions sur l’aménagement de combles",
   },
   "peinture-finitions": {
-    h1: "Peinture & Finitions : la signature d’un intérieur haut de gamme",
+    h1: "Peinture intérieure à Paris : préparation des supports et finitions",
     intro:
       "Le succès d’une rénovation se juge à la perfection des finitions : préparation des supports, alignements, teintes, lumière. ERG Rénovation réalise des finitions haut de gamme à Paris et en Île-de-France.",
     cta: "Demander un devis finitions",

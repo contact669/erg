@@ -2,6 +2,38 @@ import Link from "next/link"
 import { quoteHrefForService } from "@/lib/quote-project"
 
 export default function ServiceProjectPreparation({ slug }: { slug: string }) {
+  if (slug === "renovation-cuisine" || slug === "peinture-finitions") {
+    const kitchen = slug === "renovation-cuisine"
+    return (
+      <section className="border-t border-slate-200 bg-white py-14 md:py-20" aria-labelledby="prepare-project-title">
+        <div className="container max-w-4xl space-y-6 text-slate-600">
+          <h2 id="prepare-project-title" className="font-headline text-3xl font-bold text-slate-900">{kitchen ? "Préparer les travaux de votre cuisine" : "Préparer vos travaux de peinture intérieure"}</h2>
+          {kitchen ? (
+            <>
+              <p>Avant de choisir les meubles, faites la liste des équipements qui restent et de ceux qui changent. Un évier déplacé, un nouvel appareil ou une crédence déposée peuvent entraîner des reprises de réseaux et de supports. Ces travaux doivent être examinés avec l’implantation prévue.</p>
+              <h3 className="text-xl font-semibold text-slate-900">Les éléments à réunir avant la visite</h3>
+              <ul className="list-disc space-y-2 pl-5">
+                <li>Un plan avec les dimensions, les ouvertures et la position actuelle des appareils.</li>
+                <li>Les références des meubles et appareils choisis, en précisant qui les fournit.</li>
+                <li>Les points d’eau, prises et éclairages à conserver ou à déplacer.</li>
+                <li>Les contraintes de livraison et les périodes où vous pouvez vous passer de cuisine.</li>
+              </ul>
+              <p>Si vous restez dans l’appartement, précisez les usages à maintenir pendant la dépose et les raccordements. Notre guide pour <Link className="underline" href="/blog/renovation-appartement-habite-organisation">organiser des travaux dans un logement habité</Link> aide à préparer cet échange.</p>
+            </>
+          ) : (
+            <>
+              <p>Indiquez les murs, plafonds, portes et plinthes concernés. Des photos d’ensemble et de détail permettent de signaler les anciens revêtements, les fissures visibles ou les zones à examiner. Le choix d’une teinte ne remplace pas l’étude du support.</p>
+              <h3 className="text-xl font-semibold text-slate-900">Comparer les mêmes travaux préparatoires</h3>
+              <p>Deux devis portant sur les mêmes pièces peuvent prévoir des préparations différentes. Faites préciser les reprises, les surfaces traitées, les produits, les protections et le nettoyage. Si des traces d’humidité sont présentes, signalez-les avant de prévoir la finition : leur origine doit être examinée.</p>
+              <p>Listez les meubles à déplacer et les pièces à garder accessibles. Le guide de la <Link className="underline" href="/blog/renovation-appartement-habite-organisation">rénovation en appartement occupé</Link> aide à anticiper les passages et le stockage de vos affaires.</p>
+            </>
+          )}
+          <p>Pour relire les prestations et les exclusions, consultez notre <Link className="underline" href="/blog/comparer-devis-renovation">méthode de comparaison des devis</Link>. Si les travaux concernent plusieurs pièces et leurs réseaux, retrouvez notre <Link className="underline" href="/services/renovation-appartement">prestation de rénovation d’appartement</Link>.</p>
+          <Link href={quoteHrefForService(slug)} className="inline-flex rounded-xl bg-amber-500 px-6 py-3 font-bold text-slate-950 hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-700">{kitchen ? "Décrire les travaux de ma cuisine" : "Décrire mon projet de peinture"}</Link>
+        </div>
+      </section>
+    )
+  }
   if (slug !== "renovation-salle-de-bain" && slug !== "renovation-appartement") return null
   const bathroom = slug === "renovation-salle-de-bain"
   return (
