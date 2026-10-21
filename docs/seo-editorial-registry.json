@@ -114,36 +114,36 @@
       "priority": "P2",
       "intent": "Comprendre les étapes d'une rénovation de salle de bain",
       "route": "/blog/reussir-renovation-salle-de-bain-paris",
-      "action": "Revu localement, à publier",
+      "action": "Publié, à mesurer",
       "proof": "Guide recentré sur les décisions et étapes ; anciennes illustrations non attribuées retirées.",
-      "next": "Valider le rendu et publier. Préserver les ancres et URL historiques. Mesurer après exploration."
+      "next": "Version révisée vérifiée en production le 21/10. Suivre exploration, requêtes et pertinence des demandes."
     },
     {
       "id": "ancien-studio",
       "priority": "P2",
       "intent": "Préparer l'agencement d'un appartement parisien existant",
       "route": "/blog/10-astuces-renovation-appartement-parisien",
-      "action": "Enrichir",
+      "action": "Revu localement, à publier",
       "proof": "Conserver uniquement les interventions réelles",
-      "next": "Examiner cet article avant toute nouvelle page studio ou appartement ancien."
+      "next": "Guide consacré aux choix d’agencement et éléments conservés. Mesurer sans créer de doublon studio."
     },
     {
       "id": "choix-artisan",
       "priority": "P2",
       "intent": "Choisir une entreprise de travaux",
       "route": "/blog/comment-choisir-bon-artisan-travaux",
-      "action": "Revoir le chevauchement",
+      "action": "Revu localement, à publier",
       "proof": "Ne pas laisser entendre une qualification non vérifiée",
-      "next": "Distinguer choix de l'entreprise et comparaison détaillée des devis."
+      "next": "Guide consacré à l’évaluation de l’entreprise ; comparaison poste par poste renvoyée au guide devis."
     },
     {
       "id": "energie",
       "priority": "P1",
       "intent": "Coordonner un projet énergétique avec les travaux intérieurs",
       "route": "/blog/renovation-energetique-paris-guide-complet",
-      "action": "Revu localement, à publier",
+      "action": "Publié, à mesurer",
       "proof": "Orientation vers France Rénov’ ; périmètre ERG limité aux travaux intérieurs, sans audit ou offre énergétique globale.",
-      "next": "Valider le rendu et publier ; vérifier la cohérence des requêtes après exploration."
+      "next": "Version révisée vérifiée en production le 21/10. Suivre exploration, requêtes et pertinence des demandes."
     },
     {
       "id": "paris16-sdb",

@@ -19,6 +19,7 @@ export const quoteOriginPages = [
   { path: "/renovation-montreuil", label: "Rénovation à Montreuil" },
   { path: "/blog/reussir-renovation-salle-de-bain-paris", label: "Guide des étapes de la salle de bain" },
   { path: "/blog/renovation-energetique-paris-guide-complet", label: "Guide de coordination des travaux intérieurs" },
+  { path: "/blog/10-astuces-renovation-appartement-parisien", label: "Guide des choix de l’appartement" },
 ] as const
 
 // Only known public paths are stored; never arbitrary URLs, queries or referrers.
