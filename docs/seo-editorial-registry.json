@@ -227,6 +227,24 @@
       "action": "Revu localement, à publier",
       "proof": "Aucune réalisation locale revendiquée ; conseils de préparation sans particularités de bâti supposées.",
       "next": "Mesurer les demandes qualifiées et compléter avec des preuves de chantiers autorisées."
+    },
+    {
+      "id": "saint-denis",
+      "priority": "P2",
+      "intent": "Rénover un appartement à Saint-Denis",
+      "route": "/renovation-saint-denis",
+      "action": "Revu localement, à publier",
+      "proof": "Conseils de préparation, sans délai forfaitaire ni résultat technique garanti. Aucune réalisation locale revendiquée.",
+      "next": "Confirmer la publication puis mesurer les demandes qualifiées."
+    },
+    {
+      "id": "issy-les-moulineaux",
+      "priority": "P2",
+      "intent": "Rénover un appartement à Issy-les-Moulineaux",
+      "route": "/renovation-issy-les-moulineaux",
+      "action": "Revu localement, à publier",
+      "proof": "Conseils de préparation, sans délai forfaitaire ni résultat technique garanti. Aucune réalisation locale revendiquée.",
+      "next": "Confirmer la publication puis mesurer les demandes qualifiées."
     }
   ],
   "backlog": [

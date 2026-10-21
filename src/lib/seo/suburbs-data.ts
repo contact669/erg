@@ -301,12 +301,21 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-hauts-de-seine",
     heroTitle: "Rénovation d'Appartement à Issy-les-Moulineaux (92130)",
     metaTitle: "Rénovation Appartement Issy-les-Moulineaux (92130)",
-    metaDescription: "Spécialiste de la rénovation d'appartement à Issy-les-Moulineaux (Val de Seine, Mairie, Corentin Celton). Devis gratuit et finitions soignées.",
+    metaDescription: "Rénovation d’appartement à Issy-les-Moulineaux : salle de bain, cuisine, peinture, plomberie et électricité. Préparez les étapes et demandez votre devis ERG.",
     neighborhoods: ["Val de Seine", "Mairie d'Issy", "Corentin Celton", "Épinettes", "Ferme"],
-    architecturalStyle: "Éco-quartiers modernes, immeubles 1970/1980 et résidences récentes",
-    description: "Rénovation d'appartement et optimisation d'espace à Issy-les-Moulineaux.",
-    specifics: "Modernisation de cuisines équipées, rénovation de salles de bain et réagencement complet 2 et 3 pièces.",
+    architecturalStyle: "Disponibilité des équipements et accès à vérifier avant le chantier",
+    description: "Rénovation intérieure d’appartement à Issy-les-Moulineaux, pour une pièce ou un ensemble de travaux coordonnés.",
+    specifics: "Travaux de cuisine et de salle de bain, adaptation des réseaux et reprises de peinture selon le projet.",
     avgPricePerSqm: "Devis selon les travaux et l’état du logement",
+    showBeforeAfter: false,
+    projectPreparation: {
+      title: "Prévoir les étapes de votre salle de bain à Issy-les-Moulineaux",
+      paragraphs: [
+        "Pour préparer le calendrier, indiquez d’abord si votre salle de bain est la seule pièce d’eau du logement et si vous restez sur place. Précisez les équipements à déposer et ceux à conserver. Ces informations permettent de discuter des périodes d’indisponibilité avant de fixer une date de démarrage.",
+        "Le planning dépend aussi des choix et des livraisons. Rassemblez les références des meubles, de la robinetterie et des revêtements, puis faites confirmer les dimensions et les raccordements avant de commander. L’accès à l’immeuble, l’étage et les conditions de stockage doivent être connus pour organiser l’arrivée des fournitures.",
+        "Après dépose, l’état des supports ou des réseaux peut demander des reprises non visibles lors du premier échange. Faites préciser les points restant à vérifier, les temps de séchage et la façon de valider une modification du périmètre. La date de remise en service se discute sur ces bases, plutôt qu’à partir d’une durée identique pour toutes les salles de bain.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-cuisine-avant.webp",
       afterImage: "/images/realisations/renovation-cuisine-apres.webp",
@@ -315,7 +324,8 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation complète Val de Seine",
     },
     faqs: [
-      { q: "Combien de temps prend la rénovation d'une salle de bain à Issy ?", a: "Comptez environ 2 à 3 semaines pour une réfection totale incluant dépose, plomberie et faïence." },
+      { q: "Combien de temps prévoir pour refaire une salle de bain à Issy-les-Moulineaux ?", a: "La durée se précise selon les déposes, les reprises de réseaux et de supports, les séchages et la disponibilité des équipements. Signalez vos contraintes d’occupation pour convenir des étapes et des périodes où la pièce ne sera pas utilisable." },
+      { q: "Peut-on commander les équipements avant la visite ?", a: "Vous pouvez préparer une sélection de références et leurs dimensions. Avant de confirmer la commande, faites examiner leur compatibilité avec l’implantation, les raccordements et les accès, puis précisez au devis qui fournit et pose chaque élément." },
     ],
   },
   "suresnes": {
@@ -446,12 +456,21 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-seine-saint-denis",
     heroTitle: "Rénovation d'Appartement à Saint-Denis (93000)",
     metaTitle: "Rénovation Appartement Saint-Denis (93000)",
-    metaDescription: "Rénovation d'appartement à Saint-Denis (Centre, Pleyel, Porte de Paris). Mise aux normes électricité, plomberie, isolation et peinture. Devis.",
+    metaDescription: "Rénovation d’appartement à Saint-Denis : salle de bain, cuisine, électricité, plomberie et peinture. Préparez les interventions et votre devis avec ERG.",
     neighborhoods: ["Centre-Ville / Basilique", "Carrefour Pleyel", "Plaine Saint-Denis", "La Source"],
-    architecturalStyle: "Immeubles anciens du centre historique, résidences Pleyel et logements récents",
-    description: "Rénovation clé en main et remise aux normes d'appartements à Saint-Denis.",
-    specifics: "Réfection complète de plomberie/électricité, traitement d'humidité et isolation acoustique.",
+    architecturalStyle: "Installations et usages à examiner dans votre logement",
+    description: "Travaux intérieurs d’appartement à Saint-Denis, selon les pièces à rénover et les installations à reprendre.",
+    specifics: "Préparation des travaux de plomberie, d’électricité et de peinture ; examen des besoins de la cuisine et de la salle de bain.",
     avgPricePerSqm: "Devis selon les travaux et l’état du logement",
+    showBeforeAfter: false,
+    projectPreparation: {
+      title: "Préparer les travaux électriques de votre appartement à Saint-Denis",
+      paragraphs: [
+        "Avant la visite, listez les appareils à utiliser dans chaque pièce et les prises ou éclairages dont vous avez besoin. Pour une cuisine, rassemblez les références des équipements envisagés ; pour la salle de bain, précisez les appareils conservés. Ce relevé décrit vos usages, sans présumer de l’état des circuits.",
+        "Signalez les défauts que vous avez observés : coupures, prises endommagées ou équipements qui ne fonctionnent plus. Leur cause et l’étendue des interventions doivent être examinées sur place. Une rénovation de peinture ou le remplacement de quelques prises ne constitue pas, à lui seul, une rénovation complète de l’installation.",
+        "Faites distinguer au devis les travaux retenus et les reprises de finition autour des passages de câbles. Si le logement reste occupé, discutez des coupures et des pièces à garder accessibles. Les vérifications nécessaires et le planning dépendent du périmètre réellement examiné.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-studio-avant.webp",
       afterImage: "/images/realisations/renovation-studio-apres.webp",
@@ -460,7 +479,8 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Remise à neuf appartement Pleyel",
     },
     faqs: [
-      { q: "Quelles sont les normes électriques obligatoires lors d'une rénovation ?", a: "Nous appliquons strictly la norme NF C 15-100 garantissant la sécurité totale des personnes et des biens." },
+      { q: "Faut-il refaire toute l’électricité pendant une rénovation à Saint-Denis ?", a: "Cela ne peut pas se décider à partir de l’âge du logement ou d’une photo. Décrivez vos usages et les défauts observés ; un examen de l’installation permet de définir les interventions nécessaires et leur périmètre au devis." },
+      { q: "Comment coordonner électricité et peinture ?", a: "Faites identifier les passages de câbles, les saignées éventuelles, leur rebouchage et les surfaces à repeindre. Le devis doit préciser ces reprises et l’ordre des interventions pour éviter de terminer les peintures avant les travaux qui les affectent." },
     ],
   },
   "saint-ouen": {
