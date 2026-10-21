@@ -39,6 +39,17 @@ const SITE_URL = "https://erg-renovation.fr";
 const PHONE_E164 = "+33699961375";
 const PHONE_DISPLAY = "06 99 96 13 75";
 
+function cityLocation(name: string): string {
+  if (name.startsWith("Les ")) return `aux ${name.slice(4)}`;
+  if (name.startsWith("Le ")) return `au ${name.slice(3)}`;
+  return `à ${name}`;
+}
+
+function departmentLocation(data: SuburbCityData): string {
+  return data.departmentCode === "92" ? `dans les ${data.departmentName}` : `en ${data.departmentName}`;
+}
+
+
 export function getSuburbMetadata(slug: string): Metadata {
   const data = SUBURBS_DATA[slug];
   if (!data) return { title: `Rénovation appartement` };
@@ -102,7 +113,7 @@ function JsonLdScript({ data }: { data: SuburbCityData }) {
     {
       "@context": "https://schema.org",
       "@type": "Service",
-      name: `Rénovation d'appartement et maison à ${data.name}`,
+      name: `Rénovation d'appartement et maison ${cityLocation(data.name)}`,
       serviceType: "Rénovation intérieure",
       provider: { "@type": "HomeAndConstructionBusiness", name: BRAND, url: SITE_URL },
       areaServed: { "@type": "City", name: data.name, postalCode: data.postalCode },
@@ -169,7 +180,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
               <div className="lg:col-span-7 space-y-6">
                 <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 border border-slate-300 px-3.5 py-1.5 text-xs font-semibold text-slate-600">
                   <MapPin className="h-3.5 w-3.5" />
-                  <span>Entreprise de Rénovation à {data.name} ({data.postalCode})</span>
+                  <span>Entreprise de Rénovation {cityLocation(data.name)} ({data.postalCode})</span>
                 </div>
 
                 <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
@@ -198,7 +209,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <Button asChild size="lg" className="bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-xl shadow-lg">
                     <Link href="/devis">
-                      Demander mon devis à {data.name} <ArrowRight className="ml-2 h-4 w-4" />
+                      Demander mon devis {cityLocation(data.name)} <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
 
@@ -216,7 +227,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                 <div className="rounded-3xl bg-slate-900/90 border border-slate-800 p-6 shadow-2xl backdrop-blur-md space-y-4">
                   <h3 className="text-lg font-bold text-white flex items-center gap-2">
                     <Sparkles className="h-5 w-5 text-slate-300" />
-                    Préparer votre projet à {data.name}
+                    Préparer votre projet {cityLocation(data.name)}
                   </h3>
                   <ul className="space-y-3 text-sm text-slate-300">
                     <li className="flex items-start gap-2.5">
@@ -248,11 +259,11 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               <div className="lg:col-span-7 space-y-6">
                 <div className="inline-flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600 uppercase tracking-wider">
-                  Votre projet à {data.name}
+                  Votre projet {cityLocation(data.name)}
                 </div>
 
                 <h2 className="font-headline text-2xl sm:text-3xl font-bold text-slate-900">
-                  Rénover son bien immobilier à {data.name}
+                  Rénover son bien immobilier {cityLocation(data.name)}
                 </h2>
 
                 <p className="text-base sm:text-lg text-slate-600 leading-relaxed">
@@ -271,7 +282,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2">Quartiers d'intervention à {data.name} :</h3>
+                  <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2">Quartiers d'intervention {cityLocation(data.name)} :</h3>
                   <div className="flex flex-wrap gap-2">
                     {data.neighborhoods.map((q) => (
                       <span key={q} className="rounded-lg bg-white border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-700 shadow-2xs">
@@ -291,7 +302,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                       <li>Photos, dimensions et choix encore à définir.</li>
                       <li>Accès à l’immeuble et occupation du logement.</li>
                     </ul>
-                    <Link href={quoteHrefForService('renovation-appartement', `/renovation-${data.slug}`)} className="inline-flex rounded-xl bg-amber-500 px-5 py-3 font-semibold text-slate-950 hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-700">Décrire mon projet à {data.name}</Link>
+                    <Link href={quoteHrefForService('renovation-appartement', `/renovation-${data.slug}`)} className="inline-flex rounded-xl bg-amber-500 px-5 py-3 font-semibold text-slate-950 hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-700">Décrire mon projet {cityLocation(data.name)}</Link>
                   </div>
 
               </div>
@@ -305,7 +316,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
             <div className="container">
               <div className="mx-auto max-w-2xl text-center space-y-3">
                 <h2 className="font-headline text-3xl font-bold text-slate-900">
-                  Nos Prestations de Rénovation à {data.name}
+                  Nos Prestations de Rénovation {cityLocation(data.name)}
                 </h2>
                 <p className="text-slate-600 text-base">
                   Électricité, plomberie et peinture intérieure : des interventions définies selon votre projet.
@@ -379,7 +390,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
           <div className="container max-w-3xl mx-auto">
             <div className="text-center space-y-3">
               <h2 className="font-headline text-3xl font-bold text-slate-900">
-                FAQ — Rénovation à {data.name} ({data.postalCode})
+                FAQ — Rénovation {cityLocation(data.name)} ({data.postalCode})
               </h2>
               <p className="text-slate-600 text-base">
                 Vos questions fréquentes pour réussir votre chantier en toute sérénité.
@@ -407,7 +418,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
             <div className="container">
               <div className="text-center max-w-2xl mx-auto mb-8">
                 <h3 className="font-headline text-2xl font-bold text-slate-900">
-                  Nos autres zones d'intervention dans les {data.departmentName} ({data.departmentCode})
+                  Nos autres zones d'intervention {departmentLocation(data)} ({data.departmentCode})
                 </h3>
               </div>
 
@@ -435,7 +446,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                 <li><Link href="/services/renovation-appartement" className="underline">Prestations de rénovation d’appartement</Link></li>
                 <li><Link href="/blog/comparer-devis-renovation" className="underline">Comparer les devis de rénovation</Link></li>
                 {data.slug === "boulogne-billancourt" && <li><Link href="/blog/10-astuces-renovation-appartement-parisien" className="underline">Préparer les choix d’agencement</Link></li>}
-                <li><Link href={`/${data.departmentSlug}`} className="underline">Rénovation dans les {data.departmentName}</Link></li>
+                <li><Link href={`/${data.departmentSlug}`} className="underline">Rénovation {departmentLocation(data)}</Link></li>
               </ul>
             </div>
           </section>
