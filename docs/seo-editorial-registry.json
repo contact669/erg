@@ -168,18 +168,18 @@
       "priority": "P2",
       "intent": "Rénover un appartement à Courbevoie",
       "route": "/renovation-courbevoie",
-      "action": "Revu localement, à publier",
+      "action": "Publié, à mesurer",
       "proof": "Comparatif visuel non attribué retiré ; aucune réalisation locale revendiquée.",
-      "next": "Valider rendu et devis contextualisé. Mesurer avant toute nouvelle page de quartier."
+      "next": "Mise en ligne vérifiée le 21 octobre 2026. Mesurer clics hors marque et demandes qualifiées avant toute nouvelle page de quartier."
     },
     {
       "id": "boulogne",
       "priority": "P2",
       "intent": "Rénover un appartement à Boulogne-Billancourt",
       "route": "/renovation-boulogne-billancourt",
-      "action": "Revu localement, à publier",
+      "action": "Publié, à mesurer",
       "proof": "Comparatif visuel non attribué retiré ; aucune réalisation locale revendiquée.",
-      "next": "Valider rendu et devis contextualisé. Mesurer avant toute nouvelle page de quartier."
+      "next": "Mise en ligne vérifiée le 21 octobre 2026. Mesurer clics hors marque et demandes qualifiées avant toute nouvelle page de quartier."
     },
     {
       "id": "paris20",
@@ -189,6 +189,24 @@
       "action": "Enrichir",
       "proof": "Identité de l'entreprise ; réalisations localisées à confirmer",
       "next": "Définir un apport propre sans copier les autres arrondissements."
+    },
+    {
+      "id": "clichy",
+      "priority": "P2",
+      "intent": "Rénover un appartement à Clichy avant une nouvelle occupation",
+      "route": "/renovation-clichy",
+      "action": "Revu localement, à publier",
+      "proof": "Comparatif sans chantier local identifié retiré ; aucune réalisation locale revendiquée.",
+      "next": "Vérifier le rendu et mesurer les demandes de devis avant toute extension géographique."
+    },
+    {
+      "id": "levallois-perret",
+      "priority": "P2",
+      "intent": "Rénover un appartement à Levallois-Perret",
+      "route": "/renovation-levallois-perret",
+      "action": "Revu localement, à publier",
+      "proof": "Comparatif sans chantier local identifié retiré ; aucune réalisation locale revendiquée.",
+      "next": "Vérifier le rendu et mesurer les demandes de devis avant toute extension géographique."
     }
   ],
   "backlog": [

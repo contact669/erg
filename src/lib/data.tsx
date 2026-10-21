@@ -1487,7 +1487,7 @@ export const AREAS: Area[] = [
       { name: "Colombes", code: "92700", href: "/renovation-colombes" },
       { name: "Issy-les-Moulineaux", code: "92130", href: "/renovation-issy-les-moulineaux" },
       { name: "Suresnes", code: "92150", href: "/renovation-suresnes" },
-      { name: "Clichy", code: "92100", href: "/renovation-clichy" },
+      { name: "Clichy", code: "92110", href: "/renovation-clichy" },
       { name: "Nanterre", code: "92000", href: "/renovation-nanterre" },
     ],
   },

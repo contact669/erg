@@ -75,12 +75,21 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-hauts-de-seine",
     heroTitle: "Rénovation d'Appartement à Levallois-Perret (92300)",
     metaTitle: "Rénovation Appartement Levallois-Perret (92300)",
-    metaDescription: "Entreprise de rénovation à Levallois-Perret (92300). Rénovation d'appartement clé en main, cuisine, salle de bain et finitions de luxe. Devis gratuit.",
+    metaDescription: "Rénovation d’appartement à Levallois-Perret : cuisine, salle de bain, peinture et réseaux intérieurs. Préparez les choix d’équipements et votre devis ERG.",
     neighborhoods: ["Anatole France", "Greffulhe", "Front de Seine", "Jean Zay", "Mairie"],
-    architecturalStyle: "Appartements haussmanniens récents, immeubles pierre de taille et résidences modernes",
-    description: "Rénovation intérieure clé en main pour appartements familiaux et studios à Levallois-Perret.",
-    specifics: "Création de cuisines semi-ouvertes avec verrière, agencement sur-mesure de dressings et suites parentales.",
+    architecturalStyle: "Dimensions, implantation et raccordements à examiner dans votre appartement",
+    description: "Rénovation intérieure d’appartements à Levallois-Perret, de la reprise d’une pièce à un projet associant plusieurs travaux.",
+    specifics: "Préparation de la cuisine et de la salle de bain, adaptation des réseaux et finitions selon les équipements retenus.",
     avgPricePerSqm: "Devis selon les travaux et l’état du logement",
+    showBeforeAfter: false,
+    projectPreparation: {
+      title: "Choisir les équipements avant les travaux à Levallois-Perret",
+      paragraphs: [
+        "Vous envisagez de refaire la cuisine ou la salle de bain de votre appartement ? Rassemblez les dimensions et les références des équipements souhaités avant de commander. Une largeur de meuble ne suffit pas : l’ouverture des portes, les passages et l’accès aux raccordements doivent aussi être examinés.",
+        "Si vous fournissez les meubles, la robinetterie ou les appareils, indiquez-le dès la demande de devis. Faites préciser qui fournit les accessoires nécessaires et qui assure la pose. Une livraison incomplète ou un équipement incompatible peut obliger à revoir les interventions prévues.",
+        "Pour un projet réunissant plusieurs pièces, établissez les choix qui conditionnent les travaux : implantation, points d’eau, appareils électriques et surfaces à reprendre. La visite permet de discuter leur faisabilité et de distinguer les travaux retenus des options encore à décider.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-2-pieces-avant.webp",
       afterImage: "/images/realisations/renovation-2-pieces-apres.webp",
@@ -89,7 +98,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation 3 pièces Levallois Mairie",
     },
     faqs: [
-      { q: "Gérez-vous la communication avec le syndic de copropriété à Levallois ?", a: "Oui, nous transmettons le calendrier de chantier et les fiches techniques pour assurer une intervention conforme aux règles de la copropriété." },
+      { q: "Que préparer pour des travaux en copropriété à Levallois-Perret ?", a: "Demandez au syndic les règles applicables au chantier : horaires, accès, livraisons et protection des parties communes. Transmettez ces informations avant la visite et clarifiez les démarches nécessaires selon les travaux envisagés." },
     ],
   },
   "courbevoie": {
@@ -320,18 +329,27 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
   "clichy": {
     slug: "clichy",
     name: "Clichy",
-    postalCode: "92100",
+    postalCode: "92110",
     departmentCode: "92",
     departmentName: "Hauts-de-Seine",
     departmentSlug: "renovation-hauts-de-seine",
-    heroTitle: "Rénovation d'Appartement à Clichy (92100)",
-    metaTitle: "Rénovation Appartement Clichy (92100)",
-    metaDescription: "Confiez votre rénovation d'appartement à Clichy à ERG Rénovation. Électricité, plomberie, peinture et agencement sur-mesure. Devis gratuit.",
+    heroTitle: "Rénovation d'Appartement à Clichy (92110)",
+    metaTitle: "Rénovation Appartement Clichy (92110)",
+    metaDescription: "Rénovation intérieure à Clichy (92110) : appartement, salle de bain, cuisine, plomberie, électricité et peinture. Préparez votre projet avec ERG.",
     neighborhoods: ["Victor Hugo", "Mairie", "Bac-d'Asnières", "Entrée de Ville"],
-    architecturalStyle: "Immeubles faubouriens, brique/pierre 1930 et résidences neuves",
-    description: "Rénovation complète d'appartements pour résidents et investisseurs à Clichy.",
-    specifics: "Démolition de cloisons, création de cuisines ouvertes et réfection complète de l'électricité.",
+    architecturalStyle: "Pièces concernées, équipements et accès à vérifier pendant la visite",
+    description: "Travaux intérieurs à Clichy pour remettre en état un appartement avant une installation ou une nouvelle occupation.",
+    specifics: "Salle de bain, cuisine, peinture et reprises des réseaux : définissez les interventions nécessaires selon l’état réel du logement.",
     avgPricePerSqm: "Devis selon les travaux et l’état du logement",
+    showBeforeAfter: false,
+    projectPreparation: {
+      title: "Préparer un appartement à Clichy avant une nouvelle occupation",
+      paragraphs: [
+        "Avant de fixer une date d’installation ou de remise des clés, faites le point sur les travaux indispensables. Une peinture neuve ne règle pas une fuite ni un équipement hors service. Signalez les défauts observés et indiquez les pièces à reprendre pour préparer une visite utile.",
+        "Pour la cuisine et la salle de bain, précisez quels meubles et appareils restent en place. Les raccordements, les supports et les surfaces masquées par les anciens équipements peuvent modifier le périmètre après dépose. Demandez que ces points à vérifier et les éventuelles reprises soient identifiés dans le devis.",
+        "Prévoyez l’accès au logement, la remise des clés et la livraison des fournitures. Le calendrier doit tenir compte des interventions retenues, des séchages et des équipements disponibles. Un projet destiné à la location ne permet pas de promettre une date de relocation sans cette préparation.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-studio-avant.webp",
       afterImage: "/images/realisations/renovation-studio-apres.webp",
@@ -340,7 +358,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation 2 pièces Clichy Mairie",
     },
     faqs: [
-      { q: "Rénovez-vous des appartements destinés au locatif à Clichy ?", a: "Oui, nous proposons des rénovations robustes et fonctionnelles parfaitement adaptées à l'investissement locatif." },
+      { q: "Rénovez-vous des appartements destinés au locatif à Clichy ?", a: "ERG peut étudier les travaux intérieurs avant une nouvelle occupation : peinture, cuisine, salle de bain et reprises de plomberie ou d’électricité. Précisez l’état du logement et les équipements à conserver ; la visite et le devis définissent le périmètre retenu." },
     ],
   },
 

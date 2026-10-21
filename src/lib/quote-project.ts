@@ -7,6 +7,8 @@ export function readQuoteProject(value: string | null): QuoteProject | null {
 }
 
 export const quoteOriginPages = [
+  { path: "/renovation-clichy", label: "Rénovation à Clichy" },
+  { path: "/renovation-levallois-perret", label: "Rénovation à Levallois-Perret" },
   { path: "/services/renovation-appartement", label: "Rénovation d’appartement" },
   { path: "/services/renovation-salle-de-bain", label: "Rénovation de salle de bain" },
   { path: "/services/renovation-cuisine", label: "Rénovation de cuisine" },
