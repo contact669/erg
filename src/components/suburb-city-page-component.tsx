@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
@@ -27,7 +26,6 @@ import LocalProjectPreparation from "@/components/local-project-preparation";
 import CourbevoieProjectPreparation from "@/components/courbevoie-project-preparation";
 import AnimatedSection from "@/components/animated-section";
 import CtaBanner from "@/app/_components/cta-banner";
-import BeforeAfterSlider from "@/components/ui/before-after-slider";
 import { quoteHrefForService } from "@/lib/quote-project";
 
 import { Button } from "@/components/ui/button";
@@ -179,17 +177,17 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                 </h1>
 
                 <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-                  {data.description} Devis détaillé et transparent poste par poste, suivi de chantier rigoureux et garantie décennale 10 ans.
+                  {data.description} La visite permet de préciser les interventions, les fournitures et les étapes à inscrire au devis.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
                   <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
                     <ShieldCheck className="h-4 w-4 text-slate-300 flex-shrink-0" />
-                    <span>Garantie Décennale 10 ans</span>
+                    <span>Travaux définis au devis</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
                     <Clock3 className="h-4 w-4 text-slate-300 flex-shrink-0" />
-                    <span>Respect des Délais</span>
+                    <span>Planning à convenir</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
                     <ClipboardCheck className="h-4 w-4 text-slate-300 flex-shrink-0" />
@@ -218,27 +216,26 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                 <div className="rounded-3xl bg-slate-900/90 border border-slate-800 p-6 shadow-2xl backdrop-blur-md space-y-4">
                   <h3 className="text-lg font-bold text-white flex items-center gap-2">
                     <Sparkles className="h-5 w-5 text-slate-300" />
-                    Pourquoi choisir ERG à {data.name} ?
+                    Préparer votre projet à {data.name}
                   </h3>
                   <ul className="space-y-3 text-sm text-slate-300">
                     <li className="flex items-start gap-2.5">
                       <CheckCircle2 className="h-4 w-4 text-slate-300 mt-0.5 flex-shrink-0" />
-                      <span><strong>Interlocuteur Unique :</strong> Un conducteur de travaux dédié de la conception à la réception.</span>
+                      <span><strong>Organisation :</strong> Précisez le périmètre, les interlocuteurs et les étapes du chantier avant de vous engager.</span>
                     </li>
                     <li className="flex items-start gap-2.5">
                       <CheckCircle2 className="h-4 w-4 text-slate-300 mt-0.5 flex-shrink-0" />
-                      <span><strong>Nos métiers :</strong> Électricité NF C 15-100, plomberie et sanitaires, peintures et finitions intérieures.</span>
+                      <span><strong>Travaux intérieurs :</strong> Cuisine, salle de bain, électricité, plomberie et peinture selon les besoins du logement.</span>
                     </li>
                     <li className="flex items-start gap-2.5">
                       <CheckCircle2 className="h-4 w-4 text-slate-300 mt-0.5 flex-shrink-0" />
-                      <span><strong>Spécificités {data.postalCode} :</strong> Maîtrise des règlements de copropriété et du bâti local.</span>
+                      <span><strong>Accès et copropriété :</strong> Communiquez les règles de votre immeuble, les conditions de livraison et les horaires autorisés.</span>
                     </li>
                   </ul>
 
-                  <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                    <span>Retours de nos clients</span>
-                    <span className="font-bold text-slate-300">Témoignages clients</span>
-                  </div>
+                  <p className="pt-2 border-t border-slate-800 text-xs leading-relaxed text-slate-400">
+                    Avant de signer, demandez les attestations d’assurance et vérifiez les activités couvertes pour les travaux envisagés.
+                  </p>
                 </div>
               </div>
             </div>
@@ -251,7 +248,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               <div className="lg:col-span-7 space-y-6">
                 <div className="inline-flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600 uppercase tracking-wider">
-                  Expertise Locale {data.postalCode}
+                  Votre projet à {data.name}
                 </div>
 
                 <h2 className="font-headline text-2xl sm:text-3xl font-bold text-slate-900">
@@ -287,7 +284,6 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
 
               {/* Before/After Card */}
               <div className="lg:col-span-5">
-                {data.showBeforeAfter === false ? (
                   <div className="rounded-3xl border border-slate-200 bg-white p-6 space-y-4">
                     <h3 className="font-headline text-xl font-semibold text-slate-900">Les informations utiles pour votre visite</h3>
                     <ul className="list-disc space-y-2 pl-5 text-slate-600">
@@ -297,25 +293,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                     </ul>
                     <Link href={quoteHrefForService('renovation-appartement', `/renovation-${data.slug}`)} className="inline-flex rounded-xl bg-amber-500 px-5 py-3 font-semibold text-slate-950 hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-700">Décrire mon projet à {data.name}</Link>
                   </div>
-                ) : (
-                <div className="rounded-3xl bg-white p-4 shadow-2xl border border-slate-200 space-y-3">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-600 block">
-                    Exemple de transformation ERG
-                  </span>
-                  <BeforeAfterSlider
-                    beforeImage={data.beforeAfterProject.beforeImage}
-                    afterImage={data.beforeAfterProject.afterImage}
-                    beforeLabel={data.beforeAfterProject.beforeLabel}
-                    afterLabel={data.beforeAfterProject.afterLabel}
-                    alt={"Exemple de rénovation ERG — photos illustratives, localisation non attribuée"}
-                    aspectRatio="aspect-[4/3]"
-                    className="rounded-2xl overflow-hidden shadow-md"
-                  />
-                  <span className="block text-xs font-bold text-slate-900 text-center pt-1">
-                    {"Exemple de rénovation ERG — photos illustratives, localisation non attribuée"}
-                  </span>
-                </div>
-                )}
+
               </div>
             </div>
           </div>
