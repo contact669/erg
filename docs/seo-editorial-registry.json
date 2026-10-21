@@ -209,6 +209,24 @@
       "action": "Revu localement, à publier",
       "proof": "Comparatif sans chantier local identifié retiré ; aucune réalisation locale revendiquée.",
       "next": "Vérifier le rendu et mesurer les demandes de devis avant toute extension géographique."
+    },
+    {
+      "id": "colombes",
+      "priority": "P2",
+      "intent": "Organiser une rénovation intérieure à Colombes",
+      "route": "/renovation-colombes",
+      "action": "Revu localement, à publier",
+      "proof": "Aucune réalisation locale revendiquée ; conseils de préparation sans particularités de bâti supposées.",
+      "next": "Mesurer les demandes qualifiées et compléter avec des preuves de chantiers autorisées."
+    },
+    {
+      "id": "neuilly-sur-seine",
+      "priority": "P2",
+      "intent": "Rénover un appartement à Neuilly-sur-Seine",
+      "route": "/renovation-neuilly-sur-seine",
+      "action": "Revu localement, à publier",
+      "proof": "Aucune réalisation locale revendiquée ; conseils de préparation sans particularités de bâti supposées.",
+      "next": "Mesurer les demandes qualifiées et compléter avec des preuves de chantiers autorisées."
     }
   ],
   "backlog": [
