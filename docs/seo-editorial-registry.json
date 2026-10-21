@@ -1,0 +1,238 @@
+{
+  "reviewedAt": "2026-10-21",
+  "rules": [
+    "Une intention principale possède une page cible. Les variantes grammaticales restent regroupées.",
+    "Une nouvelle page locale exige un besoin distinct, une zone desservie et des informations ou preuves propres.",
+    "Quartiers et rues : sections ou réalisations documentées par défaut, jamais une génération automatique de pages.",
+    "Un doublon de titre ou de texte déclenche une revue, jamais une fusion ou une redirection automatique.",
+    "Une canonical ne remplace pas l'enrichissement ou la consolidation des contenus.",
+    "Aucun prix, délai, chantier, avis, lieu ou label inventé. Pas de publication de documents clients.",
+    "Les statuts Search Console sont des observations datées. Les signaux HTML ne prouvent pas l'indexation."
+  ],
+  "intents": [
+    {
+      "id": "marque",
+      "priority": "P1",
+      "intent": "Trouver ERG Rénovation",
+      "route": "/",
+      "action": "Conserver",
+      "proof": "Identité et contacts publics",
+      "next": "Vérifier la cohérence entre site, fiche Google et partenaires."
+    },
+    {
+      "id": "entreprise-paris",
+      "priority": "P1",
+      "intent": "Choisir une entreprise de rénovation intérieure à Paris",
+      "route": "/renovation-paris",
+      "action": "Enrichir",
+      "proof": "Prestations réelles et organisation des travaux",
+      "next": "Distinguer le portail géographique des pages de prestations."
+    },
+    {
+      "id": "salle-de-bain",
+      "priority": "P1",
+      "intent": "Confier une rénovation de salle de bain à Paris",
+      "route": "/services/renovation-salle-de-bain",
+      "action": "Enrichir",
+      "proof": "Projet Nina G. : photos autorisées, sans surface ou arrondissement supposé",
+      "next": "Revoir aussi les textes du modèle, distincts des données du service."
+    },
+    {
+      "id": "appartement",
+      "priority": "P1",
+      "intent": "Confier une rénovation complète ou partielle d'appartement",
+      "route": "/services/renovation-appartement",
+      "action": "Suivre l’indexation",
+      "proof": "Témoignages existants, sans photos avant/après non attribuées",
+      "next": "URL inconnue dans GSC le 21/10. Demande du 19/10 déjà envoyée ; vérifier exploration et découverte."
+    },
+    {
+      "id": "cuisine",
+      "priority": "P1",
+      "intent": "Faire rénover une cuisine et ses réseaux",
+      "route": "/services/renovation-cuisine",
+      "action": "Suivre l’indexation",
+      "proof": "Périmètre et équipements à confirmer par projet",
+      "next": "Détectée non indexée dans GSC le 21/10. Demande du 19/10 déjà envoyée."
+    },
+    {
+      "id": "peinture",
+      "priority": "P1",
+      "intent": "Faire préparer et repeindre un appartement",
+      "route": "/services/peinture-finitions",
+      "action": "Suivre l’indexation",
+      "proof": "Périmètres anonymisés documentés ; pas de montants publics",
+      "next": "URL inconnue dans GSC le 21/10. Revoir les promesses du modèle avant une nouvelle extension."
+    },
+    {
+      "id": "petite-sdb",
+      "priority": "P1",
+      "intent": "Préparer une salle de bain de 3 à 5 m²",
+      "route": "/blog/renovation-petite-salle-de-bain-budget",
+      "action": "Conserver",
+      "proof": "Conseils d'agencement ; aucun plan présenté comme chantier réel",
+      "next": "Ne pas créer un article concurrent pour chaque surface."
+    },
+    {
+      "id": "baignoire-douche",
+      "priority": "P1",
+      "intent": "Étudier le remplacement d'une baignoire par une douche",
+      "route": "/blog/remplacer-baignoire-par-douche-appartement",
+      "action": "Mesurer",
+      "proof": "Documentation fabricant ; pas d'affiliation revendiquée",
+      "next": "Indexée dans GSC le 21/10. Attendre des données avant de modifier le ciblage."
+    },
+    {
+      "id": "appartement-occupe",
+      "priority": "P1",
+      "intent": "Organiser les travaux dans un logement habité",
+      "route": "/blog/renovation-appartement-habite-organisation",
+      "action": "Mesurer",
+      "proof": "Questions de préparation ; pas de délais universels",
+      "next": "Indexée dans GSC le 21/10. Suivre requêtes et demandes pertinentes."
+    },
+    {
+      "id": "chiffrage",
+      "priority": "P2",
+      "intent": "Préparer les informations nécessaires au chiffrage",
+      "route": "/blog/budget-renovation-appartement-paris",
+      "action": "Conserver",
+      "proof": "Exemples anonymisés distinguant devis et factures",
+      "next": "Pas de nouvelle page concurrente de budget et pas de prix inventés."
+    },
+    {
+      "id": "comparer-devis",
+      "priority": "P2",
+      "intent": "Comparer les périmètres de plusieurs devis",
+      "route": "/blog/comparer-devis-renovation",
+      "action": "Conserver",
+      "proof": "Méthode de lecture des postes, fournitures et exclusions",
+      "next": "Séparer information comparative et demande commerciale."
+    },
+    {
+      "id": "guide-sdb-general",
+      "priority": "P2",
+      "intent": "Comprendre les étapes d'une rénovation de salle de bain",
+      "route": "/blog/reussir-renovation-salle-de-bain-paris",
+      "action": "Revu localement, à publier",
+      "proof": "Guide recentré sur les décisions et étapes ; anciennes illustrations non attribuées retirées.",
+      "next": "Valider le rendu et publier. Préserver les ancres et URL historiques. Mesurer après exploration."
+    },
+    {
+      "id": "ancien-studio",
+      "priority": "P2",
+      "intent": "Préparer l'agencement d'un appartement parisien existant",
+      "route": "/blog/10-astuces-renovation-appartement-parisien",
+      "action": "Enrichir",
+      "proof": "Conserver uniquement les interventions réelles",
+      "next": "Examiner cet article avant toute nouvelle page studio ou appartement ancien."
+    },
+    {
+      "id": "choix-artisan",
+      "priority": "P2",
+      "intent": "Choisir une entreprise de travaux",
+      "route": "/blog/comment-choisir-bon-artisan-travaux",
+      "action": "Revoir le chevauchement",
+      "proof": "Ne pas laisser entendre une qualification non vérifiée",
+      "next": "Distinguer choix de l'entreprise et comparaison détaillée des devis."
+    },
+    {
+      "id": "energie",
+      "priority": "P1",
+      "intent": "Coordonner un projet énergétique avec les travaux intérieurs",
+      "route": "/blog/renovation-energetique-paris-guide-complet",
+      "action": "Revu localement, à publier",
+      "proof": "Orientation vers France Rénov’ ; périmètre ERG limité aux travaux intérieurs, sans audit ou offre énergétique globale.",
+      "next": "Valider le rendu et publier ; vérifier la cohérence des requêtes après exploration."
+    },
+    {
+      "id": "paris16-sdb",
+      "priority": "P1",
+      "intent": "Trouver une entreprise de salle de bain à Paris 16",
+      "route": "/renovation-salle-de-bain/paris-16",
+      "action": "Enrichir",
+      "proof": "Aucun chantier dans le 16e supposé",
+      "next": "Préserver la page principale et ajouter uniquement des preuves localisées confirmées."
+    },
+    {
+      "id": "montreuil",
+      "priority": "P1",
+      "intent": "Rénover un appartement ou studio à Montreuil",
+      "route": "/renovation-montreuil",
+      "action": "Mesurer",
+      "proof": "Pas de réalisation locale attribuée sans preuve",
+      "next": "Suivre les requêtes et demandes après les améliorations publiées."
+    },
+    {
+      "id": "courbevoie",
+      "priority": "P2",
+      "intent": "Rénover un appartement à Courbevoie",
+      "route": "/renovation-courbevoie",
+      "action": "Enrichir",
+      "proof": "Attribution des photos et chantiers à contrôler",
+      "next": "Vérifier les URL positionnées et relire le contenu avant extension locale."
+    },
+    {
+      "id": "boulogne",
+      "priority": "P2",
+      "intent": "Rénover un appartement à Boulogne-Billancourt",
+      "route": "/renovation-boulogne-billancourt",
+      "action": "Revoir le chevauchement",
+      "proof": "Aucun chantier 1930 local confirmé dans ce registre",
+      "next": "Examiner anciennes URL et texte local ; consolider uniquement après analyse des couples requête/page."
+    },
+    {
+      "id": "paris20",
+      "priority": "P2",
+      "intent": "Rénover un appartement à Paris 20",
+      "route": "/renovation-paris/paris-20",
+      "action": "Enrichir",
+      "proof": "Identité de l'entreprise ; réalisations localisées à confirmer",
+      "next": "Définir un apport propre sans copier les autres arrondissements."
+    }
+  ],
+  "backlog": [
+    {
+      "priority": "P1",
+      "subject": "Revue des 20 arrondissements et communes existantes",
+      "decision": "Inventorier avant de créer",
+      "condition": "Définir intention, valeur propre, preuves et URL principale pour chaque page."
+    },
+    {
+      "priority": "P2",
+      "subject": "Ventilation d'une salle de bain en appartement",
+      "decision": "Valider l’intention avant création",
+      "condition": "Comparer le guide général existant ; validation technique et périmètre d'intervention requis."
+    },
+    {
+      "priority": "P2",
+      "subject": "Préparation des murs avant peinture",
+      "decision": "Valider un guide spécialisé",
+      "condition": "Répondre à la préparation d'un chantier confié à une entreprise, sans copier la page service."
+    },
+    {
+      "priority": "P2",
+      "subject": "Rénover une cuisine en gardant certains éléments",
+      "decision": "Enrichir d'abord le service",
+      "condition": "Créer un guide seulement si une demande distincte et suffisamment de matière sont établies."
+    },
+    {
+      "priority": "P2",
+      "subject": "Réalisations par quartier",
+      "decision": "Créer au rythme des preuves",
+      "condition": "Photos autorisées du même chantier, travaux et localisation confirmés ; anonymisation."
+    },
+    {
+      "priority": "P3",
+      "subject": "Pages plomberie et électricité indépendantes",
+      "decision": "Différer",
+      "condition": "Demande commerciale distincte, offre et contenu propres à démontrer."
+    },
+    {
+      "priority": "P3",
+      "subject": "Pages par rue ou variantes de surface",
+      "decision": "Écarter la génération automatique",
+      "condition": "Utiliser une section ou une réalisation documentée ; pas de déclinaison mécanique."
+    }
+  ]
+}

@@ -17,6 +17,8 @@ export const quoteOriginPages = [
   { path: "/blog/remplacer-baignoire-par-douche-appartement", label: "Guide du remplacement baignoire-douche" },
   { path: "/blog/renovation-appartement-habite-organisation", label: "Guide de l’appartement habité" },
   { path: "/renovation-montreuil", label: "Rénovation à Montreuil" },
+  { path: "/blog/reussir-renovation-salle-de-bain-paris", label: "Guide des étapes de la salle de bain" },
+  { path: "/blog/renovation-energetique-paris-guide-complet", label: "Guide de coordination des travaux intérieurs" },
 ] as const
 
 // Only known public paths are stored; never arbitrary URLs, queries or referrers.
