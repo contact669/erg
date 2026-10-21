@@ -245,6 +245,24 @@
       "action": "Revu localement, à publier",
       "proof": "Conseils de préparation, sans délai forfaitaire ni résultat technique garanti. Aucune réalisation locale revendiquée.",
       "next": "Confirmer la publication puis mesurer les demandes qualifiées."
+    },
+    {
+      "id": "les-lilas",
+      "priority": "P2",
+      "intent": "Préparer une rénovation intérieure : Les Lilas",
+      "route": "/renovation-les-lilas",
+      "action": "Revu localement, à publier",
+      "proof": "Aucun délai forfaitaire ni restauration spécialisée promis ; aucune réalisation locale revendiquée.",
+      "next": "Vérifier la publication et mesurer les demandes qualifiées."
+    },
+    {
+      "id": "le-raincy",
+      "priority": "P2",
+      "intent": "Préparer une rénovation intérieure : Le Raincy",
+      "route": "/renovation-le-raincy",
+      "action": "Revu localement, à publier",
+      "proof": "Aucun délai forfaitaire ni restauration spécialisée promis ; aucune réalisation locale revendiquée.",
+      "next": "Vérifier la publication et mesurer les demandes qualifiées."
     }
   ],
   "backlog": [
