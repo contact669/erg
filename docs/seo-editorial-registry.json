@@ -264,6 +264,141 @@
       "action": "Revu localement, à publier",
       "proof": "Aucun délai forfaitaire ni restauration spécialisée promis ; aucune réalisation locale revendiquée.",
       "next": "Vérifier la publication et mesurer les demandes qualifiées."
+    },
+    {
+      "id": "rueil-malmaison",
+      "priority": "P2",
+      "intent": "Rénover un logement : Rueil-Malmaison",
+      "route": "/renovation-rueil-malmaison",
+      "action": "Revu localement, à publier",
+      "proof": "Offre intérieure recentrée ; aucune réalisation locale ni particularité de bâti supposée.",
+      "next": "Confirmer publication puis mesurer les demandes qualifiées. Enrichissement local conditionné à des preuves autorisées."
+    },
+    {
+      "id": "suresnes",
+      "priority": "P2",
+      "intent": "Rénover un logement : Suresnes",
+      "route": "/renovation-suresnes",
+      "action": "Revu localement, à publier",
+      "proof": "Offre intérieure recentrée ; aucune réalisation locale ni particularité de bâti supposée.",
+      "next": "Confirmer publication puis mesurer les demandes qualifiées. Enrichissement local conditionné à des preuves autorisées."
+    },
+    {
+      "id": "pantin",
+      "priority": "P2",
+      "intent": "Rénover un logement : Pantin",
+      "route": "/renovation-pantin",
+      "action": "Revu localement, à publier",
+      "proof": "Offre intérieure recentrée ; aucune réalisation locale ni particularité de bâti supposée.",
+      "next": "Confirmer publication puis mesurer les demandes qualifiées. Enrichissement local conditionné à des preuves autorisées."
+    },
+    {
+      "id": "saint-ouen",
+      "priority": "P2",
+      "intent": "Rénover un logement : Saint-Ouen-sur-Seine",
+      "route": "/renovation-saint-ouen",
+      "action": "Revu localement, à publier",
+      "proof": "Offre intérieure recentrée ; aucune réalisation locale ni particularité de bâti supposée.",
+      "next": "Confirmer publication puis mesurer les demandes qualifiées. Enrichissement local conditionné à des preuves autorisées."
+    },
+    {
+      "id": "aubervilliers",
+      "priority": "P2",
+      "intent": "Rénover un logement : Aubervilliers",
+      "route": "/renovation-aubervilliers",
+      "action": "Revu localement, à publier",
+      "proof": "Offre intérieure recentrée ; aucune réalisation locale ni particularité de bâti supposée.",
+      "next": "Confirmer publication puis mesurer les demandes qualifiées. Enrichissement local conditionné à des preuves autorisées."
+    },
+    {
+      "id": "vincennes",
+      "priority": "P2",
+      "intent": "Rénover un logement : Vincennes",
+      "route": "/renovation-vincennes",
+      "action": "Revu localement, à publier",
+      "proof": "Offre intérieure recentrée ; aucune réalisation locale ni particularité de bâti supposée.",
+      "next": "Confirmer publication puis mesurer les demandes qualifiées. Enrichissement local conditionné à des preuves autorisées."
+    },
+    {
+      "id": "saint-mande",
+      "priority": "P2",
+      "intent": "Rénover un logement : Saint-Mandé",
+      "route": "/renovation-saint-mande",
+      "action": "Revu localement, à publier",
+      "proof": "Offre intérieure recentrée ; aucune réalisation locale ni particularité de bâti supposée.",
+      "next": "Confirmer publication puis mesurer les demandes qualifiées. Enrichissement local conditionné à des preuves autorisées."
+    },
+    {
+      "id": "nogent-sur-marne",
+      "priority": "P2",
+      "intent": "Rénover un logement : Nogent-sur-Marne",
+      "route": "/renovation-nogent-sur-marne",
+      "action": "Revu localement, à publier",
+      "proof": "Offre intérieure recentrée ; aucune réalisation locale ni particularité de bâti supposée.",
+      "next": "Confirmer publication puis mesurer les demandes qualifiées. Enrichissement local conditionné à des preuves autorisées."
+    },
+    {
+      "id": "le-perreux-sur-marne",
+      "priority": "P2",
+      "intent": "Rénover un logement : Le Perreux-sur-Marne",
+      "route": "/renovation-le-perreux-sur-marne",
+      "action": "Revu localement, à publier",
+      "proof": "Offre intérieure recentrée ; aucune réalisation locale ni particularité de bâti supposée.",
+      "next": "Confirmer publication puis mesurer les demandes qualifiées. Enrichissement local conditionné à des preuves autorisées."
+    },
+    {
+      "id": "saint-maur-des-fosses",
+      "priority": "P2",
+      "intent": "Rénover un logement : Saint-Maur-des-Fossés",
+      "route": "/renovation-saint-maur-des-fosses",
+      "action": "Revu localement, à publier",
+      "proof": "Offre intérieure recentrée ; aucune réalisation locale ni particularité de bâti supposée.",
+      "next": "Confirmer publication puis mesurer les demandes qualifiées. Enrichissement local conditionné à des preuves autorisées."
+    },
+    {
+      "id": "ivry-sur-seine",
+      "priority": "P2",
+      "intent": "Rénover un logement : Ivry-sur-Seine",
+      "route": "/renovation-ivry-sur-seine",
+      "action": "Revu localement, à publier",
+      "proof": "Offre intérieure recentrée ; aucune réalisation locale ni particularité de bâti supposée.",
+      "next": "Confirmer publication puis mesurer les demandes qualifiées. Enrichissement local conditionné à des preuves autorisées."
+    },
+    {
+      "id": "asnieres-sur-seine",
+      "priority": "P2",
+      "intent": "Rénover un logement : Asnières-sur-Seine",
+      "route": "/renovation-asnieres-sur-seine",
+      "action": "Revu localement, à publier",
+      "proof": "Offre intérieure recentrée ; aucune réalisation locale ni particularité de bâti supposée.",
+      "next": "Confirmer publication puis mesurer les demandes qualifiées. Enrichissement local conditionné à des preuves autorisées."
+    },
+    {
+      "id": "nanterre",
+      "priority": "P2",
+      "intent": "Rénover un logement : Nanterre",
+      "route": "/renovation-nanterre",
+      "action": "Revu localement, à publier",
+      "proof": "Offre intérieure recentrée ; aucune réalisation locale ni particularité de bâti supposée.",
+      "next": "Confirmer publication puis mesurer les demandes qualifiées. Enrichissement local conditionné à des preuves autorisées."
+    },
+    {
+      "id": "creteil",
+      "priority": "P2",
+      "intent": "Rénover un logement : Créteil",
+      "route": "/renovation-creteil",
+      "action": "Revu localement, à publier",
+      "proof": "Offre intérieure recentrée ; aucune réalisation locale ni particularité de bâti supposée.",
+      "next": "Confirmer publication puis mesurer les demandes qualifiées. Enrichissement local conditionné à des preuves autorisées."
+    },
+    {
+      "id": "maisons-alfort",
+      "priority": "P2",
+      "intent": "Rénover un logement : Maisons-Alfort",
+      "route": "/renovation-maisons-alfort",
+      "action": "Revu localement, à publier",
+      "proof": "Offre intérieure recentrée ; aucune réalisation locale ni particularité de bâti supposée.",
+      "next": "Confirmer publication puis mesurer les demandes qualifiées. Enrichissement local conditionné à des preuves autorisées."
     }
   ],
   "backlog": [

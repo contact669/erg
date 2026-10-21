@@ -7,6 +7,21 @@ export function readQuoteProject(value: string | null): QuoteProject | null {
 }
 
 export const quoteOriginPages = [
+  { path: "/renovation-rueil-malmaison", label: "Rénovation : Rueil-Malmaison" },
+  { path: "/renovation-suresnes", label: "Rénovation : Suresnes" },
+  { path: "/renovation-pantin", label: "Rénovation : Pantin" },
+  { path: "/renovation-saint-ouen", label: "Rénovation : Saint-Ouen-sur-Seine" },
+  { path: "/renovation-aubervilliers", label: "Rénovation : Aubervilliers" },
+  { path: "/renovation-vincennes", label: "Rénovation : Vincennes" },
+  { path: "/renovation-saint-mande", label: "Rénovation : Saint-Mandé" },
+  { path: "/renovation-nogent-sur-marne", label: "Rénovation : Nogent-sur-Marne" },
+  { path: "/renovation-le-perreux-sur-marne", label: "Rénovation : Le Perreux-sur-Marne" },
+  { path: "/renovation-saint-maur-des-fosses", label: "Rénovation : Saint-Maur-des-Fossés" },
+  { path: "/renovation-ivry-sur-seine", label: "Rénovation : Ivry-sur-Seine" },
+  { path: "/renovation-asnieres-sur-seine", label: "Rénovation : Asnières-sur-Seine" },
+  { path: "/renovation-nanterre", label: "Rénovation : Nanterre" },
+  { path: "/renovation-creteil", label: "Rénovation : Créteil" },
+  { path: "/renovation-maisons-alfort", label: "Rénovation : Maisons-Alfort" },
   { path: "/renovation-les-lilas", label: "Rénovation aux Lilas" },
   { path: "/renovation-le-raincy", label: "Rénovation au Raincy" },
   { path: "/renovation-saint-denis", label: "Rénovation à Saint-Denis" },

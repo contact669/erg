@@ -159,7 +159,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation complète maison & appartement Flachat",
     },
     faqs: [
-      { q: "Faut-il un bureau d'études pour ouvrir un mur porteur à Asnières ?", a: "Oui. Toute ouverture de mur porteur nécessite une étude de structure par un bureau d'études et une entreprise de gros œuvre assurée pour ces travaux ; ERG Rénovation n'intervient pas sur la structure." },
+      { q: "Quels travaux préparer pour une rénovation intérieure à Asnières-sur-Seine ?", a: "Listez les pièces, les points d’eau, les appareils électriques et les peintures concernés. Indiquez les équipements conservés et les contraintes d’occupation pour préparer la visite. Les interventions sur la structure ne font pas partie de l’offre ERG présentée ici." },
     ],
   },
   "colombes": {
@@ -209,7 +209,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     metaDescription: "Rénovation intérieure à Nanterre (92000) : électricité, plomberie et peinture. Définissez votre projet et demandez un devis détaillé à ERG Rénovation.",
     neighborhoods: ["Mont-Valérien", "Vieux-Pont", "Centre-Ville", "Parc-Nord", "Université"],
     architecturalStyle: "Résidences récentes, maisons du Mont-Valérien et immeubles collectifs",
-    description: "Rénovation d'appartements et maisons à Nanterre avec optimisation budgétaire.",
+    description: "Travaux intérieurs de logements à Nanterre, selon les priorités définies après visite.",
     specifics: "Travaux d'électricité, de plomberie et de peinture intérieure selon les besoins du logement.",
     avgPricePerSqm: "Budget établi sur le périmètre du devis",
     projectPreparation: {
@@ -275,12 +275,20 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-hauts-de-seine",
     heroTitle: "Rénovation Maison & Appartement à Rueil-Malmaison (92500)",
     metaTitle: "Rénovation Maison & Appartement Rueil-Malmaison (92500)",
-    metaDescription: "Rénovation intérieure à Rueil-Malmaison (92500) : électricité, plomberie et peinture. Préparez vos travaux et demandez un devis détaillé à ERG.",
+    metaDescription: "Rénovation intérieure à Rueil-Malmaison : cuisine, salle de bain, peinture, plomberie et électricité. Préparez votre visite et un devis détaillé avec ERG.",
     neighborhoods: ["Plaine-Gare", "Buzenval", "Richelieu-Châtaigneraie", "Centre-Ville", "Mont-Valérien"],
-    architecturalStyle: "Belles demeures familiales, pavillons meulières et appartements modernes",
-    description: "Travaux de rénovation intérieure dans les logements de Rueil-Malmaison.",
-    specifics: "Électricité, plomberie et peinture intérieure, selon l'état du logement et le périmètre retenu dans le devis.",
+    architecturalStyle: "État du logement, installations et accès à examiner pendant la visite",
+    description: "Travaux intérieurs à Rueil-Malmaison, pour les pièces et installations retenues dans votre projet.",
+    specifics: "Cuisine, salle de bain, réseaux et peinture : travaux prioritaires et options à distinguer.",
     avgPricePerSqm: "Devis détaillé après examen du projet",
+    showBeforeAfter: false,
+    projectPreparation: {
+      title: "Hiérarchiser les travaux de votre logement à Rueil-Malmaison",
+      paragraphs: [
+        "Pour préparer votre rénovation, séparez les besoins de fonctionnement des préférences de finition. Une fuite signalée, un appareil à remplacer et une couleur à changer ne se traitent pas de la même façon. Présentez ces priorités pendant la visite, avec les pièces concernées et les équipements conservés.",
+        "Si vous envisagez plusieurs étapes, faites identifier les travaux qui conditionnent les suivants. Refaire une peinture avant un passage de réseau peut imposer une nouvelle reprise. Le devis doit distinguer le périmètre retenu des options différées et les finitions comprises dans chaque étape.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-complete-appartement-avant.webp",
       afterImage: "/images/realisations/renovation-complete-appartement-apres.webp",
@@ -289,7 +297,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation maison & appartement Buzenval",
     },
     faqs: [
-      { q: "Quels travaux intérieurs proposez-vous à Rueil-Malmaison ?", a: "ERG propose des travaux d'électricité, de plomberie et de peinture intérieure. Précisez les pièces concernées, les équipements conservés et les défauts visibles pour préparer la visite. L'isolation extérieure et le remplacement des menuiseries ne font pas partie de l'offre publiée." },
+      { q: "Peut-on réaliser seulement une partie des travaux à Rueil-Malmaison ?", a: "Un périmètre partiel peut être étudié après visite. Faites préciser les dépendances entre réseaux et finitions, les équipements qui resteront utilisables et les reprises à prévoir lors d’une étape ultérieure." },
     ],
   },
   "issy-les-moulineaux": {
@@ -337,12 +345,20 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-hauts-de-seine",
     heroTitle: "Rénovation d'Appartement à Suresnes (92150)",
     metaTitle: "Rénovation Appartement Suresnes (92150)",
-    metaDescription: "Entreprise de rénovation à Suresnes (Cité-Jardins, Mont-Valérien, Écluse). Devis clair, respect des délais et garantie décennale.",
+    metaDescription: "Rénovation intérieure à Suresnes : cuisine, salle de bain, peinture, plomberie et électricité. Préparez votre visite et un devis détaillé avec ERG.",
     neighborhoods: ["Cité-Jardins", "Mont-Valérien", "Écluse-Belvédère", "Centre-Ville"],
-    architecturalStyle: "Architecture Cité-Jardins 1930, meulières et résidences récentes",
-    description: "Rénovation d'appartements et maisons avec vue à Suresnes.",
-    specifics: "Optimisation de lumière naturelle, réfection de parquets et modernisation de réseaux sanitaires.",
+    architecturalStyle: "État du logement, installations et accès à examiner pendant la visite",
+    description: "Travaux intérieurs à Suresnes, pour les pièces et installations retenues dans votre projet.",
+    specifics: "Préparation des supports, peinture et reprises autour des interventions sur les réseaux.",
     avgPricePerSqm: "Devis selon les travaux et l’état du logement",
+    showBeforeAfter: false,
+    projectPreparation: {
+      title: "Préparer les supports avant une peinture intérieure à Suresnes",
+      paragraphs: [
+        "Pour faire repeindre votre logement, indiquez les pièces, plafonds, portes et plinthes concernés. Photographiez les fissures, traces et zones écaillées visibles. Ces observations préparent la visite ; elles ne confirment pas à distance l’origine d’un défaut ni la préparation nécessaire.",
+        "Distinguez la préparation des supports de la peinture de finition. Si une trace revient ou si un mur paraît humide, faites examiner le problème avant de choisir un revêtement. Précisez aussi les meubles à déplacer, les sols à protéger et les raccords après les travaux de plomberie ou d’électricité.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-2-pieces-avant.webp",
       afterImage: "/images/realisations/renovation-2-pieces-apres.webp",
@@ -351,7 +367,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation appartement Cité-Jardins",
     },
     faqs: [
-      { q: "Quelles préconisations s'appliquent aux logements de la Cité-Jardins de Suresnes ?", a: "Il convient de respecter le caractère patrimonial des façades et des ouvertures d'origine." },
+      { q: "Une peinture neuve suffit-elle à corriger les défauts d’un mur ?", a: "Cela dépend de leur origine et de l’état du support. Signalez les défauts observés pour définir les préparations nécessaires ; une peinture seule ne constitue pas un traitement de leur cause." },
     ],
   },
   "clichy": {
@@ -430,12 +446,20 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-seine-saint-denis",
     heroTitle: "Rénovation d'Appartement & Loft à Pantin (93500)",
     metaTitle: "Rénovation Appartement Pantin (93500)",
-    metaDescription: "Entreprise de rénovation à Pantin (Canal de l'Ourcq, Église, Quatre Chemins). Devis détaillé pour appartement, cuisine et salle de bain.",
+    metaDescription: "Rénovation intérieure à Pantin : cuisine, salle de bain, peinture, plomberie et électricité. Préparez votre visite et un devis détaillé avec ERG.",
     neighborhoods: ["Canal de l'Ourcq", "Église de Pantin", "Mairie", "Hoche", "Quatre Chemins"],
-    architecturalStyle: "Bâtiments industriels réhabilités, lofts du Canal et immeubles faubouriens",
-    description: "Rénovation d'appartements et lofts contemporains le long du Canal de l'Ourcq à Pantin.",
-    specifics: "Aménagement d'espaces ouverts type loft, pose de béton ciré et parquets chêne.",
+    architecturalStyle: "État du logement, installations et accès à examiner pendant la visite",
+    description: "Travaux intérieurs à Pantin, pour les pièces et installations retenues dans votre projet.",
+    specifics: "Implantation de cuisine, raccordements et finitions à examiner avant la commande.",
     avgPricePerSqm: "Devis selon les travaux et l’état du logement",
+    showBeforeAfter: false,
+    projectPreparation: {
+      title: "Étudier une nouvelle implantation de cuisine à Pantin",
+      paragraphs: [
+        "Avant de déplacer l’évier ou les appareils, rassemblez un plan coté et les références envisagées. Repérez ce qui reste en place et les passages nécessaires pour circuler et ouvrir les meubles. Une implantation dessinée doit être confrontée aux dimensions et aux installations du logement.",
+        "Faites examiner les arrivées d’eau, l’évacuation et les alimentations électriques avant de commander. Le devis doit distinguer les adaptations, la pose et les reprises de finition. Si une modification concerne une cloison dont la fonction est incertaine, clarifiez sa faisabilité avant de l’intégrer au chantier.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-2-pieces-avant.webp",
       afterImage: "/images/realisations/renovation-2-pieces-apres.webp",
@@ -444,7 +468,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation 3 pièces Canal de l'Ourcq",
     },
     faqs: [
-      { q: "Intervenez-vous sur les rénovations de lofts sur les bords du Canal ?", a: "Oui, nous avons une vraie expertise sur la gestion des grands volumes et hauteurs sous plafond." },
+      { q: "Peut-on déplacer un évier pendant une rénovation à Pantin ?", a: "Cela dépend de l’évacuation, des passages disponibles et de l’implantation choisie. Faites examiner ces points avant de confirmer les meubles et les travaux au devis." },
     ],
   },
   "saint-denis": {
@@ -492,12 +516,20 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-seine-saint-denis",
     heroTitle: "Rénovation d'Appartement à Saint-Ouen (93400)",
     metaTitle: "Rénovation Appartement Saint-Ouen (93400)",
-    metaDescription: "Spécialiste de la rénovation à Saint-Ouen (Docks, Puces, Garibaldi). Rénovation d'appartement, lofts, cuisines et salles de bain. Devis gratuit.",
+    metaDescription: "Rénovation intérieure à Saint-Ouen-sur-Seine : cuisine, salle de bain, peinture, plomberie et électricité. Préparez votre visite et un devis détaillé avec ERG.",
     neighborhoods: ["Les Docks", "Puces de Saint-Ouen", "Garibaldi", "Mairie", "Vieux Saint-Ouen"],
-    architecturalStyle: "Éco-quartier des Docks, immeubles faubouriens et lofts d'artistes",
-    description: "Rénovation d'appartements et espaces atypiques à Saint-Ouen.",
-    specifics: "Agencement contemporain, intégration de verrières d'atelier et cuisines sur-mesure.",
+    architecturalStyle: "État du logement, installations et accès à examiner pendant la visite",
+    description: "Travaux intérieurs à Saint-Ouen-sur-Seine, pour les pièces et installations retenues dans votre projet.",
+    specifics: "Modifications ciblées de cuisine, de salle de bain, de réseaux et de peinture.",
     avgPricePerSqm: "Devis selon les travaux et l’état du logement",
+    showBeforeAfter: false,
+    projectPreparation: {
+      title: "Adapter un appartement à vos usages à Saint-Ouen-sur-Seine",
+      paragraphs: [
+        "Votre projet peut commencer par quelques changements : déplacer un éclairage, adapter un point d’eau ou repeindre une pièce. Listez les usages qui posent problème et les équipements à garder. Cette préparation aide à discuter d’un périmètre proportionné à vos besoins.",
+        "Pour chaque modification, faites préciser les conséquences autour : accès aux raccordements, dépose d’un meuble, rebouchage ou peinture. Les installations présentes ne sont pas nécessairement adaptées à un nouvel appareil. Ses références et dimensions doivent être examinées avant de confirmer la pose.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-cuisine-avant.webp",
       afterImage: "/images/realisations/renovation-cuisine-apres.webp",
@@ -506,7 +538,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation appartement Les Docks",
     },
     faqs: [
-      { q: "Intervenez-vous dans le nouvel éco-quartier des Docks de Saint-Ouen ?", a: "Oui, pour la personnalisation d'appartements récents (agencement, peintures décoratives, dressing)." },
+      { q: "Peut-on demander des travaux ciblés à Saint-Ouen-sur-Seine ?", a: "Oui, un périmètre limité peut être étudié. Décrivez les modifications et les éléments conservés pour préciser les raccordements et les finitions autour de la zone concernée." },
     ],
   },
   "les-lilas": {
@@ -554,12 +586,20 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-seine-saint-denis",
     heroTitle: "Rénovation d'Appartement à Aubervilliers (93300)",
     metaTitle: "Rénovation Appartement Aubervilliers (93300)",
-    metaDescription: "Confiez vos travaux de rénovation à Aubervilliers à ERG Rénovation. Appartements, électricité, plomberie, sols et peintures. Devis gratuit.",
+    metaDescription: "Rénovation intérieure à Aubervilliers : cuisine, salle de bain, peinture, plomberie et électricité. Préparez votre visite et un devis détaillé avec ERG.",
     neighborhoods: ["Mairie", "Quatre Chemins", "Front Populaire", "Flandre"],
-    architecturalStyle: "Immeubles faubouriens, résidences récentes Front Populaire et anciens ateliers",
-    description: "Rénovation et optimisation budgétaire d'appartements à Aubervilliers.",
-    specifics: "Remise à neuf complète, isolation phonique et rénovation de cuisines.",
+    architecturalStyle: "État du logement, installations et accès à examiner pendant la visite",
+    description: "Travaux intérieurs à Aubervilliers, pour les pièces et installations retenues dans votre projet.",
+    specifics: "Cuisine, salle de bain, peinture et réseaux : fournitures et préparations à détailler.",
     avgPricePerSqm: "Devis selon les travaux et l’état du logement",
+    showBeforeAfter: false,
+    projectPreparation: {
+      title: "Définir un devis comparable à Aubervilliers",
+      paragraphs: [
+        "Préparez une même liste de travaux pour comparer les propositions. Indiquez les pièces, les équipements à remplacer et ceux que vous fournissez. Une proposition de pose seule ne peut pas être comparée directement à une offre comprenant aussi les fournitures et la dépose.",
+        "Faites décrire les reprises moins visibles : préparation des murs, raccords après les réseaux, protections et évacuation des déchets. Identifiez les options et les points restant à vérifier sur place. Le total ne permet pas, à lui seul, de savoir si deux offres couvrent le même projet.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-studio-avant.webp",
       afterImage: "/images/realisations/renovation-studio-apres.webp",
@@ -568,7 +608,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation appartement Front Populaire",
     },
     faqs: [
-      { q: "Proposez-vous des devis détaillés gratuits à Aubervilliers ?", a: "Oui. La visite permet de préciser les interventions et les fournitures avant de préparer un devis détaillé. Le délai de remise est convenu selon le périmètre du projet." },
+      { q: "Comment comparer deux devis de rénovation à Aubervilliers ?", a: "Vérifiez les travaux, quantités, fournitures, préparations et exclusions poste par poste. Demandez une clarification lorsqu’un équipement ou une reprise apparaît dans une offre et pas dans l’autre." },
     ],
   },
   "le-raincy": {
@@ -620,12 +660,20 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-val-de-marne",
     heroTitle: "Rénovation d'Appartement à Vincennes (94300)",
     metaTitle: "Rénovation Appartement Vincennes (94300)",
-    metaDescription: "Spécialiste de la rénovation d'appartement à Vincennes (Château, Bérault, Diderot). Rénovation complète, cuisine sur-mesure, finitions haut de gamme.",
+    metaDescription: "Rénovation intérieure à Vincennes : cuisine, salle de bain, peinture, plomberie et électricité. Préparez votre visite et un devis détaillé avec ERG.",
     neighborhoods: ["Château", "Bérault", "Diderot", "Domaine du Bois", "Vignes"],
-    architecturalStyle: "Immeubles haussmanniens élégants, pierre de taille bord de Bois et résidences 1930",
-    description: "Rénovation haut de gamme d'appartements familiaux à Vincennes.",
-    specifics: "Décloisonnement pour pièces de vie lumineuses, rénovation de parquets Point de Hongrie et douches italiennes.",
+    architecturalStyle: "État du logement, installations et accès à examiner pendant la visite",
+    description: "Travaux intérieurs à Vincennes, pour les pièces et installations retenues dans votre projet.",
+    specifics: "Projet de douche ou de salle de bain selon les évacuations et les supports existants.",
     avgPricePerSqm: "Devis selon les travaux et l’état du logement",
+    showBeforeAfter: false,
+    projectPreparation: {
+      title: "Préparer le remplacement d’une baignoire à Vincennes",
+      paragraphs: [
+        "Le remplacement d’une baignoire ne se résume pas au choix d’un receveur. Rassemblez les dimensions, les références souhaitées et des photos des raccordements visibles. Signalez les équipements voisins conservés et les passages nécessaires pour utiliser la salle de bain.",
+        "La hauteur disponible pour l’évacuation, l’état des supports et les surfaces découvertes après dépose doivent être examinés. Une douche de plain-pied ne peut pas être promise sans ces vérifications. Faites préciser les raccordements, le traitement des zones exposées à l’eau et les reprises de mur ou de sol.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-complete-appartement-avant.webp",
       afterImage: "/images/realisations/renovation-complete-appartement-apres.webp",
@@ -634,7 +682,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation complète haussmannien Vincennes Château",
     },
     faqs: [
-      { q: "Quels sont les délais d'un chantier de rénovation complète à Vincennes ?", a: "Il faut prévoir environ 6 à 9 semaines pour la réhabilitation complète d'un appartement de 80m²." },
+      { q: "Une douche de plain-pied est-elle toujours possible à Vincennes ?", a: "Non, sa faisabilité dépend notamment de l’évacuation, des niveaux et des supports. Présentez votre besoin pour discuter des implantations avant de commander le receveur." },
     ],
   },
   "saint-mande": {
@@ -644,14 +692,22 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentCode: "94",
     departmentName: "Val-de-Marne",
     departmentSlug: "renovation-val-de-marne",
-    heroTitle: "Rénovation d'Appartement à Saint-Mandé (94160)",
+    heroTitle: "Rénovation d’Appartement à Saint-Mandé (94160)",
     metaTitle: "Rénovation Appartement Saint-Mandé (94160)",
-    metaDescription: "Rénovation d'appartement de standing à Saint-Mandé (Bois, Tourelle, Gallieni). Matériaux nobles, finitions haut de gamme et devis sur-mesure.",
+    metaDescription: "Rénovation intérieure à Saint-Mandé : cuisine, salle de bain, peinture, plomberie et électricité. Préparez votre visite et un devis détaillé avec ERG.",
     neighborhoods: ["Bord de Bois", "Tourelle", "Gallieni", "Charles de Gaulle"],
-    architecturalStyle: "Immeubles bourgeois, copropriétés de grand standing bordant le Bois de Vincennes",
-    description: "Rénovation d'exception et finitions de luxe à Saint-Mandé.",
-    specifics: "Intégration de boiseries sur-mesure, salles de bain en marbre et éclairages architecturaux.",
+    architecturalStyle: "État du logement, installations et accès à examiner pendant la visite",
+    description: "Travaux intérieurs à Saint-Mandé, pour les pièces et installations retenues dans votre projet.",
+    specifics: "Cuisine, salle de bain et peinture : fournitures et travaux de pose à répartir.",
     avgPricePerSqm: "Devis selon les travaux et l’état du logement",
+    showBeforeAfter: false,
+    projectPreparation: {
+      title: "Répartir la fourniture et la pose à Saint-Mandé",
+      paragraphs: [
+        "Si vous achetez certains équipements, préparez leurs références et les dates de disponibilité connues. Pour une salle de bain, pensez aux accessoires en plus du meuble ou de la robinetterie. Distinguez ce que vous fournissez de ce qui doit figurer dans la proposition de l’entreprise.",
+        "Avant la commande, faites examiner dimensions, raccordements et conditions de pose. Clarifiez la réception des livraisons, le stockage et la conduite à tenir si une pièce manque ou arrive endommagée. Ces décisions évitent de laisser des responsabilités pratiques indéfinies au moment du chantier.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-appartement-65m2-avant.webp",
       afterImage: "/images/realisations/renovation-appartement-65m2-apres.webp",
@@ -660,7 +716,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation d'appartement 100m² Saint-Mandé",
     },
     faqs: [
-      { q: "Travaillez-vous avec des architectes d'intérieur à Saint-Mandé ?", a: "Oui, nous pouvons exécuter les plans d'un architecte ou proposer nos propres propositions d'agencement." },
+      { q: "Puis-je fournir les meubles de cuisine ou de salle de bain ?", a: "Présentez les références avant l’achat. Leur compatibilité et les accessoires nécessaires doivent être examinés ; le devis précise les fournitures et les travaux de pose retenus." },
     ],
   },
   "nogent-sur-marne": {
@@ -672,12 +728,20 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-val-de-marne",
     heroTitle: "Rénovation Appartement & Maison à Nogent-sur-Marne (94130)",
     metaTitle: "Rénovation Maison & Appartement Nogent-sur-Marne (94130)",
-    metaDescription: "Entreprise de rénovation à Nogent-sur-Marne (Baltard, Bord de Marne, Viselets). Devis gratuit pour appartements et maisons de caractère.",
+    metaDescription: "Rénovation intérieure à Nogent-sur-Marne : cuisine, salle de bain, peinture, plomberie et électricité. Préparez votre visite et un devis détaillé avec ERG.",
     neighborhoods: ["Baltard", "Bords de Marne", "Viselets", "Le Port", "Bois-Cadet"],
-    architecturalStyle: "Maisons Bords de Marne, immeubles 1930 et résidences familiales",
-    description: "Rénovation d'appartements et réhabilitation de maisons à Nogent-sur-Marne.",
-    specifics: "Rénovation énergétique, création de cuisines ouvertes et vérandas intégrées.",
+    architecturalStyle: "État du logement, installations et accès à examiner pendant la visite",
+    description: "Travaux intérieurs à Nogent-sur-Marne, pour les pièces et installations retenues dans votre projet.",
+    specifics: "Travaux intérieurs de plomberie, d’électricité et de peinture ; cuisine et salle de bain.",
     avgPricePerSqm: "Devis selon les travaux et l’état du logement",
+    showBeforeAfter: false,
+    projectPreparation: {
+      title: "Délimiter une rénovation intérieure à Nogent-sur-Marne",
+      paragraphs: [
+        "Décrivez les changements souhaités à l’intérieur : points d’eau, équipements, alimentations électriques et peintures. Identifiez les éléments conservés et les autres travaux prévus avec un intervenant distinct. Cela permet de délimiter la demande avant de chiffrer.",
+        "Une rénovation intérieure n’inclut pas automatiquement véranda, extension ou rénovation énergétique globale. Si ces projets sont prévus en parallèle, précisez leurs interfaces avec les finitions et réseaux intérieurs. Chaque entreprise doit décrire ses prestations et les points de coordination à régler.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-2-pieces-avant.webp",
       afterImage: "/images/realisations/renovation-2-pieces-apres.webp",
@@ -686,7 +750,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation maison & appartement Nogent",
     },
     faqs: [
-      { q: "Quelles sont vos compétences pour la rénovation de maisons à Nogent ?", a: "Nous intervenons en électricité, en plomberie et en peinture intérieure, les métiers couverts par notre assurance décennale." },
+      { q: "Quels travaux ERG peut-elle étudier à Nogent-sur-Marne ?", a: "Les travaux intérieurs de cuisine, salle de bain, plomberie, électricité et peinture. La visite précise le périmètre proposé ; vérandas et rénovation énergétique globale ne sont pas présentées comme des prestations ERG." },
     ],
   },
   "le-perreux-sur-marne": {
@@ -698,12 +762,20 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-val-de-marne",
     heroTitle: "Rénovation Appartement & Maison au Perreux-sur-Marne (94170)",
     metaTitle: "Rénovation Appartement Le Perreux-sur-Marne (94170)",
-    metaDescription: "Spécialiste de la rénovation au Perreux-sur-Marne (Bords de Marne, Centre, Joullain). Devis détaillé, garantie décennale et finitions soignées.",
+    metaDescription: "Rénovation intérieure au Perreux-sur-Marne : cuisine, salle de bain, peinture, plomberie et électricité. Préparez votre visite et un devis détaillé avec ERG.",
     neighborhoods: ["Bords de Marne", "Centre-Ville", "Joullain", "Lamartine"],
-    architecturalStyle: "Belles demeures familiales, pavillons de charme et appartements de standing",
-    description: "Rénovation d'intérieurs et aménagement sur-mesure au Perreux-sur-Marne.",
-    specifics: "Aménagement de suites parentales, rénovation de parquets et mise aux normes thermiques.",
+    architecturalStyle: "État du logement, installations et accès à examiner pendant la visite",
+    description: "Travaux intérieurs au Perreux-sur-Marne, pour les pièces et installations retenues dans votre projet.",
+    specifics: "Pièces techniques et finitions intérieures : périmètre et modalités d’échange à définir.",
     avgPricePerSqm: "Devis selon les travaux et l’état du logement",
+    showBeforeAfter: false,
+    projectPreparation: {
+      title: "Clarifier les décisions pendant votre chantier au Perreux-sur-Marne",
+      paragraphs: [
+        "Avant de démarrer, convenez des contacts pour les choix de fournitures, l’accès et la validation des changements. Précisez vos disponibilités et les décisions encore ouvertes. Le mode et la fréquence des échanges doivent être discutés plutôt que supposés.",
+        "Si une difficulté apparaît après dépose, demandez une description de son incidence sur les travaux. Les modifications de fournitures, de périmètre ou de calendrier doivent être clarifiées avant leur réalisation. Garder une trace des choix facilite la compréhension des étapes retenues.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-cuisine-avant.webp",
       afterImage: "/images/realisations/renovation-cuisine-apres.webp",
@@ -712,7 +784,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation complète Le Perreux Centre",
     },
     faqs: [
-      { q: "Proposez-vous un suivi de chantier régulier ?", a: "Oui, un compte-rendu hebdomadaire avec photos vous est envoyé par votre conducteur de travaux dédié." },
+      { q: "Un compte rendu hebdomadaire avec photos est-il systématique ?", a: "La fréquence et le format des échanges sont à convenir pour votre projet. Indiquez vos attentes, notamment si vous êtes absent, afin de clarifier les interlocuteurs et les validations nécessaires." },
     ],
   },
   "saint-maur-des-fosses": {
@@ -724,12 +796,20 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-val-de-marne",
     heroTitle: "Rénovation Maison & Appartement à Saint-Maur-des-Fossés (94100)",
     metaTitle: "Rénovation Maison & Appartement Saint-Maur (94100)",
-    metaDescription: "Entreprise de rénovation à Saint-Maur-des-Fossés (Adamville, Parc, Champignol, Créteil-St-Maur). Devis pour rénovation globale d'appartement et maison.",
+    metaDescription: "Rénovation intérieure à Saint-Maur-des-Fossés : cuisine, salle de bain, peinture, plomberie et électricité. Préparez votre visite et un devis détaillé avec ERG.",
     neighborhoods: ["Adamville", "Le Parc", "Champignol", "La Varenne Saint-Hilaire", "Vieux Saint-Maur"],
-    architecturalStyle: "Villas d'exception à La Varenne, meulières et appartements familiaux",
-    description: "Rénovation globale de standing pour maisons et appartements à Saint-Maur.",
-    specifics: "Rénovation de pièces de réception, suites parentales et isolation globale.",
+    architecturalStyle: "État du logement, installations et accès à examiner pendant la visite",
+    description: "Travaux intérieurs à Saint-Maur-des-Fossés, pour les pièces et installations retenues dans votre projet.",
+    specifics: "Salle de bain, cuisine, réseaux intérieurs et peinture après examen du logement.",
     avgPricePerSqm: "Devis selon les travaux et l’état du logement",
+    showBeforeAfter: false,
+    projectPreparation: {
+      title: "Préparer une salle d’eau à Saint-Maur-des-Fossés",
+      paragraphs: [
+        "Pour rénover une salle d’eau ou étudier une nouvelle implantation intérieure, préparez un plan et la liste des équipements. Indiquez les points d’eau existants et les pièces voisines. Un emplacement libre ne suffit pas à confirmer que les raccordements sont possibles.",
+        "Faites examiner arrivées d’eau, évacuation et installations concernées avant de retenir l’implantation. Le devis doit préciser déposes, raccordements, finitions et points restant à vérifier. Les travaux de structure et l’isolation globale ne sont pas inclus dans cette présentation de l’offre intérieure.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-complete-appartement-avant.webp",
       afterImage: "/images/realisations/renovation-complete-appartement-apres.webp",
@@ -738,7 +818,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation maison La Varenne St-Hilaire",
     },
     faqs: [
-      { q: "Intervenez-vous sur La Varenne Saint-Hilaire pour des rénovations lourdes ?", a: "Nous y réalisons des rénovations intérieures : électricité, plomberie et peintures. Nous n'intervenons pas sur la structure." },
+      { q: "Peut-on confirmer une nouvelle salle d’eau à partir d’un plan ?", a: "Un plan prépare l’échange, mais les réseaux, les accès et les supports doivent être examinés sur place. L’implantation et le périmètre proposé se précisent après ces vérifications." },
     ],
   },
   "creteil": {
@@ -750,7 +830,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-val-de-marne",
     heroTitle: "Rénovation d'Appartement à Créteil (94000)",
     metaTitle: "Rénovation Appartement Créteil (94000)",
-    metaDescription: "ERG Rénovation modernise votre appartement à Créteil (Lac, Échat, Mairie). Projets clé en main pour un intérieur fonctionnel et esthétique. Devis gratuit.",
+    metaDescription: "Rénovation d’appartement à Créteil : cuisine, salle de bain, peinture et réseaux. Préparez la visite et un devis détaillé avec ERG.",
     neighborhoods: ["Le Lac", "L'Échat", "Mont-Mesly", "Bords de Marne", "Université"],
     architecturalStyle: "Résidences récentes modernistes, appartements du Lac et immeubles collectifs",
     description: "Rénovation d'appartements et modernisation intérieure à Créteil.",
@@ -788,7 +868,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     neighborhoods: ["Charentonneau", "Alfort", "Mairie", "Juilliottes", "Bustière"],
     architecturalStyle: "Pavillons de charme Charentonneau, immeubles 1930 et résidences calmes",
     description: "Rénovation d'appartements et pavillons familiaux à Maisons-Alfort.",
-    specifics: "Optimisation de l'espace, rénovation de parquets et création de salles d'eau modernes.",
+    specifics: "Travaux de cuisine, de salle de bain, de plomberie, d’électricité et de peinture selon l’examen du logement.",
     avgPricePerSqm: "Devis après étude de votre logement",
     projectPreparation: {
       title: "Définir vos travaux intérieurs à Maisons-Alfort",
@@ -806,7 +886,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation appartement Charentonneau",
     },
     faqs: [
-      { q: "Est-il possible de refaire intégralement la plomberie d'un appartement ?", a: "Oui, nous remplaçons l'ensemble des évacuations et arrivées d'eau par des réseaux sous PER ou multicouche." },
+      { q: "Est-il possible de refaire intégralement la plomberie d'un appartement ?", a: "Le périmètre dépend de l’état et de l’accès aux réseaux. La visite permet de définir les arrivées et évacuations concernées, les équipements à raccorder et les reprises. Les matériaux et interventions retenus sont à préciser au devis." },
     ],
   },
   "ivry-sur-seine": {
@@ -818,12 +898,20 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-val-de-marne",
     heroTitle: "Rénovation d'Appartement & Loft à Ivry-sur-Seine (94200)",
     metaTitle: "Rénovation Appartement Ivry-sur-Seine (94200)",
-    metaDescription: "Confiez votre rénovation d'appartement à Ivry-sur-Seine à ERG Rénovation. Lofts, appartements anciens, rénovation énergétique. Devis gratuit.",
+    metaDescription: "Rénovation intérieure à Ivry-sur-Seine : cuisine, salle de bain, peinture, plomberie et électricité. Préparez votre visite et un devis détaillé avec ERG.",
     neighborhoods: ["Ivry Port", "Centre-Ville", "Petit-Ivry", "Marat-Parmentier"],
-    architecturalStyle: "Anciens bâtiments industriels réhabilités, lofts et ensembles récents",
-    description: "Rénovation d'appartements et lofts contemporains à Ivry-sur-Seine.",
-    specifics: "Aménagement d'ateliers en lofts, isolation phonique/thermique et finitions tendances.",
+    architecturalStyle: "État du logement, installations et accès à examiner pendant la visite",
+    description: "Travaux intérieurs à Ivry-sur-Seine, pour les pièces et installations retenues dans votre projet.",
+    specifics: "Dépose des équipements retenus, raccordements et reprises de finition selon le devis.",
     avgPricePerSqm: "Devis selon les travaux et l’état du logement",
+    showBeforeAfter: false,
+    projectPreparation: {
+      title: "Anticiper les reprises après dépose à Ivry-sur-Seine",
+      paragraphs: [
+        "En retirant un meuble de cuisine, une baignoire ou un revêtement, des parties masquées peuvent apparaître. Indiquez ce qui sera déposé et ce qui restera en place. Des photos d’ensemble aident à repérer les jonctions où des reprises pourraient être nécessaires.",
+        "Faites préciser les vérifications possibles avant dépose et celles qui devront attendre. Le devis doit distinguer travaux prévus, exclusions et options. Si une intervention supplémentaire est envisagée après découverte de l’existant, son périmètre et ses conséquences doivent être discutés avant réalisation.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-2-pieces-avant.webp",
       afterImage: "/images/realisations/renovation-2-pieces-apres.webp",
@@ -832,7 +920,7 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation loft Ivry Port",
     },
     faqs: [
-      { q: "Quels sont les avantages d'une rénovation globale à Ivry ?", a: "Elle permet de synchroniser les corps d'état, de réduire la durée totale du chantier et d'optimiser les coûts." },
+      { q: "Pourquoi certaines reprises ne peuvent-elles être confirmées immédiatement ?", a: "Certains supports ou raccordements restent inaccessibles derrière les équipements. La visite précise les limites de l’examen et les points à vérifier après dépose, sans supposer qu’une réfection complète est nécessaire." },
     ],
   },
 };
