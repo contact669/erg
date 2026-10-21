@@ -116,7 +116,7 @@ export default function SiteHeader() {
           <div className="flex items-center gap-5">
             <span className="inline-flex items-center gap-1 text-slate-800">
               <ShieldCheck className="h-3.5 w-3.5 text-slate-600" />
-              Garantie Décennale 10 Ans
+              Devis détaillé sans engagement
             </span>
             <a
               href="https://www.google.com/maps/search/?api=1&query=ERG-Entreprise+de+R%C3%A9novation+Appartement+%26+Salle+de+Bains+%C3%A0+Paris+et+%C3%8Ele-de-France"

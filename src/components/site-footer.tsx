@@ -86,8 +86,8 @@ export default function SiteFooter() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 p-2">
               <ShieldCheck className="h-5 w-5 text-slate-600 shrink-0" />
               <div className="text-left text-xs font-semibold text-slate-800">
-                <span className="block font-bold text-slate-900">Garantie Décennale</span>
-                Couverture 10 ans
+                <span className="block font-bold text-slate-900">Travaux intérieurs</span>
+                Périmètre défini au devis
               </div>
             </div>
 
@@ -102,8 +102,8 @@ export default function SiteFooter() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 p-2">
               <Clock className="h-5 w-5 text-slate-600 shrink-0" />
               <div className="text-left text-xs font-semibold text-slate-800">
-                <span className="block font-bold text-slate-900">Interlocuteur Unique</span>
-                Suivi de A à Z
+                <span className="block font-bold text-slate-900">Étapes du chantier</span>
+                Planning à convenir
               </div>
             </div>
 
@@ -130,7 +130,7 @@ export default function SiteFooter() {
             </Link>
 
             <p className="text-sm font-normal leading-relaxed text-slate-600 max-w-sm">
-              Spécialiste de la rénovation intérieure haut de gamme à Paris et en Île-de-France. Appartements, salles de bain, cuisines et rénovation complète avec garantie décennale.
+              ERG Rénovation réalise vos travaux intérieurs à Paris et en petite couronne : appartements, salles de bain, cuisines, peinture, plomberie et électricité.
             </p>
 
             {/* Direct Contact Cards */}
@@ -177,7 +177,7 @@ export default function SiteFooter() {
               </li>
               <li>
                 <FooterLink href="/services/renovation-cuisine">
-                  Rénovation Cuisine Sur-Mesure
+                  Rénovation de cuisine
                 </FooterLink>
               </li>
               <li>

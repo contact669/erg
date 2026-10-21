@@ -36,7 +36,7 @@ export default function CtaBanner() {
           {/* Top Badge */}
           <div className="inline-flex items-center gap-2.5 rounded-full bg-slate-100 border border-slate-200 px-5 py-2 text-xs font-bold uppercase tracking-wider text-slate-600 shadow-sm backdrop-blur-md">
             <Sparkles className="h-4 w-4 text-slate-600" />
-            <span>Paris • 92 • 93 • 94 • Accompagnement sur-mesure</span>
+            <span>Paris • 92 • 93 • 94 • Rénovation intérieure</span>
           </div>
 
           {/* Headline */}
@@ -52,7 +52,7 @@ export default function CtaBanner() {
             </h2>
 
             <p className="mx-auto max-w-2xl text-base sm:text-lg font-normal leading-relaxed text-slate-600">
-              Décrivez votre projet en quelques mots. Nous vous rappelons rapidement avec une estimation claire et un devis détaillé poste par poste.
+              Indiquez les pièces à rénover, l’état du logement et vos priorités. Un échange permet de préciser votre demande et de préparer une visite pour établir le devis.
             </p>
           </div>
 
@@ -60,17 +60,17 @@ export default function CtaBanner() {
           <div className="flex flex-wrap justify-center items-center gap-3 pt-2 text-xs font-semibold text-slate-700">
             <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 shadow-xs">
               <ShieldCheck className="h-4 w-4 text-slate-600" />
-              <span>Garantie Décennale 10 Ans</span>
+              <span>Devis poste par poste</span>
             </div>
 
             <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 shadow-xs">
               <UserCheck className="h-4 w-4 text-slate-600" />
-              <span>Interlocuteur Unique Dédié</span>
+              <span>Équipements à préciser</span>
             </div>
 
             <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 shadow-xs">
               <Clock className="h-4 w-4 text-slate-600" />
-              <span>Délais & Budget Maîtrisés</span>
+              <span>Planning à convenir</span>
             </div>
           </div>
 
@@ -101,7 +101,7 @@ export default function CtaBanner() {
 
           {/* Footer Subtext */}
           <p className="text-xs font-medium text-slate-500 pt-2">
-            Visite sur site offerte à Paris & Île-de-France • Devis détaillé et transparent sans engagement
+            Contact du lundi au samedi, de 9 h à 20 h • Devis gratuit et sans engagement
           </p>
         </div>
       </div>
