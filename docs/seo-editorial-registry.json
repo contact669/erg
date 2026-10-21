@@ -168,18 +168,18 @@
       "priority": "P2",
       "intent": "Rénover un appartement à Courbevoie",
       "route": "/renovation-courbevoie",
-      "action": "Enrichir",
-      "proof": "Attribution des photos et chantiers à contrôler",
-      "next": "Vérifier les URL positionnées et relire le contenu avant extension locale."
+      "action": "Revu localement, à publier",
+      "proof": "Comparatif visuel non attribué retiré ; aucune réalisation locale revendiquée.",
+      "next": "Valider rendu et devis contextualisé. Mesurer avant toute nouvelle page de quartier."
     },
     {
       "id": "boulogne",
       "priority": "P2",
       "intent": "Rénover un appartement à Boulogne-Billancourt",
       "route": "/renovation-boulogne-billancourt",
-      "action": "Revoir le chevauchement",
-      "proof": "Aucun chantier 1930 local confirmé dans ce registre",
-      "next": "Examiner anciennes URL et texte local ; consolider uniquement après analyse des couples requête/page."
+      "action": "Revu localement, à publier",
+      "proof": "Comparatif visuel non attribué retiré ; aucune réalisation locale revendiquée.",
+      "next": "Valider rendu et devis contextualisé. Mesurer avant toute nouvelle page de quartier."
     },
     {
       "id": "paris20",

@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { quoteHrefForService } from "@/lib/quote-project"
 
 export default function CourbevoieProjectPreparation() {
   return (
@@ -20,7 +21,7 @@ export default function CourbevoieProjectPreparation() {
           <p className="leading-relaxed text-slate-700">Un devis lisible distingue les travaux, les équipements, les options et les exclusions. En peinture, vérifiez la préparation prévue pour les murs. Pour la salle de bain ou la cuisine, faites préciser les raccordements conservés ou modifiés. Une estimation générale ne remplace pas l’examen de ces postes.</p>
           <p className="leading-relaxed text-slate-700">Consultez notre <Link href="/blog/comparer-devis-renovation" className="font-medium underline">guide de comparaison des devis</Link> et nos prestations de <Link href="/services/renovation-cuisine" className="font-medium underline">rénovation de cuisine</Link>, de <Link href="/services/renovation-salle-de-bain" className="font-medium underline">salle de bain</Link> et de <Link href="/services/peinture-finitions" className="font-medium underline">peinture intérieure</Link>.</p>
           <p className="leading-relaxed text-slate-700">Notre <Link href="/realisations/optimisation-salle-de-bain-3m2" className="font-medium underline">réalisation de petite salle de bain parisienne</Link> illustre des choix d’agencement. Elle sert de référence sans être présentée comme un chantier situé à Courbevoie.</p>
-          <Link href="/devis" className="inline-block rounded-xl bg-amber-500 px-5 py-3 font-semibold text-slate-950 hover:bg-amber-400">Préparer mon devis à Courbevoie</Link>
+          <Link href={quoteHrefForService('renovation-appartement', '/renovation-courbevoie')} className="inline-block rounded-xl bg-amber-500 px-5 py-3 font-semibold text-slate-950 hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-700">Préparer mon devis à Courbevoie</Link>
         </div>
       </div>
     </section>

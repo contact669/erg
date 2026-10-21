@@ -17,6 +17,8 @@ export const quoteOriginPages = [
   { path: "/blog/remplacer-baignoire-par-douche-appartement", label: "Guide du remplacement baignoire-douche" },
   { path: "/blog/renovation-appartement-habite-organisation", label: "Guide de l’appartement habité" },
   { path: "/renovation-montreuil", label: "Rénovation à Montreuil" },
+  { path: "/renovation-courbevoie", label: "Rénovation à Courbevoie" },
+  { path: "/renovation-boulogne-billancourt", label: "Rénovation à Boulogne-Billancourt" },
   { path: "/blog/reussir-renovation-salle-de-bain-paris", label: "Guide des étapes de la salle de bain" },
   { path: "/blog/renovation-energetique-paris-guide-complet", label: "Guide de coordination des travaux intérieurs" },
   { path: "/blog/10-astuces-renovation-appartement-parisien", label: "Guide des choix de l’appartement" },

@@ -14,6 +14,7 @@ export interface SuburbCityData {
   specifics: string;
   avgPricePerSqm: string;
   projectPreparation?: { title: string; paragraphs: string[] };
+  showBeforeAfter?: boolean;
   beforeAfterProject: {
     beforeImage: string;
     afterImage: string;
@@ -37,12 +38,21 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-hauts-de-seine",
     heroTitle: "Rénovation d'Appartement à Boulogne-Billancourt (92100)",
     metaTitle: "Rénovation Appartement Boulogne-Billancourt (92100)",
-    metaDescription: "Entreprise de rénovation à Boulogne-Billancourt (92100) : appartement, salle de bain, cuisine. Visite sur site, devis détaillé, finitions haut de gamme.",
-    neighborhoods: ["Parchamp - Le Château", "Silvy - Rives de Seine", "Point du Jour", "Trapèze", "Prince - Marmottan"],
-    architecturalStyle: "Immeubles 1930 Art Déco, résidences contemporaines HQE et haussmanniens élégants",
-    description: "Rénovation complète d'appartements de standing et lofts à Boulogne-Billancourt.",
-    specifics: "Restauration des parquets et moulures d'époque 1930, mise aux normes électriques et optimisation des volumes de réception.",
+    metaDescription: "Rénovation d’appartement à Boulogne-Billancourt : cuisine, salle de bain, plomberie, électricité et peinture. Préparez une visite et un devis détaillé avec ERG.",
+    neighborhoods: ["Silly-Gallieni", "Billancourt - Rives de Seine", "Point du Jour", "Trapèze"],
+    architecturalStyle: "État des réseaux, supports et équipements à examiner lors de la visite",
+    description: "Travaux intérieurs d’appartement à Boulogne-Billancourt, complets ou limités aux pièces et équipements retenus.",
+    specifics: "Une cuisine ou une salle de bain peut être étudiée sans remplacer toutes les finitions du logement. Identifiez les équipements conservés, les raccordements et les zones à reprendre autour des travaux.",
     avgPricePerSqm: "Devis selon les travaux et l’état du logement",
+    showBeforeAfter: false,
+    projectPreparation: {
+      title: "Rénover à Boulogne-Billancourt en conservant une partie de l’existant",
+      paragraphs: [
+        "Pour votre appartement dans le 92100, commencez par séparer les éléments conservés et ceux qui doivent changer. Une cuisine neuve peut nécessiter des raccords sur un sol gardé ; un remplacement de baignoire peut laisser des surfaces murales à reprendre. Faites repérer ces jonctions dès la visite plutôt que de les découvrir au moment des finitions.",
+        "Si les peintures font partie du projet, précisez les pièces et les supports concernés, y compris les portes, plinthes ou moulures à conserver. Leur présence ne signifie pas qu’une restauration spécialisée est incluse. Le devis doit décrire les préparations et les reprises retenues, ainsi que les fournitures apportées par vous.",
+        "Indiquez les dimensions des équipements envisagés, l’étage et les conditions d’accès à votre immeuble. Si vous restez dans l’appartement, listez les pièces à garder utilisables. Les coupures et le passage des différents intervenants sont à discuter avant le planning. Le nom du quartier ne permet pas, à lui seul, de déduire ces contraintes.",
+      ],
+    },
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-appartement-65m2-avant.webp",
       afterImage: "/images/realisations/renovation-appartement-65m2-apres.webp",
@@ -51,8 +61,9 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
       title: "Rénovation complète appartement 1930 Boulogne",
     },
     faqs: [
-      { q: "Quelles sont les spécificités des rénovations dans les immeubles 1930 à Boulogne ?", a: "Les immeubles 1930 nécessitent une attention particulière sur l'étanchéité des façades, le respect des huisseries d'origine et la préservation du cachet Art Déco tout en modernisant l'isolation." },
-      { q: "Combien de temps faut-il pour rénover un appartement de 70m² à Boulogne-Billancourt ?", a: "Comptez 6 à 8 semaines pour une rénovation complète incluant démolition, électricité, plomberie et finitions." },
+      { q: "Peut-on conserver les sols ou certaines peintures pendant une rénovation ?", a: "Indiquez les éléments à garder. Leur état, les passages de réseaux et les raccords autour des équipements remplacés doivent être examinés. Le périmètre peut rester partiel si les vérifications et les finitions prévues le permettent." },
+      { q: "Comment préparer une rénovation de salle de bain à Boulogne-Billancourt ?", a: "Rassemblez des photos, les dimensions et les équipements conservés ou envisagés. Précisez si c’est la seule salle d’eau du logement. La visite permet d’examiner les évacuations, les supports et les travaux nécessaires avant de confirmer l’implantation." },
+      { q: "Comment est défini le calendrier des travaux ?", a: "Il dépend des postes retenus, des points à vérifier après dépose, des temps de séchage et de la disponibilité des équipements. Les contraintes d’occupation et de livraison doivent être connues avant de fixer les étapes." },
     ],
   },
   "levallois-perret": {
@@ -90,12 +101,13 @@ export const SUBURBS_DATA: Record<string, SuburbCityData> = {
     departmentSlug: "renovation-hauts-de-seine",
     heroTitle: "Rénovation d'Appartement à Courbevoie (92400)",
     metaTitle: "Rénovation appartement Courbevoie (92400) : devis gratuit",
-    metaDescription: "Spécialiste de la rénovation d'appartement à Courbevoie (Bécon, Faubourg de l'Arche, Mairie). Devis détaillé poste par poste et garantie décennale.",
+    metaDescription: "Travaux d’appartement à Courbevoie : cuisine, salle de bain, plomberie, électricité et peinture. Définissez les interventions et préparez votre devis avec ERG.",
     neighborhoods: ["Bécon-les-Bruyères", "Faubourg de l'Arche", "Cœur de Ville", "Gambetta"],
-    architecturalStyle: "Immeubles 1900 à Bécon, résidences récentes près de La Défense",
+    architecturalStyle: "Accès, installations et pièces à conserver : vérifications propres à votre appartement",
     description: "Rénovation intérieure à Courbevoie : plomberie, électricité, cuisine, salle de bain et peinture.",
     specifics: "Préparation des supports, reprise des réseaux et choix des équipements selon l’état de votre logement.",
     avgPricePerSqm: "Chiffrage après visite et définition des travaux",
+    showBeforeAfter: false,
     beforeAfterProject: {
       beforeImage: "/images/realisations/renovation-cuisine-avant.webp",
       afterImage: "/images/realisations/renovation-cuisine-apres.webp",

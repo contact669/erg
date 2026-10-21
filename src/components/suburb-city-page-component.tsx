@@ -28,6 +28,7 @@ import CourbevoieProjectPreparation from "@/components/courbevoie-project-prepar
 import AnimatedSection from "@/components/animated-section";
 import CtaBanner from "@/app/_components/cta-banner";
 import BeforeAfterSlider from "@/components/ui/before-after-slider";
+import { quoteHrefForService } from "@/lib/quote-project";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -263,7 +264,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                   <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">Style Architectural</span>
+                    <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">{data.showBeforeAfter === false ? "À examiner dans votre logement" : "Style Architectural"}</span>
                     <span className="text-sm font-semibold text-slate-900 block">{data.architecturalStyle}</span>
                   </div>
                   <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
@@ -286,6 +287,17 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
 
               {/* Before/After Card */}
               <div className="lg:col-span-5">
+                {data.showBeforeAfter === false ? (
+                  <div className="rounded-3xl border border-slate-200 bg-white p-6 space-y-4">
+                    <h3 className="font-headline text-xl font-semibold text-slate-900">Les informations utiles pour votre visite</h3>
+                    <ul className="list-disc space-y-2 pl-5 text-slate-600">
+                      <li>Pièces concernées et équipements conservés.</li>
+                      <li>Photos, dimensions et choix encore à définir.</li>
+                      <li>Accès à l’immeuble et occupation du logement.</li>
+                    </ul>
+                    <Link href={quoteHrefForService('renovation-appartement', `/renovation-${data.slug}`)} className="inline-flex rounded-xl bg-amber-500 px-5 py-3 font-semibold text-slate-950 hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-700">Décrire mon projet à {data.name}</Link>
+                  </div>
+                ) : (
                 <div className="rounded-3xl bg-white p-4 shadow-2xl border border-slate-200 space-y-3">
                   <span className="text-xs font-bold uppercase tracking-wider text-slate-600 block">
                     Exemple de transformation ERG
@@ -303,6 +315,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
                     {"Exemple de rénovation ERG — photos illustratives, localisation non attribuée"}
                   </span>
                 </div>
+                )}
               </div>
             </div>
           </div>
@@ -443,6 +456,7 @@ export function SuburbCityPageView({ slug }: { slug: string }) {
               <ul className="flex flex-wrap gap-x-6 gap-y-3 font-medium">
                 <li><Link href="/services/renovation-appartement" className="underline">Prestations de rénovation d’appartement</Link></li>
                 <li><Link href="/blog/comparer-devis-renovation" className="underline">Comparer les devis de rénovation</Link></li>
+                {data.slug === "boulogne-billancourt" && <li><Link href="/blog/10-astuces-renovation-appartement-parisien" className="underline">Préparer les choix d’agencement</Link></li>}
                 <li><Link href={`/${data.departmentSlug}`} className="underline">Rénovation dans les {data.departmentName}</Link></li>
               </ul>
             </div>
