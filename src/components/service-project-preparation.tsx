@@ -53,6 +53,20 @@ export default function ServiceProjectPreparation({ slug }: { slug: string }) {
               <li>L’utilisation de la pièce pendant le chantier, notamment s’il s’agit de votre seule salle d’eau.</li>
             </ul>
             <p>Pour préparer notre échange, quelques photos d’ensemble, les dimensions approximatives et la liste de vos besoins suffisent. Le choix d’un équipement dépend ensuite des vérifications sur place : une photo seule ne permet pas de confirmer un nouvel emplacement de douche.</p>
+            <h3 className="text-xl font-semibold text-slate-900">Remplacement ciblé ou rénovation de la pièce ?</h3>
+            <p>Précisez ce que vous souhaitez changer et ce qui reste en place. Le remplacement d’un meuble vasque peut demander des raccordements et des reprises autour de l’ancien équipement ; refaire la pièce peut aussi concerner les supports, les revêtements et les installations. Le devis doit décrire ces limites plutôt que s’appuyer sur le seul intitulé « rénovation de salle de bain ».</p>
+            <p>Faites distinguer les équipements que vous fournissez, ceux prévus dans la proposition, la pose et les travaux préparatoires. Si votre projet comprend aussi la cuisine ou d’autres pièces, consultez notre <Link className="underline" href="/services/renovation-appartement">prestation de rénovation d’appartement</Link> pour préparer les interventions à coordonner dans le logement.</p>
+            <h3 className="text-xl font-semibold text-slate-900">Votre salle de bain à Paris ou en petite couronne</h3>
+            <p>Indiquez l’adresse du chantier, l’étage et les conditions d’accès dès la demande. La commune ne permet pas de déduire l’état des raccordements ni la configuration de votre pièce. Les contraintes de livraison, de stockage et d’occupation sont à examiner pour votre logement.</p>
+            <nav aria-label="Préparer les travaux selon votre secteur">
+              <ul className="flex flex-wrap gap-x-6 gap-y-3">
+                <li><Link className="underline" href="/renovation-paris">Travaux intérieurs à Paris</Link></li>
+                <li><Link className="underline" href="/renovation-hauts-de-seine">Interventions dans les Hauts-de-Seine</Link></li>
+                <li><Link className="underline" href="/renovation-seine-saint-denis">Interventions en Seine-Saint-Denis</Link></li>
+                <li><Link className="underline" href="/renovation-val-de-marne">Interventions en Val-de-Marne</Link></li>
+              </ul>
+            </nav>
+            <p>Pour un projet dans le 75016, la page <Link className="underline" href="/renovation-salle-de-bain/paris-16">salle de bain à Paris 16</Link> présente les informations utiles pour préparer le plan et la visite. Ces pages de secteur complètent la prestation ; le périmètre du devis reste propre à votre salle de bain.</p>
             <p>Vous pouvez voir une <Link className="font-semibold text-slate-900 underline" href="/realisations/optimisation-salle-de-bain-3m2">petite salle de bain parisienne rénovée, avec les photos partagées par Nina G.</Link>. Pour organiser votre budget, notre <Link className="underline" href="/blog/renovation-petite-salle-de-bain-budget">guide des petites salles de bain</Link> explique les postes à examiner.</p>
           </>
         ) : (

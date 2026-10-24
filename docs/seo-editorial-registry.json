@@ -37,9 +37,9 @@
       "priority": "P1",
       "intent": "Confier une rénovation de salle de bain à Paris",
       "route": "/services/renovation-salle-de-bain",
-      "action": "Enrichir",
+      "action": "Périmètre et orientation locale enrichis, à publier",
       "proof": "Projet Nina G. : photos autorisées, sans surface ou arrondissement supposé",
-      "next": "Revoir aussi les textes du modèle, distincts des données du service."
+      "next": "GSC observé le 24 octobre : 170 impressions, 1 clic ; nouvelles requêtes locales souvent lointaines. Périmètre et liens vers les secteurs existants clarifiés. Comparer les requêtes identiques avant de conclure sur la position moyenne."
     },
     {
       "id": "appartement",
