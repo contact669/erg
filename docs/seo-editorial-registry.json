@@ -1,5 +1,5 @@
 {
-  "reviewedAt": "2026-10-21",
+  "reviewedAt": "2026-10-24",
   "rules": [
     "Une intention principale possède une page cible. Les variantes grammaticales restent regroupées.",
     "Une nouvelle page locale exige un besoin distinct, une zone desservie et des informations ou preuves propres.",
@@ -10,7 +10,8 @@
     "Les statuts Search Console sont des observations datées. Les signaux HTML ne prouvent pas l'indexation.",
     "Modèle des communes revu le 21 octobre 2026 : comparatifs illustratifs retirés, organisation et planning à préciser au devis ; les textes propres à chaque commune restent à auditer.",
     "Messages communs revus le 21 octobre 2026 : offre intérieure et petite couronne, préparation du devis et planning à convenir ; horaires de contact confirmés par ERG.",
-    "Formulations locales harmonisées le 21 octobre 2026 : aux Lilas, au Raincy, au Perreux-sur-Marne ; prépositions des départements et suffixes de marque des titres corrigés."
+    "Formulations locales harmonisées le 21 octobre 2026 : aux Lilas, au Raincy, au Perreux-sur-Marne ; prépositions des départements et suffixes de marque des titres corrigés.",
+    "24 octobre 2026 : liens contextuels vers appartement et salle de bain clarifiés dans la présentation des services de l’accueil ; aucun changement d’URL ni promesse d’indexation."
   ],
   "intents": [
     {
@@ -45,9 +46,9 @@
       "priority": "P1",
       "intent": "Confier une rénovation complète ou partielle d'appartement",
       "route": "/services/renovation-appartement",
-      "action": "Suivre l’indexation",
+      "action": "Suivre l’indexation et renforcer la découverte",
       "proof": "Témoignages existants, sans photos avant/après non attribuées",
-      "next": "URL inconnue dans GSC le 21/10. Demande du 19/10 déjà envoyée ; vérifier exploration et découverte."
+      "next": "Inspection du 24 octobre : URL inconnue de l’index, test actif accessible et indexable. Liens contextuels de l’accueil renforcés ; présence HTML à vérifier après déploiement. Ne pas confondre test actif et indexation effective."
     },
     {
       "id": "cuisine",

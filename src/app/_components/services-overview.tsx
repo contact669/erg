@@ -23,7 +23,7 @@ export default function ServicesOverview() {
             <Sparkles className="h-4 w-4 text-slate-600" />
             <span>Rénovation intérieure à Paris</span>
             <span className="h-1.5 w-1.5 rounded-full bg-slate-100" />
-            <span className="text-slate-700 dark:text-slate-500 font-normal">Excellence Artisanale</span>
+            <span className="text-slate-700 dark:text-slate-500 font-normal">Appartements et pièces techniques</span>
           </div>
 
           {/* Headline Titre Lumineux */}
@@ -31,26 +31,26 @@ export default function ServicesOverview() {
             id="services-title"
             className="font-headline text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]"
           >
-            Savoir-Faire &{" "}
+            Vos travaux de{" "}
             <span className="text-slate-900">
-              Rénovation Sur-Mesure
+              rénovation intérieure
             </span>
           </h2>
 
           <p className="mx-auto max-w-2xl text-base sm:text-lg font-normal leading-relaxed text-slate-600">
-            Du raffinement d'un appartement haussmannien à la restructuration globale d'une résidence, nous concevons des espaces d'exception guidés par la haute précision et des finitions irréprochables.
+            Vous rénovez plusieurs pièces ? Découvrez notre prestation de <Link href="/services/renovation-appartement" className="font-semibold underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-700">rénovation d’appartement</Link> pour définir les travaux de réseaux, d’équipements et de peinture. Pour une pièce d’eau, consultez notre service de <Link href="/services/renovation-salle-de-bain" className="font-semibold underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-700">rénovation de salle de bain</Link> : implantation, raccordements et finitions à examiner avant le devis.
           </p>
 
           {/* Quality Metrics */}
           <div className="pt-2 flex flex-wrap justify-center items-center gap-6 text-xs text-slate-600 font-medium">
             <span className="flex items-center gap-2">
-              <Award className="h-4 w-4 text-slate-600" /> Matériaux Nobles & Durables
+              <Award className="h-4 w-4 text-slate-600" /> Fournitures à préciser
             </span>
             <span className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-slate-600" /> Garantie Décennale 10 Ans
+              <ShieldCheck className="h-4 w-4 text-slate-600" /> Devis poste par poste
             </span>
             <span className="flex items-center gap-2">
-              <Star className="h-4 w-4 text-slate-600 fill-slate-500" /> Conducteur de Travaux Dédié
+              <Star className="h-4 w-4 text-slate-600 fill-slate-500" /> Étapes à convenir
             </span>
           </div>
         </header>
@@ -107,7 +107,7 @@ export default function ServicesOverview() {
                   size="sm"
                   className="h-10 px-4 text-xs font-bold text-slate-600 hover:text-slate-600 hover:bg-slate-100 rounded-xl group/btn transition-all"
                 >
-                  <Link href={`/services/${service.slug}`}>
+                  <Link href={`/services/${service.slug}`} aria-label={`Découvrir les prestations : ${service.title}`}>
                     Découvrir <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                   </Link>
                 </Button>
