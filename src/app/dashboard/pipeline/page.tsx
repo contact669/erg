@@ -11,7 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { COMPANY } from '@/lib/company';
 import { leadSourceLabel } from '@/lib/lead-source';
 import { quoteOriginPages, quoteOriginFromRequest, quoteOriginLabel } from '@/lib/quote-project';
-import { requestPipelineStages, type PipelineQuote } from '@/lib/crm/request-pipeline';
+import { requestPipelineStages, requestInPeriod, type PipelineQuote } from '@/lib/crm/request-pipeline';
 
 const STAGES = [
   { id: 'lead', label: 'À qualifier' },
@@ -21,6 +21,7 @@ const STAGES = [
   { id: 'lost', label: 'Devis refusé' },
 ] as const;
 type Request = {
+  createdAt?: unknown;
   clientName?: string;
   projectDescription?: string;
   postalCode?: string;
@@ -38,6 +39,8 @@ export default function PipelinePage() {
   const isAdmin = user?.uid === COMPANY.adminUid;
   const [search, setSearch] = useState('');
   const [originFilter, setOriginFilter] = useState('all');
+  const [from, setFrom] = useState('');
+  const [to, setTo] = useState('');
   useEffect(() => {
     if (!isUserLoading && !user) router.push('/connexion');
   }, [user, isUserLoading, router]);
@@ -50,10 +53,11 @@ export default function PipelinePage() {
   const quotes = useCollection<PipelineQuote>(quotesQuery);
   const rows = useMemo(() => (requests.data ?? []).filter(request =>
     request.status !== 'Supprimée' &&
+    requestInPeriod(request.createdAt, from, to) &&
     (originFilter === 'all' || (quoteOriginFromRequest(request) ?? 'unknown') === originFilter) &&
     [request.clientName, request.projectDescription, request.postalCode].some(value =>
       (value ?? '').toLocaleLowerCase('fr').includes(search.trim().toLocaleLowerCase('fr')))),
-  [requests.data, search, originFilter]);
+  [requests.data, search, originFilter, from, to]);
   const stages = useMemo(() => requestPipelineStages(rows.map(row => row.id), quotes.data ?? []), [rows, quotes.data]);
 
   if (isUserLoading || !user) return <p>Chargement…</p>;
@@ -74,7 +78,7 @@ export default function PipelinePage() {
     </div>
     <Card><CardHeader>
       <CardTitle>Périmètre du suivi</CardTitle>
-      <CardDescription>Toutes périodes confondues, hors demandes archivées, selon les filtres ci-dessous. Un devis accepté ou facturé est un statut CRM ; ce tableau ne vérifie pas les signatures et ne mesure pas les encaissements. Une demande « traitée » ne devient jamais automatiquement gagnée.</CardDescription>
+      <CardDescription>{from || to ? 'Demandes reçues dans la période sélectionnée' : 'Toutes périodes confondues'}, hors demandes archivées, selon les filtres ci-dessous. Les étapes correspondent au statut actuel des devis associés, même si celui-ci a changé après la période. Un devis accepté ou facturé est un statut CRM ; ce tableau ne vérifie pas les signatures et ne mesure pas les encaissements. Une demande « traitée » ne devient jamais automatiquement gagnée.</CardDescription>
     </CardHeader><CardContent>
       <dl className="grid gap-4 sm:grid-cols-3">
         {[
@@ -89,6 +93,12 @@ export default function PipelinePage() {
       <p className="mt-4 text-sm text-muted-foreground">Une demande comportant plusieurs devis est comptée une seule fois. L’origine déclarée par le visiteur ne prouve pas une attribution SEO.</p>
     </CardContent></Card>
     <div className="max-w-xl">
+      <div className="mb-4 grid gap-4 sm:grid-cols-2">
+        <div><label htmlFor="pipeline-from" className="mb-2 block text-sm font-medium">Demandes reçues à partir du</label><Input id="pipeline-from" type="date" value={from} max={to || undefined} onChange={event => setFrom(event.target.value)} /></div>
+        <div><label htmlFor="pipeline-to" className="mb-2 block text-sm font-medium">Jusqu’au (inclus)</label><Input id="pipeline-to" type="date" value={to} min={from || undefined} onChange={event => setTo(event.target.value)} /></div>
+      </div>
+      {(from || to) && <p className="mb-4 text-sm text-muted-foreground">Dates du calendrier local. Les demandes sans date exploitable sont exclues de cette période. <button type="button" className="underline underline-offset-4" onClick={() => { setFrom(''); setTo(''); }}>Toutes les dates</button></p>}
+      {from && to && from > to && <p role="alert" className="mb-4 text-sm text-destructive">La date de début doit précéder la date de fin.</p>}
       <label htmlFor="pipeline-search" className="mb-2 block text-sm font-medium">Rechercher un client, un projet ou un code postal</label>
       <Input id="pipeline-search" value={search} onChange={event => setSearch(event.target.value)} />
       <label htmlFor="pipeline-origin" className="mb-2 mt-4 block text-sm font-medium">Page associée au lien de demande</label>

@@ -1,6 +1,20 @@
 export type PipelineQuote = { id: string; requestId?: string | null; status?: string };
 export type RequestStage = 'lead' | 'quoting' | 'sent' | 'won' | 'lost';
 
+/** Filter cohorts by request date, using the administrator's local calendar. */
+export function requestInPeriod(value: unknown, from: string, to: string): boolean {
+  if (!from && !to) return true;
+  let date: Date;
+  try {
+    date = value instanceof Date ? value
+      : value && typeof (value as { toDate?: unknown }).toDate === 'function'
+        ? (value as { toDate: () => Date }).toDate() : new Date(NaN);
+  } catch { return false; }
+  if (!(date instanceof Date) || !Number.isFinite(date.getTime())) return false;
+  const day = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+  return (!from || day >= from) && (!to || day <= to);
+}
+
 /** Commercial evidence comes from private quotes, never public request fields. */
 export function requestPipelineStages(requestIds: readonly string[], quotes: readonly PipelineQuote[]) {
   const linked = new Map<string, PipelineQuote[]>();
