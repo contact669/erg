@@ -111,13 +111,14 @@ export const renovationGuides: BlogPost[] = [
   {
     slug: 'budget-renovation-appartement-paris',
     title: 'Budget rénovation appartement à Paris : préparer un chiffrage fiable',
-    description: 'Surface, état du logement, réseaux, matériaux et accès : les éléments à préciser pour obtenir un devis de rénovation d’appartement à Paris.',
+    description: 'Préparez votre demande de devis de rénovation d’appartement à Paris : travaux, fournitures, accès et points à vérifier lors de la visite de chiffrage.',
     date: '2026-10-07', author: 'Équipe ERG Rénovation', featuredImageId: 'service-apartment',
-    updatedDate: '2026-10-19',
+    updatedDate: '2026-10-24',
     tags: ['Budget', 'Appartement', 'Paris'],
     relatedServiceSlugs: ['renovation-appartement', 'peinture-finitions'],
     relatedProjectSlugs: ['renovation-studio-paris-11', 'renovation-appartement-65m2-paris'],
     toc: [
+      { id: 'demande-devis-en-ligne', title: 'Demande en ligne et devis détaillé', level: 'h2' },
       { id: 'definir-travaux', title: 'Définir le périmètre des travaux', level: 'h2' },
       { id: 'facteurs-budget', title: 'Ce qui fait varier le budget', level: 'h2' },
       { id: 'grille-chiffrage', title: 'Les postes à faire chiffrer', level: 'h2' },
@@ -134,6 +135,16 @@ export const renovationGuides: BlogPost[] = [
         <Link href={quoteHrefForService('renovation-appartement', '/blog/budget-renovation-appartement-paris')} className="font-semibold">Décrire mon appartement pour préparer un devis</Link>
         <p className="text-sm">Vous souhaitez d’abord connaître notre intervention ? Consultez les <Link href="/services/renovation-appartement">prestations de rénovation d’appartement</Link>.</p>
       </aside>
+      <h2 id="demande-devis-en-ligne">Demander un devis en ligne : que se passe-t-il ensuite ?</h2>
+      <p>Le formulaire sert à présenter votre projet, pas à calculer automatiquement le coût des travaux. Décrivez les pièces concernées, ce qui fonctionne encore et les changements souhaités. Si les références des équipements restent à choisir, indiquez-le : leur fourniture et leur pose devront être distinguées dans le chiffrage.</p>
+      <ol>
+        <li><strong>Présenter les travaux :</strong> surface approximative, cuisine ou salle de bain concernée, peinture et interventions envisagées sur les réseaux.</li>
+        <li><strong>Préciser le contexte :</strong> étage, accès, occupation du logement et période souhaitée, sans supposer que cette date est déjà confirmée.</li>
+        <li><strong>Préparer la visite :</strong> réunir un plan, des photos de l’existant et les références utiles pour discuter des choix et des points à examiner.</li>
+        <li><strong>Relire la proposition :</strong> vérifier les travaux retenus, les fournitures, les options et les hypothèses encore à confirmer avant de vous engager.</li>
+      </ol>
+      <p>Un montant évoqué lors d’un premier échange ne décrit pas nécessairement l’ensemble des travaux. Demandez ce qu’il comprend et quels éléments restent à vérifier sur place. Un changement d’implantation, d’équipement ou de finition doit ensuite être clarifié dans la proposition correspondante.</p>
+      <p>Si votre demande concerne plusieurs pièces, consultez le <Link href="/services/renovation-appartement">périmètre de notre rénovation d’appartement</Link>. Pour préparer les interventions lorsque vous restez chez vous, le guide de la <Link href="/blog/renovation-appartement-habite-organisation">rénovation en logement occupé</Link> aide à identifier les usages à maintenir pendant le chantier.</p>
       <h2 id="definir-travaux">Définir le périmètre des travaux</h2>
       <ul>
         <li><strong>Rafraîchissement :</strong> préparation des supports, peintures, revêtements de sol et finitions, en conservant l’organisation des pièces.</li>

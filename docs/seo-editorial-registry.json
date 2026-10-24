@@ -100,9 +100,9 @@
       "priority": "P2",
       "intent": "Préparer les informations nécessaires au chiffrage",
       "route": "/blog/budget-renovation-appartement-paris",
-      "action": "Conserver",
+      "action": "Demande de devis clarifiée, à publier",
       "proof": "Exemples anonymisés distinguant devis et factures",
-      "next": "Pas de nouvelle page concurrente de budget et pas de prix inventés."
+      "next": "Requêtes GSC observées le 24 octobre : prix et devis en ligne. Section demande en ligne ajoutée sans tarif ni calculateur ; suivre les clics pertinents et demandes qualifiées après publication."
     },
     {
       "id": "comparer-devis",
