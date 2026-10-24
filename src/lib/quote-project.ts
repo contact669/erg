@@ -7,6 +7,7 @@ export function readQuoteProject(value: string | null): QuoteProject | null {
 }
 
 export const quoteOriginPages = [
+  { path: "/renovation-paris", label: "Rénovation à Paris" },
   { path: "/renovation-rueil-malmaison", label: "Rénovation : Rueil-Malmaison" },
   { path: "/renovation-suresnes", label: "Rénovation : Suresnes" },
   { path: "/renovation-pantin", label: "Rénovation : Pantin" },

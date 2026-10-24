@@ -24,6 +24,7 @@ import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
 import Breadcrumbs from "@/components/breadcrumbs";
 import LocalProjectPreparation from "@/components/local-project-preparation";
+import { quoteHrefForService } from "@/lib/quote-project";
 import AnimatedSection from "@/components/animated-section";
 import CtaBanner from "@/app/_components/cta-banner";
 
@@ -135,28 +136,28 @@ function JsonLd({ faqs }: { faqs: { q: string; a: string }[] }) {
 const heroBadges = [
   { icon: CheckCircle2, text: "Visite sur site offerte" },
   { icon: ClipboardCheck, text: "Devis détaillé et transparent" },
-  { icon: Users, text: "Interlocuteur unique" },
-  { icon: ShieldCheck, text: "Garantie décennale" },
+  { icon: Users, text: "Pièces et équipements à préciser" },
+  { icon: ShieldCheck, text: "Planning à convenir" },
 ];
 
 const parisProof = [
   {
     icon: Building2,
-    title: "Bâti ancien, diagnostic précis",
+    title: "Examiner votre logement",
     description:
-      "Haussmanniens, planchers bois, murs porteurs, réseaux à remettre aux normes : une rénovation à Paris commence par l’analyse technique.",
+      "Les travaux à retenir dépendent des installations et des supports de votre logement, pas du seul nom de l’arrondissement.",
   },
   {
     icon: Home,
     title: "Copropriété et règles à respecter",
     description:
-      "Réseaux, ventilation, évacuation, nuisances : nous vous aidons à sécuriser le dossier syndic et à organiser un chantier propre.",
+      "Transmettez les règles de votre immeuble : horaires, accès, livraisons et protection des parties communes. Les démarches nécessaires sont à préciser selon le projet.",
   },
   {
     icon: Sparkles,
-    title: "Optimisation des m²",
+    title: "Décrire vos usages",
     description:
-      "Circulation, rangements, lumière, finitions : on valorise chaque mètre carré pour un confort durable et une meilleure valeur du bien.",
+      "Indiquez les passages, rangements et équipements à améliorer. Les choix d’implantation doivent être confrontés aux dimensions et aux réseaux existants.",
   },
 ];
 
@@ -194,21 +195,21 @@ const services = [
 const whyUs = [
   {
     icon: MapPin,
-    title: "Paris : expertise locale réelle",
+    title: "Votre adresse et vos accès",
     description:
-      "Tous arrondissements : nous connaissons les contraintes d’accès, les immeubles anciens et les exigences des copropriétés.",
+      "Précisez l’arrondissement, l’étage et les conditions de livraison pour préparer la visite et l’organisation des travaux.",
   },
   {
     icon: Users,
-    title: "Chef de projet dédié",
+    title: "Organisation à définir",
     description:
-      "Coordination artisans, planning, points d’avancement : vous avez un interlocuteur unique, le chantier est cadré.",
+      "Convenez des interlocuteurs, de l’ordre des interventions et des décisions à valider avant de commencer.",
   },
   {
     icon: ShieldCheck,
-    title: "Clarté, qualité, garantie",
+    title: "Périmètre écrit au devis",
     description:
-      "Devis détaillé, étapes claires, contrôle qualité continu. Électricité, plomberie et peinture couvertes par notre assurance décennale.",
+      "Faites préciser les prestations, les fournitures et les exclusions. Demandez les attestations d’assurance et vérifiez les activités couvertes pour les travaux envisagés.",
   },
 ];
 
@@ -219,15 +220,15 @@ const faqs = [
   },
   {
     q: "Quels délais pour des travaux à Paris ?",
-    a: "Ils dépendent du périmètre. Comptez souvent 2 à 3 semaines pour une salle de bain et 6 à 10 semaines pour une rénovation complète. Les délais sont définis et contractualisés avant démarrage.",
+    a: "Le calendrier dépend des déposes, des réseaux, des supports, des séchages et des fournitures. Indiquez vos contraintes d’occupation avant de convenir des étapes ; la surface ou le nombre de pièces ne suffit pas à fixer une durée.",
   },
   {
     q: "Faut-il l’accord de la copropriété ?",
-    a: "Oui pour certains travaux (murs porteurs, réseaux collectifs, ventilation). Nous vous aidons à préparer un dossier conforme pour éviter les blocages.",
+    a: "Les démarches dépendent des travaux et des éléments concernés dans l’immeuble. Demandez au syndic les règles applicables avant les interventions et précisez les vérifications ou accords nécessaires pour votre projet.",
   },
   {
     q: "Peut-on rénover un appartement occupé ?",
-    a: "Oui. Nous planifions le chantier par phases, protégeons les zones non concernées et limitons les nuisances au maximum.",
+    a: "L’occupation doit être examinée selon les pièces et installations concernées. Indiquez les usages à maintenir, notamment l’eau, les sanitaires et la cuisine, pour discuter des coupures et des périodes où le logement pourrait être difficile à utiliser.",
   },
 ];
 
@@ -258,8 +259,7 @@ export default function RenovationParisPage() {
               </h1>
 
               <p className="mt-5 mx-auto max-w-3xl text-lg text-slate-600">
-                Vous rénovez un appartement, une salle de bain ou une cuisine ? Nous étudions les installations existantes,
-                les pièces concernées et les accès pour préparer les travaux et un devis détaillé.
+                Retrouvez les travaux intérieurs proposés à Paris et les pages de vos arrondissements. Pour un projet concernant plusieurs pièces, consultez le <Link className="font-semibold underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4" href="/services/renovation-appartement">périmètre de notre rénovation d’appartement</Link>. Pour une pièce d’eau, découvrez nos <Link className="font-semibold underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4" href="/services/renovation-salle-de-bain">prestations de salle de bain</Link>. Les accès et les travaux retenus sont à préciser pour votre logement.
               </p>
 
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl mx-auto text-left">
@@ -276,7 +276,7 @@ export default function RenovationParisPage() {
 
               <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
                 <Button asChild size="lg" className="w-full sm:w-auto">
-                  <Link href="/devis">Obtenir mon devis gratuit</Link>
+                  <Link href={quoteHrefForService("renovation-appartement", PAGE_SLUG)}>Préparer mon devis à Paris</Link>
                 </Button>
 
                 <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
@@ -353,7 +353,7 @@ export default function RenovationParisPage() {
                     </CardHeader>
 
                     <CardContent className="flex-grow flex items-end">
-                      <Button variant="link" asChild className="p-0 text-slate-600">
+                      <Button variant="link" asChild className="h-auto min-h-10 max-w-full whitespace-normal p-0 text-left text-slate-600">
                         <Link href={s.link}>
                           Découvrir : {s.title.toLowerCase()} <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
@@ -418,7 +418,7 @@ export default function RenovationParisPage() {
                   <div className="mt-4 text-xs text-slate-600">
                     <span className="inline-flex items-center gap-2">
                       <ShieldCheck className="h-4 w-4" />
-                      Garantie décennale • Devis détaillé • Suivi de chantier
+                      Devis détaillé • Périmètre défini • Étapes à convenir
                     </span>
                   </div>
                 </div>
@@ -472,7 +472,7 @@ export default function RenovationParisPage() {
           <section className="py-16 md:py-24">
             <div className="container max-w-3xl mx-auto">
               <div className="text-center">
-                <h2 className="font-headline text-3xl font-bold">FAQ – Rénovation d’appartement à Paris</h2>
+                <h2 className="font-headline text-3xl font-bold">FAQ – Préparer des travaux à Paris</h2>
                 <p className="mt-4 text-slate-600">
                   L’essentiel à savoir avant de lancer des travaux dans un appartement parisien.
                 </p>

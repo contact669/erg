@@ -34,7 +34,7 @@ export default function LocalProjectPreparation({ location }: { location: "paris
         <div className="space-y-3">
           <h3 className="font-headline text-xl font-semibold">Des exemples pour discuter de votre projet</h3>
           <p className="leading-relaxed text-slate-700">Notre <Link className="font-medium underline" href="/realisations/renovation-studio-paris-11">rénovation de studio à Paris 11</Link> et notre <Link className="font-medium underline" href="/realisations/optimisation-salle-de-bain-3m2">petite salle de bain parisienne</Link> illustrent des choix d’agencement et de finitions. Ces réalisations servent de références de travail ; elles ne sont pas présentées comme des chantiers réalisés dans votre quartier.</p>
-          <Link href={paris ? "/devis" : quoteHrefForService('renovation-appartement', '/renovation-montreuil')} className="inline-block rounded-xl bg-amber-500 px-5 py-3 font-semibold text-slate-950 hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-700">Préparer mon devis à {city}</Link>
+          <Link href={paris ? quoteHrefForService("renovation-appartement", "/renovation-paris") : quoteHrefForService('renovation-appartement', '/renovation-montreuil')} className="inline-block rounded-xl bg-amber-500 px-5 py-3 font-semibold text-slate-950 hover:bg-amber-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-700">Préparer mon devis à {city}</Link>
         </div>
       </div>
     </section>

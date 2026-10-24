@@ -28,9 +28,9 @@
       "priority": "P1",
       "intent": "Choisir une entreprise de rénovation intérieure à Paris",
       "route": "/renovation-paris",
-      "action": "Enrichir",
+      "action": "Orientation locale clarifiée, à publier",
       "proof": "Prestations réelles et organisation des travaux",
-      "next": "Distinguer le portail géographique des pages de prestations."
+      "next": "Observation GSC du 24 octobre : service appartement sans impressions sur la période comparée ; aucune cannibalisation démontrée. Page Paris conservée comme orientation géographique et vers les services. Mesurer après déploiement."
     },
     {
       "id": "salle-de-bain",
