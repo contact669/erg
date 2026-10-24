@@ -93,7 +93,6 @@ function JsonLdScript({ data }: { data: SuburbCityData }) {
       name: BRAND,
       url: SITE_URL,
       telephone: PHONE_E164,
-      priceRange: "€€€",
       address: {
         "@type": "PostalAddress",
         streetAddress: "1 Sentier de la Pointe",

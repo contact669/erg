@@ -22,7 +22,6 @@ type LocalBusinessInput = {
   logoUrl: string;              // "https://.../logo.png"
   imageUrl?: string;            // "https://.../og-image.jpg"
   phone?: string;               // "+33..."
-  priceRange?: string;          // "€€€"
   address?: Address;
   social?: SocialLinks;
   areaServed?: string[];        // ["Paris (75)", "Hauts-de-Seine (92)", ...]
@@ -45,7 +44,6 @@ export function buildLocalBusinessJsonLd(input: LocalBusinessInput) {
       : undefined,
     image: input.imageUrl ?? input.logoUrl,
     telephone: input.phone,
-    priceRange: input.priceRange,
     address: input.address
       ? {
           "@type": "PostalAddress",

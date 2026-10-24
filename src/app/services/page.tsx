@@ -100,7 +100,6 @@ function JsonLdServicesPage() {
         name: SITE_NAME,
         url: SITE_URL,
         telephone: PHONE_NUMBER,
-        priceRange: "€€",
         address: {
           "@type": "PostalAddress",
           streetAddress: "1 Sentier de la Pointe",

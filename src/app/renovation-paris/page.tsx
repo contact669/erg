@@ -95,7 +95,6 @@ function JsonLd({ faqs }: { faqs: { q: string; a: string }[] }) {
       name: BRAND,
       url: SITE_URL,
       telephone: PHONE_E164,
-      priceRange: "€€",
       address: {
         "@type": "PostalAddress",
         streetAddress: "1 Sentier de la Pointe",

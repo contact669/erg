@@ -156,7 +156,6 @@ function JsonLdServicePage({
         name: SITE_NAME,
         url: SITE_URL,
         telephone: PHONE_NUMBER,
-        priceRange: "€€",
         areaServed,
         address: {
           "@type": "PostalAddress",

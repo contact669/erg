@@ -79,7 +79,6 @@ const localBusiness = buildLocalBusinessJsonLd({
   logoUrl: `${SITE_URL}/images/logo-erg.webp`,
   imageUrl: `${SITE_URL}/images/og-image.png`,
   phone: PHONE,
-  priceRange: "€€€",
   address: ADDRESS,
   areaServed: ["Paris (75)", "Hauts-de-Seine (92)", "Seine-Saint-Denis (93)", "Val-de-Marne (94)"],
 });

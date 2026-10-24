@@ -182,7 +182,6 @@ function JsonLd({
         name: SITE_NAME,
         url: SITE_URL,
         telephone: PHONE,
-        priceRange: "€€",
         areaServed,
         address: {
           "@type": "PostalAddress",
