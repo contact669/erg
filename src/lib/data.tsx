@@ -967,6 +967,19 @@ const renovationSalleDeBainPages: LocalLandingPage[] = [
                     <p>Remplacer une baignoire par une douche ne consiste pas seulement à changer un équipement. La hauteur disponible pour l’évacuation, l’accès aux raccordements et le traitement de l’étanchéité déterminent les solutions possibles. Une douche de plain-pied doit être étudiée sur place avant d’être promise.</p>
                     <p>Dans une petite salle de bain, la profondeur du meuble, le débattement de la porte et les passages comptent autant que le choix du carrelage. Nous examinons les priorités avec vous : facilité d’entretien, rangements, accès à la douche et confort quotidien.</p>
                 </section>
+                <section id="amenagement-salle-de-bain" className="scroll-mt-32 space-y-3">
+                    <h2 className="font-headline text-2xl font-semibold">Aménagement de salle de bain à Paris 16 : que prévoir sur le plan ?</h2>
+                    <p>Un plan utile montre les équipements, mais aussi la place nécessaire pour les utiliser. Avant la visite, notez les dimensions de la pièce et positionnez les éléments fixes. Indiquez ce qui gêne aujourd’hui : une porte qui bloque le meuble, un passage étroit ou un rangement difficile à ouvrir.</p>
+                    <ul>
+                        <li><strong>Les ouvertures :</strong> porte de la pièce, fenêtre, portes de meuble et paroi de douche, avec leurs mouvements.</li>
+                        <li><strong>Les usages :</strong> espace devant la vasque, accès à la douche et équipements que vous souhaitez conserver.</li>
+                        <li><strong>Les raccordements :</strong> points d’eau et évacuations visibles, appareils électriques et ventilation existante.</li>
+                        <li><strong>Les fournitures :</strong> dimensions et références des équipements envisagés, en distinguant ceux déjà achetés des choix encore ouverts.</li>
+                    </ul>
+                    <p>La visite permet de confronter ce plan aux installations et aux supports. Déplacer une vasque ou remplacer une baignoire ne demande pas les mêmes reprises que garder les raccordements en place. Faites préciser les adaptations retenues et les finitions autour des équipements avant de confirmer les commandes.</p>
+                    <p>Votre pièce est petite ? Le guide pour <Link className="underline" href="/blog/renovation-petite-salle-de-bain-budget">aménager une salle de bain de 3 à 5 m²</Link> détaille les choix de circulation et de rangement. Pour le passage à une douche, consultez les <Link className="underline" href="/blog/remplacer-baignoire-par-douche-appartement">vérifications avant de remplacer une baignoire</Link>.</p>
+                    <p><Link className="font-semibold underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-700" href="/devis?projet=salle-de-bain&page=%2Frenovation-salle-de-bain%2Fparis-16#demande-devis">Présenter ma salle de bain à Paris 16 pour préparer une visite</Link></p>
+                </section>
                 <section className="space-y-3">
                     <h2 className="font-headline text-2xl font-semibold">Que doit préciser votre devis de salle de bain ?</h2>
                     <p>Le chiffrage doit distinguer la dépose, la préparation des supports, la plomberie, l’électricité, la ventilation, l’étanchéité et les revêtements. Les équipements fournis, leurs références lorsqu’elles sont arrêtées, les options et les exclusions doivent être lisibles. Le calendrier est établi selon les travaux retenus et la disponibilité des fournitures.</p>

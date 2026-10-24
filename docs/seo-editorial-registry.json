@@ -154,9 +154,9 @@
       "priority": "P1",
       "intent": "Trouver une entreprise de salle de bain à Paris 16",
       "route": "/renovation-salle-de-bain/paris-16",
-      "action": "Enrichir",
+      "action": "Aménagement enrichi, à publier",
       "proof": "Aucun chantier dans le 16e supposé",
-      "next": "Préserver la page principale et ajouter uniquement des preuves localisées confirmées."
+      "next": "Observation GSC du 24 octobre : 248 impressions et aucun clic sur 28 jours ; section aménagement ajoutée sans changement du titre. Vérifier publication puis mesurer les requêtes et demandes qualifiées. Contraste des liens éditoriaux corrigé dans le modèle de page."
     },
     {
       "id": "montreuil",

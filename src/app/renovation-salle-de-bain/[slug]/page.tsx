@@ -517,6 +517,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
 
               {page.slug === "paris-16" ? (
                 <nav aria-label="Préparer votre projet de salle de bain" className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm text-primary-foreground/90">
+                  <a href="#amenagement-salle-de-bain" className="underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">Préparer l’aménagement</a>
                   <a href="#budget-salle-de-bain" className="underline underline-offset-4">Préparer le budget</a>
                   <a href="#questions-salle-de-bain" className="underline underline-offset-4">Questions avant les travaux</a>
                 </nav>
@@ -569,7 +570,7 @@ export default function LocalLandingPage({ params }: { params: { slug: string } 
 
                   <div className="mt-10">
                     {page.mainContent ? (
-                      <div className="prose max-w-none text-foreground prose-headings:font-headline prose-p:text-muted-foreground prose-headings:text-primary prose-a:text-slate-600 prose-strong:text-foreground">
+                      <div className="prose max-w-none text-foreground prose-headings:font-headline prose-p:text-muted-foreground prose-headings:text-primary [&_a]:!text-slate-700 [&_a:hover]:!text-slate-950 [&_a:focus-visible]:outline [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-4 prose-strong:text-foreground">
                         {page.mainContent}
                       </div>
                     ) : (
